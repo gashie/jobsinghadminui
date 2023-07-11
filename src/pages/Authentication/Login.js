@@ -10,11 +10,6 @@ import { Link } from "react-router-dom";
 // Formik validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
-
-//Social Media Imports
-import { GoogleLogin } from "react-google-login";
-// import TwitterLogin from "react-twitter-auth"
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 // actions
 import { loginUser, socialLogin, resetLoginFlag } from "../../store/actions";
 
@@ -204,36 +199,7 @@ const Login = (props) => {
                                                         <h5 className="fs-13 mb-4 title">Sign In with</h5>
                                                     </div>
                                                     <div>
-                                                        <FacebookLogin
-                                                            appId={facebook.APP_ID}
-                                                            autoLoad={false}
-                                                            callback={facebookResponse}
-                                                            render={renderProps => (
-                                                                <Button color="primary"
-                                                                    className="btn-icon me-1"
-                                                                    onClick={renderProps.onClick}
-                                                                >
-                                                                    <i className="ri-facebook-fill fs-16" />
-                                                                </Button>
-                                                            )}
-                                                        />
-                                                        <GoogleLogin
-                                                            clientId={
-                                                                google.CLIENT_ID ? google.CLIENT_ID : ""
-                                                            }
-                                                            render={renderProps => (
-                                                                <Button color="danger"
-                                                                    to="#"
-                                                                    className="btn-icon me-1"
-                                                                    onClick={renderProps.onClick}
-                                                                >
-                                                                    <i className="ri-google-fill fs-16" />
-                                                                </Button>
-                                                            )}
-                                                            onSuccess={googleResponse}
-                                                            onFailure={(error) => {
-                                                            }}
-                                                        />
+                                                    
                                                         <Button color="dark" className="btn-icon"><i className="ri-github-fill fs-16"></i></Button>{" "}
                                                         <Button color="info" className="btn-icon"><i className="ri-twitter-fill fs-16"></i></Button>
                                                     </div>
