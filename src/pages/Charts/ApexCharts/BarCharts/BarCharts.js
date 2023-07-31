@@ -35,13 +35,13 @@ const Basic = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
                 type="bar"
                 height={350}
-
             />
         </React.Fragment>
     );
@@ -127,7 +127,8 @@ const CustomDataLabel = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -213,7 +214,8 @@ const Stacked = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -295,7 +297,8 @@ const Stacked2 = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -419,7 +422,8 @@ const Negative = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -547,7 +551,8 @@ const Markers = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -624,7 +629,8 @@ const Reversed = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -720,7 +726,8 @@ const Patterned = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -782,7 +789,8 @@ const Groupes = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -869,7 +877,8 @@ const BarwithImages = () => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}

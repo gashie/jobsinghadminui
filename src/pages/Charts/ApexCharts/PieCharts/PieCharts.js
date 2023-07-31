@@ -29,7 +29,8 @@ const SimplePie = ({ dataColors }) => {
         colors: chartPieBasicColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -58,7 +59,8 @@ const SimpleDonut = ({ dataColors }) => {
         colors: chartDonutBasicColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -86,7 +88,8 @@ const UpdateDonut = ({ dataColors }) => {
         colors: chartDonutupdatingColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -143,7 +146,8 @@ const MonochromePie = ({ dataColors }) => {
         }
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -190,7 +194,8 @@ const GradientDonut = ({ dataColors }) => {
         colors: chartPieGradientColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -268,7 +273,8 @@ const PatternedDonut = ({ dataColors }) => {
         colors: chartPiePatternColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -327,7 +333,8 @@ const ImagePieChart = ({ dataColors }) => {
     }
 
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}

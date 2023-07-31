@@ -18,7 +18,6 @@ import { userForgetPassword } from "../../store/actions";
 // import profile from "../../assets/images/bg.png";
 import logoLight from "../../assets/images/logo-light.png";
 import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
-
 import withRouter from "../../Components/Common/withRouter";
 
 const ForgetPasswordPage = props => {
@@ -35,7 +34,7 @@ const ForgetPasswordPage = props => {
       email: Yup.string().required("Please Enter Your Email"),
     }),
     onSubmit: (values) => {
-      dispatch(userForgetPassword(values, props.history));
+      dispatch(userForgetPassword(values, props.router.navigate));
     }
   });
 

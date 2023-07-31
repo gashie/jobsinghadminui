@@ -24,7 +24,8 @@ const SimpleRadar = ({ dataColors }) => {
         }
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -78,7 +79,8 @@ const MultipleRadar = ({ dataColors }) => {
         }
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -148,7 +150,8 @@ const PolygonRadar = ({ dataColors }) => {
         }
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}

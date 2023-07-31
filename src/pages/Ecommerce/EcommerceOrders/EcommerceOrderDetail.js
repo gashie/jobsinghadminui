@@ -34,10 +34,10 @@ const EcommerceOrderDetail = (props) => {
     setcol3(!col3);
   }
 
-  document.title = "Order Details | Velzon - React Admin & Dashboard Template";
+document.title ="Order Details | Velzon - React Admin & Dashboard Template";
   return (
     <div className="page-content">
-      <Container fluid>
+      <Container fluid>        
         <BreadCrumb title="Order Details" pageTitle="Ecommerce" />
 
         <Row>
@@ -48,7 +48,7 @@ const EcommerceOrderDetail = (props) => {
                   <h5 className="card-title flex-grow-1 mb-0">Order #VL2667</h5>
                   <div className="flex-shrink-0">
                     <Link
-                      to="/apps-invoices-details"
+                      to="apps-invoices-details"
                       className="btn btn-success btn-sm"
                     >
                       <i className="ri-download-2-fill align-middle me-1"></i>{" "}

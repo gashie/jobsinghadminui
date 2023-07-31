@@ -65,7 +65,7 @@ const TopSellers = () => {
                                 </div>
                             </div>
                             <div className="col-sm-auto mt-3 mt-sm-0">
-                                <ul className="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                                <ul className="pagination pagination-separated pagination-sm mb-0">
                                     <li className="page-item disabled">
                                         <Link to="#" className="page-link">←</Link>
                                     </li>

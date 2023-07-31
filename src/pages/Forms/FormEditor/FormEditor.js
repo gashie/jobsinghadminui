@@ -36,9 +36,8 @@ document.title ="Editors | Velzon - React Admin & Dashboard Template";
                         // You can store the "editor" and use when it is needed.
                         
                       }}
-                      onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
+                      onChange={(editor) => {
+                        editor.getData();
                       }}
                     />
                   </Form>

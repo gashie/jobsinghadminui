@@ -24,7 +24,6 @@ const MarketGraph = () => {
     useEffect(() => {
         dispatch(getMarketChartsData("all"));
     }, [dispatch]);
-
     return (
         <React.Fragment>
             <Row>
@@ -84,9 +83,7 @@ const MarketGraph = () => {
                             </div>
                         </CardBody>
                         <div className="card-body p-0 pb-3">
-                            <div id="Market_chart" className="apex-charts" dir="ltr">
-                                <MarkerCharts series={chartData} dataColors='["--vz-success", "--vz-danger"]'/>
-                            </div>
+                            <MarkerCharts series={chartData} dataColors='["--vz-success", "--vz-danger"]' />
                         </div>
                     </Card>
                 </Col>

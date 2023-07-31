@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, Col, DropdownMenu, DropdownToggle, UncontrolledDropdown, DropdownItem } from 'reactstrap';
 import { useSelector, useDispatch } from "react-redux";
-import { AudiencesSessionsCharts } from './DashboardAnalyticsCharts';
+import {AudiencesSessionsCharts} from './DashboardAnalyticsCharts';
 import { getAudiencesSessionsChartsData } from "../../store/dashboardAnalytics/action";
 
 const AudiencesSessions = () => {
@@ -26,7 +26,6 @@ const AudiencesSessions = () => {
     useEffect(() => {
         dispatch(getAudiencesSessionsChartsData("today"));
     }, [dispatch]);
-
     return (
         <React.Fragment>
             <Col xl={6}>

@@ -172,7 +172,7 @@ const EcommerceSellers = () => {
                       <img src={seller.img} alt="" height="45" />
                       <h5 className="mb-1 mt-4">
                         <Link
-                          to="/apps-ecommerce-seller-details"
+                          to="apps-ecommerce-seller-details"
                           className="link-primary"
                         >
                           {seller.label}
@@ -199,7 +199,7 @@ const EcommerceSellers = () => {
                       </Row>
                       <div className="mt-4">
                         <Link
-                          to="/apps-ecommerce-seller-details"
+                          to="apps-ecommerce-seller-details"
                           className="btn btn-light w-100"
                         >
                           View Details

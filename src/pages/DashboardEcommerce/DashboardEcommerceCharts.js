@@ -123,7 +123,8 @@ const RevenueCharts = ({ dataColors, series }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         options={options}
         series={series}
         type="line"
@@ -136,6 +137,7 @@ const RevenueCharts = ({ dataColors, series }) => {
 
 const StoreVisitsCharts = ({ dataColors }) => {
   var chartDonutBasicColors = getChartColorsArray(dataColors);
+
   const series = [44, 55, 41, 17, 15];
   var options = {
     labels: ["Direct", "Social", "Email", "Other", "Referrals"],
@@ -158,7 +160,8 @@ const StoreVisitsCharts = ({ dataColors }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         options={options}
         series={series}
         type="donut"

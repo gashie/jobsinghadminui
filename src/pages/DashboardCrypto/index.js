@@ -21,11 +21,11 @@ const DashboardCrypto = () => {
                     <BreadCrumb title="Crypto" pageTitle="Dashboards" />
                     <Row>
                         <MyPortfolio />
-                        <Col className="col-xxl-9 order-xxl-0 order-first">
+                        <Col className="order-xxl-0 order-first">
                             <Row>
                                 <Widgets />
-                            </Row>
                                 <MarketGraph />
+                            </Row>
                         </Col>
                     </Row>
                     <Row>

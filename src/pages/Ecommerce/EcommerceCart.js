@@ -17,8 +17,8 @@ import {
 } from "reactstrap";
 
 const EcommerceCart = () => {
-  const [productList, setproductList] = useState(shoppingCart);
 
+  const [productList, setproductList] = useState(shoppingCart);
   const [charge, setCharge] = useState(0);
   const [tax, setTax] = useState(0);
   const [dis, setDis] = useState(0);
@@ -66,7 +66,7 @@ const EcommerceCart = () => {
     );
   }
 
-document.title ="Shopping Cart | Velzon - React Admin & Dashboard Template";
+  document.title = "Shopping Cart | Velzon - React Admin & Dashboard Template";
   return (
     <React.Fragment>
       <div className="page-content">
@@ -83,7 +83,7 @@ document.title ="Shopping Cart | Velzon - React Admin & Dashboard Template";
                 </div>
                 <div className="col-sm-auto">
                   <Link
-                    to="/apps-ecommerce-products"
+                    to="apps-ecommerce-products"
                     className="link-primary text-decoration-underline"
                   >
                     Continue Shopping
@@ -213,7 +213,7 @@ document.title ="Shopping Cart | Velzon - React Admin & Dashboard Template";
 
               <div className="text-end mb-4">
                 <Link
-                  to="/apps-ecommerce-checkout"
+                  to="apps-ecommerce-checkout"
                   className="btn btn-success btn-label right ms-auto"
                 >
                   <i className="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i>{" "}
@@ -253,7 +253,7 @@ document.title ="Shopping Cart | Velzon - React Admin & Dashboard Template";
                           <tr>
                             <td>Sub Total :</td>
                             <td className="text-end" id="cart-subtotal">
-                            $ {subTotal}
+                              $ {subTotal}
                             </td>
                           </tr>
                           <tr>
@@ -262,26 +262,26 @@ document.title ="Shopping Cart | Velzon - React Admin & Dashboard Template";
                               <span className="text-muted">(VELZON15)</span> :{" "}
                             </td>
                             <td className="text-end" id="cart-discount">
-                            - $ {dis}
+                              - $ {dis}
                             </td>
                           </tr>
                           <tr>
                             <td>Shipping Charge :</td>
                             <td className="text-end" id="cart-shipping">
-                            $ {charge}
+                              $ {charge}
                             </td>
                           </tr>
                           <tr>
                             <td>Estimated Tax (12.5%) : </td>
                             <td className="text-end" id="cart-tax">
-                            $ {tax}
+                              $ {tax}
                             </td>
                           </tr>
                           <tr className="table-active">
                             <th>Total (USD) :</th>
                             <td className="text-end">
                               <span className="fw-semibold" id="cart-total">
-                              ${subTotal + charge + tax - dis}
+                                ${subTotal + charge + tax - dis}
                               </span>
                             </td>
                           </tr>

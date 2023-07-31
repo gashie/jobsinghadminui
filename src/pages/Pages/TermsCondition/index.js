@@ -1,22 +1,23 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Card, CardBody, Col, Container, Row } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
 const TermsCondition = () => {
-  document.title = "Terms & Condition | Velzon - React Admin & Dashboard Template";
+  document.title =
+    "Terms & Condition | Velzon - React Admin & Dashboard Template";
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Terms & Condition" pageTitle="Pages" />
+          <BreadCrumb title="Term & Conditions" pageTitle="Pages" />
           <Row className="justify-content-center">
-            <Col lg={10}>
+            <Col className="col-lg-10">
               <Card>
-                <div className="bg-soft-info position-relative">
-                  <CardBody className="p-5">
+                <div className="bg-soft-warning position-relative">
+                  <CardBody className="card-body p-5">
                     <div className="text-center">
-                      <h3>Term & Conditions</h3>
+                      <h3 className="fw-semibold">Term & Conditions</h3>
                       <p className="mb-0 text-muted">
                         Last update: 16 Sept, 2022
                       </p>
@@ -27,7 +28,8 @@ const TermsCondition = () => {
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
-                      width="1440"
+                      // xmlns:svgjs="http://svgjs.com/svgjs"
+                      width="100%"
                       height="60"
                       preserveAspectRatio="none"
                       viewBox="0 0 1440 60"
@@ -40,7 +42,7 @@ const TermsCondition = () => {
                       </g>
                       <defs>
                         <mask id="SvgjsMask1001">
-                          <rect width="1440" height="60" fill="#ffffff"></rect>
+                          <rect width="100%" height="60" fill="#ffffff"></rect>
                         </mask>
                       </defs>
                     </svg>
@@ -48,7 +50,7 @@ const TermsCondition = () => {
                 </div>
                 <CardBody className="p-4">
                   <div>
-                    <h5>Welcome to Velzon!</h5>
+                    <h5 className="fw-semibold">Welcome to Velzon!</h5>
                     <p className="text-muted">
                       These terms and conditions outline the rules and
                       regulations for the use of Company Name's Website, located
@@ -70,7 +72,7 @@ const TermsCondition = () => {
                   </div>
 
                   <div>
-                    <h5>License</h5>
+                    <h5 className="fw-semibold">License</h5>
                     <p className="text-muted">
                       Unless otherwise stated, Company Name and/or its licensors
                       own the intellectual property rights for all material on
@@ -163,13 +165,15 @@ const TermsCondition = () => {
                   </div>
 
                   <div className="text-end">
-                    <Link to="#" className="btn btn-primary me-1">
+                    <Button color="success" className="btn btn-success">
                       Accept
-                    </Link>
-                    <Link to="#" className="btn btn-outline-danger">
-                      <i className="ri-close-line align-bottom me-1"></i>{" "}
-                      Decline
-                    </Link>
+                    </Button>
+                    <Button
+                      color="outline-danger"
+                      className="btn btn-outline-danger m-1"
+                    >
+                      <i className="ri-close-line align-bottom "></i> Decline
+                    </Button>
                   </div>
                 </CardBody>
               </Card>

@@ -33,7 +33,7 @@ const UiTypography = () => {
                                                 <div className="text-muted">
                                                     <p>Body Font Family</p>
                                                     <div>
-                                                        <p className="display-4 text-dark fw-medium">Aa</p>
+                                                        <p className="display-4 text-dark font-weight-medium">Aa</p>
                                                     </div>
                                                     <div>
                                                         <p className="mb-2">Font Family</p>
@@ -46,7 +46,7 @@ const UiTypography = () => {
                                                 <div className="text-muted mt-4 mt-sm-0">
                                                     <p>Heading Font Family</p>
                                                     <div>
-                                                        <h1 className="display-4 text-dark fw-medium">Aa</h1>
+                                                        <h1 className="display-4 text-dark font-weight-medium">Aa</h1>
                                                     </div>
                                                     <div>
                                                         <p className="mb-2">Font Family</p>

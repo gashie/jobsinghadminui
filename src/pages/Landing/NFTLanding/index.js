@@ -8,7 +8,7 @@ import Trending from "./Trending ";
 import DiscoverItems from "./DiscoverItems";
 import TopCreator from "./TopCreator ";
 import CTA from './CTA';
-import Footer from "./footer";
+import Footer from "../OnePage/footer";
 
 const index = () => {
     document.title = " Landing | Velzon - React Admin & Dashboard Template";

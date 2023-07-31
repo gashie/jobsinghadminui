@@ -64,7 +64,6 @@ const sidebarVisibilitytypes = {
   HIDDEN: "hidden"
 }
 
-
 export {
   layoutTypes,
   layoutModeTypes,

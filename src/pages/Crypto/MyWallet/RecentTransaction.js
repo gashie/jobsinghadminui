@@ -74,7 +74,7 @@ const RecentTransaction = () => {
                             <p className="text-muted mb-0">27 Dec, 2021</p>
                         </div>
                         <div>
-                            <h6 className="text-success btn mb-0">+ $7,365.80</h6>
+                            <h6 className="text-success mb-0">+ $7,365.80</h6>
                         </div>
                     </div>
                     <div>

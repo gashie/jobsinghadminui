@@ -95,6 +95,18 @@ function* changeLayoutPosition({ payload: layoutposition }) {
 }
 
 /**
+ * Changes the layout visiilty
+ * @param {*} param0
+ */
+function* changeSidebarVisibility({ payload: visibility }) {
+    try {
+        yield call(changeHTMLAttribute, "data-sidebar-visibility", visibility);
+    } catch (error) {
+        // console.log(error);
+    }
+}
+
+/**
  * Changes the topbar themes
  * @param {*} param0
  */
@@ -164,19 +176,11 @@ function* changeLeftsidebarSizeType({ payload: leftsidebarSizetype }) {
  */
 function* changeLeftSidebarViewType({ payload: leftsidebarViewtype }) {
     try {
-        yield call(changeHTMLAttribute, "data-layout-style", leftsidebarViewtype);
-    } catch (error) {
-        // console.log(error);
-    }
-}
-
-/**
- * Changes the layout visiilty
- * @param {*} param0
- */
-function* changeSidebarVisibility({ payload: visibility }) {
-    try {
-        yield call(changeHTMLAttribute, "data-sidebar-visibility", visibility);
+        if(document.documentElement.getAttribute("data-layout") !== "semibox"){
+            yield call(changeHTMLAttribute, "data-layout-style", leftsidebarViewtype);
+        }else {
+            document.documentElement.removeAttribute("data-layout-style");
+        }
     } catch (error) {
         // console.log(error);
     }
@@ -231,7 +235,7 @@ function* LayoutSaga() {
         fork(watchChangeLeftSidebarViewType),
         fork(watchChangeSidebarImageType),
         fork(watchchangePreloader),
-        fork(watchchangeSidebarVisibility),
+        fork(watchchangeSidebarVisibility)
     ]);
 }
 

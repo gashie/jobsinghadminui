@@ -183,7 +183,7 @@ document.title ="Wizard | Velzon - React Admin & Dashboard Template";
                                   type="text"
                                   className="form-control"
                                   id="gen-info-email-input"
-                                  placeholder="Enter Email"
+                                  placeholder="Enter email"
                                 />
                               </div>
                             </Col>
@@ -199,7 +199,7 @@ document.title ="Wizard | Velzon - React Admin & Dashboard Template";
                                   type="text"
                                   className="form-control"
                                   id="gen-info-username-input"
-                                  placeholder="Enter User Name"
+                                  placeholder="Enter user name"
                                 />
                               </div>
                             </Col>
@@ -331,7 +331,7 @@ document.title ="Wizard | Velzon - React Admin & Dashboard Template";
                   <h4 className="card-title mb-0">Arrow Nav Steps</h4>
                 </CardHeader>
                 <CardBody>
-                  <Form className="form-steps"> 
+                  <Form className="form-steps">
                     <div className="text-center pt-3 pb-4 mb-1">
                       <img src={logoDark} alt="" height="17" />
                     </div>

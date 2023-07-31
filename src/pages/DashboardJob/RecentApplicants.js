@@ -36,7 +36,7 @@ const RecentApplicants = () => {
                   {recentApplicants.map((item, key) => (
                     <tr key={key}>
                       <td>
-                        <Link to="#" className="fw-medium link-primary">
+                        <Link href="#!" className="fw-medium link-primary">
                           {item.no}
                         </Link>
                       </td>
@@ -64,9 +64,9 @@ const RecentApplicants = () => {
                       </td>
                       <td>
                         <h5 className="fs-14 fw-medium mb-0">
-                          {item.rating}
+                          {item.rate}
                           <span className="text-muted fs-11 ms-1">
-                            {item.ratingDetails}
+                            {item.rating}
                           </span>
                         </h5>
                       </td>

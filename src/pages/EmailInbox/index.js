@@ -9,8 +9,11 @@ const MailInbox = () => {
         <React.Fragment>
             <div className="page-content">
                 <Container fluid>
-                    {/* <EmailSidebar /> */}
-                    <EmailToolbar />
+                
+                    <div className="email-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
+                        {/* <EmailSidebar /> */}
+                        <EmailToolbar />
+                    </div>
                 </Container>
             </div>
         </React.Fragment>

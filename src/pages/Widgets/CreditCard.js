@@ -43,7 +43,6 @@ const CreditCard = () => {
                 </Col>
             </Row>
                     
-
             <Row>
                 <Col xxl={4}>
                     <Card className="card-height-100">
@@ -147,7 +146,6 @@ const CreditCard = () => {
                                             </select>
                                         </div>
                                     </div>
-                                    
             
                                     <div className="col-lg-4">
                                         <div className="cvc">
@@ -155,10 +153,7 @@ const CreditCard = () => {
                                             <input type="text" id="cvc-input" className="form-control" maxLength="3" />
                                         </div>
                                     </div>
-                                    
                                 </Row>
-                                
-            
                                 <button className="btn btn-danger w-100 mt-3" type="submit">Pay Now</button>
                             </form>
                             
@@ -205,11 +200,11 @@ const CreditCard = () => {
                                                         datePattern: ['m', 'y']
                                                     }}
                                                     value={state.expiry}
-                                                    name="expiry"
+                                                    name="cvc"
                                                     onChange={e => onChangeHandler(e, 'expiry')}
                                                     onFocus={(e) => handleInputFocus(e)}
                                                     className="form-control"
-                                                    id="card-expiry-input"
+                                                    id="card-cvc-input"
                                                 />
                                             </div>
                                         </Col>

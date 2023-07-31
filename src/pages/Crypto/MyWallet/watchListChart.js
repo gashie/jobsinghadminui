@@ -36,7 +36,8 @@ const WatchListChart = ({ seriesData, chartsColor }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={[...seriesData]}
                 type="area"

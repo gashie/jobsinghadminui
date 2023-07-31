@@ -1,9 +1,7 @@
 import React from 'react';
-import { Line,Bar,Pie,Doughnut,PolarArea,Radar} from "react-chartjs-2";
-import { Chart, registerables } from 'chart.js';
+import { Line,Bar,Pie,Doughnut,Polar,Radar} from "react-chartjs-2";
 
 import getChartColorsArray from "../../../Components/Common/ChartsDynamicColor";
-Chart.register(...registerables);
 
 const LineChart = ({dataColors}) => {   
     var lineChartColor =  getChartColorsArray(dataColors);
@@ -165,7 +163,7 @@ const PieChart = ({dataColors}) => {
     }
   return (
     <React.Fragment>
-      <Pie data={data} options={option} className="chartjs-chart" />
+      <Pie width={723} height={320} data={data} options={option} />
     </React.Fragment>
   )
 }
@@ -199,7 +197,7 @@ const DonutChart = ({dataColors}) => {
     }
   return (
     <React.Fragment>
-      <Doughnut data={data} options={option} className="chartjs-chart" />
+      <Doughnut width={723} height={320} data={data} options={option} />
     </React.Fragment>
   )
 }
@@ -239,7 +237,7 @@ const PolarChart = ({dataColors}) => {
     }
   return (
     <React.Fragment>
-      <PolarArea className="chartjs-chart" data={data} options={option} />
+      <Polar width={723} height={320} data={data} options={option} />
     </React.Fragment>
   )
 }
@@ -286,7 +284,7 @@ const RadarChart = ({dataColors}) => {
     }
   return (
     <React.Fragment>
-      <Radar className="chartjs-chart" data={data} options={option} />
+      <Radar width={723} height={320} data={data} options={option} />
     </React.Fragment>
   )
 }

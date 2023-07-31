@@ -28,7 +28,7 @@ const DocumentsTab = () => {
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div className="avatar-sm">
-                                                        <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                        <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                             <i className="ri-folder-zip-line"></i>
                                                         </div>
                                                     </div>
@@ -42,7 +42,7 @@ const DocumentsTab = () => {
                                             <td>12 Dec 2021</td>
                                             <td>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon">
+                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu className="dropdown-menu-end">
@@ -58,7 +58,7 @@ const DocumentsTab = () => {
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div className="avatar-sm">
-                                                        <div className="avatar-title bg-light text-danger rounded fs-24">
+                                                        <div className="avatar-title bg-light text-danger rounded fs-24 shadow">
                                                             <i className="ri-file-pdf-fill"></i>
                                                         </div>
                                                     </div>
@@ -72,7 +72,7 @@ const DocumentsTab = () => {
                                             <td>24 Nov 2021</td>
                                             <td>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon">
+                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu className="dropdown-menu-end">
@@ -88,7 +88,7 @@ const DocumentsTab = () => {
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div className="avatar-sm">
-                                                        <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                        <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                             <i className="ri-video-line"></i>
                                                         </div>
                                                     </div>
@@ -102,7 +102,7 @@ const DocumentsTab = () => {
                                             <td>19 Nov 2021</td>
                                             <td>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon">
+                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu className="dropdown-menu-end">
@@ -118,7 +118,7 @@ const DocumentsTab = () => {
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div className="avatar-sm">
-                                                        <div className="avatar-title bg-light text-success rounded fs-24">
+                                                        <div className="avatar-title bg-light text-success rounded fs-24 shadow">
                                                             <i className="ri-file-excel-fill"></i>
                                                         </div>
                                                     </div>
@@ -132,7 +132,7 @@ const DocumentsTab = () => {
                                             <td>14 Nov 2021</td>
                                             <td>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon">
+                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu className="dropdown-menu-end">
@@ -148,7 +148,7 @@ const DocumentsTab = () => {
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div className="avatar-sm">
-                                                        <div className="avatar-title bg-light text-warning rounded fs-24">
+                                                        <div className="avatar-title bg-light text-warning rounded fs-24 shadow">
                                                             <i className="ri-folder-fill"></i>
                                                         </div>
                                                     </div>
@@ -162,7 +162,7 @@ const DocumentsTab = () => {
                                             <td>08 Nov 2021</td>
                                             <td>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon">
+                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu className="dropdown-menu-end">
@@ -178,7 +178,7 @@ const DocumentsTab = () => {
                                             <td>
                                                 <div className="d-flex align-items-center">
                                                     <div className="avatar-sm">
-                                                        <div className="avatar-title bg-light text-danger rounded fs-24">
+                                                        <div className="avatar-title bg-light text-danger rounded fs-24 shadow">
                                                             <i className="ri-image-2-fill"></i>
                                                         </div>
                                                     </div>
@@ -192,7 +192,7 @@ const DocumentsTab = () => {
                                             <td>02 Nov 2021</td>
                                             <td>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon">
+                                                    <DropdownToggle tag="a" href="#" className="btn btn-soft-secondary btn-sm btn-icon shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu className="dropdown-menu-end">

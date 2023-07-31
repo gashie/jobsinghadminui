@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Collapse, Container, NavbarToggler, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom'; 
-import Scrollspy from "react-scrollspy";
+import { Link } from 'react-router-dom'; import Scrollspy from "react-scrollspy";
 
 
 //import Images
@@ -18,7 +17,7 @@ const Navbar = () => {
         window.addEventListener("scroll", scrollNavigation, true);
     });
 
-    const scrollNavigation = () => {
+    function scrollNavigation() {
         var scrollup = document.documentElement.scrollTop;
         if (scrollup > 50) {
             setnavClass("is-sticky");
@@ -59,19 +58,19 @@ const Navbar = () => {
                             id="navbar-example"
                         >
                             <li className="nav-item">
-                                <NavLink href="#hero">Home</NavLink>
+                                <NavLink className="fs-15" href="#hero">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#wallet">Wallet</NavLink>
+                                <NavLink className="fs-15" href="#wallet">Wallet</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#marketplace">Marketplace</NavLink>
+                                <NavLink className="fs-15" href="#marketplace">Marketplace</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#categories">Categories</NavLink>
+                                <NavLink className="fs-15" href="#categories">Categories</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#creators">Creators</NavLink>
+                                <NavLink className="fs-15" href="#creators">Creators</NavLink>
                             </li>
                         </Scrollspy>
 

@@ -90,7 +90,7 @@ const RecentNFTs = () => {
                         <CardHeader className="align-items-center d-flex">
                             <h4 className="card-title mb-0 flex-grow-1">Worldwide Top Creators</h4>
                             <div className="flex-shrink-0">
-                                <button type="button" className="btn btn-soft-primary btn-sm">
+                                <button type="button" className="btn btn-soft-primary btn-sm shadow-none">
                                     Export Report
                                 </button>
                             </div>
@@ -112,7 +112,7 @@ const RecentNFTs = () => {
                     <Card>
                         <CardHeader className="d-flex align-items-center">
                             <h6 className="card-title flex-grow-1 mb-0">Top Collections</h6>
-                            <Link to="/apps-nft-collections" type="button" className="btn btn-soft-primary btn-sm flex-shrink-0">
+                            <Link to="/apps-nft-collections" type="button" className="btn btn-soft-primary shadow-none btn-sm flex-shrink-0">
                                 See All <i className="ri-arrow-right-line align-bottom"></i>
                             </Link>
                         </CardHeader>
@@ -136,14 +136,14 @@ const RecentNFTs = () => {
                                                 <img src={item.img} alt="" height="220" className="object-cover w-100" />
                                                 <div className="content position-absolute bottom-0 m-2 p-2 start-0 end-0 rounded d-flex align-items-center">
                                                     <div className="flex-grow-1">
-                                                        <Link to="#">
+                                                        <Link to="#!">
                                                             <h5 className="text-white fs-16 mb-1">{item.category}</h5>
                                                         </Link>
                                                         <p className="text-white-75 mb-0">{item.items} Items</p>
                                                     </div>
                                                     <div className="avatar-xxs">
                                                         <div className="avatar-title bg-white rounded-circle">
-                                                            <Link to="#" className="link-success"><i className="ri-arrow-right-line"></i></Link>
+                                                            <Link to="#!" className="link-success"><i className="ri-arrow-right-line"></i></Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,7 +157,7 @@ const RecentNFTs = () => {
                     <Card>
                         <CardHeader className="d-flex align-items-center">
                             <h5 className="card-title flex-grow-1 mb-0">Popular Creators</h5>
-                            <Link to="/apps-nft-creators" type="button" className="btn btn-soft-primary btn-sm flex-shrink-0">
+                            <Link to="/apps-nft-creators" type="button" className="btn btn-soft-primary shadow-none btn-sm flex-shrink-0">
                                 See All <i className="ri-arrow-right-line align-bottom"></i>
                             </Link>
                         </CardHeader>

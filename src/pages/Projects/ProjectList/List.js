@@ -54,7 +54,6 @@ const List = () => {
             ele.closest("button").classList.add("active");
         }
     };
-
     return (
         <React.Fragment>
             <ToastContainer closeButton={false} />
@@ -104,13 +103,13 @@ const List = () => {
                                                 </div>
                                                 <div className="flex-shrink-0">
                                                     <div className="d-flex gap-1 align-items-center">
-                                                        <button type="button" className={`btn avatar-xs mt-n1 p-0 favourite-btn ${item.ratingClass}`} onClick={(e) => activebtn(e.target)}>
+                                                        <button type="button" className={`btn avatar-xs mt-n1 p-0 favourite-btn shadow-none ${item.ratingClass}`} onClick={(e) => activebtn(e.target)}>
                                                             <span className="avatar-title bg-transparent fs-15">
                                                                 <i className="ri-star-fill"></i>
                                                             </span>
                                                         </button>
                                                         <UncontrolledDropdown direction='start'>
-                                                            <DropdownToggle tag="button" className="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15">
+                                                            <DropdownToggle tag="button" className="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15 shadow-none">
                                                                 <FeatherIcon icon="more-horizontal" className="icon-sm" />
                                                             </DropdownToggle>
 
@@ -196,13 +195,13 @@ const List = () => {
                                                     </div>
                                                     <div className="flex-shrink-0">
                                                         <div className="d-flex gap-1 align-items-center my-n2">
-                                                            <button type="button" className={`btn avatar-xs mt-n1 p-0 favourite-btn ${item.ratingClass}`} onClick={(e) => activebtn(e.target)}>
+                                                            <button type="button" className={`btn avatar-xs mt-n1 p-0 favourite-btn shadow-none ${item.ratingClass}`} onClick={(e) => activebtn(e.target)}>
                                                                 <span className="avatar-title bg-transparent fs-15">
                                                                     <i className="ri-star-fill"></i>
                                                                 </span>
                                                             </button>
                                                             <UncontrolledDropdown direction='start'>
-                                                                <DropdownToggle tag="button" className="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15">
+                                                                <DropdownToggle tag="button" className="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15 shadow-none">
                                                                     <FeatherIcon icon="more-horizontal" className="icon-sm" />
                                                                 </DropdownToggle>
 
@@ -281,14 +280,14 @@ const List = () => {
                                             <CardBody>
                                                 <div className={`p-3 mt-n3 mx-n3 bg-${item.cardHeaderClass} rounded-top`}>
                                                     <div className="d-flex gap-1 align-items-center justify-content-end my-n2">
-                                                        <button type="button" className={`btn avatar-xs mt-n1 p-0 favourite-btn ${item.ratingClass}`} onClick={(e) => activebtn(e.target)}>
+                                                        <button type="button" className={`btn avatar-xs mt-n1 p-0 favourite-btn shadow-none ${item.ratingClass}`} onClick={(e) => activebtn(e.target)}>
                                                             <span className="avatar-title bg-transparent fs-15">
                                                                 <i className="ri-star-fill"></i>
                                                             </span>
                                                         </button>
                                                         <UncontrolledDropdown>
 
-                                                            <DropdownToggle tag="button" className="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15">
+                                                            <DropdownToggle tag="button" className="btn btn-link text-muted p-1 mt-n2 py-0 text-decoration-none fs-15 shadow-none">
                                                                 <FeatherIcon icon="more-horizontal" className="icon-sm" />
                                                             </DropdownToggle>
 

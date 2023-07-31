@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Row, Col, Card, CardBody, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { topCreatorData } from '../../../common/data';
+
+import {topCreatorData} from "../../../common/data"
 
 const TopCreator = () => {
     

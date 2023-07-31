@@ -19,7 +19,6 @@ const Date = (cell) => {
   return <React.Fragment>{cell.value}</React.Fragment>;
 };
 
-
 const Contact = (cell) => {
   return <React.Fragment>{cell.value}</React.Fragment>;
 };

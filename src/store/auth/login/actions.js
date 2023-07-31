@@ -43,10 +43,10 @@ export const apiError = error => {
   };
 };
 
-export const socialLogin = (data, history, type) => {
+export const socialLogin = (type, history) => {
   return {
     type: SOCIAL_LOGIN,
-    payload: { data, history, type },
+    payload: { type, history },
   };
 };
 

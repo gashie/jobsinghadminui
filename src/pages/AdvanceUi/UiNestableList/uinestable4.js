@@ -6,7 +6,7 @@ class Uinestable4 extends React.Component {
     constructor(props) {
         super(props);
         const data = [
-            { id: 1, title: "Dashboards", icon: "ri-dashboard-2-line", set1: [{ id: 1, title: "Analytics" }, { id: 2, title: "CRM" }] },
+            { id: 1, title: "Dashboards", icon: "mdi mdi-speedometer", set1: [{ id: 1, title: "Analytics" }, { id: 2, title: "CRM" }] },
             { id: 2, title: "Apps", icon: "ri-apps-2-line", set1: [{ id: 1, title: "Calendar" }, { id: 2, title: "Chat" }, { id: 3, title: "Email" }] },
             { id: 3, title: "Authentication", icon: "ri-account-circle-line", set1: [{ id: 1, title: "Sign In" }, { id: 2, title: "Sign Up" }] },
         ];

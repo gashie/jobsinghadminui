@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import img8 from "../../../assets/images/small/img-8.jpg";
 import img6 from "../../../assets/images/small/img-6.jpg";
@@ -10,9 +10,9 @@ const Blog = () => {
       <section className="section" id="blog">
         <Container>
           <Row className="justify-content-center">
-            <Col className="col-lg-8">
+            <Col lg={8}>
               <div className="text-center mb-5">
-                <h1 className="mb-3 ff-secondary fw-semibold text-capitalize lh-base">
+                <h1 className="mb-3 fw-semibold text-capitalize lh-base">
                   Our Latest <span className="text-primary">News</span>
                 </h1>
                 <p className="text-muted mb-4">
@@ -25,7 +25,7 @@ const Blog = () => {
           </Row>
 
           <Row>
-            <Col className="col-lg-4 col-md-6">
+            <Col lg={4} md={6}>
               <Card>
                 <CardBody>
                   <img src={img8} alt="" className="img-fluid rounded" />
@@ -41,24 +41,24 @@ const Blog = () => {
                       364 Comment
                     </li>
                   </ul>
-                  <NavLink to="#!">
+                  <Link to="#!">
                     <h5>Design your apps in your own way ?</h5>
-                  </NavLink>
+                  </Link>
                   <p className="text-muted fs-14">
                     One disadvantage of Lorum Ipsum is that in Latin layouts
                     certain letters appear more frequently than others.
                   </p>
 
                   <div>
-                    <NavLink to="#!" className="link-success">
+                    <Link to="#!" className="link-success">
                       Learn More{" "}
                       <i className="ri-arrow-right-line align-bottom ms-1"></i>
-                    </NavLink>
+                    </Link>
                   </div>
                 </CardBody>
               </Card>
             </Col>
-            <Col className="col-lg-4 col-md-6">
+            <Col lg={4} md={6}>
               <Card>
                 <CardBody>
                   <img src={img6} alt="" className="img-fluid rounded" />
@@ -74,24 +74,24 @@ const Blog = () => {
                       245 Comment
                     </li>
                   </ul>
-                  <NavLink to="#!">
+                  <Link to="#!">
                     <h5>Smartest applications for business ?</h5>
-                  </NavLink>
+                  </Link>
                   <p className="text-muted fs-14">
                     Due to its widespread use as filler text for layouts,
                     non-readability is of great importance: human perception.
                   </p>
 
                   <div>
-                    <NavLink to="#!" className="link-success">
+                    <Link to="#!" className="link-success">
                       Learn More{" "}
                       <i className="ri-arrow-right-line align-bottom ms-1"></i>
-                    </NavLink>
+                    </Link>
                   </div>
                 </CardBody>
               </Card>
             </Col>
-            <Col className="col-lg-4 col-md-6">
+            <Col lg={4} md={6}>
               <Card>
                 <CardBody>
                   <img src={img9} alt="" className="img-fluid rounded" />
@@ -107,9 +107,9 @@ const Blog = () => {
                       354 Comment
                     </li>
                   </ul>
-                  <NavLink to="#!">
+                  <Link to="#!">
                     <h5>How apps is changing the IT world</h5>
-                  </NavLink>
+                  </Link>
                   <p className="text-muted fs-14">
                     Intrinsically incubate intuitive opportunities and real-time
                     potentialities Appropriately communicate one-to-one
@@ -117,10 +117,10 @@ const Blog = () => {
                   </p>
 
                   <div>
-                    <NavLink to="#!" className="link-success">
+                    <Link to="#!" className="link-success">
                       Learn More{" "}
                       <i className="ri-arrow-right-line align-bottom ms-1"></i>
-                    </NavLink>
+                    </Link>
                   </div>
                 </CardBody>
               </Card>
@@ -128,7 +128,7 @@ const Blog = () => {
           </Row>
         </Container>
       </section>
-      <section className="py-5 bg-primary position-relative bg-opacity-75">
+      <section className="py-5 bg-info position-relative">
         <div className="bg-overlay bg-overlay-pattern opacity-50"></div>
         <Container>
           <Row className="align-items-center gy-4">
@@ -142,7 +142,7 @@ const Blog = () => {
                 </p>
               </div>
             </Col>
-            <Col className="col-sm-auto">
+            <Col sm="auto">
               <Button className="btn btn-danger" type="button">
                 Subscribe Now{" "}
                 <i className="ri-arrow-right-line align-bottom"></i>

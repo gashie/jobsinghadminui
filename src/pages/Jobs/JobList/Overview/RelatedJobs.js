@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardBody, Col, Row } from "reactstrap";
+import { Card, CardBody, Col, Row, Button } from "reactstrap";
 import { overviewJobs } from "../../../../common/data/appsJobs";
 
 const RelatedJobs = () => {
@@ -13,7 +13,7 @@ const RelatedJobs = () => {
               <h5 className="mb-0">Related Jobs</h5>
             </div>
             <div className="flex-shrink-0">
-              <Link to="#!" className="btn btn-ghost-secondary">
+              <Link to="#!" className="btn btn-ghost-success">
                 View All{" "}
                 <i className="ri-arrow-right-line ms-1 align-bottom"></i>
               </Link>
@@ -24,16 +24,20 @@ const RelatedJobs = () => {
           <Col xl={4} key={key}>
             <Card>
               <CardBody>
-                <button
+                <Button
                   type="button"
                   className="btn btn-icon btn-soft-primary float-end"
                   data-bs-toggle="button"
                   aria-pressed="true"
                 >
                   <i className="mdi mdi-cards-heart fs-16"></i>
-                </button>
+                </Button>
                 <div className="avatar-sm mb-4">
-                  <div className="avatar-title bg-soft-secondary rounded">
+                  <div
+                    className={
+                      "avatar-title bg-soft-" + item.bgcolor + " rounded"
+                    }
+                  >
                     <img src={item.companyLogo} alt="" className="avatar-xxs" />
                   </div>
                 </div>
@@ -63,10 +67,10 @@ const RelatedJobs = () => {
                 </div>
 
                 <div className="mt-4 hstack gap-2">
-                  <Link to="#" className="btn btn-soft-primary w-100">
+                  <Link to="#!" className="btn btn-soft-primary w-100">
                     Apply Job
                   </Link>
-                  <Link to="#" className="btn btn-soft-info w-100">
+                  <Link to="#!" className="btn btn-soft-info w-100">
                     Overview
                   </Link>
                 </div>

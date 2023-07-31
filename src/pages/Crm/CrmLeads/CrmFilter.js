@@ -14,7 +14,7 @@ import Select from "react-select";
 const CrmFilter = ({ show, onCloseClick }) => {
   const [selectCountry, setselectCountry] = useState(null);
 
-const handleselectCountry = (selectCountry) => {
+  function handleselectCountry(selectCountry) {
     setselectCountry(selectCountry);
   }
 

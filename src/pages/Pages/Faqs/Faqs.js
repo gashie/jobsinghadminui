@@ -157,7 +157,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                             </div>
 
                                             <div className="accordion accordion-border-box" id="genques-accordion">
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="genques-headingOne">
                                                     <button
                                                         className={classnames(
@@ -178,7 +178,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="genques-headingTwo">
                                                     <button
                                                       className={classnames(
@@ -199,7 +199,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="genques-headingThree">
                                                     <button
                                                       className={classnames(
@@ -220,7 +220,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="genques-headingFour">
                                                     <button
                                                       className={classnames(
@@ -257,7 +257,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                             </div>
 
                                             <div className="accordion accordion-border-box" id="manageaccount-accordion">
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="manageaccount-headingOne">
                                                     <button
                                                         className={classnames(
@@ -278,7 +278,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="manageaccount-headingTwo">
                                                     <button
                                                         className={classnames(
@@ -299,7 +299,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="manageaccount-headingThree">
                                                     <button
                                                         className={classnames(
@@ -320,7 +320,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="manageaccount-headingFour">
                                                     <button
                                                         className={classnames(
@@ -357,7 +357,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                             </div>
 
                                             <div className="accordion accordion-border-box" id="privacy-accordion">
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="privacy-headingOne">
                                                     <button
                                                         className={classnames(
@@ -378,7 +378,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="privacy-headingTwo">
                                                     <button
                                                         className={classnames(
@@ -399,7 +399,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="privacy-headingThree">
                                                     <button
                                                         className={classnames(
@@ -420,7 +420,7 @@ document.title="FAQs | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Collapse>
                                                 </div>
-                                                <div className="accordion-item">
+                                                <div className="accordion-item shadow">
                                                     <h2 className="accordion-header" id="privacy-headingFour">
                                                     <button
                                                         className={classnames(

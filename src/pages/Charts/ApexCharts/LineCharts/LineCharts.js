@@ -46,7 +46,8 @@ const BasicLineCharts = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -509,7 +510,8 @@ const ZoomableTimeseries = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -604,7 +606,8 @@ const LinewithDataLabels = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -696,7 +699,8 @@ const DashedLine = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -837,7 +841,8 @@ const LinewithAnnotations = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -901,7 +906,8 @@ const BrushChart = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -973,7 +979,8 @@ const BrushChart1 = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -1016,7 +1023,8 @@ const SteplineChart = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -1089,7 +1097,8 @@ const GradientCharts = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -1140,7 +1149,8 @@ const MissingData = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -1226,7 +1236,8 @@ const ChartSyncingLine = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -1236,6 +1247,8 @@ const ChartSyncingLine = ({ dataColors }) => {
         </React.Fragment>
     );
 };
+
+
 
 const ChartSyncingLine2 = ({ dataColors }) => {
     var chartSyncingColors2 = getChartColorsArray(dataColors);
@@ -1297,7 +1310,8 @@ const ChartSyncingLine2 = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -1307,6 +1321,7 @@ const ChartSyncingLine2 = ({ dataColors }) => {
         </React.Fragment>
     );
 };
+
 
 const ChartSyncingArea = ({ dataColors }) => {
     var ChartSyncingAreaColors = getChartColorsArray(dataColors);
@@ -1373,7 +1388,8 @@ const ChartSyncingArea = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"

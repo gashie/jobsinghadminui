@@ -71,6 +71,7 @@ function* onAddNewFolder({ payload: folder }) {
 function* onUpdateFolder({ payload: folder }) {
   try {
     const response = yield call(updateFolder, folder);
+
     yield put(updateFolderSuccess(response));
     toast.success("Folder Updated Successfully", { autoClose: 3000 });
   } catch (error) {

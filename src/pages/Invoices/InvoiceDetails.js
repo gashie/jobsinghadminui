@@ -25,7 +25,7 @@ const InvoiceDetails = () => {
               <Row>
                 <Col lg={12}>
                   <CardHeader className="border-bottom-dashed p-4">
-                    <div className="d-flex">
+                    <div className="d-sm-flex">
                       <div className="flex-grow-1">
                         <img
                           src={logoDark}
@@ -101,7 +101,7 @@ const InvoiceDetails = () => {
                         <p className="text-muted mb-2 text-uppercase fw-semibold">
                           Total Amount
                         </p>
-                        <h5 className="fs-14 mb-0">$<span id="total-amount">755.96</span></h5>
+                        <h5 className="fs-14 mb-0">$<span id="total-amount">415.96</span></h5>
                       </Col>
                     </Row>
                   </CardBody>
@@ -122,7 +122,7 @@ const InvoiceDetails = () => {
                         <h6 className="text-muted text-uppercase fw-semibold mb-3">
                           Shipping Address
                         </h6>
-                        <p className="fw-medium mb-2" id="shipping-name">David Nichols</p>
+                        <p className="fw-medium mb-2" id="shipping-name">Donald Palmer</p>
                         <p className="text-muted mb-1" id="shipping-address-line-1">305 S San Gabriel Blvd</p>
                         <p className="text-muted mb-1"><span>Phone: +</span><span id="shipping-phone-no">(123) 456-7890</span></p>
                       </Col>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Scrollspy from "react-scrollspy";
 import {
   Collapse,
   Container,
   NavbarToggler,
-  NavLink,
+  NavLink as TabLink,
 } from "reactstrap";
 import LogoDark from "../../../assets/images/logo-dark.png";
 import LogoLight from "../../../assets/images/logo-light.png";
@@ -37,7 +37,7 @@ const Navbar = () => {
         id="navbar"
       >
         <Container fluid className="custom-container">
-          <Link className="navbar-brand" to="/index">
+          <NavLink className="navbar-brand" to="/index">
             <img
               src={LogoDark}
               className="card-logo card-logo-dark"
@@ -50,7 +50,7 @@ const Navbar = () => {
               alt="logo light"
               height="17"
             />
-          </Link>
+          </NavLink>
           <NavbarToggler
             onClick={toggle}
             className="navbar-toggler py-0 fs-20 text-body"
@@ -80,42 +80,42 @@ const Navbar = () => {
               id="navbar-example"
             >
               <li className="nav-item">
-                <NavLink className="fs-16" href="#hero">
+                <TabLink className="nav-link fs-14" href="#hero">
                   Home
-                </NavLink>
+                </TabLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-16" href="#process">
+                <TabLink className="nav-link fs-14" href="#process">
                   Process
-                </NavLink>
+                </TabLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-16" href="#categories">
+                <TabLink className="nav-link fs-14" href="#categories">
                   Categories
-                </NavLink>
+                </TabLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-16" href="#findJob">
+                <TabLink className="nav-link fs-14" href="#findJob">
                   Find Jobs
-                </NavLink>
+                </TabLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-16" href="#candidates">
+                <TabLink className="nav-link fs-14" href="#candidates">
                   Candidates
-                </NavLink>
+                </TabLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-16" href="#blog">
+                <TabLink className="nav-link fs-14" href="#blog">
                   Blog
-                </NavLink>
+                </TabLink>
               </li>
             </Scrollspy>
 
             <div>
-              <Link to="/auth-signin-basic" className="btn btn-soft-primary">
+              <NavLink to="/auth-signin-basic" className="btn btn-soft-primary">
                 <i className="ri-user-3-line align-bottom me-1"></i> Login &
                 Register
-              </Link>
+              </NavLink>
             </div>
           </Collapse>
         </Container>

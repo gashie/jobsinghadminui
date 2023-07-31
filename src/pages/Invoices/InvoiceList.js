@@ -20,8 +20,8 @@ import DeleteModal from "../../Components/Common/DeleteModal";
 
 //Import Icons
 import FeatherIcon from "feather-icons-react";
-import { invoiceWidgets } from "../../common/data/invoiceList";
 
+import { invoiceWidgets } from "../../common/data/invoiceList";
 //Import actions
 import {
   getInvoices as onGetInvoices,
@@ -41,9 +41,8 @@ const InvoiceList = () => {
   const { invoices, isInvoiceSuccess, error } = useSelector((state) => ({
     invoices: state.Invoice.invoices,
     isInvoiceSuccess: state.Invoice.isInvoiceSuccess,
-    error: state.Invoice.error,
+    error: state.Invoice.error
   }));
-
 
   //delete invoice
   const [deleteModal, setDeleteModal] = useState(false);
@@ -214,7 +213,7 @@ const InvoiceList = () => {
         Header: "Action",
         Cell: (cellProps) => {
           return (
-            <UncontrolledDropdown>
+            <UncontrolledDropdown >
               <DropdownToggle
                 href="#"
                 className="btn btn-soft-secondary btn-sm dropdown"
@@ -344,11 +343,11 @@ const InvoiceList = () => {
                     <h5 className="card-title mb-0 flex-grow-1">Invoices</h5>
                     <div className="flex-shrink-0">
                       <div className="d-flex gap-2 flex-wrap">
-                        {isMultiDeleteButton && <button className="btn btn-primary me-1"
+                        {isMultiDeleteButton && <button className="btn btn-success me-1"
                           onClick={() => setDeleteModalMulti(true)}
                         ><i className="ri-delete-bin-2-line"></i></button>}
                         <Link
-                          to="/apps-invoices-create"
+                          to="apps-invoices-create"
                           className="btn btn-danger"
                         >
                           <i className="ri-add-line align-bottom me-1"></i> Create
@@ -358,6 +357,7 @@ const InvoiceList = () => {
                     </div>
                   </div>
                 </CardHeader>
+
                 <CardBody className="pt-0">
                   <div>
                     {isInvoiceSuccess && invoices.length ? (

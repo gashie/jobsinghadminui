@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
-import UsersByDevice from "../../DashboardAnalytics/UsersByDevice";
 import JobSummary from "./JobSummary";
 import NatworkSummary from "./NatworkSummary";
+import UsersByDevice from "./UserDeviceChart";
 import VisitorGraph from "./VisitorGraph";
 import Widgets from "./Widgets";
 
@@ -16,18 +16,18 @@ const Statistics = () => {
         <Container fluid>
           <BreadCrumb title="STATISTICS" pageTitle="Jobs" />
 
-          <Row className="row">
+          <Row>
             <Widgets dataColors='["--vz-success", "--vz-danger"]' />
           </Row>
 
-          <Row className="row">
-            <VisitorGraph dataColors='["--vz-primary-rgb, 0.75", "--vz-secondary", "--vz-warning", "--vz-info","--vz-success", "--vz-danger"]' />
+          <Row>
+            <VisitorGraph dataColors='["--vz-primary", "--vz-secondary", "--vz-success", "--vz-info","--vz-warning", "--vz-danger"]' />
             <UsersByDevice />
           </Row>
 
-          <Row className="row">
-            <NatworkSummary dataColors='["--vz-primary", "--vz-info"]' />
-            <JobSummary dataColors='["--vz-success","--vz-primary", "--vz-info", "--vz-danger"]' />
+          <Row>
+            <NatworkSummary dataColors='["--vz-danger", "--vz-warning"]' />
+            <JobSummary dataColors='["--vz-success", "--vz-primary", "--vz-info", "--vz-danger"]' />
           </Row>
         </Container>
       </div>

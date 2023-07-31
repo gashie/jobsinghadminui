@@ -26,7 +26,6 @@ const INIT_STATE = {
 };
 
 const FileManager = (state = INIT_STATE, action) => {
-
   switch (action.type) {
     case API_RESPONSE_SUCCESS:
       switch (action.payload.actionType) {
@@ -82,7 +81,6 @@ const FileManager = (state = INIT_STATE, action) => {
       };
 
     case UPDATE_FOLDER_FAIL:
-
       return {
         ...state,
         error: action.payload,

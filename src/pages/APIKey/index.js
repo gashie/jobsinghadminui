@@ -16,12 +16,14 @@ import {
   ModalBody,
   ModalHeader,
   Row,
+  Table,
   UncontrolledDropdown,
 } from "reactstrap";
 import DeleteModal from "../../Components/Common/DeleteModal";
 import BreadCrumb from "../../Components/Common/BreadCrumb";
 import Widgets from "./Widgets";
 import TableContainer from "../../Components/Common/TableContainer";
+import { apiKey } from "../../common/data/apiKey";
 import { APIKeys, CreatedBy, ExpiryDate, Name, Status } from "./APIKeyCol";
 import { CreateDate } from "../SupportTickets/ListView/TicketCol";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,6 +85,7 @@ const APIKey = () => {
       });
     }
   };
+
   const columns = useMemo(
     () => [
       {
@@ -244,7 +247,7 @@ const APIKey = () => {
                   <div className="d-flex gap-1 flex-wrap">
                     <Button
                       type="button"
-                      color="primary"
+                      color="info"
                       className="btn create-btn"
                       data-bs-toggle="modal"
                       onClick={handleShow}
@@ -332,10 +335,16 @@ const APIKey = () => {
                 </Button>
                 <Button
                   type="button"
-                  color="primary"
+                  className="btn btn-primary"
                   id="createApi-btn"
                 >
                   Create API
+                </Button>
+                <Button type="button" className="btn btn-primary" id="add-btn">
+                  Add
+                </Button>
+                <Button type="button" className="btn btn-primary" id="edit-btn">
+                  Save Changes
                 </Button>
               </div>
             </div>

@@ -41,7 +41,8 @@ const DashboardCharts = ({ seriesData, colors }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         options={options}
         series={[...series]}
         type="radialBar"

@@ -1,6 +1,14 @@
 import React from "react";
-import { Card, CardBody, CardHeader, Col, Container, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from "reactstrap";
 import ReactApexChart from "react-apexcharts";
 import getChartColorsArray from "../../../Components/Common/ChartsDynamicColor";
 
@@ -62,20 +70,20 @@ const NatworkSummary = ({ dataColors }) => {
   };
   return (
     <React.Fragment>
-      <Col className="col-xxl-4 col-md-6">
-        <Card className="card card-height-100">
-          <CardHeader className="card-header align-items-center d-flex">
+      <Col xxl={4} md={6}>
+        <Card className="card-height-100">
+          <CardHeader className="align-items-center d-flex">
             <h4 className="card-title mb-0 flex-grow-1">
               Your Network Summary
             </h4>
             <div className="flex-shrink-0">
               <UncontrolledDropdown className="card-header-dropdown">
                 <DropdownToggle
-                  className="text-reset dropdown-btn"
-                  tag="a"
-                  type="a"
-                  href="#"
-                >
+                    className="text-reset dropdown-btn"
+                    tag="a"
+                    type="a"
+                    to="#"
+                  >
                   <span className="fw-semibold text-uppercase fs-12">
                     Sort by:{" "}
                   </span>
@@ -92,8 +100,9 @@ const NatworkSummary = ({ dataColors }) => {
               </UncontrolledDropdown>
             </div>
           </CardHeader>
-          <CardBody className="card-body pb-0">
-            <ReactApexChart dir="ltr"
+          <CardBody className="pb-0">
+            <ReactApexChart
+              dir="ltr"
               className="apex-charts"
               series={series}
               options={options}

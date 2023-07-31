@@ -55,14 +55,11 @@ import teamSaga from "./team/saga";
 import fileManager from "./fileManager/saga";
 
 // To do
-import todos from "./todos/saga"
-
-//Job
-import jobSaga from "./job/saga";
-
+import todos from "./todos/saga";
+//Jobs
+import ApplicationSaga from "./job/saga";
 //API Key
 import APIKeysaga from "./apikey/saga";
-
 export default function* rootSaga() {
   yield all([
     //public
@@ -90,7 +87,7 @@ export default function* rootSaga() {
     fork(teamSaga),
     fork(fileManager),
     fork(todos),
-    fork(jobSaga),
+    fork(ApplicationSaga),
     fork(APIKeysaga),
   ]);
 }

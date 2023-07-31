@@ -27,7 +27,8 @@ const SimpleRadialbar = ({ dataColors }) => {
         colors: chartRadialbarBasicColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -68,7 +69,8 @@ const MultipleRadialbar = ({ dataColors }) => {
         colors: chartRadialbarMultipleColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -140,7 +142,8 @@ const CircleRadialbar = ({ dataColors }) => {
         }]
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -217,7 +220,8 @@ const GradientCircleRadialbar = ({ dataColors }) => {
         labels: ['Percent'],
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -270,7 +274,8 @@ const ImageRadialbar = () => {
         labels: ['Volatility'],
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -329,7 +334,8 @@ const StrokedCircleRadial = ({ dataColors }) => {
         colors: chartStorkeRadialbarColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -399,7 +405,8 @@ const SemiCircularRadial = ({ dataColors }) => {
         colors: chartStorkeRadialbarColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}

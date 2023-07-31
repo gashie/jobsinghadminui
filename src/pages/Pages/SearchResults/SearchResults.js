@@ -17,7 +17,6 @@ import smallImage9 from '../../../assets/images/small/img-9.jpg';
 import smallImage10 from '../../../assets/images/small/img-10.jpg';
 import smallImage11 from '../../../assets/images/small/img-11.jpg';
 import smallImage12 from '../../../assets/images/small/img-12.jpg';
-
 import { SearchGallery, news, video, swiper  } from '../../../common/data';
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -27,7 +26,6 @@ const SearchResults = () => {
 
     SwiperCore.use([Autoplay]);
 
-  
     //Tab 
     const [activeTab, setActiveTab] = useState('1');
     const toggleTab = (tab) => {
@@ -67,7 +65,7 @@ document.title="Search Results | Velzon - React Admin & Dashboard Template";
                                                 <Col>
                                                     <div className="position-relative mb-3">
                                                         <Input type="text" className="form-control form-control-lg bg-light border-light" placeholder="Search here.." defaultValue="Admin Dashboard" />
-                                                        <Link to="#" className="btn btn-link link-success btn-lg position-absolute end-0 top-0" onClick={toggleOffCanvas}><i className="ri-mic-fill"></i></Link>
+                                                        <Link to="#" className="btn btn-link link-success btn-lg position-absolute end-0 top-0 shadow-none" onClick={toggleOffCanvas}><i className="ri-mic-fill"></i></Link>
                                                     </div>
                                                 </Col>
                                                 <div className="col-auto">
@@ -86,7 +84,7 @@ document.title="Search Results | Velzon - React Admin & Dashboard Template";
                                         tabIndex="-1"
                                     >
                                         <OffcanvasBody>
-                                            <button type="button" onClick={() => setIsOpen(false)} className="btn-close text-reset float-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            <button type="button" className="btn-close text-reset float-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                             <div className="d-flex flex-column h-100 justify-content-center align-items-center">
                                                 <div className="search-voice">
                                                     <i className="ri-mic-fill align-middle"></i>

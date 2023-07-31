@@ -23,7 +23,8 @@ const SimpleDonutCharts = ({ dataColors }) => {
         colors: chartDonutBasicColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             series={series}
             options={options}
             type="donut"

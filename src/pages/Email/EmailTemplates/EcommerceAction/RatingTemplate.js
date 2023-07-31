@@ -14,7 +14,7 @@ const RatingTemplate = () => {
         e.target.style.background = "#099885";
     }
     function bgColor(e) {
-        e.target.style.background = "#0ab39c";
+        e.target.style.background = "#3bad71";
     }
     return (
         <React.Fragment>
@@ -30,14 +30,14 @@ const RatingTemplate = () => {
                                 <tbody>
                                 <tr style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", margin: 0}}>
                                     <td style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", verticalAlign: "top", margin: 0}} valign="top"></td>
-                                    <td className="container" width="600" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", display: "block", maxWidth: "600px", clear: "both", margin: "0 auto"}} valign="top">
+                                    <td className="container" width="600" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", display: "block !important", maxWidth: "600px !important", clear: "both !important", margin: "0 auto"}} valign="top">
                                         <div className="content" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", maxWidth: "600px", display: "block", margin: "0 auto", padding: "20px"}}>
                                             <table className="main" width="100%" cellPadding="0" cellSpacing="0" itemProp="action" itemScope itemType="http://schema.org/ConfirmAction" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", borderRadius: "3px", margin: 0, border: "none"}}>
                                                 <tbody>
                                                 <tr style={{fontFamily: "Roboto, sans-serif", fontSize: "14px", margin: 0}}>
                                                     <td className="content-wrap" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", color: "#495057",  fontSize: "14px", verticalAlign: "top", margin: 0, boxShadow: "0 3px 15px rgba(30,32,37,.06)", borderRadius: "7px", backgroundColor: "#fff", overflow: "hidden"}} valign="top">
                                                         <meta itemProp="name" content="Confirm Email" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", margin: 0}} />
-                                                        <div style={{padding: "20px", boxSizing: "border-box", textAlign: "center", backgroundImage: "linear-gradient(to right, #405189, #405189)"}}>
+                                                        <div style={{padding: "20px", boxSizing: "border-box", textAlign: "center", backgroundImage: "linear-gradient(to right, #4b38b3, #4b38b3)"}}>
                                                             <h6 style={{fontFamily: "Roboto, sans-serif", margin: 0, fontSize: "15px", color: "#fff", textTransform: "uppercase"}}>FREE 1-2 day shipping on orders over $32</h6>
                                                         </div>
                                                         <div style={{padding: "20px", boxSizing: "border-box", textAlign: "center", borderBottom: "1px solid #e9ebec"}}>
@@ -62,8 +62,8 @@ const RatingTemplate = () => {
                                                                         </th>
                                                                         <th style={{padding: "5px"}}>
                                                                             <h6 style={{fontFamily: "Roboto, sans-serif", fontSize: "14px", marginBottom: "2px", fontWeight: 500}}>350 ml Glass Grocery Container</h6>
-                                                                            <p style={{color: "#878a99", fontWeight: "normal", marginBottom: "5px", lineHeight: 1.5, fontSize: "12px"}}>Category : Grocery</p>
-                                                                            <Link to="#" itemProp="url" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "11.36px", fontWeight: "normal", color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: "4px", textTransform: "capitalize", backgroundColor: "#0ab39c", margin: 0, borderColor: "#0ab39c", borderStyle: "solid", borderWidth: "1px", padding: "4px 8px"}} 
+                                                                            <p style={{color: "#878a99", fontWeight: 400, marginBottom: "5px", lineHeight: 1.5, fontSize: "12px"}}>Category : Grocery</p>
+                                                                            <Link to="#" itemProp="url" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: ".710rem", fontWeight: 400, color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: ".25rem", textTransform: "capitalize", backgroundColor: "#3bad71", margin: 0, borderColor: "#3bad71", borderStyle: "solid", borderWidth: "1px", padding: ".25rem .5rem"}} 
                                                                            onMouseOver={changeBackground} onMouseOut={bgColor}>Write a Review &#8594;</Link>
                                                                         </th>
                                                                     </tr>
@@ -73,8 +73,8 @@ const RatingTemplate = () => {
                                                                         </th>
                                                                         <th style={{padding: "5px"}}>
                                                                             <h6 style={{fontFamily: "Roboto, sans-serif", fontSize: "14px", marginBottom: "2px", fontWeight: 500}}>Urban Ladder Pashe Chair</h6>
-                                                                            <p style={{color: "#878a99", fontWeight: "normal", marginBottom: "5px", lineHeight: 1.5, fontSize: "12px"}}>Category : Furniture</p>
-                                                                            <Link to="#" itemProp="url" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "11.36px", fontWeight: "normal", color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: "4px", textTransform: "capitalize", backgroundColor: "#0ab39c", margin: 0, borderColor: "#0ab39c", borderStyle: "solid", borderWidth: "1px", padding: "4px 8px"}}
+                                                                            <p style={{color: "#878a99", fontWeight: 400, marginBottom: "5px", lineHeight: 1.5, fontSize: "12px"}}>Category : Furniture</p>
+                                                                            <Link to="#" itemProp="url" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: ".710rem", fontWeight: 400, color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: ".25rem", textTransform: "capitalize", backgroundColor: "#3bad71", margin: 0, borderColor: "#3bad71", borderStyle: "solid", borderWidth: "1px", padding: ".25rem .5rem"}}
                                                                             onMouseOver={changeBackground} onMouseOut={bgColor}>Write a Review &#8594;</Link>
                                                                         </th>
                                                                     </tr>
@@ -84,8 +84,8 @@ const RatingTemplate = () => {
                                                                         </th>
                                                                         <th style={{padding: "5px"}}>
                                                                             <h6 style={{fontFamily: "Roboto, sans-serif", fontSize: "14px", marginBottom: "2px", fontWeight: 500}}>Half Sleeve Round Neck T-Shirts</h6>
-                                                                            <p style={{color: "#878a99", fontWeight: "normal", marginBottom: "5px", lineHeight: 1.5, fontSize: "12px"}}>Category : Fashion</p>
-                                                                            <Link to="#" itemProp="url" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "11.36px", fontWeight: "normal", color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: "4px", textTransform: "capitalize", backgroundColor: "#0ab39c", margin: 0, borderColor: "#0ab39c", borderStyle: "solid", borderWidth: "1px", padding: "4px 8px"}} 
+                                                                            <p style={{color: "#878a99", fontWeight: 400, marginBottom: "5px", lineHeight: 1.5, fontSize: "12px"}}>Category : Fashion</p>
+                                                                            <Link to="#" itemProp="url" style={{fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: ".710rem", fontWeight: 400, color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: ".25rem", textTransform: "capitalize", backgroundColor: "#3bad71", margin: 0, borderColor: "#3bad71", borderStyle: "solid", borderWidth: "1px", padding: ".25rem .5rem"}} 
                                                                             onMouseOver={changeBackground} onMouseOut={bgColor}>Write a Review &#8594;</Link>
                                                                         </th>
                                                                     </tr>

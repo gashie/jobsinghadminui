@@ -26,7 +26,8 @@ const BasicPolar = ({ dataColors }) => {
         colors: chartPolarareaBasicColors
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -79,7 +80,8 @@ const PolarMonochrome = () => {
         }
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}

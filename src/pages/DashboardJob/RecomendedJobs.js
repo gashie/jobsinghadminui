@@ -3,22 +3,21 @@ import { Col, Card, CardBody, CardHeader, Row } from "reactstrap";
 import { Grid, _ } from "gridjs-react";
 
 const RecomendedJobs = () => {
-
   const data = [
     [
       "Full Stack Engineer",
       "Syntyce Solutions",
       "Zuweihir, UAE",
-      "$650 - $900",
-      "0-1+ year",
-      "Part Time",
+      "	$650 - $900",
+      "	0-1+ year",
+      "	Part Time",
     ],
     [
       "UI/UX designer",
       "Zoetic Fashion",
       "Cullera, Spain",
-      "$400+",
-      "0-2 year",
+      "	$400+",
+      "	$600 - $870",
       "Freelancer",
     ],
     [
@@ -43,14 +42,14 @@ const RecomendedJobs = () => {
       "Vinninga, Sweden",
       "$210 - $300",
       "0-2 year",
-      "Full Time",
+      "	Full Time",
     ],
     [
       "Marketing Director",
       "Zoetic Fashion",
       "Quesada, US",
-      "$600 - $870",
-      "0-5 year",
+      "	$600 - $870",
+      "	0-5 year",
       "Freelancer",
     ],
   ];
@@ -66,20 +65,19 @@ const RecomendedJobs = () => {
       setJobList(data);
     }
   };
-
   return (
     <React.Fragment>
       <Col lg={12}>
         <Card>
           <CardHeader>
             <Row className="g-4 align-items-center">
-              <Col className="col-sm-auto">
+              <div className="col-sm-auto">
                 <div>
                   <h4 className="card-title mb-0 flex-grow-1">
                     Recomended Jobs
                   </h4>
                 </div>
-              </Col>
+              </div>
               <Col className="col-sm">
                 <div className="d-flex justify-content-sm-end">
                   <div className="search-box ms-2">

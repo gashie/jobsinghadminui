@@ -7,7 +7,7 @@ import {
   GET_MESSAGES_SUCCESS,
   GET_CHANNELS,
   ADD_MESSAGE,
-  DELETE_MESSAGE
+  DELETE_MESSAGE,
 } from "./actionType";
 
 // common success

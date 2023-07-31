@@ -29,7 +29,6 @@ const Vectormap = props => {
           animation: true,
           strokeDasharray: "6 3 6",
         }}
-      // containerClassName="map"
       />
     </div>
   );

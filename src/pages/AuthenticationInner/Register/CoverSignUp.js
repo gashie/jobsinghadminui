@@ -31,6 +31,7 @@ const CoverSignUp = () => {
             // console.log(values);
         }
     });
+
     return (
         <React.Fragment>
             <div className="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
@@ -51,7 +52,7 @@ const CoverSignUp = () => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <Form onSubmit={validation.handleSubmit} className="needs-validation" noValidate action="index">
+                                                    <form className="needs-validation" noValidate action="index">
 
                                                         <div className="mb-3">
                                                             <label htmlFor="useremail" className="form-label">Email <span className="text-danger">*</span></label>
@@ -119,7 +120,7 @@ const CoverSignUp = () => {
                                                                 <button type="button" className="btn btn-info btn-icon waves-effect waves-light"><i className="ri-twitter-fill fs-16"></i></button>
                                                             </div>
                                                         </div>
-                                                    </Form>
+                                                    </form>
                                                 </div>
 
                                                 <div className="mt-5 text-center">

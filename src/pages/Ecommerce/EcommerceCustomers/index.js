@@ -14,7 +14,6 @@ import {
   Input,
   FormFeedback
 } from "reactstrap";
-
 import { Link } from "react-router-dom";
 import Flatpickr from "react-flatpickr";
 import { isEmpty } from "lodash";
@@ -24,8 +23,6 @@ import * as moment from "moment";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-// Export Modal
-import ExportCSVModal from "../../../Components/Common/ExportCSVModal";
 
 //Import Breadcrumb
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
@@ -46,7 +43,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "../../../Components/Common/Loader";
 
+// Export Modal
+import ExportCSVModal from "../../../Components/Common/ExportCSVModal";
+
 const EcommerceCustomers = () => {
+
   const dispatch = useDispatch();
 
   const { customers, isCustomerCreated, isCustomerSuccess, error } = useSelector((state) => ({
@@ -58,6 +59,7 @@ const EcommerceCustomers = () => {
 
   const [isEdit, setIsEdit] = useState(false);
   const [customer, setCustomer] = useState([]);
+  // const [customerList, setcustomerList] = useState([]);
 
   // Delete customer
   const [deleteModal, setDeleteModal] = useState(false);
@@ -356,6 +358,7 @@ const EcommerceCustomers = () => {
     setDate(joinDate);
   };
 
+
   // Export Modal
   const [isExportCSV, setIsExportCSV] = useState(false);
 
@@ -368,6 +371,7 @@ const EcommerceCustomers = () => {
           onCloseClick={() => setIsExportCSV(false)}
           data={customers}
         />
+
         <DeleteModal
           show={deleteModal}
           onDeleteClick={handleDeleteCustomer}
@@ -415,8 +419,10 @@ const EcommerceCustomers = () => {
                     </div>
                   </Row>
                 </CardHeader>
+
                 <div className="card-body pt-0">
                   <div>
+
                     {isCustomerSuccess && customers.length ? (
                       <TableContainer
                         columns={columns}
@@ -427,11 +433,13 @@ const EcommerceCustomers = () => {
                         className="custom-header-css"
                         handleCustomerClick={handleCustomerClicks}
                         isCustomerFilter={true}
+                        theadClass="table-light text-muted"
                         SearchPlaceholder='Search for customer, email, phone, status or something...'
                       />
                     ) : (<Loader error={error} />)
                     }
                   </div>
+
                   <Modal id="showModal" isOpen={modal} toggle={toggle} centered>
                     <ModalHeader className="bg-light p-3" toggle={toggle}>
                       {!!isEdit ? "Edit Customer" : "Add Customer"}

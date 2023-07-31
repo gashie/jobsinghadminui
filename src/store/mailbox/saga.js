@@ -3,7 +3,7 @@ import { call, put, takeEvery, all, fork } from "redux-saga/effects";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Ecoomerce Redux States
+// Mailbox Redux States
 import { GET_MAIL, DELETE_MAIL } from "./actionType";
 
 import {

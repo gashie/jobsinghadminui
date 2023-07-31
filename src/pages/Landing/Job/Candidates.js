@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import avatar2 from "../../../assets/images/users/avatar-2.jpg";
 import avatar3 from "../../../assets/images/users/avatar-3.jpg";
 import avatar10 from "../../../assets/images/users/avatar-10.jpg";
@@ -8,6 +8,7 @@ import avatar5 from "../../../assets/images/users/avatar-5.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 const Candidates = () => {
   return (
@@ -16,9 +17,9 @@ const Candidates = () => {
         <div className="bg-overlay bg-overlay-pattern"></div>
         <Container>
           <Row className="justify-content-center">
-            <Col className="col-lg-8">
+            <Col lg={8}>
               <div className="text-center mb-5">
-                <h1 className="mb-3 ff-secondary fw-semibold text-capitalize lh-base">
+                <h1 className="mb-3 fw-semibold text-capitalize lh-base">
                   Hire Experts <span className="text-primary">Team</span>
                 </h1>
                 <p className="text-muted mb-4">
@@ -30,7 +31,7 @@ const Candidates = () => {
             </Col>
           </Row>
           <Row>
-            <Col className="col-lg-12">
+            <Col lg={12}>
               <Swiper
                 slidesPerView={4}
                 spaceBetween={20}
@@ -43,8 +44,8 @@ const Candidates = () => {
               >
                 <div className="swiper-wrapper">
                   <SwiperSlide className="swiper-slide">
-                    <div className="card text-center">
-                      <div className="card-body p-4">
+                    <Card className="text-center">
+                      <CardBody className="p-4">
                         <img
                           src={avatar2}
                           alt=""
@@ -60,15 +61,15 @@ const Candidates = () => {
                           Escondido, California
                         </p>
 
-                        <a href="#!" className="btn btn-primary w-100">
+                        <Link to="#!" className="btn btn-primary w-100">
                           View Profile
-                        </a>
-                      </div>
-                    </div>
+                        </Link>
+                      </CardBody>
+                    </Card>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide">
-                    <div className="card text-center">
-                      <div className="card-body p-4">
+                    <Card className="text-center">
+                      <CardBody className="p-4">
                         <img
                           src={avatar3}
                           alt=""
@@ -84,15 +85,15 @@ const Candidates = () => {
                           Escondido, California
                         </p>
 
-                        <a href="#!" className="btn btn-primary w-100">
+                        <Link to="#!" className="btn btn-primary w-100">
                           View Profile
-                        </a>
-                      </div>
-                    </div>
+                        </Link>
+                      </CardBody>
+                    </Card>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide">
-                    <div className="card text-center">
-                      <div className="card-body p-4">
+                    <Card className="text-center">
+                      <CardBody className="p-4">
                         <img
                           src={avatar10}
                           alt=""
@@ -106,15 +107,15 @@ const Candidates = () => {
                           Escondido, California
                         </p>
 
-                        <a href="#!" className="btn btn-primary w-100">
+                        <Link to="#!" className="btn btn-primary w-100">
                           View Profile
-                        </a>
-                      </div>
-                    </div>
+                        </Link>
+                      </CardBody>
+                    </Card>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide">
-                    <div className="card text-center">
-                      <div className="card-body p-4">
+                    <Card className="text-center">
+                      <CardBody className="p-4">
                         <img
                           src={avatar8}
                           alt=""
@@ -130,15 +131,15 @@ const Candidates = () => {
                           Escondido, California
                         </p>
 
-                        <a href="#!" className="btn btn-primary w-100">
+                        <Link to="#!" className="btn btn-primary w-100">
                           View Profile
-                        </a>
-                      </div>
-                    </div>
+                        </Link>
+                      </CardBody>
+                    </Card>
                   </SwiperSlide>
                   <SwiperSlide className="swiper-slide">
-                    <div className="card text-center">
-                      <div className="card-body p-4">
+                    <Card className="text-center">
+                      <CardBody className="p-4">
                         <img
                           src={avatar5}
                           alt=""
@@ -154,11 +155,11 @@ const Candidates = () => {
                           Escondido, California
                         </p>
 
-                        <a href="#!" className="btn btn-primary w-100">
+                        <Link to="#!" className="btn btn-primary w-100">
                           View Profile
-                        </a>
-                      </div>
-                    </div>
+                        </Link>
+                      </CardBody>
+                    </Card>
                   </SwiperSlide>
                 </div>
               </Swiper>

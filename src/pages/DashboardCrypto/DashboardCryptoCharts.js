@@ -73,7 +73,8 @@ const PortfolioCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="donut"
@@ -147,11 +148,12 @@ const MarkerCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="candlestick"
-                height="320"
+                height="294"
                 className="apex-charts"
             />
         </React.Fragment>
@@ -193,7 +195,8 @@ const WidgetsCharts = ({ seriesData, chartsColor }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={[...seriesData]}
                 type="area"

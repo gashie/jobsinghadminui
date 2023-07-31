@@ -33,7 +33,8 @@ const MarketplaceChart = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -100,8 +101,8 @@ const PopularityChart = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart 
-            // dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="bar"
@@ -152,7 +153,8 @@ const TopArtworkChart = ({ seriesData, chartsColor }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={[...seriesData]}
                 type="line"

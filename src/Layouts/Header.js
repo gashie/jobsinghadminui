@@ -25,11 +25,12 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
     const toogleSearch = () => {
         setSearch(!search);
     };
-
+    
     const dispatch = useDispatch();
     const { sidebarVisibilitytype } = useSelector(state => ({
         sidebarVisibilitytype: state.Layout.sidebarVisibilitytype
     }));
+
 
     const toogleMenuBtn = () => {
         var windowSize = document.documentElement.clientWidth;
@@ -88,7 +89,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                             <button
                                 onClick={toogleMenuBtn}
                                 type="button"
-                                className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
+                                className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
                                 id="topnav-hamburger-icon">
                                 <span className="hamburger-icon">
                                     <span></span>

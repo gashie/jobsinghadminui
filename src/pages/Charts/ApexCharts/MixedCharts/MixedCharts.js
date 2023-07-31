@@ -76,7 +76,8 @@ const Line = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -220,7 +221,8 @@ const YAxis = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -305,7 +307,8 @@ const Area = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -405,7 +408,8 @@ const LineColumnArea = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}

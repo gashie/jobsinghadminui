@@ -28,7 +28,7 @@ const TicketsData = () => {
         ticketsList: state.Tickets.ticketsList,
         isTicketCreated: state.Tickets.isTicketCreated,
         isTicketSuccess: state.Tickets.isTicketSuccess,
-        error: state.Tickets.error,
+        error: state.Tickets.error
     }));
 
     const [isEdit, setIsEdit] = useState(false);
@@ -37,6 +37,7 @@ const TicketsData = () => {
     // Delete Tickets
     const [deleteModal, setDeleteModal] = useState(false);
     const [deleteModalMulti, setDeleteModalMulti] = useState(false);
+
     const [modal, setModal] = useState(false);
 
     const toggle = useCallback(() => {
@@ -145,6 +146,8 @@ const TicketsData = () => {
         toggle();
     }, [toggle]);
 
+    // Get Data
+
     useEffect(() => {
         if (ticketsList && !ticketsList.length) {
             dispatch(getTicketsList());
@@ -217,6 +220,7 @@ const TicketsData = () => {
         ele.length > 0 ? setIsMultiDeleteButton(true) : setIsMultiDeleteButton(false);
         setSelectedCheckBoxDelete(ele);
     };
+
 
     const columns = useMemo(
         () => [
@@ -365,13 +369,14 @@ const TicketsData = () => {
                                 <div className="flex-shrink-0">
                                     <div className="d-flex flex-wrap gap-2">
                                         <button className="btn btn-danger add-btn" onClick={() => { setIsEdit(false); toggle(); }}><i className="ri-add-line align-bottom"></i> Create Tickets</button>
-                                        {" "}{isMultiDeleteButton && <button className="btn btn-soft-danger"
+                                        {" "}{isMultiDeleteButton && <button className="btn btn-success"
                                             onClick={() => setDeleteModalMulti(true)}
                                         ><i className="ri-delete-bin-2-line"></i></button>}
                                     </div>
                                 </div>
                             </div>
                         </CardHeader>
+
                         <CardBody className='pt-0'>
                             {isTicketSuccess && ticketsList.length ? (
                                 <TableContainer
@@ -383,6 +388,8 @@ const TicketsData = () => {
                                     className="custom-header-css"
                                     divClass="table-responsive table-card mb-3"
                                     tableClass="align-middle table-nowrap mb-0"
+                                    theadClass=""
+                                    thClass=""
                                     handleTicketClick={handleTicketsClicks}
                                     isTicketsListFilter={true}
                                     SearchPlaceholder='Search for ticket details or something...'

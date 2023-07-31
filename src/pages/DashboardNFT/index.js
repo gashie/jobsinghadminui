@@ -9,25 +9,25 @@ import FeaturedNFT from "./FeaturedNFT";
 import RecentNFTs from "./RecentNFTs";
 
 const DashboardNFT = () => {
-    document.title = "NFT Dashboard | Velzon - React Admin & Dashboard Template";
-    return (
-        <React.Fragment>
-            <div className="page-content">
-                <Container fluid>
-                    <BreadCrumb title="NFT Dashboard" pageTitle="Dashboard" />
-                    <Row className="dash-nft">
-                        <Col xxl={9}>
-                            <Widgets />
-                            <Marketplace />
-                        </Col>
-                        <Popularity />
-                    </Row>
-                    <FeaturedNFT />
-                    <RecentNFTs />
-                </Container>
-            </div>
-        </React.Fragment>
-    );
+  document.title = "NFT Dashboard | Velzon - React Admin & Dashboard Template";
+  return (
+    <React.Fragment>
+      <div className="page-content">
+        <Container fluid>
+          <BreadCrumb title="NFT Dashboard" pageTitle="Dashboards" />
+          <Row className="dash-nft">
+            <Col xxl={9}>
+              <Widgets />
+              <Marketplace />
+            </Col>
+            <Popularity />
+          </Row>
+          <FeaturedNFT />
+          <RecentNFTs />
+        </Container>
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default DashboardNFT;

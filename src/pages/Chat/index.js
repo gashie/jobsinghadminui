@@ -20,16 +20,17 @@ import {
   TabPane
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import SimpleBar from "simplebar-react";
-import classnames from "classnames";
-import Picker from 'emoji-picker-react';
 import { isEmpty, map } from "lodash";
+import classnames from "classnames";
+import SimpleBar from "simplebar-react";
 
 //Import Icons
 import FeatherIcon from "feather-icons-react";
 import PersonalInfo from "./PersonalInfo";
 
 import { chatContactData } from "../../common/data";
+
+import Picker from 'emoji-picker-react';
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -63,10 +64,10 @@ const Chat = () => {
   const [Chat_Box_Username, setChat_Box_Username] = useState("Lisa Parker");
   const [Chat_Box_Image, setChat_Box_Image] = useState(avatar2);
   const [currentRoomId, setCurrentRoomId] = useState(1);
-  const [messageBox, setMessageBox] = useState(null);
   const [curMessage, setcurMessage] = useState("");
   const [search_Menu, setsearch_Menu] = useState(false);
   const [settings_Menu, setsettings_Menu] = useState(false);
+  const [messageBox, setMessageBox] = useState(null);
   const [reply, setreply] = useState("");
   const [emojiPicker, setemojiPicker] = useState(false);
   const [currentUser, setCurrentUser] = useState({
@@ -98,10 +99,6 @@ const Chat = () => {
     dispatch(getMessages(currentRoomId));
   }, [dispatch, currentRoomId]);
 
-  // useEffect(() => {
-  //   ref.current.recalculate();
-  // });
-
 
   //Use For Chat Box
   const userChatOpen = (id, name, status, roomId, image) => {
@@ -123,7 +120,6 @@ const Chat = () => {
     dispatch(onAddMessage(message));
   };
 
-
   const scrollToBottom = useCallback(() => {
     if (messageBox) {
       messageBox.scrollTop = messageBox.scrollHeight + 1000;
@@ -133,6 +129,7 @@ const Chat = () => {
   useEffect(() => {
     if (!isEmpty(messages)) scrollToBottom();
   }, [messages, scrollToBottom]);
+
 
   const onKeyPress = (e) => {
     const { key, value } = e;
@@ -191,6 +188,7 @@ const Chat = () => {
     }, 2000);
   };
 
+
   // emoji
   const [emojiArray, setemojiArray] = useState("");
 
@@ -200,15 +198,16 @@ const Chat = () => {
     setcurMessage(emoji);
   };
 
+
   document.title = "Chat | Velzon - React Admin & Dashboard Template";
 
   return (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <div className="chat-wrapper d-lg-flex gap-1 mt-n4 py-1">
+          <div className="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
             <div className="chat-leftsidebar">
-              <div className="px-4 pt-4 mb-3">
+              <div className="px-4 pt-4 mb-4">
                 <div className="d-flex align-items-start">
                   <div className="flex-grow-1">
                     <h5 className="mb-4">Chats</h5>
@@ -221,7 +220,7 @@ const Chat = () => {
                     <Button
                       color=""
                       id="addcontact"
-                      className="btn btn-soft-success btn-sm shadow-none"
+                      className="btn btn-soft-success btn-sm"
                     >
                       <i className="ri-add-line align-bottom"></i>
                     </Button>
@@ -238,7 +237,6 @@ const Chat = () => {
                   <i className="ri-search-2-line search-icon"></i>
                 </div>
               </div>
-
 
               <Nav tabs className="nav nav-tabs nav-tabs-custom nav-success nav-justified mb-3">
                 <NavItem>
@@ -274,7 +272,6 @@ const Chat = () => {
                 className="text-muted"
               >
                 <TabPane tabId="1" id="chats">
-
                   <SimpleBar
                     className="chat-room-list pt-3"
                     style={{ margin: "-16px 0px 0px" }}
@@ -417,7 +414,6 @@ const Chat = () => {
                       </ul>
                     </div>
                   </SimpleBar>
-
                 </TabPane>
                 <TabPane tabId="2" id="contacts">
                   <SimpleBar className="chat-room-list pt-3" style={{ margin: "-16px 0px 0px" }}>

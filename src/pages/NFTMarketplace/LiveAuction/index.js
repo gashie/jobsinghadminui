@@ -49,7 +49,7 @@ const LiveAuction = () => {
                                 <CardHeader className="border-0">
                                     <div className="d-lg-flex align-items-center">
                                         <div className="flex-grow-1">
-                                            <h5 className="card-title mb-0">Live Auction</h5>
+                                            <h5 className="card-title mb-0 fw-semibold">Live Auction</h5>
                                         </div>
 
                                         <div className="flex-shrink-0 mt-4 mt-lg-0">
@@ -100,7 +100,7 @@ const LiveAuction = () => {
                             <Row>
                                 <Col lg={12}>
                                     <div className="text-center mb-3">
-                                        <button className="btn btn-link text-success mt-2"><i className="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load more </button>
+                                        <button className="btn btn-link shadow-none text-success mt-2"><i className="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load more </button>
                                     </div>
                                 </Col>
                             </Row>
@@ -150,7 +150,7 @@ const LiveAuction = () => {
                                                         <div className="d-flex align-items-center">
                                                             <img src={item.img} alt="" className="avatar-sm object-cover rounded-circle" />
                                                             <div className="ms-2">
-                                                                <Link to="#"><h6 className="fs-15 mb-1">{item.name}</h6></Link>
+                                                                <Link to="#!"><h6 className="fs-15 mb-1">{item.name}</h6></Link>
                                                                 <p className="mb-0 text-muted">{item.products} Products</p>
                                                             </div>
                                                         </div>

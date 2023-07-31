@@ -365,7 +365,8 @@ const MarketGraph = ({ dataColors }) => {
                     </CardBody>
                     <CardBody className="p-0 pb-3">
                         <div dir="ltr">
-                            <ReactApexChart dir="ltr"
+                            <ReactApexChart
+                                dir="ltr"
                                 options={options}
                                 series={series}
                                 type="candlestick"

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { productData } from '../../../common/data';
+import {productData} from "../../../common/data"
 
 const Products = () => {
     const [nav, setNav] = useState("All");
 
+  
     return (
         <React.Fragment>
             <section className="section bg-light" id="marketplace">
@@ -49,7 +50,7 @@ const Products = () => {
                                         <img src={item.img} alt="" className="card-img-top explore-img" />
                                         <div className="bg-overlay"></div>
                                         <div className="place-bid-btn">
-                                            <Link to="#" className="btn btn-success"><i className="ri-auction-fill align-bottom me-1"></i> Place Bid</Link>
+                                            <Link to="#!" className="btn btn-success"><i className="ri-auction-fill align-bottom me-1"></i> Place Bid</Link>
                                         </div>
                                     </div>
                                     <div className="card-body">

@@ -3,7 +3,6 @@ import { Col, Row } from 'reactstrap';
 import Flatpickr from "react-flatpickr";
 
 const Section = (props) => {
-
     return (
         <React.Fragment>
             <Row className="mb-3 pb-1">

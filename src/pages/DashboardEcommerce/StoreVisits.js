@@ -25,7 +25,7 @@ const StoreVisits = () => {
 
                     <div className="card-body">
                         <div dir="ltr">
-                            <StoreVisitsCharts dataColors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]'/>
+                            <StoreVisitsCharts dataColors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]' />
                         </div>
                     </div>
                 </Card>

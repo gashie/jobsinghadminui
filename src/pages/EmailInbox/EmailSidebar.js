@@ -119,8 +119,8 @@ const EmailSidebar = () => {
               </Link>
               <h5 className="fs-12 text-uppercase text-muted mb-3">Chat</h5>
 
-              <div className="mt-2 vstack gap-3 email-chat-list mx-n4">
-                <Link to="#" className="d-flex align-items-center active">
+              <div className="mt-2 vstack gap-3">
+                <Link to="#" className="d-flex align-items-center">
                   <div className="flex-shrink-0 me-2 avatar-xs">
                     <img
                       className="img-fluid rounded-circle"

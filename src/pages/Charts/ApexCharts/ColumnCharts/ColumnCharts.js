@@ -70,7 +70,7 @@ const BasicColumn = ({ dataColors }) => {
 
 
     return (
-        <ReactApexChart dir="ltr" className="apex-charts" 
+        <ReactApexChart dir="ltr" className="apex-charts"
             series={series}
             options={options}
             type="bar"
@@ -197,7 +197,7 @@ const ColumnWithLable = ({ dataColors }) => {
     };
 
     return (
-        <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={350} />
+        <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={350} />
     );
 };
 
@@ -270,7 +270,7 @@ const StackedColumn = ({ dataColors }) => {
         },
         colors: chartColumnStackedColors,
     };
-    return <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={350} />;
+    return <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={350} />;
 };
 
 const StackedColumn2 = ({ dataColors }) => {
@@ -334,7 +334,7 @@ const StackedColumn2 = ({ dataColors }) => {
         colors: chartColumnStacked100Colors,
     };
 
-    return <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={350} />;
+    return <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={350} />;
 };
 
 const ColumnMarker = ({ dataColors }) => {
@@ -467,7 +467,7 @@ const ColumnMarker = ({ dataColors }) => {
         },
     };
     return (
-        <ReactApexChart dir="ltr" className="apex-charts"  options={options} series={series} type="bar" height={350} />
+        <ReactApexChart dir="ltr" className="apex-charts" options={options} series={series} type="bar" height={350} />
     );
 };
 
@@ -543,7 +543,7 @@ const RotateLable = ({ dataColors }) => {
     };
 
     return (
-        <ReactApexChart dir="ltr" className="apex-charts"  options={options} series={series} type="bar" height={350} />
+        <ReactApexChart dir="ltr" className="apex-charts" options={options} series={series} type="bar" height={350} />
     );
 };
 
@@ -614,7 +614,7 @@ const NagetiveLable = ({ dataColors }) => {
     };
 
     return (
-        <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={350} />
+        <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={350} />
     );
 };
 
@@ -685,7 +685,7 @@ const RangeColumn = ({ dataColors }) => {
     };
 
     return (
-        <ReactApexChart dir="ltr" className="apex-charts" 
+        <ReactApexChart dir="ltr" className="apex-charts"
             options={options}
             series={series}
             type="rangeBar"
@@ -1033,7 +1033,7 @@ const DynamicColumn = ({ dataColors }) => {
         },
     };
 
-    return <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={330} />;
+    return <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={330} />;
 };
 
 
@@ -1103,7 +1103,7 @@ const Quarter = ({ dataColors }) => {
     };
 
     return (
-        <ReactApexChart dir="ltr" className="apex-charts" 
+        <ReactApexChart dir="ltr" className="apex-charts"
             series={series}
             options={optionsQuarter}
             type="bar"
@@ -1166,7 +1166,7 @@ const DistributedColumn = ({ dataColors }) => {
         }
     };
 
-    return <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={350} />;
+    return <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={350} />;
 };
 
 
@@ -1256,7 +1256,7 @@ const ColumnGroupLabels = ({ dataColors }) => {
         },
     };
 
-    return <ReactApexChart dir="ltr" className="apex-charts"  series={series} options={options} type="bar" height={350} />;
+    return <ReactApexChart dir="ltr" className="apex-charts" series={series} options={options} type="bar" height={350} />;
 };
 
 

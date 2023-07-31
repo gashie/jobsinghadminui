@@ -99,7 +99,7 @@ const Revenue = () => {
         <CardBody className="p-0 pb-2">
           <div className="w-100">
             <div dir="ltr">
-              <RevenueCharts series={chartData} dataColors='["--vz-primary", "--vz-success", "--vz-danger"]' />
+              <RevenueCharts series={chartData} dataColors='["--vz-success", "--vz-primary", "--vz-danger"]' />
             </div>
           </div>
         </CardBody>

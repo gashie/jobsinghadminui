@@ -18,7 +18,7 @@ import { topCategories } from "../../common/data";
 const RecentActivity = (props) => {
   return (
     <React.Fragment>
-     <div className={props.rightColumn ? "col-auto layout-rightside-col d-block" : "col-auto layout-rightside-col d-none"} id="layout-rightside-coll">
+      <div className={props.rightColumn ? "col-auto layout-rightside-col d-block" : "col-auto layout-rightside-col d-none"} id="layout-rightside-coll">
       <div className="overlay" onClick={props.hideRightColumn}></div>
         <div className="layout-rightside">
           <Card className="h-100 rounded-0">

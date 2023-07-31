@@ -68,7 +68,8 @@ const Basic = ({ dataColors }) => {
 
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         className="apex-charts"
         options={options}
         series={series}
@@ -181,7 +182,8 @@ const Scatter = ({ dataColors }) => {
 
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         className="apex-charts"
         options={options}
         series={series}
@@ -256,7 +258,8 @@ const Horizontal = ({ dataColors }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         className="apex-charts"
         options={options}
         series={series}

@@ -13,27 +13,27 @@
   --#{$prefix}vertical-menu-title-color:             #919da9;
   
   //vertical dark
-  --#{$prefix}vertical-menu-bg-dark:                 #{$primary};
-  --#{$prefix}vertical-menu-item-color-dark:         #abb9e8;
-  --#{$prefix}vertical-menu-item-hover-color-dark:   #{$white};
+  --#{$prefix}vertical-menu-bg-dark:                 #151529;
+  --#{$prefix}vertical-menu-item-color-dark:          #a3a6b7;
+  --#{$prefix}vertical-menu-item-hover-color-dark:    #{$white};
   --#{$prefix}vertical-menu-item-active-color-dark:  #{$white};
-  --#{$prefix}vertical-menu-sub-item-color-dark:     #abb9e8;
+  --#{$prefix}vertical-menu-sub-item-color-dark:     #a3a6b7;
   --#{$prefix}vertical-menu-sub-item-hover-color-dark: #{$white};
   --#{$prefix}vertical-menu-sub-item-active-color-dark: #{$white};
-  --#{$prefix}vertical-menu-title-color-dark:         #838fb9;
+  --#{$prefix}vertical-menu-title-color-dark:         #{darken($gray-600, 10%)};
 
   // Topbar - (Default Light)
   --#{$prefix}header-bg:  #{$white};
   --#{$prefix}header-item-color:  #e9ecef;
   // Topbar - Dark
-  --#{$prefix}header-bg-dark:  #{$primary};
-  --#{$prefix}header-item-color-dark:  #b0c4d9;
+  --#{$prefix}header-bg-dark:  #1C1C36;
+  --#{$prefix}header-item-color-dark:  var(--#{$prefix}vertical-menu-item-color-dark);
 
   // Topbar Search
   --#{$prefix}topbar-search-bg: #f3f3f9;
   // Topbar User
   --#{$prefix}topbar-user-bg: #f3f3f9;
-  --#{$prefix}topbar-user-bg-dark: #52639c;
+  --#{$prefix}topbar-user-bg-dark: #2A2A50;
 
   //footer
   --#{$prefix}footer-bg: #{$white};
@@ -49,7 +49,7 @@
   --#{$prefix}twocolumn-menu-bg:  #{$white};
   // two column dark
   --#{$prefix}twocolumn-menu-iconview-bg-dark: var(--#{$prefix}vertical-menu-bg-dark);
-  --#{$prefix}twocolumn-menu-bg-dark:  #{lighten($primary, 2%)};
+  --#{$prefix}twocolumn-menu-bg-dark:  #1C1C36;
   --#{$prefix}twocolumn-menu-item-color-dark: var(--#{$prefix}vertical-menu-item-color-dark);
   --#{$prefix}twocolumn-menu-item-active-color-dark:  #{$white};
   --#{$prefix}twocolumn-menu-item-active-bg-dark:  #{rgba($white, .15)};
@@ -59,6 +59,9 @@
 
   // heading-color
   --#{$prefix}heading-color: #{$gray-700};
+
+  // material shadow
+  --#{$prefix}box-shadow: 0 3px 3px rgba(56,65,74,0.1);
   
   // component variable
   // link

@@ -34,17 +34,17 @@ const Register = () => {
             password: '',
             confirm_password: ''
         },
-        validationSchema: Yup.object({
-            email: Yup.string().required("Please Enter Your Email"),
-            first_name: Yup.string().required("Please Enter Your Username"),
-            password: Yup.string().required("Please Enter Your Password"),
-            confirm_password: Yup.string().when("password", {
-                is: val => (val && val.length > 0 ? true : false),
-                then: Yup.string().oneOf(
-                    [Yup.ref("password")],
-                    "Confirm Password Isn't Match"
-                )
-            })
+        validationSchema: Yup.object().shape({
+            email: Yup.string()
+                .email('Please enter a valid email address')
+                .required('Please enter your email'),
+            first_name: Yup.string().required('Please enter your username'),
+            password: Yup.string()
+                .min(6, 'Password must be at least 6 characters')
+                .required('Password is required'),
+            confirm_password: Yup.string()
+                .oneOf([Yup.ref('password'), null], 'Passwords must match')
+                .required('Confirm password is required')
         }),
         onSubmit: (values) => {
             dispatch(registerUser(values));

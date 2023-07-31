@@ -110,7 +110,7 @@ document.title="Scrollbar | Velzon - React Admin & Dashboard Template";
                                             <div className="mx-n3">                                                
                                                 <SimpleBar autoHide={false} className="simplebar-track-primary" style={{ maxHeight: "275px" }}>
                                                     
-                                                    <Link to="#" className="text-reset notification-item d-block dropdown-item">
+                                                    <Link to="#!" className="text-reset notification-item d-block dropdown-item">
                                                         <div className="d-flex">
                                                             <div className="flex-shrink-0 avatar-xs me-3">
                                                                 <span className="avatar-title bg-soft-info text-info rounded-circle fs-16">
@@ -129,7 +129,7 @@ document.title="Scrollbar | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Link>
 
-                                                    <Link to="#" className="text-reset notification-item d-block dropdown-item active">
+                                                    <Link to="#!" className="text-reset notification-item d-block dropdown-item active">
                                                         <div className="d-flex">
                                                             <div className="flex-shrink-0 avatar-xs me-3">
                                                                 <img src={avatar2} className="rounded-circle img-fluid" alt="user-pic" />
@@ -147,7 +147,7 @@ document.title="Scrollbar | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Link>
 
-                                                    <Link to="#" className="text-reset notification-item d-block dropdown-item">
+                                                    <Link to="#!" className="text-reset notification-item d-block dropdown-item">
                                                         <div className="d-flex">
                                                             <div className="flex-shrink-0 avatar-xs me-3">
                                                                 <span className="avatar-title bg-soft-danger text-danger rounded-circle fs-16">
@@ -165,7 +165,7 @@ document.title="Scrollbar | Velzon - React Admin & Dashboard Template";
                                                         </div>
                                                     </Link>
 
-                                                    <Link to="#" className="text-reset notification-item d-block dropdown-item">
+                                                    <Link to="#!" className="text-reset notification-item d-block dropdown-item">
                                                         <div className="d-flex">
                                                             <div className="flex-shrink-0 avatar-xs me-3">
                                                                 <img src={avatar8} className="rounded-circle img-fluid" alt="user-pic" />
@@ -181,7 +181,7 @@ document.title="Scrollbar | Velzon - React Admin & Dashboard Template";
                                                             </div>
                                                         </div>
                                                     </Link>
-                                                    <Link to="#" className="text-reset notification-item d-block dropdown-item">
+                                                    <Link to="#!" className="text-reset notification-item d-block dropdown-item">
                                                         <div className="d-flex">
                                                             <div className="flex-shrink-0 avatar-xs me-3">
                                                                 <span className="avatar-title bg-soft-info text-info rounded-circle fs-16">

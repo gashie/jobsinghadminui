@@ -20,7 +20,7 @@ const Market = () => {
                     <>
                         <div className="d-flex align-items-center fw-medium">
                             <img src={market.row.original.img} alt="" className="avatar-xxs me-2" />
-                            <Link to="#" className="currency_name">{market.row.original.coinName}</Link>
+                            <Link to="#" className="currency_name text-body">{market.row.original.coinName}</Link>
                         </div>
                     </>
                 ),

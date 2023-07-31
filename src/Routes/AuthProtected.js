@@ -19,8 +19,8 @@ const AuthProtected = (props) => {
   }, [token, userProfile, loading, dispatch]);
 
   /*
-    redirect is un-auth access protected routes via url
-  */
+    Navigate is un-auth access protected routes via url
+    */
 
   if (!userProfile && loading && !token) {
     return (

@@ -8,7 +8,6 @@ import { gallery } from '../../../common/data';
 const Gallery = () => {
 
   const [displayCategory, setCategory] = useState("All");
-
   document.title = "Gallery | Velzon - React Admin & Dashboard Template";
 
   return (
@@ -51,10 +50,10 @@ const Gallery = () => {
                                   <div className="flex-grow-1 text-muted">by <Link to="#" className="text-body text-truncate">{auther}</Link></div>
                                   <div className="flex-shrink-0">
                                     <div className="d-flex gap-3">
-                                      <button type="button" className="btn btn-sm fs-12 btn-link text-body text-decoration-none px-0">
+                                      <button type="button" className="btn btn-sm fs-12 btn-link text-body text-decoration-none px-0 shadow-none">
                                         <i className="ri-thumb-up-fill text-muted align-bottom me-1"></i> {likes}
                                       </button>
-                                      <button type="button" className="btn btn-sm fs-12 btn-link text-body text-decoration-none px-0">
+                                      <button type="button" className="btn btn-sm fs-12 btn-link text-body text-decoration-none px-0 shadow-none">
                                         <i className="ri-question-answer-fill text-muted align-bottom me-1"></i> {comments}
                                       </button>
                                     </div>

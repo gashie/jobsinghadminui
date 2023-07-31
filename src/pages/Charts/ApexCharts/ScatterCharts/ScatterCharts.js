@@ -143,7 +143,8 @@ const Basic = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -263,7 +264,8 @@ const Datetime = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}
@@ -371,7 +373,8 @@ const ImagesChart = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 className="apex-charts"
                 options={options}
                 series={series}

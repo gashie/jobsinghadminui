@@ -1,6 +1,14 @@
 import React from "react";
-import { Card, CardBody, CardHeader, Col, DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from "reactstrap";
 import ReactApexChart from "react-apexcharts";
 import getChartColorsArray from "../../../Components/Common/ChartsDynamicColor";
 
@@ -93,9 +101,9 @@ const VisitorGraph = ({ dataColors }) => {
   };
   return (
     <React.Fragment>
-      <Col className="col-xl-8">
-        <Card className="card">
-          <CardHeader className="card-header">
+      <Col xl={8}>
+        <Card>
+          <CardHeader>
             <div className="d-flex">
               <h5 className="card-title mb-0 flex-grow-1  ">Visitor Graph</h5>
               <div className="flex-shrink-0">
@@ -104,7 +112,7 @@ const VisitorGraph = ({ dataColors }) => {
                     className="text-reset dropdown-btn"
                     tag="a"
                     type="a"
-                    href="#"
+                    to="#"
                   >
                     <span className="fw-semibold text-uppercase fs-12">
                       Sort by:{" "}
@@ -115,7 +123,7 @@ const VisitorGraph = ({ dataColors }) => {
                     </span>
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-menu-end">
-                    <DropdownItem href="#">Today</DropdownItem>
+                    <DropdownItem href="#">hrefday</DropdownItem>
                     <DropdownItem href="#">Last Week</DropdownItem>
                     <DropdownItem href="#">Last Month</DropdownItem>
                     <DropdownItem href="#">Current Year</DropdownItem>
@@ -124,8 +132,9 @@ const VisitorGraph = ({ dataColors }) => {
               </div>
             </div>
           </CardHeader>
-          <CardBody className="card-body">
-            <ReactApexChart dir="ltr"
+          <CardBody>
+            <ReactApexChart
+              dir="ltr"
               className="apex-charts"
               series={series}
               options={options}

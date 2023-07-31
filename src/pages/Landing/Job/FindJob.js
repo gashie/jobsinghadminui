@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import {
+  Button,
   Card,
   CardBody,
   Col,
@@ -16,19 +17,22 @@ import img7 from "../../../assets/images/companies/img-7.png";
 import img8 from "../../../assets/images/companies/img-8.png";
 
 const FindJob = () => {
+  const [isBookmarkClick, setIsBookmarkClick] = useState(false);
+
   return (
     <React.Fragment>
       <section className="section" id="findJob">
         <Container>
           <Row className="justify-content-center">
-            <Col className="col-lg-7">
+            <Col lg={7}>
               <div className="text-center mb-5">
-                <h1 className="mb-3 ff-secondary fw-semibold text-capitalize lh-base">
+                <h1 className="mb-3 ff-secondary text-capitalize lh-base">
                   Find Your <span className="text-primary">Career</span> You
                   Deserve it
                 </h1>
                 <p className="text-muted">
-                  Post a job to tell us about your project. We'll quickly match you with the right freelancers.
+                  Post NavLink job to tell us about your project. We'll quickly
+                  match you with the right freelancers.
                 </p>
               </div>
             </Col>
@@ -36,7 +40,7 @@ const FindJob = () => {
 
           <Row>
             {findJob.map((item, key) => (
-              <Col className="col-lg-6" key={key}>
+              <Col lg={6} key={key}>
                 <Card className="shadow-lg">
                   <CardBody>
                     <div className="d-flex">
@@ -84,18 +88,30 @@ const FindJob = () => {
                         </div>
                       </div>
                       <div>
-                        <button
+                        <Link
                           type="button"
-                          className="btn btn-ghost-primary btn-icon custom-toggle"
+                          to="!#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsBookmarkClick(!isBookmarkClick);
+                          }}
+                          className={
+                            isBookmarkClick
+                              ? "btn btn-ghost-primary btn-icon custom-toggle active"
+                              : "btn btn-ghost-primary btn-icon custom-toggle"
+                          }
                           data-bs-toggle="button"
                         >
-                          <span className="icon-on">
-                            <i className="ri-bookmark-line"></i>
-                          </span>
-                          <span className="icon-off">
-                            <i className="ri-bookmark-fill"></i>
-                          </span>
-                        </button>
+                          {!isBookmarkClick ? (
+                            <span className="icon-on">
+                              <i className="ri-bookmark-line align-bottom"></i>
+                            </span>
+                          ) : (
+                            <span className="icon-off">
+                              <i className="ri-bookmark-3-fill align-bottom"></i>
+                            </span>
+                          )}
+                        </Link>
                       </div>
                     </div>
                   </CardBody>
@@ -103,26 +119,26 @@ const FindJob = () => {
               </Col>
             ))}
 
-            <div className="col-lg-12">
+            <Col lg={12}>
               <div className="text-center mt-4">
                 <Link to="#!" className="btn btn-ghost-info">
                   View More Jobs{" "}
                   <i className="ri-arrow-right-line align-bottom"></i>
                 </Link>
               </div>
-            </div>
+            </Col>
           </Row>
         </Container>
       </section>
       <section className="section">
         <Container>
           <Row className="align-items-center gy-4">
-            <Col className="col-lg-6 order-2 order-lg-1">
+            <Col lg={6} className="order-2 order-lg-1">
               <div className="text-muted mt-5 mt-lg-0">
                 <h5 className="fs-12 text-uppercase text-success fw-semibold">
                   Hot Featured Company
                 </h5>
-                <h1 className="mb-3 ff-secondary fw-bold text-capitalize lh-base">
+                <h1 className="mb-3 fw-semibold text-capitalize lh-base">
                   Get <span className="text-primary">10,000+</span> Featured
                   Companies
                 </h1>
@@ -133,34 +149,39 @@ const FindJob = () => {
                     Many companies have discovered how effective content
                     marketing is.
                   </b>{" "}
-                  This is Link major reason for this increase in demand.
+                  This is NavLink major reason for this increase in demand.
                 </p>
                 <p className="mb-4 ff-secondary">
-                  A Content Writer is Link professional who writes
+                  A Content Writer is NavLink professional who writes
                   informative and engaging articles to help brands showcase
                   their products.
                 </p>
 
                 <div className="mt-4">
-                  <Link to="index.html" className="btn btn-primary">
+                  <NavLink to="/index" className="btn btn-primary">
                     View More Companies{" "}
                     <i className="ri-arrow-right-line align-middle ms-1"></i>
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
             </Col>
-            <Col className="col-lg-4 col-sm-7 col-10 ms-lg-auto mx-auto order-1 order-lg-2">
+            <Col
+              lg={4}
+              sm={7}
+              xs={10}
+              className="ms-lg-auto mx-auto order-1 order-lg-2"
+            >
               <div>
                 <Card className="shadow-lg">
                   <CardBody>
-                    <button
+                    <Button
                       type="button"
                       className="btn btn-icon btn-soft-primary float-end"
                       data-bs-toggle="button"
                       aria-pressed="true"
                     >
                       <i className="mdi mdi-cards-heart fs-16"></i>
-                    </button>
+                    </Button>
                     <div className="avatar-sm mb-4">
                       <div className="avatar-title bg-soft-secondary rounded">
                         <img src={img1} alt="" className="avatar-xxs" />
@@ -209,7 +230,7 @@ const FindJob = () => {
                     </div>
                   </CardBody>
                 </Card>
-                <Card className="shadow-lg mb-0 features-company-widgets rounded-3 card-bg-fill">
+                <Card className="shadow-lg bg-info mb-0 features-company-widgets rounded-3">
                   <CardBody>
                     <h5 className="text-white fs-16 mb-4">
                       10,000+ Featured Companies

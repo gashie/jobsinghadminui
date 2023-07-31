@@ -167,7 +167,7 @@ const Select2 = () => {
         <React.Fragment>
             <div className="page-content">
                 <Container fluid>
-                    <BreadCrumb title="Select2" pageTitle="Forms" />
+                    <BreadCrumb title="Slect2" pageTitle="Forms" />
                     <Row>
                         <Col lg={12}>
                             <Card>
@@ -175,7 +175,7 @@ const Select2 = () => {
                                     <h5 className="card-title mb-0">Basic Select2</h5>
                                 </CardHeader>
                                 <CardBody>
-                                    <p className="text-muted">Use <code>js-example-basic-single</code>, <code>js-example-basic-multiple</code>, <code>js-example-data-array</code>, <code>js-example-templating</code>, <code>select-flag-templating</code>,  class to show select2 example.</p>
+                                <p className="text-muted">Use <code>js-example-basic-single</code>, <code>js-example-basic-multiple</code>, <code>js-example-data-array</code>, <code>js-example-templating</code>, <code>select-flag-templating</code>,  class to show select2 example.</p>
                                     <Row className="g-4">
                                         <Col lg={4}>
                                             <h6 className="fw-semibold">Basic Select</h6>

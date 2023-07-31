@@ -116,26 +116,20 @@ class FirebaseAuthBackend {
   /**
    * Social Login user with given details
    */
-  socialLoginUser = (data, type) => {
-    let credential = {};
+  socialLoginUser = async (type) => {
+    let provider;
     if (type === "google") {
-      credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.token);
+      provider = new firebase.auth.GoogleAuthProvider();
     } else if (type === "facebook") {
-      credential = firebase.auth.FacebookAuthProvider.credential(data.token);
+      provider = new firebase.auth.FacebookAuthProvider();
     }
-    return new Promise((resolve, reject) => {
-      if (!credential) {
-        firebase.auth().signInWithCredential(credential)
-          .then(user => {
-            resolve(this.addNewUserToFirestore(user));
-          })
-          .catch(error => {
-            reject(this._handleError(error));
-          });
-      } else {
-        // reject(this._handleError(error));
-      }
-    });
+    try {
+      const result = await firebase.auth().signInWithPopup(provider);
+      const user = result.user;
+      return user;
+    } catch (error) {
+      throw this._handleError(error);
+    }
   };
 
   addNewUserToFirestore = (user) => {

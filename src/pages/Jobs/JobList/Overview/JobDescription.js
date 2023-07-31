@@ -13,7 +13,7 @@ const JobDescription = () => {
             A Product Designer of a company is responsible for the user
             experience of a product, which usually includes taking direction on
             the business goals and objectives from product management. Product
-            Designers are typically associated with the vis ual or tactile
+            Designers are typically associated with the visual or tactile
             aspects of a product but sometimes they can also play a role in the
             information architecture and system design of a product.
           </p>

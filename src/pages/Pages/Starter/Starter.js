@@ -19,4 +19,4 @@ document.title ="Starter | Velzon - React Admin & Dashboard Template";
   );
 };
 
-export default Starter; 
+export default Starter;

@@ -49,17 +49,16 @@ const Assigned = [
   { id: 8, imgId: "tonya-noble", img: "avatar-10.jpg", name: "Tonya Noble" },
 ];
 
-
 const AllTasks = () => {
   const dispatch = useDispatch();
+
 
   const { taskList, isTaskCreated, isTaskSuccess, error } = useSelector((state) => ({
     taskList: state.Tasks.taskList,
     isTaskCreated: state.Tasks.isTaskCreated,
     isTaskSuccess: state.Tasks.isTaskSuccess,
-    error: state.Tasks.error,
+    error: state.Tasks.error
   }));
-
 
   const [isEdit, setIsEdit] = useState(false);
   const [task, setTask] = useState([]);
@@ -68,6 +67,7 @@ const AllTasks = () => {
   // Delete Task
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteModalMulti, setDeleteModalMulti] = useState(false);
+
   const [modal, setModal] = useState(false);
 
   const toggle = useCallback(() => {
@@ -185,6 +185,8 @@ const AllTasks = () => {
     setIsEdit(false);
     toggle();
   };
+
+  // Get Data
 
   useEffect(() => {
     if (!isEmpty(taskList)) setTaskList(taskList);
@@ -383,17 +385,17 @@ const AllTasks = () => {
   return (
     <React.Fragment>
       <DeleteModal
-        show={deleteModal}
-        onDeleteClick={handleDeleteTask}
-        onCloseClick={() => setDeleteModal(false)}
-      />
-      <DeleteModal
         show={deleteModalMulti}
         onDeleteClick={() => {
           deleteMultiple();
           setDeleteModalMulti(false);
         }}
         onCloseClick={() => setDeleteModalMulti(false)}
+      />
+      <DeleteModal
+        show={deleteModal}
+        onDeleteClick={handleDeleteTask}
+        onCloseClick={() => setDeleteModal(false)}
       />
       <div className="row">
         <Col lg={12}>
@@ -404,11 +406,12 @@ const AllTasks = () => {
                 <div className="flex-shrink-0">
                   <div className="d-flex flex-wrap gap-2">
                     <button className="btn btn-danger add-btn me-1" onClick={() => { setIsEdit(false); toggle(); }}><i className="ri-add-line align-bottom me-1"></i> Create Task</button>
-                    {isMultiDeleteButton && <button className="btn btn-soft-danger" onClick={() => setDeleteModalMulti(true)}><i className="ri-delete-bin-2-line"></i></button>}
+                    {isMultiDeleteButton && <button className="btn btn-success" onClick={() => setDeleteModalMulti(true)}><i className="ri-delete-bin-2-line"></i></button>}
                   </div>
                 </div>
               </div>
             </div>
+
             <div className="card-body pt-0">
               {isTaskSuccess && taskList.length ? (
                 <TableContainer
@@ -418,7 +421,7 @@ const AllTasks = () => {
                   isAddUserList={false}
                   customPageSize={8}
                   className="custom-header-css"
-                  divClass="table-responsive table-card mb-3"
+                  divClass="table-responsive table-card mb-4"
                   tableClass="align-middle table-nowrap mb-0"
                   theadClass="table-light table-nowrap"
                   thClass="table-light text-muted"
@@ -560,8 +563,7 @@ const AllTasks = () => {
 
                         <Label className="form-check-label d-flex align-items-center" htmlFor={item.imgId}>
                           <span className="flex-shrink-0">
-                            <img src={process.env.REACT_APP_API_URL + "/images/users/" + item.img} alt="" className="avatar-xxs rounded-circle" />
-                          </span>
+                            <img src={process.env.REACT_APP_API_URL + "/images/users/" + item.img} alt="" className="avatar-xxs rounded-circle" />                          </span>
                           <span className="flex-grow-1 ms-2">
                             {item.name}
                           </span>

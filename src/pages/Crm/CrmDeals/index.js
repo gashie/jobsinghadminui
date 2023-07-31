@@ -44,9 +44,9 @@ const CrmDeals = () => {
   const [sortBy, setsortBy] = useState("Owner");
   const [modal, setModal] = useState(false);
 
-  const handlesortBy = (sortBy) => {
+  function handlesortBy(sortBy) {
     setsortBy(sortBy);
-  };
+  }
 
   const sortbyname = [
     {
@@ -107,7 +107,7 @@ const CrmDeals = () => {
                     <UncontrolledDropdown>
                       <DropdownToggle
                         href="#"
-                        className="btn btn-soft-info btn-icon fs-14"
+                        className="btn btn-soft-info btn-icon fs-14 shadow"
                         tag="button"
                       >
                         <i className="ri-settings-4-line"></i>
@@ -157,6 +157,7 @@ const CrmDeals = () => {
               <select className="form-select" id="deatType" data-choices
                 aria-label="Default select example" required>
                 <option value=""
+                // data-custom-properties="[object Object]"
                 >Select deals type</option>
                 <option value="Lead Disovered">Lead Disovered</option>
                 <option value="Contact Initiated">Contact Initiated</option>
@@ -167,7 +168,6 @@ const CrmDeals = () => {
               <div className="invalid-feedback">
                 Please write an deals owner name.
               </div>
-
             </div>
 
             <div className="mb-3">

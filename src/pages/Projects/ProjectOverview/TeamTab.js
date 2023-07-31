@@ -44,7 +44,7 @@ const TeamTab = () => {
                                 <Row className="align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -99,7 +99,7 @@ const TeamTab = () => {
                                 <Row className="align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn active">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn active shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -156,7 +156,7 @@ const TeamTab = () => {
                                 <Row className="align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn active">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn active shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -211,7 +211,7 @@ const TeamTab = () => {
                                 <Row className="align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -266,7 +266,7 @@ const TeamTab = () => {
                                 <Row className="align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -323,7 +323,7 @@ const TeamTab = () => {
                                 <Row className="align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -378,7 +378,7 @@ const TeamTab = () => {
                                 <div className="row align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -435,7 +435,7 @@ const TeamTab = () => {
                                 <div className="row align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -490,7 +490,7 @@ const TeamTab = () => {
                                 <div className="row align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>
@@ -545,7 +545,7 @@ const TeamTab = () => {
                                 <div className="row align-items-center">
                                     <div className="col">
                                         <div className="flex-shrink-0 me-2">
-                                            <button type="button" className="btn fs-16 p-0 favourite-btn">
+                                            <button type="button" className="btn fs-16 p-0 favourite-btn shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
                                         </div>

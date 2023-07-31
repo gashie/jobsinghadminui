@@ -26,7 +26,6 @@ const BalanceOverview = () => {
     useEffect(() => {
         dispatch(getBalanceOverviewChartsData("today"));
     }, [dispatch]);
-
     return (
         <React.Fragment>
             <Col xxl={6}>
@@ -62,7 +61,7 @@ const BalanceOverview = () => {
                         </ul>
 
                         <div id="revenue-expenses-charts" dir="ltr">
-                            <BalanceOverviewCharts series={chartData} dataColors='["--vz-success", "--vz-danger"]'/>
+                            <BalanceOverviewCharts series={chartData} dataColors='["--vz-success", "--vz-danger"]' />
                         </div>
                     </CardBody>
                 </Card>

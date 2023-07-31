@@ -111,8 +111,8 @@ const LiveUsers = () => {
                                 </div>
                             </div>
                             <div className="card-body p-0">
-                                <div dir='rtl'>
-                                    <CountriesCharts series={countryData} dir="ltr" dataColors='["--vz-info", "--vz-info", "--vz-info", "--vz-info", "--vz-danger", "--vz-info", "--vz-info", "--vz-info", "--vz-info", "--vz-info"]' />
+                                <div>
+                                    <CountriesCharts series={countryData} dataColors='["--vz-primary", "--vz-primary", "--vz-info", "--vz-info", "--vz-danger", "--vz-primary", "--vz-primary", "--vz-warning", "--vz-primary", "--vz-primary"]' />
                                 </div>
                             </div>
                         </Card>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Offcanvas,
     OffcanvasHeader,
@@ -20,6 +20,7 @@ import {
     changeSidebarImageType,
     changePreLoader,
     changeSidebarVisibility
+    // resetValue
 } from "../../store/actions";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -42,6 +43,7 @@ import {
 import SimpleBar from "simplebar-react";
 import classnames from "classnames";
 
+
 //import Images
 import img01 from "../../assets/images/sidebar/img-1.jpg";
 import img02 from "../../assets/images/sidebar/img-2.jpg";
@@ -50,21 +52,19 @@ import img04 from "../../assets/images/sidebar/img-4.jpg";
 
 const RightSidebar = (props) => {
     const dispatch = useDispatch();
-    const leftSidebarDark = useRef(null);
-    const preloaderRef = useRef(null);
 
     const [show, setShow] = useState(false);
     function tog_show() {
-        setShow(!show)
+        setShow(!show);
         dispatch(changeSidebarTheme("gradient"));
     }
 
     useEffect(() => {
-        if (show && leftSidebarDark.current && document.getElementById("sidebar-color-light")) {
-            leftSidebarDark.current.checked = false;
+        if (show && document.getElementById("sidebar-color-dark") && document.getElementById("sidebar-color-light")) {
+            document.getElementById("sidebar-color-dark").checked = false;
             document.getElementById("sidebar-color-light").checked = false;
         }
-    })
+    });
 
     const {
         layoutType,
@@ -121,13 +121,13 @@ const RightSidebar = (props) => {
     const pathName = props.router.location.pathname;
 
     useEffect(() => {
-        const preloader = preloaderRef.current;
+        const preloader = document.getElementById("preloader");
         if (preloader) {
-            preloaderRef.current.style.opacity = "1";
-            preloaderRef.current.style.visibility = "visible";
+            document.getElementById("preloader").style.opacity = "1";
+            document.getElementById("preloader").style.visibility = "visible";
             setTimeout(function () {
-                preloaderRef.current.style.opacity = "0";
-                preloaderRef.current.style.visibility = "hidden";
+                document.getElementById("preloader").style.opacity = "0";
+                document.getElementById("preloader").style.visibility = "hidden";
             }, 1000);
         }
     }, [preloader, pathName]);
@@ -140,7 +140,7 @@ const RightSidebar = (props) => {
                 <i className="ri-arrow-up-line"></i>
             </button>
 
-            {preloader === "enable" && <div id="preloader" ref={preloaderRef}>
+            {preloader === "enable" && <div id="preloader">
                 <div id="status">
                     <div className="spinner-border text-primary avatar-sm" role="status">
                         <span className="visually-hidden">Loading...</span>
@@ -161,10 +161,10 @@ const RightSidebar = (props) => {
                     <OffcanvasBody className="p-0">
                         <SimpleBar className="h-100">
                             <div className="p-4">
-                                <h6 className="mb-0 fw-semibold text-uppercase">Layout</h6>
+                                <h6 className="mb-0 fw-semibold text-uppercase fs-12">Layout</h6>
                                 <p className="text-muted">Choose your layout</p>
 
-                                <div className="row gy-3">
+                                <div className="row">
                                     <div className="col-4">
                                         <div className="form-check card-radio">
                                             <input
@@ -181,7 +181,7 @@ const RightSidebar = (props) => {
                                                 }}
                                                 className="form-check-input"
                                             />
-                                            <label className="form-check-label p-0 avatar-md w-100" htmlFor="customizer-layout01">
+                                            <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="customizer-layout01">
                                                 <span className="d-flex gap-1 h-100">
                                                     <span className="flex-shrink-0">
                                                         <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -217,7 +217,7 @@ const RightSidebar = (props) => {
                                                     }
                                                 }}
                                                 className="form-check-input" />
-                                            <label className="form-check-label p-0 avatar-md w-100" htmlFor="customizer-layout02">
+                                            <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="customizer-layout02">
                                                 <span className="d-flex h-100 flex-column gap-1">
                                                     <span className="bg-light d-flex p-1 gap-1 align-items-center">
                                                         <span className="d-block p-1 bg-soft-primary rounded me-1"></span>
@@ -246,7 +246,7 @@ const RightSidebar = (props) => {
                                                     }
                                                 }}
                                                 className="form-check-input" />
-                                            <label className="form-check-label p-0 avatar-md w-100" htmlFor="customizer-layout03">
+                                            <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="customizer-layout03">
                                                 <span className="d-flex gap-1 h-100">
                                                     <span className="flex-shrink-0">
                                                         <span className="bg-light d-flex h-100 flex-column gap-1">
@@ -290,30 +290,30 @@ const RightSidebar = (props) => {
                                                     }
                                                 }}
                                                 className="form-check-input" />
-                                                <label className="form-check-label p-0 avatar-md w-100" htmlFor="customizer-layout04">
-                                                    <span className="d-flex gap-1 h-100">
-                                                        <span className="flex-shrink-0 p-1">
-                                                            <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
-                                                                <span className="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
-                                                                <span className="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
-                                                                <span className="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
-                                                                <span className="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
-                                                            </span>
-                                                        </span>
-                                                        <span className="flex-grow-1">
-                                                            <span className="d-flex h-100 flex-column pt-1 pe-2">
-                                                                <span className="bg-light d-block p-1"></span>
-                                                                <span className="bg-light d-block p-1 mt-auto"></span>
-                                                            </span>
+                                            <label className="form-check-label p-0 avatar-md w-100" htmlFor="customizer-layout04">
+                                                <span className="d-flex gap-1 h-100">
+                                                    <span className="flex-shrink-0 p-1">
+                                                        <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                            <span className="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
+                                                            <span className="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
+                                                            <span className="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
+                                                            <span className="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                         </span>
                                                     </span>
-                                                </label>
-                                            </div>
+                                                    <span className="flex-grow-1">
+                                                        <span className="d-flex h-100 flex-column pt-1 pe-2">
+                                                            <span className="bg-light d-block p-1"></span>
+                                                            <span className="bg-light d-block p-1 mt-auto"></span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
                                         <h5 className="fs-13 text-center mt-2">Semi Box</h5>
                                     </div>
                                 </div>
 
-                                <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Color Scheme</h6>
+                                <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Color Scheme</h6>
                                 <p className="text-muted">Choose Light or Dark Scheme.</p>
 
                                 <div className="colorscheme-cardradio">
@@ -333,7 +333,7 @@ const RightSidebar = (props) => {
                                                         }
                                                     }}
                                                 />
-                                                <label className="form-check-label p-0 avatar-md w-100" htmlFor="layout-mode-light">
+                                                <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="layout-mode-light">
                                                     <span className="d-flex gap-1 h-100">
                                                         <span className="flex-shrink-0">
                                                             <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -370,7 +370,7 @@ const RightSidebar = (props) => {
                                                         }
                                                     }}
                                                 />
-                                                <label className="form-check-label p-0 avatar-md w-100 bg-dark" htmlFor="layout-mode-dark">
+                                                <label className="form-check-label p-0 avatar-md w-100 bg-dark shadow-sm" htmlFor="layout-mode-dark">
                                                     <span className="d-flex gap-1 h-100">
                                                         <span className="flex-shrink-0">
                                                             <span className="bg-soft-light d-flex h-100 flex-column gap-1 p-1">
@@ -386,15 +386,15 @@ const RightSidebar = (props) => {
                                                                 <span className="bg-soft-light d-block p-1 mt-auto"></span>
                                                             </span>
                                                         </span>
-                                                    </span>
-                                                </label>
+                                                      </span>
+                                                   </label>
                                             </div>
                                             <h5 className="fs-13 text-center mt-2">Dark</h5>
                                         </div>
                                     </div>
                                 </div>
 
-                                {layoutType === layoutTypes.SEMIBOX && (
+                                {layoutType === "semibox" && (
                                 <div>
                                     <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Visibility</h6>
                                     <p className="text-muted">Choose show or Hidden sidebar.</p>
@@ -473,11 +473,10 @@ const RightSidebar = (props) => {
 
                                 </div>
                                 )}
-                                
                                 {(layoutType !== layoutTypes.TWOCOLUMN && layoutType !== layoutTypes.SEMIBOX)  && (
                                     <React.Fragment>
                                         <div id="layout-width">
-                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Layout Width</h6>
+                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Layout Width</h6>
                                             <p className="text-muted">Choose Fluid or Boxed layout.</p>
 
                                             <div className="row">
@@ -497,7 +496,7 @@ const RightSidebar = (props) => {
                                                                 }
                                                             }}
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="layout-width-fluid">
+                                                        <label className="form-check-label p-0 avatar-md shadow-sm w-100" htmlFor="layout-width-fluid">
                                                             <span className="d-flex gap-1 h-100">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -534,7 +533,7 @@ const RightSidebar = (props) => {
                                                                 }
                                                             }}
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100 px-2" htmlFor="layout-width-boxed">
+                                                        <label className="form-check-label p-0 avatar-md w-100 px-2 shadow-sm" htmlFor="layout-width-boxed">
                                                             <span className="d-flex gap-1 h-100 border-start border-end">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -559,7 +558,7 @@ const RightSidebar = (props) => {
                                         </div>
 
                                         <div id="layout-position">
-                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Layout Position</h6>
+                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Layout Position</h6>
                                             <p className="text-muted">Choose Fixed or Scrollable Layout Position.</p>
 
                                             <div className="btn-group radio" role="group">
@@ -597,7 +596,7 @@ const RightSidebar = (props) => {
                                     </React.Fragment>
                                 )}
 
-                                <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Topbar Color</h6>
+                                <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Topbar Color</h6>
                                 <p className="text-muted">Choose Light or Dark Topbar Color.</p>
 
                                 <div className="row">
@@ -616,7 +615,7 @@ const RightSidebar = (props) => {
                                                     }
                                                 }}
                                             />
-                                            <label className="form-check-label p-0 avatar-md w-100" htmlFor="topbar-color-light">
+                                            <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="topbar-color-light">
                                                 <span className="d-flex gap-1 h-100">
                                                     <span className="flex-shrink-0">
                                                         <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -652,7 +651,7 @@ const RightSidebar = (props) => {
                                                     }
                                                 }}
                                             />
-                                            <label className="form-check-label p-0 avatar-md w-100" htmlFor="topbar-color-dark">
+                                            <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="topbar-color-dark">
                                                 <span className="d-flex gap-1 h-100">
                                                     <span className="flex-shrink-0">
                                                         <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -664,7 +663,7 @@ const RightSidebar = (props) => {
                                                     </span>
                                                     <span className="flex-grow-1">
                                                         <span className="d-flex h-100 flex-column">
-                                                            <span className="bg-primary d-block p-1"></span>
+                                                            <span className="bg-dark d-block p-1"></span>
                                                             <span className="bg-light d-block p-1 mt-auto"></span>
                                                         </span>
                                                     </span>
@@ -679,7 +678,7 @@ const RightSidebar = (props) => {
                                     <React.Fragment>
 
                                         <div id="sidebar-size">
-                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Size</h6>
+                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Sidebar Size</h6>
                                             <p className="text-muted">Choose a size of Sidebar.</p>
 
                                             <div className="row">
@@ -698,7 +697,7 @@ const RightSidebar = (props) => {
                                                                 }
                                                             }}
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="sidebar-size-default">
+                                                        <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="sidebar-size-default">
                                                             <span className="d-flex gap-1 h-100">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -735,7 +734,7 @@ const RightSidebar = (props) => {
                                                                 }
                                                             }}
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="sidebar-size-compact">
+                                                        <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="sidebar-size-compact">
                                                             <span className="d-flex gap-1 h-100">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -772,7 +771,7 @@ const RightSidebar = (props) => {
                                                                 }
                                                             }}
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="sidebar-size-small">
+                                                        <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="sidebar-size-small">
                                                             <span className="d-flex gap-1 h-100">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1">
@@ -810,7 +809,7 @@ const RightSidebar = (props) => {
                                                             }}
 
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="sidebar-size-small-hover">
+                                                        <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="sidebar-size-small-hover">
                                                             <span className="d-flex gap-1 h-100">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1">
@@ -834,8 +833,9 @@ const RightSidebar = (props) => {
                                             </div>
                                         </div>
 
+                                    {layoutType !== "semibox" && (
                                         <div id="sidebar-view">
-                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Sidebar View</h6>
+                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Sidebar View</h6>
                                             <p className="text-muted">Choose Default or Detached Sidebar view.</p>
 
                                             <div className="row">
@@ -855,7 +855,7 @@ const RightSidebar = (props) => {
                                                             }}
 
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="sidebar-view-default">
+                                                        <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="sidebar-view-default">
                                                             <span className="d-flex gap-1 h-100">
                                                                 <span className="flex-shrink-0">
                                                                     <span className="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -891,7 +891,7 @@ const RightSidebar = (props) => {
                                                                 }
                                                             }}
                                                         />
-                                                        <label className="form-check-label p-0 avatar-md w-100" htmlFor="sidebar-view-detached">
+                                                        <label className="form-check-label p-0 avatar-md w-100 shadow-sm" htmlFor="sidebar-view-detached">
                                                             <span className="d-flex h-100 flex-column">
                                                                 <span className="bg-light d-flex p-1 gap-1 align-items-center px-2">
                                                                     <span className="d-block p-1 bg-soft-primary rounded me-1"></span>
@@ -915,13 +915,14 @@ const RightSidebar = (props) => {
                                                 </div>
                                             </div>
                                         </div>
+                                    )}
                                     </React.Fragment>
                                 )}
 
                                 {(layoutType === "vertical" || layoutType === "twocolumn" || (layoutType === "semibox" && sidebarVisibilitytype === "show")) && (
                                     <React.Fragment>
                                         <div id="sidebar-color">
-                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Color</h6>
+                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Sidebar Color</h6>
                                             <p className="text-muted">Choose Ligth or Dark Sidebar Color.</p>
 
                                             <div className="row">
@@ -935,7 +936,7 @@ const RightSidebar = (props) => {
                                                             value={leftSidebarTypes.LIGHT}
                                                             checked={leftSidebarType === leftSidebarTypes.LIGHT}
                                                             onChange={e => {
-                                                                setShow(false)
+                                                                setShow(false);
                                                                 if (e.target.checked) {
                                                                     dispatch(changeSidebarTheme(e.target.value));
                                                                 }
@@ -965,7 +966,6 @@ const RightSidebar = (props) => {
                                                 <div className="col-4">
                                                     <div className="form-check sidebar-setting card-radio">
                                                         <input
-                                                            ref={leftSidebarDark}
                                                             className="form-check-input"
                                                             type="radio"
                                                             name="data-sidebar"
@@ -973,7 +973,7 @@ const RightSidebar = (props) => {
                                                             value={leftSidebarTypes.DARK}
                                                             checked={leftSidebarType === leftSidebarTypes.DARK}
                                                             onChange={e => {
-                                                                setShow(false)
+                                                                setShow(false);
                                                                 if (e.target.checked) {
                                                                     dispatch(changeSidebarTheme(e.target.value));
                                                                 }
@@ -1007,10 +1007,12 @@ const RightSidebar = (props) => {
                                                             "btn btn-link avatar-md w-100 p-0 overflow-hidden border ",
                                                             { collapsed: !show, active: show === true }
                                                         )}
+                                                        id="gradient-color"
                                                         type="button"
                                                         data-bs-target="#collapseBgGradient"
                                                         data-bs-toggle="collapse"
                                                         aria-controls="collapseBgGradient"
+                                                        // checked={leftSidebarType === leftSidebarTypes.GRAD}
                                                         onClick={tog_show}
                                                     >
                                                         <span className="d-flex gap-1 h-100">
@@ -1051,6 +1053,7 @@ const RightSidebar = (props) => {
                                                                     dispatch(changeSidebarTheme(e.target.value));
                                                                 }
                                                             }}
+
                                                         />
                                                         <label className="form-check-label p-0 avatar-xs rounded-circle" htmlFor="sidebar-color-gradient">
                                                             <span className="avatar-title rounded-circle bg-vertical-gradient"></span>
@@ -1111,7 +1114,7 @@ const RightSidebar = (props) => {
                                             </Collapse>
                                         </div>
                                         <div id="sidebar-img">
-                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Images</h6>
+                                            <h6 className="mt-4 mb-0 fw-semibold text-uppercase fs-12">Sidebar Images</h6>
                                             <p className="text-muted">Choose a image of Sidebar.</p>
 
                                             <div className="d-flex gap-2 flex-wrap img-switch">
@@ -1209,7 +1212,6 @@ const RightSidebar = (props) => {
                                         </div>
                                     </React.Fragment>
                                 )}
-
                                 <div id="preloader-menu">
                                     <h6 className="mt-4 mb-0 fw-semibold text-uppercase">Preloader</h6>
                                     <p className="text-muted">Choose a preloader.</p>

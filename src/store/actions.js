@@ -15,8 +15,8 @@ export * from "./projects/action";
 export * from "./ecommerce/action";
 // Task
 export * from "./tasks/action";
-//Form advanced 
-export * from './formAdvanced/action';
+//Form advanced
+export * from "./formAdvanced/action";
 // Crypto
 export * from "./crypto/action";
 //TicketsList
@@ -42,11 +42,10 @@ export * from "./dashboardNFT/action";
 // Pages > Team
 export * from "./team/action";
 // File Manager
-export * from "./fileManager/action"
+export * from "./fileManager/action";
 // To do
-export * from "./todos/action"
-//job
+export * from "./todos/action";
+//Jobs
 export * from "./job/action";
-
 //API Key
 export * from "./apikey/action";

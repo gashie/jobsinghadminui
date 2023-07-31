@@ -31,7 +31,7 @@ const BasicAction = () => {
                         <tbody>
                             <tr style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", margin: 0 }}>
                                 <td style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", verticalAlign: "top", margin: 0 }} valign="top"></td>
-                                <td className="container" width="600" style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", verticalAlign: "top", display: "block", maxWidth: "600px", clear: "both", margin: "0, auto" }} valign="top">
+                                <td className="container" width="600" style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", verticalAlign: "top", display: "block !important", maxWidth: "600px !important", clear: "both !important", margin: "0, auto" }} valign="top">
                                     <div className="content" style={{ fontFamily: "Roboto sans-serif", boxSizing: "border-box", fontSize: "14px", maxWidth: "600px", display: "block", margin: "0 auto", padding: "20px" }}>
                                         <table className="main" width="100%" cellPadding="0" cellSpacing="0" itemProp="action" itemScope itemType="http://schema.org/ConfirmAction" style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", borderRadius: "3px", margin: 0, border: "none" }}>
                                             <tbody>
@@ -64,9 +64,10 @@ const BasicAction = () => {
                                                                 </tr>
                                                                 <tr style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", margin: 0 }}>
                                                                     <td className="content-block" itemProp="handler" itemScope itemType="http://schema.org/HttpActionHandler" style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: "14px", verticalAlign: "top", margin: 0, padding: "0 0 24px" }} valign="top">
-                                                                        <Link to="#" itemProp="url" style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: ".8125rem", fontWeight: "400", color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: ".25rem", textTransform: "capitalize", backgroundColor: "#0ab39c", margin: 0, borderColor: "#0ab39c", borderStyle: "solid", borderWidth: "1px", padding: "8px 15px" }}
+                                                                        <Link to="#" itemProp="url" style={{ fontFamily: "Roboto, sans-serif", boxSizing: "border-box", fontSize: ".8125rem", fontWeight: "400", color: "#FFF", textDecoration: "none", textAlign: "center", cursor: "pointer", display: "inline-block", borderRadius: ".25rem", textTransform: "capitalize", backgroundColor: "#3bad71", margin: 0, borderColor: "#0ab39c", borderStyle: "solid", borderWidth: "1px", padding: "8px 15px" }}
                                                                             onMouseOver={changeBackground} onMouseOut={bgColor}
                                                                         >
+                                                                            
                                                                             Read More &#8594;</Link>
                                                                     </td>
                                                                 </tr>

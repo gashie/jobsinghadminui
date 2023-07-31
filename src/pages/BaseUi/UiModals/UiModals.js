@@ -719,7 +719,7 @@ const UiModals = () => {
                             </Col>
                             <Col xxl={6}>
                                 <label htmlFor="passwordInput" className="form-label">Password</label>
-                                <Input type="password" className="form-control" id="passwordInput" value="451326546" placeholder="Enter password" />
+                                <Input type="password" className="form-control" id="passwordInput" value="451326546"  placeholder="Enter password" />
                             </Col>
                             <Col lg={12}>
                                 <div className="hstack gap-2 justify-content-end">

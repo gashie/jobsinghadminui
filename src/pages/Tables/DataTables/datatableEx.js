@@ -24,7 +24,7 @@ import fil from "../../../assets/images/svg/crypto-icons/fil.svg";
 import aave from "../../../assets/images/svg/crypto-icons/aave.svg";
 import ada from "../../../assets/images/svg/crypto-icons/ada.svg";
 
-const BasicTable = () => {
+function BasicTable() {
 
     const columns = [
         {
@@ -50,7 +50,7 @@ const BasicTable = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Title</span>,
-            selector: row => row.title,
+            selector: row => <Link to="#!">{row.title}</Link>,
             sortable: true
         },
         {
@@ -122,7 +122,7 @@ const BasicTable = () => {
                             <i className="ri-more-fill align-middle"></i>
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-end">
-                            <DropdownItem href="#"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
+                            <DropdownItem href="#!"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
                             <DropdownItem className='edit-item-btn'><i className="ri-pencil-fill align-bottom me-2 text-muted"></i>Edit</DropdownItem>
                             <DropdownItem className='remove-item-btn'> <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete </DropdownItem>
                         </DropdownMenu>
@@ -259,16 +259,15 @@ const BasicTable = () => {
             columns={columns}
             data={data}
             pagination
-            // highlightOnHover={true}
         />
     );
-};
+}
 
-const ScrollVertical = () => {
+function ScrollVertical() {
     const columns = [
         {
             name: <span className='font-weight-bold fs-13'>ID</span>,
-            selector: row => row.ScrVerId,
+            selector: row => row.id,
             sortable: true
         },
         {
@@ -278,7 +277,7 @@ const ScrollVertical = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Task</span>,
-            selector: row => row.task,
+            selector: row => <Link to="#!">{row.task}</Link>,
             sortable: true
         },
         {
@@ -348,9 +347,9 @@ const ScrollVertical = () => {
         },
     ];
 
-    const data = [
+    const data2 = [
         {
-            ScrVerId: "VLZ-452",
+            id: "VLZ-452",
             project: "Symox v1.0.0",
             task: "Add Dynamic Contact List",
             clientName: "RH Nichols",
@@ -360,7 +359,7 @@ const ScrollVertical = () => {
             priority: "High",
         },
         {
-            ScrVerId: "VLZ-453",
+            id: "VLZ-453",
             project: "Doot - Chat App Template",
             task: "Additional Calendar",
             clientName: "Diana Kohler",
@@ -370,7 +369,7 @@ const ScrollVertical = () => {
             priority: "Medium",
         },
         {
-            ScrVerId: "VLZ-454",
+            id: "VLZ-454",
             project: "Qexal - Landing Page",
             task: "Make a creating an account profile",
             clientName: "David Nichols",
@@ -380,7 +379,7 @@ const ScrollVertical = () => {
             priority: "Low",
         },
         {
-            ScrVerId: "VLZ-455",
+            id: "VLZ-455",
             project: "Dorsin - Landing Page",
             task: "Apologize for shopping Error!",
             clientName: "Tonya Noble",
@@ -390,7 +389,7 @@ const ScrollVertical = () => {
             priority: "Medium",
         },
         {
-            ScrVerId: "VLZ-456",
+            id: "VLZ-456",
             project: "Minimal - v2.1.0",
             task: "Support for theme",
             clientName: "Donald Palmer",
@@ -400,7 +399,7 @@ const ScrollVertical = () => {
             priority: "Low",
         },
         {
-            ScrVerId: "VLZ-457",
+            id: "VLZ-457",
             project: "Dason - v1.0.0",
             task: "Benner design for FB & Twitter",
             clientName: "Jennifer Carter",
@@ -410,7 +409,7 @@ const ScrollVertical = () => {
             priority: "Medium",
         },
         {
-            ScrVerId: "VLZ-458",
+            id: "VLZ-458",
             project: "Velzon v1.6.0",
             task: "Add datatables",
             clientName: "James Morris",
@@ -420,7 +419,7 @@ const ScrollVertical = () => {
             priority: "High",
         },
         {
-            ScrVerId: "VLZ-460",
+            id: "VLZ-460",
             project: "Skote v2.0.0",
             task: "Support for theme",
             clientName: "Nancy Martino",
@@ -430,7 +429,7 @@ const ScrollVertical = () => {
             priority: "Low",
         },
         {
-            ScrVerId: "VLZ-461",
+            id: "VLZ-461",
             project: "Velzon v1.0.0",
             task: "Form submit issue",
             clientName: "Grace Coles",
@@ -440,7 +439,7 @@ const ScrollVertical = () => {
             priority: "High",
         },
         {
-            ScrVerId: "VLZ-462",
+            id: "VLZ-462",
             project: "Minimal - v2.2.0",
             task: "Edit customer testimonial",
             clientName: "Freda",
@@ -450,7 +449,7 @@ const ScrollVertical = () => {
             priority: "Medium",
         },
         {
-            ScrVerId: "VLZ-454",
+            id: "VLZ-459",
             project: "Qexal - Landing Page",
             task: "Make a creating an account profile",
             clientName: "David Nichols",
@@ -460,7 +459,7 @@ const ScrollVertical = () => {
             priority: "Low",
         },
         {
-            ScrVerId: "VLZ-455",
+            id: "VLZ-463",
             project: "Dorsin - Landing Page",
             task: "Apologize for shopping Error!",
             clientName: "Tonya Noble",
@@ -470,7 +469,7 @@ const ScrollVertical = () => {
             priority: "Medium",
         },
         {
-            ScrVerId: "VLZ-456",
+            id: "VLZ-464",
             project: "Minimal - v2.1.0",
             task: "Support for theme",
             clientName: "Donald Palmer",
@@ -480,7 +479,7 @@ const ScrollVertical = () => {
             priority: "Low",
         },
         {
-            ScrVerId: "VLZ-457",
+            id: "VLZ-465",
             project: "Dason - v1.0.0",
             task: "Benner design for FB & Twitter",
             clientName: "Jennifer Carter",
@@ -495,12 +494,12 @@ const ScrollVertical = () => {
             fixedHeader
             fixedHeaderScrollHeight="300px"
             columns={columns}
-            data={data}
+            data={data2}
         />
     );
-};
+}
 
-const ScrollHorizontal = () => {
+function ScrollHorizontal() {
     const columns = [
         {
             name: <Input className="form-check-input fs-15" type="checkbox" name="checkAll" value="option1" />,
@@ -525,7 +524,7 @@ const ScrollHorizontal = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Title</span>,
-            selector: row => row.title,
+            selector: row => <Link to="#!">{row.title}</Link>,
             sortable: true
         },
         {
@@ -588,7 +587,9 @@ const ScrollHorizontal = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Action</span>,
+            // selector: row => row.year,
             sortable: true,
+
             cell: () => {
                 return (
                     <UncontrolledDropdown className="dropdown d-inline-block">
@@ -596,7 +597,7 @@ const ScrollHorizontal = () => {
                             <i className="ri-more-fill align-middle"></i>
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-end">
-                            <DropdownItem href="#"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
+                            <DropdownItem href="#!"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
                             <DropdownItem className='edit-item-btn'><i className="ri-pencil-fill align-bottom me-2 text-muted"></i>Edit</DropdownItem>
                             <DropdownItem className='remove-item-btn'> <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete </DropdownItem>
                         </DropdownMenu>
@@ -771,10 +772,11 @@ const ScrollHorizontal = () => {
             pagination
         />
     );
-};
+}
 
-const AlternativePagination = () => {
+function AlternativePagination() {
     const columns = [
+
         {
             name: <span className='font-weight-bold fs-13'>SR No.</span>,
             selector: row => row.srNo,
@@ -823,7 +825,7 @@ const AlternativePagination = () => {
             sortable: true,
             selector: (cell) => {
                 return (
-                    <h6 className={"fs-13 mb-0 text-" + cell.volumeClass} > <i className={"align-middle me-1 " + cell.icon}></i>{cell.volume}</h6>
+                    <h6 className="text-success fs-13 mb-0" > <i className="mdi mdi-trending-up align-middle me-1"></i>{cell.volume}</h6>
                 );
             },
         },
@@ -846,8 +848,6 @@ const AlternativePagination = () => {
             low: "$68,789.63",
             marketVolume: "$888,411,910",
             volume: "1.50%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "02",
@@ -858,8 +858,6 @@ const AlternativePagination = () => {
             low: "$3,588.14",
             marketVolume: "$314,520,675",
             volume: "0.42%",
-            icon: "mdi mdi-trending-down",
-            volumeClass: "danger"
         },
         {
             srNo: "03",
@@ -870,8 +868,6 @@ const AlternativePagination = () => {
             low: "$104.33",
             marketVolume: "$314,520,675",
             volume: "0.89%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "04",
@@ -882,8 +878,6 @@ const AlternativePagination = () => {
             low: "$8691.75",
             marketVolume: "$9,847,327",
             volume: "1.92%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "05",
@@ -894,8 +888,6 @@ const AlternativePagination = () => {
             low: "$172.3",
             marketVolume: "$40,559,274",
             volume: "2.87%",
-            icon: "mdi mdi-trending-down",
-            volumeClass: "danger"
         },
         {
             srNo: "06",
@@ -906,8 +898,6 @@ const AlternativePagination = () => {
             low: "$8691.75",
             marketVolume: "$9,847,327",
             volume: "1.92%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "07",
@@ -918,8 +908,6 @@ const AlternativePagination = () => {
             low: "$12.53",
             marketVolume: "$156,209,195.18",
             volume: "3.96%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "08",
@@ -930,8 +918,6 @@ const AlternativePagination = () => {
             low: "$35.03",
             marketVolume: "$374,618,945.51",
             volume: "0.84%",
-            icon: "mdi mdi-trending-down",
-            volumeClass: "danger"
         },
         {
             srNo: "09",
@@ -942,8 +928,6 @@ const AlternativePagination = () => {
             low: "$255.01",
             marketVolume: "$156,209,195.18",
             volume: "8.20%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "10",
@@ -954,8 +938,6 @@ const AlternativePagination = () => {
             low: "$1.32",
             marketVolume: "$880,387,980.14",
             volume: "0.42%",
-            icon: "mdi mdi-trending-down",
-            volumeClass: "danger"
         },
         {
             srNo: "11",
@@ -966,8 +948,6 @@ const AlternativePagination = () => {
             low: "$35.03",
             marketVolume: "$374,618,945.51",
             volume: "0.84%",
-            icon: "mdi mdi-trending-down",
-            volumeClass: "danger"
         },
         {
             srNo: "12",
@@ -978,8 +958,6 @@ const AlternativePagination = () => {
             low: "$255.01",
             marketVolume: "$156,209,195.18",
             volume: "8.20%",
-            icon: "mdi mdi-trending-up",
-            volumeClass: "success"
         },
         {
             srNo: "13",
@@ -990,8 +968,6 @@ const AlternativePagination = () => {
             low: "$1.32",
             marketVolume: "$880,387,980.14",
             volume: "0.42%",
-            icon: "mdi mdi-trending-down",
-            volumeClass: "danger"
         },
     ];
     return (
@@ -1001,9 +977,9 @@ const AlternativePagination = () => {
             pagination
         />
     );
-};
+}
 
-const FixedHeaderDatatables = () => {
+function FixedHeaderDatatables() {
     const columns = [
         {
             name: <Input className="form-check-input fs-15" type="checkbox" name="checkAll" value="option1" />,
@@ -1018,7 +994,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>ID</span>,
-            selector: row => row.FixHeadId,
+            selector: row => row.id,
             sortable: true
         },
         {
@@ -1028,7 +1004,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Title</span>,
-            selector: row => row.title,
+            selector: row => <Link to="#!">{row.title}</Link>,
             sortable: true
         },
         {
@@ -1100,7 +1076,7 @@ const FixedHeaderDatatables = () => {
                             <i className="ri-more-fill align-middle"></i>
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-end">
-                            <DropdownItem href="#"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
+                            <DropdownItem href="#!"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
                             <DropdownItem className='edit-item-btn'><i className="ri-pencil-fill align-bottom me-2 text-muted"></i>Edit</DropdownItem>
                             <DropdownItem className='remove-item-btn'> <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete </DropdownItem>
                         </DropdownMenu>
@@ -1113,7 +1089,7 @@ const FixedHeaderDatatables = () => {
     const data = [
         {
             srNo: "01",
-            FixHeadId: "VLZ-452",
+            id: "VLZ-452",
             purchaseId: "VLZ1400087402",
             title: "Post launch reminder/ post list",
             user: "Joseph Parker",
@@ -1125,7 +1101,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "02",
-            FixHeadId: "VLZ-453",
+            id: "VLZ-453",
             purchaseId: "VLZ1400087425",
             title: "Additional Calendar",
             user: "Diana Kohler",
@@ -1137,7 +1113,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "03",
-            FixHeadId: "VLZ-454",
+            id: "VLZ-454",
             purchaseId: "VLZ1400087438",
             title: "Make a creating an account profile",
             user: "Tonya Noble",
@@ -1149,7 +1125,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "04",
-            FixHeadId: "VLZ-455",
+            id: "VLZ-455",
             purchaseId: "VLZ1400087748",
             title: "Apologize for shopping Error!",
             user: "Joseph Parker",
@@ -1161,7 +1137,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "05",
-            FixHeadId: "VLZ-456",
+            id: "VLZ-456",
             purchaseId: "VLZ1400087547",
             title: "Support for theme",
             user: "Donald Palmer",
@@ -1173,7 +1149,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "06",
-            FixHeadId: "VLZ-457",
+            id: "VLZ-457",
             purchaseId: "VLZ1400087245",
             title: "Benner design for FB & Twitter",
             user: "Mary Rucker",
@@ -1185,7 +1161,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "07",
-            FixHeadId: "VLZ-458",
+            id: "VLZ-458",
             purchaseId: "VLZ1400087785",
             title: "Change email option process",
             user: "James Morris",
@@ -1197,7 +1173,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "08",
-            FixHeadId: "VLZ-460",
+            id: "VLZ-460",
             purchaseId: "VLZ1400087745",
             title: "Support for theme",
             user: "Nathan Cole",
@@ -1209,7 +1185,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "09",
-            FixHeadId: "VLZ-461",
+            id: "VLZ-461",
             purchaseId: "VLZ1400087179",
             title: "Form submit issue",
             user: "Grace Coles",
@@ -1221,7 +1197,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "10",
-            FixHeadId: "VLZ-462",
+            id: "VLZ-462",
             purchaseId: "VLZ140008856",
             title: "Edit customer testimonial",
             user: "Freda",
@@ -1233,7 +1209,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "11",
-            FixHeadId: "VLZ-463",
+            id: "VLZ-463",
             purchaseId: "VLZ1400078031",
             title: "Ca i have an e-copy invoice",
             user: "Williams",
@@ -1245,7 +1221,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "12",
-            FixHeadId: "VLZ-464",
+            id: "VLZ-464",
             purchaseId: "VLZ1400087416",
             title: "Brand logo design",
             user: "Richard V.",
@@ -1257,7 +1233,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "13",
-            FixHeadId: "VLZ-466",
+            id: "VLZ-466",
             purchaseId: "VLZ1400089015",
             title: "Issue with finding information about order ?",
             user: "Olive Gunther",
@@ -1269,7 +1245,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             srNo: "14",
-            FixHeadId: "VLZ-467",
+            id: "VLZ-467",
             purchaseId: "VLZ1400090324",
             title: "Make a creating an account profile",
             user: "Edwin",
@@ -1287,9 +1263,9 @@ const FixedHeaderDatatables = () => {
             pagination
         />
     );
-};
+}
 
-const ModalDataDatatables = () => {
+function ModalDataDatatables() {
     const columns = [
         {
             name: <Input className="form-check-input fs-15" type="checkbox" name="checkAll" value="option1" />,
@@ -1304,7 +1280,7 @@ const ModalDataDatatables = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>ID</span>,
-            selector: row => row.modalId,
+            selector: row => row.id,
             sortable: true
         },
         {
@@ -1314,7 +1290,7 @@ const ModalDataDatatables = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Title</span>,
-            selector: row => row.title,
+            selector: row => <Link to="#!">{row.title}</Link>,
             sortable: true
         },
         {
@@ -1386,7 +1362,7 @@ const ModalDataDatatables = () => {
                             <i className="ri-more-fill align-middle"></i>
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-end">
-                            <DropdownItem href="#"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
+                            <DropdownItem href="#!"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>View</DropdownItem>
                             <DropdownItem className='edit-item-btn'><i className="ri-pencil-fill align-bottom me-2 text-muted"></i>Edit</DropdownItem>
                             <DropdownItem className='remove-item-btn'> <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete </DropdownItem>
                         </DropdownMenu>
@@ -1398,7 +1374,7 @@ const ModalDataDatatables = () => {
     const data = [
         {
             srNo: "01",
-            modalId: "VLZ-452",
+            id: "VLZ-452",
             purchaseId: "VLZ1400087402",
             title: "Post launch reminder/ post list",
             user: "Joseph Parker",
@@ -1410,7 +1386,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "02",
-            modalId: "VLZ-453",
+            id: "VLZ-453",
             purchaseId: "VLZ1400087425",
             title: "Additional Calendar",
             user: "Diana Kohler",
@@ -1422,7 +1398,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "03",
-            modalId: "VLZ-454",
+            id: "VLZ-454",
             purchaseId: "VLZ1400087438",
             title: "Make a creating an account profile",
             user: "Tonya Noble",
@@ -1434,7 +1410,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "04",
-            modalId: "VLZ-455",
+            id: "VLZ-455",
             purchaseId: "VLZ1400087748",
             title: "Apologize for shopping Error!",
             user: "Joseph Parker",
@@ -1446,7 +1422,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "05",
-            modalId: "VLZ-456",
+            id: "VLZ-456",
             purchaseId: "VLZ1400087547",
             title: "Support for theme",
             user: "Donald Palmer",
@@ -1458,7 +1434,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "06",
-            modalId: "VLZ-457",
+            id: "VLZ-457",
             purchaseId: "VLZ1400087245",
             title: "Benner design for FB & Twitter",
             user: "Mary Rucker",
@@ -1470,7 +1446,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "07",
-            modalId: "VLZ-458",
+            id: "VLZ-458",
             purchaseId: "VLZ1400087785",
             title: "Change email option process",
             user: "James Morris",
@@ -1482,7 +1458,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "08",
-            modalId: "VLZ-460",
+            id: "VLZ-460",
             purchaseId: "VLZ1400087745",
             title: "Support for theme",
             user: "Nathan Cole",
@@ -1494,7 +1470,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "09",
-            modalId: "VLZ-461",
+            id: "VLZ-461",
             purchaseId: "VLZ1400087179",
             title: "Form submit issue",
             user: "Grace Coles",
@@ -1506,7 +1482,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "10",
-            modalId: "VLZ-462",
+            id: "VLZ-462",
             purchaseId: "VLZ140008856",
             title: "Edit customer testimonial",
             user: "Freda",
@@ -1518,7 +1494,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "11",
-            modalId: "VLZ-463",
+            id: "VLZ-463",
             purchaseId: "VLZ1400078031",
             title: "Ca i have an e-copy invoice",
             user: "Williams",
@@ -1530,7 +1506,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "12",
-            modalId: "VLZ-464",
+            id: "VLZ-464",
             purchaseId: "VLZ1400087416",
             title: "Brand logo design",
             user: "Richard V.",
@@ -1542,7 +1518,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "13",
-            modalId: "VLZ-466",
+            id: "VLZ-466",
             purchaseId: "VLZ1400089015",
             title: "Issue with finding information about order ?",
             user: "Olive Gunther",
@@ -1554,7 +1530,7 @@ const ModalDataDatatables = () => {
         },
         {
             srNo: "14",
-            modalId: "VLZ-467",
+            id: "VLZ-467",
             purchaseId: "VLZ1400090324",
             title: "Make a creating an account profile",
             user: "Edwin",
@@ -1572,9 +1548,9 @@ const ModalDataDatatables = () => {
             pagination
         />
     );
-};
+}
 
-const AjaxDatatables = () => {
+function AjaxDatatables() {
     const columns = [
         {
             name: <span className='font-weight-bold fs-13'>Name</span>,
@@ -1608,7 +1584,7 @@ const AjaxDatatables = () => {
         },
     ];
 
-    const data = useMemo(() =>[
+    const data = useMemo(() => [
         {
             id: 1,
             name: "Tiger Nixon",
@@ -1764,7 +1740,6 @@ const AjaxDatatables = () => {
             progressPending={pending}
         />
     );
-};
-
+}
 
 export { BasicTable, ScrollVertical, ScrollHorizontal, AlternativePagination, FixedHeaderDatatables, ModalDataDatatables, AjaxDatatables };

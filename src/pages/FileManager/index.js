@@ -170,6 +170,7 @@ const FileManager = () => {
     const fileCategory = (e, ele) => {
         setFilterActive(ele)
         document.getElementById("folder-list").style.display = "none";
+
         setFileList(
             files.filter((item) => item.fileType === e)
         );
@@ -328,37 +329,37 @@ const FileManager = () => {
                                             <div className="collapse show" id="collapseExample">
                                                 <ul className="sub-menu list-unstyled">
                                                     <li>
-                                                        <Link to="#">Assets</Link>
+                                                        <a href="#!">Assets</a>
                                                     </li>
                                                     <li>
-                                                        <Link to="#">Marketing</Link>
+                                                        <a href="#!">Marketing</a>
                                                     </li>
                                                     <li>
-                                                        <Link to="#">Personal</Link>
+                                                        <a href="#!">Personal</a>
                                                     </li>
                                                     <li>
-                                                        <Link to="#">Projects</Link>
+                                                        <a href="#!">Projects</a>
                                                     </li>
                                                     <li>
-                                                        <Link to="#">Templates</Link>
+                                                        <a href="#!">Templates</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </li>
                                         <li>
-                                            <Link to="#" className={filterActive === "Documents" ? "active" : ""} onClick={() => fileCategory("Documents", "Documents")}><i className="ri-file-list-2-line align-bottom me-2"></i> <span className="file-list-link">Documents</span></Link>
+                                            <a href="#!" className={filterActive === "Documents" ? "active" : ""} onClick={() => fileCategory("Documents", "Documents")}><i className="ri-file-list-2-line align-bottom me-2"></i> <span className="file-list-link">Documents</span></a>
                                         </li>
                                         <li>
-                                            <Link to="#" className={filterActive === "Media" ? "active" : ""} onClick={() => fileCategory("Media", "Media")}><i className="ri-image-2-line align-bottom me-2"></i> <span className="file-list-link">Media</span></Link>
+                                            <a href="#!" className={filterActive === "Media" ? "active" : ""} onClick={() => fileCategory("Media", "Media")}><i className="ri-image-2-line align-bottom me-2"></i> <span className="file-list-link">Media</span></a>
                                         </li>
                                         <li>
-                                            <Link to="#" className={filterActive === "Recents" ? "active" : ""} onClick={() => fileCategory("Media", "Recents")}><i className="ri-history-line align-bottom me-2"></i> <span className="file-list-link">Recents</span></Link>
+                                            <a href="#!" className={filterActive === "Recents" ? "active" : ""} onClick={() => fileCategory("Media", "Recents")}><i className="ri-history-line align-bottom me-2"></i> <span className="file-list-link">Recents</span></a>
                                         </li>
                                         <li>
-                                            <Link to="#" className={filterActive === "Important" ? "active" : ""} onClick={() => fileCategory("Documents", "Important")}><i className="ri-star-line align-bottom me-2"></i> <span className="file-list-link">Important</span></Link>
+                                            <a href="#!" className={filterActive === "Important" ? "active" : ""} onClick={() => fileCategory("Documents", "Important")}><i className="ri-star-line align-bottom me-2"></i> <span className="file-list-link">Important</span></a>
                                         </li>
                                         <li>
-                                            <Link to="#" className={filterActive === "Deleted" ? "active" : ""} onClick={() => fileCategory("Deleted", "Deleted")}><i className="ri-delete-bin-line align-bottom me-2"></i> <span className="file-list-link">Deleted</span></Link>
+                                            <a href="#!" className={filterActive === "Deleted" ? "active" : ""} onClick={() => fileCategory("Deleted", "Deleted")}><i className="ri-delete-bin-line align-bottom me-2"></i> <span className="file-list-link">Deleted</span></a>
                                         </li>
                                     </ul>
                                 </SimpleBar>
@@ -407,7 +408,7 @@ const FileManager = () => {
                                                     <option value="Documents">Documents</option>
                                                 </select>
 
-                                                <button className="btn btn-success text-nowrap create-folder-modal flex-shrink-0" onClick={() => handleFolderClicks()}><i className="ri-add-line align-bottom me-1"></i> Create Folders</button>
+                                                <button className="btn btn-primary text-nowrap create-folder-modal flex-shrink-0" onClick={() => handleFolderClicks()}><i className="ri-add-line align-bottom me-1"></i> Create Folders</button>
                                             </div>
                                         </Col>
                                     </Row>
@@ -425,7 +426,7 @@ const FileManager = () => {
                                                             </div>
 
                                                             <UncontrolledDropdown>
-                                                                <DropdownToggle tag="button" className="btn btn-ghost-primary btn-icon btn-sm dropdown">
+                                                                <DropdownToggle tag="button" className="btn btn-ghost-primary btn-icon btn-sm dropdown shadow-none">
                                                                     <i className="ri-more-2-fill fs-16 align-bottom" />
                                                                 </DropdownToggle>
                                                                 <DropdownMenu className="dropdown-menu-end">

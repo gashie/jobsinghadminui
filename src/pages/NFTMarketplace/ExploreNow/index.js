@@ -16,7 +16,6 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { Link } from "react-router-dom";
 
 // RangeSlider
-
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 
@@ -86,7 +85,7 @@ const ExploreNow = () => {
                             <Card>
                                 <CardHeader className="border-0">
                                     <div className="d-flex align-items-center">
-                                        <h5 className="card-title mb-0 flex-grow-1">
+                                        <h5 className="card-title mb-0 fw-semibold flex-grow-1">
                                             Explore Product
                                         </h5>
                                         <div>
@@ -232,7 +231,7 @@ const ExploreNow = () => {
                                     <div className="bg-overlay"></div>
                                     <div className="place-bid-btn">
 
-                                        <Link to="#" className="btn btn-success">
+                                        <Link to="#!" className="btn btn-success">
                                             <i className="ri-auction-fill align-bottom me-1"></i> Place
                                             Bid
                                         </Link>

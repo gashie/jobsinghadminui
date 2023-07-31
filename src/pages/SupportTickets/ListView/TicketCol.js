@@ -42,7 +42,7 @@ const AssignedTo = (cell) => {
 const CreateDate = (cell) => {
     return (
         <React.Fragment>
-            {handleValidDate(cell.value)}
+            {cell.value}
         </React.Fragment>
     );
 };

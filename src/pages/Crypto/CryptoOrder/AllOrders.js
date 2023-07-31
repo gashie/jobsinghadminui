@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardBody, CardHeader, Col } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import TableContainer from '../../../Components/Common/TableContainer';
 import {
     Type,
@@ -31,7 +31,7 @@ const AllOrders = ({ orderList }) => {
                             <div className="flex-shrink-0">
                                 <img src={order.row.original.img} alt="" className="avatar-xxs" />
                             </div>
-                            <Link to="#" className="currency_name flex-grow-1 ms-2">{order.row.original.coinName}</Link>
+                            <Link to="#" className="currency_name flex-grow-1 ms-2 text-body">{order.row.original.coinName}</Link>
                         </div>
                     </>
                 ),

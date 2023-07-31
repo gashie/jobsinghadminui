@@ -1,5 +1,8 @@
 // Variables
 
+// Google Font
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 //
 // custom-variables
 //
@@ -10,8 +13,8 @@ $variable-prefix:             vz-; // Deprecated in v5.2.0 for the shorter `$pre
 $prefix:                      $variable-prefix;
 
 // Font Family
-$font-family-primary:                             'Poppins', sans-serif;
-$font-family-secondary:                           'hkgrotesk', sans-serif;
+$font-family-primary:                             'Inter', sans-serif;
+$font-family-secondary:                           'Inter', sans-serif;
 
 //
 // Vertical Menu
@@ -25,14 +28,14 @@ $vertical-menu-bg:                                var(--#{$prefix}vertical-menu-
 $vertical-menu-box-shadow:                        0 2px 4px rgba(15,34,58,0.12);
 $vertical-menu-border:                            $white;
 $vertical-menu-z-index:                           1002;
-$vertical-menu-item-font-size:                    0.9375rem;
+$vertical-menu-item-font-size:                    0.925rem;
 $vertical-menu-item-font-family:                  $font-family-secondary;
 $vertical-menu-item-color:                        var(--#{$prefix}vertical-menu-item-color);
 $vertical-menu-item-hover-color:                  var(--#{$prefix}vertical-menu-item-hover-color);
 $vertical-menu-item-active-color:                 var(--#{$prefix}vertical-menu-item-active-color);
 $vertical-menu-item-padding-x:                    1.5rem;
 $vertical-menu-item-padding-y:                    0.625rem;
-$vertical-menu-sub-item-font-size:                0.813rem;
+$vertical-menu-sub-item-font-size:                0.8125rem;
 $vertical-menu-sub-item-font-family:              $font-family-primary;
 $vertical-menu-sub-item-color:                    var(--#{$prefix}vertical-menu-sub-item-color);
 $vertical-menu-sub-item-hover-color:              var(--#{$prefix}vertical-menu-sub-item-hover-color);
@@ -73,19 +76,19 @@ $horizontal-menu-item-padding-y:                   0.75rem;
 //
 // Two Column Menu
 //
-$twocolumn-menu-iconview-bg:                       var(--#{$prefix}twocolumn-menu-iconview-bg);
-$twocolumn-menu-bg:                                var(--#{$prefix}twocolumn-menu-bg);
+$twocolumn-menu-iconview-bg:                     var(--#{$prefix}twocolumn-menu-iconview-bg);
+$twocolumn-menu-bg:                              var(--#{$prefix}twocolumn-menu-bg);
 $twocolumn-menu-iconview-width:                    70px;
 $twocolumn-menu-width:                             220px;
 $twocolumn-menu-box-shadow:                        0 2px 4px rgba(15,34,58,0.12);
 $twocolumn-menu-z-index:                           1002;
 // dark
-$twocolumn-menu-iconview-bg-dark:                 var(--#{$prefix}twocolumn-menu-iconview-bg-dark);
-$twocolumn-menu-bg-dark:                          var(--#{$prefix}twocolumn-menu-bg-dark);
-$twocolumn-menu-border-dark:                      var(--#{$prefix}twocolumn-menu-bg-dark);
-$twocolumn-menu-item-color-dark:                  var(--#{$prefix}twocolumn-menu-item-color-dark);
-$twocolumn-menu-item-active-color-dark:           var(--#{$prefix}twocolumn-menu-item-active-color-dark);
-$twocolumn-menu-item-active-bg-dark:              var(--#{$prefix}twocolumn-menu-item-active-bg-dark);
+$twocolumn-menu-iconview-bg-dark:                var(--#{$prefix}twocolumn-menu-iconview-bg-dark);
+$twocolumn-menu-bg-dark:                         var(--#{$prefix}twocolumn-menu-bg-dark);
+$twocolumn-menu-border-dark:                     var(--#{$prefix}twocolumn-menu-bg-dark);
+$twocolumn-menu-item-color-dark:                 var(--#{$prefix}twocolumn-menu-item-color-dark);
+$twocolumn-menu-item-active-color-dark:          var(--#{$prefix}twocolumn-menu-item-active-color-dark);
+$twocolumn-menu-item-active-bg-dark:             var(--#{$prefix}twocolumn-menu-item-active-bg-dark);
 
 // gradient Menu
 $twocolumn-menu-item-color-gradient:              rgba($white, 0.6);
@@ -95,8 +98,8 @@ $semibox-width:                                   110px;
 
 // Topbar - (Default Light)
 $header-height:                                    70px;
-$header-bg:                                       var(--#{$prefix}header-bg);
-$header-item-color:                               var(--#{$prefix}header-item-color);
+$header-bg:                                      var(--#{$prefix}header-bg);
+$header-item-color:                              var(--#{$prefix}header-item-color);
 
 // Topbar - Dark
 $header-bg-dark:                                 var(--#{$prefix}header-bg-dark);
@@ -104,7 +107,7 @@ $header-item-color-dark:                         var(--#{$prefix}header-item-col
 
 // Topbar Search
 $topbar-search-bg:                                var(--#{$prefix}topbar-search-bg);
-$page-title-box-shadow:                           0 1px 2px rgba(56,65,74,0.15);
+$page-title-box-shadow:                           var(--#{$prefix}box-shadow);
 $page-title-border:                               none;
 
 // Topbar User
@@ -133,15 +136,15 @@ $font-weight-medium: 500;
 
 // heading
 $heading-color: var(--#{$prefix}heading-color);
-$heading-font-family:         $font-family-primary;
+$heading-font-family:         $font-family-secondary;
 
 // Chat
 $chat-primary-bg:       var(--#{$prefix}light);
-$chat-secondary-bg:    rgba(var(--#{$prefix}success-rgb), 0.15);
-$chat-secondary-color:  var(--#{$prefix}success);
+$chat-secondary-bg:     var(--#{$prefix}primary);
+$chat-secondary-color:  var(--#{$prefix}white);
 
 // Timeline
-$timeline-color:   var(--#{$prefix}card-bg-custom);     
+$timeline-color:   var(--#{$prefix}card-bg-custom);  
 
 //auth pages
 $auth-bg-cover: linear-gradient(-45deg, $primary 50%, $success);
@@ -184,13 +187,13 @@ $grays: (
 
 // scss-docs-start color-variables
 $blue:       #3577f1;
-$indigo:     #405189;
+$indigo:     #4b38b3;
 $purple:     #6559cc;
 $pink:       #f672a7;
 $red:        #f06548;
 $orange:     #f1963b;
-$yellow:     #f7b84b;
-$green:      #0ab39c;
+$yellow:     #ffbe0b;
+$green:      #45CB85;
 $teal:       #02a8b5;
 $cyan:       #299cdb;
 // scss-docs-end color-variables
@@ -243,7 +246,7 @@ $theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-$min-contrast-ratio:   1.75;
+$min-contrast-ratio:   1.65;
 
 // Customize the light and dark text colors for use in our color contrast function.
 $color-contrast-dark:      $black;
@@ -544,7 +547,7 @@ $position-values: (
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   #f3f3f9;
+$body-bg:                   #f2f2f7;
 $body-color:                $gray-900;
 $body-text-align:           null;
 
@@ -647,11 +650,11 @@ $border-radius-pill:          50rem;
 // scss-docs-end border-radius-variables
 
 // scss-docs-start box-shadow-variables
-$box-shadow:                  0 1px 2px rgba(56,65,74,0.15);
+$box-shadow:                  var(--#{$prefix}box-shadow);
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
 $box-shadow-lg:               0 5px 10px rgba(30, 32, 37, 0.12);
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075);
-$element-shadow:              none;
+$element-shadow:              $box-shadow;
 // scss-docs-end box-shadow-variables
 
 $component-active-color:      $white;
@@ -1340,7 +1343,7 @@ $pagination-bg:                     var(--#{$prefix}card-bg-custom);
 $pagination-border-width:           $border-width;
 $pagination-border-radius:          $border-radius;
 $pagination-margin-start:           -$pagination-border-width;
-$pagination-border-color:           var(--#{$prefix}border-color);
+$pagination-border-color:           transparent;
 
 $pagination-focus-color:            $link-hover-color;
 $pagination-focus-bg:               $gray-200;
@@ -1403,7 +1406,7 @@ $accordion-padding-x:                     1.25rem;
 $accordion-color:                         var(--#{$prefix}body-color);
 $accordion-bg:                            $white;
 $accordion-border-width:                  $border-width;
-$accordion-border-color:                  var(--#{$prefix}border-color);
+$accordion-border-color:                  var(--#{$variable-prefix}border-color);
 $accordion-border-radius:                 $border-radius;
 $accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width);
 
@@ -1467,7 +1470,7 @@ $popover-font-size:                 $font-size-base;
 $popover-bg:                        $white;
 $popover-max-width:                 276px;
 $popover-border-width:              $border-width;
-$popover-border-color:              var(--#{$prefix}border-color);
+$popover-border-color:              var(--#{$variable-prefix}border-color);
 $popover-border-radius:             $border-radius;
 $popover-inner-border-radius:       subtract($popover-border-radius, $popover-border-width);
 $popover-box-shadow:                $box-shadow-lg;
@@ -1486,7 +1489,7 @@ $popover-arrow-width:               1rem;
 $popover-arrow-height:              .5rem;
 $popover-arrow-color:               var(--#{$prefix}popover-bg);
 
-$popover-arrow-outer-color:         var(--#{$prefix}border-color);
+$popover-arrow-outer-color:         var(--#{$prefix}border-color);;
 // scss-docs-end popover-variables
 
 
@@ -1605,7 +1608,7 @@ $progress-bar-transition:           width .6s ease;
 
 // scss-docs-start list-group-variables
 $list-group-color:                  var(--#{$prefix}body-color);
-$list-group-bg:                     var(--#{$prefix}card-bg-custom);
+$list-group-bg:                     var(--#{$prefix}card-bg);
 $list-group-border-color:           var(--#{$prefix}border-color);
 $list-group-border-width:           $border-width;
 $list-group-border-radius:          $border-radius;

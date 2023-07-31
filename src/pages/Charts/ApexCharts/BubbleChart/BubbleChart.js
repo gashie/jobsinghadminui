@@ -83,7 +83,8 @@ const Simple = ({ dataColors }) => {
 
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         className="apex-charts"
         options={options}
         series={series}
@@ -178,7 +179,8 @@ const ThreeDBubble = ({ dataColors }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         className="apex-charts"
         options={options}
         series={series}

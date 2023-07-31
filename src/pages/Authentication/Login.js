@@ -10,12 +10,11 @@ import { Link } from "react-router-dom";
 // Formik validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
+
 // actions
 import { loginUser, socialLogin, resetLoginFlag } from "../../store/actions";
 
 import logoLight from "../../assets/images/logo-light.png";
-//Import config
-import { facebook, google } from "../../config";
 
 import withRouter from '../../Components/Common/withRouter';
 
@@ -33,9 +32,10 @@ const Login = (props) => {
 
     useEffect(() => {
         if (user && user) {
+            const updatedUserData = process.env.REACT_APP_DEFAULTAUTH === "firebase" ? user.multiFactor.user.email : user.user.email;
             setUserLogin({
-                email: user.user.email,
-                password: user.user.confirm_password
+                email: updatedUserData,
+                password: user.user.confirm_password ? user.user.confirm_password : ""
             });
         }
     }, [user]);
@@ -57,37 +57,16 @@ const Login = (props) => {
         }
     });
 
-    const signIn = (res, type) => {
-        if (type === "google" && res) {
-            const postData = {
-                name: res.profileObj.name,
-                email: res.profileObj.email,
-                token: res.tokenObj.access_token,
-                idToken: res.tokenId,
-            };
-            dispatch(socialLogin(postData, props.router.navigate, type));
-        } else if (type === "facebook" && res) {
-            const postData = {
-                name: res.name,
-                email: res.email,
-                token: res.accessToken,
-                idToken: res.tokenId,
-            };
-            dispatch(socialLogin(postData, props.router.navigate, type));
-        }
-    };
-
-    //handleGoogleLoginResponse
-    const googleResponse = response => {
-        signIn(response, "google");
+    const signIn = type => {
+        dispatch(socialLogin(type, props.router.navigate));
     };
 
     //handleTwitterLoginResponse
     // const twitterResponse = e => {}
 
-    //handleFacebookLoginResponse
-    const facebookResponse = response => {
-        signIn(response, "facebook");
+    //for facebook and google authentication
+    const socialResponse = type => {
+        signIn(type);
     };
 
     useEffect(() => {
@@ -176,9 +155,7 @@ const Login = (props) => {
                                                         {validation.touched.password && validation.errors.password ? (
                                                             <FormFeedback type="invalid">{validation.errors.password}</FormFeedback>
                                                         ) : null}
-                                                        <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon" onClick={() => setPasswordShow(!passwordShow)}>
-                                                            <i className="ri-eye-fill align-middle"></i>
-                                                        </button>
+                                                        <button className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted" type="button" id="password-addon" onClick={() => setPasswordShow(!passwordShow)}><i className="ri-eye-fill align-middle"></i></button>
                                                     </div>
                                                 </div>
 
@@ -188,7 +165,7 @@ const Login = (props) => {
                                                 </div>
 
                                                 <div className="mt-4">
-                                                    <Button disabled={error ? null : loading ? true : false} color="success" className="btn btn-success w-100" type="submit">
+                                                    <Button color="success" disabled={error ? null : loading ? true : false} className="btn btn-success w-100" type="submit">
                                                         {error ? null : loading ? <Spinner size="sm" className='me-2'> Loading... </Spinner> : null}
                                                         Sign In
                                                     </Button>
@@ -199,7 +176,26 @@ const Login = (props) => {
                                                         <h5 className="fs-13 mb-4 title">Sign In with</h5>
                                                     </div>
                                                     <div>
-                                                    
+                                                    <Link
+                                                        to="#"
+                                                        className="btn btn-primary btn-icon me-1"
+                                                        onClick={e => {
+                                                            e.preventDefault();
+                                                            socialResponse("facebook");
+                                                        }}
+                                                        >
+                                                        <i className="ri-facebook-fill fs-16" />
+                                                    </Link>
+                                                    <Link
+                                                        to="#"
+                                                        className="btn btn-danger btn-icon me-1"
+                                                        onClick={e => {
+                                                            e.preventDefault();
+                                                            socialResponse("google");
+                                                        }}
+                                                        >
+                                                        <i className="ri-google-fill fs-16" />
+                                                    </Link>
                                                         <Button color="dark" className="btn-icon"><i className="ri-github-fill fs-16"></i></Button>{" "}
                                                         <Button color="info" className="btn-icon"><i className="ri-twitter-fill fs-16"></i></Button>
                                                     </div>

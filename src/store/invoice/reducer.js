@@ -78,12 +78,16 @@ const Invoice = (state = INIT_STATE, action) => {
         invoices: state.invoices.filter(
           invoice => invoice._id.toString() !== action.payload.invoice.toString()
         ),
+        isInvoiceDelete: true,
+        isInvoiceDeleteFail: false,
       };
 
     case DELETE_INVOICE_FAIL:
       return {
         ...state,
         error: action.payload,
+        isInvoiceDelete: false,
+        isInvoiceDeleteFail: true,
       };
 
     default:

@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getMarketplaceChartsData } from '../../store/dashboardNFT/action';
 
 // Import Images
-// import ImgGif2 from "../../assets/images/nft/gif/img-2.gif";
+import ImgGif2 from "../../assets/images/nft/gif/img-2.gif";
 
 // Import Chart
-import {MarketplaceChart} from "./DashboardNFTCharts";
+import { MarketplaceChart } from "./DashboardNFTCharts";
 import { Link } from 'react-router-dom';
 
 const Marketplace = () => {
@@ -32,7 +32,6 @@ const Marketplace = () => {
     useEffect(() => {
         dispatch(getMarketplaceChartsData("all"));
     }, [dispatch]);
-
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             // Render a completed state
@@ -123,7 +122,7 @@ const Marketplace = () => {
 
                                         <div className="w-100">
                                             <div className="d-flex align-items-center">
-                                                <img src={"https://img.themesbrand.com/velzon/images/img-2.gif"} className="img-fluid avatar-xs rounded-circle object-cover" alt="" />
+                                                <img src={ImgGif2} className="img-fluid avatar-xs rounded-circle object-cover" alt="" />
                                                 <div className="ms-3 flex-grow-1">
                                                     <h5 className="fs-16 mb-1">Trendy Fashion Portraits</h5>
                                                     <p className="text-muted mb-0">Artwork</p>

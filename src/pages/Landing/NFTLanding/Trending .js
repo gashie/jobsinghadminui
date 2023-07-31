@@ -16,11 +16,11 @@ import Img04 from "../../../assets/images/nft/img-04.jpg";
 import Img05 from "../../../assets/images/nft/img-05.jpg";
 import Img06 from "../../../assets/images/nft/img-06.jpg";
 
-// import GifImg01 from "../../../assets/images/nft/gif/img-1.gif";
-// import GifImg02 from "../../../assets/images/nft/gif/img-2.gif";
-// import GifImg03 from "../../../assets/images/nft/gif/img-3.gif";
-// import GifImg04 from "../../../assets/images/nft/gif/img-4.gif";
-// import GifImg05 from "../../../assets/images/nft/gif/img-5.gif";
+import GifImg01 from "../../../assets/images/nft/gif/img-1.gif";
+import GifImg02 from "../../../assets/images/nft/gif/img-2.gif";
+import GifImg03 from "../../../assets/images/nft/gif/img-3.gif";
+import GifImg04 from "../../../assets/images/nft/gif/img-4.gif";
+import GifImg05 from "../../../assets/images/nft/gif/img-5.gif";
 
 const Trending = () => {
     return (
@@ -63,7 +63,7 @@ const Trending = () => {
                                     },
                                 }}
                                 loop={true}
-                                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                                autoplay={{ delay: 2500, disableOnInteraction: false }} 
                                 className="mySwiper swiper mySwiper pb-4">
                                 <div className="swiper-wrapper">
                                     <SwiperSlide>
@@ -72,15 +72,15 @@ const Trending = () => {
                                                 <Row className="g-1 mb-3">
                                                     <Col lg={6}>
                                                         <img src={Img06} alt="" className="img-fluid rounded" />
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-2.gif"} alt="" className="img-fluid rounded mt-1" />
+                                                        <img src={GifImg02} alt="" className="img-fluid rounded mt-1" />
                                                     </Col>
                                                     <Col lg={6}>
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-5.gif"} alt="" className="img-fluid rounded mb-1" />
+                                                        <img src={GifImg05} alt="" className="img-fluid rounded mb-1" />
                                                         <img src={Img03} alt="" className="img-fluid rounded" />
                                                     </Col>
                                                 </Row>
-                                                <Link to="#" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
-                                                <h5 className="mb-0 fs-16"><Link to="#">Artwork <span className="badge badge-soft-success">206</span></Link></h5>
+                                                <Link to="#!" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
+                                                <h5 className="mb-0 fs-16"><Link to="#!">Artwork <span className="badge badge-soft-success">206</span></Link></h5>
                                             </CardBody>
                                         </Card>
                                     </SwiperSlide>
@@ -90,15 +90,15 @@ const Trending = () => {
                                                 <Row className="g-1 mb-3">
                                                     <Col lg={6}>
                                                         <img src={Img05} alt="" className="img-fluid rounded" />
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-1.gif"} alt="" className="img-fluid rounded mt-1" />
+                                                        <img src={GifImg01} alt="" className="img-fluid rounded mt-1" />
                                                     </Col>
                                                     <Col lg={6}>
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-1.gif"} alt="" className="img-fluid rounded mb-1" />
+                                                        <img src={GifImg04} alt="" className="img-fluid rounded mb-1" />
                                                         <img src={Img04} alt="" className="img-fluid rounded" />
                                                     </Col>
                                                 </Row>
-                                                <Link to="#" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
-                                                <h5 className="mb-0 fs-16"><Link to="#">Crypto Card <span className="badge badge-soft-success">743</span></Link></h5>
+                                                <Link to="#!" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
+                                                <h5 className="mb-0 fs-16"><Link to="#!">Crypto Card <span className="badge badge-soft-success">743</span></Link></h5>
                                             </CardBody>
                                         </Card>
                                     </SwiperSlide>
@@ -108,15 +108,15 @@ const Trending = () => {
                                                 <Row className="g-1 mb-3">
                                                     <Col lg={6}>
                                                         <img src={Img02} alt="" className="img-fluid rounded" />
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-3.gif"} alt="" className="img-fluid rounded mt-1" />
+                                                        <img src={GifImg03} alt="" className="img-fluid rounded mt-1" />
                                                     </Col>
                                                     <Col lg={6}>
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-1.gif"} alt="" className="img-fluid rounded mb-1" />
+                                                        <img src={GifImg01} alt="" className="img-fluid rounded mb-1" />
                                                         <img src={Img01} alt="" className="img-fluid rounded" />
                                                     </Col>
                                                 </Row>
-                                                <Link to="#" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
-                                                <h5 className="mb-0 fs-16"><Link to="#">Music <span className="badge badge-soft-success">679</span></Link></h5>
+                                                <Link to="#!" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
+                                                <h5 className="mb-0 fs-16"><Link to="#!">Music <span className="badge badge-soft-success">679</span></Link></h5>
                                             </CardBody>
                                         </Card>
                                     </SwiperSlide>
@@ -126,15 +126,15 @@ const Trending = () => {
                                                 <Row className="g-1 mb-3">
                                                     <Col lg={6}>
                                                         <img src={Img03} alt="" className="img-fluid rounded" />
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-5.gif"} alt="" className="img-fluid rounded mt-1" />
+                                                        <img src={GifImg05} alt="" className="img-fluid rounded mt-1" />
                                                     </Col>
                                                     <Col lg={6}>
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-2.gif"} alt="" className="img-fluid rounded mb-1" />
+                                                        <img src={GifImg02} alt="" className="img-fluid rounded mb-1" />
                                                         <img src={Img05} alt="" className="img-fluid rounded" />
                                                     </Col>
                                                 </Row>
-                                                <Link to="#" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
-                                                <h5 className="mb-0 fs-16"><Link to="#">Games <span className="badge badge-soft-success">341</span></Link></h5>
+                                                <Link to="#!" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
+                                                <h5 className="mb-0 fs-16"><Link to="#!">Games <span className="badge badge-soft-success">341</span></Link></h5>
                                             </CardBody>
                                         </Card>
                                     </SwiperSlide>
@@ -144,15 +144,15 @@ const Trending = () => {
                                                 <Row className="g-1 mb-3">
                                                     <Col lg={6}>
                                                         <img src={Img02} alt="" className="img-fluid rounded" />
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-3.gif"} alt="" className="img-fluid rounded mt-1" />
+                                                        <img src={GifImg03} alt="" className="img-fluid rounded mt-1" />
                                                     </Col>
                                                     <Col lg={6}>
-                                                        <img src={"https://img.themesbrand.com/velzon/images/img-1.gif"} alt="" className="img-fluid rounded mb-1" />
+                                                        <img src={GifImg01} alt="" className="img-fluid rounded mb-1" />
                                                         <img src={Img01} alt="" className="img-fluid rounded" />
                                                     </Col>
                                                 </Row>
-                                                <Link to="#" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
-                                                <h5 className="mb-0 fs-16"><Link to="#">Photography <span className="badge badge-soft-success">1452</span></Link></h5>
+                                                <Link to="#!" className="float-end"> View All <i className="ri-arrow-right-line align-bottom"></i></Link>
+                                                <h5 className="mb-0 fs-16"><Link to="#!">Photography <span className="badge badge-soft-success">1452</span></Link></h5>
                                             </CardBody>
                                         </Card>
                                     </SwiperSlide>

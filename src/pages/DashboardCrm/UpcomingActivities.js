@@ -28,7 +28,7 @@ const UpcomingActivities = () => {
                                 <li className="list-group-item ps-0" key={key}>
                                     <Row className="align-items-center g-3">
                                         <div className="col-auto">
-                                            <div className="avatar-sm px-1 py-2 h-auto bg-light rounded-3">
+                                            <div className="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
                                                 <div className="text-center">
                                                     <h5 className="mb-0">{item.date}</h5>
                                                     <div className="text-muted">{item.weekDay}</div>

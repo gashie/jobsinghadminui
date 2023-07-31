@@ -274,7 +274,7 @@ const EcommerceAddProduct = (props) => {
                 </CardHeader>
                 <CardBody>
                   <div className="mb-4">
-                    <h5 className="fs-14 mb-1">Product Image</h5>
+                    <h5 className="fs-15 mb-1">Product Image</h5>
                     <p className="text-muted">Add Product main Image.</p>
                     <div className="text-center">
                       <div className="position-relative d-inline-block">
@@ -297,7 +297,7 @@ const EcommerceAddProduct = (props) => {
                     </div>
                   </div>
                   <div>
-                    <h5 className="fs-14 mb-1">Product Gallery</h5>
+                    <h5 className="fs-15 mb-1">Product Gallery</h5>
                     <p className="text-muted">Add Product Gallery Images.</p>
 
                     <Dropzone
@@ -744,6 +744,7 @@ const EcommerceAddProduct = (props) => {
                   {validation.touched.publishedDate && validation.errors.publishedDate ? (
                     <FormFeedback type="invalid">{validation.errors.publishedDate}</FormFeedback>
                   ) : null}
+
                 </div>
               </CardBody>
             </Card>
@@ -786,6 +787,7 @@ const EcommerceAddProduct = (props) => {
                     {validation.errors.category}
                   </FormFeedback>
                 ) : null}
+
               </CardBody>
             </Card>
 

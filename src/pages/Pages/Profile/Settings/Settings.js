@@ -15,7 +15,7 @@ const Settings = () => {
         if (activeTab !== tab) setActiveTab(tab);
     };
 
-    document.title = "Profile Settings | Velzon - React Admin & Dashboard Template";
+    document.title="Profile Settings | Velzon - React Admin & Dashboard Template";
 
     return (
         <React.Fragment>
@@ -534,12 +534,6 @@ const Settings = () => {
                                                                     defaultValue=""
                                                                         rows="3"
                                                                         placeholder="Enter description">You always want to make sure that your fonts work well together and try to limit the number of fonts you use to three or less. Experiment and play around with the fonts that you already have in the software you're working with reputable font websites. </textarea> */}
-                                                                    <Input type='teaxtarea'
-                                                                        className="form-control" id="jobDescription"
-                                                                        rows="3"
-                                                                        placeholder='Enter description'
-                                                                        defaultValue="You always want to make sure that your fonts work well together and try to limit the number of fonts you use to three or less. Experiment and play around with the fonts that you already have in the software you're working with reputable font websites."
-                                                                    />
                                                                 </div>
                                                             </Col>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 
-//import Components
+//import COmponents
 import UpgradeAccountNotise from './UpgradeAccountNotise';
 import UsersByDevice from './UsersByDevice';
 import Widget from './Widget';

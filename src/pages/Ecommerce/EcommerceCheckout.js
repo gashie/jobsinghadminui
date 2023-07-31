@@ -99,7 +99,7 @@ const EcommerceCheckout = () => {
     },
   ];
 
-  document.title = "Checkout | Velzon - React Admin & Dashboard Template";
+document.title ="Checkout | Velzon - React Admin & Dashboard Template";
 
   return (
     <React.Fragment>
@@ -119,7 +119,7 @@ const EcommerceCheckout = () => {
                       >
                         <NavItem role="presentation">
                           <NavLink href="#"
-                            className={classnames({ active: activeTab === 1, done: (activeTab <= 4 && activeTab >= 0) }, "p-3 fs-15")}
+                            className={classnames({ active: activeTab === 1, done: (activeTab <= 4 && activeTab >= 0) }, "fs-15 p-3")}
                             onClick={() => { toggleTab(1); }}
                           >
                             <i className="ri-user-2-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
@@ -128,7 +128,7 @@ const EcommerceCheckout = () => {
                         </NavItem>
                         <NavItem role="presentation">
                           <NavLink href="#"
-                            className={classnames({ active: activeTab === 2, done: activeTab <= 4 && activeTab > 1 }, "p-3 fs-15")}
+                            className={classnames({ active: activeTab === 2, done: activeTab <= 4 && activeTab > 1 }, "fs-15 p-3")}
                             onClick={() => { toggleTab(2); }}
                           >
                             <i className="ri-truck-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
@@ -137,7 +137,7 @@ const EcommerceCheckout = () => {
                         </NavItem>
                         <NavItem role="presentation">
                           <NavLink href="#"
-                            className={classnames({ active: activeTab === 3, done: activeTab <= 4 && activeTab > 2 }, "p-3 fs-15")}
+                            className={classnames({ active: activeTab === 3, done: activeTab <= 4 && activeTab > 2 }, "fs-15 p-3")}
                             onClick={() => { toggleTab(3); }}
                           >
                             <i className="ri-bank-card-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
@@ -146,7 +146,7 @@ const EcommerceCheckout = () => {
                         </NavItem>
                         <NavItem role="presentation">
                           <NavLink href="#"
-                            className={classnames({ active: activeTab === 4, done: activeTab <= 4 && activeTab > 3 }, "p-3 fs-15")}
+                            className={classnames({ active: activeTab === 4, done: activeTab <= 4 && activeTab > 3 }, "fs-15 p-3")}
                             onClick={() => { toggleTab(4); }}
                           >
                             <i className="ri-checkbox-circle-line fs-16 p-2 bg-soft-primary text-primary rounded-circle align-middle me-2"></i>
@@ -369,7 +369,7 @@ const EcommerceCheckout = () => {
                                   </span>
                                 </Label>
                               </div>
-                              <div className="d-flex flex-wrap px-2 py-1 bg-light rounded-bottom border mt-n1">
+                              <div className="d-flex flex-wrap p-2 py-1 bg-light rounded-bottom border mt-n1">
                                 <div>
                                   <Link
                                     to="#"
@@ -419,7 +419,7 @@ const EcommerceCheckout = () => {
                                   </span>
                                 </Label>
                               </div>
-                              <div className="d-flex flex-wrap px-2 py-1 bg-light rounded-bottom border mt-n1">
+                              <div className="d-flex flex-wrap p-2 py-1 bg-light rounded-bottom border mt-n1">
                                 <div>
                                   <Link
                                     to="#"

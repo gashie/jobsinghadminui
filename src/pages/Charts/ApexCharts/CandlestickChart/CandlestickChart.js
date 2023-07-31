@@ -289,7 +289,8 @@ const Basic = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="candlestick"
@@ -332,7 +333,8 @@ const ComboCandlestick = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="candlestick"
@@ -411,7 +413,8 @@ const ComboCandlestick1 = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="bar"
@@ -726,7 +729,8 @@ const Category = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="candlestick"
@@ -973,7 +977,8 @@ const CandlestickLine = ({ dataColors }) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="candlestick"

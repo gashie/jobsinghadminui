@@ -16,8 +16,8 @@ const Widgets = () => {
                             <CardBody>
                                 <div className="d-flex align-items-center">
                                     <div className="avatar-sm flex-shrink-0">
-                                        <span className={`avatar-title bg-soft-${item.feaIconClass} text-${item.feaIconClass} rounded-2 fs-2`}>
-                                            <FeatherIcon icon={item.feaIcon} className={`text-${item.feaIconClass}`} />
+                                        <span className={`avatar-title bg-${item.feaIconClass} rounded-2 fs-2`}>
+                                            <FeatherIcon icon={item.feaIcon} />
                                         </span>
                                     </div>
                                     <div className="flex-grow-1 overflow-hidden ms-3">

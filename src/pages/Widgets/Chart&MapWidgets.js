@@ -26,7 +26,7 @@ const ChartMapWidgets = () => {
                         <CardHeader className="align-items-center d-flex">
                             <h4 className="card-title mb-0 flex-grow-1">Live Users By Country</h4>
                             <div className="flex-shrink-0">
-                                <Button color="primary" size='sm' className="btn-soft-primary">
+                                <Button color="primary" size='sm' className="btn-soft-primary shadow-none">
                                     Export Report
                                 </Button>
                             </div>
@@ -81,13 +81,13 @@ const ChartMapWidgets = () => {
                         <CardHeader className="align-items-center d-flex">
                             <h4 className="card-title mb-0 flex-grow-1">Sessions by Countries</h4>
                             <div>
-                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1">
+                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1 shadow-none">
                                     ALL
                                 </Button>
-                                <Button color="primary" size="sm" className="btn-soft-primary me-1">
+                                <Button color="primary" size="sm" className="btn-soft-primary me-1 shadow-none">
                                     1M
                                 </Button>
-                                <Button color="secondary" size="sm" className="btn-soft-secondary">
+                                <Button color="secondary" size="sm" className="btn-soft-secondary shadow-none">
                                     6M
                                 </Button>
                             </div>
@@ -108,16 +108,16 @@ const ChartMapWidgets = () => {
                         <CardHeader className="border-0 align-items-center d-flex">
                             <h4 className="card-title mb-0 flex-grow-1">Audiences Metrics</h4>
                             <div>
-                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1">
+                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1 shadow-none">
                                     ALL
                                 </Button>
-                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1">
+                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1 shadow-none">
                                     1M
                                 </Button>
-                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1">
+                                <Button color="secondary" size="sm" className="btn-soft-secondary me-1 shadow-none">
                                     6M
                                 </Button>
-                                <Button color="primary" size="sm" className="btn-soft-primary">
+                                <Button color="primary" size="sm" className="btn-soft-primary shadow-none">
                                     1Y
                                 </Button>
                             </div>
@@ -178,7 +178,7 @@ const ChartMapWidgets = () => {
                         <CardHeader className="align-items-center d-flex">
                             <h4 className="card-title mb-0 flex-grow-1">Sales by Locations</h4>
                             <div className="flex-shrink-0">
-                                <Button color="primary" size="sm" className="btn-soft-primary">
+                                <Button color="primary" size="sm" className="btn-soft-primary shadow-none">
                                     Export Report
                                 </Button>
                             </div>
@@ -269,7 +269,7 @@ const ChartMapWidgets = () => {
                         <CardBody>
                             <div id="color_heatmap" className="apex-charts mt-n3" dir="ltr">
                                 {/* Top Referrals Pages Chart */}
-                                <TopReferralsPagesCharts dataColors='["--vz-success", "--vz-info", "--vz-primary", "--vz-warning", "--vz-secondary"]' />
+                                <TopReferralsPagesCharts dataColors='["--vz-info", "--vz-success", "--vz-primary", "--vz-warning", "--vz-danger"]' />
                             </div>
 
                             <Row className="g-3">

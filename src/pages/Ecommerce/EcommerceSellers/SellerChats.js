@@ -50,7 +50,8 @@ const SellerChats = (props) => {
   };
 
   return (
-    <ReactApexChart dir="ltr"
+    <ReactApexChart
+      dir="ltr"
       options={options}
       series={series}
       type="area"

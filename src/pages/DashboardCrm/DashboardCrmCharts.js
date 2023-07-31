@@ -63,7 +63,7 @@ const SalesForecastCharts = ({ dataColors, series }) => {
             horizontalAlign: 'center',
             fontWeight: 500,
             offsetX: 0,
-            offsetY: -25,
+            offsetY: -14,
             itemMargin: {
                 horizontal: 8,
                 vertical: 0
@@ -77,7 +77,7 @@ const SalesForecastCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart 
+            <ReactApexChart
                 dir="ltr"
                 options={options}
                 series={series}
@@ -132,13 +132,13 @@ const DealTypeCharts = ({ dataColors, series }) => {
         },
         colors: dealTypeChartsColors,
         xaxis: {
-            categories: ['2016', '2017', '2018', '2019', '2020', '2021'],
-            opposite: true
+            categories: ['2016', '2017', '2018', '2019', '2020', '2021']
         }
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="radar"
@@ -187,7 +187,8 @@ const BalanceOverviewCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"

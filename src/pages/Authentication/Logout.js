@@ -31,5 +31,4 @@ Logout.propTypes = {
   history: PropTypes.object,
 };
 
-
 export default withRouter(Logout);

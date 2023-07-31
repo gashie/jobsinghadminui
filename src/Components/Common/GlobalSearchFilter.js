@@ -30,7 +30,7 @@ const ProductsGlobalFilter = () => {
     );
 };
 const CustomersGlobalFilter = () => {
-    const [customerStatus, setcustomerStatus] = useState("");
+    const [customerStatus, setcustomerStatus] = useState(null);
 
     function handlecustomerStatus(customerStatus) {
         setcustomerStatus(customerStatus);
@@ -46,6 +46,7 @@ const CustomersGlobalFilter = () => {
             ],
         },
     ];
+
     return (
         <React.Fragment>
             <Col xl={7}>
@@ -69,9 +70,9 @@ const CustomersGlobalFilter = () => {
                     <Col sm={4}>
                         <div>
                             <Select
-                                defaultValue={customerStatus[1]}
-                                onChange={(e) => {
-                                    handlecustomerStatus(e.value);
+                                value={customerStatus}
+                                onChange={() => {
+                                    handlecustomerStatus();
                                 }}
                                 options={customerstatus}
                                 name="choices-single-default"
@@ -148,6 +149,7 @@ const OrderGlobalFilter = () => {
                         options={{
                             altInput: true,
                             altFormat: "F j, Y",
+                            mode: "multiple",
                             dateFormat: "d.m.y",
                         }}
                     />

@@ -5,7 +5,6 @@ import { Container } from 'reactstrap';
 import List from './List';
 
 const ProjectList = () => {
-
     document.title = "Project List | Velzon - React Admin & Dashboard Template";
 
     return (

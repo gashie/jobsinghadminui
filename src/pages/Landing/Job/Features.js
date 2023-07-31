@@ -13,7 +13,7 @@ const Features = () => {
           <Row className="align-items-center justify-content-lg-between justify-content-center gy-4">
             <Col lg={5} sm={7}>
               <div className="about-img-section mb-5 mb-lg-0 text-center">
-                <Card className="card-bg-fill rounded shadow-lg inquiry-box d-none d-lg-block">
+                <Card className="rounded shadow-lg inquiry-box d-none d-lg-block">
                   <CardBody className="d-flex align-items-center">
                     <div className="avatar-sm flex-shrink-0 me-3">
                       <div className="avatar-title bg-soft-secondary text-secondary rounded-circle fs-18">
@@ -22,13 +22,15 @@ const Features = () => {
                     </div>
                     <h5 className="fs-15 lh-base mb-0">
                       Search Over{" "}
-                      <span className="text-secondary fw-semibold">1,00,000+</span>{" "}
+                      <span className="text-secondary fw-semibold">
+                        1,00,000+
+                      </span>{" "}
                       Jobs
                     </h5>
                   </CardBody>
                 </Card>
 
-                <Card className="feedback-box card-bg-fill">
+                <Card className="feedback-box">
                   <CardBody className="d-flex shadow-lg">
                     <div className="flex-shrink-0 me-3">
                       <img
@@ -42,10 +44,10 @@ const Features = () => {
                       <p className="text-muted fs-11 mb-1">UI/UX Designer</p>
 
                       <div className="text-warning">
-                        <i className="ri-star-s-fill me-1"></i>
-                        <i className="ri-star-s-fill me-1"></i>
-                        <i className="ri-star-s-fill me-1"></i>
-                        <i className="ri-star-s-fill me-1"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
                         <i className="ri-star-s-line"></i>
                       </div>
                     </div>
@@ -60,7 +62,7 @@ const Features = () => {
             </Col>
             <Col lg={6}>
               <div className="text-muted">
-                <h1 className="mb-3 lh-base">
+                <h1 className="mb-3 lh-base fw-semibold">
                   Find Your <span className="text-primary">Dream Job</span> in
                   One Place
                 </h1>
@@ -115,7 +117,7 @@ const Features = () => {
                 </div>
 
                 <div>
-                  <Link to="#" className="btn btn-primary">
+                  <Link to="#!" className="btn btn-primary">
                     Find Your Jobs{" "}
                     <i className="ri-arrow-right-line align-bottom ms-1"></i>
                   </Link>

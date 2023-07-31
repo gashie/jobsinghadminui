@@ -28,6 +28,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import BootstrapTheme from "@fullcalendar/bootstrap";
 import Flatpickr from "react-flatpickr";
+import listPlugin from '@fullcalendar/list';
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -38,7 +39,6 @@ import DeleteModal from "../../Components/Common/DeleteModal";
 //Simple bar
 import SimpleBar from "simplebar-react";
 import UpcommingEvents from './UpcommingEvents';
-import listPlugin from '@fullcalendar/list';
 
 import {
   getEvents as onGetEvents,
@@ -273,7 +273,6 @@ const Calender = () => {
   });
 
   const submitOtherEvent = () => {
-
     document.getElementById("form-event").classList.remove("view-event");
 
     document
@@ -736,8 +735,8 @@ const Calender = () => {
             </Col>
           </Row>
         </Container>
-      </div >
-    </React.Fragment >
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -150,9 +150,9 @@ const LineCharts = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <div>
-                                        <ChartSyncingLine dataColors='["--vz-primary"]' className="apex-charts" dir="ltr" />
-                                        <ChartSyncingLine2 dataColors='["--vz-warning"]' className="apex-charts" dir="ltr" />
-                                        <ChartSyncingArea dataColors='["--vz-success"]' className="apex-charts" dir="ltr" />
+                                        <ChartSyncingLine dataColors='["--vz-primary"]' className="apex-charts" dir="ltr"/>
+                                        <ChartSyncingLine2 dataColors='["--vz-warning"]' className="apex-charts" dir="ltr"/>
+                                        <ChartSyncingArea dataColors='["--vz-success"]' className="apex-charts" dir="ltr"/>
                                     </div>
                                 </CardBody>
                             </Card>

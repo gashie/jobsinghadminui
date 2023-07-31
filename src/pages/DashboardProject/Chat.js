@@ -113,7 +113,7 @@ const Chat = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto">
-                                    <button type="submit" className="btn btn-info"  onClick={() => onSendMessage()}><span className="d-none d-sm-inline-block me-2">Send</span> <i className="mdi mdi-send float-end"></i></button>
+                                    <button type="submit" className="btn btn-info" onClick={() => onSendMessage()}><span className="d-none d-sm-inline-block me-2">Send</span> <i className="mdi mdi-send float-end"></i></button>
                                 </div>
                             </div>
                         </div>

@@ -106,7 +106,8 @@ const BasicHeatmap = ({ dataColors }) => {
         },
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -258,7 +259,8 @@ const MultipleHeatmap = ({ dataColors }) => {
     };
     return (
 
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -393,7 +395,8 @@ const ColorRange = ({ dataColors }) => {
         },
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}
@@ -517,7 +520,8 @@ const RangeWithoutShades = ({ dataColors }) => {
         },
     };
     return (
-        <ReactApexChart dir="ltr"
+        <ReactApexChart
+            dir="ltr"
             className="apex-charts"
             series={series}
             options={options}

@@ -10,9 +10,9 @@ const AudiencesCharts = ({ dataColors, series }) => {
             type: 'bar',
             height: 309,
             stacked: true,
-                toolbar: {
-                    show: false,
-                }
+            toolbar: {
+                show: false,
+            }
         },
         plotOptions: {
             bar: {
@@ -75,7 +75,7 @@ const AudiencesCharts = ({ dataColors, series }) => {
                 options={options}
                 series={series}
                 type="bar"
-                height="318"
+                height="309"
                 className="apex-charts"
             />
         </React.Fragment>
@@ -145,7 +145,8 @@ const AudiencesSessionsCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="heatmap"
@@ -199,7 +200,8 @@ const CountriesCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="bar"
@@ -261,7 +263,8 @@ const UsersByDeviceCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="donut"

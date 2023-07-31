@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import CountUp from "react-countup";
 import { useSelector, useDispatch } from "react-redux";
-import { AudiencesCharts } from './DashboardAnalyticsCharts';
+import {AudiencesCharts} from './DashboardAnalyticsCharts';
 import { getAudiencesMetricsChartsData } from "../../store/dashboardAnalytics/action";
 
 const AudiencesMetrics = () => {
-
     const dispatch = useDispatch();
 
     const [chartData, setchartData] = useState([]);
@@ -26,8 +25,6 @@ const AudiencesMetrics = () => {
     useEffect(() => {
         dispatch(getAudiencesMetricsChartsData("all"));
     }, [dispatch]);
-
-
     return (
         <React.Fragment>
             <Col xl={6}>

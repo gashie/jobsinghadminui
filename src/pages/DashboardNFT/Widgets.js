@@ -43,8 +43,8 @@ const Widgets = () => {
                             </div>
                             <div className="d-flex align-items-center">
                                 <div className="avatar-sm flex-shrink-0">
-                                    <span className="avatar-title bg-soft-info rounded fs-3">
-                                        <i className="bx bx-dollar-circle text-info"></i>
+                                    <span className="avatar-title bg-primary rounded fs-3">
+                                        <i className="bx bx-dollar-circle"></i>
                                     </span>
                                 </div>
                                 <div className="flex-grow-1 ps-3">
@@ -80,8 +80,8 @@ const Widgets = () => {
                             </div>
                             <div className="d-flex align-items-center">
                                 <div className="avatar-sm flex-shrink-0">
-                                    <span className="avatar-title bg-soft-info rounded fs-3">
-                                        <i className="bx bx-wallet text-info"></i>
+                                    <span className="avatar-title bg-danger rounded fs-3">
+                                        <i className="bx bx-wallet"></i>
                                     </span>
                                 </div>
                                 <div className="flex-grow-1 ps-3">

@@ -32,14 +32,14 @@ const Popularity = () => {
                     </CardHeader>
                     <CardBody>
                         <div className="table-responsive table-card">
-                            <SimpleBar style={{ maxHeight: "346px" }}>
+                            <SimpleBar style={{ maxHeight: "365px" }}>
                                 <ul className="list-group list-group-flush">
                                     {popularityData.map((item, key) => (
                                         <li key={key} className="list-group-item list-group-item-action">
                                             <div className="d-flex align-items-center">
                                                 <img src={item.img} alt="" className="avatar-xs object-cover rounded-circle" />
                                                 <div className="ms-3 flex-grow-1">
-                                                    <Link to="#" className="stretched-link">
+                                                    <Link to="#!" className="stretched-link">
                                                         <h6 className="fs-14 mb-1">{item.author}</h6>
                                                     </Link>
                                                     <p className="mb-0 text-muted">{item.username}</p>

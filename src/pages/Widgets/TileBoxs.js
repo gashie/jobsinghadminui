@@ -49,7 +49,7 @@ const TileBoxs = () => {
                                         <Link to="#" className={"text-decoration-underline " + item.captionClass}>{item.caption}</Link>
                                     </div>
                                     <div className="avatar-sm flex-shrink-0">
-                                        <span className={"avatar-title rounded fs-3 bg-soft-" + item.iconClass}>
+                                        <span className={"avatar-title rounded fs-3 shadow bg-soft-" + item.iconClass}>
                                             <i className={item.icon + " text-" + item.iconClass}></i>
                                         </span>
                                     </div>
@@ -120,7 +120,7 @@ const TileBoxs = () => {
                                 </div>
                                 <div>
                                     <div className="avatar-sm flex-shrink-0">
-                                        <span className={"avatar-title rounded-circle fs-2 bg-soft-" + item.iconClass}>
+                                        <span className={"avatar-title rounded-circle fs-2 shadow bg-soft-" + item.iconClass}>
                                             <FeatherIcon
                                                 icon={item.feaIcon}
                                                 className={"text-" + item.iconClass}
@@ -140,7 +140,7 @@ const TileBoxs = () => {
                         <CardBody>
                             <div className="d-flex align-items-center">
                                 <div className="avatar-sm flex-shrink-0">
-                                    <span className={"avatar-title rounded-2 fs-2 bg-soft-" + item.iconClass + " text-" + item.iconClass}>
+                                    <span className={"avatar-title rounded-2 fs-2 bg-" + item.iconClass + " text-" + item.iconClass1}>
                                         <i className={item.icon}></i>
                                     </span>
                                 </div>

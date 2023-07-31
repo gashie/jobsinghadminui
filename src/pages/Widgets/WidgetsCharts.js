@@ -76,7 +76,8 @@ const AudiencesMetricsCharts = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart 
+                dir="ltr"
                 options={options}
                 series={series}
                 type="bar"
@@ -158,7 +159,8 @@ const MyPortfolioCharts = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart 
+                dir="ltr"
                 options={options}
                 series={series}
                 type="donut"
@@ -216,7 +218,8 @@ const SessionsByCountriesCharts = ({ dataColors }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart 
+                dir="ltr"
                 options={options}
                 series={series}
                 type="bar"
@@ -416,7 +419,8 @@ const OtherWidgetsCharts = ({ dataColors, seriesData }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart 
+                dir="ltr"
                 options={options}
                 series={[...seriesData]}
                 type="area"

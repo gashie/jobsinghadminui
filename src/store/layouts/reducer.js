@@ -11,7 +11,7 @@ import {
   RESET_VALUE,
   CHANGE_PRELOADER,
   CHANGE_SIDEBAR_VISIBILITY
-} from './actionType';
+} from "./actionType";
 
 //constants
 import {
@@ -28,8 +28,9 @@ import {
   sidebarVisibilitytypes
 } from "../../Components/constants/layout";
 
+
 const INIT_STATE = {
-  layoutType: layoutTypes.VERTICAL,
+  layoutType: layoutTypes.TWOCOLUMN,
   leftSidebarType: leftSidebarTypes.DARK,
   layoutModeType: layoutModeTypes.LIGHTMODE,
   layoutWidthType: layoutWidthTypes.FLUID,
@@ -103,7 +104,7 @@ const Layout = (state = INIT_STATE, action) => {
         ...state,
         resetValue: INIT_STATE,
       };
-
+      
     case CHANGE_PRELOADER:
       return {
         ...state,

@@ -16,14 +16,14 @@ import avatar5 from "../../../assets/images/users/avatar-5.jpg";
 
 const ListTables = () => {
     const [modal_list, setmodal_list] = useState(false);
-    const tog_list = () => {
+    function tog_list() {
         setmodal_list(!modal_list);
-    };
+    }
 
     const [modal_delete, setmodal_delete] = useState(false);
-    const tog_delete = () => {
+    function tog_delete() {
         setmodal_delete(!modal_delete);
-    };
+    }
 
     useEffect(() => {
 
@@ -79,7 +79,7 @@ const ListTables = () => {
         });
     });
 
-    document.title = "Listjs | Velzon - React Admin & Dashboard Template";
+document.title="Listjs | Velzon - React Admin & Dashboard Template";
 
     return (
         <React.Fragment>
@@ -864,7 +864,7 @@ const ListTables = () => {
 
                         <div>
                             <label htmlFor="status-field" className="form-label">Status</label>
-                            <select className="form-control" data-trigger name="status-field" id="status-field" required>
+                            <select className="form-control" data-trigger name="status-field" id="status-field" >
                                 <option value="">Status</option>
                                 <option value="Active">Active</option>
                                 <option value="Block">Block</option>
@@ -883,7 +883,9 @@ const ListTables = () => {
 
             {/* Remove Modal */}
             <Modal isOpen={modal_delete} toggle={() => { tog_delete(); }} className="modal fade zoomIn" id="deleteRecordModal" centered >
-                <ModalHeader toggle={() => { tog_delete(); }}></ModalHeader>
+                <div className="modal-header">
+                    <Button type="button" onClick={() => setmodal_delete(false)} className="btn-close" aria-label="Close"> </Button>
+                </div>
                 <ModalBody>
                     <div className="mt-2 text-center">
                         <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"

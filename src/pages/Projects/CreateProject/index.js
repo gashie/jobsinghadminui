@@ -25,7 +25,7 @@ const CreateProject = () => {
 
     const [selectedMulti, setselectedMulti] = useState(null);
 
-    const handleMulti = (selectedMulti) => {
+    function handleMulti(selectedMulti) {
     setselectedMulti(selectedMulti);
     }  
     
@@ -33,7 +33,7 @@ const CreateProject = () => {
     const [selectedFiles, setselectedFiles] = useState([]);
     const [files, setFiles] = useState([]);
   
-    const handleAcceptedFiles = (files) => {
+    function handleAcceptedFiles(files) {
       files.map(file =>
         Object.assign(file, {
           preview: URL.createObjectURL(file),
@@ -46,7 +46,7 @@ const CreateProject = () => {
         /**
      * Formats the size
      */
-    const formatBytes = (bytes, decimals = 2) => {
+    function formatBytes(bytes, decimals = 2) {
         if (bytes === 0) return "0 Bytes";
         const k = 1024;
         const dm = decimals < 0 ? 0 : decimals;

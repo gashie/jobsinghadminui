@@ -17,7 +17,7 @@ const Navbar = () => {
         window.addEventListener("scroll", scrollNavigation, true);
     });
 
-    const scrollNavigation = () => {
+    function scrollNavigation() {
         var scrollup = document.documentElement.scrollTop;
         if (scrollup > 50) {
             setnavClass("is-sticky");
@@ -62,25 +62,25 @@ const Navbar = () => {
                             id="navbar-example"
                         >
                             <li className="nav-item">
-                                <NavLink href="#hero">Home</NavLink>
+                                <NavLink className="fs-14" href="#hero">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#services">Services</NavLink>
+                                <NavLink className="fs-14" href="#services">Services</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#features">Features</NavLink>
+                                <NavLink className="fs-14" href="#features">Features</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#plans">Plans</NavLink>
+                                <NavLink className="fs-14" href="#plans">Plans</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#reviews">Reviews</NavLink>
+                                <NavLink className="fs-14" href="#reviews">Reviews</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#team">Team</NavLink>
+                                <NavLink className="fs-14" href="#team">Team</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink href="#contact">Contact</NavLink>
+                                <NavLink className="fs-14" href="#contact">Contact</NavLink>
                             </li>
                         </Scrollspy>
 

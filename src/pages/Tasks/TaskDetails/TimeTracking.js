@@ -85,12 +85,12 @@ const TimeTracking = () => {
                                     <img src={avatar10} alt="" className="avatar-xs rounded-circle" />
                                 </div>
                                 <div className="flex-grow-1 ms-2">
-                                    <h6 className="mb-1"><Link to="/pages-profile">Tonya Noble</Link></h6>
+                                    <h6 className="mb-1"><Link to="/pages-profile" className='text-body'>Tonya Noble</Link></h6>
                                     <p className="text-muted mb-0">Full Stack Developer</p>
                                 </div>
                                 <div className="flex-shrink-0">
                                     <UncontrolledDropdown>
-                                        <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" type="button">
+                                        <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" type="button">
                                             <i className="ri-more-fill"></i>
                                         </DropdownToggle>
                                         <DropdownMenu>
@@ -108,12 +108,12 @@ const TimeTracking = () => {
                                     <img src={avatar8} alt="" className="avatar-xs rounded-circle" />
                                 </div>
                                 <div className="flex-grow-1 ms-2">
-                                    <h6 className="mb-1"><Link to="/pages-profile">Thomas Taylor</Link></h6>
+                                    <h6 className="mb-1"><Link to="/pages-profile" className='text-body'>Thomas Taylor</Link></h6>
                                     <p className="text-muted mb-0">UI/UX Designer</p>
                                 </div>
                                 <div className="flex-shrink-0">
                                     <UncontrolledDropdown>
-                                        <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" type="button">
+                                        <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" type="button">
                                             <i className="ri-more-fill"></i>
                                         </DropdownToggle>
                                         <DropdownMenu>
@@ -131,12 +131,12 @@ const TimeTracking = () => {
                                     <img src={avatar2} alt="" className="avatar-xs rounded-circle" />
                                 </div>
                                 <div className="flex-grow-1 ms-2">
-                                    <h6 className="mb-1"><Link to="/pages-profile">Nancy Martino</Link></h6>
+                                    <h6 className="mb-1"><Link to="/pages-profile" className='text-body'>Nancy Martino</Link></h6>
                                     <p className="text-muted mb-0">Web Designer</p>
                                 </div>
                                 <div className="flex-shrink-0">
                                     <UncontrolledDropdown>
-                                        <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" type="button">
+                                        <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" type="button">
                                             <i className="ri-more-fill"></i>
                                         </DropdownToggle>
                                         <DropdownMenu>
@@ -170,9 +170,9 @@ const TimeTracking = () => {
                                 </div>
                                 <div className="flex-shrink-0 ms-2">
                                     <div className="d-flex gap-1">
-                                        <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                        <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                         <UncontrolledDropdown>
-                                            <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                            <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                 <i className="ri-more-fill"></i>
                                             </DropdownToggle>
                                             <DropdownMenu>
@@ -200,9 +200,9 @@ const TimeTracking = () => {
                                 </div>
                                 <div className="flex-shrink-0 ms-2">
                                     <div className="d-flex gap-1">
-                                        <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                        <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                         <UncontrolledDropdown>
-                                            <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                            <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                 <i className="ri-more-fill"></i>
                                             </DropdownToggle>
                                             <DropdownMenu>
@@ -230,9 +230,9 @@ const TimeTracking = () => {
                                 </div>
                                 <div className="flex-shrink-0 ms-2">
                                     <div className="d-flex gap-1">
-                                        <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                        <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                         <UncontrolledDropdown>
-                                            <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                            <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                 <i className="ri-more-fill"></i>
                                             </DropdownToggle>
                                             <DropdownMenu>

@@ -1,15 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import LogoLight from "../../../assets/images/logo-light.png";
-
 const Footer = () => {
   return (
     <React.Fragment>
       <footer className="custom-footer bg-dark py-5 position-relative">
         <Container>
           <Row>
-            <Col className="col-lg-4 mt-4">
+            <Col lg={4} className="mt-4">
               <div>
                 <div>
                   <img src={LogoLight} alt="logo light" height="17" />
@@ -62,62 +61,62 @@ const Footer = () => {
               </div>
             </Col>
 
-            <Col className="col-lg-7 ms-lg-auto">
+            <Col lg={7} className="ms-lg-auto">
               <Row>
-                <Col className="col-sm-4 mt-4">
+                <Col sm={4} className="mt-4">
                   <h5 className="text-white mb-0">Company</h5>
                   <div className="text-muted mt-3">
-                    <ul className="list-unstyled ff-secondary footer-list fs-16">
+                    <ul className="list-unstyled ff-secondary footer-list fs-15">
                       <li>
-                        <Link to="/pages-profile">About Us</Link>
+                        <NavLink to="/pages-profile">About Us</NavLink>
                       </li>
                       <li>
-                        <Link to="/pages-gallery">Gallery</Link>
+                        <NavLink to="/pages-gallery">Gallery</NavLink>
                       </li>
                       <li>
-                        <Link to="/pages-team">Team</Link>
+                        <NavLink to="/pages-team">Team</NavLink>
                       </li>
                       <li>
-                        <Link to="/pages-pricing">Pricing</Link>
+                        <NavLink to="/pages-pricing">Pricing</NavLink>
                       </li>
                       <li>
-                        <Link to="/pages-timeline">Timeline</Link>
+                        <NavLink to="/pages-timeline">Timeline</NavLink>
                       </li>
                     </ul>
                   </div>
                 </Col>
-                <Col className="col-sm-4 mt-4">
+                <Col sm={4} className="mt-4">
                   <h5 className="text-white mb-0">For Jobs</h5>
                   <div className="text-muted mt-3">
-                    <ul className="list-unstyled ff-secondary footer-list fs-16">
+                    <ul className="list-unstyled ff-secondary footer-list fs-15">
                       <li>
-                        <Link to="/apps-job-lists">Job List</Link>
+                        <NavLink to="/apps-job-lists">Job List</NavLink>
                       </li>
                       <li>
-                        <Link to="/apps-job-application">
+                        <NavLink to="/apps-job-application">
                           application
-                        </Link>
+                        </NavLink>
                       </li>
                       <li>
-                        <Link to="/apps-job-new">New Job</Link>
+                        <NavLink to="/apps-job-new">New Job</NavLink>
                       </li>
                       <li>
-                        <Link to="/apps-job-companies-lists">
+                        <NavLink to="/apps-job-companies-lists">
                           Company List
-                        </Link>
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
                 </Col>
-                <Col className="col-sm-4 mt-4">
+                <Col sm={4} className="mt-4">
                   <h5 className="text-white mb-0">Support</h5>
                   <div className="text-muted mt-3">
-                    <ul className="list-unstyled ff-secondary footer-list fs-16">
+                    <ul className="list-unstyled ff-secondary footer-list fs-15">
                       <li>
-                        <Link to="/pages-faqs">FAQ</Link>
+                        <NavLink to="/pages-faqs">FAQ</NavLink>
                       </li>
                       <li>
-                        <Link to="/pages-faqs">Contact</Link>
+                        <NavLink to="/pages-faqs">Contact</NavLink>
                       </li>
                     </ul>
                   </div>
@@ -127,27 +126,27 @@ const Footer = () => {
           </Row>
 
           <Row className="text-center text-sm-start align-items-center mt-5">
-            <Col className="col-sm-6">
+            <Col sm={6}>
               <div>
                 <p className="copy-rights mb-0">
-                  {new Date().getFullYear()} ©
-                  Velzon - Themesbrand
+                  <script> document.write(new Date().getFullYear()) </script>
+                  2022 © Velzon - Themesbrand
                 </p>
               </div>
             </Col>
-            <Col className="col-sm-6">
+            <Col sm={6}>
               <div className="text-sm-end mt-3 mt-sm-0">
                 <ul className="list-inline mb-0 footer-list gap-4 fs-15">
                   <li className="list-inline-item">
-                    <Link to="/pages-privacy-policy">Privacy Policy</Link>
+                    <NavLink to="/pages-privacy-policy">Privacy Policy</NavLink>
                   </li>
                   <li className="list-inline-item">
-                    <Link to="/pages-term-conditions">
+                    <NavLink to="/pages-term-conditions">
                       Terms & Conditions
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="list-inline-item">
-                    <Link to="/pages-privacy-policy">Security</Link>
+                    <NavLink to="/pages-privacy-policy">Security</NavLink>
                   </li>
                 </ul>
               </div>

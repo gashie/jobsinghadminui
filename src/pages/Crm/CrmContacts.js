@@ -32,9 +32,6 @@ import Select from "react-select";
 import BreadCrumb from "../../Components/Common/BreadCrumb";
 import DeleteModal from "../../Components/Common/DeleteModal";
 
-// Export Modal
-import ExportCSVModal from "../../Components/Common/ExportCSVModal";
-
 //Import actions
 import {
   getContacts as onGetContacts,
@@ -54,6 +51,8 @@ import Loader from "../../Components/Common/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Export Modal
+import ExportCSVModal from "../../Components/Common/ExportCSVModal";
 
 const CrmContacts = () => {
   const dispatch = useDispatch();
@@ -89,8 +88,8 @@ const CrmContacts = () => {
   //delete Conatct
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteModalMulti, setDeleteModalMulti] = useState(false);
-  const [modal, setModal] = useState(false);
 
+  const [modal, setModal] = useState(false);
   const toggle = useCallback(() => {
     if (modal) {
       setModal(false);
@@ -255,7 +254,6 @@ const CrmContacts = () => {
     const updateTime = moment(getTime, 'hh:mm').format('hh:mm') + " " + meridiem;
     return updateTime;
   };
-
 
   // Checked All
   const checkedAll = useCallback(() => {
@@ -431,11 +429,11 @@ const CrmContacts = () => {
   const [tag, setTag] = useState([]);
   const [assignTag, setAssignTag] = useState([]);
 
-  const handlestag = (tags) => {
+  function handlestag(tags) {
     setTag(tags);
     const assigned = tags.map((item) => item.value);
     setAssignTag(assigned);
-  };
+  }
 
   const tags = [
     { label: "Exiting", value: "Exiting" },
@@ -459,11 +457,13 @@ const CrmContacts = () => {
           onCloseClick={() => setIsExportCSV(false)}
           data={crmcontacts}
         />
+
         <DeleteModal
           show={deleteModal}
           onDeleteClick={handleDeleteContact}
           onCloseClick={() => setDeleteModal(false)}
         />
+
         <DeleteModal
           show={deleteModalMulti}
           onDeleteClick={() => {
@@ -472,6 +472,7 @@ const CrmContacts = () => {
           }}
           onCloseClick={() => setDeleteModalMulti(false)}
         />
+
         <Container fluid>
           <BreadCrumb title="Contacts" pageTitle="CRM" />
           <Row>

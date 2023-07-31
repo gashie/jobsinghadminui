@@ -21,7 +21,6 @@ const Comments = () => {
             setActiveTab(tab);
         }
     };
-    
     return (
         <React.Fragment>
             <Card>

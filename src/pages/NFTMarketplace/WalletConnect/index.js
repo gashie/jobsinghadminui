@@ -31,7 +31,7 @@ const WalletConnect = () => {
                                     <img src={metaMask} alt="" height="55" className="mb-3 pb-2" />
                                     <h5>Metamask</h5>
                                     <p className="text-muted pb-1">MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain.</p>
-                                    <Link to="#" className="btn btn-danger">Change Wallet</Link>
+                                    <Link to="#!" className="btn btn-danger">Change Wallet</Link>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -53,7 +53,7 @@ const WalletConnect = () => {
                                         <img src={item.img} alt="" height="55" className="mb-3 pb-2" />
                                         <h5>{item.title}</h5>
                                         <p className="text-muted pb-1">{item.textContent}</p>
-                                        <Link to="#" className="btn btn-soft-info">Connect Wallet</Link>
+                                        <Link to="#!" className="btn btn-soft-info">Connect Wallet</Link>
                                     </CardBody>
                                 </Card>
                             </Col>

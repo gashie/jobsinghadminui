@@ -94,7 +94,7 @@ const ICO = () => {
                                         <CardBody>
                                             <div className="d-flex mb-3">
                                                 <div className="flex-shrink-0 avatar-sm">
-                                                    <div className="avatar-title bg-light rounded">
+                                                    <div className="avatar-title bg-light rounded shadow">
                                                         <img src={subItem.img} alt="" className="avatar-xxs" />
                                                     </div>
                                                 </div>
@@ -131,7 +131,7 @@ const ICO = () => {
                                             <CardBody>
                                                 <div className="d-flex mb-3">
                                                     <div className="flex-shrink-0 avatar-sm">
-                                                        <div className="avatar-title bg-light rounded">
+                                                        <div className="avatar-title bg-light rounded shadow">
                                                             <img src={subItem.img} alt="" className="avatar-xxs" />
                                                         </div>
                                                     </div>
@@ -168,7 +168,7 @@ const ICO = () => {
                                                 <CardBody>
                                                     <div className="d-flex mb-3">
                                                         <div className="flex-shrink-0 avatar-sm">
-                                                            <div className="avatar-title bg-light rounded">
+                                                            <div className="avatar-title bg-light rounded shadow">
                                                                 <img src={subItem.img} alt="" className="avatar-xxs" />
                                                             </div>
                                                         </div>
@@ -206,7 +206,7 @@ const ICO = () => {
                                                     <CardBody>
                                                         <div className="d-flex mb-3">
                                                             <div className="flex-shrink-0 avatar-sm">
-                                                                <div className="avatar-title bg-light rounded">
+                                                                <div className="avatar-title bg-light rounded shadow">
                                                                     <img src={subItem.img} alt="" className="avatar-xxs" />
                                                                 </div>
                                                             </div>

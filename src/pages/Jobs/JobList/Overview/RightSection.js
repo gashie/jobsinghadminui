@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader, Table } from "reactstrap";
 import img3 from "../../../../assets/images/companies/img-3.png";
-
 const RightSection = () => {
-
-  const [isBookmarkClick , setIsBookmarkClick] = useState(false);
   return (
     <React.Fragment>
-      <Card className="card">
-        <CardHeader className="card-header">
+      <Card>
+        <CardHeader>
           <h5 className="mb-0">Job Overview</h5>
         </CardHeader>
-        <CardBody className="card-body">
+        <CardBody>
           <div className="table-responsive table-card">
             <Table className="table mb-0">
               <tbody>
@@ -63,25 +60,22 @@ const RightSection = () => {
             </Link>
             <Link
               to="#!"
-              onClick={() => setIsBookmarkClick(!isBookmarkClick)}
-              className={isBookmarkClick ? "btn btn-soft-danger btn-icon custom-toggle flex-shrink-0 active" : "btn btn-soft-danger btn-icon custom-toggle flex-shrink-0"}
+              className="btn btn-soft-danger btn-icon custom-toggle flex-shrink-0"
+              data-bs-toggle="button"
             >
-              {!isBookmarkClick ?
               <span className="icon-on">
                 <i className="ri-bookmark-line align-bottom"></i>
               </span>
-              :
               <span className="icon-off">
                 <i className="ri-bookmark-3-fill align-bottom"></i>
               </span>
-              }
             </Link>
           </div>
         </CardBody>
       </Card>
 
-      <Card className="card">
-        <CardBody className="card-body">
+      <Card>
+        <CardBody>
           <div className="avatar-sm mx-auto">
             <div className="avatar-title bg-soft-warning rounded">
               <img src={img3} alt="" className="avatar-xxs" />
@@ -99,7 +93,7 @@ const RightSection = () => {
               <tbody>
                 <tr>
                   <td className="fw-medium">Company Size</td>
-                  <td>5</td>
+                  <td>50+</td>
                 </tr>
                 <tr>
                   <td className="fw-medium">Industry Type</td>
@@ -150,11 +144,11 @@ const RightSection = () => {
         </CardBody>
       </Card>
 
-      <Card className="card">
-        <CardHeader className="card-header">
+      <Card>
+        <CardHeader>
           <h5 className="mb-0">Job Location</h5>
         </CardHeader>
-        <CardBody className="card-body">
+        <CardBody>
           <div className="ratio ratio-4x3">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1861227.8137337372!2d51.654904288504646!3d24.33915646928631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e48dfb1ab12bd%3A0x33d32f56c0080aa7!2sUnited%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1664257145153!5m2!1sen!2sin"
@@ -169,11 +163,11 @@ const RightSection = () => {
         </CardBody>
       </Card>
 
-      <Card className="card">
-        <CardHeader className="card-header">
+      <Card>
+        <CardHeader>
           <h5 className="mb-0">Contact Us</h5>
         </CardHeader>
-        <CardBody className="card-body">
+        <CardBody>
           <form>
             <div className="mb-3">
               <label htmlFor="nameInput" className="form-label">

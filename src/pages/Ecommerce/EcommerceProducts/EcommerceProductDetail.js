@@ -56,10 +56,10 @@ const ProductReview = (props) => {
               </div>
             </div>
           </div>
-          {props.review.subitem && (
+          {props.review.subItems && (
             <React.Fragment>
               <div className="d-flex flex-grow-1 gap-2 mb-3">
-                {props.review.subitem.map((subItem, key) => (
+                {props.review.subItems.map((subItem, key) => (
                   <React.Fragment key={key}>
                     <Link to="#" className="d-block">
                       <img

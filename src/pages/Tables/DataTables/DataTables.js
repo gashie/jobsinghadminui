@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Container, Row } from 'reactstrap';
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 
-import { BasicTable, ScrollVertical, ScrollHorizontal, AlternativePagination, FixedHeaderDatatables, ModalDataDatatables, AjaxDatatables } from './datatableCom';
+import { BasicTable, ScrollVertical, ScrollHorizontal, AlternativePagination, FixedHeaderDatatables, ModalDataDatatables, AjaxDatatables } from './datatableEx';
 
 const DataTables = () => {
     document.title = "Datatables | Velzon - React Admin & Dashboard Template";
@@ -19,6 +20,7 @@ const DataTables = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <BasicTable />
+                                    
                                 </CardBody>
                             </Card>
                         </Col>
@@ -32,6 +34,7 @@ const DataTables = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <ScrollVertical />
+                                    
                                 </CardBody>
                             </Card>
                         </Col>
@@ -44,7 +47,8 @@ const DataTables = () => {
                                     <h5 className="card-title mb-0">Scroll - Horizontal</h5>
                                 </CardHeader>
                                 <CardBody>
-                                    <ScrollHorizontal style={{ width: "100%" }} />
+                                    <ScrollHorizontal style={{ width: "100%" }}/>
+                                    
                                 </CardBody>
                             </Card>
                         </Col>
@@ -58,6 +62,7 @@ const DataTables = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <AlternativePagination />
+                                    
                                 </CardBody>
                             </Card>
                         </Col>
@@ -83,11 +88,11 @@ const DataTables = () => {
                                 </CardHeader>
                                 <CardBody>
                                     <ModalDataDatatables />
-                                </CardBody>
+                                    </CardBody>
                             </Card>
                         </Col>
                     </Row>
-
+                   
                     <Row>
                         <Col lg={12}>
                             <Card>

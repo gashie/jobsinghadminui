@@ -19,6 +19,7 @@ import {
 } from "reactstrap";
 import * as moment from "moment";
 import { Link } from "react-router-dom";
+import Select from "react-select";
 import classnames from "classnames";
 import Flatpickr from "react-flatpickr";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
@@ -48,6 +49,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ExportCSVModal from "../../../Components/Common/ExportCSVModal";
 
 const EcommerceOrders = () => {
+  const [orderStatus, setorderStatus] = useState(null);
+  const [orderPayement, setorderPayement] = useState(null);
+
   const [modal, setModal] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
 
@@ -62,7 +66,6 @@ const EcommerceOrders = () => {
 
   const [orderList, setOrderList] = useState([]);
   const [order, setOrder] = useState([]);
-  const [isExportCSV, setIsExportCSV] = useState(false);
 
   const orderstatus = [
     {
@@ -131,6 +134,14 @@ const EcommerceOrders = () => {
   ];
 
   const [isEdit, setIsEdit] = useState(false);
+
+  function handleorderStatus(orderStatus) {
+    setorderStatus(orderStatus);
+  }
+
+  function handleorderPayement(orderPayement) {
+    setorderPayement(orderPayement);
+  }
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteModalMulti, setDeleteModalMulti] = useState(false);
@@ -290,12 +301,10 @@ const EcommerceOrders = () => {
   //   isOrderCreated,
   // ]);
 
-
   // Checked All
   const checkedAll = useCallback(() => {
     const checkall = document.getElementById("checkBoxAll");
     const ele = document.querySelectorAll(".orderCheckBox");
-
     if (checkall.checked) {
       ele.forEach((ele) => {
         ele.checked = true;
@@ -318,8 +327,8 @@ const EcommerceOrders = () => {
       dispatch(onDeleteOrder(element.value));
       setTimeout(() => { toast.clearWaitingQueue(); }, 3000);
     });
-    checkall.checked = false;
     setIsMultiDeleteButton(false);
+    checkall.checked = false;
   };
 
   const deleteCheckbox = () => {
@@ -328,13 +337,15 @@ const EcommerceOrders = () => {
     setSelectedCheckBoxDelete(ele);
   };
 
+
+
   // Column
   const columns = useMemo(
     () => [
       {
         Header: <input type="checkbox" id="checkBoxAll" className="form-check-input" onClick={() => checkedAll()} />,
         Cell: (cellProps) => {
-          return <input type="checkbox" className="orderCheckBox form-check-input" value={cellProps.row.original._id} onChange={() => { deleteCheckbox(); }} />;
+          return <input type="checkbox" className="orderCheckBox form-check-input" value={cellProps.row.original._id} onChange={() => deleteCheckbox()} />;
         },
         id: '#',
       },
@@ -406,7 +417,7 @@ const EcommerceOrders = () => {
             <ul className="list-inline hstack gap-2 mb-0">
               <li className="list-inline-item">
                 <Link
-                  to="/apps-ecommerce-order-details"
+                  to="apps-ecommerce-order-details"
                   className="text-primary d-inline-block"
                 >
                   <i className="ri-eye-fill fs-16"></i>
@@ -491,6 +502,8 @@ const EcommerceOrders = () => {
     return updateTime;
   };
 
+  const [isExportCSV, setIsExportCSV] = useState(false);
+
   document.title = "Orders | Velzon - React Admin & Dashboard Template";
   return (
     <div className="page-content">
@@ -499,6 +512,7 @@ const EcommerceOrders = () => {
         onCloseClick={() => setIsExportCSV(false)}
         data={orderList}
       />
+
       <DeleteModal
         show={deleteModal}
         onDeleteClick={handleDeleteOrder}
@@ -513,7 +527,6 @@ const EcommerceOrders = () => {
         onCloseClick={() => setDeleteModalMulti(false)}
       />
       <Container fluid>
-
         <BreadCrumb title="Orders" pageTitle="Ecommerce" />
         <Row>
           <Col lg={12}>
@@ -547,6 +560,7 @@ const EcommerceOrders = () => {
                   </div>
                 </Row>
               </CardHeader>
+
               <CardBody className="pt-0">
                 <div>
                   <Nav
@@ -556,9 +570,7 @@ const EcommerceOrders = () => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "1" },
-                          "fw-semibold"
-                        )}
+                          { active: activeTab === "1" })}
                         onClick={() => {
                           toggleTab("1", "all");
                         }}
@@ -571,9 +583,7 @@ const EcommerceOrders = () => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "2" },
-                          "fw-semibold"
-                        )}
+                          { active: activeTab === "2" })}
                         onClick={() => {
                           toggleTab("2", "Delivered");
                         }}
@@ -586,9 +596,7 @@ const EcommerceOrders = () => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "3" },
-                          "fw-semibold"
-                        )}
+                          { active: activeTab === "3" })}
                         onClick={() => {
                           toggleTab("3", "Pickups");
                         }}
@@ -604,9 +612,7 @@ const EcommerceOrders = () => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "4" },
-                          "fw-semibold"
-                        )}
+                          { active: activeTab === "4" })}
                         onClick={() => {
                           toggleTab("4", "Returns");
                         }}
@@ -619,9 +625,7 @@ const EcommerceOrders = () => {
                     <NavItem>
                       <NavLink
                         className={classnames(
-                          { active: activeTab === "5" },
-                          "fw-semibold"
-                        )}
+                          { active: activeTab === "5" })}
                         onClick={() => {
                           toggleTab("5", "Cancelled");
                         }}
@@ -641,7 +645,7 @@ const EcommerceOrders = () => {
                       customPageSize={8}
                       divClass="table-responsive table-card mb-1"
                       tableClass="align-middle table-nowrap"
-                      theadClass="table-light text-muted"
+                      theadClass="table-light text-muted text-uppercase"
                       handleOrderClick={handleOrderClicks}
                       isOrderFilter={true}
                       SearchPlaceholder='Search for order ID, customer, order status or something...'
@@ -736,7 +740,7 @@ const EcommerceOrders = () => {
                           value={
                             validation.values.product || ""
                           }
-                          required>
+                        >
                           {productname.map((item, key) => (
                             <React.Fragment key={key}>
                               {item.options.map((item, key) => (<option value={item.value} key={key}>{item.label}</option>))}
@@ -777,6 +781,7 @@ const EcommerceOrders = () => {
                           <FormFeedback type="invalid">{validation.errors.orderDate}</FormFeedback>
                         ) : null}
                       </div>
+
                       <div className="row gy-4 mb-3">
                         <div className="col-md-6">
                           <div>
@@ -789,7 +794,6 @@ const EcommerceOrders = () => {
                             <Input
                               name="amount"
                               type="text"
-                              placeholder="Enter Amount"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               value={validation.values.amount || ""}

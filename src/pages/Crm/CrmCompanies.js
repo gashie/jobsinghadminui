@@ -44,15 +44,16 @@ import TableContainer from "../../Components/Common/TableContainer";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-// Export Modal
-import ExportCSVModal from "../../Components/Common/ExportCSVModal";
-
 import Loader from "../../Components/Common/Loader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Export Modal
+import ExportCSVModal from "../../Components/Common/ExportCSVModal";
+
 const CrmCompanies = () => {
   const dispatch = useDispatch();
+
   const { companies, isCompaniesCreated, isCompaniesSuccess, error } = useSelector((state) => ({
     companies: state.Crm.companies,
     isCompaniesCreated: state.Crm.isCompaniesCreated,
@@ -84,6 +85,7 @@ const CrmCompanies = () => {
   //delete Company
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteModalMulti, setDeleteModalMulti] = useState(false);
+
   const [modal, setModal] = useState(false);
 
   const industrytype = [
@@ -272,7 +274,6 @@ const CrmCompanies = () => {
     setSelectedCheckBoxDelete(ele);
   };
 
-
   // Column
   const columns = useMemo(
     () => [
@@ -289,7 +290,9 @@ const CrmCompanies = () => {
           <>
             <div className="d-flex align-items-center">
               <div className="flex-shrink-0">
+
                 {company.row.original.image_src ? <img
+                  // src={company.row.original.image_src}
                   src={process.env.REACT_APP_API_URL + "/images/" + company.row.original.image_src}
                   alt=""
                   className="avatar-xxs rounded-circle"
@@ -299,6 +302,7 @@ const CrmCompanies = () => {
                       {company.row.original.name.charAt(0)}
                     </div>
                   </div>
+                  // <img src={multiUser} alt="" className="avatar-xxs rounded-circle" />
                 }
               </div>
               <div className="flex-grow-1 ms-2 name">
@@ -394,11 +398,13 @@ const CrmCompanies = () => {
           onCloseClick={() => setIsExportCSV(false)}
           data={companies}
         />
+
         <DeleteModal
           show={deleteModal}
           onDeleteClick={handleDeleteCompany}
           onCloseClick={() => setDeleteModal(false)}
         />
+
         <DeleteModal
           show={deleteModalMulti}
           onDeleteClick={() => {
@@ -462,14 +468,13 @@ const CrmCompanies = () => {
             </Col>
             <Col xxl={9}>
               <Card id="companyList">
-
                 <CardBody className="pt-0">
                   <div>
                     {isCompaniesSuccess && companies.length ? (
                       <TableContainer
                         columns={columns}
                         data={(companies || [])}
-                        isGlobalFilter={true}
+                        isGlobalFilter={false}
                         isAddUserList={false}
                         customPageSize={7}
                         className="custom-header-css"

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from "react-apexcharts";
 import getChartColorsArray from "../../Components/Common/ChartsDynamicColor";
 
-const ProjectsOverviewCharts = ({ dataColors,series }) => {
+const ProjectsOverviewCharts = ({ dataColors, series }) => {
     var linechartcustomerColors = getChartColorsArray(dataColors);
 
     var options = {
@@ -109,7 +109,8 @@ const ProjectsOverviewCharts = ({ dataColors,series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="line"
@@ -121,7 +122,6 @@ const ProjectsOverviewCharts = ({ dataColors,series }) => {
 };
 
 const TeamMembersCharts = ({ seriesData, chartsColor }) => {
-    // const series=  isApexSeriesData.series,
     const series = [seriesData];
 
     const options = {
@@ -154,7 +154,8 @@ const TeamMembersCharts = ({ seriesData, chartsColor }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={[...series]}
                 type="radialBar"
@@ -201,7 +202,8 @@ const PrjectsStatusCharts = ({ dataColors, series }) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="donut"

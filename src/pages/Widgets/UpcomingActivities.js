@@ -50,6 +50,7 @@ const UpcomingActivity = () => {
             dataColors : '["--vz-success" , "--vz-transparent"]'
         },
     ]
+
     return (
         <React.Fragment>
             <Row>
@@ -78,7 +79,7 @@ const UpcomingActivity = () => {
                                     <ListGroupItem className="ps-0" key={key}>
                                         <Row className="align-items-center g-3">
                                             <Col className="col-auto">
-                                                <div className="avatar-sm px-1 py-2 h-auto bg-light rounded-3">
+                                                <div className="avatar-sm p-1 py-2 h-auto bg-light rounded-3 shadow">
                                                     <div className="text-center">
                                                         <h5 className="mb-0">{item.date}</h5>
                                                         <div className="text-muted">{item.weekDay}</div>
@@ -205,7 +206,7 @@ const UpcomingActivity = () => {
                                         <div className="acitivity-timeline acitivity-main">
                                             <div className="acitivity-item d-flex">
                                                 <div className="flex-shrink-0 avatar-xs acitivity-avatar">
-                                                    <div className="avatar-title bg-soft-success text-success rounded-circle">
+                                                    <div className="avatar-title bg-soft-success text-success rounded-circle shadow">
                                                         <i className="ri-shopping-cart-2-line"></i>
                                                     </div>
                                                 </div>
@@ -217,7 +218,7 @@ const UpcomingActivity = () => {
                                             </div>
                                             <div className="acitivity-item py-3 d-flex">
                                                 <div className="flex-shrink-0 avatar-xs acitivity-avatar">
-                                                    <div className="avatar-title bg-soft-primary text-primary rounded-circle">
+                                                    <div className="avatar-title bg-soft-primary text-primary rounded-circle shadow">
                                                         <i className="ri-stack-fill"></i>
                                                     </div>
                                                 </div>
@@ -240,7 +241,7 @@ const UpcomingActivity = () => {
                                             </div>
                                             <div className="acitivity-item py-3 d-flex">
                                                 <div className="flex-shrink-0">
-                                                    <img src={avatar2} alt="" className="avatar-xs rounded-circle acitivity-avatar" />
+                                                    <img src={avatar2} alt="" className="avatar-xs rounded-circle acitivity-avatar shadow" />
                                                 </div>
                                                 <div className="flex-grow-1 ms-3">
                                                     <h6 className="mb-1">Natasha Carey have liked the products</h6>
@@ -251,7 +252,7 @@ const UpcomingActivity = () => {
                                             <div className="acitivity-item py-3 d-flex">
                                                 <div className="flex-shrink-0">
                                                     <div className="avatar-xs acitivity-avatar">
-                                                        <div className="avatar-title rounded-circle bg-secondary">
+                                                        <div className="avatar-title rounded-circle bg-secondary shadow">
                                                             <i className="mdi mdi-sale fs-14"></i>
                                                         </div>
                                                     </div>
@@ -265,7 +266,7 @@ const UpcomingActivity = () => {
                                             <div className="acitivity-item py-3 d-flex">
                                                 <div className="flex-shrink-0">
                                                     <div className="avatar-xs acitivity-avatar">
-                                                        <div className="avatar-title rounded-circle bg-soft-danger text-danger">
+                                                        <div className="avatar-title rounded-circle bg-soft-danger text-danger shadow">
                                                             <i className="ri-bookmark-fill"></i>
                                                         </div>
                                                     </div>
@@ -279,7 +280,7 @@ const UpcomingActivity = () => {
                                             <div className="acitivity-item py-3 d-flex">
                                                 <div className="flex-shrink-0">
                                                     <div className="avatar-xs acitivity-avatar">
-                                                        <div className="avatar-title rounded-circle bg-secondary">
+                                                        <div className="avatar-title rounded-circle bg-secondary shadow">
                                                             <i className="mdi mdi-sale fs-14"></i>
                                                         </div>
                                                     </div>
@@ -293,7 +294,7 @@ const UpcomingActivity = () => {
                                             <div className="acitivity-item py-3 d-flex">
                                                 <div className="flex-shrink-0">
                                                     <div className="avatar-xs acitivity-avatar">
-                                                        <div className="avatar-title rounded-circle bg-soft-info text-info">
+                                                        <div className="avatar-title rounded-circle bg-soft-info text-info shadow">
                                                             <i className="ri-line-chart-line"></i>
                                                         </div>
                                                     </div>
@@ -306,7 +307,7 @@ const UpcomingActivity = () => {
                                             </div>
                                             <div className="acitivity-item d-flex">
                                                 <div className="flex-shrink-0">
-                                                    <img src={avatar3} alt="" className="avatar-xs rounded-circle acitivity-avatar" />
+                                                    <img src={avatar3} alt="" className="avatar-xs rounded-circle acitivity-avatar shadow" />
                                                 </div>
                                                 <div className="flex-grow-1 ms-3">
                                                     <h6 className="mb-1">Frank Hook Commented</h6>

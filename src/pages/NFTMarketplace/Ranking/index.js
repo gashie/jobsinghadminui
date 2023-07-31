@@ -18,7 +18,7 @@ const Ranking = () => {
                 filterable: false,
                 Cell: (cell) => {
                     if (cell.value < 4) {
-                        return (<div className="ranking text-info fw-semibold">#{cell.value}</div>);
+                        return (<div className="ranking text-success fw-semibold">#{cell.value}</div>);
                     } else {
                         return (<div className="ranking">#{cell.value}</div>);
                     }
@@ -89,11 +89,12 @@ const Ranking = () => {
                             <div className="card" id="contactList">
                                 <div className="card-header border-0">
                                     <div className="d-flex align-items center">
-                                        <h5 className="card-title mb-0 flex-grow-1">The top NFTs ranking on Velzon</h5>
+                                        <h5 className="mb-0 flex-grow-1">The top NFTs ranking on Velzon</h5>
                                         <p className="text-muted mb-0">Updated: 28 April, 2022 08:05:00</p>
                                     </div>
                                 </div>
-                                <div className="card-body">
+                                
+                                <div className="card-body pt-0">
                                     {NFTRanking && NFTRanking.length > 0 ? (
                                         <TableContainer
                                             columns={columns}

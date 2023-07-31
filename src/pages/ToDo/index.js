@@ -88,8 +88,6 @@ const ToDoList = () => {
         dispatch(onGetProjects());
     }, [dispatch]);
 
-
-    // To do Task List
     // To dos
     const [todo, setTodo] = useState(null);
     const [modalTodo, setModalTodo] = useState(false);
@@ -200,6 +198,7 @@ const ToDoList = () => {
 
         let filterData = filterItems(todos, inputVal);
         setTaskList(filterData);
+
         if (filterData.length === 0) {
             document.getElementById("noresult").style.display = "block";
             document.getElementById("todo-task").style.display = "none";
@@ -383,7 +382,7 @@ const ToDoList = () => {
                                         {(projects || []).map((item, key) => (
 
                                             <li key={key}>
-                                                <Link to="#" className="nav-link fs-13" id={"todos" + key}>{item.title}</Link>
+                                                <Link to="#" className="nav-link fs-14" id={"todos" + key}>{item.title}</Link>
                                                 <UncontrolledCollapse toggler={"#todos" + key}>
                                                     <ul className="mb-0 sub-menu list-unstyled ps-3 vstack gap-2 mb-2">
                                                         {(item.subItem || []).map((item, key) => (<li key={key}>
@@ -415,8 +414,8 @@ const ToDoList = () => {
                                 <div className="col-auto order-2 order-sm-3 ms-auto">
                                     <div className="hstack gap-2">
                                         <div className="btn-group" role="group" aria-label="Basic example">
-                                            <button className="btn btn-icon fw-semibold btn-soft-danger"><i className="ri-arrow-go-back-line"></i></button>
-                                            <button className="btn btn-icon fw-semibold btn-soft-success"><i className="ri-arrow-go-forward-line"></i></button>
+                                            <button className="btn btn-icon fw-semibold btn-soft-danger shadow-none"><i className="ri-arrow-go-back-line"></i></button>
+                                            <button className="btn btn-icon fw-semibold btn-soft-success shadow-none"><i className="ri-arrow-go-forward-line"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -620,7 +619,8 @@ const ToDoList = () => {
                                     id="priority-field"
                                     onChange={validation.handleChange}
                                     onBlur={validation.handleBlur}
-                                    value={validation.values.priority || ""}>
+                                    value={validation.values.priority || ""}
+                                >
                                     {sortbypriority.map((item, key) => (
                                         <React.Fragment key={key}>
                                             {item.options.map((item, key) => (<option value={item.value} key={key}>{item.label}</option>))}
@@ -690,13 +690,12 @@ const ToDoList = () => {
                             <input type="hidden" className="form-control" id="projectid-input" value="" />
                         </div>
                         <div className="hstack gap-2 justify-content-end">
-                            <button type="button" className="btn btn-ghost-success" onClick={() => setModalProject(false)}><i className="ri-close-line align-bottom"></i> Close</button>
+                            <button type="button" className="btn btn-ghost-success shadow-none" onClick={() => setModalProject(false)}><i className="ri-close-line align-bottom"></i> Close</button>
                             <button type="submit" className="btn btn-primary" id="addNewProject">Add Project</button>
                         </div>
                     </form>
                 </ModalBody>
             </Modal>
-
         </React.Fragment >
     );
 };

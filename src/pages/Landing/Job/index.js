@@ -49,7 +49,7 @@ const JobLanding = () => {
         <Footer />
         <button
           onClick={() => toTop()}
-          className="btn btn-danger btn-icon landing-back-top"
+          className="btn btn-info btn-icon landing-back-top"
           id="back-to-top"
         >
           <i className="ri-arrow-up-line"></i>

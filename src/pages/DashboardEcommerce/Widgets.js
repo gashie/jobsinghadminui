@@ -37,8 +37,8 @@ const Widgets = () => {
                                     <Link to="#" className="text-decoration-underline">{item.link}</Link>
                                 </div>
                                 <div className="avatar-sm flex-shrink-0">
-                                    <span className={"avatar-title rounded fs-3 bg-soft-" + item.bgcolor}>
-                                        <i className={`text-${item.bgcolor} ${item.icon}`}></i>
+                                    <span className={"avatar-title rounded fs-3 bg-" + item.bgcolor}>
+                                        <i className={`${item.icon}`}></i>
                                     </span>
                                 </div>
                             </div>

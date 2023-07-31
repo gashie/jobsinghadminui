@@ -90,7 +90,7 @@ const Creators = () => {
                                         </Link>
                                         <p className="text-muted mb-2">{item.products} Products</p>
                                         <p className="text-muted">You can make an NFT of a digital painting, a text, a piece of music, a video.</p>
-                                        <button className={item.isFollowBtn ? "btn btn-success w-100" : "btn btn-soft-success w-100"}>{item.isFollowBtn ? "Follow" : "UnFollow"} </button>
+                                        <button className={item.isFollowBtn ? "btn btn-success w-100" : "btn btn-soft-success w-100"}>{item.isFollowBtn ? "Follow" : "Unfollow"}</button>
                                     </div>
                                 </Card>
                             </Col>

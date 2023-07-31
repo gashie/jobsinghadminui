@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Card,
   CardBody,
+  NavLink as TabLink,
   CardHeader,
   Col,
   Container,
@@ -10,12 +11,13 @@ import {
   Nav,
   NavItem,
   Row,
+  Table,
   UncontrolledTooltip,
   Modal,
+  ModalHeader,
   ModalBody,
   Label,
   Button,
-  NavLink
 } from "reactstrap";
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
@@ -25,7 +27,7 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { useSelector, useDispatch } from "react-redux";
 import { getApplicationList } from "../../../store/actions";
 import TableContainer from "../../../Components/Common/TableContainer";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import {
   AppId,
   Name,
@@ -34,6 +36,8 @@ import {
   Status,
   Type,
 } from "./ApplicationCol";
+import Slack from "../../../assets/images/brands/slack.png";
+import dropbox from "../../../assets/images/brands/dropbox.png";
 import MultiUser from "../../../assets/images/users/multi-user.jpg";
 const Application = () => {
   document.title = "Application | Velzon - React Admin & Dashboard Template";
@@ -76,6 +80,7 @@ const Application = () => {
   const { appList } = useSelector((state) => ({
     appList: state.Jobs.appList,
   }));
+  console.log("WELCOME", appList);
 
   useEffect(() => {
     dispatch(getApplicationList());
@@ -99,8 +104,32 @@ const Application = () => {
     setApplication("");
   };
 
+    // Checked All
+    const checkedAll = () => {
+      const checkall = document.getElementById("checkBoxAll");
+      const ele = document.querySelectorAll(".orderCheckBox");
+  
+      if (checkall.checked) {
+        ele.forEach((ele) => {
+          ele.checked = true;
+        });
+      } else {
+        ele.forEach((ele) => {
+          ele.checked = false;
+        });
+      }
+    };
+  
+
   const columns = useMemo(
     () => [
+      {
+        Header: <input type="checkbox" className="form-check-input" id="checkBoxAll" onClick={() => checkedAll()} />,
+        Cell: (cellProps) => {
+          return <input type="checkbox" className="orderCheckBox form-check-input" value={cellProps.row.original._id} />;
+        },
+        id: '#',
+      },
       {
         Header: "Application ID",
         accessor: "appid",
@@ -175,7 +204,8 @@ const Application = () => {
             <div className="d-flex gap-3">
               <Link
                 to="/apps-job-details"
-                className="text-primary d-inline-block"
+                className="text-muted d-inline-block"
+                id="edittooltip"
               >
                 <i className="ri-eye-fill fs-16"></i>
               </Link>
@@ -188,22 +218,22 @@ const Application = () => {
                   const customerData = cellProps.row.original;
                   handleApplicationClick(customerData);
                 }}
-                className="text-success"
+                className="text-primary d-inline-block edit-item-btn"
               >
-                <i className="mdi mdi-pencil font-size-18" id="edittooltip" />
+                <i className="ri-pencil-fill fs-16" id="edittooltip" />
                 <UncontrolledTooltip placement="top" target="edittooltip">
                   Edit
                 </UncontrolledTooltip>
               </Link>
               <Link
                 to="#"
-                className="text-danger"
+                className="text-danger d-inline-block remove-item-btn"
                 onClick={() => {
                   const orderData = cellProps.row.original;
                   onClickDelete(orderData);
                 }}
               >
-                <i className="mdi mdi-delete font-size-18" id="deletetooltip" />
+                <i className="ri-delete-bin-5-fill fs-16" id="deletetooltip" />
                 <UncontrolledTooltip placement="top" target="deletetooltip">
                   Delete
                 </UncontrolledTooltip>
@@ -215,6 +245,7 @@ const Application = () => {
     ],
     [handleApplicationClick]
   );
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -242,9 +273,9 @@ const Application = () => {
                     <div className="flex-shrink-0">
                       <div className="d-flex gap-1 flex-wrap">
                         <Button
-                          color="success"
                           type="button"
-                          className="add-btn"
+                          color="primary"
+                          className="btn btn-primry add-btn"
                           data-bs-toggle="modal"
                           id="create-btn"
                           data-bs-target="#showModal"
@@ -252,7 +283,7 @@ const Application = () => {
                           <i className="ri-add-line align-bottom me-1"></i>{" "}
                           Create Application
                         </Button>
-                        <Button color="info" type="button">
+                        <Button type="button" className="btn btn-success">
                           <i className="ri-file-download-line align-bottom me-1"></i>{" "}
                           Import
                         </Button>
@@ -310,9 +341,9 @@ const Application = () => {
                         <div>
                           <Button
                             type="button"
-                            color="primary"
+                            color="warning"
                             className="btn w-100"
-                          // onclick=""
+                            // onclick=""
                           >
                             {" "}
                             <i className="ri-equalizer-fill me-1 align-bottom"></i>
@@ -330,7 +361,7 @@ const Application = () => {
                       role="tablist"
                     >
                       <NavItem>
-                        <NavLink
+                        <TabLink
                           className="active All py-3"
                           data-bs-toggle="tab"
                           id="All"
@@ -339,10 +370,10 @@ const Application = () => {
                           aria-selected="true"
                         >
                           All Application
-                        </NavLink>
+                        </TabLink>
                       </NavItem>
                       <NavItem>
-                        <NavLink
+                        <TabLink
                           className="py-3 New"
                           data-bs-toggle="tab"
                           id="New"
@@ -351,10 +382,10 @@ const Application = () => {
                           aria-selected="false"
                         >
                           New
-                        </NavLink>
+                        </TabLink>
                       </NavItem>
                       <NavItem>
-                        <NavLink
+                        <TabLink
                           className="py-3 Pending"
                           data-bs-toggle="tab"
                           id="Pending"
@@ -366,10 +397,10 @@ const Application = () => {
                           <span className="badge bg-danger align-middle ms-1">
                             2
                           </span>
-                        </NavLink>
+                        </TabLink>
                       </NavItem>
                       <NavItem>
-                        <NavLink
+                        <TabLink
                           className="py-3 Approved"
                           data-bs-toggle="tab"
                           id="Approved"
@@ -378,10 +409,10 @@ const Application = () => {
                           aria-selected="false"
                         >
                           Approved
-                        </NavLink>
+                        </TabLink>
                       </NavItem>
                       <NavItem>
-                        <NavLink
+                        <TabLink
                           className="py-3 Rejected"
                           data-bs-toggle="tab"
                           id="Rejected"
@@ -390,7 +421,7 @@ const Application = () => {
                           aria-selected="false"
                         >
                           Rejected
-                        </NavLink>
+                        </TabLink>
                       </NavItem>
                     </Nav>
                     <TableContainer
@@ -402,6 +433,7 @@ const Application = () => {
                       tableClass="align-middle table-nowrap"
                       theadClass="table-light text-muted"
                     />
+
                   </div>
                   <div
                     className="modal fade"
@@ -550,16 +582,10 @@ const Application = () => {
                                   </Label>
                                   <Select
                                     className="form-control"
-                                    data-trigger
+                                    options={option}
                                     name="status-input"
                                     id="status-input"
-                                  >
-                                    <option value="">Status</option>
-                                    <option value="Approved">Approved</option>
-                                    <option value="New">New</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                  </Select>
+                                  ></Select>
                                 </div>
                               </div>
                               <div className="col-md-6">
@@ -572,14 +598,10 @@ const Application = () => {
                                   </Label>
                                   <Select
                                     className="form-control"
-                                    data-trigger
+                                    options={option1}
                                     name="type-input"
                                     id="type-input"
-                                  >
-                                    <option value="">Select Type</option>
-                                    <option value="Full Time">Full Time</option>
-                                    <option value="Part Time">Part Time</option>
-                                  </Select>
+                                  ></Select>
                                 </div>
                               </div>
                             </div>
@@ -594,15 +616,15 @@ const Application = () => {
                                 Close
                               </Button>
                               <Button
-                                color="success"
                                 type="submit"
+                                className="btn btn-success"
                                 id="add-btn"
                               >
                                 Add
                               </Button>
                               <Button
-                                color="success"
                                 type="button"
+                                className="btn btn-success"
                                 id="edit-btn"
                               >
                                 Update

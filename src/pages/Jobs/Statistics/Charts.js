@@ -36,7 +36,8 @@ const Charts = ({ seriesData, dataColors }) => {
   };
   return (
     <React.Fragment>
-      <ReactApexChart dir="ltr"
+      <ReactApexChart
+        dir="ltr"
         options={options}
         series={[...seriesData]}
         type="area"

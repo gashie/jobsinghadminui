@@ -12,11 +12,10 @@ import {
   postSocialLogin,
 } from "../../../helpers/fakebackend_helper";
 
-const fireBaseBackend = getFirebaseBackend();
-
 function* loginUser({ payload: { user, history } }) {
   try {
     if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
+      const fireBaseBackend = getFirebaseBackend();
       const response = yield call(
         fireBaseBackend.loginUser,
         user.email,
@@ -24,7 +23,7 @@ function* loginUser({ payload: { user, history } }) {
       );
       if (response) {
         yield put(loginSuccess(response));
-        history('/dashboard');
+        history('/dashboard')
       } else {
         yield put(apiError(response));
       }
@@ -36,7 +35,7 @@ function* loginUser({ payload: { user, history } }) {
       sessionStorage.setItem("authUser", JSON.stringify(response));
       if (response) {
         yield put(loginSuccess(response));
-        history('/dashboard');
+        history('/dashboard')
       } else {
         yield put(apiError(response));
       }
@@ -47,7 +46,7 @@ function* loginUser({ payload: { user, history } }) {
       });
       if (response.status === "success") {
         yield put(loginSuccess(response));
-        history('/dashboard');
+        history('/dashboard')
         sessionStorage.setItem("authUser", JSON.stringify(response));
       } else {
         yield put(apiError(response));
@@ -62,6 +61,7 @@ function* logoutUser() {
   try {
     sessionStorage.removeItem("authUser");
     if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
+      const fireBaseBackend = getFirebaseBackend();
       const response = yield call(fireBaseBackend.logout);
       yield put(logoutUserSuccess(LOGOUT_USER, response));
     } else {
@@ -76,11 +76,12 @@ function* socialLogin({ payload: { data, history, type } }) {
   try {
     if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
       const fireBaseBackend = getFirebaseBackend();
-      const response = yield call(
-        fireBaseBackend.socialLoginUser,
-        data,
-        type,
-      );
+      const response = yield call(fireBaseBackend.socialLoginUser, type);
+      if (response) {
+        history("/dashboard");
+      } else {
+        history("/login");
+      }
       sessionStorage.setItem("authUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     } else {

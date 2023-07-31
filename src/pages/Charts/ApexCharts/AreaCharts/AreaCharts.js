@@ -52,7 +52,8 @@ const BasicAreaCharts = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -100,7 +101,8 @@ const SplineAreaChart = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -463,7 +465,8 @@ const AxisChart = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -720,7 +723,8 @@ const NegativeAreaChart = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -785,7 +789,8 @@ const GithubStyleCharts = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -845,7 +850,8 @@ const GithubStyleCharts1 = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -933,7 +939,8 @@ const StackedAreaChart = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -1062,7 +1069,8 @@ const IrregularAreaCharts = ({dataColors}) => {
 
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"
@@ -1231,7 +1239,8 @@ const AreaNullValueChart = ({dataColors}) => {
     };
     return (
         <React.Fragment>
-            <ReactApexChart dir="ltr"
+            <ReactApexChart
+                dir="ltr"
                 options={options}
                 series={series}
                 type="area"

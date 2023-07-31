@@ -7,7 +7,6 @@ import classnames from "classnames";
 import { pricing1, pricing2, pricing3 } from '../../../common/data';
 
 const Pricing = () => {
-
     //Tab 
     const [activeTab, setActiveTab] = useState('1');
     const toggleTab = (tab) => {

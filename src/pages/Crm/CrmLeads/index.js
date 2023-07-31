@@ -92,11 +92,11 @@ const CrmLeads = () => {
   const [tag, setTag] = useState([]);
   const [assignTag, setAssignTag] = useState([]);
 
-  const handlestag = (tags) => {
+  function handlestag(tags) {
     setTag(tags);
     const assigned = tags.map((item) => item.value);
     setAssignTag(assigned);
-  };
+  }
 
   const tags = [
     { label: "Exiting", value: "Exiting" },
@@ -523,11 +523,9 @@ const CrmLeads = () => {
                         theadClass="table-light"
                         handleLeadClick={handleLeadClicks}
                         isLeadsFilter={false}
-                        SearchPlaceholder='Search for'
                       />
                     ) : (<Loader error={error} />)
                     }
-
                   </div>
 
                   <Modal id="showModal" isOpen={modal} toggle={toggle} centered>

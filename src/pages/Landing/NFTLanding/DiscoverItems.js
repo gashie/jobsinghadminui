@@ -1,7 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { discoverItemsData } from '../../../common/data';
+
+import {discoverItemsData} from "../../../common/data"
 
 const favouriteBtn = (ele) => {
     if (ele.closest("button").classList.contains("active")) {
@@ -33,7 +34,7 @@ const DiscoverItems = () => {
                                         <div className="d-flex align-items-center mb-3">
                                             <img src={item.cardImg} alt="" className="avatar-xs rounded-circle" />
                                             <div className="ms-2 flex-grow-1">
-                                                <Link to="#"><h6 className="mb-0 fs-15">{item.author}</h6></Link>
+                                                <Link to="#!"><h6 className="mb-0 fs-15">{item.author}</h6></Link>
                                                 <p className="mb-0 text-muted fs-13">{item.title}</p>
                                             </div>
                                             <div className="bookmark-icon">
@@ -45,7 +46,7 @@ const DiscoverItems = () => {
                                             <img src={item.img} alt="" className="explore-img w-100" />
                                             <div className="bg-overlay"></div>
                                             <div className="place-bid-btn">
-                                                <Link to="#" className="btn btn-success"><i className="ri-auction-fill align-bottom me-1"></i> Place Bid</Link>
+                                                <Link to="#!" className="btn btn-success"><i className="ri-auction-fill align-bottom me-1"></i> Place Bid</Link>
                                             </div>
                                         </div>
                                         <div className="mt-3">

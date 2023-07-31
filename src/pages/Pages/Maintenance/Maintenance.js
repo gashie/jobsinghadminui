@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import ParticlesAuth from "../../../pages/AuthenticationInner/ParticlesAuth";
@@ -7,9 +7,9 @@ import ParticlesAuth from "../../../pages/AuthenticationInner/ParticlesAuth";
 import maintenanceImg from '../../../assets/images/maintenance.png';
 
 const Maintenance = () => {
-    document.title ="Maintenance | Velzon - React Admin & Dashboard Template";
+    document.title = "Maintenance | Velzon - React Admin & Dashboard Template";
     return (
-        <React.Fragment>            
+        <React.Fragment>
             <ParticlesAuth>
                 <div className="auth-page-content">
                     <Container>
@@ -37,7 +37,7 @@ const Maintenance = () => {
                 </div>
             </ParticlesAuth>
         </React.Fragment>
-    )
-}
+    );
+};
 
 export default Maintenance;

@@ -8,7 +8,7 @@ import BreadCrumb from '../../../Components/Common/BreadCrumb';
 
 
 const UiColors = () => {
-    document.title = "Colors | Velzon - React Admin & Dashboard Template";
+    document.title="Colors | Velzon - React Admin & Dashboard Template";
     return (
         <React.Fragment>
             <UiContent />
@@ -16,7 +16,7 @@ const UiColors = () => {
                 <Container fluid>
                     <BreadCrumb title="Colors" pageTitle="Base UI" />
                     <Row>
-                        <Col>
+                        <Col className="col-12">
                             <Card>
                                 <CardHeader>
                                     <h4 className="card-title">Colors Options</h4>
@@ -55,34 +55,34 @@ const UiColors = () => {
                                                     <th className="" scope="row">
                                                         Primary
                                                     </th>
-                                                    <td style={{ width: "100px" }}>
+                                                    <td style={{width: "100px"}}>
                                                         <code>.bg-gradient</code>
                                                     </td>
                                                     <td style={{width: "180px"}}>
                                                         <div className="bg-primary bg-gradient p-2"></div>
                                                     </td>
-                                                    <td style={{ width: "100px" }}>
+                                                    <td style={{width: "100px"}}>
                                                         <code>.bg-primary</code>
                                                     </td>
                                                     <td style={{width: "180px"}}>
                                                         <div className="bg-primary p-2"></div>
                                                     </td>
-                                                    <td style={{ width: "100px" }}>
+                                                    <td style={{width: "100px"}}>
                                                         <code>.bg-soft-primary</code>
                                                     </td>
                                                     <td style={{width: "180px"}}>
                                                         <div className="bg-soft-primary p-2"></div>
                                                     </td>
-                                                    <td style={{ width: "100px" }}>
+                                                    <td style={{width: "100px"}}>
                                                         <code>.border-primary</code>
                                                     </td>
                                                     <td style={{width: "180px"}}>
                                                         <div className="border border-primary p-2"></div>
                                                     </td>
-                                                    <td style={{ width: "100px" }}>
+                                                    <td style={{width: "100px"}}>
                                                         <code>.text-primary</code>
                                                     </td>
-                                                    <td style={{ width: "100px" }}>
+                                                    <td style={{width: "100px"}}>
                                                         <div className="text-primary">text-primary</div>
                                                     </td>
                                                 </tr>
@@ -352,10 +352,10 @@ const UiColors = () => {
                                                         <div className="text-center">-</div>
                                                     </td>
                                                     <td>
-                                                        <code>.bg-body</code>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
-                                                        <div className="bg-body p-2"></div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <div className="text-center">-</div>
@@ -523,46 +523,14 @@ const UiColors = () => {
 
                                                 <tr>
                                                     <th className="" scope="row">
-                                                        Opacity-10
-                                                    </th>
-                                                    <td>
-                                                        <div className="text-center">-</div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">-</div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center"><code>.bg-opacity-10</code></div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">
-                                                            <div className="bg-primary bg-opacity-10 p-2"></div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">-</div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">-</div>
-                                                    </td>
-                                                    <td>
-                                                        <code>.border-opacity-10</code>
-                                                    </td>
-                                                    <td>
-                                                        <div className="border border-primary border-opacity-10 p-2"></div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">-</div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">-</div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th className="" scope="row">
                                                         Opacity-25
                                                     </th>
+                                                    <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
                                                     <td>
                                                         <div className="text-center"><code>.opacity-25</code></div>
                                                     </td>
@@ -572,12 +540,7 @@ const UiColors = () => {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div className="text-center"><code>.bg-opacity-25</code></div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">
-                                                            <div className="bg-primary bg-opacity-25 p-2"></div>
-                                                        </div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <div className="text-center">-</div>
@@ -586,10 +549,7 @@ const UiColors = () => {
                                                         <div className="text-center">-</div>
                                                     </td>
                                                     <td>
-                                                        <code>.border-opacity-25</code>
-                                                    </td>
-                                                    <td>
-                                                        <div className="border border-primary border-opacity-25 p-2"></div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <code>.text-opacity-25</code>
@@ -604,6 +564,12 @@ const UiColors = () => {
                                                         Opacity-50
                                                     </th>
                                                     <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
                                                         <div className="text-center"><code>.opacity-50</code></div>
                                                     </td>
                                                     <td>
@@ -612,12 +578,7 @@ const UiColors = () => {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div className="text-center"><code>.bg-opacity-50</code></div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">
-                                                            <div className="bg-primary bg-opacity-50 p-2"></div>
-                                                        </div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <div className="text-center">-</div>
@@ -626,10 +587,7 @@ const UiColors = () => {
                                                         <div className="text-center">-</div>
                                                     </td>
                                                     <td>
-                                                        <code>.border-opacity-50</code>
-                                                    </td>
-                                                    <td>
-                                                        <div className="border border-primary border-opacity-50 p-2"></div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <code>.text-opacity-50</code>
@@ -644,6 +602,12 @@ const UiColors = () => {
                                                         Opacity-75
                                                     </th>
                                                     <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
                                                         <div className="text-center"><code>.opacity-75</code></div>
                                                     </td>
                                                     <td>
@@ -652,12 +616,7 @@ const UiColors = () => {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div className="text-center"><code>.bg-opacity-75</code></div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">
-                                                            <div className="bg-primary bg-opacity-75 p-2"></div>
-                                                        </div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <div className="text-center">-</div>
@@ -666,10 +625,7 @@ const UiColors = () => {
                                                         <div className="text-center">-</div>
                                                     </td>
                                                     <td>
-                                                        <code>.border-opacity-75</code>
-                                                    </td>
-                                                    <td>
-                                                        <div className="border border-primary border-opacity-75 p-2"></div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <code>.text-opacity-75</code>
@@ -684,6 +640,12 @@ const UiColors = () => {
                                                         Opacity-100
                                                     </th>
                                                     <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
+                                                        <div className="text-center">-</div>
+                                                    </td>
+                                                    <td>
                                                         <div className="text-center"><code>.opacity-100</code></div>
                                                     </td>
                                                     <td>
@@ -692,12 +654,7 @@ const UiColors = () => {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div className="text-center"><code>.bg-opacity-100</code></div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="text-center">
-                                                            <div className="bg-primary bg-opacity-100 p-2"></div>
-                                                        </div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <div className="text-center">-</div>
@@ -706,10 +663,7 @@ const UiColors = () => {
                                                         <div className="text-center">-</div>
                                                     </td>
                                                     <td>
-                                                        <code>.border-opacity-100</code>
-                                                    </td>
-                                                    <td>
-                                                        <div className="border border-primary border-opacity-100 p-2"></div>
+                                                        <div className="text-center">-</div>
                                                     </td>
                                                     <td>
                                                         <code>.text-opacity-100</code>
@@ -718,7 +672,6 @@ const UiColors = () => {
                                                         <div className="text-opacity-100 text-primary">text-opacity-100</div>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>

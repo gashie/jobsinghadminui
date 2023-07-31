@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {
+  Button,
   Card,
   CardBody,
   Col,
@@ -12,18 +13,42 @@ import {
   Row,
   UncontrolledDropdown,
 } from "reactstrap";
+import Select from "react-select";
 import Flatpickr from "react-flatpickr";
 import { jobGrid } from "../../../../common/data/appsJobs";
 import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 
 const JobGrid = () => {
   document.title = "Job Grid | Velzon -  Admin & Dashboard Template";
-
+  const sortbyname = [
+    {
+      options: [
+        { label: "All", value: "All" },
+        { label: "Today", value: "Today" },
+        { label: "Yesterday", value: "Yesterday" },
+        { label: "Last 7 Days", value: "Last 7 Days" },
+        { label: "Last 30 Days", value: "Last 30 Days" },
+        { label: "Thise Month", value: "Thise Month" },
+        { label: "Last Year", value: "Last Year" },
+      ],
+    },
+  ];
+  const option = [
+    {
+      options: [
+        { label: "All", value: "All" },
+        { label: "Active", value: "Active" },
+        { label: "New", value: "New" },
+        { label: "Close", value: "Close" },
+      ],
+    },
+  ];
   return (
     <React.Fragment>
       <div className="page-content">
-        <div className="container-fluid">
-          <BreadCrumb title="Job Grid Lists" pageTitle="Jobs" />
+        <div>
+          <BreadCrumb title="Job Grid List" pageTitle="Jobs" />
+
           <Row>
             <Col lg={12}>
               <Card>
@@ -45,7 +70,7 @@ const JobGrid = () => {
 
                       <Col xxl={3} sm={4}>
                         <Flatpickr
-                          className="form-control"
+                          // className="form-control"
                           id="datepicker-publish-input"
                           placeholder="Select a date"
                           options={{
@@ -59,52 +84,32 @@ const JobGrid = () => {
 
                       <Col xxl={2} sm={4}>
                         <div className="input-light">
-                          <select
-                            className="form-control"
-                            data-choices
-                            data-choices-search-false
-                            name="choices-idType"
-                            id="idType"
-                          >
-                            <option value="all" defaultValue>
-                              All
-                            </option>
-                            <option value="Full Time">Full Time</option>
-                            <option value="Part Time">Part Time</option>
-                            <option value="Intership">Intership</option>
-                            <option value="Freelance">Freelance</option>
-                          </select>
+                          <Select
+                            className="js-example-basic-single mb-0"
+                            options={sortbyname}
+                          ></Select>
                         </div>
                       </Col>
 
                       <Col xxl={2} sm={4}>
                         <div className="input-light">
-                          <select
-                            className="form-control"
-                            data-choices
-                            data-choices-search-false
-                            name="choices-single-default"
-                            id="idStatus"
-                          >
-                            <option value="all" defaultValue>
-                              All
-                            </option>
-                            <option value="Active">Active</option>
-                            <option value="New">New</option>
-                            <option value="Close">Close</option>
-                          </select>
+                          <Select
+                            className="js-example-basic-single mb-0"
+                            options={option}
+                          ></Select>
                         </div>
                       </Col>
 
                       <Col xxl={1} sm={4}>
-                        <button
+                        <Button
                           type="button"
-                          className="btn btn-primary w-100"
+                          color="warning"
+                          className="btn y w-100"
                           //   onclick="filterData();"
                         >
                           <i className="ri-equalizer-fill me-1 align-bottom"></i>{" "}
                           Filters
-                        </button>
+                        </Button>
                       </Col>
                     </Row>
                   </Form>
@@ -118,7 +123,7 @@ const JobGrid = () => {
               <div className="d-flex align-items-center mb-4">
                 <div className="flex-grow-1">
                   <p className="text-muted fs-14 mb-0">
-                    Result: <span id="total-result">7</span>
+                    Result: <span id="total-result">12</span>
                   </p>
                 </div>
                 <div className="flex-shrink-0">
@@ -132,22 +137,15 @@ const JobGrid = () => {
                     >
                       All View
                     </DropdownToggle>
-                    <DropdownMenu
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuLink"
-                    >
+                    <DropdownMenu aria-labelledby="dropdownMenuLink">
                       <li>
-                        <DropdownItem className="dropdown-item" href="#">
-                          Action
-                        </DropdownItem>
+                        <DropdownItem href="#">Action</DropdownItem>
                       </li>
                       <li>
-                        <DropdownItem className="dropdown-item" href="#">
-                          Another action
-                        </DropdownItem>
+                        <DropdownItem href="#">Another action</DropdownItem>
                       </li>
                       <li>
-                        <DropdownItem className="dropdown-item" href="#">
+                        <DropdownItem href="#">
                           Something else here
                         </DropdownItem>
                       </li>
@@ -159,7 +157,7 @@ const JobGrid = () => {
           </Row>
 
           <Row id="job-list">
-          <Col lg={3} md={6} id="job-widget">
+            <Col lg={3} md={6} id="job-widget">
               <Card className="card-height-100 bg-info bg-job">
                 <CardBody className="p-5">
                   <h2 className="lh-base text-white">
@@ -169,10 +167,10 @@ const JobGrid = () => {
                     Don't miss your opportunity to improve your skills!
                   </p>
                   <div className="mt-5 pt-2">
-                    <button type="button" className="btn btn-light w-100">
+                    <Button type="button" className="btn btn-light w-100">
                       View More{" "}
                       <i className="ri-arrow-right-line align-bottom"></i>
-                    </button>
+                    </Button>
                   </div>
                 </CardBody>
               </Card>
@@ -181,14 +179,14 @@ const JobGrid = () => {
               <Col lg={3} md={6} key={key}>
                 <Card>
                   <CardBody>
-                    <button
+                    <Button
                       type="button"
                       className="btn btn-icon btn-soft-primary float-end"
                       data-bs-toggle="button"
                       aria-pressed="true"
                     >
                       <i className="mdi mdi-cards-heart fs-16"></i>
-                    </button>
+                    </Button>
                     <div className="avatar-sm mb-4">
                       <div className="avatar-title bg-light rounded">
                         <img
@@ -214,17 +212,21 @@ const JobGrid = () => {
                     </div>
                     <p className="text-muted">{item.description}</p>
                     <div className="hstack gap-2">
-                      {item.requirement.map((subItem, key) => (
+                      {item.requirement.map((subitem, key) => (
                         <React.Fragment key={key}>
-                          {
-                            subItem === "Full Time" ?
-                              <span className="badge badge-soft-success">{subItem}</span>
-                              :
-                              subItem === "Freelance" ?
-                                <span className="badge badge-soft-primary">{subItem}</span>
-                                :
-                                <span className="badge badge-soft-danger">{subItem}</span>
-                          }
+                          {subitem === "Full Time" ? (
+                            <span className="badge badge-soft-success">
+                              {subitem}
+                            </span>
+                          ) : subitem === "Freelance" ? (
+                            <span className="badge badge-soft-primary">
+                              {subitem}
+                            </span>
+                          ) : (
+                            <span className="badge badge-soft-danger">
+                              {subitem}
+                            </span>
+                          )}
                         </React.Fragment>
                       ))}
                     </div>
@@ -233,7 +235,7 @@ const JobGrid = () => {
                         Apply Job
                       </Link>
                       <Link
-                        href="/apps-job-details"
+                        to="/apps-job-details"
                         className="btn btn-soft-success w-100"
                       >
                         Overview
@@ -245,10 +247,7 @@ const JobGrid = () => {
             ))}
           </Row>
 
-          <Row
-            className="g-0 justify-content-end mb-4"
-            id="pagination-element"
-          >
+          <Row className="g-0 justify-content-end mb-4" id="pagination-element">
             <Col sm={6}>
               <div className="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
                 <div className="page-item">

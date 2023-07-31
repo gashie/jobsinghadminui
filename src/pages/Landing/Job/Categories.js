@@ -9,9 +9,9 @@ const Categories = () => {
       <section className="section bg-light" id="categories">
         <Container>
           <Row className="justify-content-center">
-            <Col lg={7} >
+            <Col lg={7}>
               <div className="text-center mb-5">
-                <h1 className="mb-3 ff-secondary fw-bold text-capitalize lh-base">
+                <h1 className="mb-3 fw-semibold text-capitalize lh-base">
                   High demand jobs{" "}
                   <span className="text-primary">Categories</span> fratured
                 </h1>
@@ -34,10 +34,10 @@ const Categories = () => {
                         <i className={item.icon}></i>
                       </div>
                     </div>
-                    <Link to="#" className="to-link">
+                    <Link to="#!" className="to-link">
                       <h5 className="fs-17 pt-1">{item.lable}</h5>
                     </Link>
-                    <p className="mb-0 text-muted">{item.jobs}</p>
+                    <p className="mb-0 text-muted">{item.job}</p>
                   </CardBody>
                 </Card>
               </Col>
@@ -45,19 +45,19 @@ const Categories = () => {
           </Row>
         </Container>
       </section>
-      <section className="py-5 bg-primary position-relative">
+      <section className="py-5 bg-info position-relative">
         <div className="bg-overlay bg-overlay-pattern opacity-50"></div>
         <Container>
           <Row className="align-items-center gy-4">
             <Col className="col-sm">
               <div>
-                <h4 className="text-white mb-2">Ready to Started?</h4>
+                <h4 className="text-white fw-bold mb-2">Ready to Started?</h4>
                 <p className="text-white-50 mb-0">
                   Create new account and refer your friend
                 </p>
               </div>
             </Col>
-            <Col className="col-sm-auto">
+            <Col sm="auto">
               <div>
                 <Link to="#!" className="btn bg-gradient btn-danger">
                   Create Free Account

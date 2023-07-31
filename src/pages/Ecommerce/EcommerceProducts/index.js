@@ -9,8 +9,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  TabContent,
-  TabPane,
   UncontrolledCollapse,
   Row,
   Card,
@@ -18,6 +16,8 @@ import {
   Col,
 } from "reactstrap";
 import classnames from "classnames";
+
+import { toast, ToastContainer } from 'react-toastify';
 
 // RangeSlider
 import Nouislider from "nouislider-react";
@@ -38,7 +38,6 @@ import Select from "react-select";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 
 const SingleOptions = [
   { value: 'Watches', label: 'Watches' },
@@ -113,7 +112,6 @@ const EcommerceProducts = (props) => {
       )
     );
   };
-
   const [ratingvalues, setRatingvalues] = useState([]);
   /*
   on change rating checkbox method
@@ -164,9 +162,8 @@ const EcommerceProducts = (props) => {
   };
 
 
-  const [dele, setDele] = useState(0);
-
   // Displat Delete Button
+  const [dele, setDele] = useState(0);
   const displayDelete = () => {
     const ele = document.querySelectorAll(".productCheckBox:checked");
     const del = document.getElementById("selection-element");
@@ -313,7 +310,6 @@ const EcommerceProducts = (props) => {
   return (
     <div className="page-content">
       <ToastContainer closeButton={false} limit={1} />
-
       <DeleteModal
         show={deleteModal}
         onDeleteClick={handleDeleteProduct}
@@ -329,7 +325,6 @@ const EcommerceProducts = (props) => {
       />
       <Container fluid>
         <BreadCrumb title="Products" pageTitle="Ecommerce" />
-
         <Row>
           <Col xl={3} lg={4}>
             <Card>

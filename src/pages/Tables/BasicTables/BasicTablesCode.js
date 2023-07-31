@@ -1511,7 +1511,6 @@ const StripedColumnsTables = () => {
         </React.Fragment>
     )
 }
-
 export {
     DefaultTables,
     StrippedRow,
@@ -1530,6 +1529,5 @@ export {
     Variants,
     VerticalAlignment,
     ResponsiveTables,
-    StripedColumnsTables,
+    StripedColumnsTables
 }
-

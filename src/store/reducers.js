@@ -60,45 +60,43 @@ import DashboardNFT from "./dashboardNFT/reducer";
 import Team from "./team/reducer";
 
 // File Manager
-import FileManager from "./fileManager/reducer"
+import FileManager from "./fileManager/reducer";
 
 // To do
-import Todos from "./todos/reducer"
-
-//Job 
+import Todos from "./todos/reducer";
+//Jobs
 import Jobs from "./job/reducer";
-
 //API Key
 import APIKey from "./apikey/reducer";
 const rootReducer = combineReducers({
-    // public
-    Layout,
-    Login,
-    Account,
-    ForgetPassword,
-    Profile,
-    Calendar,
-    chat,
-    Projects,
-    Ecommerce,
-    Tasks,
-    changeNumber,
-    Crypto,
-    Tickets,
-    Crm,
-    Invoice,
-    Mailbox,
-    DashboardAnalytics,
-    DashboardCRM,
-    DashboardEcommerce,
-    DashboardCrypto,
-    DashboardProject,
-    DashboardNFT,
-    Team,
-    FileManager,
-    Todos,
-    Jobs,
-    APIKey
+  // public
+  Layout,
+  Login,
+  Account,
+  ForgetPassword,
+  Profile,
+  Calendar,
+  chat,
+  Projects,
+  Ecommerce,
+  Tasks,
+  changeNumber,
+  Crypto,
+  Tickets,
+  Crm,
+  Invoice,
+  Mailbox,
+  DashboardAnalytics,
+  DashboardCRM,
+  DashboardEcommerce,
+  DashboardCrypto,
+  DashboardProject,
+  DashboardNFT,
+  Team,
+  FileManager,
+  Todos,
+  Jobs,
+  APIKey,
 });
 
 export default rootReducer;

@@ -1,13 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Card, CardBody, Col, Container, Input, Row } from "reactstrap";
-import { jobCandidates } from "../../../../common/data/appsJobs";
+import Select from "react-select";
+import { jobCandidatesList } from "../../../../common/data/appsJobs";
 import BreadCrumb from "../../../../Components/Common/BreadCrumb";
 
 const CandidateList = () => {
-  document.title = "Candidate List View | Velzon -  Admin & Dashboard Template";
-
   const [isBookmarkClick, setIsBookmarkClick] = useState(false);
+
+  const sortbyname = [
+    {
+      options: [
+        { label: "All", value: "All" },
+        { label: "Today", value: "Today" },
+        { label: "Yesterday", value: "Yesterday" },
+        { label: "Last 7 Days", value: "Last 7 Days" },
+        { label: "Last 30 Days", value: "Last 30 Days" },
+        { label: "Thise Month", value: "Thise Month" },
+        { label: "Last Year", value: "Last Year" },
+      ],
+    },
+  ];
+  document.title = "Candidate List View | Velzon -  Admin & Dashboard Template";
   return (
     <React.Fragment>
       <div className="page-content">
@@ -15,9 +29,9 @@ const CandidateList = () => {
           <BreadCrumb title="List View" pageTitle="Candidates Lists" />
 
           <Row className="g-4 mb-4">
-            <Col className="col-sm-auto">
+            <Col sm="auto">
               <div>
-                <Link to="#!" className="btn btn-success">
+                <Link to="#!" className="btn btn-primary">
                   <i className="ri-add-line align-bottom me-1"></i> Add
                   Candidate
                 </Link>
@@ -28,6 +42,7 @@ const CandidateList = () => {
                 <div className="search-box ms-md-2 flex-shrink-0 mb-3 mb-md-0">
                   <Input
                     type="text"
+                    className="form-control"
                     id="searchJob"
                     autoComplete="off"
                     placeholder="Search for candidate name or designation..."
@@ -35,35 +50,28 @@ const CandidateList = () => {
                   <i className="ri-search-line search-icon"></i>
                 </div>
 
-                <select
-                  className="form-control w-md"
-                >
-                  <option value="All">All</option>
-                  <option value="Today">Today</option>
-                  <option value="Yesterday" defaultValue>
-                    Yesterday
-                  </option>
-                  <option value="Last 7 Days">Last 7 Days</option>
-                  <option value="Last 30 Days">Last 30 Days</option>
-                  <option value="This Month">This Month</option>
-                  <option value="Last Year">Last Year</option>
-                </select>
+                <Select
+                  className="js-example-basic-single mb-0"
+                  options={sortbyname}
+                  style={{
+                    border: "1px solid rgba(0, 0, 0, 0.15)",
+                    borderRadius: "5px",
+                  }}
+                ></Select>
               </div>
             </Col>
           </Row>
 
           <Row className="gy-2 mb-2" id="candidate-list">
-            {jobCandidates.map((item, key) => (
-              <Col className="col-lg-12" key={key}>
-                <Card className="card mb-0">
-                  <CardBody className="card-body">
+            {jobCandidatesList.map((item, key) => (
+              <Col lg={12} key={key}>
+                <Card className="mb-0">
+                  <CardBody>
                     <div className="d-lg-flex align-items-center">
                       <div className="flex-shrink-0">
                         {item.nickname ? (
-                          <div className="avatar-sm rounded">
-                            <div className="avatar-title border bg-light text-primary rounded text-uppercase fs-16">
-                              {item.nickname}
-                            </div>
+                          <div className="avatar-title rounded-circle bg-light border-dashed border text-primary fs-18 p-2">
+                            {item.nickname}
                           </div>
                         ) : (
                           <div className="avatar-sm rounded">
@@ -76,9 +84,9 @@ const CandidateList = () => {
                         )}
                       </div>
                       <div className="ms-3">
-                        <Link to="/pages-profile">
+                        <NavLink dto="/pages-profile">
                           <h5 className="fs-16 mb-2">{item.candidateName}</h5>
-                        </Link>
+                        </NavLink>
                         <p className="text-muted mb-0">{item.designation}</p>
                       </div>
                       <div className="d-flex gap-4 mt-0 text-muted mx-auto">
@@ -88,14 +96,19 @@ const CandidateList = () => {
                         </div>
                         <div>
                           <i className="ri-time-line text-primary me-1 align-bottom"></i>{" "}
-                          {item.type === "Part Time" ?
-                            <span className="badge badge-soft-danger">{item.type}</span>
-                            :
-                            item.type === "Full Time" ?
-                              <span className="badge badge-soft-success">{item.type}</span>
-                              :
-                              <span className="badge badge-soft-info">{item.type}</span>
-                          }
+                          {item.type === "Part Time" ? (
+                            <span className="badge badge-soft-danger">
+                              {item.type}
+                            </span>
+                          ) : item.type === "Full Time" ? (
+                            <span className="badge badge-soft-success">
+                              {item.type}
+                            </span>
+                          ) : (
+                            <span className="badge badge-soft-secondary">
+                              {item.type}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="d-flex flex-wrap gap-2 align-items-center mx-auto">
@@ -106,26 +119,32 @@ const CandidateList = () => {
                         <div className="text-muted">{item.rating[1]}</div>
                       </div>
                       <div>
-                        <Link to="#" className="btn btn-soft-success me-1">
+                        <Link to="#!" className="btn btn-soft-success me-1">
                           View Details
                         </Link>
                         <Link
-                          to="#"
+                          to="#!"
                           onClick={(e) => {
                             e.preventDefault();
+
                             setIsBookmarkClick(!isBookmarkClick);
                           }}
-                          className={isBookmarkClick ? "btn btn-ghost-danger btn-icon custom-toggle active" : "btn btn-ghost-danger btn-icon custom-toggle"}
+                          className={
+                            isBookmarkClick
+                              ? "btn btn-ghost-danger btn-icon custom-toggle active"
+                              : "btn btn-ghost-danger btn-icon custom-toggle"
+                          }
+                          data-bs-toggle="button"
                         >
-                          {!isBookmarkClick ?
+                          {!isBookmarkClick ? (
                             <span className="icon-on">
                               <i className="ri-bookmark-line align-bottom"></i>
                             </span>
-                            :
+                          ) : (
                             <span className="icon-off">
                               <i className="ri-bookmark-3-fill align-bottom"></i>
                             </span>
-                          }
+                          )}
                         </Link>
                       </div>
                     </div>
@@ -135,10 +154,7 @@ const CandidateList = () => {
             ))}
           </Row>
 
-          <Row
-            className="g-0 justify-content-end mb-4"
-            id="pagination-element"
-          >
+          <Row className="g-0 justify-content-end mb-4" id="pagination-element">
             <Col sm={6}>
               <div className="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0">
                 <div className="page-item">

@@ -77,7 +77,7 @@ const OverviewTab = () => {
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0 me-3">
                                                         <div className="avatar-sm">
-                                                            <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                            <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                                 <i className="ri-folder-zip-line"></i>
                                                             </div>
                                                         </div>
@@ -88,9 +88,9 @@ const OverviewTab = () => {
                                                     </div>
                                                     <div className="flex-shrink-0 ms-2">
                                                         <div className="d-flex gap-1">
-                                                            <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                                            <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                                             <UncontrolledDropdown>
-                                                                <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown">
+                                                                <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none">
                                                                     <i className="ri-more-fill"></i>
                                                                 </DropdownToggle>
                                                                 <DropdownMenu>
@@ -109,7 +109,7 @@ const OverviewTab = () => {
                                                 <div className="d-flex align-items-center">
                                                     <div className="flex-shrink-0 me-3">
                                                         <div className="avatar-sm">
-                                                            <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                            <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                                 <i className="ri-file-ppt-2-line"></i>
                                                             </div>
                                                         </div>
@@ -120,9 +120,9 @@ const OverviewTab = () => {
                                                     </div>
                                                     <div className="flex-shrink-0 ms-2">
                                                         <div className="d-flex gap-1">
-                                                            <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                                            <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                                             <UncontrolledDropdown>
-                                                                <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown">
+                                                                <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none">
                                                                     <i className="ri-more-fill"></i>
                                                                 </DropdownToggle>
                                                                 <DropdownMenu>
@@ -227,7 +227,7 @@ const OverviewTab = () => {
                                         <textarea className="form-control bg-light border-light" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your comment..."></textarea>
                                     </Col>
                                     <Col xs={12} className="text-end">
-                                        <button type="button" className="btn btn-ghost-secondary btn-icon waves-effect me-1"><i className="ri-attachment-line fs-16"></i></button>
+                                        <button type="button" className="btn btn-ghost-secondary btn-icon waves-effect me-1 shadow-none"><i className="ri-attachment-line fs-16"></i></button>
                                         <Link to="#" className="btn btn-success">Post Comments</Link>
                                     </Col>
                                 </Row>
@@ -260,7 +260,7 @@ const OverviewTab = () => {
                         <CardHeader className="align-items-center d-flex border-bottom-dashed">
                             <h4 className="card-title mb-0 flex-grow-1">Members</h4>
                             <div className="flex-shrink-0">
-                                <button type="button" className="btn btn-soft-danger btn-sm" data-bs-toggle="modal" data-bs-target="#inviteMembersModal"><i className="ri-share-line me-1 align-bottom"></i> Invite Member</button>
+                                <button type="button" className="btn btn-soft-danger btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#inviteMembersModal"><i className="ri-share-line me-1 align-bottom"></i> Invite Member</button>
                             </div>
                         </CardHeader>
 
@@ -278,7 +278,7 @@ const OverviewTab = () => {
                                             <div className="d-flex align-items-center gap-1">
                                                 <button type="button" className="btn btn-light btn-sm">Message</button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" tag="button">
+                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" tag="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -304,7 +304,7 @@ const OverviewTab = () => {
                                             <div className="d-flex align-items-center gap-1">
                                                 <button type="button" className="btn btn-light btn-sm">Message</button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" tag="button">
+                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" tag="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -329,7 +329,7 @@ const OverviewTab = () => {
                                             <div className="d-flex align-items-center gap-1">
                                                 <button type="button" className="btn btn-light btn-sm">Message</button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" tag="button">
+                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" tag="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -353,7 +353,7 @@ const OverviewTab = () => {
                                             <div className="d-flex align-items-center gap-1">
                                                 <button type="button" className="btn btn-light btn-sm">Message</button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown" tag="button">
+                                                    <DropdownToggle type="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none" tag="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -379,7 +379,7 @@ const OverviewTab = () => {
                                             <div className="d-flex align-items-center gap-1">
                                                 <button type="button" className="btn btn-light btn-sm">Message</button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown">
+                                                    <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -404,7 +404,7 @@ const OverviewTab = () => {
                                             <div className="d-flex align-items-center gap-1">
                                                 <button type="button" className="btn btn-light btn-sm">Message</button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown">
+                                                    <DropdownToggle tag="button" className="btn btn-icon btn-sm fs-16 text-muted dropdown shadow-none">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -438,7 +438,7 @@ const OverviewTab = () => {
                                     <div className="d-flex align-items-center">
                                         <div className="flex-shrink-0 me-3">
                                             <div className="avatar-sm">
-                                                <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                     <i className="ri-folder-zip-line"></i>
                                                 </div>
                                             </div>
@@ -449,9 +449,9 @@ const OverviewTab = () => {
                                         </div>
                                         <div className="flex-shrink-0 ms-2">
                                             <div className="d-flex gap-1">
-                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -468,7 +468,7 @@ const OverviewTab = () => {
                                     <div className="d-flex align-items-center">
                                         <div className="flex-shrink-0 me-3">
                                             <div className="avatar-sm">
-                                                <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                     <i className="ri-file-ppt-2-line"></i>
                                                 </div>
                                             </div>
@@ -479,9 +479,9 @@ const OverviewTab = () => {
                                         </div>
                                         <div className="flex-shrink-0 ms-2">
                                             <div className="d-flex gap-1">
-                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -498,7 +498,7 @@ const OverviewTab = () => {
                                     <div className="d-flex align-items-center">
                                         <div className="flex-shrink-0 me-3">
                                             <div className="avatar-sm">
-                                                <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                     <i className="ri-folder-zip-line"></i>
                                                 </div>
                                             </div>
@@ -509,9 +509,9 @@ const OverviewTab = () => {
                                         </div>
                                         <div className="flex-shrink-0 ms-2">
                                             <div className="d-flex gap-1">
-                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>
@@ -528,7 +528,7 @@ const OverviewTab = () => {
                                     <div className="d-flex align-items-center">
                                         <div className="flex-shrink-0 me-3">
                                             <div className="avatar-sm">
-                                                <div className="avatar-title bg-light text-secondary rounded fs-24">
+                                                <div className="avatar-title bg-light text-secondary rounded fs-24 shadow">
                                                     <i className="ri-image-2-line"></i>
                                                 </div>
                                             </div>
@@ -539,9 +539,9 @@ const OverviewTab = () => {
                                         </div>
                                         <div className="flex-shrink-0 ms-2">
                                             <div className="d-flex gap-1">
-                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18"><i className="ri-download-2-line"></i></button>
+                                                <button type="button" className="btn btn-icon text-muted btn-sm fs-18 shadow-none"><i className="ri-download-2-line"></i></button>
                                                 <UncontrolledDropdown>
-                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown" type="button">
+                                                    <DropdownToggle tag="button" className="btn btn-icon text-muted btn-sm fs-18 dropdown shadow-none" type="button">
                                                         <i className="ri-more-fill"></i>
                                                     </DropdownToggle>
                                                     <DropdownMenu>

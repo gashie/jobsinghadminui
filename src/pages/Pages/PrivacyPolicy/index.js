@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
-import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import FeatherIcon from "feather-icons-react";
+import BreadCrumb from "../../../Components/Common/BreadCrumb";
 
 const PrivacyPolicy = () => {
   document.title = "Privacy Policy | Velzon - React Admin & Dashboard Template";
@@ -14,10 +14,10 @@ const PrivacyPolicy = () => {
           <Row className="justify-content-center">
             <Col lg={10}>
               <Card>
-                <div className="bg-soft-info position-relative">
+                <div className="bg-soft-warning position-relative">
                   <CardBody className="p-5">
                     <div className="text-center">
-                      <h3>Privacy Policy</h3>
+                      <h3 className="fw-semibold">Privacy Policy</h3>
                       <p className="mb-0 text-muted">
                         Last update: 16 Sept, 2022
                       </p>
@@ -52,12 +52,12 @@ const PrivacyPolicy = () => {
                   <div className="d-flex">
                     <div className="flex-shrink-0 me-3">
                       <FeatherIcon
+                        className="text-success icon-dual-success icon-sm"
                         icon="check-circle"
-                        className="text-success icon-dual-success icon-xs"
                       />
                     </div>
                     <div className="flex-grow-1">
-                      <h5>Privacy Policy for velzon</h5>
+                      <h5 className="fw-semibold">Privacy Policy for velzon</h5>
                       <p className="text-muted">
                         At Website Name, accessible at Website.com, one of our
                         main priorities is the privacy of our visitors. This
@@ -122,12 +122,14 @@ const PrivacyPolicy = () => {
                   <div className="d-flex">
                     <div className="flex-shrink-0 me-3">
                       <FeatherIcon
+                        className="text-success icon-dual-success icon-sm"
                         icon="check-circle"
-                        className="text-success icon-dual-success icon-xs"
                       />
                     </div>
                     <div className="flex-grow-1">
-                      <h5>How we use your information</h5>
+                      <h5 className="fw-semibold">
+                        How we use your information
+                      </h5>
                       <p className="text-muted">
                         If you contact us directly, we may receive additional
                         information about you such as your name, email address,
@@ -177,8 +179,8 @@ const PrivacyPolicy = () => {
                   <div className="d-flex">
                     <div className="flex-shrink-0 me-3">
                       <FeatherIcon
+                        className="text-success icon-dual-success icon-sm"
                         icon="check-circle"
-                        className="text-success icon-dual-success icon-xs"
                       />
                     </div>
                     <div className="flex-grow-1">

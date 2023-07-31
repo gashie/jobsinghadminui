@@ -53,13 +53,13 @@ const Section = () => {
                                     </div>
                                     <div className="col-md-auto">
                                         <div className="hstack gap-1 flex-wrap">
-                                            <button type="button" className="btn py-0 fs-16 favourite-btn active">
+                                            <button type="button" className="btn py-0 fs-16 favourite-btn active shadow-none">
                                                 <i className="ri-star-fill"></i>
                                             </button>
-                                            <button type="button" className="btn py-0 fs-16 text-body">
+                                            <button type="button" className="btn py-0 fs-16 text-body shadow-none">
                                                 <i className="ri-share-line"></i>
                                             </button>
-                                            <button type="button" className="btn py-0 fs-16 text-body">
+                                            <button type="button" className="btn py-0 fs-16 text-body shadow-none">
                                                 <i className="ri-flag-line"></i>
                                             </button>
                                         </div>

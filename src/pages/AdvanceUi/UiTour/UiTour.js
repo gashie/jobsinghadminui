@@ -22,7 +22,7 @@ const tourOptions = {
     useModalOverlay: true
 };
 
-const Autton = () => {
+function Autton() {
     const tour = useContext(ShepherdTourContext);
     useEffect(() => {
         tour.start();

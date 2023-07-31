@@ -17,8 +17,8 @@ const CTA = () => {
 
                         <Col className="col-sm-auto">
                             <div>
-                                <Link to="/apps-nft-create" className="btn bg-gradient btn-danger me-1">Create NFT</Link>
-                                <Link to="/apps-nft-explore" className="btn bg-gradient btn-info">Discover More</Link>
+                                <Link to="apps-nft-create" className="btn bg-gradient btn-danger me-1">Create NFT</Link>
+                                <Link to="apps-nft-explore" className="btn bg-gradient btn-info">Discover More</Link>
                             </div>
                         </Col>
                     </Row>

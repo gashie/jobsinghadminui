@@ -107,9 +107,7 @@ const ProjectsOverview = () => {
                         </CardHeader>
                         <CardBody className="p-0 pb-2">
                             <div>
-                                <div dir="ltr" className="apex-charts">
-                                    <ProjectsOverviewCharts series={chartData} dataColors='["--vz-primary", "--vz-warning", "--vz-success"]' />
-                                </div>
+                                <ProjectsOverviewCharts series={chartData} dataColors='["--vz-primary", "--vz-warning", "--vz-success"]' />
                             </div>
                         </CardBody>
                     </Card>
