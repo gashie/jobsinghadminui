@@ -35,23 +35,27 @@ const Sidebar = ({ layoutType }) => {
   };
   return (
     <React.Fragment>
-      <div className="app-menu navbar-menu">
-        <div className="navbar-brand-box">
-          <Link to="/" className="logo logo-dark">
+      <div className="app-menu navbar-menu" style={{backgroundColor: '#244A59'}}>
+        <div className="navbar-brand-box" style={{backgroundColor: '#244A59'}}>
+        <Link to="/" className="logo logo-dark">
             <span className="logo-sm">
-              <img src={logoSm} alt="" height="22" />
+              {/* <img src={logoSm} alt="" height="52" /> */}
+              <h4 style={{color: 'white', fontFamily: 'impact', padding: '0.7rem'}}>JOBS IN GHANA</h4>
             </span>
             <span className="logo-lg">
-              <img src={logoDark} alt="" height="17" />
+              {/* <img src={logoDark} alt="" height="17" /> */}
+              <h4 style={{color: 'white', fontFamily: 'impact', padding: '0.7rem'}}>JOBS IN GHANA</h4>
             </span>
           </Link>
 
           <Link to="/" className="logo logo-light">
             <span className="logo-sm">
-              <img src={logoSm} alt="" height="22" />
+              {/* <img src={logoSm} alt="" height="22" /> */}
+              <h4 style={{color: 'white', fontFamily: 'impact', padding: '0.7rem'}}>JOBS IN GHANA</h4>
             </span>
             <span className="logo-lg">
-              <img src={logoLight} alt="" height="17" />
+              {/* <img src={logoLight} alt="" height="17" /> */}
+              <h4 style={{color: 'white', fontFamily: 'impact', padding: '0.7rem'}}>JOBS IN GHANA</h4>
             </span>
           </Link>
           <button
