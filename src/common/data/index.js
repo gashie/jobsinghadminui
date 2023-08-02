@@ -77,6 +77,7 @@ import {
   lastMonthData,
   lastquarterData,
   dashboardChat,
+  projectsWidgets0,
 } from "./dashboardProjects";
 import {
   topartWork,
@@ -214,6 +215,7 @@ export {
   recentActivity,
   newsFeed,
   projectsWidgets,
+  projectsWidgets0,
   activeProjects,
   projectTasks,
   teamMembers,

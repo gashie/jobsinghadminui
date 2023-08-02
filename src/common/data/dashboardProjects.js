@@ -11,7 +11,60 @@ import avatar8 from "../../assets/images/users/avatar-8.jpg";
 import img1 from "../../assets/images/small/img-1.jpg";
 import img2 from "../../assets/images/small/img-2.jpg";
 
+import one from "../../assets/images/images/icon1.png"
+import two from "../../assets/images/images/icon2.png"
+import three from "../../assets/images/images/icon3.png"
+import four from "../../assets/images/images/icon4.png"
+
+
 const projectsWidgets = [
+    {
+        id: 1,
+        feaIcon: "",
+        feaIconClass: "light",
+        label: "Active Projects",
+        badgeClass: "danger",
+        icon: four,
+        percentage: "5.02 %",
+        caption: "Projects this month",
+        subCounter: [{ id: 1, counter: "100", suffix: "" }]
+    },
+    {
+        id: 1,
+        feaIcon: "",
+        feaIconClass: "light",
+        label: "Active Projects",
+        badgeClass: "danger",
+        icon: three,
+        percentage: "5.02 %",
+        caption: "Projects this month",
+        subCounter: [{ id: 1, counter: "200", suffix: "" }]
+    },
+    {
+        id: 1,
+        feaIcon: "",
+        feaIconClass: "light",
+        label: "Active Projects",
+        badgeClass: "danger",
+        icon: two,
+        percentage: "5.02 %",
+        caption: "Projects this month",
+        subCounter: [{ id: 1, counter: "50", suffix: "" }]
+    },
+    {
+        id: 1,
+        feaIcon: "",
+        feaIconClass: "light",
+        label: "Active Projects",
+        badgeClass: "danger",
+        icon: one,
+        percentage: "5.02 %",
+        caption: "Projects this month",
+        subCounter: [{ id: 1, counter: "220", suffix: "" }]
+    },
+   
+];
+const projectsWidgets0 = [
     {
         id: 1,
         feaIcon: "briefcase",
@@ -21,7 +74,8 @@ const projectsWidgets = [
         icon: "ri-arrow-down-s-line",
         percentage: "5.02 %",
         caption: "Projects this month",
-        subCounter: [{ id: 1, counter: "825", suffix: "" }]
+        subCounter: [{ id: 1, counter: "825", suffix: "", cash: false }], 
+      
     },
     {
         id: 2,
@@ -32,19 +86,22 @@ const projectsWidgets = [
         icon: "ri-arrow-up-s-line",
         percentage: "3.58 %",
         caption: "Leads this month",
-        subCounter: [{ id: 1, counter: "7522", suffix: "", separator: "," }]
+        subCounter: [{ id: 1, counter: "7522", suffix: "", separator: ",",  cash: true }],
+       
     },
     {
-        id: 3,
-        feaIcon: "clock",
-        feaIconClass: "info",
-        label: "Total Hours",
-        badgeClass: "danger",
-        icon: "ri-arrow-down-s-line",
-        percentage: "10.35 %",
-        caption: "Work this month",
-        subCounter: [{ id: 1, counter: "168", suffix: "h" }, { id: 1, counter: "40", suffix: "m" }]
-    }
+        id: 2,
+        feaIcon: "award",
+        feaIconClass: "warning",
+        label: "New Leads",
+        badgeClass: "success",
+        icon: "ri-arrow-up-s-line",
+        percentage: "3.58 %",
+        caption: "Leads this month",
+        subCounter: [{ id: 1, counter: "7522", suffix: "", separator: ",", cash: true }], 
+       
+    },
+   
 ];
 
 const overviewCounter = [
@@ -338,7 +395,15 @@ const allProjectData = [{
     name: 'Active Projects',
     type: 'bar',
     data: [8, 12, 7, 17, 21, 11, 5, 9, 7, 29, 12, 35]
-}];
+},
+ {
+    name: 'Active Projects',
+    type: 'bar',
+    data: [8, 12, 7, 17, 21, 11, 5, 9, 7, 29, 12, 35]
+},
+
+
+];
 
 const monthProjectData = [{
     name: 'Number of Projects',
@@ -380,7 +445,14 @@ const yearProjectData = [{
     name: 'Active Projects',
     type: 'bar',
     data: [38, 32, 27, 37, 41, 51, 35, 29, 17, 59, 32, 45]
-}];
+},
+ {
+    name: 'Active Projects',
+    type: 'bar',
+    data: [38, 32, 27, 37, 41, 51, 35, 29, 17, 59, 32, 45]
+},
+
+];
 
 // Project Status
 const allTimeData = [225, 152, 178, 189];
@@ -392,4 +464,4 @@ const lastMonthData = [155, 82, 78, 99];
 const lastquarterData = [185, 142, 158, 149];
 
 
-export { projectsWidgets, overviewCounter, activeProjects, projectTasks, teamMembers, allProjectData, monthProjectData, halfyearProjectData, yearProjectData, allTimeData, lastWeekData, lastMonthData, lastquarterData, dashboardChat };
+export { projectsWidgets, overviewCounter, activeProjects, projectTasks, teamMembers, allProjectData, monthProjectData, halfyearProjectData, yearProjectData, allTimeData, lastWeekData, lastMonthData, lastquarterData, dashboardChat, projectsWidgets0 };

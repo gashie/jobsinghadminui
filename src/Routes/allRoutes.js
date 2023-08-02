@@ -237,6 +237,10 @@ import PrivacyPolicy from "../pages/Pages/PrivacyPolicy";
 import TermsCondition from "../pages/Pages/TermsCondition";
 import JobLanding from "../pages/Landing/Job";
 
+
+//jobsinGhana
+import AdminDashboard from '../pages/Pages/AdminDashboard';
+
 const authProtectedRoutes = [
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
   { path: "/dashboard-crm", component: <DashboardCrm /> },
@@ -442,6 +446,10 @@ const authProtectedRoutes = [
 
   //User Profile
   { path: "/profile", component: <UserProfile /> },
+
+
+  //jobsInGhana
+  { path: "/admin-dashboard", component: <AdminDashboard /> },
 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
