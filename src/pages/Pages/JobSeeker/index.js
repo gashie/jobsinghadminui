@@ -31,6 +31,7 @@ import {
   NavLink,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 const Index = () => {
   document.title = " Job Seeker | Admin Dashboard";
@@ -134,8 +135,10 @@ const Index = () => {
               </div>
             </Row>
             {/* Side bar */}
-            <Row className="mt-3">
-              <Col xxl={2} md={4}>
+            <Row className="mt-3" style={{
+                marginRight: '-5rem'
+            }}>
+              <Col xxl={2} md={4} sm={5}>
                 <Card>
                   <div className="card-body pb-0">
                     <div
@@ -318,33 +321,7 @@ const Index = () => {
 
               {/* Main Content */}
               <Col xxl={9} md={6}>
-                <Card>
-                  <CardHeader className="align-items-center d-flex">
-                    <h4 className="card-title mb-0 flex-grow-1">
-                      Sales Forecast
-                    </h4>
-                    <div className="flex-shrink-0">
-                      <UncontrolledDropdown className="card-header-dropdown">
-                        <DropdownToggle
-                          tag="a"
-                          className="text-reset dropdown-btn"
-                          role="button"
-                        >
-                          <span className="fw-semibold text-uppercase fs-12">
-                            Sort by:{" "}
-                          </span>
-                        </DropdownToggle>
-                      </UncontrolledDropdown>
-                    </div>
-                  </CardHeader>
-                  <div className="card-body pb-0">
-                    <div
-                      id="sales-forecast-chart"
-                      className="apex-charts"
-                      dir="ltr"
-                    ></div>
-                  </div>
-                </Card>
+                  <Dashboard />
               </Col>
             </Row>
           </Container>
