@@ -160,7 +160,7 @@ const Navdata = () => {
       id: "dashboard",
       label: "Dashboards",
       icon: " bx bx-tachometer",
-      link: "/#",
+      link: "admin-dashboard",
       stateVariables: isDashboard,
       click: function (e) {
         e.preventDefault();

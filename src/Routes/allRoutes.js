@@ -241,6 +241,9 @@ import JobLanding from "../pages/Landing/Job";
 //jobsinGhana
 import AdminDashboard from '../pages/Pages/AdminDashboard';
 
+//jobSeeker
+import JobSeeker from '../pages/Pages/JobSeeker'
+
 const authProtectedRoutes = [
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
   { path: "/dashboard-crm", component: <DashboardCrm /> },
@@ -450,7 +453,7 @@ const authProtectedRoutes = [
 
   //jobsInGhana
   { path: "/admin-dashboard", component: <AdminDashboard /> },
-
+ 
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
   {
@@ -497,6 +500,10 @@ const publicRoutes = [
   { path: "/auth-pass-change-basic", component: <BasicPasswCreate /> },
   { path: "/auth-pass-change-cover", component: <CoverPasswCreate /> },
   { path: "/auth-offline", component: <Offlinepage /> },
+
+  //job-seeker
+  { path: "/job-seeker-admin", component: <JobSeeker /> },
+
 ];
 
 export { authProtectedRoutes, publicRoutes };
