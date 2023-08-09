@@ -9,7 +9,7 @@ function Dashboard() {
     <>
       <Row>
         {(projectsWidgets || []).map((item, key) => (
-          <Col xl={3} key={key} sm={6} md={6}>
+          <Col xl={3} key={key} sm={6} md={6} xs={9}>
             <Card className="card-animate">
               <CardBody>
                 <div className="d-flex align-items-center">
@@ -70,7 +70,7 @@ function Dashboard() {
       </Row>
 
       <Row>
-           <Col>
+           <Col xs={10} xxl={12}> 
            <Card>
             <CardBody>
                 <h4>Recommended For You</h4>

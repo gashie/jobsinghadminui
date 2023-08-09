@@ -244,6 +244,9 @@ import AdminDashboard from '../pages/Pages/AdminDashboard';
 //jobSeeker
 import JobSeeker from '../pages/Pages/JobSeeker'
 
+//home 
+import Home from '../pages/Pages/Home'
+
 const authProtectedRoutes = [
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
   { path: "/dashboard-crm", component: <DashboardCrm /> },
@@ -503,6 +506,9 @@ const publicRoutes = [
 
   //job-seeker
   { path: "/job-seeker-admin", component: <JobSeeker /> },
+
+  //home
+  { path: "/home", component: <Home /> },
 
 ];
 

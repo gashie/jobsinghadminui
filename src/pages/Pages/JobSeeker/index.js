@@ -1,18 +1,6 @@
 import React, { useState } from "react";
 
 import Navbar from "./navbar";
-import Home from "./home";
-import Client from "./client";
-import Services from "./services";
-import Features from "./features";
-import Plans from "./plans";
-import Faqs from "./faq";
-import Reviews from "./reviews";
-import Counter from "./counter";
-import WorkProcess from "./workProcess";
-import Team from "./team";
-import Contact from "./contact";
-import Cta from "./cta";
 import Footer from "./footer";
 import {
   Container,
@@ -31,7 +19,11 @@ import {
   NavLink,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import DashboardSeeker from "./DashboardSeeker";
+import Profile from "./Profile";
+import ChangePassword from "./ChangePassword";
+import MyResume from "./MyResume";
+import MyCoverLetters from "./MyCoverLetters";
 
 const Index = () => {
   document.title = " Job Seeker | Admin Dashboard";
@@ -56,6 +48,9 @@ const Index = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isAccount, setIsAccount] = useState(false);
+  const [isResume, setIsResume] = useState(false)
+
+  const [view , setView] = useState("My Account")
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -65,6 +60,10 @@ const Index = () => {
     setIsAccount(!isAccount);
   };
 
+  const toggleResume = () =>{
+    setIsResume(!isResume)
+  }
+
   const toTop = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -72,7 +71,7 @@ const Index = () => {
 
   return (
     <React.Fragment>
-      <div className="layout-wrapper landing">
+      <div className="layout-wrapper landing" style={{marginRight: '0rem'}}>
         <Navbar />
         {/* Search Bar */}
         <div className="page-content">
@@ -136,9 +135,10 @@ const Index = () => {
             </Row>
             {/* Side bar */}
             <Row className="mt-3" style={{
-                marginRight: '-5rem'
+                position: 'relative', 
+                left: "5rem"
             }}>
-              <Col xxl={2} md={4} sm={5}>
+              <Col xxl={2} md={4} sm={4} xs={9}>
                 <Card>
                   <div className="card-body pb-0">
                     <div
@@ -160,6 +160,11 @@ const Index = () => {
                                 color: "black",
                                 cursor: "pointer",
                               }}
+                              onClick={
+                                ()=>{
+                                    setView('My Account')
+                                }
+                              }
                             >
                               <div>
                                 <i
@@ -190,36 +195,93 @@ const Index = () => {
                           <Collapse isOpen={isAccount} className="ml-4">
                             <Nav vertical>
                               <NavItem>
-                                <NavLink href="#" style={{color: "gray", fontSize: '0.8rem'}}>Edit Profile</NavLink>
+                                <NavLink href="#" style={{color: view === 'Profile' ? 'black' : 'gray', fontSize: '0.8rem'}} onClick={
+                                    ()=>{
+                                        setView('Profile')
+                                    }
+                                }>Edit Profile</NavLink>
                               </NavItem>
-                              <NavItem>
-                                <NavLink href="#" style={{color: 'gray', fontSize: '0.8rem'}}>Change Password</NavLink>
+                              <NavItem
+                               onClick={
+                                ()=>{
+                                    setView('Change Password')
+                                }
+                               }
+                              >
+                                <NavLink href="#" style={{color: view === 'Change Password' ? 'black' : 'gray', fontSize: '0.8rem'}}>Change Password</NavLink>
                               </NavItem>
                             </Nav>
                           </Collapse>
                           <hr  style={{width: '14rem'}}/>
                         </NavItem>
 
-                       
 
-                        <NavItem >
-                          <NavLink href="#" style={{display: 'flex'}}>
-                            {/* <FaUser className="mr-2" /> */}
-                            <i
-                                  className="mdi mdi-email-search"
+                        <NavItem>
+                          <NavLink
+                            onClick={toggleResume}
+                            className="d-flex align-items-center"
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                gap: "6rem",
+                                color: "black",
+                                cursor: "pointer",
+                              }}
+                           
+                            >
+                              <div>
+                                <i
+                                  className="bx bx-user"
                                   style={{
                                     fontSize: "1.3rem",
                                     display: "flex",
-                                    color: 'gray'
                                   }}
                                 >
-                                  
-                                </i>
-                                <h5 style={{ marginLeft: "0.5rem", position: 'relative', top: '0.4rem', color: 'gray', fontSize: '0.8rem' }}>
-                                    My Resume
+                                  <h5 style={{ marginLeft: "0.5rem", width: 'max-content', fontSize: '0.8rem', color: 'gray' }}>
+                                    Resume Manager
                                   </h5>
+                                 
+                                </i>
+                              </div>
+                             
+                              <div style={{
+                                position: 'relative', left: "-2.2rem"
+                              }}>
+                                {isResume ? (
+                                  <i className="bx bxs-chevron-up"></i>
+                                ) : (
+                                  <i className="bx bxs-chevron-down"></i>
+                                )}
+                              </div>
+                            </div>
                           </NavLink>
+                          <Collapse isOpen={isResume} className="ml-4">
+                            <Nav vertical>
+                              <NavItem>
+                                <NavLink href="#" style={{color: view === 'My Resume' ? 'black' : 'gray', fontSize: '0.8rem'}} onClick={
+                                    ()=>{
+                                        setView('My Resume')
+                                    }
+                                }>My Resume</NavLink>
+                              </NavItem>
+                              <NavItem
+                               onClick={
+                                ()=>{
+                                    setView('My Cover Letters')
+                                }
+                               }
+                              >
+                                <NavLink href="#" style={{color: view === 'My Cover Letters' ? 'black' : 'gray', fontSize: '0.8rem'}}>My cover letters</NavLink>
+                              </NavItem>
+                            </Nav>
+                          </Collapse>
+                        
                         </NavItem>
+
+                       
+
                         <NavItem>
                           <NavLink
                             onClick={toggle}
@@ -321,7 +383,11 @@ const Index = () => {
 
               {/* Main Content */}
               <Col xxl={9} md={6}>
-                  <Dashboard />
+                 {view === 'My Account' && <DashboardSeeker />}
+                 {view === 'Profile' && <Profile />}
+                 {view === 'Change Password' && <ChangePassword />}
+                 {view === 'My Resume' && <MyResume />}
+                 {view === 'My Cover Letters' && <MyCoverLetters />}
               </Col>
             </Row>
           </Container>
