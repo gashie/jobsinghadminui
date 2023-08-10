@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Collapse, Container, NavbarToggler, NavLink } from "reactstrap";
+import { Collapse, Container, NavbarToggler, NavLink , Row} from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import { Link } from "react-router-dom";
 
@@ -22,13 +22,14 @@ const Navbar = () => {
         if (scrollup > 50) {
             setnavClass("is-sticky");
         } else {
-            setnavClass("");
+            setnavClass("is-sticky");
         }
     }
 
     return (
         <React.Fragment>
-            <nav className={"navbar navbar-expand-lg navbar-landing fixed-top " + navClass} id="navbar">
+            <Row>
+            <nav className={"navbar navbar-expand-lg navbar-landing fixed-top " + "is-sticky"} id="navbar">
                 <Container>
                     <Link className="navbar-brand" to="/index">
                         <h2
@@ -96,6 +97,7 @@ const Navbar = () => {
                     </Collapse>
                 </Container>
             </nav>
+            </Row>
         </React.Fragment>
     );
 };

@@ -72,7 +72,7 @@ const Index = () => {
   return (
     <React.Fragment>
       <div className="layout-wrapper landing" style={{marginRight: '0rem'}}>
-        <Navbar />
+       
         {/* Search Bar */}
         <div className="page-content">
           <Container fluid>

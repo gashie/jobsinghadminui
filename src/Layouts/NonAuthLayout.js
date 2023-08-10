@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import withRouter from '../Components/Common/withRouter';
+import Navbar from '../pages/Pages/JobSeeker/navbar';
 
 //redux
 import { useSelector } from "react-redux";
@@ -22,9 +23,10 @@ const NonAuthLayout = ({ children }) => {
         }
     }, [layoutModeType]);
     return (
-        <div>
+        <>
+            <Navbar />
             {children}
-        </div>
+        </>
     );
 };
 

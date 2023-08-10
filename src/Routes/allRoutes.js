@@ -243,9 +243,10 @@ import AdminDashboard from '../pages/Pages/AdminDashboard';
 
 //jobSeeker
 import JobSeeker from '../pages/Pages/JobSeeker'
+import Home from "../pages/Pages/Home";
+import JobDetails from "../pages/Pages/Jobs/JobDetails";
+import Apply from "../pages/Pages/Jobs/Apply";
 
-//home 
-import Home from '../pages/Pages/Home'
 
 const authProtectedRoutes = [
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
@@ -509,6 +510,10 @@ const publicRoutes = [
 
   //home
   { path: "/home", component: <Home /> },
+
+  //jobs
+  {path: '/job-details', component: <JobDetails />},
+  {path: '/apply', component: <Apply />},
 
 ];
 

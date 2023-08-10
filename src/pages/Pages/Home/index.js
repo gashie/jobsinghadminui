@@ -11,9 +11,7 @@ const Home = () => {
   return (
     <>
    <Col>
-        <Row>
-      <Navbar />
-      </Row>
+      
       <Row>
       <Search />
       </Row>

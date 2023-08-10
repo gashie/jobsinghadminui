@@ -73,7 +73,7 @@ function MyResume() {
                 </div>
 
 
- <h5 className="mb-3 mt-3" style={{fontWeight: 'boder'}}>Replace your CV</h5>
+             <h5 className="mb-3 mt-3" style={{fontWeight: 'boder'}}>Replace your CV</h5>
                 <Dropzone
                   onDrop={(acceptedFiles) => {
                     handleAcceptedFiles(acceptedFiles);
