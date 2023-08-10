@@ -21,9 +21,9 @@ const Home = () => {
       <Row>
       <Services />
       </Row>
-      <Row>
+      {/* <Row>
       <Footer />
-      </Row>
+      </Row> */}
     </Col>
     </>
   )

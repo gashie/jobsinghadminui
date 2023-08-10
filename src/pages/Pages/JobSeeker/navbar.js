@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
         <React.Fragment>
             <Row>
-            <nav className={"navbar navbar-expand-lg navbar-landing fixed-top " + "is-sticky"} id="navbar">
+            <nav className={"navbar navbar-expand-lg navbar-landing fixed-top " + "is-sticky"} id="navbar" style={{borderStyle: 'solid', borderTop: '0px', borderColor: '#244A59'}}>
                 <Container>
                     <Link className="navbar-brand" to="/index">
                         <h2
@@ -79,21 +79,19 @@ const Navbar = () => {
                                 <NavLink className="fs-14" href="#plans">Services</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="fs-14" href="#reviews">Reviews</NavLink>
+                                <NavLink className="fs-14" href="#plans">Jobseekers</NavLink>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="fs-14" href="#team">Team</NavLink>
+                            <li className="nav-item" style={{marginTop: '0.5rem'}}>
+                                <Link className="fs-12 btn btn-success" >Employers</Link>
                             </li>
-                            <li className="nav-item">
-                                <NavLink className="fs-14" href="#contact">Contact</NavLink>
-                            </li>
+                           
                         </Scrollspy>
 
-                        <div className="">
+                        {/* <div className="">
                             <Link to="/login" className="btn btn-link fw-medium text-decoration-none text-dark">
                                 JobSeekers</Link>
                             <Link to="/register" className="btn btn-primary">Employers</Link>
-                        </div>
+                        </div> */}
                     </Collapse>
                 </Container>
             </nav>

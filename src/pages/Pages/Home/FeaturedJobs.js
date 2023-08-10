@@ -57,10 +57,10 @@ const FeaturedJobs = () => {
             <Button style={{ backgroundColor: "#244a59" }}>See all jobs</Button>
           </div>
         </Row>
-        <Row id="job-list" className="p-4">
+        <Row id="job-list" className="p-3">
           {jobGrid.map((item, key) => (
-            <Col lg={3} md={4} key={key} xs={15} >
-              <Card>
+            <Col xl={3} md={6} key={key} xs={15} >
+              <Card className="">
                 <CardBody>
                   <Button
                     type="button"
@@ -70,12 +70,12 @@ const FeaturedJobs = () => {
                   >
                     <i className="mdi mdi-cards-heart fs-16"></i>
                   </Button>
-                  <div className="avatar-sm mb-4">
-                    <div className="avatar-title bg-light rounded">
+                  <div className="avatar-md mb-4">
+                    <div className="">
                       <img
                         src={item.companyLogo}
                         alt=""
-                        className="avatar-xxs"
+                        className="avatar-xxl"
                       />
                     </div>
                   </div>
@@ -197,12 +197,34 @@ const FeaturedJobs = () => {
                         <p>Policy</p>  
                         <p>Scince</p>  
                         </Col>
+                        <Col>
+                        <p>Accounting</p>      
+                        <p>Agriculture</p>  
+                        <p>Driving/Transportation</p>  
+                        <p>Health and Nutrition</p>  
+                        <p>Insurance</p>  
+                        <p>Automotive/Machinery/Aviation</p>  
+                        <p>Banking</p>  
+                        <p>Policy</p>  
+                        <p>Scince</p>  
+                        </Col>
+                        <Col>
+                        <p>Accounting</p>      
+                        <p>Data Management</p>  
+                        <p>Extractive</p>  
+                        <p>Health and Nutrition</p>  
+                        <p>Insurance</p>  
+                        <p>Automotive/Machinery/Aviation</p>  
+                        <p>Banking</p>  
+                        <p>Policy</p>  
+                        <p>Scince</p>  
+                        </Col>
                        
                       
                       </div>
                     </div>
                   </TabPane>
-                  <TabPane tabId="2">
+                  <TabPane tabId="2" >
                     <div className="d-flex">
                      
                       <div className="ms-2 p-3" style={{
@@ -210,6 +232,39 @@ const FeaturedJobs = () => {
                       }}>
                         <Col>
                         <p>Administration</p>      
+                        <p>Agriculture</p>  
+                        <p>Driving/Transportation</p>  
+                        <p>Health and Nutrition</p>  
+                        <p>Insurance</p>  
+                        <p>Automotive/Machinery/Aviation</p>  
+                        <p>Banking</p>  
+                        <p>Policy</p>  
+                        <p>Scince</p>  
+                        </Col>
+                        <Col>
+                        <p>Administration</p>      
+                        <p>Agriculture</p>  
+                        <p>Driving/Transportation</p>  
+                        <p>Health and Nutrition</p>  
+                        <p>Insurance</p>  
+                        <p>Automotive/Machinery/Aviation</p>  
+                        <p>Banking</p>  
+                        <p>Policy</p>  
+                        <p>Scince</p>  
+                        </Col>
+                        <Col>
+                        <p>Administration</p>      
+                        <p>Agriculture</p>  
+                        <p>Driving/Transportation</p>  
+                        <p>Health and Nutrition</p>  
+                        <p>Insurance</p>  
+                        <p>Automotive/Machinery/Aviation</p>  
+                        <p>Banking</p>  
+                        <p>Policy</p>  
+                        <p>Scince</p>  
+                        </Col>
+                        <Col>
+                        <p>Accounting</p>      
                         <p>Agriculture</p>  
                         <p>Driving/Transportation</p>  
                         <p>Health and Nutrition</p>  
@@ -231,6 +286,9 @@ const FeaturedJobs = () => {
 
        
         </Row>
+        <br />
+        <br />
+        <br />
       </Container>
     </>
   );

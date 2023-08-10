@@ -133,11 +133,7 @@ const Footer = () => {
 
           <Row className="text-center text-sm-start align-items-center mt-5">
             <Col sm={6}>
-              <div>
-                <p className="copy-rights mb-0">
-                  {new Date().getFullYear()} © JobsinGhana
-                </p>
-              </div>
+             
             </Col>
             <Col sm={6}>
               <div className="text-sm-end mt-3 mt-sm-0">
@@ -181,6 +177,11 @@ const Footer = () => {
               </div>
             </Col>
             <hr />
+            <div>
+                <p className="copy-rights mb-0">
+                  {new Date().getFullYear()} © JobsinGhana
+                </p>
+              </div>
           </Row>
         </Container>
       </footer>

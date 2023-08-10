@@ -395,7 +395,7 @@ const Index = () => {
         <br />
         <br />
         <br />
-        <Footer />
+        {/* <Footer /> */}
         <button
           onClick={() => toTop()}
           className="btn btn-danger btn-icon landing-back-top"

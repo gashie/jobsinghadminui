@@ -1,0 +1,22 @@
+.text-bg{
+    background-image: url('./Header.png');
+    backdrop-filter: brightness(90%);
+    background-repeat: no-repeat;
+    background-color: #244a59;
+    position: relative;
+    background-size: cover;
+}
+.text-bg::before{
+    content: '';
+    position: absolute;
+    backdrop-filter: brightness(90%);
+    background-repeat: no-repeat;
+    background-color: #244a59;
+    pointer-events:  none;
+   
+}
+
+/* .text-bg-color{
+    background-color: #244a59;
+   
+} */

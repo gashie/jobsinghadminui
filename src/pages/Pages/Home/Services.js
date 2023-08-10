@@ -27,11 +27,11 @@ const Services = () => {
           </Col>
         </Row>
 
-        <Row className="p-5">
-          <Col lg={4} md={4}>
+        <Row className="" style={{padding: '7rem'}}>
+          <Col xl={4} md={4}>
             <img src={rib} alt="" className="img-fluid rounded" />
 
-            <ul className="list-inline fs-14 text-muted"></ul>
+            <ul className="list-inline fs-14 text-muted "></ul>
             <Link to="#!">
               <h5 style={{ color: "white" }}>Career Advice</h5>
             </Link>
@@ -59,7 +59,7 @@ const Services = () => {
             <Link to="#!">
               <h5 style={{ color: "white" }}>Job Alerts</h5>
             </Link>
-            <p className="text-muted fs-14">
+            <p className="text-muted fs-14" >
               One disadvantage of Lorum Ipsum is that in Latin layouts certain
               letters appear more frequently than others.
             </p>

@@ -1,19 +1,22 @@
 import {Row, Col, Input} from 'reactstrap'
-
+import bg from '../../../assets/images/jobsinghana/bg2.png'
+import './Home.css'
 const Search = () => {
    return (
     <>
         
-              <div className="col-xxl-15 col-md-14">
+              <div className="col-xxl-15 col-md-14 text-bg-color">
                 <div className="card crm-widget">
-                  <div className="card-body p-0">
+                  <div className="card-body p-0 text-bg"
+                  > 
                     <div
-                      className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-5"
+                      className="row row-cols-xxl-5  row-cols-xxs-10 row-cols-md-3 row-cols-1 g-0 p-5"
                       style={{
-                        backgroundColor: "#244A59",
+                       
                         display: "flex",
                         justifyContent: "center",
-                        height: '55vh'
+                        height: '55vh',
+                        
                       }}
                     >
                         
@@ -34,13 +37,14 @@ const Search = () => {
                       >
                          
                         <div className="col-md-10">
-                         
+                          <h6 style={{fontWeight: 'bolder'}}>Search for your new job</h6>
                           <Input
                             type="text"
                             className="form-control form-control-lg bg-light border-light"
                             placeholder="Search for jobs of companies"
                           />
                         </div>
+                        
                         <div className="col-md-2">
                           <button
                             type="submit"
@@ -48,6 +52,8 @@ const Search = () => {
                             style={{
                               backgroundColor: "#244A59",
                               fontSize: "0.8rem",
+                              marginTop: '1.7rem',
+                              width: 'max-content'
                             }}
                           >
                             {" "}

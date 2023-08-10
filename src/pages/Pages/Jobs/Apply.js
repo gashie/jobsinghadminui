@@ -29,10 +29,18 @@ const Apply = () => {
 
   return (
     <>
+    <Link to="/job-details">
+    <h4 className="m-5" style={{fontWeight: 'bolder', cursor: 'pointer'}}>
+        <i className="bx bx-chevron-left" style={{fontSize: '1.5rem', position: 'relative', top: '0.3rem'}}></i>
+        Back to Jobs</h4>
+        </Link>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Col xl={9} md={12} xs={12}>
       <Row
         className="p-5 m-5"
         style={{ border: "1px solid black", display: "flex" }}
       >
+        <div style={{display: 'flex', gap: '0.8rem'}}>
         <div>
           <div className="avatar-lg mb-0 ">
             <div className="avatar-title bg-light rounded">
@@ -41,16 +49,21 @@ const Apply = () => {
           </div>
         </div>
 
-        <div>
-          <h5>Warehouse Clerk</h5>
+        <div className="mt-2">
+          <h5 style={{fontWeight: 'bolder'}}>Warehouse Clerk</h5>
           <p>Seatch</p>
           <p>Accra, Ghana</p>
         </div>
+        </div>
       </Row>
+      </Col>
+      </div>
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+<Col xl={9}>
       <Row className="p-0 m-5" style={{ border: "1px solid black" }}>
         <div className="p-5">
-          <Col md={6}>
+          <Col md={12}>
             <Label for="inputEmail4" className="form-label">
               Email address*
             </Label>
@@ -73,7 +86,7 @@ const Apply = () => {
                 placeholder="Password"
               />
             </Col>
-            <Col md={4}>
+            <Col md={6}>
               <Label for="inputState" className="form-label">
                 City
               </Label>
@@ -200,6 +213,8 @@ const Apply = () => {
           </Col>
         </div>
       </Row>
+      </Col>
+      </div>
     </>
   );
 };

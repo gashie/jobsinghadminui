@@ -30,6 +30,11 @@ import dropbox from "../../assets/images/brands/dropbox.png";
 import bitBucket from "../../assets/images/brands/bitbucket.png";
 import dribble from "../../assets/images/brands/dribbble.png";
 
+import seatec from '../../assets/images/jobsinghana/seatec.png'
+import lash from '../../assets/images/jobsinghana/lash.png'
+import uta from '../../assets/images/jobsinghana/uta.png'
+import advans from '../../assets/images/jobsinghana/advans.png'
+
 const jobWidgets = [
   {
     id: 1,
@@ -170,89 +175,89 @@ const jobList = [
 const jobGrid = [
   {
     id: 1,
-    companyLogo: cimg1,
-    jobTitle: "Education Training",
+    companyLogo: lash,
+    jobTitle: "Security Officer",
     companyName: "Micro Design",
     location: "Escondido,California",
     postDate: "15 Sep, 2022",
     description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+      "Saa..................................",
     requirement: ["Full Time", "Freelance", "Urgent"],
     status: "Active",
   },
   {
     id: 2,
-    companyLogo: cimg2,
-    jobTitle: "Magento Developer",
+    companyLogo: seatec,
+    jobTitle: "Warehouse Clerck",
     companyName: "Themesbrand",
     location: "Stordorf, Germany",
     postDate: "15 Sep, 2022",
     description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+      "Saa..................................",
     requirement: ["Part Time", "Freelance"],
 
     status: "New",
   },
   {
     id: 3,
-    companyLogo: cimg3,
-    jobTitle: "Product Designer",
+    companyLogo: advans,
+    jobTitle: "Sahrenut Procument Officer",
     companyName: "Themesbrand",
     location: "Cullera, Spain",
     postDate: "14 Sep, 2022",
     description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+      "Saa..................................",
     requirement: ["Full Time", " Private"],
     status: "Active",
   },
   {
     id: 4,
-    companyLogo: cimg4,
-    jobTitle: "React Developer",
+    companyLogo: uta,
+    jobTitle: "Sahrenut Procument Officer",
     companyName: "iTest Factory",
     location: "Haren, Germany",
     postDate: "13 Sep, 2022",
     description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+      "Saa..................................",
     requirement: ["Full Time", "Freelance", "Urgent"],
     status: "New",
   },
-  {
-    id: 5,
-    companyLogo: cimg5,
-    jobTitle: "UI/UX Designer",
-    companyName: "Creative Team",
-    location: "Vinninga, Sweden",
-    postDate: "13 Sep, 2022",
-    description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
-    requirement: ["Part Time"],
-    status: "Active",
-  },
-  {
-    id: 6,
-    companyLogo: cimg6,
-    jobTitle: "Marketing Director",
-    companyName: "Themesbrand",
-    location: "Zhoukou, China",
-    postDate: "12 Sep, 2022",
-    description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
-    requirement: ["Freelance", "Urgent"],
-    status: "Close",
-  },
-  {
-    id: 7,
-    companyLogo: cimg7,
-    jobTitle: "Full Stack Engineer",
-    companyName: "Syntyce Solutions",
-    location: "Boroaia, Romania",
-    postDate: "11 Sep, 2022",
-    description:
-      "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
-    requirement: ["Full Time"],
-    status: "Active",
-  },
+  // {
+  //   id: 5,
+  //   companyLogo: cimg5,
+  //   jobTitle: "UI/UX Designer",
+  //   companyName: "Creative Team",
+  //   location: "Vinninga, Sweden",
+  //   postDate: "13 Sep, 2022",
+  //   description:
+  //     "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+  //   requirement: ["Part Time"],
+  //   status: "Active",
+  // },
+  // {
+  //   id: 6,
+  //   companyLogo: cimg6,
+  //   jobTitle: "Marketing Director",
+  //   companyName: "Themesbrand",
+  //   location: "Zhoukou, China",
+  //   postDate: "12 Sep, 2022",
+  //   description:
+  //     "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+  //   requirement: ["Freelance", "Urgent"],
+  //   status: "Close",
+  // },
+  // {
+  //   id: 7,
+  //   companyLogo: cimg7,
+  //   jobTitle: "Full Stack Engineer",
+  //   companyName: "Syntyce Solutions",
+  //   location: "Boroaia, Romania",
+  //   postDate: "11 Sep, 2022",
+  //   description:
+  //     "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+  //   requirement: ["Full Time"],
+  //   status: "Active",
+  // },
   // {
   //   id: 8,
   //   companyLogo: cimg8,
