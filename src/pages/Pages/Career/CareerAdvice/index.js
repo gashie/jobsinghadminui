@@ -37,6 +37,7 @@ const CareerAdvice = () => {
               flexWrap: "wrap",
             }}
           >
+            
             <Col
               md={20}
               xl={15}
@@ -135,6 +136,8 @@ const CareerAdvice = () => {
         </Col>
       </Row>
 
+
+<Container>
      
         <Col xl={20}>
           <div style={{ display: "flex", gap: '5rem', flexWrap: 'wrap', width: '100%', justifyContent: 'center' }} className="mt-5" >
@@ -237,6 +240,7 @@ const CareerAdvice = () => {
             
           </div>
         </Col>
+        </Container>
      
     </>
   );
