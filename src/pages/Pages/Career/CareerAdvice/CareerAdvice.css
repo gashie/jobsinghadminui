@@ -1,0 +1,20 @@
+.text-bg-size{
+   position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 70vh;
+}
+
+
+.text-bg{
+    position: absolute;
+    background-image: url('../../../../assets/images/jobsinghana/bg1.png');
+    backdrop-filter: brightness(90%);
+    background-repeat: no-repeat;
+    background-color: #244a59;
+    width: 100%;
+    height: inherit;
+    object-fit: fill;
+    background-size: contain;
+    z-index: -1;
+}

@@ -246,6 +246,7 @@ import JobSeeker from '../pages/Pages/JobSeeker'
 import Home from "../pages/Pages/Home";
 import JobDetails from "../pages/Pages/Jobs/JobDetails";
 import Apply from "../pages/Pages/Jobs/Apply";
+import CareerAdvice from "../pages/Pages/Career/CareerAdvice";
 
 
 const authProtectedRoutes = [
@@ -514,6 +515,9 @@ const publicRoutes = [
   //jobs
   {path: '/job-details', component: <JobDetails />},
   {path: '/apply', component: <Apply />},
+
+  //carrer
+  {path: '/career-advice', component: <CareerAdvice />}
 
 ];
 
