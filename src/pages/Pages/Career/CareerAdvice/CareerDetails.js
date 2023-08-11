@@ -70,7 +70,7 @@ const data = [
   // ... add more items
 ];
 
-const PaginationExample = () => {
+const CareerDetails = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -170,4 +170,4 @@ const PaginationExample = () => {
   );
 };
 
-export default PaginationExample;
+export default CareerDetails;
