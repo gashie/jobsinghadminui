@@ -1,7 +1,7 @@
 import "./CareerAdvice.css";
 import { Container, Row, Col, Button, CardBody, Card } from "reactstrap";
 import { Link } from "react-router-dom";
-import bg from "../../../../assets/images/jobsinghana/bg1.png";
+import bg from "../../../../../assets/images/jobsinghana/bg1.png";
 import car from './CareerImages/car.png'
 import ent from './CareerImages/ent.png'
 import health from './CareerImages/heath.png'

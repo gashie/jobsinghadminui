@@ -243,14 +243,15 @@ import AdminDashboard from '../pages/Pages/AdminDashboard';
 
 //jobSeeker
 import JobSeeker from '../pages/Pages/JobSeeker'
-import Home from "../pages/Pages/Home";
-import JobDetails from "../pages/Pages/Jobs/JobDetails";
-import Apply from "../pages/Pages/Jobs/Apply";
-import CareerAdvice from "../pages/Pages/Career/CareerAdvice";
-import CareerAdviceDetails from '../pages/Pages/Career/CareerAdvice/CareerDetails'
-import LatestNews from "../pages/Pages/Career/HRNews/LatestNews";
-import NewsArchive from "../pages/Pages/Career/HRNews/NewsArchive";
-import TrainingEvents from "../pages/Pages/Career/TrainingEvents";
+import Home from "../pages/Pages/Front/Home";
+import JobDetails from "../pages/Pages/Front/Jobs/JobDetails";
+import Apply from "../pages/Pages/Front/Jobs/Apply";
+import CareerAdvice from "../pages/Pages/Front/Career/CareerAdvice";
+import CareerAdviceDetails from '../pages/Pages/Front/Career/CareerAdvice/CareerDetails'
+import LatestNews from "../pages/Pages/Front/Career/HRNews/LatestNews";
+import NewsArchive from "../pages/Pages/Front/Career/HRNews/NewsArchive";
+import TrainingEvents from "../pages/Pages/Front/Career/TrainingEvents";
+import ClassroomCourseDetails from "../pages/Pages/Front/Career/TrainingEvents/ClassroomCourseDetails";
 
 
 const authProtectedRoutes = [
@@ -527,7 +528,8 @@ const publicRoutes = [
   //news
   {path: '/latest-news', component: <LatestNews />},
   {path: '/news-archive', component: <NewsArchive />},
-  {path: '/training-events', component: <TrainingEvents />}
+  {path: '/training-events', component: <TrainingEvents />},
+  {path: '/course-details', component: <ClassroomCourseDetails />}
 
 
 ];

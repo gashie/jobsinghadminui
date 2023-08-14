@@ -1,5 +1,5 @@
 import { Container, Row, Col, Card, CardBody, Button } from "reactstrap";
-import { jobGrid } from "../../../common/data/appsJobs";
+import { jobGrid } from "../../../../common/data/appsJobs";
 import { Link } from "react-router-dom";
 import lash from "./lash.png";
 

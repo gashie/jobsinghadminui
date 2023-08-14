@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Row, Col, Card, CardBody, Button, Container, NavLink, NavItem, TabPane, TabContent, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
-import { jobGrid } from "../../../common/data/appsJobs";
+import { jobGrid } from "../../../../common/data/appsJobs";
 import classnames from "classnames";
 
 import SimpleBar from "simplebar-react";

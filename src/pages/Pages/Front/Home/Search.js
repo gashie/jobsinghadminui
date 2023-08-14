@@ -1,5 +1,5 @@
 import {Row, Col, Input} from 'reactstrap'
-import bg from '../../../assets/images/jobsinghana/bg2.png'
+import bg from '../../../../assets/images/jobsinghana/bg2.png'
 import './Home.css'
 const Search = () => {
    return (

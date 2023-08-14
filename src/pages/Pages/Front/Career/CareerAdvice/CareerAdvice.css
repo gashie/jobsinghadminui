@@ -8,7 +8,7 @@
 
 .text-bg{
     position: absolute;
-    background-image: url('../../../../assets/images/jobsinghana/bg1.png');
+    background-image: url('../../../../../assets/images/jobsinghana/bg1.png');
     backdrop-filter: brightness(90%);
     background-repeat: no-repeat;
     background-color: #244a59;
