@@ -1544,11 +1544,13 @@ const TrainingEvents = (props) => {
           gap: "1.2rem",
           backgroundColor: "#244a59",
         }}
-        className="mt-5 p-3"
+        className="mt-5"
       >
         <div>
           <img src={online} alt="online-img" className="img-fluid"></img>
         </div>
+        <div className="p-3">
+
         <div style={{marginTop: '5rem'}}>
           <h6 style={{ fontWeight: "bolder", color: "white" }}>DISCOVER OUR</h6>
           <h4 style={{ fontWeight: "bolder", color: "white" }}>
@@ -1568,6 +1570,7 @@ const TrainingEvents = (props) => {
               cursor: 'pointer'
             }}
           ></i>
+        </div>
         </div>
       </div>
     </>
