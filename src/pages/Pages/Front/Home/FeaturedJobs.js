@@ -50,8 +50,8 @@ const FeaturedJobs = () => {
       <Container fluid className="col-md-10 col-xxl-10">
         <Row>
           <div
-            style={{ display: "flex", justifyContent: "space-between" }}
-            className="mt-5 p-4"
+            style={{ display: "flex", justifyContent: "space-between", marginTop: '40rem' }}
+            className=" p-4"
           >
             <h4>Featured Jobs</h4>
             <Button style={{ backgroundColor: "#244a59" }}>See all jobs</Button>
@@ -184,7 +184,7 @@ const FeaturedJobs = () => {
                     <div className="d-flex">
                      
                       <div className="ms-2 p-3" style={{
-                        display: "flex", gap: '2rem' 
+                        display: "flex", gap: '2rem' , flexWrap: "wrap"
                       }}>
                         <Col>
                         <p>Accounting</p>      
@@ -228,7 +228,7 @@ const FeaturedJobs = () => {
                     <div className="d-flex">
                      
                       <div className="ms-2 p-3" style={{
-                        display: "flex", gap: '1rem' 
+                        display: "flex", gap: '1rem' , flexWrap: "wrap"
                       }}>
                         <Col>
                         <p>Administration</p>      

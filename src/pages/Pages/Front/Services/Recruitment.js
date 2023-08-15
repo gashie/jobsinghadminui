@@ -340,7 +340,7 @@ const Recruitment = () => {
 
       {/* Part 5 */}
       <div style={{display: 'flex', justifyContent: 'center'}}>
-      <Col className="p-5 " lg={8}>
+      <Col className="" lg={8} > 
          <h4 style={{textAlign: 'center', color: '#244a59', fontWeight: 'bolder'}} className="mt-5">Contact US</h4>
         <Container className="p-5">
             <Card className="p-5">

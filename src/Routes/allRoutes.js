@@ -253,6 +253,7 @@ import NewsArchive from "../pages/Pages/Front/Career/HRNews/NewsArchive";
 import TrainingEvents from "../pages/Pages/Front/Career/TrainingEvents";
 import ClassroomCourseDetails from "../pages/Pages/Front/Career/TrainingEvents/ClassroomCourseDetails";
 import Recruitment from "../pages/Pages/Front/Services/Recruitment";
+import AllFirms from "../pages/Pages/Front/Services/AllFirms";
 
 
 const authProtectedRoutes = [
@@ -533,7 +534,8 @@ const publicRoutes = [
   {path: '/course-details', component: <ClassroomCourseDetails />},
 
   //Services
-  {path: '/services-recruitment', component: <Recruitment />}
+  {path: '/services-recruitment', component: <Recruitment />},
+  {path: '/services-all-firms', component: <AllFirms />},
 
 
 ];
