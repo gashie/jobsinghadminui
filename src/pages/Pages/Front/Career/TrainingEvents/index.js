@@ -722,6 +722,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -734,13 +735,16 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '1.5rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -750,13 +754,17 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '2rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
-                                    marginTop: "0rem",
+                                    marginTop: "0.4rem",
+                                    width: 'max-content',
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   Accra - GH
@@ -785,6 +793,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -797,13 +806,16 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '1.5rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -813,13 +825,17 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '2rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
-                                    marginTop: "0rem",
+                                    marginTop: "0.4rem",
+                                    width: 'max-content',
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   Accra - GH
@@ -848,6 +864,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -860,13 +877,16 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '1.5rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -876,13 +896,17 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '2rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
-                                    marginTop: "0rem",
+                                    marginTop: "0.4rem",
+                                    width: 'max-content',
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   Accra - GH
@@ -911,6 +935,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -923,13 +948,16 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '1.5rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -939,13 +967,17 @@ const TrainingEvents = (props) => {
                                     height: "2rem",
                                     backgroundColor: "black",
                                     width: "1px",
-                                    marginTop: "0.6rem",
+                                    marginTop: "1rem",
+                                    marginRight: '2rem'
                                   }}
                                 ></div>
                                 <h5
+                                className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
-                                    marginTop: "0rem",
+                                    marginTop: "0.4rem",
+                                    width: 'max-content',
+                                    marginRight: '2rem'
                                   }}
                                 >
                                   Accra - GH
@@ -964,132 +996,8 @@ const TrainingEvents = (props) => {
                             </Col>
                           </CardBody>
                         </Card>
-                        <Card>
-                          <CardBody>
-                            <Col>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <h5
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "1rem",
-                                  }}
-                                >
-                                  Contract Management Principles & practice
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "0.6rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "01rem",
-                                  }}
-                                >
-                                  03 - 07 Jul 2023
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "0.6rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "0rem",
-                                  }}
-                                >
-                                  Accra - GH
-                                  <i
-                                    className="bx bxs-caret-right-circle"
-                                    style={{
-                                      fontSize: "1.5rem",
-                                      padding: "0.5rem",
-                                      position: "relative",
-                                      top: "0.3rem",
-                                      color: "#244a59",
-                                    }}
-                                  ></i>
-                                </h5>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
-                        <Card>
-                          <CardBody>
-                            <Col>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <h5
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "1rem",
-                                  }}
-                                >
-                                  Contract Management Principles & practice
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "0.6rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "01rem",
-                                  }}
-                                >
-                                  03 - 07 Jul 2023
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "0.6rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "0rem",
-                                  }}
-                                >
-                                  Accra - GH
-                                  <i
-                                    className="bx bxs-caret-right-circle"
-                                    style={{
-                                      fontSize: "1.5rem",
-                                      padding: "0.5rem",
-                                      position: "relative",
-                                      top: "0.3rem",
-                                      color: "#244a59",
-                                    }}
-                                  ></i>
-                                </h5>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
+                        
+                       
                       </>
                     ) : (
                       // Grid view
