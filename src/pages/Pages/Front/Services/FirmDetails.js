@@ -75,8 +75,8 @@ const FirmDetails = () => {
       <div style={{ backgroundColor: "white", padding: "4rem" }}>
         <Container>
           {/* Logos */}
-          <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="">
-            View all outsourcing firms
+          <h5 style={{ fontWeight: "bolder", color: "#244a59", padding: "2rem", cursor: "pointer" }} className="">
+            <i className="bx bx-left-arrow-alt" style={{fontSize:"1.5rem", position: 'relative', top: '0.3rem'}}></i>View all outsourcing firms
           </h5>
           <Col xs={20}>
             <Card style={{ backgroundColor: "#F2F4F5" }}>

@@ -255,6 +255,7 @@ import ClassroomCourseDetails from "../pages/Pages/Front/Career/TrainingEvents/C
 import Recruitment from "../pages/Pages/Front/Services/Recruitment";
 import AllFirms from "../pages/Pages/Front/Services/AllFirms";
 import FirmDetails from "../pages/Pages/Front/Services/FirmDetails";
+import Advertising from "../pages/Pages/Front/Services/Advertising";
 
 
 const authProtectedRoutes = [
@@ -538,6 +539,7 @@ const publicRoutes = [
   {path: '/services-recruitment', component: <Recruitment />},
   {path: '/manpower-outsourcing', component: <AllFirms />},
   {path: '/manpower-outsourcing-details', component: <FirmDetails />},
+  {path: '/advertising', component: <Advertising />},
 
 
 ];
