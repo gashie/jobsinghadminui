@@ -254,6 +254,7 @@ import TrainingEvents from "../pages/Pages/Front/Career/TrainingEvents";
 import ClassroomCourseDetails from "../pages/Pages/Front/Career/TrainingEvents/ClassroomCourseDetails";
 import Recruitment from "../pages/Pages/Front/Services/Recruitment";
 import AllFirms from "../pages/Pages/Front/Services/AllFirms";
+import FirmDetails from "../pages/Pages/Front/Services/FirmDetails";
 
 
 const authProtectedRoutes = [
@@ -535,7 +536,8 @@ const publicRoutes = [
 
   //Services
   {path: '/services-recruitment', component: <Recruitment />},
-  {path: '/services-all-firms', component: <AllFirms />},
+  {path: '/manpower-outsourcing', component: <AllFirms />},
+  {path: '/manpower-outsourcing-details', component: <FirmDetails />},
 
 
 ];

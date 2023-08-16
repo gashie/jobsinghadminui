@@ -77,6 +77,7 @@ const FeaturedJobs = () => {
 
   return (
     <>
+    <div  style={{backgroundColor: "white"}}>
       <Container fluid className="col-md-10 col-xxl-20">
         {/* Browse Jobs */}
         <Row>
@@ -86,12 +87,23 @@ const FeaturedJobs = () => {
               style={{
                 fontWeight: "bolder",
                 marginTop: "10rem",
-                backgroundColor: "#F2F4F5",
+                backgroundColor: "white",
                 color: '#244a59'
               }}
             >
              Outsourcing Directory
             </h5>
+            <h6
+              className="mb-0 mt-0 p-4"
+              style={{
+                fontWeight: "bolder",
+                marginTop: "10rem",
+                backgroundColor: "white",
+                color: '#244a59'
+              }}
+            >
+            The world’s most complete directory of global outsourcing firms.
+            </h6>
             <Nav
               tabs
               className="nav nav-tabs nav-tabs-custom nav-justified mb-3 p-0"
@@ -1111,7 +1123,7 @@ const FeaturedJobs = () => {
         <br />
         <br />
         <br />
-      </Container>
+      </Container></div>
     </>
   );
 };

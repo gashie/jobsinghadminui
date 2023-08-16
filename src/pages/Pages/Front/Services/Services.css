@@ -1,0 +1,10 @@
+.gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px; /* Adjust the height as needed */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+    pointer-events: none;
+  }
+  

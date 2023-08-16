@@ -49,11 +49,11 @@ const Recruitment = () => {
 
   return (
     <>
-      <div></div>
+      <div   style={{backgroundColor: "white"}}>
 
       <Row className="justify-content-center">
         <Col xl={20} xs={10} md={20} className="text-bg-size">
-          <img src={bg} className="text-bg" alt="bg"></img>
+          <img src={bg} className="text-bg" alt="bg" style={{zIndex: '1'}}></img>
 
           <div
             className="m-5 mt-5"
@@ -87,7 +87,7 @@ const Recruitment = () => {
               }}
             >
               <Row>
-                <Col md={20} style={{ display: "grid", gap: "2rem" }}>
+                <Col md={20} style={{ display: "grid", gap: "2rem", zIndex: '1' }}>
                   <Button
                     style={{
                       color: "white",
@@ -115,7 +115,7 @@ const Recruitment = () => {
                 </Col>
               </Row>
               <Row>
-                <Col md={20} style={{ display: "grid", gap: "2rem" }}>
+                <Col md={20} style={{ display: "grid", gap: "2rem", zIndex: '1' }}>
                   <Button
                     style={{
                       color: "white",
@@ -147,9 +147,10 @@ const Recruitment = () => {
         </Col>
       </Row>
 
-      <Container className="mt-5">
-        <Col xs={10} className="mt-5">
-          <h5 style={{ color: "#244a59", fontWeight: "bolder" }}>
+<div style={{backgroundColor: '#F2F4F5', padding: '2rem'}}>
+      <Container >
+        <Col xs={10} className="" >
+          <h5 style={{ color: "#244a59", fontWeight: "bolder" }} className="mt-5">
             Recruitment/Headhunting
           </h5>
           <p className="fs-16">
@@ -186,6 +187,7 @@ const Recruitment = () => {
           </Col>
         </div>
       </Container>
+      </div>
       {/* Part 2 */}
       <Col>
         <div
@@ -203,6 +205,8 @@ const Recruitment = () => {
         </div>
       </Col>
       {/* Part 3 */}
+
+      <div style={{backgroundColor: '#F2F4F5'}}>
       <Container>
         <Col className="p-3 mt-5">
           <div
@@ -284,8 +288,9 @@ const Recruitment = () => {
           </div>
         </Col>
       </Container>
-
+      </div>
       {/* Part 4 */}
+
 
       <Col>
         <div
@@ -339,7 +344,7 @@ const Recruitment = () => {
       </Col>
 
       {/* Part 5 */}
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{display: 'flex', justifyContent: 'center', backgroundColor: '#F2F4F5'}}>
       <Col className="" lg={8} > 
          <h4 style={{textAlign: 'center', color: '#244a59', fontWeight: 'bolder'}} className="mt-5">Contact US</h4>
         <Container className="p-5">
@@ -518,6 +523,7 @@ const Recruitment = () => {
           </Container>
         </div>
       </Col>
+      </div>
     </>
   );
 };
