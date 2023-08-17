@@ -14,6 +14,8 @@ import {
 import classnames from "classnames";
 import img1 from "../../../../assets/images/jobsinghana/seatec.png";
 import Applications from "../Applications";
+import Alerts from "../Alerts";
+import SavedJobs from "../SavedJobs";
 
 const Dashboard = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -302,26 +304,12 @@ const Dashboard = () => {
               </TabPane>
 
               <TabPane tabId="3" id="base-justified-messages">
-                <h6>Messages</h6>
-                <p className="mb-0">
-                  Etsy mixtape wayfarers, ethical wes anderson tofu before they
-                  sold out mcsweeney's organic lomo retro fanny pack lo-fi
-                  farm-to-table readymade. Messenger bag gentrify pitchfork
-                  tattooed craft beer, iphone skateboard locavore carles etsy
-                  salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                </p>
+              
+                <Alerts />
               </TabPane>
 
               <TabPane tabId="4" id="base-justified-settings">
-                <h6>Settings</h6>
-                <p className="mb-0">
-                  Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
-                  art party before they sold out master cleanse gluten-free
-                  squid scenester freegan cosby sweater. Fanny pack portland
-                  seitan DIY, art party locavore wolf cliche high life echo park
-                  Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before
-                  they sold out farm-to-table VHS.
-                </p>
+               <SavedJobs />
               </TabPane>
             </TabContent>
           </CardBody>
