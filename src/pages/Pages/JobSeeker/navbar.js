@@ -67,7 +67,10 @@ const Navbar = () => {
                             id="navbar-example"
                         >
                             <li className="nav-item">
-                                <NavLink className="fs-14" href="#hero">Home</NavLink>
+                                <NavLink className="fs-14" href="/home"
+                                
+                                
+                                >Home</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="fs-14" href="#services">Jobs</NavLink>

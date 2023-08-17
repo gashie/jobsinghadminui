@@ -256,6 +256,8 @@ import Recruitment from "../pages/Pages/Front/Services/Recruitment";
 import AllFirms from "../pages/Pages/Front/Services/AllFirms";
 import FirmDetails from "../pages/Pages/Front/Services/FirmDetails";
 import Advertising from "../pages/Pages/Front/Services/Advertising";
+import Dashboard from "../pages/Pages/JobSeeker/Dashboard/Dashboard";
+import Applications from "../pages/Pages/JobSeeker/Applications";
 
 
 const authProtectedRoutes = [
@@ -467,6 +469,9 @@ const authProtectedRoutes = [
 
   //jobsInGhana
   { path: "/admin-dashboard", component: <AdminDashboard /> },
+  { path: "/job-seeker-admin", component: <JobSeeker /> },
+  { path: "/job-seeker-dashboard", component: <Dashboard /> },
+  { path: "/job-seeker-applications", component: <Applications /> },
  
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
@@ -515,8 +520,7 @@ const publicRoutes = [
   { path: "/auth-pass-change-cover", component: <CoverPasswCreate /> },
   { path: "/auth-offline", component: <Offlinepage /> },
 
-  //job-seeker
-  { path: "/job-seeker-admin", component: <JobSeeker /> },
+
 
   //home
   { path: "/home", component: <Home /> },

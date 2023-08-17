@@ -1,69 +1,92 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
-import { Collapse } from 'reactstrap';
+import { Link } from "react-router-dom";
+import { Collapse } from "reactstrap";
 
 // Import Data
 import navdata from "../LayoutMenuData";
 //i18n
 import { withTranslation } from "react-i18next";
-import withRouter from '../../Components/Common/withRouter';
-import { useSelector } from 'react-redux';
+import withRouter from "../../Components/Common/withRouter";
+import { useSelector } from "react-redux";
 
 const VerticalLayout = (props) => {
   const navData = navdata().props.children;
 
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowMenu(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowMenu(false);
+  };
+
+
   /*
     layout settings
     */
-    const {
-      leftsidbarSizeType, sidebarVisibilitytype, layoutType
-  } = useSelector(state => ({
+  const { leftsidbarSizeType, sidebarVisibilitytype, layoutType } = useSelector(
+    (state) => ({
       leftsidbarSizeType: state.Layout.leftsidbarSizeType,
       sidebarVisibilitytype: state.Layout.sidebarVisibilitytype,
-      layoutType: state.Layout.layoutType
-  }));
+      layoutType: state.Layout.layoutType,
+    })
+  );
 
   //vertical and semibox resize events
   const resizeSidebarMenu = useCallback(() => {
-      var windowSize = document.documentElement.clientWidth;
-      if (windowSize >= 1025) {
-          if (document.documentElement.getAttribute("data-layout") === "vertical") {
-              document.documentElement.setAttribute("data-sidebar-size", leftsidbarSizeType);
-          }
-          if (document.documentElement.getAttribute("data-layout") === "semibox") {
-              document.documentElement.setAttribute("data-sidebar-size", leftsidbarSizeType);
-          }
-          if ((sidebarVisibilitytype === "show" || layoutType === "vertical" || layoutType === "twocolumn") && document.querySelector(".hamburger-icon")) {
-              document.querySelector(".hamburger-icon").classList.remove("open");
-          } else {
-              document.querySelector(".hamburger-icon").classList.add("open");
-          }
-
-      } else if (windowSize < 1025 && windowSize > 767) {
-          document.body.classList.remove("twocolumn-panel");
-          if (document.documentElement.getAttribute("data-layout") === "vertical") {
-              document.documentElement.setAttribute("data-sidebar-size", "sm");
-          }
-          if (document.documentElement.getAttribute("data-layout") === "semibox") {
-              document.documentElement.setAttribute("data-sidebar-size", "sm");
-          }
-          if (document.querySelector(".hamburger-icon")) {
-              document.querySelector(".hamburger-icon").classList.add("open");
-          }
-      } else if (windowSize <= 767) {
-          document.body.classList.remove("vertical-sidebar-enable");
-          if (document.documentElement.getAttribute("data-layout") !== "horizontal") {
-              document.documentElement.setAttribute("data-sidebar-size", "lg");
-          }
-          if (document.querySelector(".hamburger-icon")) {
-              document.querySelector(".hamburger-icon").classList.add("open");
-          }
+    var windowSize = document.documentElement.clientWidth;
+    if (windowSize >= 1025) {
+      if (document.documentElement.getAttribute("data-layout") === "vertical") {
+        document.documentElement.setAttribute(
+          "data-sidebar-size",
+          leftsidbarSizeType
+        );
       }
+      if (document.documentElement.getAttribute("data-layout") === "semibox") {
+        document.documentElement.setAttribute(
+          "data-sidebar-size",
+          leftsidbarSizeType
+        );
+      }
+      if (
+        (sidebarVisibilitytype === "show" ||
+          layoutType === "vertical" ||
+          layoutType === "twocolumn") &&
+        document.querySelector(".hamburger-icon")
+      ) {
+        document.querySelector(".hamburger-icon").classList.remove("open");
+      } else {
+        document.querySelector(".hamburger-icon").classList.add("open");
+      }
+    } else if (windowSize < 1025 && windowSize > 767) {
+      document.body.classList.remove("twocolumn-panel");
+      if (document.documentElement.getAttribute("data-layout") === "vertical") {
+        document.documentElement.setAttribute("data-sidebar-size", "sm");
+      }
+      if (document.documentElement.getAttribute("data-layout") === "semibox") {
+        document.documentElement.setAttribute("data-sidebar-size", "sm");
+      }
+      if (document.querySelector(".hamburger-icon")) {
+        document.querySelector(".hamburger-icon").classList.add("open");
+      }
+    } else if (windowSize <= 767) {
+      document.body.classList.remove("vertical-sidebar-enable");
+      if (
+        document.documentElement.getAttribute("data-layout") !== "horizontal"
+      ) {
+        document.documentElement.setAttribute("data-sidebar-size", "lg");
+      }
+      if (document.querySelector(".hamburger-icon")) {
+        document.querySelector(".hamburger-icon").classList.add("open");
+      }
+    }
   }, [leftsidbarSizeType, sidebarVisibilitytype, layoutType]);
-    useEffect(() => {
-      window.addEventListener("resize", resizeSidebarMenu, true);
-    },[resizeSidebarMenu]);
+  useEffect(() => {
+    window.addEventListener("resize", resizeSidebarMenu, true);
+  }, [resizeSidebarMenu]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -160,14 +183,16 @@ const VerticalLayout = (props) => {
                 <span data-key="t-menu">{props.t(item.label)}</span>
               </li>
             ) : item.subItems ? (
-              <li className="nav-item">
+              <li className="nav-item" >
                 <Link
                   onClick={item.click}
                   className="nav-link menu-link"
                   to={item.link ? item.link : "/#"}
                   data-bs-toggle="collapse"
+                  style={{display: 'grid', justifyContent: 'center', borderTop: '1px solid white'}}
+                 
                 >
-                  <i className={item.icon}></i>{" "}
+                  <i className={item.icon} style={{fontSize: "2rem", textAlign: 'center'}}></i>{" "}
                   <span data-key="t-apps">{props.t(item.label)}</span>
                 </Link>
                 <Collapse
@@ -175,13 +200,16 @@ const VerticalLayout = (props) => {
                   isOpen={item.stateVariables}
                   id="sidebarApps"
                 >
-                  <ul className="nav nav-sm flex-column test">
+                  <div className="" style={{backgroundColor: 'gray'}}>
                     {/* subItms  */}
                     {item.subItems &&
                       (item.subItems || []).map((subItem, key) => (
                         <React.Fragment key={key}>
                           {!subItem.isChildItem ? (
-                            <li className="nav-item">
+                            <p className=""
+                            style={{backgroundColor: ""}}
+                             >
+                              
                               <Link
                                 to={subItem.link ? subItem.link : "/#"}
                                 className="nav-link"
@@ -189,20 +217,21 @@ const VerticalLayout = (props) => {
                                 {props.t(subItem.label)}
                                 {subItem.badgeName ? (
                                   <span
-                                    className={
-                                      "badge badge-pill bg-" +
-                                      subItem.badgeColor
-                                    }
+                                    // className={
+                                    //   "badge badge-pill bg-" +
+                                    //   subItem.badgeColor
+                                    // }
                                     data-key="t-new"
                                   >
                                     {subItem.badgeName}
                                   </span>
                                 ) : null}
                               </Link>
-                            </li>
+                            </p>
                           ) : (
                             <li className="nav-item">
-                              <Link
+
+                              {/* <Link
                                 onClick={subItem.click}
                                 className="nav-link"
                                 to="/#"
@@ -221,7 +250,10 @@ const VerticalLayout = (props) => {
                                     {subItem.badgeName}
                                   </span>
                                 ) : null}
-                              </Link>
+                              </Link> */}
+                              
+
+
                               <Collapse
                                 className="menu-dropdown"
                                 isOpen={subItem.stateVariables}
@@ -234,8 +266,8 @@ const VerticalLayout = (props) => {
                                       (childItem, key) => (
                                         <React.Fragment key={key}>
                                           {!childItem.childItems ? (
-                                            <li className="nav-item">
-                                              <Link
+                                            <li className="nav-item" >
+                                              {/* <Link
                                                 to={
                                                   childItem.link
                                                     ? childItem.link
@@ -244,18 +276,18 @@ const VerticalLayout = (props) => {
                                                 className="nav-link"
                                               >
                                                 {props.t(childItem.label)}
-                                              </Link>
+                                              </Link> */}
                                             </li>
                                           ) : (
                                             <li className="nav-item">
-                                              <Link
+                                              {/* <Link
                                                 to="/#"
                                                 className="nav-link"
                                                 onClick={childItem.click}
                                                 data-bs-toggle="collapse"
                                               >
                                                 {props.t(childItem.label)}
-                                              </Link>
+                                              </Link> */}
                                               <Collapse
                                                 className="menu-dropdown"
                                                 isOpen={
@@ -270,7 +302,7 @@ const VerticalLayout = (props) => {
                                                         className="nav-item"
                                                         key={key}
                                                       >
-                                                        <Link
+                                                        {/* <Link
                                                           to={subChildItem.link}
                                                           className="nav-link"
                                                           data-key="t-basic-action"
@@ -278,7 +310,7 @@ const VerticalLayout = (props) => {
                                                           {props.t(
                                                             subChildItem.label
                                                           )}{" "}
-                                                        </Link>
+                                                        </Link> */}
                                                       </li>
                                                     )
                                                   )}
@@ -295,23 +327,42 @@ const VerticalLayout = (props) => {
                           )}
                         </React.Fragment>
                       ))}
-                  </ul>
+                  </div>
                 </Collapse>
               </li>
             ) : (
-              <li className="nav-item">
-                <Link
-                  className="nav-link menu-link"
-                  to={item.link ? item.link : "/#"}
-                >
-                  <i className={item.icon}></i>{" "}
-                  <span>{props.t(item.label)}</span>
-                </Link>
-              </li>
+
+
+              <li className="nav-item" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <Link
+                className="nav-link menu-link"
+                to={item.link ? item.link : "/#"}
+                style={{ display: 'grid', justifyContent: 'center', borderTop: '1px solid white' }}
+              >
+                <i className={item.icon} style={{ fontSize: "1.5rem", textAlign: 'center' }}></i>{" "}
+                <span style={{ textAlign: 'center', fontSize: '0.8rem' }}>{props.t(item.label)}</span>
+              </Link>
+        
+              {showMenu && item.label === 'Home' ? (
+                <div  style={{position: "absolute", top: "4rem", right: "-10rem", zIndex: '1'}}>
+                  {/* Add your menu content here */}
+                  <ul>
+                    <li>Menu Item 1</li>
+                    <li>Menu Item 2</li>
+                    {/* Add more menu items as needed */}
+                  </ul>
+                </div>
+              ): null}
+            </li>
+
             )}
+          
+
+
           </React.Fragment>
         );
       })}
+      
     </React.Fragment>
   );
 };

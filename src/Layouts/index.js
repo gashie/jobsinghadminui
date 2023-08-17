@@ -5,8 +5,11 @@ import withRouter from "../Components/Common/withRouter";
 //import Components
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import Footer from "./Footer";
+//import Footer from "./Footer";
 import RightSidebar from "../Components/Common/RightSidebar";
+
+import Navbar from "../pages/Pages/JobSeeker/navbar";
+import Footer from '../pages/Pages/JobSeeker/footer'
 
 //import actions
 import {
@@ -132,10 +135,11 @@ const Layout = (props) => {
           layoutModeType={layoutModeType}
           onChangeLayoutMode={onChangeLayoutMode}
         />
-        <Sidebar layoutType={layoutType} />
+        {/* <Navbar /> */}
+        <Sidebar layoutType='vertical' />
         <div className="main-content">
           {props.children}
-          <Footer />
+         <Footer />
         </div>
       </div>
       <RightSidebar />

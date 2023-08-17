@@ -307,7 +307,7 @@ const HorizontalLayout = (props) => {
                     className="nav-link menu-link"
                     to={item.link ? item.link : "/#"}
                   >
-                    <i className={item.icon}></i>{" "}
+                    <i className={item.icon} style={{fontSize: '4rem'}}></i>{" "}
                     <span>{props.t(item.label)}</span>
                   </Link>
                 </li>

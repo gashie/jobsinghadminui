@@ -17,12 +17,11 @@ const Navdata = () => {
   const [isMaps, setIsMaps] = useState(false);
   const [isMultiLevel, setIsMultiLevel] = useState(false);
 
-  //Jobs 
-  const [jobs, setJobs] = useState(false)
-  
+  //Jobs
+  const [jobs, setJobs] = useState(false);
 
   // Apps
-  
+
   const [isJobs, setIsJobs] = useState(false);
   const [isEmployers, setIsEmployers] = useState(false);
   const [isSeekers, setIsSeekers] = useState(false);
@@ -36,8 +35,6 @@ const Navdata = () => {
   const [isSettings, setIsSettings] = useState(false);
   const [isJobList, setIsJobList] = useState(false);
   const [isCandidateList, setIsCandidateList] = useState(false);
-
- 
 
   const [iscurrentState, setIscurrentState] = useState("Dashboard");
 
@@ -126,12 +123,11 @@ const Navdata = () => {
     if (iscurrentState !== "MuliLevel") {
       setIsMultiLevel(false);
     }
-   
+
     if (iscurrentState === "Widgets") {
       history("/widgets");
       document.body.classList.add("twocolumn-panel");
     }
-    
   }, [
     history,
     iscurrentState,
@@ -147,20 +143,19 @@ const Navdata = () => {
     isIcons,
     isMaps,
     isMultiLevel,
-    isJobs, 
-    
+    isJobs,
   ]);
 
   const menuItems = [
+    // {
+    //   label: "Main",
+    //   isHeader: true,
+    // },
     {
-      label: "Main",
-      isHeader: true,
-    },
-    {
-      id: "dashboard",
-      label: "Dashboards",
+      id: "Home",
+      label: "Home",
       icon: " bx bx-tachometer",
-      link: "admin-dashboard",
+      link: "/admin-dashboard",
       stateVariables: isDashboard,
       click: function (e) {
         e.preventDefault();
@@ -168,17 +163,11 @@ const Navdata = () => {
         setIscurrentState("Dashboard");
         updateIconSidebar(e);
       },
-      
     },
-    // Jobs Start
-      {
-        label: "Jobs",
-        isHeader: true,
-      },
-
+  
     {
-      id: "manageJobs",
-      label: "Manage Jobs",
+      id: "profile",
+      label: "Profile",
       icon: "bx bx-briefcase-alt-2",
       link: "/#",
       click: function (e) {
@@ -187,366 +176,199 @@ const Navdata = () => {
         setIscurrentState("Jobs");
         updateIconSidebar(e);
       },
-      stateVariables: isJobs,
-      subItems: [
-        {
-          id: "postAJob",
-          label: "Post a Job",
-          link: "/apps-calendar",
-          parentId: "jobs",
-        },
-        {
-          id: "expJobs",
-          label: "Expired Jobs",
-          link: "/apps-chat",
-          parentId: "jobs",
-        },
-      ],
+      // stateVariables: isJobs,
+      // subItems: [
+      //   {
+      //     id: "postAJob",
+      //     label: "Post a Job",
+      //     link: "/apps-calendar",
+      //     parentId: "jobs",
+      //   },
+      //   {
+      //     id: "expJobs",
+      //     label: "Expired Jobs",
+      //     link: "/apps-chat",
+      //     parentId: "jobs",
+      //   },
+      // ],
     },
+    // {
+    //   id: "interviewQuestions",
+    //   label: "Interview Questions",
+    //   icon: "bx bx-bookmark",
+    //   link: "#",
+    // },
+
+    // {
+    //    label: "Employer",
+    //    isHeader: 'true'
+    // },
     {
-       id: "interviewQuestions",
-       label: "Interview Questions",
-       icon: "bx bx-bookmark",
-       link : "#"
-    },
-
-    {
-       label: "Employer", 
-       isHeader: 'true'
-    },
-    {
-        id: "emp",
-        label: "Manage Employers",
-        icon: "bx bxs-group",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsEmployers(!isEmployers);
-          setIscurrentState("Employers");
-          updateIconSidebar(e);
-        },
-        stateVariables: isEmployers,
-        subItems: [
-          {
-            id: "disableAnEmployee",
-            label: "Disable an Employee",
-            link: "/apps-calendar",
-            parentId: "emp",
-          }
-        ],
-      },
-
-
-    {
-       label: "Job Seekers", 
-       isHeader: 'true'
-    },
-    {
-        id: "manageJobSeekers",
-        label: "Manage Job Seekers",
-        icon: "bx bx-layer",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsApps(!isApps);
-          setIscurrentState("Apps");
-          updateIconSidebar(e);
-        },
-        stateVariables: isApps,
-        subItems: [
-          {
-            id: "disableAJobSeeker",
-            label: "Disable a Job Seeker",
-            link: "/apps-calendar",
-            parentId: "",
-          }
-        ],
-      },
-    {
-        id: "res",
-        label: "Resumes",
-        icon: "bx bx-book-open",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsResumes(!isResumes);
-          setIscurrentState("Resumes");
-          updateIconSidebar(e);
-        },
-        stateVariables: isResumes,
-        subItems: [
-          {
-            id: "addRemoveResume",
-            label: "Add / Remove Resumes",
-            link: "/apps-calendar",
-            parentId: "res",
-          }
-        ],
-      }, 
-      {
-        id: "applicants",
-        label: "Applicants",
-        icon: "bx bx-user-plus",
-        link : "#"
-      },
-      {
-        id: "manageAlerts",
-        label: "Manage Alerts",
-        icon: "bx bx-mail-send",
-        link : "#"
-      },
-
-
-     {
-         label: "Career Services",
-         isHeader: true
-     },
-     {
-        id: "ne",
-        label: "HR News",
-        icon: "bx bx-book-content",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsNews(!isNews);
-          setIscurrentState("News");
-          updateIconSidebar(e);
-        },
-        stateVariables: isNews,
-        subItems: [
-          {
-            id: "manageArticles",
-            label: "Manage Articles",
-            link: "/apps-calendar",
-            parentId: "ne",
-          },
-          {
-            id: "approveArticles",
-            label: "Approve Articles",
-            link: "/apps-calendar",
-            parentId: "ne",
-          },
-          {
-            id: "manageRssFeed",
-            label: "Manage RSS Feeds",
-            link: "/apps-calendar",
-            parentId: "ne",
-          }
-        ],
-      }, 
-     {
-        id: "ad",
-        label: "Career Advice",
-        icon: "bx bx-book-reader",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsAdvice(!isAdvice);
-          setIscurrentState("Advice");
-          updateIconSidebar(e);
-        },
-        stateVariables: isAdvice,
-        subItems: [
-          {
-            id: "manageArticles",
-            label: "Manage Articles",
-            link: "/apps-calendar",
-            parentId: "ad",
-          },
-          {
-            id: "postArticles",
-            label: "Post Articles",
-            link: "/apps-calendar",
-            parentId: "ad",
-          },
-        ],
-      }, 
-     {
-        id: "co",
-        label: "Courses",
-        icon: "bx bx-table",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsCourses(!isCourses);
-          setIscurrentState("Courses");
-          updateIconSidebar(e);
-        },
-        stateVariables: isCourses,
-        subItems: [
-          {
-            id: "manageCourses",
-            label: "Manage Courses",
-            link: "/apps-calendar",
-            parentId: "co",
-          },
-          {
-            id: "postCourses",
-            label: "Post Courses",
-            link: "/apps-calendar",
-            parentId: "co",
-          },
-        ],
-      }, 
-      {
-        label: "Banners and Logos",
-        isHeader: true
-      },
-      {
-        id: "manageLogos",
-        label: "Manage Logos",
-        icon: "bx bx-layer",
-        link : "#"
-      },
-      {
-        id: "updateLogos",
-        label: "Update Logos",
-        icon: "bx bx-layer",
-        link : "#"
-      },
-
-      {
-        label: "Social",
-        isHeader: true
-      },
-
-      {
-        id: "linkedIn",
-        label: "LinkedIn",
-        icon: "bx bxl-linkedin",
-        link : "#"
-      },
-      {
-        id: "twitter",
-        label: "Twitter",
-        icon: "bx bxl-twitter",
-        link : "#"
-      },
-      {
-        id: "threads",
-        label: "Threads",
-        icon: "bx bx-user-plus",
-        link : "#"
-      },
-
-      {
-        label: "Onvoices & Payments",
-        isHeader: true
-      },
-      {
-        id: "in",
-        label: "Manage Invoices",
-        icon: "bx bx-dollar",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsInvo(!isInvo);
-          setIscurrentState("Invoice");
-          updateIconSidebar(e);
-        },
-        stateVariables: isInvo,
-        subItems: [
-          {
-            id: "generateInvoice",
-            label: "Generate Invoice",
-            link: "/apps-calendar",
-            parentId: "in",
-          },
-          {
-            id: "editAnInvoice",
-            label: "Edit an Invoice",
-            link: "/apps-calendar",
-            parentId: "in",
-          },
-        ],
-      }, 
-      {
-        id: "payments",
-        label: "Manage Payment",
-        icon: "bx bx-dollar",
-        link: "#"
-      },
-      {
-        id: "re",
-        label: "Receipts",
-        icon: "bx bx-layout",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsRecep(!isRecep);
-          setIscurrentState("Recep");
-          updateIconSidebar(e);
-        },
-        stateVariables: isRecep,
-        subItems: [
-          {
-            id: "generateAReceipt",
-            label: "Generate a Receipt",
-            link: "/apps-calendar",
-            parentId: "re",
-          },
-        ],
-      }, 
-
-      {
-        label: "Settings",
-        isHeader: true
-      },
-      {
-        id: "ad",
-        label: "Administrator",
-        icon: "bx bx-book-reader",
-        link: "/#",
-        click: function (e) {
-          e.preventDefault();
-          setIsAdmin(!isAdmin);
-          setIscurrentState("Admin");
-          updateIconSidebar(e);
-        },
-        stateVariables: isAdmin,
-        subItems: [
-          {
-            id: "addRemoveUser",
-            label: "Add / Remove User",
-            link: "/apps-calendar",
-            parentId: "ad",
-          },
-        ],
-      },
-
-      {
-      id: "set",
-      label: "Manage Job Posting Settings",
-      icon: "bx bxs-briefcase-alt-2",
+      id: "emp",
+      label: "Manage Employers",
+      icon: "bx bxs-group",
       link: "/#",
       click: function (e) {
         e.preventDefault();
-        setIsSettings(!isSettings);
-        setIscurrentState("Settings");
+        setIsEmployers(!isEmployers);
+        setIscurrentState("Employers");
         updateIconSidebar(e);
       },
-      stateVariables: isSettings,
-      subItems: [
-        {
-            id: "addEditCategory",
-            label: "Add / Edit Category",
-            link: "/apps-calendar",
-            parentId: "set",
-          },
-          {
-            id: "addEditIndustries",
-            label: "Add / Edit User",
-            link: "/apps-calendar",
-            parentId: "set",
-          },
-          {
-            id: "addEditFunctions",
-            label: "Add / Edit Functions",
-            link: "/apps-calendar",
-            parentId: "set",
-          },
-      ],
+      stateVariables: isEmployers,
+      // subItems: [
+      //   {
+      //     id: "disableAnEmployee",
+      //     label: "Disable an Employee",
+      //     link: "/apps-calendar",
+      //     parentId: "emp",
+      //   }
+      // ],
     },
+
+    {
+      id: "cv/resume",
+      label: "CV/Resume",
+      icon: "bx bx-layer",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsApps(!isApps);
+        setIscurrentState("Apps");
+        updateIconSidebar(e);
+      },
+      stateVariables: isApps,
+      // subItems: [
+      //   {
+      //     id: "disableAJobSeeker",
+      //     label: "Disable a Job Seeker",
+      //     link: "/apps-calendar",
+      //     parentId: "",
+      //   }
+      // ],
+    },
+    {
+      id: "applications",
+      label: "Applications",
+      icon: "bx bx-book-open",
+      link: "/#",
+      // click: function (e) {
+      //   e.preventDefault();
+      //   setIsResumes(!isResumes);
+      //   setIscurrentState("Resumes");
+      //   updateIconSidebar(e);
+      // },
+      // stateVariables: isResumes,
+      // subItems: [
+      //   {
+      //     id: "addRemoveResume",
+      //     label: "Add / Remove Resumes",
+      //     link: "/apps-calendar",
+      //     parentId: "res",
+      //   }
+      // ],
+    },
+    // {
+    //   id: "alerts",
+    //   label: "Alerts",
+    //   icon: "bx bx-user-plus",
+    //   link: "#",
+    // },
+    {
+      id: "alerts",
+      label: "Alerts",
+      icon: "bx bx-mail-send",
+      link: "#",
+    },
+
+    //  {
+    //      label: "Career Services",
+    //      isHeader: true
+    //  },
+    {
+      id: "savedjobs",
+      label: "Saved Jobs",
+      icon: "bx bx-book-content",
+      link: "/#",
+    },
+    {
+      id: "accountSettings",
+      label: "Account Settings",
+      icon: "bx bx-book-reader",
+      link: "/#",
+    },
+    {
+      id: "logout",
+      label: "Logout",
+      icon: "bx bx-table",
+      link: "/#",
+    },
+ 
+    // {
+    //   id: "manageLogos",
+    //   label: "Manage Logos",
+    //   icon: "bx bx-layer",
+    //   link: "#",
+    // },
+    // {
+    //   id: "updateLogos",
+    //   label: "Update Logos",
+    //   icon: "bx bx-layer",
+    //   link: "#",
+    // },
+
+ 
+    // {
+    //   id: "linkedIn",
+    //   label: "LinkedIn",
+    //   icon: "bx bxl-linkedin",
+    //   link: "#",
+    // },
+    // {
+    //   id: "twitter",
+    //   label: "Twitter",
+    //   icon: "bx bxl-twitter",
+    //   link: "#",
+    // },
+    // {
+    //   id: "threads",
+    //   label: "Threads",
+    //   icon: "bx bx-user-plus",
+    //   link: "#",
+    // },
+
+    // {
+    //   id: "in",
+    //   label: "Manage Invoices",
+    //   icon: "bx bx-dollar",
+    //   link: "/#",
+    // },
+    // {
+    //   id: "payments",
+    //   label: "Manage Payment",
+    //   icon: "bx bx-dollar",
+    //   link: "#",
+    // },
+    // {
+    //   id: "re",
+    //   label: "Receipts",
+    //   icon: "bx bx-layout",
+    //   link: "/#",
+    // },
+
+   
+    // {
+    //   id: "ad",
+    //   label: "Administrator",
+    //   icon: "bx bx-book-reader",
+    //   link: "/#",
+    // },
+
+    // {
+    //   id: "set",
+    //   label: "Manage Job Posting Settings",
+    //   icon: "bx bxs-briefcase-alt-2",
+    //   link: "/#",
+    // },
   ];
   return <React.Fragment>{menuItems}</React.Fragment>;
 };
