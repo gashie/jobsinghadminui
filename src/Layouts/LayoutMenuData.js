@@ -155,7 +155,7 @@ const Navdata = () => {
       id: "Home",
       label: "Home",
       icon: " bx bx-tachometer",
-      link: "/admin-dashboard",
+      link: "/job-seeker-dashboard",
       stateVariables: isDashboard,
       click: function (e) {
         e.preventDefault();
@@ -169,7 +169,7 @@ const Navdata = () => {
       id: "profile",
       label: "Profile",
       icon: "bx bx-briefcase-alt-2",
-      link: "/#",
+      link: "/job-seeker-profile",
       click: function (e) {
         e.preventDefault();
         setIsJobs(!isJobs);
@@ -229,7 +229,7 @@ const Navdata = () => {
       id: "cv/resume",
       label: "CV/Resume",
       icon: "bx bx-layer",
-      link: "/#",
+      link: "/job-seeker-resume",
       click: function (e) {
         e.preventDefault();
         setIsApps(!isApps);

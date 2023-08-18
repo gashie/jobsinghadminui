@@ -20,8 +20,8 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import DashboardSeeker from "./DashboardSeeker";
-import Profile from "./Profile";
-import ChangePassword from "./ChangePassword";
+import Profile from "./Profiles";
+import ChangePassword from "./ChangePasswords";
 import MyResume from "./MyResume";
 import MyCoverLetters from "./MyCoverLetters";
 

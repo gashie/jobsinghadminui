@@ -258,6 +258,8 @@ import FirmDetails from "../pages/Pages/Front/Services/FirmDetails";
 import Advertising from "../pages/Pages/Front/Services/Advertising";
 import Dashboard from "../pages/Pages/JobSeeker/Dashboard/Dashboard";
 import Applications from "../pages/Pages/JobSeeker/Applications";
+import Profile from '../pages/Pages/JobSeeker/Profile'
+import Resume from "../pages/Pages/JobSeeker/Resume";
 
 
 const authProtectedRoutes = [
@@ -471,16 +473,17 @@ const authProtectedRoutes = [
   { path: "/admin-dashboard", component: <AdminDashboard /> },
   { path: "/job-seeker-admin", component: <JobSeeker /> },
   { path: "/job-seeker-dashboard", component: <Dashboard /> },
-  { path: "/job-seeker-applications", component: <Applications /> },
+  { path: "/job-seeker-profile", component: <Profile /> },
+  { path: "/job-seeker-resume", component: <Resume /> },
  
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
   {
     path: "/",
     exact: true,
-    component: <Navigate to="/dashboard" />,
+    component: <Navigate to="/job-seeker-dashboard" />,
   },
-  { path: "*", component: <Navigate to="/dashboard" /> },
+  { path: "*", component: <Navigate to="/job-seeker-dashboard" /> },
 ];
 
 const publicRoutes = [

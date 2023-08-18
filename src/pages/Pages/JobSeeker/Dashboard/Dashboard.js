@@ -26,7 +26,7 @@ const Dashboard = () => {
   };
   return (
     <>
-      <Col xxl={11} className="m-3">
+      <Col xxl={11} className="m-5">
      
         <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
           <CardBody>
