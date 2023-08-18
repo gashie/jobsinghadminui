@@ -21,6 +21,9 @@ import EditProfile from "../EditProfile";
 import ChangePassword from "../ChangePassword";
 import MyResume from '../MyResume'
 import CoverLetters from "../CoverLetters";
+import AddCoverLetters from "../AddCoverLetters";
+import EditCoverLetter from "../EditCoverLetter";
+import ViewCoverLetter from "../ViewCoverLetter";
 
 const Resume = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -29,6 +32,16 @@ const Resume = () => {
       setjustifyTab(tab);
     }
   };
+
+  const handleAddCoverLetter = () =>{
+    justifyToggle("3")
+  }
+  const handleEditCoverLetter = () =>{
+    justifyToggle("4")
+  }
+  const handleViewCoverLetter = () =>{
+    justifyToggle("5")
+  }
 
   const [edit, setEdit] = useState(false)
   return (
@@ -75,10 +88,10 @@ const Resume = () => {
                   style={{ cursor: "pointer" }}
                   className={classnames({ active: justifyTab === "4" })}
                   onClick={() => {
-                    justifyToggle("3");
+                    justifyToggle("4");
                   }}
                 >
-                  Edit your profile
+                  Edit your letter
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -86,7 +99,7 @@ const Resume = () => {
                   style={{ cursor: "pointer" }}
                   className={classnames({ active: justifyTab === "5" })}
                   onClick={() => {
-                    justifyToggle("3");
+                    justifyToggle("5");
                   }}
                 >
                   View cover letter
@@ -102,16 +115,24 @@ const Resume = () => {
               </TabPane>
 
               <TabPane tabId="2" id="product">
-                <CoverLetters />
+                <CoverLetters 
+                handleAddCoverLetter={handleAddCoverLetter}
+                handleEditCoverLetter={handleEditCoverLetter}
+                handleViewCoverLetter={handleViewCoverLetter}
+                />
               </TabPane>
 
               <TabPane tabId="3" id="base-justified-messages">
-                <ChangePassword />
+                <AddCoverLetters />
               </TabPane>
-{/* 
+
               <TabPane tabId="4" id="base-justified-settings">
-                <SavedJobs />
-              </TabPane> */}
+                <EditCoverLetter />
+              </TabPane>
+
+              <TabPane tabId="5" id="base-justified-settings">
+                <ViewCoverLetter />
+              </TabPane>
             </TabContent>
           </CardBody>
         </Card>

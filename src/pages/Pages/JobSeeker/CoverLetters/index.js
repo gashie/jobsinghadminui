@@ -1,22 +1,25 @@
-import {Table, Button, Col} from 'reactstrap'
-import data from './data'
-import {Link} from 'react-router-dom'
+import { Table, Button, Col } from "reactstrap";
+import data from "./data";
+import { Link } from "react-router-dom";
 
-const CoverLetters = () =>{
-    return (
-        <>
-         <div style={{display: "flex", justifyContent: 'space-between'}}>
-      <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="mt-3">
-        My Alerts
-      </h5>
+const CoverLetters = ({ handleAddCoverLetter, handleEditCoverLetter, handleViewCoverLetter }) => {
+  return (
+    <>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="mt-3">
+          My Cover letters
+        </h5>
 
-      <Button className="btn btn-dark" style={{backgroundColor: '#244a59'}}
-    //   onClick={()=>{
-    //     setCreate(true)
-    //   }}
-      >
-     Add cover letter
-      </Button>
+        <Button
+          className="btn btn-dark"
+          style={{ backgroundColor: "#244a59" }}
+          //   onClick={()=>{
+          //     setCreate(true)
+          //   }}
+          onClick={handleAddCoverLetter}
+        >
+          Add cover letter
+        </Button>
       </div>
       <Col className="m-5">
         <div className="table-responsive">
@@ -40,16 +43,24 @@ const CoverLetters = () =>{
                       {a.name}
                     </Link>
                   </th>
-                 
+
                   <td>{a.inserted}</td>
                   <td>{a.updated}</td>
-                  <td>{a.edit}</td>
-                 
+                  <td>
+                    <p
+                      onClick={handleEditCoverLetter}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {" "}
+                      {a.edit}
+                    </p>
+                  </td>
+
                   <td>
                     <p
                       style={{
                         color: "red",
-                        cursor: 'pointer'
+                        cursor: "pointer",
                       }}
                     >
                       {a.delete}
@@ -58,9 +69,10 @@ const CoverLetters = () =>{
                   <td>
                     <p
                       style={{
-                        color: "#244a59", 
-                        cursor: 'pointer'
+                        color: "#244a59",
+                        cursor: "pointer",
                       }}
+                      onClick={handleViewCoverLetter}
                     >
                       {a.view}
                     </p>
@@ -69,21 +81,20 @@ const CoverLetters = () =>{
                     <p
                       style={{
                         color: "#244a59",
-                        cursor: 'pointer'
+                        cursor: "pointer",
                       }}
                     >
                       {a.duplicate}
                     </p>
                   </td>
-                 
                 </tr>
               ))}
             </tbody>
           </Table>
         </div>
-      </Col> 
-        </>
-    )
-}
+      </Col>
+    </>
+  );
+};
 
 export default CoverLetters;
