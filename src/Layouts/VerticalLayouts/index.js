@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Collapse } from "reactstrap";
@@ -12,17 +12,6 @@ import { useSelector } from "react-redux";
 
 const VerticalLayout = (props) => {
   const navData = navdata().props.children;
-
-  const [showMenu, setShowMenu] = useState(false);
-
-  const handleMouseEnter = () => {
-    setShowMenu(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowMenu(false);
-  };
-
 
   /*
     layout settings
@@ -183,16 +172,14 @@ const VerticalLayout = (props) => {
                 <span data-key="t-menu">{props.t(item.label)}</span>
               </li>
             ) : item.subItems ? (
-              <li className="nav-item" >
+              <li className="nav-item">
                 <Link
                   onClick={item.click}
                   className="nav-link menu-link"
                   to={item.link ? item.link : "/#"}
                   data-bs-toggle="collapse"
-                  style={{display: 'grid', justifyContent: 'center', borderTop: '1px solid white'}}
-                 
                 >
-                  <i className={item.icon} style={{fontSize: "2rem", textAlign: 'center'}}></i>{" "}
+                  <i className={item.icon}></i>{" "}
                   <span data-key="t-apps">{props.t(item.label)}</span>
                 </Link>
                 <Collapse
@@ -200,16 +187,13 @@ const VerticalLayout = (props) => {
                   isOpen={item.stateVariables}
                   id="sidebarApps"
                 >
-                  <div className="" style={{backgroundColor: 'gray'}}>
+                  <ul className="nav nav-sm flex-column test" >
                     {/* subItms  */}
                     {item.subItems &&
                       (item.subItems || []).map((subItem, key) => (
                         <React.Fragment key={key}>
                           {!subItem.isChildItem ? (
-                            <p className=""
-                            style={{backgroundColor: ""}}
-                             >
-                              
+                            <li className="nav-item">
                               <Link
                                 to={subItem.link ? subItem.link : "/#"}
                                 className="nav-link"
@@ -217,21 +201,21 @@ const VerticalLayout = (props) => {
                                 {props.t(subItem.label)}
                                 {subItem.badgeName ? (
                                   <span
-                                    // className={
-                                    //   "badge badge-pill bg-" +
-                                    //   subItem.badgeColor
-                                    // }
+                                    className={
+                                      "badge badge-pill bg-" +
+                                      subItem.badgeColor
+                                    }
                                     data-key="t-new"
                                   >
                                     {subItem.badgeName}
                                   </span>
                                 ) : null}
                               </Link>
-                            </p>
+                            </li>
                           ) : (
                             <li className="nav-item">
 
-                              {/* <Link
+                              <Link
                                 onClick={subItem.click}
                                 className="nav-link"
                                 to="/#"
@@ -250,7 +234,7 @@ const VerticalLayout = (props) => {
                                     {subItem.badgeName}
                                   </span>
                                 ) : null}
-                              </Link> */}
+                              </Link>
                               
 
 
@@ -266,8 +250,8 @@ const VerticalLayout = (props) => {
                                       (childItem, key) => (
                                         <React.Fragment key={key}>
                                           {!childItem.childItems ? (
-                                            <li className="nav-item" >
-                                              {/* <Link
+                                            <li className="nav-item">
+                                              <Link
                                                 to={
                                                   childItem.link
                                                     ? childItem.link
@@ -276,18 +260,18 @@ const VerticalLayout = (props) => {
                                                 className="nav-link"
                                               >
                                                 {props.t(childItem.label)}
-                                              </Link> */}
+                                              </Link>
                                             </li>
                                           ) : (
                                             <li className="nav-item">
-                                              {/* <Link
+                                              <Link
                                                 to="/#"
                                                 className="nav-link"
                                                 onClick={childItem.click}
                                                 data-bs-toggle="collapse"
                                               >
                                                 {props.t(childItem.label)}
-                                              </Link> */}
+                                              </Link>
                                               <Collapse
                                                 className="menu-dropdown"
                                                 isOpen={
@@ -302,7 +286,7 @@ const VerticalLayout = (props) => {
                                                         className="nav-item"
                                                         key={key}
                                                       >
-                                                        {/* <Link
+                                                        <Link
                                                           to={subChildItem.link}
                                                           className="nav-link"
                                                           data-key="t-basic-action"
@@ -310,7 +294,7 @@ const VerticalLayout = (props) => {
                                                           {props.t(
                                                             subChildItem.label
                                                           )}{" "}
-                                                        </Link> */}
+                                                        </Link>
                                                       </li>
                                                     )
                                                   )}
@@ -327,42 +311,29 @@ const VerticalLayout = (props) => {
                           )}
                         </React.Fragment>
                       ))}
-                  </div>
+                  </ul>
                 </Collapse>
               </li>
             ) : (
 
 
-              <li className="nav-item" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <Link
-                className="nav-link menu-link"
-                to={item.link ? item.link : "/#"}
-                style={{ display: 'grid', justifyContent: 'center', borderTop: '1px solid white' }}
-              >
-                <i className={item.icon} style={{ fontSize: "1.5rem", textAlign: 'center' }}></i>{" "}
-                <span style={{ textAlign: 'center', fontSize: '0.8rem' }}>{props.t(item.label)}</span>
-              </Link>
-        
-              {showMenu && item.label === 'Home' ? (
-                <div  style={{position: "absolute", top: "4rem", right: "-10rem", zIndex: '1'}}>
-                  {/* Add your menu content here */}
-                  <ul>
-                    <li>Menu Item 1</li>
-                    <li>Menu Item 2</li>
-                    {/* Add more menu items as needed */}
-                  </ul>
-                </div>
-              ): null}
-            </li>
+              <li className="nav-item" >
+                <Link
+                  className="nav-link menu-link"
+                  to={item.link ? item.link : "/#"}
+                  style={{display: 'grid', justifyContent: 'center', borderTop: '1px solid white'}}
+                >
+                  <i className={item.icon} style={{fontSize: "2rem", textAlign: 'center'}}></i>{" "}
+                  <span style={{textAlign: 'center'}}>{props.t(item.label)}</span>
+                </Link>
+              </li>
 
             )}
-          
 
 
           </React.Fragment>
         );
       })}
-      
     </React.Fragment>
   );
 };

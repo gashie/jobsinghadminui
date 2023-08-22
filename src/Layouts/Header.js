@@ -130,6 +130,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                   type="button"
                   className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
                   id="topnav-hamburger-icon"
+                  style={{display: 'none'}}
                 >
                   <span className="hamburger-icon">
                     <span></span>
@@ -137,6 +138,8 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                     <span></span>
                   </span>
                 </button>
+
+                <div></div>
 
                 <Link className="navbar-brand" to="/index">
                   <h2

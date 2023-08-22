@@ -36,7 +36,7 @@ const Footer = () => {
 
             <Col lg={12} className="ms-lg-auto">
                 <hr />
-              <Row>
+              <Row xl={20}>
                 <Col sm={4} className="mt-4">
                 
                   <Link to="/pages-profile">

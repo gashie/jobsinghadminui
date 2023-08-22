@@ -5,6 +5,7 @@ import SimpleBar from "simplebar-react";
 import logoSm from "../assets/images/logo-sm.png";
 import logoDark from "../assets/images/logo-dark.png";
 import logoLight from "../assets/images/logo-light.png";
+import JobsSidebar from './JobsSidebar'
 
 //Import Components
 import VerticalLayout from "./VerticalLayouts/index";
@@ -88,7 +89,7 @@ const Sidebar = ({ layoutType }) => {
               <Container fluid>
                 <div id="two-column-menu" ></div>
                 <ul className="navbar-nav" id="navbar-nav" >
-                  <VerticalLayout layoutType={layoutType} />
+                    <JobsSidebar />
                 </ul>
               </Container>
             </SimpleBar>

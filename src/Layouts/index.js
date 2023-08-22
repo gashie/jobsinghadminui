@@ -9,7 +9,8 @@ import Sidebar from "./Sidebar";
 import RightSidebar from "../Components/Common/RightSidebar";
 
 import Navbar from "../pages/Pages/JobSeeker/navbar";
-import Footer from '../pages/Pages/JobSeeker/footer'
+import Footer from "../pages/Pages/JobSeeker/footer";
+import JobsSidebar from "./JobsSidebar";
 
 //import actions
 import {
@@ -22,7 +23,7 @@ import {
   changeLeftsidebarSizeType,
   changeLeftsidebarViewType,
   changeSidebarImageType,
-  changeSidebarVisibility
+  changeSidebarVisibility,
 } from "../store/actions";
 
 //redux
@@ -41,7 +42,7 @@ const Layout = (props) => {
     leftsidbarSizeType,
     leftSidebarViewType,
     leftSidebarImageType,
-    sidebarVisibilitytype
+    sidebarVisibilitytype,
   } = useSelector((state) => ({
     layoutType: state.Layout.layoutType,
     leftSidebarType: state.Layout.leftSidebarType,
@@ -71,7 +72,7 @@ const Layout = (props) => {
       leftSidebarImageType ||
       sidebarVisibilitytype
     ) {
-      window.dispatchEvent(new Event('resize')); 
+      window.dispatchEvent(new Event("resize"));
       dispatch(changeLeftsidebarViewType(leftSidebarViewType));
       dispatch(changeLeftsidebarSizeType(leftsidbarSizeType));
       dispatch(changeSidebarTheme(leftSidebarType));
@@ -98,12 +99,16 @@ const Layout = (props) => {
   ]);
 
   useEffect(() => {
-    if (sidebarVisibilitytype === 'show' || layoutType === "vertical" || layoutType === "twocolumn") {
-        document.querySelector(".hamburger-icon").classList.remove('open');
+    if (
+      sidebarVisibilitytype === "show" ||
+      layoutType === "vertical" ||
+      layoutType === "twocolumn"
+    ) {
+      document.querySelector(".hamburger-icon").classList.remove("open");
     } else {
-        document.querySelector(".hamburger-icon").classList.add('open');
+      document.querySelector(".hamburger-icon").classList.add("open");
     }
-}, [sidebarVisibilitytype, layoutType]);
+  }, [sidebarVisibilitytype, layoutType]);
 
   /*
     call dark/light mode
@@ -136,13 +141,14 @@ const Layout = (props) => {
           onChangeLayoutMode={onChangeLayoutMode}
         />
         {/* <Navbar /> */}
-        <Sidebar layoutType='vertical' />
-        <div className="main-content">
-          {props.children}
-         <Footer />
-        </div>
+        {/* <Sidebar layoutType='vertical' /> */}
+
+        <JobsSidebar />
+        <div className="main-content">{props.children}</div>
+        <Footer />
       </div>
-      <RightSidebar />
+      {/* <RightSidebar /> */}
+      
     </React.Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   NavItem,
   TabPane,
@@ -24,11 +24,46 @@ const Dashboard = () => {
       setjustifyTab(tab);
     }
   };
+
+  const [height, setHeight] = useState('');
+  
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375 ) {
+      setHeight('150vh');
+    } else if (newWindowSize <= 1200 ) {
+      setHeight('110vh')}
+    else if (newWindowSize >= 1200 ) {
+      setHeight('110vh')}
+    else if (newWindowSize > 375 ) {
+      setHeight('80vh');
+    }
+
+    
+
+
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener('resize', updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', updateWindowSize);
+    };
+  }, []);
+
+
+
   return (
-    <>
-      <Col xxl={11} className="m-5">
-     
-        <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
+    <> 
+      <Col xxl={11} className="m-0">
+    
+        <Card style={{ border: "none", boxShadow: "0px 0px 0px white", height: height, marginTop: "-3.5rem"}}>
           <CardBody>
             <Nav tabs className="nav-tabs nav-justified mb-3">
               <NavItem>
@@ -314,7 +349,9 @@ const Dashboard = () => {
             </TabContent>
           </CardBody>
         </Card>
+        
       </Col>
+    
     </>
   );
 };

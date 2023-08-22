@@ -46,7 +46,7 @@ const Resume = () => {
   const [edit, setEdit] = useState(false)
   return (
     <>
-      <Col xxl={11} className="m-5 ">
+      <Col xxl={20} className="m-5 ">
         <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
           <CardBody>
             <Nav tabs className="nav-tabs nav-justified mb-3">
