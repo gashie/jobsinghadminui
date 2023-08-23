@@ -146,8 +146,8 @@ const Sidebar = () => {
                   left: "0rem",
                   zIndex: "1",
                   backgroundColor: "#244a59",
-                  overflow: "scroll",
-                  height: "90vh",
+                 
+                  height: "max-content",
                 }}
                 
               >
@@ -215,19 +215,19 @@ const Sidebar = () => {
             }}
           >
             <Collapse isOpen={isSide} navbar>
-              <Col md={10}>
+              <Col md={20}>
                 <div
                   className="mr-auto"
                   style={{
                     display: "flex",
                     flexDirection: "column",
                     position: "absolute",
-                    top: "-6.5rem",
+                    top: "-5rem",
                     zIndex: "1",
                     backgroundColor: "#3f494c",
-                    left: "8.2rem",
-                    width: "30rem",
-                    height: "90vh",
+                    left: "8.4rem",
+                    width: "20rem",
+                    height: "78vh",
                     color: "white",
                   }}
                   onMouseLeave={removetoggles}
