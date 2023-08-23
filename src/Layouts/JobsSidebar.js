@@ -12,6 +12,7 @@ import {
 //import { FaHome, FaUser, FaCog, FaBars } from "react-icons/fa";
 import Footer from "../pages/Pages/JobSeeker/footer";
 import SimpleBar from "simplebar-react";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   const [color, setColor] = useState(false);
@@ -108,11 +109,11 @@ const Sidebar = () => {
 
   return (
     <>
-      <div style={{ marginTop: "4rem", height: "" }}>
+      <div style={{ marginTop: "2.5rem", height: "" }}>
         <div
           className=""
           style={{ backgroundColor: "red", width: "max-content" }}
-          onMouseLeave={removetoggles}
+          //   onMouseLeave={removetoggles}
         >
           <Navbar color="light" light expand="md" className="sidebar-navbar">
             <NavbarToggler
@@ -135,7 +136,7 @@ const Sidebar = () => {
             </NavbarToggler>
             <Collapse isOpen={isOpen} navbar>
               <Nav
-                className="mr-auto "
+                className="mr-auto scroll-change"
                 navbar
                 style={{
                   display: "flex",
@@ -145,26 +146,29 @@ const Sidebar = () => {
                   left: "0rem",
                   zIndex: "1",
                   backgroundColor: "#244a59",
-                  height: "",
+                  overflow: "scroll",
+                  height: "90vh",
                 }}
+                
               >
                 {sidebarItems.map((item, index) => (
                   <div key={index}>
+                    <div
+                      style={{ border: "10px solid #244a59" }}
+                      onMouseLeave={removetoggles}
+                    ></div>
                     <NavItem
-                      className="sidebar-item p-5"
+                      className="sidebar-item p-4"
                       style={{
                         padding: "0",
                         borderTop: "1px solid white",
                         cursor: "pointer",
                       }}
+                      onClick={item.toggle}
+                      onMouseEnter={item.toggle}
                     >
                       <Link className="sidebar-link">
-                        <div
-                          className="menu-box"
-                          onClick={item.toggle}
-                          onMouseEnter={item.toggle}
-                          onMouseLeave={item.toggle}
-                        >
+                        <div className="menu-box">
                           <p style={{ textAlign: "center" }}>
                             <i
                               className="bx bx-tachometer"
@@ -221,11 +225,12 @@ const Sidebar = () => {
                     top: "-6.5rem",
                     zIndex: "1",
                     backgroundColor: "#3f494c",
-                    left: "7.83rem",
+                    left: "8.2rem",
                     width: "30rem",
-                    height: "50rem",
+                    height: "90vh",
                     color: "white",
                   }}
+                  onMouseLeave={removetoggles}
                 >
                   {isSide === true ? (
                     <Container fluid>

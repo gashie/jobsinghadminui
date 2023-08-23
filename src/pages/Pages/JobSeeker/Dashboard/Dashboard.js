@@ -30,13 +30,13 @@ const Dashboard = () => {
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375 ) {
-      setHeight('150vh');
+      setHeight('90vh');
     } else if (newWindowSize <= 1200 ) {
-      setHeight('110vh')}
+      setHeight('90vh')}
     else if (newWindowSize >= 1200 ) {
-      setHeight('110vh')}
+      setHeight('90vh')}
     else if (newWindowSize > 375 ) {
-      setHeight('80vh');
+      setHeight('90vh');
     }
 
     
