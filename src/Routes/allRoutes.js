@@ -260,6 +260,13 @@ import Dashboard from "../pages/Pages/JobSeeker/Dashboard/Dashboard";
 import Applications from "../pages/Pages/JobSeeker/Applications";
 import Profile from '../pages/Pages/JobSeeker/Profile'
 import Resume from "../pages/Pages/JobSeeker/Resume";
+import EmployerDashboard from "../pages/Pages/Employer/Dashboard";
+import EmployerProfile from "../pages/Pages/Employer/Profile";
+import EmployerJobs from "../pages/Pages/Employer/Jobs";
+import EmployerApplications from "../pages/Pages/Employer/Applications";
+
+//employer
+
 
 
 const authProtectedRoutes = [
@@ -475,6 +482,14 @@ const authProtectedRoutes = [
   { path: "/job-seeker-dashboard", component: <Dashboard /> },
   { path: "/job-seeker-profile", component: <Profile /> },
   { path: "/job-seeker-resume", component: <Resume /> },
+
+
+  { path: "/employer-dashboard", component: <EmployerDashboard />},
+  { path: "/employer-profile", component: <EmployerProfile />},
+  { path: "/employer-jobs", component: <EmployerJobs />},
+  { path: "/employer-applications", component: <EmployerApplications />},
+
+
  
   // this route should be at the end of all other routes
   // eslint-disable-next-line react/display-name
