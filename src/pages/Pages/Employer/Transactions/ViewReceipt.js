@@ -1,4 +1,4 @@
-import {Container} from 'reactstrap'
+import {Container, Button} from 'reactstrap'
 
 const ViewReceipt = () => {
   return (

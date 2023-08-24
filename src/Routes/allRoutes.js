@@ -266,6 +266,10 @@ import EmployerJobs from "../pages/Pages/Employer/Jobs";
 import EmployerApplications from "../pages/Pages/Employer/Applications";
 import EmployerCourses from "../pages/Pages/Employer/Courses";
 import EmployerTransactions from "../pages/Pages/Employer/Transactions";
+import Services from "../pages/Pages/Front/Services/Services";
+import PayrollManagement from "../pages/Pages/Front/Services/PayrollManagement";
+import Outsourcing from "../pages/Pages/Front/Services/Outsourcing";
+import JobPosting from "../pages/Pages/Front/Services/JobPosting";
 
 //employer
 
@@ -561,11 +565,17 @@ const publicRoutes = [
   {path: '/training-events', component: <TrainingEvents />},
   {path: '/course-details', component: <ClassroomCourseDetails />},
 
-  //Services
+  //old_Services
   {path: '/services-recruitment', component: <Recruitment />},
   {path: '/manpower-outsourcing', component: <AllFirms />},
   {path: '/manpower-outsourcing-details', component: <FirmDetails />},
   {path: '/advertising', component: <Advertising />},
+
+  //new_Services
+  {path: '/services', component: <Services />},  
+  {path: '/services-outsourcing', component: <Outsourcing />},  
+  {path: '/services-payroll-management', component: <PayrollManagement />},  
+  {path: '/services-job-posting', component: <JobPosting />},  
 
 
 ];

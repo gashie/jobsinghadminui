@@ -11,6 +11,10 @@ import {
   Row,
   Button,
   CardHeader,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 import classnames from "classnames";
 // import img1 from "../../../assets/images/jobsinghana/seatec.png";
@@ -29,23 +33,30 @@ const EmployerDashboard = () => {
     }
   };
 
+  const [action, setAction] = useState(false);
+  const [takeAction, setTakeAction] = useState("");
+
+  const [status, setStatus] = useState(false);
+  const [takeStatus, setTakeStatus] = useState("");
+
   const [modal_list, setmodal_list] = useState(false);
   function tog_list() {
     setmodal_list(!modal_list);
   }
 
   const [height, setHeight] = useState("");
+  const [margin, setMargin] = useState("");
 
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
-      setHeight("150vh");
+      setMargin("-25rem");
     } else if (newWindowSize <= 1200) {
-      setHeight("150vh");
+      setMargin("");
     } else if (newWindowSize >= 1200) {
-      setHeight("150vh");
+      setMargin("");
     } else if (newWindowSize > 375) {
-      setHeight("150vh");
+      setMargin("");
     }
   };
 
@@ -76,9 +87,9 @@ const EmployerDashboard = () => {
             style={{
               border: "none",
               boxShadow: "0px 0px 0px white",
-              overflow: "scroll",
+              // overflow: "scroll",
             }}
-            className="p-3 scroll-change"
+            className="p-3"
           >
             <CardBody>
               <Nav tabs className="nav-tabs nav-justified mb-3">
@@ -171,6 +182,9 @@ const EmployerDashboard = () => {
                                     <th className="sort" data-sort="jobType">
                                       Job Type
                                     </th>
+                                    <th className="sort" data-sort="jobType">
+                                      Status
+                                    </th>
                                     <th className="sort" data-sort="applicants">
                                       Applicants
                                     </th>
@@ -210,19 +224,283 @@ const EmployerDashboard = () => {
                                     <td className="expDate">06 Apr, 2021</td>
                                     <td className="status">
                                       <div className="custom-dropdown">
-                                        <select
-                                          className="select"
-                                          style={{ borderRadius: "0.5rem" }}
+                                        <p
+                                          style={{
+                                            cursor: "pointer",
+                                            width: "max-content",
+                                            backgroundColor: "#ebeff0",
+                                            padding: "0.5rem",
+                                            borderRadius: "1.5rem",
+                                            border: "1px solid gray",
+                                          }}
+                                          onClick={() => {
+                                            setAction(!action);
+                                          }}
                                         >
-                                          <option value="option1">
-                                            <div>
-                                              <i
-                                                className="bx bx-radio-circle-marked"
-                                                style={{ color: "red" }}
-                                              ></i>
-                                            </div>
-                                          </option>
-                                        </select>
+                                          <i
+                                            className="bx bx-radio-circle-marked fs-20"
+                                            style={{
+                                              color:
+                                                takeAction === "Full Time"
+                                                  ? "#EB596B"
+                                                  : takeAction === "Part Time"
+                                                  ? "#00D084"
+                                                  : takeAction === "Internship"
+                                                  ? "#244159"
+                                                  : takeAction === "Temporary"
+                                                  ? "#E79637"
+                                                  : takeAction === "Other"
+                                                  ? "#E79637"
+                                                  : "black",
+                                              position: "relative",
+                                              top: "0.3rem",
+                                            }}
+                                          ></i>
+                                          {takeAction === "Full Time"
+                                            ? "Full Time"
+                                            : takeAction === "Part Time"
+                                            ? "Part Time"
+                                            : takeAction === "Internship"
+                                            ? "Internship"
+                                            : takeAction === "Temporary"
+                                            ? "Temporary"
+                                            : takeAction === "Other"
+                                            ? "Other"
+                                            : "Select Job Type"}
+                                          <i
+                                            className="bx bx-caret-down"
+                                            style={{ color: "black" }}
+                                          ></i>
+                                        </p>
+                                        <Card
+                                          style={{
+                                            position: "absolute",
+                                            padding: "1rem",
+                                            marginLeft: margin,
+
+                                            display:
+                                              action === false
+                                                ? "none"
+                                                : "block",
+                                          }}
+                                        >
+                                          <p
+                                            style={{
+                                              color: "red",
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeAction("Full Time");
+                                              setAction(!action);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#EB596B",
+                                              }}
+                                            ></i>{" "}
+                                            Full Time
+                                          </p>
+                                          <p
+                                            style={{
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeAction("Part Time");
+                                              setAction(!action);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#00D084",
+                                              }}
+                                            ></i>{" "}
+                                            Part Time
+                                          </p>
+                                          <p
+                                            style={{
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeAction("Internship");
+                                              setAction(!action);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244A59",
+                                              }}
+                                            ></i>{" "}
+                                            Internship
+                                          </p>
+                                          <p
+                                            style={{
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeAction("Temporary");
+                                              setAction(!action);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#E79637",
+                                              }}
+                                            ></i>{" "}
+                                            Temporary
+                                          </p>
+                                          <p
+                                            style={{
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeAction("Other");
+                                              setAction(!action);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#E79637",
+                                              }}
+                                            ></i>{" "}
+                                            Other
+                                          </p>
+                                        </Card>
+                                      </div>
+                                    </td>
+
+                                    <td className="status">
+                                      <div className="custom-dropdown">
+                                        <p
+                                          style={{
+                                            cursor: "pointer",
+                                            width: "max-content",
+                                            backgroundColor: "#ebeff0",
+                                            padding: "0.5rem",
+                                            borderRadius: "1.5rem",
+                                            border: "1px solid gray",
+                                           
+                                          
+                                          }}
+                                          onClick={() => {
+                                            setStatus(!status);
+                                          }}
+                                        >
+                                          <i
+                                            className="bx bx-radio-circle-marked fs-20"
+                                            style={{
+                                              color:
+                                                takeStatus === "Open"
+                                                  ? "#EB596B"
+                                                  : takeStatus === "Closed"
+                                                  ? "#00D084"
+                                                  : takeStatus === "Cancelled"
+                                                  ? "#E79637"
+                                                  : "black",
+                                              position: "relative",
+                                              top: "0.3rem",
+                                            }}
+                                          ></i>
+                                          {takeStatus === "Open"
+                                            ? "Open"
+                                            : takeStatus === "Closed"
+                                            ? "Closed"
+                                            : takeStatus === "Cancelled"
+                                            ? "Cancelled"
+                                            : "Select Status"}
+                                          <i
+                                            className="bx bx-caret-down"
+                                            style={{ color: "black" }}
+                                          ></i>
+                                        </p>
+                                        <Card
+                                          style={{
+                                            position: "absolute",
+                                            padding: "1rem",
+                                            marginLeft: margin,
+                                            zIndex: '1',
+                                            display:
+                                              status === false
+                                                ? "none"
+                                                : "block",
+                                          }}
+                                        >
+                                          <p
+                                            style={{
+                                              color: "red",
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeStatus("Open");
+                                              setStatus(!status);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#EB596B",
+                                              }}
+                                            ></i>{" "}
+                                            Open
+                                          </p>
+                                          <p
+                                            style={{
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeStatus("Closed");
+                                              setStatus(!status);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#00D084",
+                                              }}
+                                            ></i>{" "}
+                                            Closed
+                                          </p>
+                                        
+                                         
+                                          <p
+                                            style={{
+                                              cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                              setTakeStatus("Cancelled");
+                                              setStatus(!action);
+                                            }}
+                                          >
+                                            <i
+                                              className="bx bx-radio-circle-marked fs-20"
+                                              style={{
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#E79637",
+                                              }}
+                                            ></i>{" "}
+                                            Cancelled
+                                          </p>
+                                        </Card>
                                       </div>
                                     </td>
                                     <td>
