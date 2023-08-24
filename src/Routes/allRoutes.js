@@ -270,6 +270,7 @@ import Services from "../pages/Pages/Front/Services/Services";
 import PayrollManagement from "../pages/Pages/Front/Services/PayrollManagement";
 import Outsourcing from "../pages/Pages/Front/Services/Outsourcing";
 import JobPosting from "../pages/Pages/Front/Services/JobPosting";
+import JobLists from "../pages/Pages/Front/Jobs/JobList";
 
 //employer
 
@@ -554,6 +555,7 @@ const publicRoutes = [
   //jobs
   {path: '/job-details', component: <JobDetails />},
   {path: '/apply', component: <Apply />},
+  {path: '/job-list', component: <JobLists />},
 
   //carrer
   {path: '/career-advice', component: <CareerAdvice />},
