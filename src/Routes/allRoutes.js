@@ -264,6 +264,8 @@ import EmployerDashboard from "../pages/Pages/Employer/Dashboard";
 import EmployerProfile from "../pages/Pages/Employer/Profile";
 import EmployerJobs from "../pages/Pages/Employer/Jobs";
 import EmployerApplications from "../pages/Pages/Employer/Applications";
+import EmployerCourses from "../pages/Pages/Employer/Courses";
+import EmployerTransactions from "../pages/Pages/Employer/Transactions";
 
 //employer
 
@@ -488,6 +490,8 @@ const authProtectedRoutes = [
   { path: "/employer-profile", component: <EmployerProfile />},
   { path: "/employer-jobs", component: <EmployerJobs />},
   { path: "/employer-applications", component: <EmployerApplications />},
+  { path: "/employer-courses", component: <EmployerCourses />},
+  { path: "/employer-transactions", component: <EmployerTransactions />},
 
 
  

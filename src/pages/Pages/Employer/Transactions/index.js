@@ -12,12 +12,13 @@ import {
   Button,
 } from "reactstrap";
 import classnames from "classnames";
+import Transactions from './Transactions'
+import ViewReceipt from "./ViewReceipt";
 
 import { Link } from "react-router-dom";
-import Courses from "./Courses";
-import PostCourse from "./PostCourse";
 
-const EmployerCourses = () => {
+
+const EmployerTransactions = () => {
   const [justifyTab, setjustifyTab] = useState("1");
   const justifyToggle = (tab) => {
     if (justifyTab !== tab) {
@@ -55,7 +56,7 @@ const EmployerCourses = () => {
                       justifyToggle("1");
                     }}
                   >
-                    Courses
+                    Transactions
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -66,18 +67,18 @@ const EmployerCourses = () => {
                       justifyToggle("2");
                     }}
                   >
-                    Post a course
+                    View receipts
                   </NavLink>
                 </NavItem>
               </Nav>
 
               <TabContent activeTab={justifyTab} className="text-muted">
                 <TabPane tabId="1" id="base-justified-home">
-                  <Courses />
+                 <Transactions />
                 </TabPane>
 
                 <TabPane tabId="2" id="product">
-                  <PostCourse />
+                <ViewReceipt />
                 </TabPane>
               </TabContent>
             </CardBody>
@@ -88,4 +89,4 @@ const EmployerCourses = () => {
   );
 };
 
-export default EmployerCourses;
+export default EmployerTransactions;
