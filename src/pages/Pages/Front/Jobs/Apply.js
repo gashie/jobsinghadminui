@@ -29,8 +29,9 @@ const Apply = () => {
 
   return (
     <>
+    <div style={{backgroundColor: 'white'}} className="p-4">
     <Link to="/job-details">
-    <h4 className="m-5" style={{fontWeight: 'bolder', cursor: 'pointer'}}>
+    <h4 className="" style={{fontWeight: 'bolder', cursor: 'pointer'}}>
         <i className="bx bx-chevron-left" style={{fontSize: '1.5rem', position: 'relative', top: '0.3rem'}}></i>
         Back to Jobs</h4>
         </Link>
@@ -38,7 +39,7 @@ const Apply = () => {
         <Col xl={9} md={12} xs={12}>
       <Row
         className="p-5 m-5"
-        style={{ border: "1px solid black", display: "flex" }}
+        style={{ border: "1px solid #e0e0e0", display: "flex" }}
       >
         <div style={{display: 'flex', gap: '0.8rem'}}>
         <div>
@@ -61,7 +62,7 @@ const Apply = () => {
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
 <Col xl={9}>
-      <Row className="p-0 m-5" style={{ border: "1px solid black" }}>
+      <Row className="p-0 m-5" style={{ border: "1px solid #e0e0e0" }}>
         <div className="p-5">
           <Col md={12}>
             <Label for="inputEmail4" className="form-label">
@@ -145,13 +146,13 @@ const Apply = () => {
               }}
             >
               {({ getRootProps, getInputProps }) => (
-                <div className="dropzone dz-clickable">
+                <div className="dropzone dz-clickable" style={{backgroundColor: "#ebeff0", border: '1px dashed gray', cursor: 'pointer'}}>
                   <div className="dz-message needsclick" {...getRootProps()}>
                     <div className="mb-3">
-                      <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                      <i className="display-4 bx bx-plus" style={{color: '#244a59'}}/>
                     </div>
-                    <h5>Drag or Click to upload file</h5>
-                    <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
+                    <h6 style={{color: '#244a59'}} className="fw-bolder">Choose a file or drop it here</h6>
+                    <p className="fs-11">Formats supported: docx, doc, RTF, txt, PDF (maximum of 2 MB)</p>
                   </div>
                 </div>
               )}
@@ -174,11 +175,16 @@ const Apply = () => {
                 data-choices-sorting="true"
               >
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option>None</option>
+                <option>High School</option>
+                <option>Professional</option>
+                <option>College</option>
+                <option>University</option>
+                <option>Training</option>
               </select>
             </Col>
 
-            <Label for="inputZip" className="form-label">
+            <Label for="inputZip" className="form-labelmt-4">
               Do you have any experience in this field?
             </Label>
             <select
@@ -188,7 +194,10 @@ const Apply = () => {
               data-choices-sorting="true"
             >
               <option selected>Choose...</option>
-              <option>...</option>
+              <option>0-2 years</option>
+              <option>3-5 years</option>
+              <option>6-9 years</option>
+              <option>10+ years</option>
             </select>
           </Col>
           <Col xs={12}>
@@ -214,6 +223,7 @@ const Apply = () => {
         </div>
       </Row>
       </Col>
+      </div>
       </div>
     </>
   );

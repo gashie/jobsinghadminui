@@ -21,7 +21,7 @@ const JobDetails = () => {
             >
               <CardBody>
                 <div className="p-5">
-                  <Col xl={10} md={15} xs={25} sm={20}>
+                  <Col xl={10} md={15} xs={20} sm={20}>
                     <div
                       className="avatar-sm mb-4 "
                       style={{ marginLeft: "4rem" }}
@@ -60,9 +60,10 @@ const JobDetails = () => {
                       style={{
                         display: "flex",
                         gap: "0.5rem",
-                        flexWrap: "wrap",
+                        justifyContent: 'space-around',
+                        width: '100%'
                       }}
-                      className="col-md-20"
+                      className="col-md-20 col-xs-20"
                     >
                       <Button
                         type="button"
@@ -70,43 +71,46 @@ const JobDetails = () => {
                         data-bs-toggle="button"
                         aria-pressed="true"
                         style={{
-                          width: "30%",
+                          width: "32%",
                           color: "black",
                           border: "1px solid #244a59",
                         }}
                       >
                         <i
-                          className="mdi mdi-cards-heart fs-20"
+                          className="mdi mdi-cards-heart fs-15"
                           style={{ color: "#244a59" }}
                         ></i>
                         Save
                       </Button>
+                      <Link to="/apply" className="text-center" style={{width: '30%'}}>
                       <Button
                         type="button"
                         className="btn btn-icon btn-soft-dark mt-3 p-4 "
                         data-bs-toggle="button"
                         aria-pressed="true"
+                        
                         style={{
-                          width: "30%",
+                          width: "100%",
                           backgroundColor: "#244a59",
                           color: "white",
                         }}
                       >
                         Apply
                       </Button>
+                      </Link>
                       <Button
                         type="button"
                         className="btn btn-icon btn-soft-light mt-3 p-4 "
                         data-bs-toggle="button"
                         aria-pressed="true"
                         style={{
-                          width: "30%",
+                          width: "34%",
                           color: "black",
                           border: "1px solid #244a59",
                         }}
                       >
                         <i
-                          className="mdi mdi-cards-heart fs-20"
+                          className="mdi mdi-cards-heart fs-15"
                           style={{ color: "#244a59" }}
                         ></i>
                         Share
@@ -205,9 +209,11 @@ const JobDetails = () => {
                 </div>
 
                 <div className="m-4">
+                <Link to="/apply" className="text-center" style={{width: '100%'}}>
                   <Button className="btn btn-dark p-3" style={{width: '100%', backgroundColor: "#244a59"}}>
                     Apply
                   </Button>
+                  </Link>
                 </div>
 
                 <p className="text-center text-muted fw-bolder mt-4">Share this job with your friends</p>
@@ -263,10 +269,11 @@ const JobDetails = () => {
 
                     <input placeholder="Enter your email" className="m-3 p-3" style={{border: '1px solid #e0e0e0'}}></input>
 
-                    <Button className="btn btn-success p-2">
+
+                    <Button className="btn btn-success p-2 ">
                       Create alert
                     </Button>
-
+                
                     <p style={{ textAlign: "center" }} className="mt-3">
                       * You can cancel this job alert at any time
                     </p>

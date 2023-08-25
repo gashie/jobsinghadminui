@@ -73,12 +73,14 @@ const FeaturedJobs = () => {
               <h4 style={{ color: "244a59" }} className="fw-bolder">
                 Featured Jobs
               </h4>
+              <Link to="/job-list">
               <Button
                 style={{ backgroundColor: "#244a59" }}
                 className="btn btn-dark"
               >
                 See all jobs
               </Button>
+              </Link>
             </div>
           </Row>
           <Row id="job-list" className="p-3">
