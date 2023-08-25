@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import "../Career/CareerAdvice/CareerAdvice.css";
 import {
   Container,
@@ -24,12 +25,14 @@ import icon2 from "./icon2.png";
 import icon3 from "./icon3.png";
 import icon4 from "./icon4.png";
 import icon5 from "./icon5.png";
-import icon6 from "./icon6.png";
-import icon7 from "./icon7.png";
-import Rating from "react-rating";
-import Flatpickr from "react-flatpickr";
 
-const PayrollManagement = () => {
+
+import ServicesComp from './Services'
+import JobPosting from './JobPosting'
+import Outsourcing from './Outsourcing';
+import PayrollManagement from './PayrollManagement';
+
+const Services = () => {
   const iconList = [
     {
       icon: icon1,
@@ -55,10 +58,44 @@ const PayrollManagement = () => {
     },
   ];
 
+
+  const [width, setWidth] = useState("");
+const [left , setLeft] = useState("")
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setWidth("10rem");
+      setLeft("11rem")
+  
+    } else if (newWindowSize >= 1200) {
+      setWidth("20rem");
+    
+      setLeft("")
+    } else if (newWindowSize > 375) {
+      setWidth("20rem");
+      setLeft("")
+    }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+  console.log(window.location)
+
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-        {/* <Row className="justify-content-center">
+        <Row className="justify-content-center">
           <Col xl={20} xs={10} md={20} className="text-bg-size">
             <img
               src={bg}
@@ -113,12 +150,14 @@ const PayrollManagement = () => {
                       className="text-light"
                     >
                       <Button
-                        style={{
+                         style={{
                           color: "white",
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          left: left
                         }}
                         className="btn"
                       >
@@ -135,7 +174,9 @@ const PayrollManagement = () => {
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          left: left
                         }}
                         className="btn"
                       >
@@ -156,7 +197,9 @@ const PayrollManagement = () => {
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          right: left
                         }}
                         className="btn"
                       >
@@ -165,12 +208,15 @@ const PayrollManagement = () => {
                     </Link>
                     <Link to="/services-job-posting" className="text-light">
                       <Button
-                        style={{
+                         style={{
                           color: "white",
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          right: left
+
                         }}
                         className="btn"
                       >
@@ -182,141 +228,25 @@ const PayrollManagement = () => {
               </Col>
             </div>
           </Col>
-        </Row> */}
+        </Row>
 
         <Row className="mt-5 p-5">
           <Col>
             <Container>
-              <h4 style={{ fontWeight: "bolder", color: "#244a59" }}>
-                Payroll Management
-              </h4>
-              {/* <p className="mt-3">
-                Use our state of the art technology to outsource the exact
-                talent for your organisation and only interact with the
-                candidates that best fit your requirements
-              </p> */}
-              <p className="mt-3">
-                For more information, fill out the form below.
-              </p>
-
-              <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                  <Label
-                    htmlFor="employeeName"
-                    className="form-label"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    First Name:
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="employeeName"
-                    placeholder=""
-                  />
-                </div>
-
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                  <Label
-                    htmlFor="employeeUrl"
-                    className="form-label"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    Last name:
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="employeeUrl"
-                    placeholder=""
-                  />
-                </div>
-              </Row>
-              <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                  <Label
-                    htmlFor="employeeName"
-                    className="form-label"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    Company name:
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="employeeName"
-                    placeholder=""
-                  />
-                </div>
-
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                  <Label
-                    htmlFor="employeeUrl"
-                    className="form-label"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    Phone number:
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="employeeUrl"
-                    placeholder=""
-                  />
-                </div>
-              </Row>
-              <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                  <Label
-                    htmlFor="employeeName"
-                    className="form-label"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    Email address:
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="employeeName"
-                    placeholder=""
-                  />
-                </div>
-
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                  <Label
-                    htmlFor="employeeUrl"
-                    className="form-label"
-                    style={{ fontSize: "0.8rem" }}
-                  >
-                    Purpose of enquiry:
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="employeeUrl"
-                    placeholder="Payroll Management"
-                  />
-                </div>
-              </Row>
-
-              <div className="text-start">
-                <button
-                  type="submit"
-                  className="btn "
-                  style={{
-                    backgroundColor: "#244a59",
-                    color: "white",
-                  }}
-                >
-                  Talk to us
-                </button>
-              </div>
+                {
+                   window.location.pathname === '/services' ? <ServicesComp /> : 
+                   window.location.pathname === '/services-job-posting' ? <JobPosting /> : 
+                   window.location.pathname === '/services-payroll-management' ? <PayrollManagement /> : 
+                   window.location.pathname === '/services-outsourcing' ? <Outsourcing /> : <p>Page Does Not Exist</p>
+                }
+            
+            
             </Container>
           </Col>
         </Row>
-      </div>
+      </div> 
     </>
   );
 };
 
-export default PayrollManagement;
+export default Services;

@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import "../Career/CareerAdvice/CareerAdvice.css";
 import {
   Container,
@@ -55,10 +56,43 @@ const Services = () => {
     },
   ];
 
+
+  const [width, setWidth] = useState("");
+const [left , setLeft] = useState("")
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setWidth("10rem");
+      setLeft("11rem")
+  
+    } else if (newWindowSize >= 1200) {
+      setWidth("20rem");
+    
+      setLeft("")
+    } else if (newWindowSize > 375) {
+      setWidth("20rem");
+      setLeft("")
+    }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-        <Row className="justify-content-center">
+        {/* <Row className="justify-content-center">
           <Col xl={20} xs={10} md={20} className="text-bg-size">
             <img
               src={bg}
@@ -113,12 +147,14 @@ const Services = () => {
                       className="text-light"
                     >
                       <Button
-                        style={{
+                         style={{
                           color: "white",
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          left: left
                         }}
                         className="btn"
                       >
@@ -135,7 +171,9 @@ const Services = () => {
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          left: left
                         }}
                         className="btn"
                       >
@@ -156,7 +194,9 @@ const Services = () => {
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          right: left
                         }}
                         className="btn"
                       >
@@ -165,12 +205,15 @@ const Services = () => {
                     </Link>
                     <Link to="/services-job-posting" className="text-light">
                       <Button
-                        style={{
+                         style={{
                           color: "white",
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
-                          width: "20rem",
+                          width: width,
+                          position: 'relative', 
+                          right: left
+
                         }}
                         className="btn"
                       >
@@ -182,7 +225,7 @@ const Services = () => {
               </Col>
             </div>
           </Col>
-        </Row>
+        </Row> */}
 
         <Row className="mt-5 p-5">
           <Col>

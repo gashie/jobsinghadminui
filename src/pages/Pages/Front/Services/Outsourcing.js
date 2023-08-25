@@ -58,7 +58,7 @@ const Outsourcing = () => {
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-        <Row className="justify-content-center">
+        {/* <Row className="justify-content-center">
           <Col xl={20} xs={10} md={20} className="text-bg-size">
             <img
               src={bg}
@@ -182,7 +182,7 @@ const Outsourcing = () => {
               </Col>
             </div>
           </Col>
-        </Row>
+        </Row> */}
 
         <Row className="mt-5 p-5">
           <Col>

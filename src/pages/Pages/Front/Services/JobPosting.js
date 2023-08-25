@@ -64,7 +64,7 @@ const JobPosting = () => {
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-        <Row className="justify-content-center">
+        {/* <Row className="justify-content-center">
           <Col xl={20} xs={10} md={20} className="text-bg-size">
             <img
               src={bg}
@@ -188,7 +188,7 @@ const JobPosting = () => {
               </Col>
             </div>
           </Col>
-        </Row>
+        </Row> */}
 
         <Container className="pb-5">
           <h4

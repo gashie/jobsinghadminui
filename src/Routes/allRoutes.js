@@ -266,7 +266,7 @@ import EmployerJobs from "../pages/Pages/Employer/Jobs";
 import EmployerApplications from "../pages/Pages/Employer/Applications";
 import EmployerCourses from "../pages/Pages/Employer/Courses";
 import EmployerTransactions from "../pages/Pages/Employer/Transactions";
-import Services from "../pages/Pages/Front/Services/Services";
+import Services from "../pages/Pages/Front/Services";
 import PayrollManagement from "../pages/Pages/Front/Services/PayrollManagement";
 import Outsourcing from "../pages/Pages/Front/Services/Outsourcing";
 import JobPosting from "../pages/Pages/Front/Services/JobPosting";
@@ -575,9 +575,9 @@ const publicRoutes = [
 
   //new_Services
   {path: '/services', component: <Services />},  
-  {path: '/services-outsourcing', component: <Outsourcing />},  
-  {path: '/services-payroll-management', component: <PayrollManagement />},  
-  {path: '/services-job-posting', component: <JobPosting />},  
+  {path: '/services-outsourcing', component: <Services />},  
+  {path: '/services-payroll-management', component: <Services />},  
+  {path: '/services-job-posting', component: <Services />},  
 
 
 ];
