@@ -194,7 +194,7 @@ const TrainingEvents = (props) => {
 
   return (
     <>
-      <div className="page-content">
+      <div className="page-content" style={{backgroundColor: 'white'}}>
         <ToastContainer closeButton={false} limit={1} />
         <DeleteModal
           show={deleteModal}
@@ -211,8 +211,8 @@ const TrainingEvents = (props) => {
         <Container fluid>
           {/* <BreadCrumb title="Products" pageTitle="Ecommerce" /> */}
           <Row>
-            <Col xl={3} lg={4}>
-              <Card>
+            <Col xl={2} lg={4}>
+              <Card style={{border: "1px solid #e0e0e0", borderRadius: '0.8rem'}}>
                 <CardHeader style={{ backgroundColor: "#244a59" }}>
                   <div className="d-flex mb-3">
                     <div className="flex-grow-1">
@@ -236,7 +236,7 @@ const TrainingEvents = (props) => {
                   <div className="card-body border-bottom">
                     <div>
                       <h4
-                        className="text-uppercase fs-12 fw-medium mb-2"
+                        className="text-uppercase fs-12 fw-medium mb-2 mt-4"
                         style={{ color: "#244a59", fontWeight: "bolder" }}
                       >
                         FILTER COURSES
@@ -261,7 +261,7 @@ const TrainingEvents = (props) => {
                             className="form-check-label"
                             htmlFor="productBrandRadio5"
                           >
-                            Boat
+                            Tristique libero risus amet
                           </label>
                         </div>
                         <div className="form-check">
@@ -275,7 +275,7 @@ const TrainingEvents = (props) => {
                             className="form-check-label"
                             htmlFor="productBrandRadio4"
                           >
-                            OnePlus
+                            Viverra aliquet donec enim rutr
                           </label>
                         </div>
                         <div className="form-check">
@@ -289,7 +289,35 @@ const TrainingEvents = (props) => {
                             className="form-check-label"
                             htmlFor="productBrandRadio3"
                           >
-                            Realme
+                            Tristique libero risus amet due lokmn
+                          </label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            style={{ backgroundColor: "#244a59" }}
+                            className="form-check-input"
+                            type="checkbox"
+                            id="productBrandRadio3"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="productBrandRadio3"
+                          >
+                            Tristique libero risus
+                          </label>
+                        </div>
+                        <div className="form-check">
+                          <input
+                            style={{ backgroundColor: "#244a59" }}
+                            className="form-check-input"
+                            type="checkbox"
+                            id="productBrandRadio3"
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor="productBrandRadio3"
+                          >
+                            Tristique libero risus
                           </label>
                         </div>
 
@@ -300,7 +328,7 @@ const TrainingEvents = (props) => {
                         </div>
                       </div>
                       <h4
-                        className="text-uppercase fs-12 fw-medium mb-2"
+                        className="text-uppercase fs-12 fw-medium mb-2 mt-4"
                         style={{ color: "#244a59", fontWeight: "bolder" }}
                       >
                         FILTER COURSES
@@ -313,49 +341,182 @@ const TrainingEvents = (props) => {
                       </h4>
 
                       <div className="d-flex flex-column gap-2 mt-3">
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio5"
-                            defaultChecked
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio5"
-                          >
-                            Boat
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio4"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio4"
-                          >
-                            OnePlus
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Realme
-                          </label>
-                        </div>
+                        <Row>
+                          <Col>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Januanry
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio4"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio4"
+                              >
+                                March
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                May
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                July
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                September
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                November
+                              </label>
+                            </div>
+                          </Col>
+                          <Col>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Feburary
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio4"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio4"
+                              >
+                                April
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                June
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                August
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                October
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio3"
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio3"
+                              >
+                                December
+                              </label>
+                            </div>
+                          </Col>
+                        </Row>
 
                         <div>
                           <p className="text-decoration-none fw-medium p-0">
@@ -377,58 +538,47 @@ const TrainingEvents = (props) => {
                       </h4>
 
                       <div className="d-flex flex-column gap-2 mt-3">
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio5"
-                            defaultChecked
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio5"
-                          >
-                            Boat
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio4"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio4"
-                          >
-                            OnePlus
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Realme
-                          </label>
-                        </div>
-
-                        <div>
-                          <p className="text-decoration-none fw-medium p-0">
-                            Show More
-                          </p>
-                        </div>
+                        <Row>
+                          <Col>
+                            {" "}
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                2023
+                              </label>
+                            </div>
+                          </Col>
+                          <Col>
+                            {" "}
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                2024
+                              </label>
+                            </div>
+                          </Col>
+                        </Row>
                       </div>
                       <h4
-                        className="text-uppercase fs-12 fw-medium mb-2"
+                        className="text-uppercase fs-12 fw-medium mb-2 mt-5"
                         style={{ color: "#244a59", fontWeight: "bolder" }}
                       >
                         Discover
@@ -441,58 +591,165 @@ const TrainingEvents = (props) => {
                       </h4>
 
                       <div className="d-flex flex-column gap-2 mt-3">
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio5"
-                            defaultChecked
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio5"
-                          >
-                            Boat
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio4"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio4"
-                          >
-                            OnePlus
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Realme
-                          </label>
-                        </div>
-
-                        <div>
-                          <p className="text-decoration-none fw-medium p-0">
-                            Show More
-                          </p>
-                        </div>
+                        <Row>
+                          <Col>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                          </Col>
+                          <Col>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                            <div className="form-check">
+                              <input
+                                style={{ backgroundColor: "#244a59" }}
+                                className="form-check-input"
+                                type="checkbox"
+                                id="productBrandRadio5"
+                                defaultChecked
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor="productBrandRadio5"
+                              >
+                                Accra - Ghana
+                              </label>
+                            </div>
+                          </Col>
+                        </Row>
                       </div>
                       <h4
-                        className="text-uppercase fs-12 fw-medium mb-2"
+                        className="text-uppercase fs-12 fw-medium mb-2 "
                         style={{ color: "#244a59", fontWeight: "bolder" }}
                       >
                         FILTER COURSES
@@ -623,9 +880,9 @@ const TrainingEvents = (props) => {
               </Card>
             </Col>
 
-            <div className="col-xl-9 col-lg-8">
+            <div className="col-xl-10 col-lg-8">
               <div>
-                <div className="card">
+                <div className="card" style={{boxShadow: 'none'}}>
                   <div className="card-header border-0">
                     <div className="row align-items-center">
                       <div className="col">
@@ -722,7 +979,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -736,15 +993,15 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '1.5rem'
+                                    marginRight: "1.5rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -755,16 +1012,16 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "0.4rem",
-                                    width: 'max-content',
-                                    marginRight: '2rem'
+                                    width: "max-content",
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   Accra - GH
@@ -793,7 +1050,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -807,15 +1064,15 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '1.5rem'
+                                    marginRight: "1.5rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -826,16 +1083,16 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "0.4rem",
-                                    width: 'max-content',
-                                    marginRight: '2rem'
+                                    width: "max-content",
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   Accra - GH
@@ -864,7 +1121,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -878,15 +1135,15 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '1.5rem'
+                                    marginRight: "1.5rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -897,16 +1154,16 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "0.4rem",
-                                    width: 'max-content',
-                                    marginRight: '2rem'
+                                    width: "max-content",
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   Accra - GH
@@ -935,7 +1192,7 @@ const TrainingEvents = (props) => {
                                 }}
                               >
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "1rem",
@@ -949,15 +1206,15 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '1.5rem'
+                                    marginRight: "1.5rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "01rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   03 - 07 Jul 2023
@@ -968,16 +1225,16 @@ const TrainingEvents = (props) => {
                                     backgroundColor: "black",
                                     width: "1px",
                                     marginTop: "1rem",
-                                    marginRight: '2rem'
+                                    marginRight: "2rem",
                                   }}
                                 ></div>
                                 <h5
-                                className="fs-13"
+                                  className="fs-13"
                                   style={{
                                     fontWeight: "bolder",
                                     marginTop: "0.4rem",
-                                    width: 'max-content',
-                                    marginRight: '2rem'
+                                    width: "max-content",
+                                    marginRight: "2rem",
                                   }}
                                 >
                                   Accra - GH
@@ -996,8 +1253,6 @@ const TrainingEvents = (props) => {
                             </Col>
                           </CardBody>
                         </Card>
-                        
-                       
                       </>
                     ) : (
                       // Grid view
@@ -1006,7 +1261,7 @@ const TrainingEvents = (props) => {
                           <Card>
                             <CardBody>
                               <Row style={{ display: "flex" }}>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1020,13 +1275,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1051,21 +1306,22 @@ const TrainingEvents = (props) => {
                                         ACCRA - GH
                                       </p>
                                       <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bxs-caret-right-circle"
+                                      <i
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
                                     </CardBody>
                                   </Card>
                                 </Col>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1079,13 +1335,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1110,21 +1366,22 @@ const TrainingEvents = (props) => {
                                         ACCRA - GH
                                       </p>
                                       <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bxs-caret-right-circle"
+                                      <i
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
                                     </CardBody>
                                   </Card>
                                 </Col>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1138,13 +1395,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1169,21 +1426,22 @@ const TrainingEvents = (props) => {
                                         ACCRA - GH
                                       </p>
                                       <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bxs-caret-right-circle"
+                                      <i
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
                                     </CardBody>
                                   </Card>
                                 </Col>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1197,13 +1455,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1228,21 +1486,22 @@ const TrainingEvents = (props) => {
                                         ACCRA - GH
                                       </p>
                                       <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bxs-caret-right-circle"
+                                      <i
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
                                     </CardBody>
                                   </Card>
                                 </Col>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1256,13 +1515,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1287,21 +1546,22 @@ const TrainingEvents = (props) => {
                                         ACCRA - GH
                                       </p>
                                       <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bxs-caret-right-circle"
+                                      <i
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
                                     </CardBody>
                                   </Card>
                                 </Col>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1315,13 +1575,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1346,21 +1606,22 @@ const TrainingEvents = (props) => {
                                         ACCRA - GH
                                       </p>
                                       <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bxs-caret-right-circle"
+                                      <i
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
                                     </CardBody>
                                   </Card>
                                 </Col>
-                                <Col sm={6} xl={3} md={3}>
+                                <Col sm={6} xl={2} md={5}>
                                   <Card
                                     style={{ borderBottomRightRadius: "2rem" }}
                                   >
@@ -1374,13 +1635,13 @@ const TrainingEvents = (props) => {
                                     />
                                     <h5
                                       style={{
-                                        textAlign: "center",
                                         position: "absolute",
-                                        top: "3.5rem",
+                                        top: "4rem",
+                                        zIndex: "1",
                                         color: "white",
                                         fontWeight: "bolder",
-                                        fontSize: "1rem",
                                       }}
+                                      className="text-center p-2 fs-17"
                                     >
                                       Contract Management Principles & practice
                                     </h5>
@@ -1404,15 +1665,16 @@ const TrainingEvents = (props) => {
                                       >
                                         ACCRA - GH
                                       </p>
-                                      <p style={{ textAlign: "center" }}>
+                                      <p style={{ textAlign: "center" }} >
                                         <i
-                                          className="bx bxs-caret-right-circle"
+                                          className="bx bxs-caret-right-circle btn btn-icon"
                                           style={{
                                             fontSize: "2rem",
                                             padding: "0.5rem",
                                             position: "relative",
                                             top: "0.3rem",
                                             color: "#244a59",
+                                            boxShadow: 'none'
                                           }}
                                         ></i>
                                       </p>
@@ -1448,7 +1710,7 @@ const TrainingEvents = (props) => {
       <div
         style={{
           display: "flex",
-          flexWrap: 'wrap',
+          flexWrap: "wrap",
           gap: "1.2rem",
           backgroundColor: "#244a59",
         }}
@@ -1458,27 +1720,28 @@ const TrainingEvents = (props) => {
           <img src={online} alt="online-img" className="img-fluid"></img>
         </div>
         <div className="p-3">
-
-        <div style={{marginTop: '5rem'}}>
-          <h6 style={{ fontWeight: "bolder", color: "white" }}>DISCOVER OUR</h6>
-          <h4 style={{ fontWeight: "bolder", color: "white" }}>
-            ONLINE TRAINING
-          </h4>
-          <h4 style={{ fontWeight: "bolder", color: "white" }}>COURSES</h4>
-        </div>
-        <div>
-          <i
-            className="bx bxs-caret-right-circle"
-            style={{
-              fontSize: "2rem",
-              padding: "0.5rem",
-              position: "relative",
-              top: "5.5rem",
-              color: "white",
-              cursor: 'pointer'
-            }}
-          ></i>
-        </div>
+          <div style={{ marginTop: "5rem" }}>
+            <h6 style={{ fontWeight: "bolder", color: "white" }}>
+              DISCOVER OUR
+            </h6>
+            <h4 style={{ fontWeight: "bolder", color: "white" }}>
+              ONLINE TRAINING
+            </h4>
+            <h4 style={{ fontWeight: "bolder", color: "white" }}>COURSES</h4>
+          </div>
+          <div>
+            <i
+              className="bx bxs-caret-right-circle"
+              style={{
+                fontSize: "2rem",
+                padding: "0.5rem",
+                position: "relative",
+                top: "5.5rem",
+                color: "white",
+                cursor: "pointer",
+              }}
+            ></i>
+          </div>
         </div>
       </div>
     </>
