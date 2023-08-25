@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   NavItem,
   TabPane,
@@ -24,6 +24,7 @@ import CoverLetters from "../CoverLetters";
 import AddCoverLetters from "../AddCoverLetters";
 import EditCoverLetter from "../EditCoverLetter";
 import ViewCoverLetter from "../ViewCoverLetter";
+import {Link} from 'react-router-dom'
 
 const Resume = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -32,6 +33,18 @@ const Resume = () => {
       setjustifyTab(tab);
     }
   };
+
+  useEffect(() => {
+    if (window.location.pathname === "/job-seeker-my-cover-letters") {
+      setjustifyTab("2");
+    } else if (window.location.pathname === "/job-seeker-add-cover-letter") {
+      setjustifyTab("3");
+    } else if (window.location.pathname === "/job-seeker-edit-cover-letter") {
+      setjustifyTab("4");
+    } else if (window.location.pathname === "/job-seeker-view-cover-letter") {
+      setjustifyTab("5");
+    } else setjustifyTab("1");
+  });
 
   const handleAddCoverLetter = () =>{
     justifyToggle("3")
@@ -46,13 +59,22 @@ const Resume = () => {
   const [edit, setEdit] = useState(false)
   return (
     <>
-      <Col xxl={20} className="m-5 ">
-        <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
+      <Row style={{ height: "120vh" }}>
+     <Col
+          xxl={11}
+          className="m-0"
+          md={10}
+          xs={15}
+          style={{ position: "relative", top: "-3rem" }}
+        >
+    
+        <Card style={{ border: "none", boxShadow: "0px 0px 0px white"}}>
           <CardBody>
             <Nav tabs className="nav-tabs nav-justified mb-3">
               <NavItem>
+                <Link to="/job-seeker-resume" >
                 <NavLink
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "1" })}
                   onClick={() => {
                     justifyToggle("1");
@@ -60,10 +82,12 @@ const Resume = () => {
                 >
                   Resume
                 </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
+                <Link to="/job-seeker-my-cover-letters" >
                 <NavLink
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "2" })}
                   onClick={() => {
                     justifyToggle("2");
@@ -71,10 +95,12 @@ const Resume = () => {
                 >
                    My cover letters
                 </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
+                <Link to="/job-seeker-add-cover-letter" >
                 <NavLink
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "3" })}
                   onClick={() => {
                     justifyToggle("3");
@@ -82,10 +108,12 @@ const Resume = () => {
                 >
                   Add cover letter
                 </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
+                <Link to="/job-seeker-edit-cover-letter" >
                 <NavLink
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "4" })}
                   onClick={() => {
                     justifyToggle("4");
@@ -93,10 +121,12 @@ const Resume = () => {
                 >
                   Edit your letter
                 </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
+                <Link to="/job-seeker-view-cover-letter" >
                 <NavLink
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "5" })}
                   onClick={() => {
                     justifyToggle("5");
@@ -104,6 +134,7 @@ const Resume = () => {
                 >
                   View cover letter
                 </NavLink>
+                </Link>
               </NavItem>
              
             </Nav>
@@ -137,6 +168,7 @@ const Resume = () => {
           </CardBody>
         </Card>
       </Col>
+      </Row>
     </>
   );
 };

@@ -87,17 +87,48 @@ const Sidebar = () => {
   };
 
   const sidebarItems = [
-    { icon: "", label: "Home", link: "/", toggle: toggleLink },
-    { icon: "", label: "Profile", link: "/profile", toggle: toggleProfile },
-    { icon: "", label: "CV/Resume", link: "/settings", toggle: toggleResume },
+    {
+      icon: "",
+      label: "Home",
+      link: "/job-seeker-dashboard",
+      toggle: toggleLink,
+    },
+    {
+      icon: "",
+      label: "Profile",
+      link: "/job-seeker-profile",
+      link1: "/job-seeker-edit-profile",
+      link2: "/job-seeker-change-password",
+      toggle: toggleProfile,
+    },
+    {
+      icon: "",
+      label: "CV/Resume",
+      link: "/job-seeker-resume",
+      link1: "/job-seeker-my-cover-letters",
+      link2: "/job-seeker-add-cover-letter",
+      link3: "/job-seeker-edit-cover-letter",
+      link4: "/job-seeker-view-cover-letter",
+      toggle: toggleResume,
+    },
     {
       icon: "",
       label: "Applications",
-      link: "/settings",
+      link: "/job-seeker-applications",
       toggle: toggleApplications,
     },
-    { icon: "", label: "Alerts", link: "/settings", toggle: toggleAlerts },
-    { icon: "", label: "Saved Jobs", link: "/settings", toggle: toggleJobs },
+    {
+      icon: "",
+      label: "Alerts",
+      link: "/job-seeker-alerts",
+      toggle: toggleAlerts,
+    },
+    {
+      icon: "",
+      label: "Saved Jobs",
+      link: "/job-seeker-saved-jobs",
+      toggle: toggleJobs,
+    },
     {
       icon: "",
       label: "Account Settings",
@@ -127,7 +158,7 @@ const Sidebar = () => {
               aria-label="Toggle navigation"
               style={{
                 position: "absolute",
-                top: "-19rem",
+                top: "-18rem",
                 zIndex: "1",
                 boxShadow: "none",
               }}
@@ -142,32 +173,52 @@ const Sidebar = () => {
                   display: "flex",
                   flexDirection: "column",
                   position: "absolute",
-                  top: "-5.5rem",
+                  top: "-4.0rem",
                   left: "0rem",
                   zIndex: "1",
                   backgroundColor: "#244a59",
-                 
+
                   height: "max-content",
                 }}
-                
               >
                 {sidebarItems.map((item, index) => (
                   <div key={index}>
                     <div
-                      style={{ border: "10px solid #244a59" }}
+                      style={{
+                        backgroundColor:
+                        window.location.pathname === item.link ||
+                        window.location.pathname === item?.link1 ||
+                        window.location.pathname === item?.link2 ||
+                        window.location.pathname === item?.link3 ||
+                        window.location.pathname === item?.link4
+                          ? "#3f494c"
+                          : "",
+                        height: "2rem",
+                        width: "100%",
+                        borderTop: "1px solid white",
+                        cursor: "pointer",
+                      }}
                       onMouseLeave={removetoggles}
                     ></div>
                     <NavItem
                       className="sidebar-item p-4"
                       style={{
                         padding: "0",
-                        borderTop: "1px solid white",
+                        // borderBottom: "1px solid white",
                         cursor: "pointer",
+                        backgroundColor:
+                          window.location.pathname === item.link ||
+                          window.location.pathname === item?.link1 ||
+                          window.location.pathname === item?.link2 ||
+                          window.location.pathname === item?.link3 ||
+                          window.location.pathname === item?.link4
+                            ? "#3f494c"
+                            : "",
                       }}
                       onClick={item.toggle}
                       onMouseEnter={item.toggle}
                     >
-                      <Link className="sidebar-link">
+                      <Link className="sidebar-link" to={item.link}>
                         <div className="menu-box">
                           <p style={{ textAlign: "center" }}>
                             <i
@@ -222,7 +273,7 @@ const Sidebar = () => {
                     display: "flex",
                     flexDirection: "column",
                     position: "absolute",
-                    top: "-5rem",
+                    top: "-4.9rem",
                     zIndex: "1",
                     backgroundColor: "#3f494c",
                     left: "8.4rem",
@@ -234,20 +285,35 @@ const Sidebar = () => {
                 >
                   {isSide === true ? (
                     <Container fluid>
-                      <p className="fs-15 m-3">Home</p>
+                      <p className="fs-15 m-3 fw-bolder">Home</p>
                       <hr />
+                      <Link to="/job-seeker-dashboard" style={{pointer: 'cursor'}}>
+                      <p className="fs-12 text-light">Dashboard</p>
+                      </Link>
                     </Container>
                   ) : null}
                   {isProfile === true ? (
                     <Container fluid>
-                      <p className="fs-15 m-3">Profile</p>
+                      <p className="fs-15 m-3 fw-bolder">Profile</p>
                       <hr />
+                      <Link to="/job-seeker-edit-profile" style={{pointer: 'cursor'}}>
+                      <p className="fs-12 text-light">Edit profile</p>
+                      </Link>
+                      <Link to="/job-seeker-change-password" style={{pointer: 'cursor'}}>
+                      <p className="fs-12 text-light">Change password</p>
+                      </Link>
                     </Container>
                   ) : null}
                   {isResume === true ? (
                     <Container fluid>
                       <p className="fs-15 m-3">Resume/CV</p>
                       <hr />
+                       <Link to="/job-seeker-resume" style={{pointer: 'cursor'}}>
+                      <p className="fs-12 text-light">My resume</p>
+                      </Link>
+                      <Link to="/job-seeker-my-cover-letters" style={{pointer: 'cursor'}}>
+                      <p className="fs-12 text-light">My cover letter</p>
+                      </Link>
                     </Container>
                   ) : null}
                   {isApplications === true ? (

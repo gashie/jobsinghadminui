@@ -486,9 +486,19 @@ const authProtectedRoutes = [
   //jobsInGhana
   { path: "/admin-dashboard", component: <AdminDashboard /> },
   { path: "/job-seeker-admin", component: <JobSeeker /> },
+  // Job Seeker Routes
   { path: "/job-seeker-dashboard", component: <Dashboard /> },
+  { path: "/job-seeker-applications", component: <Dashboard /> },
+  { path: "/job-seeker-alerts", component: <Dashboard /> },
+  { path: "/job-seeker-saved-jobs", component: <Dashboard /> },
   { path: "/job-seeker-profile", component: <Profile /> },
+  { path: "/job-seeker-edit-profile", component: <Profile /> },
+  { path: "/job-seeker-change-password", component: <Profile /> },
   { path: "/job-seeker-resume", component: <Resume /> },
+  { path: "/job-seeker-my-cover-letters", component: <Resume /> },
+  { path: "/job-seeker-add-cover-letter", component: <Resume /> },
+  { path: "/job-seeker-edit-cover-letter", component: <Resume /> },
+  { path: "/job-seeker-view-cover-letter", component: <Resume /> },
 
 
   { path: "/employer-dashboard", component: <EmployerDashboard />},
