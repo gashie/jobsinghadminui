@@ -6,233 +6,304 @@ import lash from "./lash.png";
 const JobDetails = () => {
   return (
     <>
-      <Row
-        style={{ display: "flex", justifyContent: "center" }}
-        className="m-5"
-      >
-         <h5>Security Jobs</h5>
-        <Col md={15} xl={20} >
-        <Card >
-          <CardBody>
-            <div
-              className="p-5"
-             
+      <div style={{ backgroundColor: "white" }} className="p-5">
+        <Row style={{ display: "flex", justifyContent: "center" }}>
+          <h5 style={{ color: "#244a59", fontWeight: "bolder" }}>
+            Security Jobs
+          </h5>
+          <Col md={15} xl={20}>
+            <Card
+              style={{
+                boxShadow: "none",
+                border: "1px solid #e0e0e0",
+                borderRadius: "0.8rem",
+              }}
             >
-              <Col xl={10} md={15} xs={25} sm={20}>
-                <div className="avatar-sm mb-4 " style={{ marginLeft: "4rem" }}>
-                  <div className="avatar-title bg-light rounded">
-                    <img src={lash} alt="" className="avatar-xxl" />
-                  </div>
-                </div>
-                <Link to="#!">
-                  <h5>Security Officer</h5>
-                </Link>
-
-                <p className="text-muted">
-                  {" "}
-                  <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>{" "}
-                  Lashibi Funeral Homes & Crematorium
-                </p>
-                <p className="text-muted">
-                  {" "}
-                  <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>{" "}
-                  Flexible
-                </p>
-                <p className="text-muted">
-                  {" "}
-                  <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>{" "}
-                  Full Time
-                </p>
-                <p className="text-muted">
-                  {" "}
-                  <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>{" "}
-                  Accra, Greater-Accra , Ghana
-                </p>
-
-                <div
-                  style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}
-                  className="cols-xs-5"
-                >
-                  <Button
-                    type="button"
-                    className="btn btn-icon btn-soft-primary mt-3 p-2 "
-                    data-bs-toggle="button"
-                    aria-pressed="true"
-                    style={{ width: "10rem", padding: "2rem" }}
-                  >
-                    <i className="mdi mdi-cards-heart fs-16"></i>Save
-                  </Button>
-                  <Button
-                    type="button"
-                    className="btn btn-icon btn-soft-primary mt-3 p-2 "
-                    data-bs-toggle="button"
-                    aria-pressed="true"
-                    style={{ width: "10rem" }}
-                  >
-                    <i className="mdi mdi-cards-heart fs-16"></i>Apply
-                  </Button>
-                  <Button
-                    type="button"
-                    className="btn btn-icon btn-soft-primary mt-3 p-2 "
-                    data-bs-toggle="button"
-                    aria-pressed="true"
-                    style={{ width: "10rem" }}
-                  >
-                    <i className="mdi mdi-cards-heart "></i>Share
-                  </Button>
-                </div>
-              </Col>
-            </div>
-          </CardBody>
-        </Card>
-        </Col>
-      </Row>
-
-      <Row style={{ display: "flex" }} className="m-5">
-        <Col xs={20} xl={9}>
-          <CardBody>
-            <Card className="p-3">
-              <h5 className="mb-3">Job Description</h5>
-
-              <p className="text-muted mb-2">
-                A Product Designer of a company is responsible for the user
-                experience of a product, which usually includes taking direction
-                on the business goals and objectives from product management.
-                Product Designers are typically associated with the visual or
-                tactile aspects of a product but sometimes they can also play a
-                role in the information architecture and system design of a
-                product.
-              </p>
-              <p className="text-muted mb-4">
-                Product designer is an exceptional career choice. The demand for
-                product designers is increasing with each passing day but there
-                is a huge shortage for a skilful product designer in the market.
-                With hard work and an apt skill set, a product designer can make
-                a handsome amount of money.
-              </p>
-              <div>
-                <h5 className="mb-3">Responsibilities of Product Designer</h5>
-                <p className="text-muted">
-                  Provided below are the responsibilities of a Product Designer:
-                </p>
-                <ul className="text-muted vstack gap-2">
-                  <li>
-                    To visualise and create drawings and design concepts to
-                    determine the best product.
-                  </li>
-                  <li>
-                    To present ideas and concepts to relevant team members for
-                    brainstorming.
-                  </li>
-                  <li>To employ design concepts into functional prototypes.</li>
-                  <li>
-                    To analyse, modify and revise existing designs or products
-                    and meet customer expectations.
-                  </li>
-                  <li>
-                    To coordinate with team members and to ensure accurate
-                    efficiency in the design phase.
-                  </li>
-                  <li>Excellent attention to detail</li>
-                  <li>Meticulous and diligent</li>
-                </ul>
-              </div>
-
-              <div>
-                <h5 className="mb-3">Skill & Experience</h5>
-                <ul className="text-muted vstack gap-2">
-                  <li>Communication skills</li>
-                  <li>Sound visualisation abilities</li>
-                  <li>Observation skills</li>
-                  <li>Problem-solving abilities</li>
-                  <li>
-                    Eye for aesthetic design and understanding of customer
-                    appeal
-                  </li>
-                  <li>Artistic & innovative flair</li>
-                  <li>Strong knowledge of the industry & market trends</li>
-                  <li>
-                    Relevant work experience in a particular field is mandatory
-                  </li>
-                </ul>
-              </div>
-
-              <ul className="list-inline mb-0">
-                <li className="list-inline-item">
-                  <h5 className="mb-0">Share this job:</h5>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#!" className="btn btn-icon btn-soft-info">
-                    <i className="ri-facebook-line"></i>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#!" className="btn btn-icon btn-soft-success">
-                    <i className="ri-whatsapp-line"></i>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#!" className="btn btn-icon btn-soft-secondary">
-                    <i className="ri-twitter-line"></i>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#!" className="btn btn-icon btn-soft-danger">
-                    <i className="ri-mail-line"></i>
-                  </Link>
-                </li>
-              </ul>
-            </Card>
-          </CardBody>
-        </Col>
-        <Col xs={15} xl={3}>
-          <Row>
-            <Card>
-                <CardBody>
-                           <div className="p-1" style={{display: 'grid', justifyContent: 'center'}}>
-
-                            <p style={{textAlign: 'center'}}>
-                                <i className="mdi mdi-email-outline" style={{fontSize: '4rem'}}></i>
-                                </p>
-                                <h5 style={{textAlign: 'center', marginTop: '-1rem'}}>Get similar jobs by email</h5>
-
-                                <Button className="btn btn-success p-2">
-                                        Create alert
-                                </Button>
-
-                                <p style={{textAlign: 'center'}} className="mt-3">* You can cancel this job alert at any time</p>
-
-                           </div>
-                </CardBody>
-            </Card>
-          </Row>
-          <Row>
-            <Card>
-                <CardBody>
-                    <div className="p-3">
-                        <h4>Similar Jobs</h4>
-                        <hr />
-                        <h5>GFRA Community Agent</h5>
-                        <h6>Terta Tech ARD</h6>
-                        <hr />
-                        <h5>GFRA Community Agent</h5>
-                        <h6>Terta Tech ARD</h6>
-                        <hr />
-                        <h5>GFRA Community Agent</h5>
-                        <h6>Terta Tech ARD</h6>
-                        <hr />
-                        <h5>GFRA Community Agent</h5>
-                        <h6>Terta Tech ARD</h6>
-                        <hr />
-                        <Button>
-                            See all similar Offers
-                        </Button>
+              <CardBody>
+                <div className="p-5">
+                  <Col xl={10} md={15} xs={25} sm={20}>
+                    <div
+                      className="avatar-sm mb-4 "
+                      style={{ marginLeft: "4rem" }}
+                    >
+                      <div className="avatar-title bg-light rounded">
+                        <img src={lash} alt="" className="avatar-xxl" />
+                      </div>
                     </div>
-                </CardBody>
+                    <Link to="#!">
+                      <h5 style={{ color: "#244a59", fontWeight: "bolder" }}>
+                        Security Officer
+                      </h5>
+                    </Link>
+
+                    <p className="fw-bold mt-4" style={{ color: "#244a59" }}>
+                      {" "}
+                      <i className="ri-map-pin-2-line  me-1 align-bottom"></i>{" "}
+                      Lashibi Funeral Homes & Crematorium
+                    </p>
+                    <p className="">
+                      {" "}
+                      <i className="ri-map-pin-2-line me-1 align-bottom"></i>{" "}
+                      Flexible
+                    </p>
+                    <p className="">
+                      {" "}
+                      <i className="ri-map-pin-2-line  me-1 align-bottom"></i>{" "}
+                      Full Time
+                    </p>
+                    <p className="">
+                      {" "}
+                      <i className="ri-map-pin-2-line me-1 align-bottom"></i>{" "}
+                      Accra, Greater-Accra , Ghana
+                    </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "0.5rem",
+                        flexWrap: "wrap",
+                      }}
+                      className="col-md-20"
+                    >
+                      <Button
+                        type="button"
+                        className="btn btn-icon btn-soft-light mt-3 p-4 "
+                        data-bs-toggle="button"
+                        aria-pressed="true"
+                        style={{
+                          width: "30%",
+                          color: "black",
+                          border: "1px solid #244a59",
+                        }}
+                      >
+                        <i
+                          className="mdi mdi-cards-heart fs-20"
+                          style={{ color: "#244a59" }}
+                        ></i>
+                        Save
+                      </Button>
+                      <Button
+                        type="button"
+                        className="btn btn-icon btn-soft-dark mt-3 p-4 "
+                        data-bs-toggle="button"
+                        aria-pressed="true"
+                        style={{
+                          width: "30%",
+                          backgroundColor: "#244a59",
+                          color: "white",
+                        }}
+                      >
+                        Apply
+                      </Button>
+                      <Button
+                        type="button"
+                        className="btn btn-icon btn-soft-light mt-3 p-4 "
+                        data-bs-toggle="button"
+                        aria-pressed="true"
+                        style={{
+                          width: "30%",
+                          color: "black",
+                          border: "1px solid #244a59",
+                        }}
+                      >
+                        <i
+                          className="mdi mdi-cards-heart fs-20"
+                          style={{ color: "#244a59" }}
+                        ></i>
+                        Share
+                      </Button>
+                    </div>
+                  </Col>
+                </div>
+              </CardBody>
             </Card>
-          </Row>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+
+        <Row style={{ display: "flex" }} className="m-0">
+          <Col xs={20} xl={9} md={20}>
+            <CardBody>
+              <Card
+                className="p-3"
+                style={{
+                  boxShadow: "none",
+                  border: "1px solid #e0e0e0",
+                  borderRadius: "0.8rem",
+                }}
+              >
+                <h5 className="mb-3 fw-bolder mt-3" style={{ color: "#244a59" }}>
+                  Job Description
+                </h5>
+
+                <p className="mb-2">
+                  Lorem ipsum dolor sit amet consectetur. Turpis gravida quis
+                  quis nibh turpis sed elit etiam platea. Rutrum imperdiet
+                  faucibus faucibus pharetra nisl nulla pellentesque. Metus eget
+                  auctor porttitor morbi donec. Est enim velit libero ornare
+                  pharetra.
+                </p>
+                <p className="mb-4">
+                  Product designer is an exceptional career choice. The demand
+                  for product designers is increasing with each passing day but
+                  there is a huge shortage for a skilful product designer in the
+                  market. With hard work and an apt skill set, a product
+                  designer can make a handsome amount of money.
+                </p>
+                <div>
+                  <h5 className="mb-3 fw-bolder mt-5" style={{ color: "#244a59" }}>
+                    Responsibilities
+                  </h5>
+                  {/* <p className="">
+                    Provided below are the responsibilities of a Product
+                    Designer:
+                  </p> */}
+                  <ul className=" vstack gap-2">
+                    <li>
+                      To visualise and create drawings and design concepts to
+                      determine the best product.
+                    </li>
+                    <li>
+                      To present ideas and concepts to relevant team members for
+                      brainstorming.
+                    </li>
+                    <li>
+                      To employ design concepts into functional prototypes.
+                    </li>
+                    <li>
+                      To analyse, modify and revise existing designs or products
+                      and meet customer expectations.
+                    </li>
+                    <li>
+                      To coordinate with team members and to ensure accurate
+                      efficiency in the design phase.
+                    </li>
+                    <li>Excellent attention to detail</li>
+                    <li>Meticulous and diligent</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5 className="mb-3 fw-bolder mt-5" style={{color: "#244a59"}}>Requirements</h5>
+                  <ul className=" vstack gap-2">
+                    <li>Minimum of SHS qualification</li>
+                    <li>A least 1-3 years experience</li>
+                    <li>Any additional qualificatio in a security related area from a recadvantage</li>
+                    <li>Possess the necessary tact, respect and empathy</li>
+                    <li>
+                    Good interpersonal and communication skills (oral and written)
+                    </li>
+                    <li>Vigillant, alert and always aware of one’s surroundings</li>
+                    <li>Physical fit and with a healthy weight range</li>
+                    <li>
+                    Intergrity and the ability to act responsibly and ethically
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="m-4">
+                    <h4 className="fw-bolder" style={{color: "#244a59"}}>Note:</h4>
+                    <p>Please not, employers receive numeros applications per posting and will only  shortlist the most qualified candidates. Also Jobsinghana.com is not involved in any decision made by an employer/recruiter and therefore does not guarantee that applications sent result in a candidate being shortlisted/selected for that position</p>
+                </div>
+
+                <div className="m-4">
+                  <Button className="btn btn-dark p-3" style={{width: '100%', backgroundColor: "#244a59"}}>
+                    Apply
+                  </Button>
+                </div>
+
+                <p className="text-center text-muted fw-bolder mt-4">Share this job with your friends</p>
+
+                <ul className="list-inline mb-0 text-center mt-2">
+                  
+                  <li className="list-inline-item">
+                    <Link to="#!" className="btn btn-icon p-4" style={{borderRadius: "2rem", backgroundColor: '#4477BB'}}>
+                      <i className="ri-linkedin-line fs-20" style={{color: 'white'}}></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#!" className="btn btn-icon p-4" style={{borderRadius: "2rem", backgroundColor: '#405189'}}>
+                      <i className="ri-facebook-line fs-20" style={{color: 'white'}}></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#!" className="btn btn-icon btn-soft-success p-4" style={{borderRadius: "2rem", backgroundColor: '#299CDB'}}>
+                      <i className="ri-twitter-line fs-20" style={{color: 'white'}}></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#!" className="btn btn-icon btn-soft-secondary p-4" style={{borderRadius: "2rem", backgroundColor: '#5CCD5A'}}>
+                      <i className="ri-whatsapp-line fs-20" style={{color: 'white'}}></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#!" className="btn btn-icon btn-soft-danger p-4" style={{borderRadius: "2rem", backgroundColor: '#3D7DDC'}}>
+                      <i className="ri-messenger-line fs-20" style={{color: 'white'}}></i>
+                    </Link>
+                  </li>
+                </ul>
+              </Card>
+            </CardBody>
+          </Col>
+          <Col xs={15} xl={3}>
+            <Row>
+              <Card style={{boxShadow: 'none', border: "1px solid #e0e0e0", backgroundColor: '#F8FAFC', borderRadius: '0.8rem'}}>
+                <CardBody>
+                  <div
+                    className="p-1"
+                    style={{ display: "grid", justifyContent: "center" }}
+                  >
+                    <p style={{ textAlign: "center" }}>
+                      <i
+                        className="mdi mdi-email-outline fw-bolder"
+                        style={{ fontSize: "4rem" }}
+                      ></i>
+                    </p>
+                    <h6 style={{ textAlign: "center", marginTop: "-1rem" }} className="fw-bolder">
+                      Get similar jobs by email
+                    </h6>
+
+                    <input placeholder="Enter your email" className="m-3 p-3" style={{border: '1px solid #e0e0e0'}}></input>
+
+                    <Button className="btn btn-success p-2">
+                      Create alert
+                    </Button>
+
+                    <p style={{ textAlign: "center" }} className="mt-3">
+                      * You can cancel this job alert at any time
+                    </p>
+                  </div>
+                </CardBody>
+              </Card>
+            </Row>
+            <Row>
+              <Card style={{backgroundColor: '#F8FAFC', boxShadow: 'none', border: 'none'}}>
+                <CardBody>
+                  <div className="p-3">
+                    <h4 className="fw-bolder" style={{color: '#244a59'}}>Similar Jobs</h4>
+                    <hr />
+                    <h5 className="p-2 fw-bolder" style={{color: '#244a59'}}>GFRA Community Agent</h5>
+                    <p className="p-2 fw-bolder">Terta Tech ARD</p>
+                    <p className="p-2 mt-3  text-muted">Accra</p>
+                    <hr />
+                    <h5 className="p-2 fw-bolder" style={{color: '#244a59'}}>GFRA Community Agent</h5>
+                    <p className="p-2 fw-bolder">Terta Tech ARD</p>
+                    <p className="p-2 mt-3 text-muted">Accra</p>
+                    <hr />
+                    <h5 className="p-2 fw-bolder" style={{color: '#244a59'}}>GFRA Community Agent</h5>
+                    <p className="p-2 fw-bolder">Terta Tech ARD</p>
+                    <p className="p-2 mt-3 text-muted">Accra</p>
+                    <hr />
+                    <h5 className="p-2 fw-bolder" style={{color: '#244a59'}}>GFRA Community Agent</h5>
+                    <p className="p-2 fw-bolder">Terta Tech ARD</p>
+                    <p className="p-2 mt-3  text-muted">Accra</p>
+                    <hr />
+                    <Button style={{width: "100%", border: '1px solid #244a59'}} className="btn btn-light p-3 mt-3">See all similar Offers</Button>
+                  </div>
+                </CardBody>
+              </Card>
+            </Row>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 };
