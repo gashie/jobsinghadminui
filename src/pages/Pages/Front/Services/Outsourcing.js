@@ -69,7 +69,12 @@ const Outsourcing = () => {
 
             <div
               className="m-5 mt-5"
-              style={{ display: "grid", justifyContent: "center", zIndex: '99', position: 'relative' }}
+              style={{
+                display: "grid",
+                justifyContent: "center",
+                zIndex: "99",
+                position: "relative",
+              }}
             >
               <h4 style={{ textAlign: "center", color: "white" }}>Services</h4>
               <p style={{ textAlign: "center", color: "white" }}>
@@ -102,30 +107,41 @@ const Outsourcing = () => {
                     md={20}
                     style={{ display: "grid", gap: "2rem", zIndex: "1" }}
                   >
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
+                    {" "}
+                    <Link
+                      to="/services"
+                      className="text-light"
                     >
-                      Recruitment/Headhunting
-                    </Button>
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Recruitment/Headhunting
+                      </Button>
+                    </Link>
+                    <Link
+                      to="/services-payroll-management"
+                      className="text-light"
                     >
-                      Advertising
-                    </Button>
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Payroll Management
+                      </Button>
+                    </Link>
                   </Col>
                 </Row>
                 <Row>
@@ -133,30 +149,34 @@ const Outsourcing = () => {
                     md={20}
                     style={{ display: "grid", gap: "2rem", zIndex: "1" }}
                   >
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
-                    >
-                      Outsourcing
-                    </Button>
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
-                    >
-                      Job Posting
-                    </Button>
+                    <Link to="/services-outsourcing" className="text-light">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Outsourcing
+                      </Button>
+                    </Link>
+                    <Link to="/services-job-posting" className="text-light">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Job Posting
+                      </Button>
+                    </Link>
                   </Col>
                 </Row>
               </Col>
@@ -167,115 +187,118 @@ const Outsourcing = () => {
         <Row className="mt-5 p-5">
           <Col>
             <Container>
-              <h4 style={{fontWeight: "bolder", color: "#244a59"}}>Outsourcing</h4>
+              <h4 style={{ fontWeight: "bolder", color: "#244a59" }}>
+                Outsourcing
+              </h4>
               <p className="mt-3">
-              Use our state of the art technology to outsource the exact talent for your organisation and only interact with the candidates that best fit your requirements
+                Use our state of the art technology to outsource the exact
+                talent for your organisation and only interact with the
+                candidates that best fit your requirements
               </p>
               <p className="mt-3">
-              For more information, fill out the form below.
+                For more information, fill out the form below.
               </p>
 
               <Row>
-              <div className="mb-3 col-xl-5 col-md-5 mt-5" >
-                <Label
-                  htmlFor="employeeName"
-                  className="form-label"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  First Name: 
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="employeeName"
-                  placeholder=""
-                />
-              </div>
+                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                  <Label
+                    htmlFor="employeeName"
+                    className="form-label"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    First Name:
+                  </Label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    id="employeeName"
+                    placeholder=""
+                  />
+                </div>
 
-              <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                <Label
-                  htmlFor="employeeUrl"
-                  className="form-label"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  Last name: 
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="employeeUrl"
-                  placeholder=""
-                />
-              </div>
+                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                  <Label
+                    htmlFor="employeeUrl"
+                    className="form-label"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Last name:
+                  </Label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    id="employeeUrl"
+                    placeholder=""
+                  />
+                </div>
               </Row>
               <Row>
-              <div className="mb-3 col-xl-5 col-md-5 mt-5" >
-                <Label
-                  htmlFor="employeeName"
-                  className="form-label"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  Company name:
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="employeeName"
-                  placeholder=""
-                />
-              </div>
+                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                  <Label
+                    htmlFor="employeeName"
+                    className="form-label"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Company name:
+                  </Label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    id="employeeName"
+                    placeholder=""
+                  />
+                </div>
 
-              <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                <Label
-                  htmlFor="employeeUrl"
-                  className="form-label"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  Phone number:
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="employeeUrl"
-                  placeholder=""
-                />
-              </div>
+                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                  <Label
+                    htmlFor="employeeUrl"
+                    className="form-label"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Phone number:
+                  </Label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    id="employeeUrl"
+                    placeholder=""
+                  />
+                </div>
               </Row>
               <Row>
-              <div className="mb-3 col-xl-5 col-md-5 mt-5" >
-                <Label
-                  htmlFor="employeeName"
-                  className="form-label"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  Email address:
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="employeeName"
-                  placeholder=""
-                />
-              </div>
+                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                  <Label
+                    htmlFor="employeeName"
+                    className="form-label"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Email address:
+                  </Label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    id="employeeName"
+                    placeholder=""
+                  />
+                </div>
 
-              <div className="mb-3 col-xl-5 col-md-5 mt-5">
-                <Label
-                  htmlFor="employeeUrl"
-                  className="form-label"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  Purpose of enquiry:
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="employeeUrl"
-                  placeholder="Outsourcing"
-                />
-              </div>
+                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                  <Label
+                    htmlFor="employeeUrl"
+                    className="form-label"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Purpose of enquiry:
+                  </Label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    id="employeeUrl"
+                    placeholder="Outsourcing"
+                  />
+                </div>
               </Row>
 
-            
               <div className="text-start">
                 <button
                   type="submit"
@@ -283,7 +306,6 @@ const Outsourcing = () => {
                   style={{
                     backgroundColor: "#244a59",
                     color: "white",
-                    
                   }}
                 >
                   Talk to us

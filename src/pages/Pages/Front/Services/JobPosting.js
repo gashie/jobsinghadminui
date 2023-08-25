@@ -113,30 +113,41 @@ const JobPosting = () => {
                     md={20}
                     style={{ display: "grid", gap: "2rem", zIndex: "1" }}
                   >
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
+                    {" "}
+                    <Link
+                      to="/services"
+                      className="text-light"
                     >
-                      Recruitment/Headhunting
-                    </Button>
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Recruitment/Headhunting
+                      </Button>
+                    </Link>
+                    <Link
+                      to="/services-payroll-management"
+                      className="text-light"
                     >
-                      Advertising
-                    </Button>
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Payroll Management
+                      </Button>
+                    </Link>
                   </Col>
                 </Row>
                 <Row>
@@ -144,30 +155,34 @@ const JobPosting = () => {
                     md={20}
                     style={{ display: "grid", gap: "2rem", zIndex: "1" }}
                   >
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
-                    >
-                      Outsourcing
-                    </Button>
-                    <Button
-                      style={{
-                        color: "white",
-                        backgroundColor: "#355765B5",
-                        border: "1px solid white",
-                        padding: "1rem",
-                        width: "20rem",
-                      }}
-                      className="btn"
-                    >
-                      Job Posting
-                    </Button>
+                    <Link to="/services-outsourcing" className="text-light">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Outsourcing
+                      </Button>
+                    </Link>
+                    <Link to="/services-job-posting" className="text-light">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: "20rem",
+                        }}
+                        className="btn"
+                      >
+                        Job Posting
+                      </Button>
+                    </Link>
                   </Col>
                 </Row>
               </Col>
@@ -338,9 +353,11 @@ const JobPosting = () => {
           >
             More brands that post job adverts with us
           </h4>
-          <Card style={{boxShadow: 'none'}}>
+          <Card style={{ boxShadow: "none" }}>
             <CardBody>
-            <p className="m-5 mb-2 fw-bolder">Please choose how you want to pay your bill*</p>
+              <p className="m-5 mb-2 fw-bolder">
+                Please choose how you want to pay your bill*
+              </p>
               <div
                 style={{
                   display: "flex",
@@ -380,7 +397,9 @@ const JobPosting = () => {
                   <img src={ser5} alt="" className="img-fluid"></img>
                 </div>
               </div>
-              <p className="m-4 fw-bolder">This is a secured SSL encrypted payment</p>
+              <p className="m-4 fw-bolder">
+                This is a secured SSL encrypted payment
+              </p>
             </CardBody>
           </Card>
         </Container>
