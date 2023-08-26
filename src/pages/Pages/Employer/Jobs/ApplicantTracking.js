@@ -103,7 +103,7 @@ const ApplicantTracking = () => {
                               ? "Approve"
                               : takeAction === "Pending"
                               ? "Pending approval"
-                              : "a"}
+                              : <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>}
                           </p>
                           <Card
                             style={{
@@ -178,7 +178,7 @@ const ApplicantTracking = () => {
                               ? "Approve"
                               : takeAction === "Pending"
                               ? "Pending approval"
-                              : "a"}
+                              : <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>}
                           </p>
                           <Card
                             style={{
@@ -253,7 +253,7 @@ const ApplicantTracking = () => {
                               ? "Approve"
                               : takeAction === "Pending"
                               ? "Pending approval"
-                              : "a"}
+                              : <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>}
                           </p>
                           <Card
                             style={{

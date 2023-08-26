@@ -88,13 +88,13 @@ const Sidebar = () => {
 
   const sidebarItems = [
     {
-      icon: "",
+      icon: "bx bx-home",
       label: "Home",
       link: "/job-seeker-dashboard",
       toggle: toggleLink,
     },
     {
-      icon: "",
+      icon: "bx bx-user",
       label: "Profile",
       link: "/job-seeker-profile",
       link1: "/job-seeker-edit-profile",
@@ -102,7 +102,7 @@ const Sidebar = () => {
       toggle: toggleProfile,
     },
     {
-      icon: "",
+      icon: "ri-file-text-line",
       label: "CV/Resume",
       link: "/job-seeker-resume",
       link1: "/job-seeker-my-cover-letters",
@@ -112,30 +112,30 @@ const Sidebar = () => {
       toggle: toggleResume,
     },
     {
-      icon: "",
+      icon: "ri-checkbox-circle-line",
       label: "Applications",
       link: "/job-seeker-applications",
       toggle: toggleApplications,
     },
     {
-      icon: "",
+      icon: "ri-mail-line",
       label: "Alerts",
       link: "/job-seeker-alerts",
       toggle: toggleAlerts,
     },
     {
-      icon: "",
+      icon: "ri-briefcase-line",
       label: "Saved Jobs",
       link: "/job-seeker-saved-jobs",
       toggle: toggleJobs,
     },
     {
-      icon: "",
+      icon: "ri-settings-5-line",
       label: "Account Settings",
       link: "/settings",
       toggle: toggleAccount,
     },
-    { icon: "", label: "Logout", link: "/settings", toggle: toggleLogout },
+    { icon: "bx bx-left-arrow-circle", label: "Logout", link: "/settings", toggle: toggleLogout },
   ];
 
   return (
@@ -222,7 +222,7 @@ const Sidebar = () => {
                         <div className="menu-box">
                           <p style={{ textAlign: "center" }}>
                             <i
-                              className="bx bx-tachometer"
+                              className={item.icon}
                               style={{ color: "white", fontSize: "1.5rem" }}
                             ></i>
                           </p>

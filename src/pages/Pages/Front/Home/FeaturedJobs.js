@@ -101,7 +101,7 @@ const FeaturedJobs = () => {
                       className="btn btn-dark btn-soft-primary float-end"
                       style={{ backgroundColor: "white", boxShadow: "none" }}
                     >
-                      <i className="mdi mdi-cards-heart fs-16"></i>
+                      <i className="bx bx-heart fs-16" style={{color:'#244a59'}}></i>
                     </Button>
                     <div className="avatar-md mb-4">
                       <div className="">
@@ -136,7 +136,7 @@ const FeaturedJobs = () => {
                     </p>
                     <p className="text-muted mt-4">
                       {" "}
-                      <i className="bx bx-layer text-muted me-1 align-bottom fs-20"></i>{" "}
+                      <i className="bx bx-calendar text-muted me-1 align-bottom fs-20"></i>{" "}
                       Expires Jul 25, 2023
                     </p>
                     {/* <div className="hstack gap-2">

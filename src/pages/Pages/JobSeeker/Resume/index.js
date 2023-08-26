@@ -12,13 +12,6 @@ import {
   Button,
 } from "reactstrap";
 import classnames from "classnames";
-import img1 from "../../../../assets/images/jobsinghana/seatec.png";
-import Applications from "../Applications";
-import Alerts from "../Alerts";
-import SavedJobs from "../SavedJobs";
-import profile from "../profile.png";
-import EditProfile from "../EditProfile";
-import ChangePassword from "../ChangePassword";
 import MyResume from '../MyResume'
 import CoverLetters from "../CoverLetters";
 import AddCoverLetters from "../AddCoverLetters";

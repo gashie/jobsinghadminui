@@ -10,7 +10,8 @@ import {
   Row,
   Container,
   Collapse,
-  Input
+  Input,
+  DropdownItem
 } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 
@@ -99,183 +100,196 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
         ? document.body.classList.remove("twocolumn-panel")
         : document.body.classList.add("twocolumn-panel");
     }
+
+    
+  };
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
   return (
     <React.Fragment>
-    
-     
-       
-          <Row>
-            <nav
-              className={
-                "navbar navbar-expand-lg navbar-landing fixed-top " +
-                "is-sticky"
-              }
-              id="navbar"
-              style={{
-                borderStyle: "solid",
-                borderTop: "0px",
-                borderColor: "#244A59",
-                borderRight: "0px",
-                borderLeft: "0px",
-                borderWidth: "2px",
-                position: 'relative',
-                zIndex: '1',
-                width: "100%"
-              }}
+      <Row>
+        <nav
+          className={
+            "navbar navbar-expand-lg navbar-landing fixed-top " + "is-sticky"
+          }
+          id="navbar"
+          style={{
+            borderStyle: "solid",
+            borderTop: "0px",
+            borderColor: "#244A59",
+            borderRight: "0px",
+            borderLeft: "0px",
+            borderWidth: "2px",
+            position: "relative",
+            zIndex: "1",
+            width: "100%",
+          }}
+        >
+          <Container>
+            <button
+              onClick={toogleMenuBtn}
+              type="button"
+              className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
+              id="topnav-hamburger-icon"
+              style={{ display: "none" }}
             >
-              <Container>
-                <button
-                  onClick={toogleMenuBtn}
-                  type="button"
-                  className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
-                  id="topnav-hamburger-icon"
-                  style={{display: 'none'}}
-                >
-                  <span className="hamburger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
-                </button>
+              <span className="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </button>
 
-                <div></div>
+            <div></div>
 
-                <Link className="navbar-brand" to="/index">
-                  <h2
-                    style={{
-                      fontFamily: "impact",
-                      color: "#244A59",
-                    }}
+            <Link className="navbar-brand" to="/index">
+              <h2
+                style={{
+                  fontFamily: "impact",
+                  color: "#244A59",
+                }}
+              >
+                JobsinGhana
+              </h2>
+            </Link>
+
+            <NavbarToggler
+              className="navbar-toggler py-0 fs-20 text-body"
+              onClick={toggle}
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i className="mdi mdi-menu"></i>
+            </NavbarToggler>
+
+            <Collapse
+              isOpen={isOpenMenu}
+              className="navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <Scrollspy
+                offset={-18}
+                items={[
+                  "hero",
+                  "services",
+                  "features",
+                  "plans",
+                  "reviews",
+                  "team",
+                  "contact",
+                ]}
+                currentClassName="active"
+                className="navbar-nav mx-auto mt-2 mt-lg-0"
+                id="navbar-example"
+              >
+                <li className="nav-item">
+                  <NavLink className="fs-14" href="/home">
+                    Home
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="fs-14" href="/job-list">
+                    Jobs
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
+                    <DropdownToggle nav caret className="fs-14">
+                      Career Resources
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem href="/career-advice">
+                        Career Advice
+                      </DropdownItem>
+                      <DropdownItem href="/latest-news">HR News</DropdownItem>
+                      <DropdownItem href="/training-events">
+                        TrainingEvents
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="fs-14" href="/services">
+                    Services
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="fs-14" href="/job-seeker-dashboard">
+                    Jobseekers
+                  </NavLink>
+                </li>
+                <li className="nav-item" style={{ marginTop: "0.5rem" }}>
+                  <Link
+                    className="fs-12 btn btn-success"
+                    to="/employer-dashboard"
                   >
-                    JobsinGhana
-                  </h2>
-                </Link>
+                    Employers
+                  </Link>
+                </li>
+              </Scrollspy>
+            </Collapse>
+          </Container>
+        </nav>
 
-                <NavbarToggler
-                  className="navbar-toggler py-0 fs-20 text-body"
-                  onClick={toggle}
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+        {/* Search */}
+        <div className="">
+          <div className="card crm-widget">
+            <div className="card-body p-0">
+              <div
+                className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
+                style={{
+                  backgroundColor: "#244A59",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  className="col-auto"
+                  style={{
+                    backgroundColor: "white",
+                    padding: "2rem",
+                    borderRadius: "0.7rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    width: "100rem",
+                    alignContent: "center",
+                  }}
                 >
-                  <i className="mdi mdi-menu"></i>
-                </NavbarToggler>
-
-                <Collapse
-                  isOpen={isOpenMenu}
-                  className="navbar-collapse"
-                  id="navbarSupportedContent"
-                >
-                  <Scrollspy
-                    offset={-18}
-                    items={[
-                      "hero",
-                      "services",
-                      "features",
-                      "plans",
-                      "reviews",
-                      "team",
-                      "contact",
-                    ]}
-                    currentClassName="active"
-                    className="navbar-nav mx-auto mt-2 mt-lg-0"
-                    id="navbar-example"
-                  >
-                    <li className="nav-item">
-                      <NavLink className="fs-14" href="/home">
-                        Home
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="fs-14" href="#services">
-                        Jobs
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="fs-14" href="/career">
-                        Carrer Resources
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="fs-14" href="/services">
-                        Services
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="fs-14" href="#plans">
-                        Jobseekers
-                      </NavLink>
-                    </li>
-                    <li className="nav-item" style={{ marginTop: "0.5rem" }}>
-                      <Link className="fs-12 btn btn-success">Employers</Link>
-                    </li>
-                  </Scrollspy>
-
-                </Collapse>
-
-                
-              </Container>
-              
-            </nav>
-
-         {/* Search */}
-              <div className="" >
-                <div className="card crm-widget">
-                  <div className="card-body p-0">
-                    <div
-                      className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
+                  <div className="col-md-10">
+                    <Input
+                      type="text"
+                      className="form-control form-control-lg bg-light border-light"
+                      placeholder="Search for jobs of companies"
+                    />
+                  </div>
+                  <div className="col-md-2">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-lg waves-effect waves-light"
                       style={{
                         backgroundColor: "#244A59",
-                        display: "flex",
-                        justifyContent: "center",
+                        fontSize: "0.8rem",
                       }}
                     >
-                      <div
-                        className="col-auto"
-                        style={{
-                          backgroundColor: "white",
-                          padding: "2rem",
-                          borderRadius: "0.7rem",
-                          display: "flex",
-                          justifyContent: "space-between",
-                          gap: "1rem",
-                          width: "100rem",
-                          alignContent: "center",
-                        }}
-                      >
-                        <div className="col-md-10">
-                          <Input
-                            type="text"
-                            className="form-control form-control-lg bg-light border-light"
-                            placeholder="Search for jobs of companies"
-                          />
-                        </div>
-                        <div className="col-md-2">
-                          <button
-                            type="submit"
-                            className="btn btn-primary btn-lg waves-effect waves-light"
-                            style={{
-                              backgroundColor: "#244A59",
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            {" "}
-                            Find a Job
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                      {" "}
+                      Find a Job
+                    </button>
                   </div>
                 </div>
               </div>
-            
-          </Row>
-          
-     
+            </div>
+          </div>
+        </div>
+      </Row>
     </React.Fragment>
   );
 };

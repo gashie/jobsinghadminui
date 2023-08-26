@@ -133,53 +133,40 @@ const Footer = () => {
 
           <Row className="text-center text-sm-start align-items-center mt-5">
             <Col sm={6}>
-             
+               
             </Col>
-            <Col sm={6}>
-              <div className="text-sm-end mt-3 mt-sm-0">
-                <ul className="list-inline mb-0 footer-social-link">
+          
+
+            <h5 className="fw-bolder text-center">Stay Connected</h5>
+            <ul className="list-inline mb-0 text-center mt-2 p-4">
+                  
                   <li className="list-inline-item">
-                    <Link to="#" className="avatar-xs d-block">
-                      <div className="avatar-title rounded-circle">
-                        <i className="ri-facebook-fill"></i>
-                      </div>
+                    <Link to="#!" className="btn btn-icon p-4" style={{borderRadius: "2rem", backgroundColor: '#4477BB'}}>
+                      <i className="ri-linkedin-line fs-20" style={{color: 'white'}}></i>
                     </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Link to="#" className="avatar-xs d-block">
-                      <div className="avatar-title rounded-circle">
-                        <i className="ri-github-fill"></i>
-                      </div>
+                    <Link to="#!" className="btn btn-icon p-4" style={{borderRadius: "2rem", backgroundColor: '#405189'}}>
+                      <i className="ri-facebook-line fs-20" style={{color: 'white'}}></i>
                     </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Link to="#" className="avatar-xs d-block">
-                      <div className="avatar-title rounded-circle">
-                        <i className="ri-linkedin-fill"></i>
-                      </div>
+                    <Link to="#!" className="btn btn-icon btn-soft-success p-4" style={{borderRadius: "2rem", backgroundColor: '#299CDB'}}>
+                      <i className="ri-twitter-line fs-20" style={{color: 'white'}}></i>
                     </Link>
                   </li>
                   <li className="list-inline-item">
-                    <Link to="#" className="avatar-xs d-block">
-                      <div className="avatar-title rounded-circle">
-                        <i className="ri-google-fill"></i>
-                      </div>
+                    <Link to="#!" className="btn btn-icon btn-soft-success p-4" style={{borderRadius: "2rem", backgroundColor: 'black'}}>
+                      <i className="ri-github-line fs-20" style={{color: 'white'}}></i>
                     </Link>
                   </li>
-                  <li className="list-inline-item">
-                    <Link to="#" className="avatar-xs d-block">
-                      <div className="avatar-title rounded-circle">
-                        <i className="ri-dribbble-line"></i>
-                      </div>
-                    </Link>
-                  </li>
+                
                 </ul>
-              </div>
-            </Col>
             <hr />
             <div>
-                <p className="copy-rights mb-0">
-                  {new Date().getFullYear()} © JobsinGhana
+                <p className="copy-rights mb-0 text-center text-muted">
+                  {/* {new Date().getFullYear()} */}
+                   © 2005 - 2023 Jobsinghana.com, LLC. All rights reserved
                 </p>
               </div>
           </Row>

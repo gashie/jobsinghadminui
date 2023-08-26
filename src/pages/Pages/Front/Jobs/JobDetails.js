@@ -38,17 +38,17 @@ const JobDetails = () => {
 
                     <p className="fw-bold mt-4" style={{ color: "#244a59" }}>
                       {" "}
-                      <i className="ri-map-pin-2-line  me-1 align-bottom"></i>{" "}
+                      <i className="ri-building-4-line  me-1 align-bottom"></i>{" "}
                       Lashibi Funeral Homes & Crematorium
                     </p>
                     <p className="">
                       {" "}
-                      <i className="ri-map-pin-2-line me-1 align-bottom"></i>{" "}
+                      <i className="bx bx-calendar me-1 align-bottom"></i>{" "}
                       Flexible
                     </p>
                     <p className="">
                       {" "}
-                      <i className="ri-map-pin-2-line  me-1 align-bottom"></i>{" "}
+                      <i className="ri-briefcase-line  me-1 align-bottom"></i>{" "}
                       Full Time
                     </p>
                     <p className="">
@@ -110,7 +110,7 @@ const JobDetails = () => {
                         }}
                       >
                         <i
-                          className="mdi mdi-cards-heart fs-15"
+                          className="las la-share-square fs-15"
                           style={{ color: "#244a59" }}
                         ></i>
                         Share
