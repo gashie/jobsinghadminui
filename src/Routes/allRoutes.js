@@ -187,10 +187,10 @@ import CoverPasswCreate from "../pages/AuthenticationInner/PasswordCreate/CoverP
 import Offlinepage from "../pages/AuthenticationInner/Errors/Offlinepage";
 
 //login
-import Login from "../pages/Authentication/Login";
-import ForgetPasswordPage from "../pages/Authentication/ForgetPassword";
-import Logout from "../pages/Authentication/Logout";
-import Register from "../pages/Authentication/Register";
+// import Login from "../pages/Authentication/Login";
+// import ForgetPasswordPage from "../pages/Authentication/ForgetPassword";
+// import Logout from "../pages/Authentication/Logout";
+// import Register from "../pages/Authentication/Register";
 
 //Charts
 import LineCharts from "../pages/Charts/ApexCharts/LineCharts";
@@ -272,7 +272,8 @@ import Outsourcing from "../pages/Pages/Front/Services/Outsourcing";
 import JobPosting from "../pages/Pages/Front/Services/JobPosting";
 import JobLists from "../pages/Pages/Front/Jobs/JobList";
 
-//employer
+//auth pages
+import Login from '../pages/Pages/Auth/Login';
 
 
 
@@ -522,10 +523,10 @@ const authProtectedRoutes = [
 
 const publicRoutes = [
   // Authentication Page
-  { path: "/logout", component: <Logout /> },
-  { path: "/login", component: <Login /> },
-  { path: "/forgot-password", component: <ForgetPasswordPage /> },
-  { path: "/register", component: <Register /> },
+  // { path: "/logout", component: <Logout /> },
+  // { path: "/login", component: <Login /> },
+  // { path: "/forgot-password", component: <ForgetPasswordPage /> },
+  // { path: "/register", component: <Register /> },
 
   //AuthenticationInner pages
   { path: "/auth-signin-basic", component: <BasicSignIn /> },
@@ -590,6 +591,8 @@ const publicRoutes = [
   {path: '/services-job-posting', component: <Services />},  
 
 
+  //auth_routes
+  {path: '/login', component: <Login />}
 ];
 
 export { authProtectedRoutes, publicRoutes };

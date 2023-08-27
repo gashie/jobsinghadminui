@@ -28,19 +28,22 @@ const Resume = () => {
   };
 
   useEffect(() => {
-    if (window.location.pathname === "/job-seeker-my-cover-letters") {
-      setjustifyTab("2");
-    } else if (window.location.pathname === "/job-seeker-add-cover-letter") {
-      setjustifyTab("3");
-    } else if (window.location.pathname === "/job-seeker-edit-cover-letter") {
-      setjustifyTab("4");
-    } else if (window.location.pathname === "/job-seeker-view-cover-letter") {
-      setjustifyTab("5");
-    } else setjustifyTab("1");
+    // if (window.location.pathname === "/job-seeker-my-cover-letters") {
+    //   setjustifyTab("2");
+    // } else if (window.location.pathname === "/job-seeker-add-cover-letter") {
+    //   setjustifyTab("3");
+    // } else if (window.location.pathname === "/job-seeker-edit-cover-letter") {
+    //   setjustifyTab("4");
+    // } else if (window.location.pathname === "/job-seeker-view-cover-letter") {
+    //   setjustifyTab("5");
+    // } else setjustifyTab("1");
   });
 
   const handleAddCoverLetter = () =>{
     justifyToggle("3")
+    if (window.location.pathname === "/job-seeker-add-cover-letter") {
+      setjustifyTab("3");
+    } 
   }
   const handleEditCoverLetter = () =>{
     justifyToggle("4")
