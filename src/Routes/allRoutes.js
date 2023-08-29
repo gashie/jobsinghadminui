@@ -274,7 +274,9 @@ import JobLists from "../pages/Pages/Front/Jobs/JobList";
 
 //auth pages
 import Register from "../pages/Pages/Auth/Register";
-import Login from "../pages/Pages/Auth/Login";
+import JobSeekerLogin from "../pages/Pages/Auth/JobSeekerLogin";
+import ForgotPassword from "../pages/Pages/Auth/ForogtPassword";
+import EmployerSignUp from "../pages/Pages/Auth/EmployerSignUp";
 
 
 
@@ -593,8 +595,10 @@ const publicRoutes = [
 
 
   //auth_routes
-  {path: '/login', component: <Login />},
+  {path: '/job-seeker-login', component: <JobSeekerLogin />},
   {path: '/register', component: <Register />},
+  {path: '/forgot-password', component: <ForgotPassword />},
+  {path: '/employer-signup', component: <EmployerSignUp />},
 ];
 
 export { authProtectedRoutes, publicRoutes };
