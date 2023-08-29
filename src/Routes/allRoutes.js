@@ -273,7 +273,8 @@ import JobPosting from "../pages/Pages/Front/Services/JobPosting";
 import JobLists from "../pages/Pages/Front/Jobs/JobList";
 
 //auth pages
-import Login from '../pages/Pages/Auth/Login';
+import Register from "../pages/Pages/Auth/Register";
+import Login from "../pages/Pages/Auth/Login";
 
 
 
@@ -592,7 +593,8 @@ const publicRoutes = [
 
 
   //auth_routes
-  {path: '/login', component: <Login />}
+  {path: '/login', component: <Login />},
+  {path: '/register', component: <Register />},
 ];
 
 export { authProtectedRoutes, publicRoutes };
