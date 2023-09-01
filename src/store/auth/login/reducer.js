@@ -4,13 +4,20 @@ import {
   LOGOUT_USER,
   LOGOUT_USER_SUCCESS,
   API_ERROR,
-  RESET_LOGIN_FLAG
+  RESET_LOGIN_FLAG, 
+  TEST_VERIFY, 
+  TEST_VERIFY_SUCCESS, 
+  TEST_VERIFY_FAIL
 } from "./actionTypes";
 
 const initialState = {
   errorMsg: "",
   loading: false,
   error: false,
+  userInfo: null,
+  verifyInfo: false,
+  verifyLoading: false, 
+  verifyError: null 
 };
 
 const login = (state = initialState, action) => {
@@ -27,8 +34,39 @@ const login = (state = initialState, action) => {
         ...state,
         loading: false,
         error: false,
+        userInfo: action.payload
       };
       break;
+
+    case TEST_VERIFY: 
+       state = {
+        ...state, 
+        verifyLoading: true,
+        verifyError: null
+       }
+    break;
+
+
+    case TEST_VERIFY_FAIL: 
+    state = {
+      ...state, 
+      verifyLoading: false,
+      verifyError: action.payload
+    }
+    break;
+
+
+    case TEST_VERIFY_SUCCESS: 
+    state = {
+      ...state, 
+      verifyLoading: false,
+      verifyInfo: action.payload,
+      verifyError: null
+    }
+    break;
+
+
+
     case LOGOUT_USER:
       state = { ...state, isUserLogout: false };
       break;

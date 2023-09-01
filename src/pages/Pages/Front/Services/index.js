@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import "../Career/CareerAdvice/CareerAdvice.css";
 import {
   Container,
@@ -26,11 +26,10 @@ import icon3 from "./icon3.png";
 import icon4 from "./icon4.png";
 import icon5 from "./icon5.png";
 
-
-import ServicesComp from './Services'
-import JobPosting from './JobPosting'
-import Outsourcing from './Outsourcing';
-import PayrollManagement from './PayrollManagement';
+import ServicesComp from "./Services";
+import JobPosting from "./JobPosting";
+import Outsourcing from "./Outsourcing";
+import PayrollManagement from "./PayrollManagement";
 
 const Services = () => {
   const iconList = [
@@ -58,22 +57,20 @@ const Services = () => {
     },
   ];
 
-
   const [width, setWidth] = useState("");
-const [left , setLeft] = useState("")
+  const [left, setLeft] = useState("");
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
       setWidth("10rem");
-      setLeft("11rem")
-  
+      setLeft("11rem");
     } else if (newWindowSize >= 1200) {
       setWidth("20rem");
-    
-      setLeft("")
+
+      setLeft("");
     } else if (newWindowSize > 375) {
       setWidth("20rem");
-      setLeft("")
+      setLeft("");
     }
   };
 
@@ -90,19 +87,28 @@ const [left , setLeft] = useState("")
     };
   }, []);
 
-  console.log(window.location)
+  console.log(window.location);
 
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
         <Row className="justify-content-center">
-          <Col xl={20} xs={10} md={20} className="text-bg-size">
-            <img
+          <Col
+            xl={20}
+            xs={10}
+            md={20}
+            className="text-bg-size banner-container text-bg-size"
+            style={{height: '60vh'}}
+          >
+            {/* <img
               src={bg}
               className="text-bg"
               alt="bg"
               style={{ zIndex: "1" }}
-            ></img>
+            ></img> */}
+
+            {/* <div className="green-circle"></div> */}
+            <div className="white-circle" style={{ right: '0.5%', top: "80%", width: '300px', height: '300px'}}></div>
 
             <div
               className="m-5 mt-5"
@@ -145,19 +151,16 @@ const [left , setLeft] = useState("")
                     style={{ display: "grid", gap: "2rem", zIndex: "1" }}
                   >
                     {" "}
-                    <Link
-                      to="/services"
-                      className="text-light"
-                    >
+                    <Link to="/services" className="text-light">
                       <Button
-                         style={{
+                        style={{
                           color: "white",
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
                           width: width,
-                          position: 'relative', 
-                          left: left
+                          position: "relative",
+                          left: left,
                         }}
                         className="btn"
                       >
@@ -175,8 +178,8 @@ const [left , setLeft] = useState("")
                           border: "1px solid white",
                           padding: "1rem",
                           width: width,
-                          position: 'relative', 
-                          left: left
+                          position: "relative",
+                          left: left,
                         }}
                         className="btn"
                       >
@@ -198,8 +201,8 @@ const [left , setLeft] = useState("")
                           border: "1px solid white",
                           padding: "1rem",
                           width: width,
-                          position: 'relative', 
-                          right: left
+                          position: "relative",
+                          right: left,
                         }}
                         className="btn"
                       >
@@ -208,15 +211,14 @@ const [left , setLeft] = useState("")
                     </Link>
                     <Link to="/services-job-posting" className="text-light">
                       <Button
-                         style={{
+                        style={{
                           color: "white",
                           backgroundColor: "#355765B5",
                           border: "1px solid white",
                           padding: "1rem",
                           width: width,
-                          position: 'relative', 
-                          right: left
-
+                          position: "relative",
+                          right: left,
                         }}
                         className="btn"
                       >
@@ -233,18 +235,22 @@ const [left , setLeft] = useState("")
         <Row className="mt-5 p-5">
           <Col>
             <Container>
-                {
-                   window.location.pathname === '/services' ? <ServicesComp /> : 
-                   window.location.pathname === '/services-job-posting' ? <JobPosting /> : 
-                   window.location.pathname === '/services-payroll-management' ? <PayrollManagement /> : 
-                   window.location.pathname === '/services-outsourcing' ? <Outsourcing /> : <p>Page Does Not Exist</p>
-                }
-            
-            
+              {window.location.pathname === "/services" ? (
+                <ServicesComp />
+              ) : window.location.pathname === "/services-job-posting" ? (
+                <JobPosting />
+              ) : window.location.pathname ===
+                "/services-payroll-management" ? (
+                <PayrollManagement />
+              ) : window.location.pathname === "/services-outsourcing" ? (
+                <Outsourcing />
+              ) : (
+                <p>Page Does Not Exist</p>
+              )}
             </Container>
           </Col>
         </Row>
-      </div> 
+      </div>
     </>
   );
 };

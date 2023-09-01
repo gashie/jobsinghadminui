@@ -267,6 +267,37 @@ const JobList = (props) => {
 
   const [eventView, setEventView] = useState("list");
 
+  var [width, setWidth] = useState("")
+  
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setWidth("100%");
+    } else if (newWindowSize <= 1200) {
+      setWidth("95%");
+    } else if (newWindowSize >= 1200) {
+      setWidth("87%");
+    } else if (newWindowSize > 375) {
+      setWidth("100%");
+    }
+
+
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+
   return (
     <>
       <div className="page-content">
@@ -283,9 +314,11 @@ const JobList = (props) => {
           }}
           onCloseClick={() => setDeleteModalMulti(false)}
         />
-        <Container fluid>
+
+
+        <Container fluid style={{width:'85%'}}>
           <Row>
-            <Col xl={3} lg={4}>
+            <Col xl={3} lg={4} md={4}>
               <Card>
                 <CardHeader style={{ backgroundColor: "#244a59" }}>
                   <div className="d-flex mb-3">
@@ -757,7 +790,7 @@ const JobList = (props) => {
                                 <div
                                   style={{
                                     position: "relative",
-                                    left: "-1.5rem",
+                                    left: "-3rem",
                                     top: "0.3rem",
                                   }}
                                 >

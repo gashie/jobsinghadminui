@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -57,16 +57,49 @@ const FeaturedJobs = () => {
     }
   };
 
+  var [width, setWidth] = useState("")
+  const [spaceLeft, setSpaceLeft] = useState("")
+  const [relative, setRelative] = useState("")
+
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setWidth("100%");
+    } else if (newWindowSize <= 1200) {
+      setWidth("95%");
+    } else if (newWindowSize >= 1200) {
+      setWidth("87%");
+    } else if (newWindowSize > 375) {
+      setWidth("100%");
+    }
+
+
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-        <Container fluid className="col-md-10 col-xxl-10">
+        <Container fluid className="col-md-10 col-xxl-10 mt-5 mb-5" style={{width: width}}>
           <Row>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 marginTop: "3rem",
+               
               }}
               className=" p-4"
             >
@@ -178,7 +211,7 @@ const FeaturedJobs = () => {
 
           {/* Browse Jobs */}
           <Row>
-            <Col xxl={6}>
+            <Col xxl={6} className="mt-5">
               <h5
                 className="mb-3 mt-5 p-4"
                 style={{
@@ -194,7 +227,7 @@ const FeaturedJobs = () => {
               >
                 <NavItem>
                   <NavLink
-                    style={{ cursor: "pointer", padding: "" }}
+                    style={{ cursor: "pointer", color: "#244a59" }}
                     className={classnames({
                       active: customActiveTab === "1",
                     })}
@@ -207,7 +240,7 @@ const FeaturedJobs = () => {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", color: "#244a59" }}
                     className={classnames({
                       active: customActiveTab === "2",
                     })}

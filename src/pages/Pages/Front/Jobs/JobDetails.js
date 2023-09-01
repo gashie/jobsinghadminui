@@ -2,32 +2,68 @@ import { Container, Row, Col, Card, CardBody, Button } from "reactstrap";
 import { jobGrid } from "../../../../common/data/appsJobs";
 import { Link } from "react-router-dom";
 import lash from "./lash.png";
+import { useState, useEffect } from "react";
 
 const JobDetails = () => {
+
+  var [left, setLeft] = useState("")
+  
+
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setLeft("0rem");
+    } else if (newWindowSize <= 1200) {
+      setLeft("-10rem");
+    } else if (newWindowSize >= 1200) {
+      setLeft("-16rem");
+    } else if (newWindowSize > 375) {
+      setLeft("");
+    }
+
+
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
   return (
     <>
       <div style={{ backgroundColor: "white" }} className="p-5">
         <Row style={{ display: "flex", justifyContent: "center" }}>
-          <h5 style={{ color: "#244a59", fontWeight: "bolder" }}>
+          <h5 style={{ color: "#244a59", fontWeight: "bolder", marginRight: left }}>
             Security Jobs
           </h5>
-          <Col md={15} xl={20}>
+          <Col md={15} xl={15} className="d-flex" style={{justifyContent:'center'}}>
             <Card
               style={{
                 boxShadow: "none",
                 border: "1px solid #e0e0e0",
                 borderRadius: "0.8rem",
+                width: '85%'
+                
               }}
+              className="mt-5"
             >
               <CardBody>
                 <div className="p-5">
                   <Col xl={10} md={15} xs={20} sm={20}>
                     <div
                       className="avatar-sm mb-4 "
-                      style={{ marginLeft: "4rem" }}
+                      style={{ marginLeft: "0rem" }}
                     >
-                      <div className="avatar-title bg-light rounded">
-                        <img src={lash} alt="" className="avatar-xxl" />
+                      <div className="avatar-title bg-light rounded" style={{position: 'relative', left: '2rem'}}>
+                        <img src={lash} alt="" className="avatar-xxl"/>
                       </div>
                     </div>
                     <Link to="#!">
@@ -62,12 +98,14 @@ const JobDetails = () => {
                         gap: "0.5rem",
                         justifyContent: 'space-around',
                         width: '100%'
+                        , 
+                        flexWrap:'wrap'
                       }}
                       className="col-md-20 col-xs-20"
                     >
                       <Button
                         type="button"
-                        className="btn btn-icon btn-soft-light mt-3 p-4 "
+                        className="btn btn-icon btn-soft-light mt-3 p-4"
                         data-bs-toggle="button"
                         aria-pressed="true"
                         style={{
@@ -122,8 +160,8 @@ const JobDetails = () => {
             </Card>
           </Col>
         </Row>
-
-        <Row style={{ display: "flex" }} className="m-0">
+<div className="d-flex" style={{justifyContent: 'center'}}>
+        <Row style={{ display: "flex", width:'85%', justifyContent: 'center' }} className="m-0">
           <Col xs={20} xl={9} md={20}>
             <CardBody>
               <Card
@@ -132,6 +170,7 @@ const JobDetails = () => {
                   boxShadow: "none",
                   border: "1px solid #e0e0e0",
                   borderRadius: "0.8rem",
+                
                 }}
               >
                 <h5 className="mb-3 fw-bolder mt-3" style={{ color: "#244a59" }}>
@@ -251,10 +290,10 @@ const JobDetails = () => {
           </Col>
           <Col xs={15} xl={3}>
             <Row>
-              <Card style={{boxShadow: 'none', border: "1px solid #e0e0e0", backgroundColor: '#F8FAFC', borderRadius: '0.8rem'}}>
+              <Card style={{boxShadow: 'none', border: "1px solid #e0e0e0", backgroundColor: '#F8FAFC', borderRadius: '0.8rem'}} className="p-3">
                 <CardBody>
                   <div
-                    className="p-1"
+                    className="p-2"
                     style={{ display: "grid", justifyContent: "center" }}
                   >
                     <p style={{ textAlign: "center" }}>
@@ -269,11 +308,11 @@ const JobDetails = () => {
 
                     <input placeholder="Enter your email" className="m-3 p-3" style={{border: '1px solid #e0e0e0'}}></input>
 
-
-                    <Button className="btn btn-success p-2 ">
+<h5 className="text-center ">
+                    <Button className="btn btn-success p-2 w-50 ">
                       Create alert
                     </Button>
-                
+                    </h5>              
                     <p style={{ textAlign: "center" }} className="mt-3">
                       * You can cancel this job alert at any time
                     </p>
@@ -310,6 +349,7 @@ const JobDetails = () => {
             </Row>
           </Col>
         </Row>
+      </div>
       </div>
     </>
   );

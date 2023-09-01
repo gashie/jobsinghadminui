@@ -76,7 +76,7 @@ const Apply = () => {
             />
           </Col>
           <Row>
-            <Col md={6}>
+            <Col md={6} className="mt-4">
               <Label for="inputPassword4" className="form-label">
                 Country
               </Label>
@@ -87,7 +87,7 @@ const Apply = () => {
                 placeholder="Password"
               />
             </Col>
-            <Col md={6}>
+            <Col md={6} className="mt-4">
               <Label for="inputState" className="form-label">
                 City
               </Label>
@@ -184,7 +184,7 @@ const Apply = () => {
               </select>
             </Col>
 
-            <Label for="inputZip" className="form-labelmt-4">
+            <Label for="inputZip" className="form-label mt-4">
               Do you have any experience in this field?
             </Label>
             <select
@@ -200,8 +200,8 @@ const Apply = () => {
               <option>10+ years</option>
             </select>
           </Col>
-          <Col xs={12}>
-            <Label className="form-check-label mt-3" for="gridCheck">
+          <Col xs={12} className="mt-3">
+            <Label className="form-check-label mt-4" for="gridCheck">
               By clicking on Apply. you confirmed having read and agreed to the
               Terms of Service. You will also receive news about the company and
               similar job posting via email.

@@ -12,7 +12,7 @@ const Search = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                height: "55vh",
+                height: "45vh",
               }}
             >
               <div
@@ -26,24 +26,25 @@ const Search = () => {
                   gap: "1rem",
                   width: "100rem",
                   alignContent: "center",
-                  height: "20vh",
+                  height: "max-content",
+                  
                 }}
               >
-                <div className="col-md-10" style={{ width: "65%" }}>
+                <div className="col-md-10" style={{ width: "50%" }}>
                   <h6 style={{ fontWeight: "bolder"}}>
                     Search for your new job
                   </h6>
                   <Input
                     type="text"
-                    className="form-control form-control-lg bg-light border-light"
+                    className="form-control form-control-lg bg-light border-light p-4"
                     placeholder="Search for jobs of companies"
                   />
                 </div>
 
-                <div className="col-md-2 col-xs-20" style={{width: "35%"}}>
+                <div className="col-md-2 col-xs-20" style={{width: "50%"}}>
                   <button
                     type="submit"
-                    className="btn btn-dark waves-effect waves-light"
+                    className="btn btn-dark waves-effect waves-light p-4 fs-13"
                     style={{
                       backgroundColor: "#244A59",
                       fontSize: "0.8rem",

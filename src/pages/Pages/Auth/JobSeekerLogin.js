@@ -2,8 +2,13 @@ import ldn from "./images/ldn.png";
 import google from "./images/google.png";
 import fb from "./images/fb.png";
 import { Col, Input, Row, Label, Card, CardBody, Button } from "reactstrap";
+import { loginUser } from "../../../store/auth/login/actions";
+import { useDispatch } from "react-redux";
 
 const JobSeekerLogin = () => {
+
+const dispatch = useDispatch()
+
   return (
     <>
     
@@ -105,7 +110,9 @@ const JobSeekerLogin = () => {
                 </div>
               </Col>
 
-              <Button className="btn btn-dark w-100 mt-4 p-3" style={{backgroundColor: '#244159'}}>Login</Button>
+              <Button className="btn btn-dark w-100 mt-4 p-3" style={{backgroundColor: '#244159'}} onClick={()=>{
+                dispatch(loginUser({name: "Mathias Lawson", password: "123456"}))
+              }}>Login</Button>
             </Row>
             </div>    
           </div>

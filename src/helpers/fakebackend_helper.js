@@ -420,3 +420,8 @@ export const getJobApplicationList = () => api.get(url.GET_APPLICATION_LIST);
 
 //API Key
 export const getAPIKey = () => api.get(url.GET_API_KEY);
+
+//test login
+export const testLoginURL = (user) => api.create(url.TEST_LOGIN, user)
+//text verify
+export const testVerifyURL = () => api.get(url.TEST_VERIFY)

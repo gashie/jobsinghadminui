@@ -278,6 +278,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                       style={{
                         backgroundColor: "#244A59",
                         fontSize: "0.8rem",
+                      
                       }}
                     >
                       {" "}

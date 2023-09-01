@@ -277,6 +277,9 @@ import Register from "../pages/Pages/Auth/Register";
 import JobSeekerLogin from "../pages/Pages/Auth/JobSeekerLogin";
 import ForgotPassword from "../pages/Pages/Auth/ForogtPassword";
 import EmployerSignUp from "../pages/Pages/Auth/EmployerSignUp";
+import TestRegister from "../pages/Pages/Auth/TestRegister";
+import TestLogin from "../pages/Pages/Auth/TestLogin";
+import TestHome from "../pages/Pages/Auth/TestHome";
 
 
 
@@ -599,6 +602,11 @@ const publicRoutes = [
   {path: '/register', component: <Register />},
   {path: '/forgot-password', component: <ForgotPassword />},
   {path: '/employer-signup', component: <EmployerSignUp />},
+
+  //test
+  {path: '/test-register', component: <TestRegister/>},
+  {path: '/test-login', component: <TestLogin />},
+  {path: '/test-home', component: <TestHome />}
 ];
 
 export { authProtectedRoutes, publicRoutes };

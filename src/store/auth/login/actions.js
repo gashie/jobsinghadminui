@@ -5,13 +5,16 @@ import {
   LOGOUT_USER_SUCCESS,
   API_ERROR,
   SOCIAL_LOGIN,
-  RESET_LOGIN_FLAG
+  RESET_LOGIN_FLAG, 
+  TEST_VERIFY, 
+  TEST_VERIFY_SUCCESS, 
+  TEST_VERIFY_FAIL
 } from "./actionTypes";
 
-export const loginUser = (user, history) => {
+export const loginUser = (user) => {
   return {
     type: LOGIN_USER,
-    payload: { user, history },
+    payload: user,
   };
 };
 
@@ -53,5 +56,26 @@ export const socialLogin = (type, history) => {
 export const resetLoginFlag = () => {
   return {
     type: RESET_LOGIN_FLAG,
+  }
+}
+
+export const testVerify = () =>{
+  return {
+    type: TEST_VERIFY
+  }
+}
+
+
+export const testVerifySuccess = (payload) =>{
+  return {
+    type: TEST_VERIFY_SUCCESS, 
+    payload: payload
+  }
+}
+
+export const testVerifyError = (error) => {
+  return {
+    type: TEST_VERIFY_FAIL, 
+    payload: error
   }
 }

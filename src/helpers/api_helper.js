@@ -5,6 +5,7 @@ import { api } from "../config";
 axios.defaults.baseURL = api.API_URL;
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.withCredentials = true;
 
 // content type
 const token = JSON.parse(sessionStorage.getItem("authUser")) ? JSON.parse(sessionStorage.getItem("authUser")).token : null;

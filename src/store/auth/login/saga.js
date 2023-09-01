@@ -1,8 +1,9 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 // Login Redux States
-import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from "./actionTypes";
-import { apiError, loginSuccess, logoutUserSuccess } from "./actions";
+import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN, TEST_VERIFY } from "./actionTypes";
+import { apiError, loginSuccess, logoutUserSuccess, testVerifySuccess } from "./actions";
+import {useNavigate} from 'react-router-dom'
 
 //Include Both Helper File with needed methods
 import { getFirebaseBackend } from "../../../helpers/firebase_helper";
@@ -10,6 +11,9 @@ import {
   postFakeLogin,
   postJwtLogin,
   postSocialLogin,
+  testLoginURL,
+  testVerifyURL,
+
 } from "../../../helpers/fakebackend_helper";
 
 function* loginUser({ payload: { user, history } }) {
@@ -95,10 +99,46 @@ function* socialLogin({ payload: { data, history, type } }) {
   }
 }
 
+function* testLoginUser ({payload: user}){
+  try{
+       const response = yield call(testLoginURL, user)
+       yield put(loginSuccess(response))
+       const navigate = useNavigate
+      //  if(response.role === "seeker"){
+      //   window.location.href="/job-seeker-admin"
+      //  }
+      if(response.role === 'seeker'){
+        alert('Logged in')
+        loginSuccess(response)
+       navigate('/test-home')
+      }else{
+        alert('Error')
+      }
+       console.log(response)
+  }catch(error){
+       console.log(error)
+  }
+}
+
+function* testVerifyUser(){
+  try{
+      const response = yield call(testVerifyURL)
+
+      console.log(response)
+      if(response.Status === "Success"){
+        yield put(testVerifySuccess(response))
+      }
+  }catch(error){
+        console.log(error)
+  }
+}
+
 function* authSaga() {
-  yield takeEvery(LOGIN_USER, loginUser);
+  // yield takeEvery(LOGIN_USER, loginUser);
   yield takeLatest(SOCIAL_LOGIN, socialLogin);
   yield takeEvery(LOGOUT_USER, logoutUser);
+  yield takeEvery(LOGIN_USER, testLoginUser);
+  yield takeEvery(TEST_VERIFY, testVerifyUser)
 }
 
 export default authSaga;

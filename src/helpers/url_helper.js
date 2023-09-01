@@ -226,3 +226,7 @@ export const GET_APPLICATION_LIST = "/application-list";
 
 //JOB APPLICATION
 export const GET_API_KEY = "/api-key";
+
+//test code
+export const TEST_LOGIN = 'http://localhost:9000/login'
+export const TEST_VERIFY = 'http://localhost:9000/'

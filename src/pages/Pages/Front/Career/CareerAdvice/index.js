@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from "react";
 import "./CareerAdvice.css";
 import { Container, Row, Col, Button, CardBody, Card } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -12,18 +12,18 @@ import workplace from "./CareerImages/workplace.png";
 
 const CareerAdvice = () => {
   const [width, setWidth] = useState("");
-const [left , setLeft] = useState("")
+  const [left, setLeft] = useState("");
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
       setWidth("10rem");
-      setLeft("11rem")
+      setLeft("11rem");
     } else if (newWindowSize <= 1200) {
       setWidth("");
     } else if (newWindowSize >= 1200) {
-      setWidth("20rem");
-    
-      setLeft("")
+      setWidth("40rem");
+
+      setLeft("");
     } else if (newWindowSize > 375) {
       setWidth("");
     }
@@ -47,12 +47,27 @@ const [left , setLeft] = useState("")
       <div></div>
 
       <Row className="justify-content-center">
-        <Col xl={20} xs={10} md={20} className="text-bg-size">
-          <img src={bg} className="text-bg" alt="bg"></img>
+        <Col
+          xl={20}
+          xs={10}
+          md={20}
+          className="text-bg-size banner-container text-bg-size"
+        >
+          {/* <img src={bg} className="text-bg" alt="bg"></img> */}
+          {/* <Container className=""> */}
+          <div className="green-circle" ></div>
+          <div className="white-circle"></div>
+
+          {/* </Container> */}
 
           <div
             className="m-5 mt-5"
-            style={{ display: "grid", justifyContent: "center" }}
+            style={{
+              display: "grid",
+              justifyContent: "center",
+              zIndex: "99",
+              position: "relative",
+            }}
           >
             <h4 style={{ textAlign: "center", color: "white" }}>
               Career Advice
@@ -67,6 +82,8 @@ const [left , setLeft] = useState("")
               display: "flex",
               justifyContent: "center",
               flexWrap: "wrap",
+              zIndex: "99",
+              position: "relative",
             }}
           >
             <Col
@@ -80,7 +97,7 @@ const [left , setLeft] = useState("")
                 padding: "1rem",
                 backgroundColor: "#355765B5",
                 borderRadius: "0.2rem",
-                width: 'max-content'
+                width: "max-content",
               }}
             >
               <Row>
@@ -92,8 +109,8 @@ const [left , setLeft] = useState("")
                       border: "1px solid white",
                       padding: "1rem",
                       width: width,
-                      position: 'relative', 
-                      left: left
+                      position: "relative",
+                      left: left,
                     }}
                     className="btn"
                   >
@@ -106,8 +123,8 @@ const [left , setLeft] = useState("")
                       border: "1px solid white",
                       padding: "1rem",
                       width: width,
-                      position: 'relative', 
-                      left: left
+                      position: "relative",
+                      left: left,
                     }}
                     className="btn"
                   >
@@ -120,8 +137,8 @@ const [left , setLeft] = useState("")
                       border: "1px solid white",
                       padding: "1rem",
                       width: width,
-                      position: 'relative', 
-                      left: left
+                      position: "relative",
+                      left: left,
                     }}
                     className="btn"
                   >
@@ -138,8 +155,8 @@ const [left , setLeft] = useState("")
                       border: "1px solid white",
                       padding: "1rem",
                       width: width,
-                      position: 'relative', 
-                      right: left
+                      position: "relative",
+                      right: left,
                     }}
                     className="btn"
                   >
@@ -152,8 +169,8 @@ const [left , setLeft] = useState("")
                       border: "1px solid white",
                       padding: "1rem",
                       width: width,
-                      position: 'relative', 
-                      right: left
+                      position: "relative",
+                      right: left,
                     }}
                     className="btn"
                   >
@@ -166,8 +183,8 @@ const [left , setLeft] = useState("")
                       border: "1px solid white",
                       padding: "1rem",
                       width: width,
-                      position: 'relative', 
-                      right: left
+                      position: "relative",
+                      right: left,
                     }}
                     className="btn"
                   >

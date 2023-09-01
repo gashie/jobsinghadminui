@@ -8,8 +8,8 @@ const Services = () => {
   return (
     <>
       <Container style={{ backgroundColor: "#244a59", color: "white" }} fluid>
-        <Row className="justify-content-center mt-4">
-          <Col lg={8}>
+        <Row className="justify-content-center mt-5">
+          <Col lg={8} className="mt-5">
             <div className="text-center mb-5">
               <h1
                 className="mb-3 fw-semibold text-capitalize lh-base p-3 mt-4"

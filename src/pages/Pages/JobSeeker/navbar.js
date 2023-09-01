@@ -32,6 +32,61 @@ const Navbar = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+
+  const [space, setSpace] = useState("")
+  const [spaceLeft, setSpaceLeft] = useState("")
+  const [relative, setRelative] = useState("")
+
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setSpace("0rem");
+    } else if (newWindowSize <= 1200) {
+      setSpace("25rem");
+    } else if (newWindowSize >= 1200) {
+      setSpace("75rem");
+    } else if (newWindowSize > 375) {
+      setSpace("0rem");
+    }
+
+
+    if (newWindowSize <= 1100 ) {
+       setRelative('')
+    } else if (newWindowSize <= 1200) {
+      setRelative('absolute')
+    } else if (newWindowSize >= 1200) {
+      setRelative('absolute')
+    } else if (newWindowSize > 375) {
+      setRelative('')
+    }
+
+   
+
+
+    if (newWindowSize <= 375) {
+      setSpaceLeft("0rem");
+    } else if (newWindowSize <= 1200) {
+      setSpaceLeft("2rem");
+    } else if (newWindowSize >= 1200) {
+      setSpaceLeft("-14rem");
+    } else if (newWindowSize > 375) {
+      setSpaceLeft("0rem");
+    }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
   return (
     <React.Fragment>
       <Row>
@@ -44,14 +99,18 @@ const Navbar = () => {
             borderStyle: "solid",
             borderTop: "0px",
             borderColor: "#244A59",
+            borderRight: '0px',
+            width: '100%'
           }}
         >
-          <Container>
+          <Container >
             <Link className="navbar-brand" to="/home">
               <h2
                 style={{
                   fontFamily: "impact",
                   color: "#244A59",
+                 position:'relative', 
+                 left: spaceLeft
                 }}
               >
                 JobsinGhana
@@ -75,6 +134,7 @@ const Navbar = () => {
               isOpen={isOpenMenu}
               className="navbar-collapse"
               id="navbarSupportedContent"
+              style={{left: space, position: relative}}
             >
               <Scrollspy
                 offset={-18}
