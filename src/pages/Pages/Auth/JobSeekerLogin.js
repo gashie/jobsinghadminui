@@ -4,6 +4,7 @@ import fb from "./images/fb.png";
 import { Col, Input, Row, Label, Card, CardBody, Button } from "reactstrap";
 import { loginUser } from "../../../store/auth/login/actions";
 import { useDispatch } from "react-redux";
+import {Link} from 'react-router-dom'
 
 const JobSeekerLogin = () => {
 
@@ -13,7 +14,9 @@ const dispatch = useDispatch()
     <>
     
       <Card>
-      <h5 className="fw-bolder text-end m-3">New to jobsinghana?<span style={{color: '#244a59'}}>Register</span> </h5>
+        <Link to='/register'>
+      <h5 className="fw-bolder text-end m-3">New to jobsinghana?{" "}<span style={{color: '#244a59', cursor: 'pointer'}}>Register</span> </h5>
+      </Link>
         <CardBody>
           <div className="mt-4 p-5">
             <h4 className="fw-bolder text-center">Login</h4>
@@ -91,7 +94,9 @@ const dispatch = useDispatch()
                 </div>
               </Col>
 
+<Link to="/forgot-password">
              <h6 className="text-end fw-bolder mt-3" style={{cursor: 'pointer'}}>Forgotten Password?</h6>
+             </Link>
 
               <Col lg={20} className="mt-3">
                 <div className="mb-3">

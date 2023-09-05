@@ -4,7 +4,7 @@ import Flatpickr from "react-flatpickr";
 const PostCourse = () => {
   return (
     <>
-      <div className="mb-3">
+      <div className="mb-3 mt-4">
         <Label htmlFor="StartleaveDate" className="form-label">
           Category
         </Label>

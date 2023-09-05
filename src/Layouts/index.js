@@ -28,6 +28,7 @@ import {
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
+import EmployerSidebar from "./EmployerSidebar";
 
 const Layout = (props) => {
   const [headerClass, setHeaderClass] = useState("");
@@ -98,55 +99,62 @@ const Layout = (props) => {
     dispatch,
   ]);
 
-  useEffect(() => {
-    if (
-      sidebarVisibilitytype === "show" ||
-      layoutType === "vertical" ||
-      layoutType === "twocolumn"
-    ) {
-      document.querySelector(".hamburger-icon").classList.remove("open");
-    } else {
-      document.querySelector(".hamburger-icon").classList.add("open");
-    }
-  }, [sidebarVisibilitytype, layoutType]);
+  // useEffect(() => {
+  //   if (
+  //     sidebarVisibilitytype === "show" ||
+  //     layoutType === "vertical" ||
+  //     layoutType === "twocolumn"
+  //   ) {
+  //     document.querySelector(".hamburger-icon").classList.remove("open");
+  //   } else {
+  //     document.querySelector(".hamburger-icon").classList.add("open");
+  //   }
+  // }, [sidebarVisibilitytype, layoutType]);
 
-  /*
-    call dark/light mode
-    */
-  const onChangeLayoutMode = (value) => {
-    if (changeLayoutMode) {
-      dispatch(changeLayoutMode(value));
-    }
-  };
+  // /*
+  //   call dark/light mode
+  //   */
+  // const onChangeLayoutMode = (value) => {
+  //   if (changeLayoutMode) {
+  //     dispatch(changeLayoutMode(value));
+  //   }
+  // };
 
   // class add remove in header
-  useEffect(() => {
-    window.addEventListener("scroll", scrollNavigation, true);
-  });
-  function scrollNavigation() {
-    var scrollup = document.documentElement.scrollTop;
-    if (scrollup > 50) {
-      setHeaderClass("topbar-shadow");
-    } else {
-      setHeaderClass("");
-    }
-  }
+  // useEffect(() => {
+  //   window.addEventListener("scroll", scrollNavigation, true);
+  // });
+  // function scrollNavigation() {
+  //   var scrollup = document.documentElement.scrollTop;
+  //   if (scrollup > 50) {
+  //     setHeaderClass("topbar-shadow");
+  //   } else {
+  //     setHeaderClass("");
+  //   }
+  // }
 
   return (
     <React.Fragment>
+   
       <div id="layout-wrapper">
         <Header
           headerClass={headerClass}
           layoutModeType={layoutModeType}
-          onChangeLayoutMode={onChangeLayoutMode}
+          // onChangeLayoutMode={onChangeLayoutMode}
         />
-        {/* <Navbar /> */}
+        {/* <Navbar  /> */}
         {/* <Sidebar layoutType='vertical' /> */}
-
+{
+  console.log(window.location.href)
+}
+        {
+        window.location.pathname === "/employer-dashboard" || window.location.pathname === "/employer-profile" || window.location.pathname === "/employer-jobs" || window.location.pathname === "/employer-applications" || window.location.pathname==="/employer-courses" || window.location.pathname === "/employer-transactions" ? <EmployerSidebar /> :
         <JobsSidebar />
+}
         <div className="main-content">{props.children}</div>
         <Footer />
       </div>
+
       {/* <RightSidebar /> */}
       
     </React.Fragment>

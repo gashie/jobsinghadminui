@@ -2,15 +2,20 @@ import ldn from "./images/ldn.png";
 import google from "./images/google.png";
 import fb from "./images/fb.png";
 import { Col, Input, Row, Label, Card, CardBody, Button } from "reactstrap";
+import {Link} from 'react-router-dom'
 
 const EmployerSignUp = () => {
   return (
     <>
+
       <Card>
+
+          <Link to='/login'>
         <h5 className="fw-bolder text-end m-3">
           Existing employers/recruiters?
           <span style={{ color: "#244a59" }}>Login</span>{" "}
         </h5>
+        </Link>
         <CardBody>
           <div className="mt-4 p-5">
           
@@ -26,7 +31,7 @@ const EmployerSignUp = () => {
                 </Label>
                 <Input
                   type="text"
-                  className="form-control"
+                  className="form-control p-3"
                   placeholder="Enter your firstname"
                   id="firstNameinput"
                 />
@@ -52,7 +57,7 @@ const EmployerSignUp = () => {
                 </Label>
                 <Input
                   type="text"
-                  className="form-control"
+                  className="form-control p-3"
                   placeholder="Enter company name"
                   id="compnayNameinput"
                 />
@@ -65,7 +70,7 @@ const EmployerSignUp = () => {
                 </Label>
                 <Input
                   type="text"
-                  className="form-control"
+                  className="form-control p-3"
                   placeholder="Enter company name"
                   id="compnayNameinput"
                 />
@@ -79,7 +84,7 @@ const EmployerSignUp = () => {
                 </Label>
                 <Input
                   type="email"
-                  className="form-control"
+                  className="form-control p-3"
                   placeholder="example@gamil.com"
                   id="emailidInput"
                 />
@@ -92,7 +97,7 @@ const EmployerSignUp = () => {
                 </Label>
                 <Input
                   type="text"
-                  className="form-control"
+                  className="form-control p-3"
                   placeholder="Enter Mobile Number"
                   id="address1ControlTextarea"
                 />
@@ -107,9 +112,11 @@ const EmployerSignUp = () => {
           </div>
             <Col md={12}>
               <div className="text-end">
+                <Link to='/employer-otp'>
                 <button type="submit" className="btn btn-dark w-100" style={{backgroundColor: "#244a59"}}>
                   Submit
                 </button>
+                </Link>
               </div>
             </Col>
             </Row>        

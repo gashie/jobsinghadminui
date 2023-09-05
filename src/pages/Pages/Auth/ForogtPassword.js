@@ -2,15 +2,17 @@ import ldn from "./images/ldn.png";
 import google from "./images/google.png";
 import fb from "./images/fb.png";
 import { Col, Input, Row, Label, Card, CardBody, Button } from "reactstrap";
-
+import {Link} from 'react-router-dom'
 const ForgotPassword = () => {
   return (
     <>
       <Card>
+        <Link to='/login'>
         <h5 className="fw-bolder text-end m-3">
           Existing employers/recruiters?
           <span style={{ color: "#244a59" }}>Login</span>{" "}
         </h5>
+        </Link>
         <CardBody>
           <div className="mt-4 p-5">
             <h4 className="fw-bolderr">Forgot your password?</h4>

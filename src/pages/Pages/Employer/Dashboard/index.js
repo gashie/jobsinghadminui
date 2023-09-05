@@ -42,7 +42,54 @@ const EmployerDashboard = () => {
   const [modal_list, setmodal_list] = useState(false);
   function tog_list() {
     setmodal_list(!modal_list);
+
+  
   }
+
+  const options = [
+    { label: "Edit", color: "black", icon: "bx bx-pencil" },
+    { label: "Clone", color: "black", icon: "bx bx-no-entry" },
+    { label: "Repost", color: "black", icon: "mdi mdi-trending-up" },
+    { label: "Renew Posting", color: "black", icon: "mdi mdi-trending-down" },
+  ];
+
+  const takeActions = ["Part Time", "Internship", "Temporary", "Other"];
+
+  const [selectedStatus2, setSelectedStatus2] = useState("Select Status");
+
+  const statuses2 = ["Status A", "Status B", "Status C"];
+
+  const statusOptions = [
+    { label: "Open", color: "green", icon: "bx bx-check-circle" },
+    { label: "Closed", color: "red", icon: "bx bx-x-circle" },
+    { label: "Cancelled", color: "gray", icon: "bx bx-ban" },
+  ];
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenStatus, setIsOpenStatus] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedStatus, setSelectedStatus] = useState(statusOptions[0]);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen); // Toggle the dropdown menu's visibility
+  };
+
+  const toggleStatus = () => {
+    setIsOpenStatus(!isOpenStatus);
+  };
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option); // Set the selected option in the state
+    setIsOpen(false); // Close the dropdown menu when an option is clicked
+  };
+
+  const handleStatusClick = (status) => {
+    setSelectedStatus(status);
+    setIsOpenStatus(false);
+  };
+
+  
+
 
   const [height, setHeight] = useState("");
   const [margin, setMargin] = useState("");
@@ -150,10 +197,11 @@ const EmployerDashboard = () => {
                       <Card>
                         <CardBody>
                           <div id="customerList">
-                            <div className="table-responsive table-card mt-3 mb-1">
+                            <div className="table-responsive table-card mt-3 mb-1" style={{height: '27vh'}}>
                               <table
                                 className="table align-middle table-nowrap"
                                 id="customerTable"
+                             
                               >
                                 <thead className="table-light">
                                   <tr>
@@ -193,7 +241,7 @@ const EmployerDashboard = () => {
                                     </th>
                                   </tr>
                                 </thead>
-                                <tbody className="list form-check-all">
+                                <tbody className="list form-check-all" >
                                   <tr>
                                     {/* <th scope="row">
                                       <div className="form-check">
@@ -507,7 +555,7 @@ const EmployerDashboard = () => {
                                       <div className="d-flex gap-2">
                                         <div className="edit">
                                           <button
-                                            className="btn btn-sm btn-success edit-item-btn"
+                                            className="btn btn-sm btn-success edit-item-btn p-2"
                                             data-bs-toggle="modal"
                                             data-bs-target="#showModal"
                                           >
@@ -517,17 +565,43 @@ const EmployerDashboard = () => {
                                       </div>
                                     </td>
                                     <td>
-                                      <div className="d-flex gap-2">
-                                        <div className="edit">
-                                          <button
-                                            className="btn btn-sm btn-success edit-item-btn"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#showModal"
-                                          >
-                                            Edit
-                                          </button>
-                                        </div>
-                                      </div>
+                                    <div className="custom-dropdown">
+                                <Dropdown
+                                  isOpen={isOpen}
+                                  toggle={toggleDropdown}
+                                >
+                                  <DropdownToggle
+                                    tag="p"
+                                    onClick={toggleDropdown}
+                                    style={{
+                                      cursor: "pointer",
+                                    marginTop: '1rem'
+                              
+                                    }}
+                                  >
+                                    <i className="bx bx-dots-vertical-rounded fs-20"></i>{" "}
+                                    
+                                   
+                                  </DropdownToggle>
+                                  <DropdownMenu>
+                                    {options.map((option) => (
+                                      <DropdownItem
+                                        key={option.label}
+                                        onClick={() =>
+                                          handleOptionClick(option)
+                                        }
+                                        style={{
+                                          cursor: "pointer",
+                                          color: option.color,
+                                        }}
+                                      >
+                                        <i className={option.icon}></i>{" "}
+                                        {option.label}
+                                      </DropdownItem>
+                                    ))}
+                                  </DropdownMenu>
+                                </Dropdown>
+                              </div>
                                     </td>
                                   </tr>
                                 </tbody>

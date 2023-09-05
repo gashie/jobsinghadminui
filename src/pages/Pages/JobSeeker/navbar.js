@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Collapse, Container, NavbarToggler, NavLink, Row, Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from "reactstrap";
+import { Collapse, Container, NavbarToggler, NavLink, Row, Dropdown, DropdownToggle, DropdownItem, DropdownMenu, Input } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import { Link } from "react-router-dom";
 
@@ -201,6 +201,58 @@ const Navbar = () => {
             </Collapse>
           </Container>
         </nav>
+
+        {/* <div className="">
+          <div className="card crm-widget">
+            <div className="card-body p-0">
+              <div
+                className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
+                style={{
+                  backgroundColor: "#244A59",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: '100.%'
+                }}
+              >
+                <div
+                  className="col-auto"
+                  style={{
+                    backgroundColor: "white",
+                    padding: "2rem",
+                    borderRadius: "0.7rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    width: "100rem",
+                    alignContent: "center",
+                  }}
+                >
+                  <div className="col-md-10">
+                    <Input
+                      type="text"
+                      className="form-control form-control-lg bg-light border-light"
+                      placeholder="Search for jobs of companies"
+                    />
+                  </div>
+                  <div className="col-md-2">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-lg waves-effect waves-light"
+                      style={{
+                        backgroundColor: "#244A59",
+                        fontSize: "0.8rem",
+                      
+                      }}
+                    >
+                      {" "}
+                      Find a Job
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> */}
       </Row>
     </React.Fragment>
   );

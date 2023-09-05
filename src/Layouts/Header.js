@@ -109,10 +109,67 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  const [space, setSpace] = useState("")
+  const [spaceLeft, setSpaceLeft] = useState("")
+  const [relative, setRelative] = useState("")
+
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setSpace("0rem");
+    } else if (newWindowSize <= 1200) {
+      setSpace("25rem");
+    } else if (newWindowSize >= 1200) {
+      setSpace("75rem");
+    } else if (newWindowSize > 375) {
+      setSpace("0rem");
+    }
+
+
+    if (newWindowSize <= 1100 ) {
+       setRelative('')
+    } else if (newWindowSize <= 1200) {
+      setRelative('absolute')
+    } else if (newWindowSize >= 1200) {
+      setRelative('absolute')
+    } else if (newWindowSize > 375) {
+      setRelative('')
+    }
+
+   
+
+
+    if (newWindowSize <= 375) {
+      setSpaceLeft("0rem");
+    } else if (newWindowSize <= 1200) {
+      setSpaceLeft("2rem");
+    } else if (newWindowSize >= 1200) {
+      setSpaceLeft("-14rem");
+    } else if (newWindowSize > 375) {
+      setSpaceLeft("0rem");
+    }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+
+
   return (
     <React.Fragment>
       <Row>
-        <nav
+      <nav
           className={
             "navbar navbar-expand-lg navbar-landing fixed-top " + "is-sticky"
           }
@@ -121,36 +178,18 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
             borderStyle: "solid",
             borderTop: "0px",
             borderColor: "#244A59",
-            borderRight: "0px",
-            borderLeft: "0px",
-            borderWidth: "2px",
-            position: "relative",
-            zIndex: "1",
-            width: "100%",
+            borderRight: '0px',
+            width: '100%'
           }}
         >
-          <Container>
-            <button
-              onClick={toogleMenuBtn}
-              type="button"
-              className="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
-              id="topnav-hamburger-icon"
-              style={{ display: "none" }}
-            >
-              <span className="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </button>
-
-            <div></div>
-
-            <Link className="navbar-brand" to="/index">
+          <Container >
+            <Link className="navbar-brand" to="/home">
               <h2
                 style={{
                   fontFamily: "impact",
                   color: "#244A59",
+                 position:'relative', 
+                 left: spaceLeft
                 }}
               >
                 JobsinGhana
@@ -174,6 +213,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
               isOpen={isOpenMenu}
               className="navbar-collapse"
               id="navbarSupportedContent"
+              style={{left: space, position: relative}}
             >
               <Scrollspy
                 offset={-18}
@@ -191,7 +231,12 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                 id="navbar-example"
               >
                 <li className="nav-item">
-                  <NavLink className="fs-14" href="/home">
+                  <NavLink className="fs-14" href="/home" 
+                  // style={{
+                  // backgroundColor: window.location.pathname === "/home" ? '#244a59': "", 
+                  // color: window.location.pathname === "/home" && "white", 
+                  // padding:window.location.pathname === "/home" && '0.2rem'}}
+                  >
                     Home
                   </NavLink>
                 </li>
@@ -203,16 +248,12 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                 <li className="nav-item">
                   <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
                     <DropdownToggle nav caret className="fs-14">
-                      Career Resources
+                   Career Resources
                     </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem href="/career-advice">
-                        Career Advice
-                      </DropdownItem>
+                    <DropdownMenu style={{position :'absolute', zIndex: '999'}}>
+                      <DropdownItem href="/career-advice">Career Advice</DropdownItem>
                       <DropdownItem href="/latest-news">HR News</DropdownItem>
-                      <DropdownItem href="/training-events">
-                        TrainingEvents
-                      </DropdownItem>
+                      <DropdownItem href="/training-events">TrainingEvents</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                 </li>
@@ -235,61 +276,73 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
                   </Link>
                 </li>
               </Scrollspy>
+
+              {/* <div className="">
+                            <Link to="/login" className="btn btn-link fw-medium text-decoration-none text-dark">
+                                JobSeekers</Link>
+                            <Link to="/register" className="btn btn-primary">Employers</Link>
+                        </div> */}
             </Collapse>
           </Container>
         </nav>
 
         {/* Search */}
-        <div className="">
-          <div className="card crm-widget">
-            <div className="card-body p-0">
+
+        {
+           window.location.pathname === "/employer-dashboard" || window.location.pathname === "/employer-profile" || window.location.pathname === "/employer-jobs" || window.location.pathname === "/employer-applications" || window.location.pathname==="/employer-courses" || window.location.pathname === "/employer-transactions" ?  
+       ""
+        :  <div className="">
+        <div className="card crm-widget">
+          <div className="card-body p-0">
+            <div
+              className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
+              style={{
+                backgroundColor: "#244A59",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <div
-                className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
+                className="col-auto"
                 style={{
-                  backgroundColor: "#244A59",
+                  backgroundColor: "white",
+                  padding: "2rem",
+                  borderRadius: "0.7rem",
                   display: "flex",
-                  justifyContent: "center",
+                  justifyContent: "space-between",
+                  gap: "1rem",
+                  width: "100rem",
+                  alignContent: "center",
                 }}
               >
-                <div
-                  className="col-auto"
-                  style={{
-                    backgroundColor: "white",
-                    padding: "2rem",
-                    borderRadius: "0.7rem",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "1rem",
-                    width: "100rem",
-                    alignContent: "center",
-                  }}
-                >
-                  <div className="col-md-10">
-                    <Input
-                      type="text"
-                      className="form-control form-control-lg bg-light border-light"
-                      placeholder="Search for jobs of companies"
-                    />
-                  </div>
-                  <div className="col-md-2">
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-lg waves-effect waves-light"
-                      style={{
-                        backgroundColor: "#244A59",
-                        fontSize: "0.8rem",
-                      
-                      }}
-                    >
-                      {" "}
-                      Find a Job
-                    </button>
-                  </div>
+                <div className="col-md-10">
+                  <Input
+                    type="text"
+                    className="form-control form-control-lg bg-light border-light"
+                    placeholder="Search for jobs of companies"
+                  />
+                </div>
+                <div className="col-md-2">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-lg waves-effect waves-light"
+                    style={{
+                      backgroundColor: "#244A59",
+                      fontSize: "0.8rem",
+                    
+                    }}
+                  >
+                    {" "}
+                    Find a Jobs
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+                    }
       </Row>
     </React.Fragment>
   );

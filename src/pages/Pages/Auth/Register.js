@@ -69,15 +69,15 @@ const Register = () => {
     //     password: Yup.string().required("Please Enter Your Password"),
     // }),
     onSubmit: (values) => {
-      let {
-        digit1_input,
-        digit2_input,
-        digit3_input,
-        digit4_input,
-        digit5_input,
-        digit6_input,
-      } = values;
-      let finalCode = `${digit1_input}${digit2_input}${digit3_input}${digit4_input}${digit5_input}${digit6_input}`;
+      // let {
+      //   digit1_input,
+      //   digit2_input,
+      //   digit3_input,
+      //   digit4_input,
+      //   digit5_input,
+      //   digit6_input,
+      // } = values;
+      // let finalCode = `${digit1_input}${digit2_input}${digit3_input}${digit4_input}${digit5_input}${digit6_input}`;
 
       //   let payload = {
       //     phonenumber: `+${phonenumber}`,
@@ -135,9 +135,12 @@ const Register = () => {
         style={{  backgroundColor: "white" }}
       >
         <Col>
+        <Link to='/login'>
+      <h5 className="fw-bolder text-end m-3">Already Registered? {" "}<span style={{color: '#244a59', cursor: 'pointer'}}>Login</span> </h5>
+      </Link>
           <Card style={{  border: "none", boxShadow: "none" }} className="p-4 m-5">
             <CardBody>
-              <Form action="#" className="form-steps">
+              <Form  className="form-steps">
                 <Row
                   className="d-flex"
                   style={{ justifyContent: "space-evenly" }}
@@ -628,7 +631,7 @@ const Register = () => {
                           {/* OTP */}
                           {change === false ? (
                             <>
-                              <div
+                              {/* <div
                                 className="d-flex"
                                 style={{ justifyContent: "space-between" }}
                               >
@@ -645,15 +648,15 @@ const Register = () => {
                                 >
                                   <u>Change</u>
                                 </p>
-                              </div>
+                              </div> */}
 
                               <Form
-                                onSubmit={(e) => {
-                                  e.preventDefault();
-                                  validation.handleSubmit();
-                                  return false;
-                                }}
-                                action="#"
+                                // onSubmit={(e) => {
+                                //   e.preventDefault();
+                                //   validation.handleSubmit();
+                                //   return false;
+                                // }}
+                                // action="#"
                               >
                                 <h6 className="mt-5">Enter OTP</h6>
                                 <Row>
@@ -914,11 +917,12 @@ const Register = () => {
 
                       <TabPane tabId={3}>
                         <div>
-                          <h4 className="fw-bolder">Confirmation</h4>
+                          <h4 className="fw-bolder text-center">Confirmation</h4>
                           <div className="text-center">
                             <div className="mb-4">
                               <img
                                 src={verification}
+                                alt="ver"
                                 className="img-fluid avatar-xxl"
                               ></img>
                             </div>
@@ -935,12 +939,14 @@ const Register = () => {
                           </div>
                         </div>
 
+<Link to='/job-list'>
                         <Button
                           className="btn btn-dark w-100 mt-5"
                           style={{ backgroundColor: "#244a59" }}
                         >
                           Start Job Search
                         </Button>
+                        </Link>
                       </TabPane>
                     </TabContent>
                   </Col>

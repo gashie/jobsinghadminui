@@ -21,6 +21,7 @@ import {
 } from "reactstrap";
 import classnames from "classnames";
 import jobCategoriesData from '../../../../../common/data/categories.json'
+import locations from '../../../../../common/data/cities.json'
 
 import buss from "./buss.png";
 import online from "./online.png";
@@ -58,6 +59,10 @@ const SingleOptions = [
   { value: "4 star", label: "4 star" },
 ];
 
+
+
+
+
 const TrainingEvents = (props) => {
   const dispatch = useDispatch();
 
@@ -72,6 +77,20 @@ const TrainingEvents = (props) => {
 
   function handleMulti(selectedMulti) {
     setselectedMulti(selectedMulti);
+  }
+
+  const [showAllLocations, setShowAllLocations] = useState(false);
+
+  const displayCount = showAllLocations ? locations.length : 5;
+
+   const [selectedLocations, setSelectedLocations] = useState([]);
+
+  function handleLocationChange(region, location) {
+    if (selectedLocations.includes(`${region} - ${location}`)) {
+      setSelectedLocations(selectedLocations.filter((item) => item !== `${region} - ${location}`));
+    } else {
+      setSelectedLocations([...selectedLocations, `${region} - ${location}`]);
+    }
   }
 
   useEffect(() => {
@@ -484,11 +503,11 @@ const TrainingEvents = (props) => {
                             </Col>
                           </Row>
 
-                          <div>
+                          {/* <div>
                             <p className="text-decoration-none fw-medium p-0">
                               Show More
                             </p>
-                          </div>
+                          </div> */}
                         </div>
                         <h4
                           className="text-uppercase fs-12 fw-medium mb-2 mt-4"
@@ -558,160 +577,50 @@ const TrainingEvents = (props) => {
 
                         <div className="d-flex flex-column gap-2 mt-3">
                           <Row>
-                            <Col>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                            </Col>
-                            <Col>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  Accra - Ghana
-                                </label>
-                              </div>
-                            </Col>
+                          <div>
+      {Object.keys(locations).map((region) => (
+        <div key={region}>
+          <h6 className="mt-2">{region}</h6>
+
+          {locations[region].slice(0, showAll ? locations[region].length : 5).map((location, index) => (
+            <div key={index} className="d-flex gap-1">
+              <div className="form-check">
+                <input
+                  style={{ backgroundColor: "#244a59" }}
+                  className="form-check-input"
+                  type="checkbox"
+                  id={`locationCheckbox${region}${index}`}
+                  defaultChecked
+                  onChange={() => handleLocationChange(region, location)}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor={`locationCheckbox${region}${index}`}
+                >
+                  {`${region} - ${location}`}
+                </label>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+
+      {Object.keys(locations).some(region => locations[region].length > 5) && (
+        <button onClick={() => setShowAll(!showAll)} className="btn">
+          {showAllLocations ? 'Show Less' : 'Show More'}
+        </button>
+      )}
+
+      {/* Display the selected locations */}
+      <div>
+        {/* <h6 className="mt-2">Selected Locations:</h6> */}
+        {/* <ul>
+          {selectedLocations.map((selected, index) => (
+            <li key={index}>{selected}</li>
+          ))}
+        </ul> */}
+      </div>
+    </div>
                           </Row>
                         </div>
                       </div>
@@ -842,7 +751,7 @@ const TrainingEvents = (props) => {
                                       }}
                                       placeholder="Sort by"
                                     >
-                                      Download Excel
+                                      <i className="ri-download-2-line "></i>{" "}Download Excel
                                     </button>
                                   </div>
                                   <div style={{ marginTop: "0.3rem" }}>
@@ -856,7 +765,7 @@ const TrainingEvents = (props) => {
                                       }}
                                       placeholder="Sort by"
                                     >
-                                      Download PDF
+                                       <i className="ri-download-2-line "></i>{" "}Download Excel
                                     </button>
                                   </div>
                                 </div>

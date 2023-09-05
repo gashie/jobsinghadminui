@@ -5,12 +5,13 @@ const EditProfile = () => {
   return (
     <>
       <h4
-        style={{ textAlign: "center", fontWeight: "bolder", color: "#244a59" }}
+        style={{ textAlign: "center", fontWeight: "bolder", color: "#244a59", marginTop: '3rem' }}
+      
       >
         Profile Information
       </h4>
 
-      <div className="text-center">
+      <div className="text-center mt-4">
         <div className="profile-user position-relative d-inline-block mx-auto  mb-4">
           <img
             src={avatar1}
@@ -21,7 +22,7 @@ const EditProfile = () => {
             <Input
               id="profile-img-file-input"
               type="file"
-              className="profile-img-file-input"
+              className="profile-img-file-input p-3"
             />
             <Label
               htmlFor="profile-img-file-input"
@@ -36,28 +37,28 @@ const EditProfile = () => {
        
       </div>
 
-      <Row>
-        <Col md={6}>
+      <Row style={{marginTop: "2rem"}}>
+        <Col md={6} className="mt-4">
           <div className="mb-3">
             <Label for="firstNameinput" className="form-label">
               First Name
             </Label>
             <Input
               type="text"
-              className="form-control"
+              className="form-control p-3"
               placeholder="Enter your firstname"
               id="firstNameinput"
             />
           </div>
         </Col>
         <Col md={6}>
-          <div className="mb-3">
+          <div className="mb-3 mt-4">
             <Label for="lastNameinput" className="form-label">
               Last Name
             </Label>
             <Input
               type="text"
-              className="form-control"
+              className="form-control p-3"
               placeholder="Enter your lastname"
               id="lastNameinput"
             />
@@ -73,7 +74,7 @@ const EditProfile = () => {
             </Label>
             <Input
               type="date"
-              className="form-control"
+              className="form-control p-3"
               placeholder="Enter company name"
               id="compnayNameinput"
             />
@@ -85,7 +86,7 @@ const EditProfile = () => {
               Gender
             </Label>
             <select
-              className="form-select mb-3"
+              className="form-select mb-3 p-3"
               aria-label="Default select example"
             >
               <option>Male</option>
@@ -102,7 +103,7 @@ const EditProfile = () => {
           </Label>
           <Input
             type="email"
-            className="form-control"
+            className="form-control p-3"
             placeholder="Labone Silver Lane"
             id="emailidInput"
           />
@@ -117,7 +118,7 @@ const EditProfile = () => {
             </Label>
             <Input
               type="text"
-              className="form-control"
+              className="form-control p-3"
               placeholder="Address 1"
               id="address1ControlTextarea"
             />
@@ -130,8 +131,8 @@ const EditProfile = () => {
             </Label>
             <Input
               type="email"
-              className="form-control"
-              placeholder="Enter your city"
+              className="form-control p-3"
+              placeholder="+233559690060"
               id="citynameInput"
             />
           </div>
@@ -139,7 +140,7 @@ const EditProfile = () => {
       </Row>
 
       <Col md={12}>
-        <div className="text-start">
+        <div className="text-start mt-3">
           <button type="submit" className="btn btn-dark" style={{backgroundColor: '#244a59'}}>
             Save
           </button>

@@ -280,6 +280,8 @@ import EmployerSignUp from "../pages/Pages/Auth/EmployerSignUp";
 import TestRegister from "../pages/Pages/Auth/TestRegister";
 import TestLogin from "../pages/Pages/Auth/TestLogin";
 import TestHome from "../pages/Pages/Auth/TestHome";
+import EmployerOTP from "../pages/Pages/Auth/EmployerOTP";
+import EmployerOTPSucces from "../pages/Pages/Auth/EmployerOTPSuccess";
 
 
 
@@ -598,15 +600,21 @@ const publicRoutes = [
 
 
   //auth_routes
-  {path: '/job-seeker-login', component: <JobSeekerLogin />},
+  {path: '/login', component: <JobSeekerLogin />},
   {path: '/register', component: <Register />},
   {path: '/forgot-password', component: <ForgotPassword />},
   {path: '/employer-signup', component: <EmployerSignUp />},
+  {path: '/employer-otp', component: <EmployerOTP />},
+  {path: '/employer-otp-success', component: <EmployerOTPSucces />},
+
 
   //test
   {path: '/test-register', component: <TestRegister/>},
   {path: '/test-login', component: <TestLogin />},
-  {path: '/test-home', component: <TestHome />}
+  {path: '/test-home', component: <TestHome />},
+
+
+
 ];
 
 export { authProtectedRoutes, publicRoutes };

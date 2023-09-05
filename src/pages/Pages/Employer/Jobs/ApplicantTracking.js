@@ -143,7 +143,7 @@ const ApplicantTracking = () => {
                           </Card>
                         </td>
                       </tr>
-                      <tr>
+                      {/* <tr>
                         <td className="id">
                           <Link to="#" className="fw-medium link-primary">
                             1
@@ -292,7 +292,7 @@ const ApplicantTracking = () => {
                             </p>
                           </Card>
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </table>
                 </div>
