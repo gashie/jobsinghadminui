@@ -243,23 +243,23 @@ const [left , setLeft] = useState("")
               </p>
 
               <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeName"
-                    className="form-label"
+                    className="form-label "
                     style={{ fontSize: "0.8rem" }}
                   >
                     First Name:
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeName"
                     placeholder=""
                   />
                 </div>
 
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeUrl"
                     className="form-label"
@@ -269,30 +269,30 @@ const [left , setLeft] = useState("")
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeUrl"
                     placeholder=""
                   />
                 </div>
               </Row>
               <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeName"
-                    className="form-label"
+                    className="form-label "
                     style={{ fontSize: "0.8rem" }}
                   >
                     Company name:
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeName"
                     placeholder=""
                   />
                 </div>
 
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeUrl"
                     className="form-label"
@@ -302,14 +302,14 @@ const [left , setLeft] = useState("")
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeUrl"
                     placeholder=""
                   />
                 </div>
               </Row>
               <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeName"
                     className="form-label"
@@ -319,13 +319,13 @@ const [left , setLeft] = useState("")
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeName"
                     placeholder=""
                   />
                 </div>
 
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeUrl"
                     className="form-label"
@@ -335,9 +335,9 @@ const [left , setLeft] = useState("")
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeUrl"
-                    placeholder="Purpose of enquiry:"
+                    value="Recruitment / Headhunting"
                   />
                 </div>
               </Row>

@@ -21,51 +21,94 @@ import community from "./community.png";
 import paper from "./paper.png";
 import down from "./down.png";
 import buss from "./buss.png";
+import { useEffect, useState } from "react";
 
 const ClassroomCourseDetails = () => {
+
+const [top, setTop] = useState('')
+
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setTop("-9rem");
+    } else if (newWindowSize <= 1200) {
+      setTop("-9rem");
+    } else if (newWindowSize >= 1200) {
+      setTop("-34rem");
+    } else {
+      setTop("");
+    }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+
   return (
     <>
+    <div style={{backgroundColor: 'white', zIndex: '', position: "relative"}}>
       <div
         className=""
+     
         //   style={{ height: "60vh", position: 'absolute' }}
       >
-        <div
-          className="cover-train-container "
-          style={{ height: "60vh", position: "relative", zIndex: "-1" }}
-        >
-          <img src={cover} alt="cover" className="img-fluid banner-cover"></img>
+      
           <div
-            className=""
-            style={{
-              position: "absolute",
-              zIndex: "1",
-              top: "6rem",
-              padding: "2rem",
-            }}
+            className="cover-train-container "
+            style={{ height: "60vh", position: "relative", zIndex: "1" }}
           >
-            <h6 style={{ color: "white", fontWeight: "bolder" }}>
-              An Intensive Professional Development Course on{" "}
-            </h6>
-            <h2
+            <img
+              src={cover}
+              alt="cover"
+              className="img-fluid banner-cover"
+            ></img>
+              <Container style={{marginLeft: '8rem'}} >
+            <div
+              className=""
               style={{
-                color: "white",
-                marginTop: "2.5rem",
-                fontWeight: "bolder",
+                position: "absolute",
+                zIndex: "1",
+                top: "6rem",
+                padding: "2rem",
               }}
             >
-              Contract Management Principles & Practice
-            </h2>
-            <h5
-              style={{
-                color: "white",
-                marginTop: "1.5rem",
-                fontWeight: "bolder",
-              }}
-            >
-              Getting a grip on Service Providers, Vendors & Contractors
-            </h5>
+             
+              <h6 style={{ color: "white", fontWeight: "bolder" }}>
+                An Intensive Professional Development Course on{" "}
+              </h6>
+              <h2
+                style={{
+                  color: "white",
+                  marginTop: "2.5rem",
+                  fontWeight: "bolder",
+                }}
+              >
+                Contract Management Principles & Practice
+              </h2>
+              <h5
+                style={{
+                  color: "white",
+                  marginTop: "1.5rem",
+                  fontWeight: "bolder",
+                }}
+              >
+                Getting a grip on Service Providers, Vendors & Contractors
+              </h5>
+              
+            </div>
+            </Container>
           </div>
-        </div>
+       
         {/* <img src={cover} alt="cover" className="img-fluid banner-cover"></img> */}
 
         <Col
@@ -80,7 +123,7 @@ const ClassroomCourseDetails = () => {
         >
           {/* First Section Starts */}
           <Col md={5} xs={10} xl={3}>
-            <Card style={{ position: "relative", top: "-8rem" }}>
+            <Card style={{ position: "relative", top: top , zIndex: '999999'}}>
               <Col>
                 <div style={{ display: "grid" }}>
                   <CardHeader className="card-header-container">
@@ -274,8 +317,8 @@ const ClassroomCourseDetails = () => {
             </Card>
           </Col>
           {/* Second Section Start Here */}
-          <Col xs={9} className="mt-5" xl={4}>
-            <h4 style={{ color: "#244a59", fontWeight: "bolder" }}>
+          <Col xs={9} className="mt-5" xl={5} >
+            <h4 style={{ color: "black", fontWeight: "bolder" }}>
               Why Choose this Training Course?
             </h4>
 
@@ -315,8 +358,8 @@ const ClassroomCourseDetails = () => {
         </Col>
 
         {/* THird Section */}
-        <Col className="p-5" style={{ backgroundColor: "white" }}>
-          <Col xs={9} className="mt-5 p-2" xl={4}>
+        <Col className="" style={{ backgroundColor: "#f2f2f7", paddingLeft: '7rem' }}>
+          <Col xs={9} className="mt-5 p-5" xl={4}>
             <h4 style={{ color: "#244a59", fontWeight: "bolder" }}>
               What are the Goals?
             </h4>
@@ -376,15 +419,16 @@ const ClassroomCourseDetails = () => {
           <br />
         </Col>
 
-        <Col md={7} xl={5} xs={8}>
+        <Col md={7} xl={6} xs={8} style={{paddingLeft: "7rem"}}>
           <Card
             style={{
-              backgroundColor: "#f2f2f7",
+              backgroundColor: "white",
               position: "relative",
               top: "-4rem",
               left: "3rem",
+            
             }}
-            className="p-3"
+           className="p-5"
           >
             <CardBody>
               <h3
@@ -414,8 +458,8 @@ const ClassroomCourseDetails = () => {
         </Col>
 
         {/* Fourth Section */}
-        <Col className="p-5" style={{ backgroundColor: "white" }}>
-          <Col xs={9} className="mt-5 p-2" xl={4}>
+        <Col style={{ backgroundColor: "white", padding: '6rem' }}>
+          <Col xs={9} className="mt-5 p-5" xl={5}>
             <h4 style={{ color: "#244a59", fontWeight: "bolder" }}>
               The Course Content
             </h4>
@@ -712,16 +756,18 @@ const ClassroomCourseDetails = () => {
                         ACCRA - GH
                       </p>
                       <p style={{ textAlign: "center" }}>
-                        <i
-                          className="bx bxs-caret-right-circle"
-                          style={{
-                            fontSize: "2rem",
-                            padding: "0.5rem",
-                            position: "relative",
-                            top: "0.3rem",
-                            color: "#244a59",
-                          }}
-                        ></i>
+                      <Link to="/training-events">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
                       </p>
                     </CardBody>
                   </Card>
@@ -769,16 +815,18 @@ const ClassroomCourseDetails = () => {
                         ACCRA - GH
                       </p>
                       <p style={{ textAlign: "center" }}>
-                        <i
-                          className="bx bxs-caret-right-circle"
-                          style={{
-                            fontSize: "2rem",
-                            padding: "0.5rem",
-                            position: "relative",
-                            top: "0.3rem",
-                            color: "#244a59",
-                          }}
-                        ></i>
+                      <Link to="/training-events">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
                       </p>
                     </CardBody>
                   </Card>
@@ -826,16 +874,18 @@ const ClassroomCourseDetails = () => {
                         ACCRA - GH
                       </p>
                       <p style={{ textAlign: "center" }}>
-                        <i
-                          className="bx bxs-caret-right-circle"
-                          style={{
-                            fontSize: "2rem",
-                            padding: "0.5rem",
-                            position: "relative",
-                            top: "0.3rem",
-                            color: "#244a59",
-                          }}
-                        ></i>
+                      <Link to="/training-events">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
                       </p>
                     </CardBody>
                   </Card>
@@ -883,16 +933,18 @@ const ClassroomCourseDetails = () => {
                         ACCRA - GH
                       </p>
                       <p style={{ textAlign: "center" }}>
-                        <i
-                          className="bx bxs-caret-right-circle"
-                          style={{
-                            fontSize: "2rem",
-                            padding: "0.5rem",
-                            position: "relative",
-                            top: "0.3rem",
-                            color: "#244a59",
-                          }}
-                        ></i>
+                      <Link to="/training-events">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
                       </p>
                     </CardBody>
                   </Card>
@@ -904,7 +956,7 @@ const ClassroomCourseDetails = () => {
 
         {/* Course Finder */}
         <Col>
-          <Col className="mt-4 p-5" style={{ backgroundColor: "white" }}>
+          <Col className="mt-4 p-5" style={{ backgroundColor: "#f2f4f5", border: "1px solid #e0e0e0" }}>
             <h5
               className="mt-5"
               style={{
@@ -965,7 +1017,7 @@ const ClassroomCourseDetails = () => {
             </div>
             <div>
               <i
-                className="bx bxs-caret-right-circle"
+                className="bx bxs-chevron-right-circle"
                 style={{
                   fontSize: "2rem",
                   padding: "0.5rem",
@@ -978,6 +1030,7 @@ const ClassroomCourseDetails = () => {
             </div>
           </div>
         </Col>
+      </div>
       </div>
     </>
   );

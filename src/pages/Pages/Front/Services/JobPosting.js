@@ -257,7 +257,9 @@ const JobPosting = () => {
                     <input type="radio"></input> <strong>1</strong> Job posting
                   </div>
                   <div></div>
-                  <div>GHS 100</div>
+                  <div>
+                    <strong>GHS 100.00</strong>
+                  </div>
                 </div>
                 <hr />
                 <div
@@ -273,30 +275,10 @@ const JobPosting = () => {
                       className="bx bxs-badge-check"
                       style={{ color: "#00D084" }}
                     ></i>{" "}
-                    30% rebate
+                    3% Savings
                   </div>
                   <div>
-                    <strong>GHS</strong>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <div>
-                    <input type="radio"></input> <strong>5</strong> Job posting
-                  </div>
-                  <div>
-                    {" "}
-                    <i
-                      className="bx bxs-badge-check"
-                      style={{ color: "#00D084" }}
-                    ></i>{" "}
-                    40% rebate
-                  </div>
-                  <div>
-                    <strong>GHS</strong>
+                    <strong>GHS 194.00</strong>
                   </div>
                 </div>
                 <hr />
@@ -305,8 +287,7 @@ const JobPosting = () => {
                   style={{ justifyContent: "space-between" }}
                 >
                   <div>
-                    {" "}
-                    <input type="radio"></input> <strong>10</strong> Job posting
+                    <input type="radio"></input> <strong>3</strong> Job posting
                   </div>
                   <div>
                     {" "}
@@ -314,10 +295,52 @@ const JobPosting = () => {
                       className="bx bxs-badge-check"
                       style={{ color: "#00D084" }}
                     ></i>{" "}
-                    50% rebate
+                    5% Savings
                   </div>
                   <div>
-                    <strong>GHS</strong>
+                    <strong>GHS 285.00</strong>
+                  </div>
+                </div>
+                <hr />
+                <div
+                  className="d-flex p-3"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <div>
+                    {" "}
+                    <input type="radio"></input> <strong>4</strong> Job postings
+                  </div>
+                  <div>
+                    {" "}
+                    <i
+                      className="bx bxs-badge-check"
+                      style={{ color: "#00D084" }}
+                    ></i>{" "}
+                    7% Savings
+                  </div>
+                  <div>
+                    <strong>GHS372.00</strong>
+                  </div>
+                </div>
+                <hr />
+                <div
+                  className="d-flex p-3"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <div>
+                    {" "}
+                    <input type="radio"></input> <strong>5</strong> Job postings
+                  </div>
+                  <div>
+                    {" "}
+                    <i
+                      className="bx bxs-badge-check"
+                      style={{ color: "#00D084" }}
+                    ></i>{" "}
+                    10% Savings
+                  </div>
+                  <div>
+                    <strong>GHS450.00</strong>
                   </div>
                 </div>
               </CardBody>

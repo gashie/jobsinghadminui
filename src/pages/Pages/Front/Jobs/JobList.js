@@ -28,7 +28,8 @@ import seaTech from "./seaTech.png";
 // import online from "./online.png";
 
 import { toast, ToastContainer } from "react-toastify";
-
+import placesData from "../../../../common/data/cities.json";
+import catData from "../../../../common/data/categories.json";
 // RangeSlider
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
@@ -52,14 +53,6 @@ import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-const SingleOptions = [
-  { value: "Watches", label: "Watches" },
-  { value: "Headset", label: "Headset" },
-  { value: "Sweatshirt", label: "Sweatshirt" },
-  { value: "20% off", label: "20% off" },
-  { value: "4 star", label: "4 star" },
-];
-
 const JobList = (props) => {
   const dispatch = useDispatch();
 
@@ -75,6 +68,8 @@ const JobList = (props) => {
   function handleMulti(selectedMulti) {
     setselectedMulti(selectedMulti);
   }
+
+  // const [locations, setLocations] = useState()
 
   useEffect(() => {
     if (products && !products.length) {
@@ -102,6 +97,8 @@ const JobList = (props) => {
       setProductList(filteredProducts);
     }
   };
+
+  const [showAll, setShowAll] = useState(false);
 
   const [cate, setCate] = useState("all");
 
@@ -191,15 +188,7 @@ const JobList = (props) => {
     }
   };
 
-  const JobLocations = [
-    { name: "Work From Home" },
-    { name: "Accra" },
-    { name: "Adenta" },
-    { name: "Agbogba" },
-    { name: "Cape Coast" },
-    { name: "Dzowulu" },
-    { name: "Labadi" },
-  ];
+  const [places, setPlaces] = useState(placesData);
 
   const JobCategories = [
     { name: "Banking", count: "0" },
@@ -267,8 +256,10 @@ const JobList = (props) => {
 
   const [eventView, setEventView] = useState("list");
 
-  var [width, setWidth] = useState("")
-  
+  var [width, setWidth] = useState("");
+
+  const [showAllPlaces, setShowAllPlaces] = useState(false);
+
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
@@ -280,8 +271,6 @@ const JobList = (props) => {
     } else if (newWindowSize > 375) {
       setWidth("100%");
     }
-
-
   };
 
   useEffect(() => {
@@ -296,7 +285,6 @@ const JobList = (props) => {
       window.removeEventListener("resize", updateWindowSize);
     };
   }, []);
-
 
   return (
     <>
@@ -315,22 +303,24 @@ const JobList = (props) => {
           onCloseClick={() => setDeleteModalMulti(false)}
         />
 
-
-        <Container fluid style={{width:'85%'}}>
+        <Container fluid style={{ width: "85%" }}>
           <Row>
             <Col xl={3} lg={4} md={4}>
               <Card>
                 <CardHeader style={{ backgroundColor: "#244a59" }}>
                   <div className="d-flex mb-3">
                     <div className="flex-grow-1">
-                      <h5 className="fs-16" style={{ color: "white" }}>
-                        Filters
-                      </h5>
+                      <h1
+                        className="fs-16"
+                        style={{
+                          color: "white",
+                          position: "relative",
+                          top: "2rem",
+                        }}
+                      >
+                        REFINE YOUR SEARCH
+                      </h1>
                     </div>
-                  </div>
-
-                  <div className="filter-choices-input">
-                    <Input placeholder="Search courses by title" />
                   </div>
                 </CardHeader>
 
@@ -356,7 +346,7 @@ const JobList = (props) => {
                                 <div>
                                   <h4
                                     style={{
-                                      marginLeft: "0.5rem",
+                                      marginLeft: "-0.7rem",
                                       width: "max-content",
                                     }}
                                     className="fw-bolder"
@@ -368,7 +358,7 @@ const JobList = (props) => {
                                 <div
                                   style={{
                                     position: "relative",
-                                    left: "-1.5rem",
+                                    left: "7rem",
                                     top: "0.3rem",
                                   }}
                                 >
@@ -382,61 +372,93 @@ const JobList = (props) => {
                             </NavLink>
                             <Collapse isOpen={locations} className="ml-4">
                               <Nav vertical>
-                                {JobLocations.map((a, key) => {
-                                  return (
-                                    <div key={key} className=" d-flex gap-1">
-                                      <NavItem
-                                        style={{
-                                          padding: "0.7rem",
-                                          backgroundColor: "#ebeff0",
-                                          borderRadius: "0.5rem",
-                                          width: "85%",
-                                        }}
-                                        className="mt-1"
-                                      >
-                                        <div
-                                          className="d-flex"
-                                          style={{
-                                            justifyContent: "space-between",
-                                          }}
-                                        >
-                                          <NavLink
-                                            href="#"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "0.8rem",
-                                            }}
-                                          >
-                                            {a.name}
-                                          </NavLink>
-                                        </div>
-                                      </NavItem>
+                                {Object.keys(placesData).map((region) => (
+                                  <div key={region}>
+                                    <h6 className="mt-2">{region}</h6>
 
-                                      <div
-                                        style={{
-                                          padding: "0.7rem",
-                                          backgroundColor: "#ebeff0",
-                                          borderRadius: "0.5rem",
-                                          width: "15%",
-                                          cursor: "pointer",
-                                        }}
-                                        className="mt-1"
-                                      >
-                                        <p style={{ textAlign: "center" }}>
-                                          <i
-                                            className="bx bx-plus fs-16 fw-bolder"
+                                    {placesData[region]
+                                      .slice(
+                                        0,
+                                        showAllPlaces
+                                          ? placesData[region].length
+                                          : 5
+                                      )
+                                      .map((location, index) => (
+                                        <div
+                                          key={index}
+                                          className="d-flex gap-1"
+                                        >
+                                          <NavItem
                                             style={{
-                                              color: "244a59",
-                                              textAlign: "center",
-                                              position: "relative",
-                                              top: "0.7rem",
+                                              padding: "0.7rem",
+                                              backgroundColor: "#ebeff0",
+                                              borderRadius: "0.5rem",
+                                              width: "85%",
                                             }}
-                                          ></i>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  );
-                                })}
+                                            className="mt-1"
+                                          >
+                                            <div
+                                              className="d-flex"
+                                              style={{
+                                                justifyContent: "space-between",
+                                              }}
+                                            >
+                                              <NavLink
+                                                href="#"
+                                                style={{
+                                                  color: "gray",
+                                                  fontSize: "0.8rem",
+                                                }}
+                                              >
+                                                {location}
+                                              </NavLink>
+                                            </div>
+                                          </NavItem>
+
+                                          <div
+                                            style={{
+                                              padding: "0.7rem",
+                                              backgroundColor: "#ebeff0",
+                                              borderRadius: "0.5rem",
+                                              width: "15%",
+                                              cursor: "pointer",
+                                            }}
+                                            className="mt-1"
+                                          >
+                                            <p style={{ textAlign: "center" }}>
+                                              <i
+                                                className="bx bx-plus fs-16 fw-bolder"
+                                                style={{
+                                                  color: "244a59",
+                                                  textAlign: "center",
+                                                  position: "relative",
+                                                  top: "0.7rem",
+                                                }}
+                                              ></i>
+                                            </p>
+                                          </div>
+                                        </div>
+                                      ))}
+
+                                    {placesData[region].length > 2 && (
+                                      <button
+                                        onClick={() =>
+                                          setShowAllPlaces(!showAllPlaces)
+                                        }
+                                        style={{
+                                          marginTop: "10px",
+                                          color: "black",
+                                        }}
+                                        className="btn btn-light"
+                                      >
+                                        {showAllPlaces
+                                          ? "Show Less"
+                                          : "Show More"}
+                                          <i className="bx bx-chevron-down"></i>
+                                      </button>
+                                    )}
+                                  </div>
+                                ))}
                               </Nav>
                             </Collapse>
                           </NavItem>
@@ -459,7 +481,7 @@ const JobList = (props) => {
                                 <div>
                                   <h4
                                     style={{
-                                      marginLeft: "0.5rem",
+                                      marginLeft: "-0.7rem",
                                       width: "max-content",
                                     }}
                                     className="fw-bolder"
@@ -471,7 +493,7 @@ const JobList = (props) => {
                                 <div
                                   style={{
                                     position: "relative",
-                                    left: "-1.5rem",
+                                    left: "7.3rem",
                                     top: "0.3rem",
                                   }}
                                 >
@@ -485,9 +507,13 @@ const JobList = (props) => {
                             </NavLink>
                             <Collapse isOpen={category} className="ml-4">
                               <Nav vertical>
-                                {JobCategories.map((a, key) => {
-                                  return (
-                                    <div key={key} className=" d-flex gap-1">
+                                {catData.categories
+                                  .slice(
+                                    0,
+                                    showAll ? catData.categories.length : 5
+                                  )
+                                  .map((category, index) => (
+                                    <div key={index} className="d-flex gap-1">
                                       <NavItem
                                         style={{
                                           padding: "0.7rem",
@@ -510,7 +536,7 @@ const JobList = (props) => {
                                               fontSize: "0.8rem",
                                             }}
                                           >
-                                            {a.name} ({a.count})
+                                            {category}
                                           </NavLink>
                                         </div>
                                       </NavItem>
@@ -538,8 +564,16 @@ const JobList = (props) => {
                                         </p>
                                       </div>
                                     </div>
-                                  );
-                                })}
+                                  ))}
+
+                                {catData.categories.length > 5 && (
+                                  <button onClick={() => setShowAll(!showAll)}
+                                  className="btn btn-light mt-2 w-50"
+                                  >
+                                    {showAll ? "Show Less" : "Show More"}
+                                    <i className="bx bx-chevron-down"></i>
+                                  </button>
+                                )}
                               </Nav>
                             </Collapse>
                           </NavItem>
@@ -564,7 +598,7 @@ const JobList = (props) => {
                                 <div>
                                   <h4
                                     style={{
-                                      marginLeft: "0.5rem",
+                                      marginLeft: "-0.7rem",
                                       width: "max-content",
                                     }}
                                     className="fw-bolder"
@@ -576,7 +610,7 @@ const JobList = (props) => {
                                 <div
                                   style={{
                                     position: "relative",
-                                    left: "-1.5rem",
+                                    left: "7.5rem",
                                     top: "0.3rem",
                                   }}
                                 >
@@ -672,7 +706,7 @@ const JobList = (props) => {
                                 <div>
                                   <h4
                                     style={{
-                                      marginLeft: "0.5rem",
+                                      marginLeft: "-0.7rem",
                                       width: "max-content",
                                     }}
                                     className="fw-bolder"
@@ -684,7 +718,7 @@ const JobList = (props) => {
                                 <div
                                   style={{
                                     position: "relative",
-                                    left: "-1.5rem",
+                                    left: "7.3rem",
                                     top: "0.3rem",
                                   }}
                                 >
@@ -698,7 +732,7 @@ const JobList = (props) => {
                             </NavLink>
                             <Collapse isOpen={level} className="ml-4">
                               <Nav vertical>
-                                {JobType.map((a, key) => {
+                                {JobLevel.map((a, key) => {
                                   return (
                                     <div key={key} className=" d-flex gap-1">
                                       <NavItem
@@ -778,7 +812,7 @@ const JobList = (props) => {
                                 <div>
                                   <h4
                                     style={{
-                                      marginLeft: "0.5rem",
+                                      marginLeft: "-0.7rem",
                                       width: "max-content",
                                     }}
                                     className="fw-bolder"
@@ -790,7 +824,7 @@ const JobList = (props) => {
                                 <div
                                   style={{
                                     position: "relative",
-                                    left: "-3rem",
+                                    left: "4rem",
                                     top: "0.3rem",
                                   }}
                                 >
@@ -955,10 +989,16 @@ const JobList = (props) => {
                                   </h4>
                                   <p>Tema</p>
                                   <div className="d-flex">
-                                    <i className="bx bx-calendar"></i> Expired
-                                    Jul 25, 2023
+                                    <i
+                                      className="bx bx-calendar p-1"
+                                      style={{ marginTop: "0rem" }}
+                                    >
+                                      {" "}
+                                    </i>{" "}
+                                    Expired
+                                    <p>Jul 25, 2023</p>
                                   </div>
-                                  <p className="mt-3">
+                                  <p className="mt-3 " style={{ width: "80%" }}>
                                     Lorem ipsum dolor sit amet consectetur.
                                     Turpis gravida quis quis nibh platea. Rutrum
                                     imperdiet faucibus faucibus pharetra nisl
@@ -979,13 +1019,21 @@ const JobList = (props) => {
                                   <div>
                                     <img
                                       src={seaTech}
+                                      alt="logo"
                                       className="img-fluid avatar-xxl"
                                     ></img>
                                   </div>
                                   <div>
-                                
-                                      <i className="mdi mdi-cards-heart " style={{ cursor: 'pointer', color: 'red', fontSize: '2rem'}}></i>
-                                   
+                                    <i
+                                      className="mdi mdi-cards-heart "
+                                      style={{
+                                        cursor: "pointer",
+                                        color: "red",
+                                        fontSize: "2rem",
+                                        position: "relative",
+                                        top: "-1rem",
+                                      }}
+                                    ></i>
                                   </div>
                                 </div>
                               </div>

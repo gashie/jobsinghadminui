@@ -56,8 +56,8 @@ const NewsArchive = () => {
 
     return itemsToDisplay.map((item) => (
         <>
-        <div style={{display: 'flex', gap: '0.5rem'}}>
-          <Col xs={7} md={20} xl={20}  className="mt-3">
+        <div style={{display: 'flex', gap: '1rem', justifyContent: "center"}} className="w-10">
+          <Col xs={4} md={20} xl={20}  className="mt-3">
           <img src={item.img} alt="car" className="img-fluid"
           style={{maxWidth: '100%', height: 'auto', width: '60rem', borderRadius: '0.5rem'}}
           ></img>
@@ -65,7 +65,7 @@ const NewsArchive = () => {
       <h6 style={{ fontWeight: "bolder", color: "#244a59 ", textDecoration: 'none', marginTop: '1rem' }} key={item.id}>
         {" "}
         {item.name}{" "}
-        <p style={{fontWeight: 'lighter'}}>{item.des}</p>
+        <p style={{fontWeight: 'lighter',}} className="col-xl-5 ">{item.des}</p>
         <p style={{fontWeight: 'lighter'}}>Date | June 27, 2023</p>
       </h6>
      
@@ -92,10 +92,10 @@ const NewsArchive = () => {
 
   return (
    
-    <Container>
+    <Container fluid style={{width: '89%'}}>
       <Col xs={15} className="m-5" xl={20}>
         <h5 style={{ fontWeight: "bolder", color: "#244a59 " }}>
-        News Archive{" "}
+          News Archive{" "}
           {/* <i
             className="bx bx-chevron-right"
             style={{ fontSize: "1.5rem", position: "relative", top: "0.4rem" }}
@@ -114,7 +114,9 @@ const NewsArchive = () => {
               Previous
             </PaginationLink>
           </PaginationItem>
+        
           {renderPaginationItems()}
+      
           <PaginationItem>
             <PaginationLink next onClick={handleNextPage} style={{color: '#244a59', border: '1px solid #244a59'}}>
               Next

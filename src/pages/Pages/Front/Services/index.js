@@ -65,7 +65,7 @@ const Services = () => {
       setWidth("10rem");
       setLeft("11rem");
     } else if (newWindowSize >= 1200) {
-      setWidth("20rem");
+      setWidth("47rem");
 
       setLeft("");
     } else if (newWindowSize > 375) {
@@ -98,7 +98,7 @@ const Services = () => {
             xs={10}
             md={20}
             className="text-bg-size banner-container text-bg-size"
-            style={{height: '60vh'}}
+            style={{height: '45vh'}}
           >
             {/* <img
               src={bg}
@@ -148,6 +148,7 @@ const Services = () => {
                 <Row>
                   <Col
                     md={20}
+                   
                     style={{ display: "grid", gap: "2rem", zIndex: "1" }}
                   >
                     {" "}
@@ -232,9 +233,9 @@ const Services = () => {
           </Col>
         </Row>
 
-        <Row className="mt-5 p-5">
+        <Row className="mt-5">
           <Col>
-            <Container>
+         
               {window.location.pathname === "/services" ? (
                 <ServicesComp />
               ) : window.location.pathname === "/services-job-posting" ? (
@@ -247,7 +248,7 @@ const Services = () => {
               ) : (
                 <p>Page Does Not Exist</p>
               )}
-            </Container>
+          
           </Col>
         </Row>
       </div>

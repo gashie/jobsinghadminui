@@ -9,6 +9,7 @@ import health from "./CareerImages/heath.png";
 import jsearch from "./CareerImages/jsearch.png";
 import sal from "./CareerImages/salary.png";
 import workplace from "./CareerImages/workplace.png";
+import Scrollspy from "react-scrollspy";
 
 const CareerAdvice = () => {
   const [width, setWidth] = useState("");
@@ -89,7 +90,20 @@ const CareerAdvice = () => {
             <Col
               md={20}
               xl={15}
-              style={{
+              // style={{
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   gap: "1rem",
+              //   border: "0px solid black",
+              //   padding: "1rem",
+              //   backgroundColor: "#355765B5",
+              //   borderRadius: "0.2rem",
+              //   width: "max-content",
+              // }}
+            >
+
+
+              <Scrollspy items={['section1', 'section2', 'section3', 'section 4', 'section5', 'section6']} currentClassName="active" style={{
                 display: "flex",
                 justifyContent: "center",
                 gap: "1rem",
@@ -98,10 +112,10 @@ const CareerAdvice = () => {
                 backgroundColor: "#355765B5",
                 borderRadius: "0.2rem",
                 width: "max-content",
-              }}
-            >
+              }}>
               <Row>
                 <Col md={20} style={{ display: "grid", gap: "2rem" }}>
+                <a href="#section1">
                   <Button
                     style={{
                       color: "white",
@@ -114,8 +128,10 @@ const CareerAdvice = () => {
                     }}
                     className="btn"
                   >
-                    Career Development
+                   Career Development
                   </Button>
+                  </a>
+                  <a href="#section2">
                   <Button
                     style={{
                       color: "white",
@@ -126,10 +142,12 @@ const CareerAdvice = () => {
                       position: "relative",
                       left: left,
                     }}
-                    className="btn"
+                    className="btn w-100"
                   >
                     Salary/Benefits
                   </Button>
+                  </a>
+                  <a href="#section3">
                   <Button
                     style={{
                       color: "white",
@@ -140,14 +158,16 @@ const CareerAdvice = () => {
                       position: "relative",
                       left: left,
                     }}
-                    className="btn"
+                    className="btn w-100"
                   >
                     Job Search
                   </Button>
+                  </a>
                 </Col>
               </Row>
               <Row>
                 <Col md={20} style={{ display: "grid", gap: "2rem" }}>
+                <a href="#section4">
                   <Button
                     style={{
                       color: "white",
@@ -158,10 +178,12 @@ const CareerAdvice = () => {
                       position: "relative",
                       right: left,
                     }}
-                    className="btn"
+                    className="btn w-100"
                   >
                     Health & Safety
                   </Button>
+                  </a>
+                  <a href="#section5">
                   <Button
                     style={{
                       color: "white",
@@ -172,10 +194,12 @@ const CareerAdvice = () => {
                       position: "relative",
                       right: left,
                     }}
-                    className="btn"
+                    className="btn "
                   >
                     Entrepreneurship
                   </Button>
+                  </a>
+                  <a href="#section6">
                   <Button
                     style={{
                       color: "white",
@@ -186,18 +210,21 @@ const CareerAdvice = () => {
                       position: "relative",
                       right: left,
                     }}
-                    className="btn"
+                    className="btn w-100"
                   >
-                    Jobplace
+                    Workplace
                   </Button>
+                  </a>
                 </Col>
               </Row>
+              </Scrollspy>
             </Col>
+            
           </div>
         </Col>
       </Row>
 
-      <Container>
+      <Container fluid>
         <Col xl={20}>
           <div
             style={{
@@ -210,20 +237,21 @@ const CareerAdvice = () => {
             className="mt-5"
           >
             <Col sm={6} xl={5}>
-              <div>
+            <a href="/career-advice-details">
+              <div id="section1" style={{cursor: 'pointer'}}>
                 <img
                   className="card-img-top img-fluid"
                   src={car}
                   alt="Card cap"
                 />
-                <div className="p-3">
+                <div className="p-3" >
                   <h4
                     style={{ color: "#244a59", fontWeight: "bolder" }}
                     className="card-title mb-2"
                   >
                     Career Development
                   </h4>
-                  <p className="card-text">
+                  <p className="card-text text-dark">
                     Lorem ipsum dolor sit amet consectetur. Vitae dolor
                     imperdiet tristique quam. Vitae purus diam montes convallis
                     convallis. At feugiat nam id dictum semper. Tristique libero
@@ -233,9 +261,11 @@ const CareerAdvice = () => {
                   </p>
                 </div>
               </div>
+              </a>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <div>
+            <a href="/career-advice-details">
+              <div id="section5">
                 <img
                   className="card-img-top img-fluid"
                   src={ent}
@@ -249,7 +279,7 @@ const CareerAdvice = () => {
                     {" "}
                     Entrepreneurship
                   </h4>
-                  <p className="card-text">
+                  <p className="card-text text-dark">
                     Lorem ipsum dolor sit amet consectetur. Vitae dolor
                     imperdiet tristique quam. Vitae purus diam montes convallis
                     convallis. At feugiat nam id dictum semper. Tristique libero
@@ -259,9 +289,11 @@ const CareerAdvice = () => {
                   </p>
                 </div>
               </div>
+              </a>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <div>
+            <a href="/career-advice-details">
+              <div id="section4"  style={{cursor: 'pointer'}}>
                 <img
                   className="card-img-top img-fluid"
                   src={health}
@@ -275,7 +307,7 @@ const CareerAdvice = () => {
                     {" "}
                     Health & Safety
                   </h4>
-                  <p className="card-text">
+                  <p className="card-text text-dark">
                     Lorem ipsum dolor sit amet consectetur. Vitae dolor
                     imperdiet tristique quam. Vitae purus diam montes convallis
                     convallis. At feugiat nam id dictum semper. Tristique libero
@@ -285,9 +317,11 @@ const CareerAdvice = () => {
                   </p>
                 </div>
               </div>
+              </a>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <div>
+              <a href="/career-advice-details">
+              <div id="section3"  style={{cursor: 'pointer'}}>
                 <img
                   className="card-img-top img-fluid"
                   src={jsearch}
@@ -300,7 +334,7 @@ const CareerAdvice = () => {
                   >
                     Job Search
                   </h4>
-                  <p className="card-text">
+                  <p className="card-text text-dark">
                     Lorem ipsum dolor sit amet consectetur. Vitae dolor
                     imperdiet tristique quam. Vitae purus diam montes convallis
                     convallis. At feugiat nam id dictum semper. Tristique libero
@@ -310,9 +344,11 @@ const CareerAdvice = () => {
                   </p>
                 </div>
               </div>
+              </a>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <div>
+              <a href='/career-advice-details'>
+              <div id="section2"  style={{cursor: 'pointer'}}>
                 <img
                   className="card-img-top img-fluid"
                   src={sal}
@@ -326,7 +362,7 @@ const CareerAdvice = () => {
                     {" "}
                     Salary / Benefits
                   </h4>
-                  <p className="card-text">
+                  <p className="card-text text-dark">
                     Lorem ipsum dolor sit amet consectetur. Vitae dolor
                     imperdiet tristique quam. Vitae purus diam montes convallis
                     convallis. At feugiat nam id dictum semper. Tristique libero
@@ -336,9 +372,11 @@ const CareerAdvice = () => {
                   </p>
                 </div>
               </div>
+              </a>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <div>
+              <a href="/career-advice-details">
+              <div id="section6"  style={{cursor: 'pointer'}}>
                 <img
                   className="card-img-top img-fluid"
                   src={workplace}
@@ -352,7 +390,7 @@ const CareerAdvice = () => {
                     {" "}
                     Workplace
                   </h4>
-                  <p className="card-text">
+                  <p className="card-text text-dark">
                     Lorem ipsum dolor sit amet consectetur. Vitae dolor
                     imperdiet tristique quam. Vitae purus diam montes convallis
                     convallis. At feugiat nam id dictum semper. Tristique libero
@@ -361,7 +399,9 @@ const CareerAdvice = () => {
                     aliquet donec enim rutr.
                   </p>
                 </div>
+
               </div>
+              </a>
             </Col>
           </div>
         </Col>

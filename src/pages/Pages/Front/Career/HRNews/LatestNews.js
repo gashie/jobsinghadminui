@@ -92,7 +92,7 @@ const LatestNews = () => {
 
   return (
    
-    <Container >
+    <Container fluid style={{width: '89%'}}>
       <Col xs={15} className="m-5" xl={20}>
         <h5 style={{ fontWeight: "bolder", color: "#244a59 " }}>
           Latest News{" "}

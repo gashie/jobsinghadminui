@@ -8,9 +8,10 @@ import logolight from "../../../assets/images/logo-light.png";
 const Footer = () => {
   return (
     <React.Fragment>
-      <footer className="custom-footer bg-light py-5 position-relative">
-        <Container>
-          <Row>
+
+      <footer className="custom-footer bg-light py-5  position-relative">
+        <Container fluid style={{padding: "4rem", paddingLeft: "10rem" }}>
+          <Row >
             {/* <Col lg={4} className="mt-4">
               <div>
                 <div>
@@ -34,7 +35,7 @@ const Footer = () => {
               </div>
             </Col> */}
 
-            <Col lg={12} className="ms-lg-auto">
+            <Col lg={12} className="ms-lg-auto" >
                 <hr />
               <Row xl={20}>
                 <Col sm={4} className="mt-4">

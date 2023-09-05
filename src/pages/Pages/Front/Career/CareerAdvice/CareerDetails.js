@@ -33,40 +33,40 @@ const data = [
   { id: 18, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
   { id: 19, name: "7 Success Strategies for Distance Learners" },
   { id: 20, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
-  { id: 7, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
-  { id: 7, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
-  { id: 7, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
-  { id: 7, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
-  { id: 7, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
-  { id: 7, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
-  { id: 7, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
-  { id: 7, name: "6 Reasons to Change Careers" },
-  { id: 7, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
-  { id: 7, name: "7 Success Strategies for Distance Learners" },
+  { id: 21, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 22, name: "6 Reasons to Change Careers" },
+  { id: 23, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 24, name: "7 Success Strategies for Distance Learners" },
+  { id: 25, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
+  { id: 26, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 27, name: "6 Reasons to Change Careers" },
+  { id: 28, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 29, name: "7 Success Strategies for Distance Learners" },
+  { id: 30, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
+  { id: 31, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 32, name: "6 Reasons to Change Careers" },
+  { id: 33, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 34, name: "7 Success Strategies for Distance Learners" },
+  { id: 35, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
+  { id: 36, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 37, name: "6 Reasons to Change Careers" },
+  { id: 38, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 39, name: "7 Success Strategies for Distance Learners" },
+  { id: 40, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
+  { id: 41, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 42, name: "6 Reasons to Change Careers" },
+  { id: 43, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 44, name: "7 Success Strategies for Distance Learners" },
+  { id: 45, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
+  { id: 46, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 47, name: "6 Reasons to Change Careers" },
+  { id: 48, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 49, name: "7 Success Strategies for Distance Learners" },
+  { id: 50, name: "20 Critical Dos and Don'ts of LinkedIn Networking" },
+  { id: 51, name: "3 Ways to Ask For Job Hunting Help--And Get It" },
+  { id: 52, name: "6 Reasons to Change Careers" },
+  { id: 53, name: "6 Ways to Attract Recruiters to Your LinkedIn Profile" },
+  { id: 54, name: "7 Success Strategies for Distance Learners" },
   // ... add more items
 ];
 
@@ -122,9 +122,9 @@ const CareerDetails = () => {
   };
 
   return (
-   
-    <Container>
-      <Col xs={15} className="m-5" xl={20}>
+   <div style={{display: 'grid', justifyContent: 'center', width: '100%'}} className="w-100">
+    
+      <Col xs={15} className="m-5" xl={20} style={{width: '100%'}}>
         <h5 style={{ fontWeight: "bolder", color: "#244a59 " }}>
           Career Advice{" "}
           <i
@@ -165,8 +165,8 @@ const CareerDetails = () => {
         </Pagination>
         </div>
       </Col>
-      </Container>
-  
+     
+      </div>
   );
 };
 

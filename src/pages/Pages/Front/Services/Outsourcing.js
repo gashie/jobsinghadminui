@@ -184,8 +184,8 @@ const Outsourcing = () => {
           </Col>
         </Row> */}
 
-        <Row className="mt-5 p-5">
-          <Col>
+        <Row className="mt-5 mb-4">
+          <Col xl={9}>
             <Container>
               <h4 style={{ fontWeight: "bolder", color: "#244a59" }}>
                 Outsourcing
@@ -200,23 +200,23 @@ const Outsourcing = () => {
               </p>
 
               <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeName"
-                    className="form-label"
+                    className="form-label "
                     style={{ fontSize: "0.8rem" }}
                   >
                     First Name:
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeName"
                     placeholder=""
                   />
                 </div>
 
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeUrl"
                     className="form-label"
@@ -226,30 +226,30 @@ const Outsourcing = () => {
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeUrl"
                     placeholder=""
                   />
                 </div>
               </Row>
               <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeName"
-                    className="form-label"
+                    className="form-label "
                     style={{ fontSize: "0.8rem" }}
                   >
                     Company name:
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeName"
                     placeholder=""
                   />
                 </div>
 
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeUrl"
                     className="form-label"
@@ -259,14 +259,14 @@ const Outsourcing = () => {
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeUrl"
                     placeholder=""
                   />
                 </div>
               </Row>
               <Row>
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeName"
                     className="form-label"
@@ -276,13 +276,13 @@ const Outsourcing = () => {
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeName"
                     placeholder=""
                   />
                 </div>
 
-                <div className="mb-3 col-xl-5 col-md-5 mt-5">
+                <div className="mb-3 col-xl-6 col-md-5 mt-5">
                   <Label
                     htmlFor="employeeUrl"
                     className="form-label"
@@ -292,9 +292,9 @@ const Outsourcing = () => {
                   </Label>
                   <Input
                     type="text"
-                    className="form-control"
+                    className="form-control p-3"
                     id="employeeUrl"
-                    placeholder="Outsourcing"
+                    value="Outsourcing"
                   />
                 </div>
               </Row>

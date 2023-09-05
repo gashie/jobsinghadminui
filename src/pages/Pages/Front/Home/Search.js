@@ -22,7 +22,7 @@ const Search = () => {
                   padding: "2rem",
                   borderRadius: "0.7rem",
                   display: "flex",
-                  justifyContent: "space-between",
+                  justifyContent: "space-around",
                   gap: "1rem",
                   width: "100rem",
                   alignContent: "center",
@@ -30,7 +30,7 @@ const Search = () => {
                   
                 }}
               >
-                <div className="col-md-10" style={{ width: "50%" }}>
+                <div className="col-md-10" style={{ width: "45%" }}>
                   <h6 style={{ fontWeight: "bolder"}}>
                     Search for your new job
                   </h6>
@@ -41,7 +41,7 @@ const Search = () => {
                   />
                 </div>
 
-                <div className="col-md-2 col-xs-20" style={{width: "50%"}}>
+                <div className="col-md-2 col-xs-20" style={{width: "45%"}}>
                   <button
                     type="submit"
                     className="btn btn-dark waves-effect waves-light p-4 fs-13"

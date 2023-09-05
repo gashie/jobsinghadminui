@@ -20,6 +20,7 @@ import {
   Button,
 } from "reactstrap";
 import classnames from "classnames";
+import jobCategoriesData from '../../../../../common/data/categories.json'
 
 import buss from "./buss.png";
 import online from "./online.png";
@@ -127,6 +128,8 @@ const TrainingEvents = (props) => {
     );
   };
   const [ratingvalues, setRatingvalues] = useState([]);
+
+  const [showAll, setShowAll] = useState(false);
   /*
   on change rating checkbox method
   */
@@ -194,7 +197,7 @@ const TrainingEvents = (props) => {
 
   return (
     <>
-      <div className="page-content" style={{backgroundColor: 'white'}}>
+      <div className="page-content" style={{ backgroundColor: "white" }}>
         <ToastContainer closeButton={false} limit={1} />
         <DeleteModal
           show={deleteModal}
@@ -208,1488 +211,1443 @@ const TrainingEvents = (props) => {
           }}
           onCloseClick={() => setDeleteModalMulti(false)}
         />
-        <Container fluid>
-          {/* <BreadCrumb title="Products" pageTitle="Ecommerce" /> */}
-          <Row>
-            <Col xl={2} lg={4}>
-              <Card style={{border: "1px solid #e0e0e0", borderRadius: '0.8rem'}}>
-                <CardHeader style={{ backgroundColor: "#244a59" }}>
-                  <div className="d-flex mb-3">
-                    <div className="flex-grow-1">
-                      <h5 className="fs-16" style={{ color: "white" }}>
-                        Filters
-                      </h5>
-                    </div>
-                    <div className="flex-shrink-0">
-                      {/* <Link to="#" className="text-decoration-underline">
-                      Clear All
-                    </Link> */}
-                    </div>
-                  </div>
-
-                  <div className="filter-choices-input">
-                    <Input placeholder="Search courses by title" />
-                  </div>
-                </CardHeader>
-
-                <div className="accordion accordion-flush">
-                  <div className="card-body border-bottom">
-                    <div>
-                      <h4
-                        className="text-uppercase fs-12 fw-medium mb-2 mt-4"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        FILTER COURSES
-                      </h4>
-                      <h4
-                        className="text-uppercase fs-16 fw-medium mb-2"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        By Categories
-                      </h4>
-
-                      <div className="d-flex flex-column gap-2 mt-3">
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio5"
-                            defaultChecked
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio5"
-                          >
-                            Tristique libero risus amet
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio4"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio4"
-                          >
-                            Viverra aliquet donec enim rutr
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Tristique libero risus amet due lokmn
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Tristique libero risus
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Tristique libero risus
-                          </label>
-                        </div>
-
-                        <div>
-                          <p className="text-decoration-none fw-medium p-0">
-                            Show More
-                          </p>
-                        </div>
-                      </div>
-                      <h4
-                        className="text-uppercase fs-12 fw-medium mb-2 mt-4"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        FILTER COURSES
-                      </h4>
-                      <h4
-                        className="text-uppercase fs-16 fw-medium mb-2"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        By Months
-                      </h4>
-
-                      <div className="d-flex flex-column gap-2 mt-3">
-                        <Row>
-                          <Col>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Januanry
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio4"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio4"
-                              >
-                                March
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                May
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                July
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                September
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                November
-                              </label>
-                            </div>
-                          </Col>
-                          <Col>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Feburary
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio4"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio4"
-                              >
-                                April
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                June
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                August
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                October
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                December
-                              </label>
-                            </div>
-                          </Col>
-                        </Row>
-
-                        <div>
-                          <p className="text-decoration-none fw-medium p-0">
-                            Show More
-                          </p>
-                        </div>
-                      </div>
-                      <h4
-                        className="text-uppercase fs-12 fw-medium mb-2"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        FILTER Year
-                      </h4>
-                      <h4
-                        className="text-uppercase fs-16 fw-medium mb-2"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        By Categories
-                      </h4>
-
-                      <div className="d-flex flex-column gap-2 mt-3">
-                        <Row>
-                          <Col>
-                            {" "}
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                2023
-                              </label>
-                            </div>
-                          </Col>
-                          <Col>
-                            {" "}
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                2024
-                              </label>
-                            </div>
-                          </Col>
-                        </Row>
-                      </div>
-                      <h4
-                        className="text-uppercase fs-12 fw-medium mb-2 mt-5"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        Discover
-                      </h4>
-                      <h4
-                        className="text-uppercase fs-16 fw-medium mb-2"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        Other Venues
-                      </h4>
-
-                      <div className="d-flex flex-column gap-2 mt-3">
-                        <Row>
-                          <Col>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                          </Col>
-                          <Col>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                style={{ backgroundColor: "#244a59" }}
-                                className="form-check-input"
-                                type="checkbox"
-                                id="productBrandRadio5"
-                                defaultChecked
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Accra - Ghana
-                              </label>
-                            </div>
-                          </Col>
-                        </Row>
-                      </div>
-                      <h4
-                        className="text-uppercase fs-12 fw-medium mb-2 "
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        FILTER COURSES
-                      </h4>
-                      <h4
-                        className="text-uppercase fs-16 fw-medium mb-2"
-                        style={{ color: "#244a59", fontWeight: "bolder" }}
-                      >
-                        By Categories
-                      </h4>
-
-                      <div className="d-flex flex-column gap-2 mt-3">
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio5"
-                            defaultChecked
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio5"
-                          >
-                            Boat
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio4"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio4"
-                          >
-                            OnePlus
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            style={{ backgroundColor: "#244a59" }}
-                            className="form-check-input"
-                            type="checkbox"
-                            id="productBrandRadio3"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="productBrandRadio3"
-                          >
-                            Realme
-                          </label>
-                        </div>
-
-                        <div>
-                          <p className="text-decoration-none fw-medium p-0">
-                            Show More
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    className="card-body border-bottom"
-                    style={{ display: "none" }}
-                  >
-                    <p className="text-muted text-uppercase fs-12 fw-medium mb-4">
-                      Price
-                    </p>
-
-                    <Nouislider
-                      range={{ min: 0, max: 2000 }}
-                      start={[0, 2000]}
-                      connect
-                      onSlide={onUpdate}
-                      data-slider-color="primary"
-                      id="product-price-range"
-                    />
-                    <div className="formCost d-flex gap-2 align-items-center mt-3">
-                      <input
-                        className="form-control form-control-sm"
-                        type="text"
-                        id="minCost"
-                        readOnly
-                      />
-                      <span className="fw-semibold text-muted">to</span>
-                      <input
-                        className="form-control form-control-sm"
-                        type="text"
-                        id="maxCost"
-                        readOnly
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-4">
-                  <h4 style={{ color: "#00D084" }}>Clear Filter</h4>
-                </div>
-
-                <CardFooter
+        <div className="col-xl-20" style={{ marginRight: "-2rem" }}>
+          <Container fluid style={{ width: "86%" }}>
+            {/* <BreadCrumb title="Products" pageTitle="Ecommerce" /> */}
+            <h5 className="fw-bolder" style={{ color: "#244a59" }}>
+              Training Events
+            </h5>
+            <hr />
+            <Row>
+              <Col xl={3} lg={4} className="mt-3">
+                <Card
                   style={{
-                    backgroundColor: "#244a59",
-                    display: "grid",
-                    justifyContent: "center",
+                    border: "1px solid #e0e0e0",
+                    borderRadius: "0.8rem",
                   }}
                 >
-                  <h5 style={{ textAlign: "center", color: "white" }}>
-                    Do you need more
-                  </h5>
-                  <h3 style={{ textAlign: "center", color: "white" }}>
-                    Filter Options?
-                  </h3>
-                  <Button
-                    style={{
-                      backgroundColor: "white",
-                      color: "#244a59",
-                      alignItems: "center",
-                    }}
-                    className="btn btn-light"
-                  >
-                    Course Finder
-                  </Button>
-                </CardFooter>
-              </Card>
-            </Col>
+                  <CardHeader style={{ backgroundColor: "#244a59" }}>
+                    <div className="d-flex mb-3">
+                      <div className="flex-grow-1">
+                        <h5 className="fs-16" style={{ color: "white" }}>
+                          Filters
+                        </h5>
+                      </div>
+                      <div className="flex-shrink-0">
+                        {/* <Link to="#" className="text-decoration-underline">
+                      Clear All
+                    </Link> */}
+                      </div>
+                    </div>
 
-            <div className="col-xl-10 col-lg-8">
-              <div>
-                <div className="card" style={{boxShadow: 'none'}}>
-                  <div className="card-header border-0">
-                    <div className="row align-items-center">
-                      <div className="col">
-                        <div
-                          className=""
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
+                    <div className="filter-choices-input">
+                      <Input placeholder="Search courses by title" />
+                    </div>
+                  </CardHeader>
+
+                  <div className="accordion accordion-flush">
+                    <div className="card-body border-bottom">
+                      <div>
+                        <h4
+                          className="text-uppercase fs-12 fw-medium mb-2 mt-4"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
                         >
+                          FILTER COURSES
+                        </h4>
+                        <h4
+                          className="text-uppercase fs-16 fw-medium mb-2"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          By Categories
+                        </h4>
+
+                        <div className="d-flex flex-column gap-2 mt-3">
+                         
+                        <div>
+      {jobCategoriesData.categories.slice(0, showAll ? jobCategoriesData.categories.length : 5).map((category, index) => (
+        <div key={index} className="form-check">
+          <input
+            style={{ backgroundColor: "#244a59" }}
+            className="form-check-input"
+            type="checkbox"
+            id={`categoryCheckbox${index}`}
+            defaultChecked
+          />
+          <label
+            className="form-check-label"
+            htmlFor={`categoryCheckbox${index}`}
+          >
+            {category}
+          </label>
+        </div>
+      ))}
+
+      {jobCategoriesData.categories.length > 5 && (
+        <button onClick={() => setShowAll(!showAll)} className="btn btn-light mt-2" style={{padding: '0.1rem'}}>
+          {showAll ? 'Show Less' : 'Show More'}
+          <i className="bx bx-chevron-down"></i>
+        </button>
+      )}
+    </div>          
+                         
+
+                       
+                        </div>
+                        <h4
+                          className="text-uppercase fs-12 fw-medium mb-2 mt-4"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          FILTER COURSES
+                        </h4>
+                        <h4
+                          className="text-uppercase fs-16 fw-medium mb-2"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          By Months
+                        </h4>
+
+                        <div className="d-flex flex-column gap-2 mt-3">
+                          <Row>
+                            <Col>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Januanry
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio4"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio4"
+                                >
+                                  March
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  May
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  July
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  September
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  November
+                                </label>
+                              </div>
+                            </Col>
+                            <Col>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Feburary
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio4"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio4"
+                                >
+                                  April
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  June
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  August
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  October
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio3"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio3"
+                                >
+                                  December
+                                </label>
+                              </div>
+                            </Col>
+                          </Row>
+
                           <div>
-                            <h5
-                              style={{
-                                fontWeight: "bolder",
-                                color: "#244a59",
-                                padding: "1rem",
-                              }}
-                            >
-                              400 Results Found
-                            </h5>
-                          </div>
-                          <div style={{ display: "flex", gap: "0.5rem" }}>
-                            <div style={{ marginTop: "0.3rem" }}>
-                              <input
-                                type="select"
-                                style={{ borderRadius: "0.5rem" }}
-                                placeholder="Sort by"
-                              ></input>
-                            </div>
-
-                            <p
-                              onClick={() => {
-                                setEventView("grid");
-                              }}
-                              style={{ cursor: "pointer" }}
-                            >
-                              <i
-                                className="bx bxs-grid-alt"
-                                style={{
-                                  fontSize: "1.5rem",
-                                  marginTop: "0.4rem",
-                                  color: "#244a59",
-                                }}
-                              ></i>
-                            </p>
-
-                            <p
-                              onClick={() => {
-                                setEventView("list");
-                              }}
-                              style={{ cursor: "pointer" }}
-                            >
-                              <i
-                                className="mdi mdi-view-sequential"
-                                style={{ fontSize: "1.5rem", color: "#244a59" }}
-                              ></i>
+                            <p className="text-decoration-none fw-medium p-0">
+                              Show More
                             </p>
                           </div>
                         </div>
+                        <h4
+                          className="text-uppercase fs-12 fw-medium mb-2 mt-4"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          FILTER Year
+                        </h4>
+                        <h4
+                          className="text-uppercase fs-16 fw-medium mb-2"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          By Categories
+                        </h4>
+
+                        <div className="d-flex flex-column gap-2 mt-3">
+                          <Row>
+                            <Col>
+                              {" "}
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  2023
+                                </label>
+                              </div>
+                            </Col>
+                            <Col>
+                              {" "}
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  2024
+                                </label>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
+                        <h4
+                          className="text-uppercase fs-12 fw-medium mb-2 mt-5"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          Discover
+                        </h4>
+                        <h4
+                          className="text-uppercase fs-16 fw-medium mb-2"
+                          style={{ color: "#244a59", fontWeight: "bolder" }}
+                        >
+                          Other Venues
+                        </h4>
+
+                        <div className="d-flex flex-column gap-2 mt-3">
+                          <Row>
+                            <Col>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                            </Col>
+                            <Col>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input
+                                  style={{ backgroundColor: "#244a59" }}
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id="productBrandRadio5"
+                                  defaultChecked
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="productBrandRadio5"
+                                >
+                                  Accra - Ghana
+                                </label>
+                              </div>
+                            </Col>
+                          </Row>
+                        </div>
                       </div>
-                      <div className="col-auto">
-                        <div id="selection-element">
-                          <div className="my-n1 d-flex align-items-center text-muted">
-                            Select{" "}
-                            <div
-                              id="select-content"
-                              className="text-body fw-semibold px-1"
-                            >
-                              {dele}
-                            </div>{" "}
-                            Result{" "}
-                            <button
-                              type="button"
-                              className="btn btn-link link-danger p-0 ms-3"
-                              onClick={() => setDeleteModalMulti(true)}
-                            >
-                              Remove
-                            </button>
+                    </div>
+
+                    <div
+                      className="card-body border-bottom"
+                      style={{ display: "none" }}
+                    >
+                      <p className="text-muted text-uppercase fs-12 fw-medium mb-4">
+                        Price
+                      </p>
+
+                      <Nouislider
+                        range={{ min: 0, max: 2000 }}
+                        start={[0, 2000]}
+                        connect
+                        onSlide={onUpdate}
+                        data-slider-color="primary"
+                        id="product-price-range"
+                      />
+                      <div className="formCost d-flex gap-2 align-items-center mt-3">
+                        <input
+                          className="form-control form-control-sm"
+                          type="text"
+                          id="minCost"
+                          readOnly
+                        />
+                        <span className="fw-semibold text-muted">to</span>
+                        <input
+                          className="form-control form-control-sm"
+                          type="text"
+                          id="maxCost"
+                          readOnly
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4">
+                    <h4 style={{ color: "#00D084" }}>
+                      Clear Filter <i className="bx bx-refresh "></i>
+                    </h4>
+                  </div>
+
+                  <CardFooter
+                    style={{
+                      backgroundColor: "#244a59",
+                      display: "grid",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <h5 style={{ textAlign: "center", color: "white" }}>
+                      Do you need more
+                    </h5>
+                    <h3 style={{ textAlign: "center", color: "white" }}>
+                      Filter Options?
+                    </h3>
+                    <Button
+                      style={{
+                        backgroundColor: "white",
+                        color: "#244a59",
+                        alignItems: "center",
+                      }}
+                      className="btn btn-light"
+                    >
+                      Course Finder
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Col>
+
+              <div className="col-xl-9 col-lg-8">
+                <div>
+                  <div className="card" style={{ boxShadow: "none" }}>
+                    <div className="card-header border-0">
+                      <div className="row align-items-center">
+                        <div className="col">
+                          <div
+                            className=""
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div>
+                              <h5
+                                style={{
+                                  fontWeight: "bolder",
+                                  color: "#244a59",
+                                  padding: "1rem",
+                                }}
+                              >
+                                400 Results Found
+                              </h5>
+                            </div>
+
+                            <div className="d-grid gap-2">
+                              <div
+                                style={{ marginTop: "0.3rem" }}
+                                className="text-end"
+                              >
+                                <select
+                                  type="select"
+                                  style={{
+                                    borderRadius: "0.5rem",
+                                    border: "1px solid #e0e0e0",
+                                  }}
+                                  className="btn"
+                                  placeholder="Sort by"
+                                >
+                                  <option>Sorted by:</option>
+                                  <option>Date</option>
+                                  <option>Title</option>
+                                </select>
+                              </div>
+
+                              <div>
+                                <div style={{ display: "flex", gap: "0.5rem" }}>
+                                  <div style={{ marginTop: "0.3rem" }}>
+                                    <button
+                                      className="btn btn-light"
+                                      type="button"
+                                      style={{
+                                        borderRadius: "0.5rem",
+                                        padding: "0.5rem",
+                                        border: "1px solid #e0e0e0",
+                                      }}
+                                      placeholder="Sort by"
+                                    >
+                                      Download Excel
+                                    </button>
+                                  </div>
+                                  <div style={{ marginTop: "0.3rem" }}>
+                                    <button
+                                      type="button"
+                                      className="btn btn-light"
+                                      style={{
+                                        borderRadius: "0.5rem",
+                                        padding: "0.5rem",
+                                        border: "1px solid #e0e0e0",
+                                      }}
+                                      placeholder="Sort by"
+                                    >
+                                      Download PDF
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-auto">
+                          <div id="selection-element">
+                            <div className="my-n1 d-flex align-items-center text-muted">
+                              Select{" "}
+                              <div
+                                id="select-content"
+                                className="text-body fw-semibold px-1"
+                              >
+                                {dele}
+                              </div>{" "}
+                              Result{" "}
+                              <button
+                                type="button"
+                                className="btn btn-link link-danger p-0 ms-3"
+                                onClick={() => setDeleteModalMulti(true)}
+                              >
+                                Remove
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="card-body pt-0">
-                    {eventView === "list" ? (
-                      <>
-                        <Card>
-                          <CardBody>
-                            <Col>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "1rem",
-                                  }}
-                                >
-                                  Contract Management Principles & practice
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "1.5rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "01rem",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  03 - 07 Jul 2023
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "2rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "0.4rem",
-                                    width: "max-content",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  Accra - GH
-                                  <i
-                                    className="bx bxs-caret-right-circle"
-                                    style={{
-                                      fontSize: "1.5rem",
-                                      padding: "0.5rem",
-                                      position: "relative",
-                                      top: "0.3rem",
-                                      color: "#244a59",
-                                    }}
-                                  ></i>
-                                </h5>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
-                        <Card>
-                          <CardBody>
-                            <Col>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "1rem",
-                                  }}
-                                >
-                                  Contract Management Principles & practice
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "1.5rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "01rem",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  03 - 07 Jul 2023
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "2rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "0.4rem",
-                                    width: "max-content",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  Accra - GH
-                                  <i
-                                    className="bx bxs-caret-right-circle"
-                                    style={{
-                                      fontSize: "1.5rem",
-                                      padding: "0.5rem",
-                                      position: "relative",
-                                      top: "0.3rem",
-                                      color: "#244a59",
-                                    }}
-                                  ></i>
-                                </h5>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
-                        <Card>
-                          <CardBody>
-                            <Col>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "1rem",
-                                  }}
-                                >
-                                  Contract Management Principles & practice
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "1.5rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "01rem",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  03 - 07 Jul 2023
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "2rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "0.4rem",
-                                    width: "max-content",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  Accra - GH
-                                  <i
-                                    className="bx bxs-caret-right-circle"
-                                    style={{
-                                      fontSize: "1.5rem",
-                                      padding: "0.5rem",
-                                      position: "relative",
-                                      top: "0.3rem",
-                                      color: "#244a59",
-                                    }}
-                                  ></i>
-                                </h5>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
-                        <Card>
-                          <CardBody>
-                            <Col>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "1rem",
-                                  }}
-                                >
-                                  Contract Management Principles & practice
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "1.5rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "01rem",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  03 - 07 Jul 2023
-                                </h5>
-                                <div
-                                  style={{
-                                    height: "2rem",
-                                    backgroundColor: "black",
-                                    width: "1px",
-                                    marginTop: "1rem",
-                                    marginRight: "2rem",
-                                  }}
-                                ></div>
-                                <h5
-                                  className="fs-13"
-                                  style={{
-                                    fontWeight: "bolder",
-                                    marginTop: "0.4rem",
-                                    width: "max-content",
-                                    marginRight: "2rem",
-                                  }}
-                                >
-                                  Accra - GH
-                                  <i
-                                    className="bx bxs-caret-right-circle"
-                                    style={{
-                                      fontSize: "1.5rem",
-                                      padding: "0.5rem",
-                                      position: "relative",
-                                      top: "0.3rem",
-                                      color: "#244a59",
-                                    }}
-                                  ></i>
-                                </h5>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
-                      </>
-                    ) : (
-                      // Grid view
-                      <div>
-                        <Col>
+                    <div className="card-body pt-0">
+                      {eventView === "list" ? (
+                        <>
                           <Card>
                             <CardBody>
-                              <Row style={{ display: "flex" }}>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
+                              <Col>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "1rem",
+                                    }}
                                   >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
+                                    Contract Management Principles & practice
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "1.5rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "01rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    03 - 07 Jul 2023
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  ></div>
 
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }}>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "0.4rem",
+                                      width: "max-content",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    Accra - GH
+                                    <Link to="/course-details">
                                       <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
-                                  >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
-
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
+                                        className="bx bxs-chevron-right-circle"
                                         style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
                                         }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }}>
-                                      <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
-                                  >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
-
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }}>
-                                      <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
-                                  >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
-
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }}>
-                                      <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
-                                  >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
-
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }}>
-                                      <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
-                                  >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
-
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }}>
-                                      <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                                <Col sm={6} xl={2} md={5}>
-                                  <Card
-                                    style={{ borderBottomRightRadius: "2rem" }}
-                                  >
-                                    <img
-                                      className="card-img-top img-fluid"
-                                      src={buss}
-                                      alt="Card cap"
-                                      style={{
-                                        filter: "brightness(50%)",
-                                      }}
-                                    />
-                                    <h5
-                                      style={{
-                                        position: "absolute",
-                                        top: "4rem",
-                                        zIndex: "1",
-                                        color: "white",
-                                        fontWeight: "bolder",
-                                      }}
-                                      className="text-center p-2 fs-17"
-                                    >
-                                      Contract Management Principles & practice
-                                    </h5>
-
-                                    <CardBody>
-                                      <h4
-                                        className="card-title mb-2"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        03 - 07 Jul 2023
-                                      </h4>
-                                      <p
-                                        className="card-text"
-                                        style={{
-                                          textAlign: "center",
-                                          fontWeight: "bolder",
-                                        }}
-                                      >
-                                        ACCRA - GH
-                                      </p>
-                                      <p style={{ textAlign: "center" }} >
-                                        <i
-                                          className="bx bxs-caret-right-circle btn btn-icon"
-                                          style={{
-                                            fontSize: "2rem",
-                                            padding: "0.5rem",
-                                            position: "relative",
-                                            top: "0.3rem",
-                                            color: "#244a59",
-                                            boxShadow: 'none'
-                                          }}
-                                        ></i>
-                                      </p>
-                                    </CardBody>
-                                  </Card>
-                                </Col>
-                              </Row>
+                                      ></i>
+                                    </Link>
+                                  </h5>
+                                </div>
+                              </Col>
                             </CardBody>
                           </Card>
-                        </Col>
-                      </div>
-                    )}
-                  </div>
+                          <Card>
+                            <CardBody>
+                              <Col>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "1rem",
+                                    }}
+                                  >
+                                    Contract Management Principles & practice
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "1.5rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "01rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    03 - 07 Jul 2023
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "0.4rem",
+                                      width: "max-content",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    Accra - GH
+                                    <Link to="/course-details">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
+                                  </h5>
+                                </div>
+                              </Col>
+                            </CardBody>
+                          </Card>
+                          <Card>
+                            <CardBody>
+                              <Col>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "1rem",
+                                    }}
+                                  >
+                                    Contract Management Principles & practice
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "1.5rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "01rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    03 - 07 Jul 2023
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "0.4rem",
+                                      width: "max-content",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    Accra - GH
+                                    <Link to="/course-details">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
+                                  </h5>
+                                </div>
+                              </Col>
+                            </CardBody>
+                          </Card>
+                          <Card>
+                            <CardBody>
+                              <Col>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "1rem",
+                                    }}
+                                  >
+                                    Contract Management Principles & practice
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "1.5rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "01rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    03 - 07 Jul 2023
+                                  </h5>
+                                  <div
+                                    style={{
+                                      height: "2rem",
+                                      backgroundColor: "black",
+                                      width: "1px",
+                                      marginTop: "1rem",
+                                      marginRight: "2rem",
+                                    }}
+                                  ></div>
+                                  <h5
+                                    className="fs-13"
+                                    style={{
+                                      fontWeight: "bolder",
+                                      marginTop: "0.4rem",
+                                      width: "max-content",
+                                      marginRight: "2rem",
+                                    }}
+                                  >
+                                    Accra - GH
+                                    <Link to="/course-details">
+                                      <i
+                                        className="bx bxs-chevron-right-circle"
+                                        style={{
+                                          fontSize: "1.5rem",
+                                          padding: "0.5rem",
+                                          position: "relative",
+                                          top: "0.3rem",
+                                          color: "#244a59",
+                                        }}
+                                      ></i>
+                                    </Link>
+                                  </h5>
+                                </div>
+                              </Col>
+                            </CardBody>
+                          </Card>
+                        </>
+                      ) : (
+                        // Grid view
+                        <div>
+                          <Col>
+                            <Card>
+                              <CardBody>
+                                <Row style={{ display: "flex" }}>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
 
-                  {/* <div className="card-body">
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
+
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
+
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
+
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
+
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
+
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                  <Col sm={6} xl={3} md={5}>
+                                    <Card
+                                      style={{
+                                        borderBottomRightRadius: "2rem",
+                                      }}
+                                    >
+                                      <img
+                                        className="card-img-top img-fluid"
+                                        src={buss}
+                                        alt="Card cap"
+                                        style={{
+                                          filter: "brightness(50%)",
+                                        }}
+                                      />
+                                      <h5
+                                        style={{
+                                          position: "absolute",
+                                          top: "4rem",
+                                          zIndex: "1",
+                                          color: "white",
+                                          fontWeight: "bolder",
+                                        }}
+                                        className="text-center p-2 fs-17"
+                                      >
+                                        Contract Management Principles &
+                                        practice
+                                      </h5>
+
+                                      <CardBody>
+                                        <h4
+                                          className="card-title mb-2"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          03 - 07 Jul 2023
+                                        </h4>
+                                        <p
+                                          className="card-text"
+                                          style={{
+                                            textAlign: "center",
+                                            fontWeight: "bolder",
+                                          }}
+                                        >
+                                          ACCRA - GH
+                                        </p>
+                                        <p style={{ textAlign: "center" }}>
+                                          <Link to="/course-details">
+                                            <i
+                                              className="bx bxs-chevron-right-circle"
+                                              style={{
+                                                fontSize: "1.5rem",
+                                                padding: "0.5rem",
+                                                position: "relative",
+                                                top: "0.3rem",
+                                                color: "#244a59",
+                                              }}
+                                            ></i>
+                                          </Link>
+                                        </p>
+                                      </CardBody>
+                                    </Card>
+                                  </Col>
+                                </Row>
+                              </CardBody>
+                            </Card>
+                          </Col>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* <div className="card-body">
                   <TabContent className="text-muted">
                     <TabPane>
                       <div
@@ -1700,11 +1658,12 @@ const TrainingEvents = (props) => {
                     </TabPane>
                   </TabContent>
                 </div> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          </Row>
-        </Container>
+            </Row>
+          </Container>
+        </div>
       </div>
 
       <div
@@ -1730,17 +1689,18 @@ const TrainingEvents = (props) => {
             <h4 style={{ fontWeight: "bolder", color: "white" }}>COURSES</h4>
           </div>
           <div>
-            <i
-              className="bx bxs-caret-right-circle"
-              style={{
-                fontSize: "2rem",
-                padding: "0.5rem",
-                position: "relative",
-                top: "5.5rem",
-                color: "white",
-                cursor: "pointer",
-              }}
-            ></i>
+            <Link to="/course-details">
+              <i
+                className="bx bxs-chevron-right-circle"
+                style={{
+                  fontSize: "1.5rem",
+                  padding: "0.5rem",
+                  position: "relative",
+                  top: "0.3rem",
+                  color: "#244a59",
+                }}
+              ></i>
+            </Link>
           </div>
         </div>
       </div>
