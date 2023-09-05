@@ -34,7 +34,7 @@ const [top, setTop] = useState('')
     } else if (newWindowSize <= 1200) {
       setTop("-9rem");
     } else if (newWindowSize >= 1200) {
-      setTop("-34rem");
+      setTop("-30rem");
     } else {
       setTop("");
     }

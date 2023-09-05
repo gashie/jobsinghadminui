@@ -184,8 +184,8 @@ const PayrollManagement = () => {
           </Col>
         </Row> */}
 
-        <Row className="mt-5 p-5">
-          <Col>
+<Row className="mt-5 mb-4">
+          <Col xl={9}>
             <Container>
               <h4 style={{ fontWeight: "bolder", color: "#244a59" }}>
                 Payroll Management

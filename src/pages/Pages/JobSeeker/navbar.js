@@ -166,7 +166,7 @@ const Navbar = () => {
                     <DropdownToggle nav caret className="fs-14">
                    Career Resources
                     </DropdownToggle>
-                    <DropdownMenu>
+                    <DropdownMenu style={{position :'absolute', zIndex: '999'}}>
                       <DropdownItem href="/career-advice">Career Advice</DropdownItem>
                       <DropdownItem href="/latest-news">HR News</DropdownItem>
                       <DropdownItem href="/training-events">TrainingEvents</DropdownItem>
