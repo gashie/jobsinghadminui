@@ -1,5 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Collapse, Container, NavbarToggler, NavLink, Row, Dropdown, DropdownToggle, DropdownItem, DropdownMenu, Input } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import {
+  Collapse,
+  Container,
+  NavbarToggler,
+  NavLink as TabLink,
+  Row,
+  Dropdown,
+  DropdownToggle,
+  DropdownItem,
+  DropdownMenu,
+  Input,
+  Button,
+  NavLink
+} from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import { Link } from "react-router-dom";
 
@@ -8,10 +21,10 @@ import logodark from "../../../assets/images/logo-dark.png";
 import logolight from "../../../assets/images/logo-light.png";
 
 const Navbar = () => {
-  const [isOpenMenu, setisOpenMenu] = useState(false);
-  const [navClass, setnavClass] = useState("");
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [navClass, setNavClass] = useState("");
 
-  const toggle = () => setisOpenMenu(!isOpenMenu);
+  const toggle = () => setIsOpenMenu(!isOpenMenu);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollNavigation, true);
@@ -20,9 +33,9 @@ const Navbar = () => {
   function scrollNavigation() {
     var scrollup = document.documentElement.scrollTop;
     if (scrollup > 50) {
-      setnavClass("is-sticky");
+      setNavClass("is-sticky");
     } else {
-      setnavClass("is-sticky");
+      setNavClass("is-sticky");
     }
   }
 
@@ -32,10 +45,9 @@ const Navbar = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-
-  const [space, setSpace] = useState("")
-  const [spaceLeft, setSpaceLeft] = useState("")
-  const [relative, setRelative] = useState("")
+  const [space, setSpace] = useState("");
+  const [spaceLeft, setSpaceLeft] = useState("");
+  const [relative, setRelative] = useState("");
 
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
@@ -49,19 +61,15 @@ const Navbar = () => {
       setSpace("0rem");
     }
 
-
-    if (newWindowSize <= 1100 ) {
-       setRelative('')
+    if (newWindowSize <= 1100) {
+      setRelative("");
     } else if (newWindowSize <= 1200) {
-      setRelative('absolute')
+      setRelative("absolute");
     } else if (newWindowSize >= 1200) {
-      setRelative('absolute')
+      setRelative("absolute");
     } else if (newWindowSize > 375) {
-      setRelative('')
+      setRelative("");
     }
-
-   
-
 
     if (newWindowSize <= 375) {
       setSpaceLeft("0rem");
@@ -99,25 +107,25 @@ const Navbar = () => {
             borderStyle: "solid",
             borderTop: "0px",
             borderColor: "#244A59",
-            borderRight: '0px',
-            width: '100%'
+            borderRight: "0px",
+            width: "100%",
           }}
         >
-          <Container >
-            <Link className="navbar-brand" to="/home">
-              <h2
-                style={{
-                  fontFamily: "impact",
-                  color: "#244A59",
-                 position:'relative', 
-                 left: spaceLeft
-                }}
-              >
-                JobsinGhana
-              </h2>
-            </Link>
+          <Container fluid className="htsack justify-content-center col-xl-10">
+            <div className="d-flex justify-content-between align-items-center w-100">
+              <Link className="navbar-brand" to="/home">
+                <h2
+                  style={{
+                    fontFamily: "impact",
+                    color: "#244A59",
+                    position: "relative",
+                  }}
+                >
+                  JobsinGhana
+                </h2>
+              </Link>
 
-            <NavbarToggler
+              <NavbarToggler
               className="navbar-toggler py-0 fs-20 text-body"
               onClick={toggle}
               type="button"
@@ -130,29 +138,38 @@ const Navbar = () => {
               <i className="mdi mdi-menu"></i>
             </NavbarToggler>
 
+            </div>
+
             <Collapse
-              isOpen={isOpenMenu}
               className="navbar-collapse"
               id="navbarSupportedContent"
-              style={{left: space, position: relative}}
+              isOpen={isOpenMenu}
+              // style={{
+              //   // left: space,
+              //   position: "relative",
+              // }}
             >
               <Scrollspy
                 offset={-18}
                 items={[
                   "hero",
-                  "services",
-                  "features",
-                  "plans",
-                  "reviews",
-                  "team",
-                  "contact",
+                  "process",
+                  "categories",
+                  "findJob",
+                  "candidates",
+                  "blog",
                 ]}
                 currentClassName="active"
-                className="navbar-nav mx-auto mt-2 mt-lg-0"
+                className="navbar-nav ml-auto"
                 id="navbar-example"
               >
                 <li className="nav-item">
-                  <NavLink className="fs-14" href="/home">
+                  <NavLink className="fs-14" href="/home" 
+                  // style={{
+                  // backgroundColor: window.location.pathname === "/home" ? '#244a59': "", 
+                  // color: window.location.pathname === "/home" && "white", 
+                  // padding:window.location.pathname === "/home" && '0.2rem'}}
+                  >
                     Home
                   </NavLink>
                 </li>
@@ -192,68 +209,22 @@ const Navbar = () => {
                   </Link>
                 </li>
               </Scrollspy>
-
-              {/* <div className="">
-                            <Link to="/login" className="btn btn-link fw-medium text-decoration-none text-dark">
-                                JobSeekers</Link>
-                            <Link to="/register" className="btn btn-primary">Employers</Link>
-                        </div> */}
             </Collapse>
           </Container>
         </nav>
-
-        {/* <div className="">
-          <div className="card crm-widget">
-            <div className="card-body p-0">
-              <div
-                className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
-                style={{
-                  backgroundColor: "#244A59",
-                  display: "flex",
-                  justifyContent: "center",
-                  width: '100.%'
-                }}
-              >
-                <div
-                  className="col-auto"
-                  style={{
-                    backgroundColor: "white",
-                    padding: "2rem",
-                    borderRadius: "0.7rem",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "1rem",
-                    width: "100rem",
-                    alignContent: "center",
-                  }}
-                >
-                  <div className="col-md-10">
-                    <Input
-                      type="text"
-                      className="form-control form-control-lg bg-light border-light"
-                      placeholder="Search for jobs of companies"
-                    />
-                  </div>
-                  <div className="col-md-2">
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-lg waves-effect waves-light"
-                      style={{
-                        backgroundColor: "#244A59",
-                        fontSize: "0.8rem",
-                      
-                      }}
-                    >
-                      {" "}
-                      Find a Job
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </Row>
+
+      {/* <div className="d-flex justify-content-end px-4">
+        <Link
+          to="/auth-signin-basic"
+          className="btn btn-soft-primary me-2"
+        >
+          <i className="ri-user-3-line align-bottom me-1"></i> Login & Register
+        </Link>
+        <Link to="/employer-dashboard" className="btn btn-success">
+          Employers
+        </Link>
+      </div> */}
     </React.Fragment>
   );
 };
