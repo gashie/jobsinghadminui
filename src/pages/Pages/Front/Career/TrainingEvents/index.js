@@ -211,51 +211,71 @@ const TrainingEvents = (props) => {
   };
 
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedMonths, setSelectedMonths] = useState([]);
 
   const CourseList = [
     {
       name: "Contract Management Principles & practice",
-      date: "03-07 Jul 2023",
+     
       location: "Accra - GH",
-      category: 'Accounting'
+      category: "Accounting",
+      date: "January",
     },
     {
       name: "Contract Management Principles & practice",
-      date: "03-07 Jul 2023",
+    
       location: "Accra - GH",
-      category: 'Accounting'
+      category: "Accounting",
+      date: "January",
     },
     {
       name: "Contract Management Principles & practice",
-      date: "03-07 Jul 2023",
+   
       location: "Accra - GH",
-       category: 'Policy'
+      category: "Policy",
+      date: "January",
     },
     {
       name: "Contract Management Principles & practice",
-      date: "03-07 Jul 2023",
+     
       location: "Accra - GH",
-      category: 'Science'
+      category: "Science",
+      date: "February",
     },
     {
       name: "Contract Management Principles & practice",
-      date: "03-07 Jul 2023",
+     
       location: "Accra - GH",
-      category: 'Science'
+      category: "Science",
+      date: "May",
     },
   ];
 
-  const filteredItemList = selectedCategories.length === 0
-  ? CourseList
-  : CourseList.filter(item => selectedCategories.includes(item.category));
+  const filteredCourses = CourseList.filter((course) => {
+    const courseMonth = course.date.split(" ")[2]; // Extract the month part from the date
+    return (
+      (selectedCategories.length === 0 ||
+        selectedCategories.includes(course.category)) &&
+      (selectedMonths.length === 0 || selectedMonths.includes(course.date))
+    );
+  });
+
+  // Function to handle month selection
+  const handleMonthChange = (selectedMonth) => {
+    if (selectedMonths.includes(selectedMonth)) {
+      setSelectedMonths(
+        selectedMonths.filter((month) => month !== selectedMonth)
+      );
+    } else {
+      setSelectedMonths([...selectedMonths, selectedMonth]);
+    }
+  };
 
   document.title = "Training Events | JobsInGhana";
 
   const [eventView, setEventView] = useState("list");
 
   // filter logic
- 
-
 
   return (
     <>
@@ -323,14 +343,12 @@ const TrainingEvents = (props) => {
                           By Categories
                         </h4>
 
-                        <CategoryFilter 
-                        selectedCategories={selectedCategories}
-                        setSelectedCategories={setSelectedCategories}
+                        <CategoryFilter
+                          selectedCategories={selectedCategories}
+                          setSelectedCategories={setSelectedCategories}
                         />
 
-                        <div className="d-flex flex-column gap-2 mt-3">
-                         
-                        </div>
+                        <div className="d-flex flex-column gap-2 mt-3"></div>
                         <h4
                           className="text-uppercase fs-12 fw-medium mb-2 mt-4"
                           style={{ color: "#244a59", fontWeight: "bolder" }}
@@ -345,7 +363,10 @@ const TrainingEvents = (props) => {
                         </h4>
 
                         <div className="d-flex flex-column gap-2 mt-3">
-                          <MonthFilter />
+                          <MonthFilter
+                            selectedMonths={selectedMonths}
+                            handleMonthChange={handleMonthChange}
+                          />
 
                           {/* <div>
                             <p className="text-decoration-none fw-medium p-0">
@@ -575,7 +596,7 @@ const TrainingEvents = (props) => {
                                   padding: "1rem",
                                 }}
                               >
-                                {filteredItemList.length} Results Found
+                                {filteredCourses.length} Results Found
                               </h5>
                             </div>
 
@@ -613,7 +634,7 @@ const TrainingEvents = (props) => {
                                       placeholder="Sort by"
                                     >
                                       <i className="ri-download-2-line "></i>{" "}
-                                      Download Excel
+                                      Download PDF
                                     </button>
                                   </div>
                                   <div style={{ marginTop: "0.3rem" }}>
@@ -662,7 +683,7 @@ const TrainingEvents = (props) => {
                     <div className="card-body pt-0">
                       {eventView === "list" ? (
                         <>
-                          {filteredItemList.map((data) => (
+                          {filteredCourses.map((data) => (
                             <>
                               <Card>
                                 <CardBody>
@@ -699,7 +720,7 @@ const TrainingEvents = (props) => {
                                           marginRight: "2rem",
                                         }}
                                       >
-                                       {data.date}
+                                        {data.date}
                                       </h5>
                                       <div
                                         style={{
@@ -818,6 +839,11 @@ const TrainingEvents = (props) => {
                           </Col>
                         </div>
                       )}
+
+
+                      {
+                        filteredCourses.length === 0 && <p className="hstack justify-content-center">No available Courses</p>
+                      }
                     </div>
 
                     {/* <div className="card-body">
