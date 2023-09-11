@@ -216,70 +216,76 @@ const TrainingEvents = (props) => {
   const [selectedMonths, setSelectedMonths] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedLocations, setSelectedLocations] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
 
   const CourseList = [
     {
       name: "Contract Management Principles & practice",
-     
+
       location: "Accra",
       category: "Accounting",
       date: "January",
-      year: '2023'
+      year: "2023",
     },
     {
       name: "Contract Management Principles & practice",
-    
+
       location: "Tema",
       category: "Accounting",
       date: "January",
-      year: '2023'
+      year: "2023",
     },
     {
       name: "Contract Management Principles & practice",
-   
+
       location: "Greater Accra - Accra",
       category: "Policy",
       date: "January",
-      year: '2023'
+      year: "2023",
     },
     {
       name: "Contract Management Principles & practice",
-     
+
       location: "Greater Accra - Accra",
       category: "Science",
       date: "February",
-      year: '2024'
+      year: "2024",
     },
     {
       name: "Contract Management Principles & practice",
-     
+
       location: "Greater Accra - Accra",
       category: "Science",
       date: "May",
-      year: '2024'
+      year: "2024",
     },
   ];
 
-    // Function to handle month selection
-    const handleMonthChange = (selectedMonth) => {
-      console.log(selectedMonths)
-      if (selectedMonths.includes(selectedMonth)) {
-        setSelectedMonths(
-          selectedMonths.filter((month) => month !== selectedMonth)
-        );
-      } else {
-        setSelectedMonths([...selectedMonths, selectedMonth]);
-      }
-    };
-     
-     // Function to handle year selection
+  // Function to handle month selection
+  const handleMonthChange = (selectedMonth) => {
+    console.log(selectedMonths);
+    if (selectedMonths.includes(selectedMonth)) {
+      setSelectedMonths(
+        selectedMonths.filter((month) => month !== selectedMonth)
+      );
+    } else {
+      setSelectedMonths([...selectedMonths, selectedMonth]);
+    }
+  };
+
+  // Function to handle search input changes
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  // Function to handle year selection
   const handleYearChange = (selectedYear) => {
     setSelectedYear(selectedYear); // Update selectedYear as a string
   };
 
   const handleLocationChange = (location) => {
     // Check if the location is already in the selectedLocations array
-    console.log(location)
+    console.log(location);
     if (selectedLocations.includes(location)) {
       setSelectedLocations(selectedLocations.filter((loc) => loc !== location));
     } else {
@@ -291,22 +297,25 @@ const TrainingEvents = (props) => {
     const courseMonth = course.date.split(" ")[2];
 
     // Check if the course location is in the selectedLocations array
-   
+    const courseLocation = course.location;
     const isLocationMatch =
-      selectedLocations.length === 0 || selectedLocations.includes(course.location);
+      selectedLocations.length === 0 ||
+      selectedLocations.includes(course.location);
+
+    // Check if the course title contains the search query (case-insensitive)
+    const courseTitle = course.name.toLowerCase();
+    const query = searchQuery.toLowerCase();
+    const isTitleMatch = courseTitle.includes(query);
 
     return (
       (selectedCategories.length === 0 ||
         selectedCategories.includes(course.category)) &&
       (selectedMonths.length === 0 || selectedMonths.includes(course.date)) &&
       (selectedYear === "" || selectedYear === course.year) &&
-      isLocationMatch // Check location filtering
+      isLocationMatch && // Check location filtering
+      isTitleMatch // Check title filtering
     );
   });
-
-    
-
-
 
   document.title = "Training Events | JobsInGhana";
 
@@ -360,7 +369,11 @@ const TrainingEvents = (props) => {
                     </div>
 
                     <div className="filter-choices-input">
-                      <Input placeholder="Search courses by title" />
+                      <Input
+                        placeholder="Search courses by title"
+                        value={searchQuery}
+                        onChange={handleSearchInputChange}
+                      />
                     </div>
                   </CardHeader>
 
@@ -425,13 +438,10 @@ const TrainingEvents = (props) => {
                         </h4>
 
                         <div className="d-flex flex-column gap-2 mt-3">
-                        
-                                <YearFilter
-                                  selectedYear={selectedYear}
-                                  handleYearChange={handleYearChange}
-                                
-                                />
-                         
+                          <YearFilter
+                            selectedYear={selectedYear}
+                            handleYearChange={handleYearChange}
+                          />
                         </div>
                         <h4
                           className="text-uppercase fs-12 fw-medium mb-2 mt-5"
@@ -449,11 +459,9 @@ const TrainingEvents = (props) => {
                         <div className="d-flex flex-column gap-2 mt-3">
                           <Row>
                             <div>
-                              <LocationFilter 
-                               locations={locations}
-                              
-                               handleLocationChange={handleLocationChange}
-                              
+                              <LocationFilter
+                                locations={locations}
+                                handleLocationChange={handleLocationChange}
                               />
 
                               {/* Display the selected locations */}
@@ -803,10 +811,11 @@ const TrainingEvents = (props) => {
                         </div>
                       )}
 
-
-                      {
-                        filteredCourses.length === 0 && <p className="hstack justify-content-center mt-5">No available Courses</p>
-                      }
+                      {filteredCourses.length === 0 && (
+                        <p className="hstack justify-content-center mt-5">
+                          No available Courses
+                        </p>
+                      )}
                     </div>
 
                     {/* <div className="card-body">
