@@ -52,6 +52,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import CategoryFilter from "./CategoryFilter";
 import MonthFilter from "./MonthFilter";
+import YearFilter from "./YearFilter";
+import LocationFilter from "./LocationFilter";
 
 const SingleOptions = [
   { value: "Watches", label: "Watches" },
@@ -81,17 +83,17 @@ const TrainingEvents = (props) => {
 
   const displayCount = showAllLocations ? locations.length : 5;
 
-  const [selectedLocations, setSelectedLocations] = useState([]);
+  // const [selectedLocations, setSelectedLocations] = useState([]);
 
-  function handleLocationChange(region, location) {
-    if (selectedLocations.includes(`${region} - ${location}`)) {
-      setSelectedLocations(
-        selectedLocations.filter((item) => item !== `${region} - ${location}`)
-      );
-    } else {
-      setSelectedLocations([...selectedLocations, `${region} - ${location}`]);
-    }
-  }
+  // function handleLocationChange(region, location) {
+  //   if (selectedLocations.includes(`${region} - ${location}`)) {
+  //     setSelectedLocations(
+  //       selectedLocations.filter((item) => item !== `${region} - ${location}`)
+  //     );
+  //   } else {
+  //     setSelectedLocations([...selectedLocations, `${region} - ${location}`]);
+  //   }
+  // }
 
   useEffect(() => {
     if (products && !products.length) {
@@ -212,64 +214,99 @@ const TrainingEvents = (props) => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedMonths, setSelectedMonths] = useState([]);
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedLocations, setSelectedLocations] = useState([]);
 
   const CourseList = [
     {
       name: "Contract Management Principles & practice",
      
-      location: "Accra - GH",
+      location: "Accra",
       category: "Accounting",
       date: "January",
+      year: '2023'
     },
     {
       name: "Contract Management Principles & practice",
     
-      location: "Accra - GH",
+      location: "Tema",
       category: "Accounting",
       date: "January",
+      year: '2023'
     },
     {
       name: "Contract Management Principles & practice",
    
-      location: "Accra - GH",
+      location: "Greater Accra - Accra",
       category: "Policy",
       date: "January",
+      year: '2023'
     },
     {
       name: "Contract Management Principles & practice",
      
-      location: "Accra - GH",
+      location: "Greater Accra - Accra",
       category: "Science",
       date: "February",
+      year: '2024'
     },
     {
       name: "Contract Management Principles & practice",
      
-      location: "Accra - GH",
+      location: "Greater Accra - Accra",
       category: "Science",
       date: "May",
+      year: '2024'
     },
   ];
 
+    // Function to handle month selection
+    const handleMonthChange = (selectedMonth) => {
+      console.log(selectedMonths)
+      if (selectedMonths.includes(selectedMonth)) {
+        setSelectedMonths(
+          selectedMonths.filter((month) => month !== selectedMonth)
+        );
+      } else {
+        setSelectedMonths([...selectedMonths, selectedMonth]);
+      }
+    };
+     
+     // Function to handle year selection
+  const handleYearChange = (selectedYear) => {
+    setSelectedYear(selectedYear); // Update selectedYear as a string
+  };
+
+  const handleLocationChange = (location) => {
+    // Check if the location is already in the selectedLocations array
+    console.log(location)
+    if (selectedLocations.includes(location)) {
+      setSelectedLocations(selectedLocations.filter((loc) => loc !== location));
+    } else {
+      setSelectedLocations([...selectedLocations, location]);
+    }
+  };
+
   const filteredCourses = CourseList.filter((course) => {
-    const courseMonth = course.date.split(" ")[2]; // Extract the month part from the date
+    const courseMonth = course.date.split(" ")[2];
+
+    // Check if the course location is in the selectedLocations array
+   
+    const isLocationMatch =
+      selectedLocations.length === 0 || selectedLocations.includes(course.location);
+
     return (
       (selectedCategories.length === 0 ||
         selectedCategories.includes(course.category)) &&
-      (selectedMonths.length === 0 || selectedMonths.includes(course.date))
+      (selectedMonths.length === 0 || selectedMonths.includes(course.date)) &&
+      (selectedYear === "" || selectedYear === course.year) &&
+      isLocationMatch // Check location filtering
     );
   });
 
-  // Function to handle month selection
-  const handleMonthChange = (selectedMonth) => {
-    if (selectedMonths.includes(selectedMonth)) {
-      setSelectedMonths(
-        selectedMonths.filter((month) => month !== selectedMonth)
-      );
-    } else {
-      setSelectedMonths([...selectedMonths, selectedMonth]);
-    }
-  };
+    
+
+
 
   document.title = "Training Events | JobsInGhana";
 
@@ -384,48 +421,17 @@ const TrainingEvents = (props) => {
                           className="text-uppercase fs-16 fw-medium mb-2"
                           style={{ color: "#244a59", fontWeight: "bolder" }}
                         >
-                          By Categories
+                          By Year
                         </h4>
 
                         <div className="d-flex flex-column gap-2 mt-3">
-                          <Row>
-                            <Col>
-                              {" "}
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
+                        
+                                <YearFilter
+                                  selectedYear={selectedYear}
+                                  handleYearChange={handleYearChange}
+                                
                                 />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  2023
-                                </label>
-                              </div>
-                            </Col>
-                            <Col>
-                              {" "}
-                              <div className="form-check">
-                                <input
-                                  style={{ backgroundColor: "#244a59" }}
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="productBrandRadio5"
-                                  defaultChecked
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="productBrandRadio5"
-                                >
-                                  2024
-                                </label>
-                              </div>
-                            </Col>
-                          </Row>
+                         
                         </div>
                         <h4
                           className="text-uppercase fs-12 fw-medium mb-2 mt-5"
@@ -443,55 +449,12 @@ const TrainingEvents = (props) => {
                         <div className="d-flex flex-column gap-2 mt-3">
                           <Row>
                             <div>
-                              {Object.keys(locations).map((region) => (
-                                <div key={region}>
-                                  <h6 className="mt-2">{region}</h6>
-
-                                  {locations[region]
-                                    .slice(
-                                      0,
-                                      showAll ? locations[region].length : 5
-                                    )
-                                    .map((location, index) => (
-                                      <div key={index} className="d-flex gap-1">
-                                        <div className="form-check">
-                                          <input
-                                            style={{
-                                              backgroundColor: "#244a59",
-                                            }}
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            id={`locationCheckbox${region}${index}`}
-                                            defaultChecked
-                                            onChange={() =>
-                                              handleLocationChange(
-                                                region,
-                                                location
-                                              )
-                                            }
-                                          />
-                                          <label
-                                            className="form-check-label"
-                                            htmlFor={`locationCheckbox${region}${index}`}
-                                          >
-                                            {`${region} - ${location}`}
-                                          </label>
-                                        </div>
-                                      </div>
-                                    ))}
-                                </div>
-                              ))}
-
-                              {Object.keys(locations).some(
-                                (region) => locations[region].length > 5
-                              ) && (
-                                <button
-                                  onClick={() => setShowAll(!showAll)}
-                                  className="btn"
-                                >
-                                  {showAllLocations ? "Show Less" : "Show More"}
-                                </button>
-                              )}
+                              <LocationFilter 
+                               locations={locations}
+                              
+                               handleLocationChange={handleLocationChange}
+                              
+                              />
 
                               {/* Display the selected locations */}
                               <div>
@@ -842,7 +805,7 @@ const TrainingEvents = (props) => {
 
 
                       {
-                        filteredCourses.length === 0 && <p className="hstack justify-content-center">No available Courses</p>
+                        filteredCourses.length === 0 && <p className="hstack justify-content-center mt-5">No available Courses</p>
                       }
                     </div>
 
