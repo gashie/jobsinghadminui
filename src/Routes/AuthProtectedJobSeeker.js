@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { Navigate, Route } from "react-router-dom";
-import { setAuthorization } from "../helpers/api_helper";
+// import { setAuthorization } from "../helpers/api_helper";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useProfile } from "../Components/Hooks/UserHooks";
 
 import { logoutUser, testVerify } from "../store/actions";
 
-const AuthProtected = (props) => {
+const AuthProtectedJobSeeker = (props) => {
   const dispatch = useDispatch();
  
   // const { userProfile, loading, token } = useProfile();
   // useEffect(() => {
   //   if (userProfile && !loading && token) {
-  //     setAuthorization(token);
+  //     // setAuthorization(token);
   //   } else if (!userProfile && loading && !token) {
   //     dispatch(logoutUser());
   //   }
@@ -23,18 +23,40 @@ const AuthProtected = (props) => {
     Navigate is un-auth access protected routes via url
     */
 
+    // const { verifyInfo, verifyError, verifyLoading } = useSelector((state) => ({
+    //   verifyInfo: state.Login.verifyInfo,
+    //   verifyError: state.Login.verifyError, 
+    //   verifyLoading: state.Login.verifyLoading
+    // }));
+
+    // console.log()
+
   // if (!userProfile && loading && !token) {
   //   return (
   //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
   //   );
   // }
 
-  // const { verifyInfo, verifyError, verifyLoading } = useSelector((state) => ({
-  //   verifyInfo: state.Login.verifyInfo,
-  //   verifyError: state.Login.verifyError, 
-  //   verifyLoading: state.Login.verifyLoading
-  // }));
+  const { userInfo, isloggedIn,loadingUserinfo,errorUserinfo } = useSelector((state) => ({
+    userInfo: state.Login.userInfo,
+    loadingUserinfo: state.Login.loadingUserinfo,
+    errorUserinfo: state.Login.errorUserinfo,
+    isloggedIn:state.Login.isloggedIn
+  }));
+  
+  if (!loadingUserinfo && !isloggedIn) {
+    return (
+      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+    );
+  }
 
+ 
+
+  if (errorUserinfo) {
+    return (
+      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+    );
+    }
   
        
 
@@ -61,4 +83,4 @@ const AccessRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export { AuthProtected, AccessRoute };
+export { AuthProtectedJobSeeker, AccessRoute };

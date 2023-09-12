@@ -161,5 +161,7 @@
   },
   "devDependencies": {
     "babel-plugin-prismjs": "^2.1.0"
-  }
+  }, 
+
+  "proxy": "http://jobs.asimeglobal.com"
 }

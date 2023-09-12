@@ -6,8 +6,9 @@ import NonAuthLayout from "../Layouts/NonAuthLayout";
 import VerticalLayout from "../Layouts/index";
 
 //routes
-import { authProtectedRoutes, publicRoutes } from "./allRoutes";
-import { AuthProtected } from './AuthProtected';
+import { authProtectedRoutes, publicRoutes, jobSeekerRoutes, employerRoutes } from "./allRoutes";
+import { AuthProtectedJobSeeker } from './AuthProtectedJobSeeker';
+import { AuthProtectedEmployer } from './AuthProtectedEmployer';
 
 const Index = () => {
     return (
@@ -28,14 +29,30 @@ const Index = () => {
                     ))}
                 </Route>
 
+    
                 <Route>
-                    {authProtectedRoutes.map((route, idx) => (
+                    {jobSeekerRoutes.map((route, idx) => (
                         <Route
                             path={route.path}
                             element={
-                                <AuthProtected>
+                                <AuthProtectedJobSeeker>
                                     <VerticalLayout>{route.component}</VerticalLayout>
-                                </AuthProtected>}
+                                </AuthProtectedJobSeeker>}
+                            key={idx}
+                            exact={true}
+                        />
+                    ))}
+                </Route>
+
+
+                <Route>
+                    {employerRoutes.map((route, idx) => (
+                        <Route
+                            path={route.path}
+                            element={
+                                <AuthProtectedEmployer>
+                                    <VerticalLayout>{route.component}</VerticalLayout>
+                                </AuthProtectedEmployer>}
                             key={idx}
                             exact={true}
                         />

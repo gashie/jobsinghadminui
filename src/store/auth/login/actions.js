@@ -8,22 +8,12 @@ import {
   RESET_LOGIN_FLAG, 
   TEST_VERIFY, 
   TEST_VERIFY_SUCCESS, 
-  TEST_VERIFY_FAIL
+  TEST_VERIFY_FAIL,
+  GET_ME_SUCCESS,
+  GET_ME_FAIL,
+  GET_ME
 } from "./actionTypes";
 
-export const loginUser = (user) => {
-  return {
-    type: LOGIN_USER,
-    payload: user,
-  };
-};
-
-export const loginSuccess = user => {
-  return {
-    type: LOGIN_SUCCESS,
-    payload: user,
-  };
-};
 
 export const logoutUser = history => {
   return {
@@ -79,3 +69,36 @@ export const testVerifyError = (error) => {
     payload: error
   }
 }
+
+
+//jobsinghana
+
+export const loginUser = (user) => {
+  return {
+    type: LOGIN_USER,
+    payload: user,
+  };
+};
+
+export const loginSuccess = user => {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: user,
+  };
+};
+
+
+export const getMeSuccess = (data) => ({
+  type: GET_ME_SUCCESS, 
+  payload: data
+})
+
+export const getMeError = (error) => ({
+  type: GET_ME_FAIL, 
+  payload: error
+})
+
+export const getMe = () =>({
+  type: GET_ME
+})
+

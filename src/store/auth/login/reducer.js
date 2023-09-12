@@ -1,13 +1,16 @@
 import {
   LOGIN_USER,
   LOGIN_SUCCESS,
+  LOGIN_RESET,
   LOGOUT_USER,
   LOGOUT_USER_SUCCESS,
   API_ERROR,
-  RESET_LOGIN_FLAG, 
-  TEST_VERIFY, 
-  TEST_VERIFY_SUCCESS, 
-  TEST_VERIFY_FAIL
+  RESET_LOGIN_FLAG,
+  TEST_VERIFY,
+  TEST_VERIFY_SUCCESS,
+  TEST_VERIFY_FAIL,
+  GET_ME_SUCCESS,
+  GET_ME_FAIL,
 } from "./actionTypes";
 
 const initialState = {
@@ -15,9 +18,14 @@ const initialState = {
   loading: false,
   error: false,
   userInfo: null,
+  isloggedIn: false,
+  loggedIn: false,
+  errorUserinfo: null,
+  loadingUserinfo: null,
+
   verifyInfo: false,
-  verifyLoading: false, 
-  verifyError: null 
+  verifyLoading: false,
+  verifyError: null,
 };
 
 const login = (state = initialState, action) => {
@@ -34,38 +42,60 @@ const login = (state = initialState, action) => {
         ...state,
         loading: false,
         error: false,
+        logeedIn: true,
         userInfo: action.payload
       };
       break;
+    case LOGIN_RESET:
+      state = {
+        ...state,
+        loading: false,
+        loggedIn: true,
+        error: false,
+      };
+      break;
+    case GET_ME_SUCCESS:
+      state = {
+        ...state,
+        loadingUserinfo: false,
+        userInfo: action.payload,
+        isloggedIn: true,
+        errorUserinfo: null,
+      };
+      break;
 
-    case TEST_VERIFY: 
-       state = {
-        ...state, 
+    case GET_ME_FAIL:
+      state = {
+        ...state,
+        loadingUserinfo: false,
+        errorUserinfo: action.payload,
+      };
+      break;
+
+    case TEST_VERIFY:
+      state = {
+        ...state,
         verifyLoading: true,
-        verifyError: null
-       }
-    break;
+        verifyError: null,
+      };
+      break;
 
+    case TEST_VERIFY_FAIL:
+      state = {
+        ...state,
+        verifyLoading: false,
+        verifyError: action.payload,
+      };
+      break;
 
-    case TEST_VERIFY_FAIL: 
-    state = {
-      ...state, 
-      verifyLoading: false,
-      verifyError: action.payload
-    }
-    break;
-
-
-    case TEST_VERIFY_SUCCESS: 
-    state = {
-      ...state, 
-      verifyLoading: false,
-      verifyInfo: action.payload,
-      verifyError: null
-    }
-    break;
-
-
+    case TEST_VERIFY_SUCCESS:
+      state = {
+        ...state,
+        verifyLoading: false,
+        verifyInfo: action.payload,
+        verifyError: null,
+      };
+      break;
 
     case LOGOUT_USER:
       state = { ...state, isUserLogout: false };

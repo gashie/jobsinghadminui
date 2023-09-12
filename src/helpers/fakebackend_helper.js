@@ -425,3 +425,8 @@ export const getAPIKey = () => api.get(url.GET_API_KEY);
 export const testLoginURL = (user) => api.create(url.TEST_LOGIN, user)
 //text verify
 export const testVerifyURL = () => api.get(url.TEST_VERIFY)
+
+//jobsinGhanaURLS
+
+export const loginURL = (data) => api.create(url.LOGIN, data)
+export const verifyTokenURL = () =>  api.create(url.VERIFYTOKEN)

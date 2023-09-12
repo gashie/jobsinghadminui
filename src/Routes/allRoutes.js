@@ -492,31 +492,6 @@ const authProtectedRoutes = [
   { path: "/profile", component: <UserProfile /> },
 
 
-  //jobsInGhana
-  { path: "/admin-dashboard", component: <AdminDashboard /> },
-  { path: "/job-seeker-admin", component: <JobSeeker /> },
-  // Job Seeker Routes
-  { path: "/job-seeker-dashboard", component: <Dashboard /> },
-  { path: "/job-seeker-applications", component: <Dashboard /> },
-  { path: "/job-seeker-alerts", component: <Dashboard /> },
-  { path: "/job-seeker-saved-jobs", component: <Dashboard /> },
-  { path: "/job-seeker-profile", component: <Profile /> },
-  { path: "/job-seeker-edit-profile", component: <Profile /> },
-  { path: "/job-seeker-change-password", component: <Profile /> },
-  { path: "/job-seeker-resume", component: <Resume /> },
-  { path: "/job-seeker-my-cover-letters", component: <Resume /> },
-  { path: "/job-seeker-add-cover-letter", component: <Resume /> },
-  { path: "/job-seeker-edit-cover-letter", component: <Resume /> },
-  { path: "/job-seeker-view-cover-letter", component: <Resume /> },
-
-
-  { path: "/employer-dashboard", component: <EmployerDashboard />},
-  { path: "/employer-profile", component: <EmployerProfile />},
-  { path: "/employer-jobs", component: <EmployerJobs />},
-  { path: "/employer-applications", component: <EmployerApplications />},
-  { path: "/employer-courses", component: <EmployerCourses />},
-  { path: "/employer-transactions", component: <EmployerTransactions />},
-
 
  
   // this route should be at the end of all other routes
@@ -524,9 +499,9 @@ const authProtectedRoutes = [
   {
     path: "/",
     exact: true,
-    component: <Navigate to="/home" />,
+    component: <Navigate to="/login" />,
   },
-  { path: "*", component: <Navigate to="/home" /> },
+  { path: "*", component: <Navigate to="/login" /> },
 ];
 
 const publicRoutes = [
@@ -613,8 +588,50 @@ const publicRoutes = [
   {path: '/test-login', component: <TestLogin />},
   {path: '/test-home', component: <TestHome />},
 
-
-
 ];
 
-export { authProtectedRoutes, publicRoutes };
+const jobSeekerRoutes = [
+  //jobsInGhana
+  { path: "/admin-dashboard", component: <AdminDashboard /> },
+  { path: "/job-seeker-admin", component: <JobSeeker /> },
+  // Job Seeker Routes
+  { path: "/job-seeker-dashboard", component: <Dashboard /> },
+  { path: "/job-seeker-applications", component: <Dashboard /> },
+  { path: "/job-seeker-alerts", component: <Dashboard /> },
+  { path: "/job-seeker-saved-jobs", component: <Dashboard /> },
+  { path: "/job-seeker-profile", component: <Profile /> },
+  { path: "/job-seeker-edit-profile", component: <Profile /> },
+  { path: "/job-seeker-change-password", component: <Profile /> },
+  { path: "/job-seeker-resume", component: <Resume /> },
+  { path: "/job-seeker-my-cover-letters", component: <Resume /> },
+  { path: "/job-seeker-add-cover-letter", component: <Resume /> },
+  { path: "/job-seeker-edit-cover-letter", component: <Resume /> },
+  { path: "/job-seeker-view-cover-letter", component: <Resume /> },
+
+  {
+    path: "/",
+    exact: true,
+    component: <Navigate to="/login" />,
+  },
+  { path: "*", component: <Navigate to="/login" /> },
+
+]
+
+
+const employerRoutes = [
+  { path: "/employer-dashboard", component: <EmployerDashboard />},
+  { path: "/employer-profile", component: <EmployerProfile />},
+  { path: "/employer-jobs", component: <EmployerJobs />},
+  { path: "/employer-applications", component: <EmployerApplications />},
+  { path: "/employer-courses", component: <EmployerCourses />},
+  { path: "/employer-transactions", component: <EmployerTransactions />},
+
+  {
+    path: "/",
+    exact: true,
+    component: <Navigate to="/login" />,
+  },
+  { path: "*", component: <Navigate to="/login" /> },
+]
+
+export { authProtectedRoutes, publicRoutes, jobSeekerRoutes, employerRoutes };

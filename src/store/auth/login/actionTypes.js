@@ -1,5 +1,6 @@
 export const LOGIN_USER = "LOGIN_USER"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_RESET = "LOGIN_RESET"
 
 export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS"
@@ -11,5 +12,9 @@ export const RESET_LOGIN_FLAG = "RESET_LOGIN_FLAG"
 export const TEST_VERIFY = 'TEST_VERIFY'
 export const TEST_VERIFY_SUCCESS = 'TEST_VERIFY_SUCCESS'
 export const TEST_VERIFY_FAIL = 'TEST_VERIFY_FAIL'
+
+export const GET_ME = "GET_ME"
+export const GET_ME_SUCCESS = "GET_ME_SUCCESS"
+export const GET_ME_FAIL = "GET_ME_FAIL"
 
 
