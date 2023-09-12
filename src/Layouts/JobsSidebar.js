@@ -129,12 +129,12 @@ const Sidebar = () => {
       link: "/job-seeker-saved-jobs",
       toggle: toggleJobs,
     },
-    {
-      icon: "ri-settings-5-line",
-      label: "Account Settings",
-      link: "/settings",
-      toggle: toggleAccount,
-    },
+    // {
+    //   icon: "ri-settings-5-line",
+    //   label: "Account Settings",
+    //   link: "/settings",
+    //   toggle: toggleAccount,
+    // },
     { icon: "bx bx-left-arrow-circle", label: "Logout", link: "/settings", toggle: toggleLogout },
   ];
 

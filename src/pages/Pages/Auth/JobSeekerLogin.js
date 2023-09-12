@@ -26,9 +26,9 @@ import { useFormik } from "formik";
 
 const JobSeekerLogin = () => {
  
-
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
 
   // Listen for the successful login action or another appropriate action
   const isLoggedIn = useSelector((state) => state.Login.isloggedIn);

@@ -3,6 +3,7 @@ import { api } from "../config";
 
 import {  useDispatch } from "react-redux";
 import { getMe } from "../store/auth/login/actions";
+import TriggerRoute from "../Routes/TriggerRoute";
 
 // default
 axios.defaults.baseURL = process.env.APP_PROXY;
@@ -100,6 +101,7 @@ class APIClient {
 const LoggedinUser = () => {
   const dispatch = useDispatch();
   dispatch(getMe())
+ 
 };
 
 export { APIClient, LoggedinUser };

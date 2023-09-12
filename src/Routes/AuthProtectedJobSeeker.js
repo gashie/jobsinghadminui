@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useProfile } from "../Components/Hooks/UserHooks";
 
 import { logoutUser, testVerify } from "../store/actions";
+import TriggerRoute from "./TriggerRoute";
 
 const AuthProtectedJobSeeker = (props) => {
   const dispatch = useDispatch();
@@ -44,19 +45,29 @@ const AuthProtectedJobSeeker = (props) => {
     isloggedIn:state.Login.isloggedIn
   }));
   
-  if (!loadingUserinfo && !isloggedIn) {
+  // if (!loadingUserinfo && !isloggedIn) {
+  //   return (
+  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+  //   );
+  // }
+
+  const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
+
+ 
+
+  if (!isLoggedIn) {
     return (
       <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
     );
   }
 
- 
 
-  if (errorUserinfo) {
-    return (
-      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-    );
-    }
+
+  // if (errorUserinfo) {
+  //   return (
+  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+  //   );
+  //   }
   
        
 

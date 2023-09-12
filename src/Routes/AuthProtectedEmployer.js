@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Navigate, Route } from "react-router-dom";
 // import { setAuthorization } from "../helpers/api_helper";
 import { useDispatch, useSelector } from "react-redux";
+import TriggerRoute from "./TriggerRoute";
 
 // import { useProfile } from "../Components/Hooks/UserHooks";
 
@@ -36,6 +37,22 @@ const AuthProtectedEmployer = (props) => {
 //       <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
 //     );
 //   }
+
+const { user, errorMsg, loading, error } = useSelector((state) => ({
+  user: state.Account.user,
+  errorMsg: state.Login.errorMsg,
+  loading: state.Login.loading,
+  error: state.Login.error,
+}));
+
+
+const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
+
+  if (!isLoggedIn) {
+    return (
+      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+    );
+    }
 
 
   

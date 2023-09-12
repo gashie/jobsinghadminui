@@ -11,10 +11,11 @@ import {
   DropdownMenu,
   Input,
   Button,
-  NavLink
+  NavLink,
 } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Import Images
 import logodark from "../../../assets/images/logo-dark.png";
@@ -95,6 +96,8 @@ const Navbar = () => {
     };
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <Row>
@@ -126,18 +129,17 @@ const Navbar = () => {
               </Link>
 
               <NavbarToggler
-              className="navbar-toggler py-0 fs-20 text-body"
-              onClick={toggle}
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i className="mdi mdi-menu"></i>
-            </NavbarToggler>
-
+                className="navbar-toggler py-0 fs-20 text-body"
+                onClick={toggle}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i className="mdi mdi-menu"></i>
+              </NavbarToggler>
             </div>
 
             <Collapse
@@ -164,46 +166,77 @@ const Navbar = () => {
                 id="navbar-example"
               >
                 <li className="nav-item">
-                  <NavLink className="fs-14" href="/home" 
-                  // style={{
-                  // backgroundColor: window.location.pathname === "/home" ? '#244a59': "", 
-                  // color: window.location.pathname === "/home" && "white", 
-                  // padding:window.location.pathname === "/home" && '0.2rem'}}
+                  <NavLink
+                    className="fs-14"
+                    onClick={() => navigate("/home")}
+                    style={{cursor: "pointer"}}
+                    // style={{
+                    // backgroundColor: window.location.pathname === "/home" ? '#244a59': "",
+                    // color: window.location.pathname === "/home" && "white",
+                    // padding:window.location.pathname === "/home" && '0.2rem'}}
                   >
                     Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="fs-14" href="/job-list">
+                  <NavLink
+                    className="fs-14"
+                    onClick={() => navigate("/job-list")}
+                    style={{cursor: "pointer"}}
+                  >
                     Jobs
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
-                    <DropdownToggle nav caret className="fs-14">
-                   Career Resources
+                    <DropdownToggle nav caret className="fs-14"
+                      style={{cursor: "pointer"}}>
+                      Career Resources
                     </DropdownToggle>
-                    <DropdownMenu style={{position :'absolute', zIndex: '999'}}>
-                      <DropdownItem href="/career-advice">Career Advice</DropdownItem>
-                      <DropdownItem href="/latest-news">HR News</DropdownItem>
-                      <DropdownItem href="/training-events">TrainingEvents</DropdownItem>
+                    <DropdownMenu
+                      style={{ position: "absolute", zIndex: "999" }}
+                    >
+                      <DropdownItem onClick={() => navigate("/career-advice")}
+                        style={{cursor: "pointer"}}>
+                        Career Advice
+                      </DropdownItem>
+                      <DropdownItem onClick={() => navigate("/latest-news")}
+                        style={{cursor: "pointer"}}>
+                         
+                        HR News
+                      </DropdownItem>
+                      <DropdownItem
+                        onClick={() => navigate("/training-events")}
+                        style={{cursor: "pointer"}}
+                      >
+                        TrainingEvents
+                      </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="fs-14" href="/services">
+                  <NavLink
+                    className="fs-14"
+                    onClick={() => navigate("/services")}
+                    style={{cursor: "pointer"}}
+                  >
                     Services
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="fs-14" href="/job-seeker-dashboard">
+                <li className="nav-item"   onClick={() => navigate("/job-seeker-dashboard")}>
+                  <NavLink
+                    className="fs-14"
+                  
+                    style={{cursor: "pointer"}}
+                  >
                     Jobseekers
                   </NavLink>
                 </li>
-                <li className="nav-item" style={{ marginTop: "0.5rem" }}>
+                <li className="nav-item" style={{ marginTop: "0.5rem", cursor: "pointer" }}>
                   <Link
                     className="fs-12 btn btn-success"
-                    to="/employer-dashboard"
+                    onClick={() => navigate("/employer-dashboard")}
+                   
                   >
                     Employers
                   </Link>

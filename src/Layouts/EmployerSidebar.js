@@ -129,12 +129,12 @@ const EmployerSidebar = () => {
       link: "/employer-transactions",
       toggle: toggleJobs,
     },
-    {
-      icon: "ri-settings-5-line",
-      label: "Logout",
-      link: "/settings",
-      toggle: toggleAccount,
-    },
+    // {
+    //   icon: "ri-settings-5-line",
+    //   label: "Logout",
+    //   link: "/settings",
+    //   toggle: toggleAccount,
+    // },
     { icon: "bx bx-left-arrow-circle", label: "Logout", link: "/settings", toggle: toggleLogout },
   ];
 
