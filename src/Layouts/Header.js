@@ -295,7 +295,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
         <div className="card crm-widget">
           <div className="card-body p-0">
             <div
-              className="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0 p-4 "
+              className="row row-col-xxl-5 row-cols-md-3 row-col-1 g-0 p-4 "
               style={{
                 backgroundColor: "#244A59",
                 display: "flex",

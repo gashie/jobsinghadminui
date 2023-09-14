@@ -6,17 +6,22 @@ import { useState, useEffect } from "react";
 
 const JobDetails = () => {
   var [left, setLeft] = useState("");
+  var [width, setWidth] = useState("")
 
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
       setLeft("0rem");
+      setWidth('w-100')
     } else if (newWindowSize <= 1200) {
       setLeft("-10rem");
+      setWidth("w-100")
     } else if (newWindowSize >= 1200) {
       setLeft("-16rem");
-    } else if (newWindowSize > 375) {
+      setWidth("")
+    } else if (newWindowSize === 390) {
       setLeft("");
+      setWidth("")
     }
   };
 
@@ -62,24 +67,17 @@ const JobDetails = () => {
               className="mt-5"
             >
               <CardBody style={{ padding: "" }}>
-                <div
-                  style={{
-                    paddingLeft: "6rem",
-                    paddingRight: "5rem",
-                    paddingTop: "4rem",
-                    paddingBottom: "4rem",
-                  }}
-                >
+                <div className="p-4">
                   <Col xl={10} md={15} xs={20} sm={20}>
-                    <div
-                      className="avatar-sm mb-4 "
-                      style={{ marginLeft: "0rem" }}
-                    >
-                      <div
-                        className="avatar-title bg-light rounded"
-                        style={{ position: "relative", left: "2rem" }}
-                      >
-                        <img src={lash} alt="" className="avatar-xxl" />
+                    <div className="avatar-xl mb-4">
+                      <div className="avatar-title bg-light" style={{}}>
+                     
+                        <img
+                          src={lash}
+                          alt=""
+                          className="avatar-xxl img-fluid"
+                        />
+                       
                       </div>
                     </div>
                     <Link to="#!">
@@ -120,7 +118,8 @@ const JobDetails = () => {
                     >
                       <Button
                         type="button"
-                        className="btn btn-icon btn-soft-light mt-3 p-4"
+                        // className="btn btn-icon btn-soft-light mt-3 p-4"
+                        className={`btn btn-icon btn-soft-light mt-3 p-4 ${width}`}
                         data-bs-toggle="button"
                         aria-pressed="true"
                         style={{
@@ -137,12 +136,13 @@ const JobDetails = () => {
                       </Button>
                       <Link
                         to="/apply"
-                        className="text-center"
+                        
+                        className={` ${width}`}
                         style={{ width: "20%" }}
                       >
                         <Button
                           type="button"
-                          className="btn btn-icon btn-soft-dark mt-3 p-4 "
+                          className={`btn btn-icon btn-soft-light mt-3 p-4 ${width}`}
                           data-bs-toggle="button"
                           aria-pressed="true"
                           style={{
@@ -156,7 +156,7 @@ const JobDetails = () => {
                       </Link>
                       <Button
                         type="button"
-                        className="btn btn-icon btn-soft-light mt-3 p-4 "
+                        className={`btn btn-icon btn-soft-light mt-3 p-4 ${width}`}
                         data-bs-toggle="button"
                         aria-pressed="true"
                         style={{
@@ -178,7 +178,10 @@ const JobDetails = () => {
             </Card>
           </Col>
         </Row>
-        <div className="d-flex" style={{ justifyContent: "center", marginRight: '-0rem' }}>
+        <div
+          className="d-flex"
+          style={{ justifyContent: "center", marginRight: "-0rem" }}
+        >
           <Row
             style={{ display: "flex", width: "87%", justifyContent: "center" }}
             className=""

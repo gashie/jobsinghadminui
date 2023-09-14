@@ -10,7 +10,9 @@ const Footer = () => {
     <React.Fragment>
 
       <footer className="custom-footer bg-light py-5  position-relative">
-        <Container fluid style={{padding: "4rem", paddingLeft: "10rem" }}>
+        <Container fluid 
+        style={{padding: "4rem", paddingLeft: "10rem" }}
+        >
           <Row >
             {/* <Col lg={4} className="mt-4">
               <div>

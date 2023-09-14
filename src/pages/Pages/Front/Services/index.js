@@ -62,14 +62,14 @@ const Services = () => {
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
-      setWidth("10rem");
+      setWidth("10.45rem");
       setLeft("11rem");
     } else if (newWindowSize >= 1200) {
       setWidth("47rem");
 
       setLeft("");
     } else if (newWindowSize > 375) {
-      setWidth("20rem");
+      setWidth("11rem");
       setLeft("");
     }
   };
@@ -91,50 +91,68 @@ const Services = () => {
 
   return (
     <>
-      <div style={{ backgroundColor: "white" }}>
-        <Row className="justify-content-center">
-          <Col
-            xl={20}
-            xs={10}
-            md={20}
-            className="text-bg-size banner-container text-bg-size"
-            style={{height: '45vh'}}
+   
+      <Row className="justify-content-center">
+        <Col
+          xl={20}
+          xs={10}
+          md={20}
+          className="text-bg-size banner-container text-bg-size"
+          style={{ height: "max-content" }}
+        >
+          <div
+            className="white-circle"
+            style={{
+              right: "0.5%",
+              top: "80%",
+              width: "300px",
+              height: "300px",
+            }}
+          ></div>
+
+          {/* </Container> */}
+
+          <div
+            className="m-5 mt-5"
+            style={{
+              display: "grid",
+              justifyContent: "center",
+              zIndex: "99",
+              position: "relative",
+            }}
           >
-            {/* <img
-              src={bg}
-              className="text-bg"
-              alt="bg"
-              style={{ zIndex: "1" }}
-            ></img> */}
+            <h4 style={{ textAlign: "center", color: "white" }}>
+              Career Advice
+            </h4>
+            <p style={{ textAlign: "center", color: "white" }}>
+              Finding jobseeking tips you can actually use.
+            </p>
+          </div>
 
-            {/* <div className="green-circle"></div> */}
-            <div className="white-circle" style={{ right: '0.5%', top: "80%", width: '300px', height: '300px'}}></div>
-
-            <div
-              className="m-5 mt-5"
-              style={{
-                display: "grid",
-                justifyContent: "center",
-                zIndex: "99",
-                position: "relative",
-              }}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              zIndex: "99",
+              position: "relative",
+            }}
+          >
+            <Col
+              md={20}
+              xl={15}
+              // style={{
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   gap: "1rem",
+              //   border: "0px solid black",
+              //   padding: "1rem",
+              //   backgroundColor: "#355765B5",
+              //   borderRadius: "0.2rem",
+              //   width: "max-content",
+              // }}
             >
-              <h4 style={{ textAlign: "center", color: "white" }}>Services</h4>
-              <p style={{ textAlign: "center", color: "white" }}>
-                Finding jobseeking tips you can actually use.
-              </p>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-              }}
-            >
-              <Col
-                md={20}
-                xl={15}
+              <div
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -143,15 +161,11 @@ const Services = () => {
                   padding: "1rem",
                   backgroundColor: "#355765B5",
                   borderRadius: "0.2rem",
+                  width: "max-content",
                 }}
               >
                 <Row>
-                  <Col
-                    md={20}
-                   
-                    style={{ display: "grid", gap: "2rem", zIndex: "1" }}
-                  >
-                    {" "}
+                  <Col md={20} style={{ display: "grid", gap: "2rem" }}>
                     <Link to="/services" className="text-light">
                       <Button
                         style={{
@@ -168,6 +182,7 @@ const Services = () => {
                         Recruitment/Headhunting
                       </Button>
                     </Link>
+
                     <Link
                       to="/services-payroll-management"
                       className="text-light"
@@ -182,7 +197,7 @@ const Services = () => {
                           position: "relative",
                           left: left,
                         }}
-                        className="btn"
+                        className="btn p-3"
                       >
                         Payroll Management
                       </Button>
@@ -190,10 +205,7 @@ const Services = () => {
                   </Col>
                 </Row>
                 <Row>
-                  <Col
-                    md={20}
-                    style={{ display: "grid", gap: "2rem", zIndex: "1" }}
-                  >
+                  <Col md={20} style={{ display: "grid", gap: "2rem" }}>
                     <Link to="/services-outsourcing" className="text-light">
                       <Button
                         style={{
@@ -205,7 +217,7 @@ const Services = () => {
                           position: "relative",
                           right: left,
                         }}
-                        className="btn"
+                        className="btn p-3"
                       >
                         Outsourcing
                       </Button>
@@ -221,37 +233,34 @@ const Services = () => {
                           position: "relative",
                           right: left,
                         }}
-                        className="btn"
+                        className="btn p-3"
                       >
                         Job Posting
                       </Button>
                     </Link>
                   </Col>
                 </Row>
-              </Col>
-            </div>
-          </Col>
-        </Row>
+              </div>
+            </Col>
+          </div>
+        </Col>
+      </Row>
 
-        <Row className="mt-5">
-          <Col>
-         
-              {window.location.pathname === "/services" ? (
-                <ServicesComp />
-              ) : window.location.pathname === "/services-job-posting" ? (
-                <JobPosting />
-              ) : window.location.pathname ===
-                "/services-payroll-management" ? (
-                <PayrollManagement />
-              ) : window.location.pathname === "/services-outsourcing" ? (
-                <Outsourcing />
-              ) : (
-                <p>Page Does Not Exist</p>
-              )}
-          
-          </Col>
-        </Row>
-      </div>
+      <Row className="mt-5">
+        <Col>
+          {window.location.pathname === "/services" ? (
+            <ServicesComp />
+          ) : window.location.pathname === "/services-job-posting" ? (
+            <JobPosting />
+          ) : window.location.pathname === "/services-payroll-management" ? (
+            <PayrollManagement />
+          ) : window.location.pathname === "/services-outsourcing" ? (
+            <Outsourcing />
+          ) : (
+            <p>Page Does Not Exist</p>
+          )}
+        </Col>
+      </Row>
     </>
   );
 };

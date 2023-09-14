@@ -305,7 +305,7 @@ const JobList = (props) => {
 
         <Container fluid style={{ width: "85%" }}>
           <Row>
-            <Col xl={3} lg={4} md={4}>
+            <Col xl={3} lg={4} md={15}>
               <Card>
                 <CardHeader style={{ backgroundColor: "#244a59" }}>
                   <div className="d-flex mb-3">
@@ -332,22 +332,15 @@ const JobList = (props) => {
                           <NavItem>
                             <NavLink
                               onClick={toggleLocations}
-                              className="d-flex align-items-center"
+                              
                             >
                               <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  gap: "6rem",
-                                  color: "black",
-                                  cursor: "pointer",
-                                }}
+                               className="d-flex" style={{justifyContent: "space-between", color: "black"}}
                               >
                                 <div>
                                   <h4
                                     style={{
-                                      marginLeft: "-0.7rem",
-                                      width: "max-content",
+                                    
                                     }}
                                     className="fw-bolder"
                                   >
@@ -357,9 +350,7 @@ const JobList = (props) => {
 
                                 <div
                                   style={{
-                                    position: "relative",
-                                    left: "7rem",
-                                    top: "0.3rem",
+                                   cursor: 'pointer'
                                   }}
                                 >
                                   {locations ? (
@@ -368,6 +359,8 @@ const JobList = (props) => {
                                     <i className="bx bxs-chevron-down fs-16 fw-bolder"></i>
                                   )}
                                 </div>
+
+
                               </div>
                             </NavLink>
                             <Collapse isOpen={locations} className="ml-4">
@@ -467,23 +460,19 @@ const JobList = (props) => {
                           <NavItem>
                             <NavLink
                               onClick={toggleCategory}
-                              className="d-flex align-items-center"
+                             
                             >
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                  gap: "6rem",
-                                  color: "black",
                                   cursor: "pointer",
+                                  color: "black"
                                 }}
                               >
                                 <div>
                                   <h4
-                                    style={{
-                                      marginLeft: "-0.7rem",
-                                      width: "max-content",
-                                    }}
+                                  
                                     className="fw-bolder"
                                   >
                                     Category
@@ -492,9 +481,7 @@ const JobList = (props) => {
 
                                 <div
                                   style={{
-                                    position: "relative",
-                                    left: "7.3rem",
-                                    top: "0.3rem",
+                                  cursor: "pointer"
                                   }}
                                 >
                                   {category ? (
@@ -584,23 +571,20 @@ const JobList = (props) => {
                           <NavItem>
                             <NavLink
                               onClick={toggleType}
-                              className="d-flex align-items-center"
+                            
                             >
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                  gap: "6rem",
+                                
                                   color: "black",
                                   cursor: "pointer",
                                 }}
                               >
                                 <div>
                                   <h4
-                                    style={{
-                                      marginLeft: "-0.7rem",
-                                      width: "max-content",
-                                    }}
+                                  
                                     className="fw-bolder"
                                   >
                                     Job Type
@@ -609,9 +593,7 @@ const JobList = (props) => {
 
                                 <div
                                   style={{
-                                    position: "relative",
-                                    left: "7.5rem",
-                                    top: "0.3rem",
+                                   cursor: "pointer"
                                   }}
                                 >
                                   {type ? (
@@ -692,23 +674,20 @@ const JobList = (props) => {
                           <NavItem>
                             <NavLink
                               onClick={toggleLevel}
-                              className="d-flex align-items-center"
+                            
                             >
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                  gap: "6rem",
+                                
                                   color: "black",
                                   cursor: "pointer",
                                 }}
                               >
                                 <div>
                                   <h4
-                                    style={{
-                                      marginLeft: "-0.7rem",
-                                      width: "max-content",
-                                    }}
+                                 
                                     className="fw-bolder"
                                   >
                                     Job Level
@@ -717,9 +696,7 @@ const JobList = (props) => {
 
                                 <div
                                   style={{
-                                    position: "relative",
-                                    left: "7.3rem",
-                                    top: "0.3rem",
+                                   cursor:"pointer"
                                   }}
                                 >
                                   {level ? (
@@ -798,23 +775,20 @@ const JobList = (props) => {
                           <NavItem>
                             <NavLink
                               onClick={toggleCompanyType}
-                              className="d-flex align-items-center"
+                             
                             >
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                  gap: "6rem",
+                                
                                   color: "black",
                                   cursor: "pointer",
                                 }}
                               >
                                 <div>
                                   <h4
-                                    style={{
-                                      marginLeft: "-0.7rem",
-                                      width: "max-content",
-                                    }}
+                                 
                                     className="fw-bolder"
                                   >
                                     Company Type
@@ -823,9 +797,7 @@ const JobList = (props) => {
 
                                 <div
                                   style={{
-                                    position: "relative",
-                                    left: "4rem",
-                                    top: "0.3rem",
+                                   cursor: "pointer"
                                   }}
                                 >
                                   {companyType ? (
