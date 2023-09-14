@@ -66,74 +66,78 @@ const Dashboard = () => {
 
   return (
     <>
-      <Row style={{ height: "120vh" }}>
-        <Col
-          xxl={11}
-          className="m-0"
-          md={10}
-          xs={15}
-          style={{ position: "relative", top: "-3rem" }}
-        >
-          <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
-            <CardBody>
-              <Nav tabs className="nav-tabs nav-justified mb-3">
-                <NavItem>
-                  <Link to="/job-seeker-dashboard">
-                    <NavLink
-                      style={{ cursor: "pointer", color: "black" }}
-                      className={classnames({ active: justifyTab === "1" })}
-                      onClick={() => {
-                        justifyToggle("1");
-                      }}
-                    >
-                      Dashboard
-                    </NavLink>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link to="/job-seeker-applications">
-                    <NavLink
-                      style={{ cursor: "pointer", color: "black" }}
-                      className={classnames({ active: justifyTab === "2" })}
-                      onClick={() => {
-                        justifyToggle("2");
-                      }}
-                    >
-                      Applications
-                    </NavLink>
-                  </Link>
-                </NavItem>
+      <Col
+        xxl={11}
+        // className="m-0"
+        md={13}
+        xs={15}
+        style={{ position: "relative", top: "1rem" }}
+      >
+        <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
+          <CardBody>
+            <Nav tabs className="nav-tabs nav-justified mb-3">
+              <NavItem>
+                <Link to="/job-seeker-dashboard">
+                  <NavLink
+                    style={{ cursor: "pointer", color: "black" }}
+                    className={classnames({ active: justifyTab === "1" })}
+                    onClick={() => {
+                      justifyToggle("1");
+                    }}
+                  >
+                    Dashboard
+                  </NavLink>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link to="/job-seeker-applications">
+                  <NavLink
+                    style={{ cursor: "pointer", color: "black" }}
+                    className={classnames({ active: justifyTab === "2" })}
+                    onClick={() => {
+                      justifyToggle("2");
+                    }}
+                  >
+                    Applications
+                  </NavLink>
+                </Link>
+              </NavItem>
 
-                <NavItem>
-                  <Link to="/job-seeker-alerts">
-                    <NavLink
-                      style={{ cursor: "pointer", color: "black" }}
-                      className={classnames({ active: justifyTab === "3" })}
-                      onClick={() => {
-                        justifyToggle("3");
-                      }}
-                    >
-                      Alerts
-                    </NavLink>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link to="/job-seeker-saved-jobs">
-                    <NavLink
-                      style={{ cursor: "pointer", color: "black" }}
-                      className={classnames({ active: justifyTab === "4" })}
-                      onClick={() => {
-                        justifyToggle("4");
-                      }}
-                    >
-                      Saved jobs
-                    </NavLink>
-                  </Link>
-                </NavItem>
-              </Nav>
+              <NavItem>
+                <Link to="/job-seeker-alerts">
+                  <NavLink
+                    style={{ cursor: "pointer", color: "black" }}
+                    className={classnames({ active: justifyTab === "3" })}
+                    onClick={() => {
+                      justifyToggle("3");
+                    }}
+                  >
+                    Alerts
+                  </NavLink>
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link to="/job-seeker-saved-jobs">
+                  <NavLink
+                    style={{ cursor: "pointer", color: "black" }}
+                    className={classnames({ active: justifyTab === "4" })}
+                    onClick={() => {
+                      justifyToggle("4");
+                    }}
+                  >
+                    Saved jobs
+                  </NavLink>
+                </Link>
+              </NavItem>
+            </Nav>
 
-              <TabContent activeTab={justifyTab} className="text-muted">
-                <TabPane tabId="1" id="base-justified-home">
+            <TabContent activeTab={justifyTab} className="text-muted">
+              <TabPane
+                tabId="1"
+                id="base-justified-home"
+                style={{ height: "700px", position: "relative" }}
+              >
+                <Row md={20}>
                   <h5 style={{ fontWeight: "bolder" }} className="mt-4">
                     Welcome John,
                   </h5>
@@ -206,7 +210,10 @@ const Dashboard = () => {
                             Sahrenut Procument Officer
                           </h5>
                           <p
-                            style={{ color: "#244a59", fontWeight: "lighter" }}
+                            style={{
+                              color: "#244a59",
+                              fontWeight: "lighter",
+                            }}
                           >
                             Seatech
                           </p>
@@ -263,7 +270,10 @@ const Dashboard = () => {
                             Sahrenut Procument Officer
                           </h5>
                           <p
-                            style={{ color: "#244a59", fontWeight: "lighter" }}
+                            style={{
+                              color: "#244a59",
+                              fontWeight: "lighter",
+                            }}
                           >
                             Seatech
                           </p>
@@ -364,24 +374,36 @@ const Dashboard = () => {
                       </p>
                     </div>
                   </div>
-                </TabPane>
+                </Row>
+              </TabPane>
 
-                <TabPane tabId="2" id="product">
-                  <Applications />
-                </TabPane>
+              <TabPane
+                tabId="2"
+                id="product"
+                style={{ height: "700px", position: "relative" }}
+              >
+                <Applications />
+              </TabPane>
 
-                <TabPane tabId="3" id="base-justified-messages">
-                  <Alerts />
-                </TabPane>
+              <TabPane
+                tabId="3"
+                id="base-justified-messages"
+                style={{ height: "700px", position: "relative" }}
+              >
+                <Alerts />
+              </TabPane>
 
-                <TabPane tabId="4" id="base-justified-settings">
-                  <SavedJobs />
-                </TabPane>
-              </TabContent>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+              <TabPane
+                tabId="4"
+                id="base-justified-settings"
+                style={{ height: "700px", position: "relative" }}
+              >
+                <SavedJobs />
+              </TabPane>
+            </TabContent>
+          </CardBody>
+        </Card>
+      </Col>
     </>
   );
 };

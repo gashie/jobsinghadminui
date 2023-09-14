@@ -288,7 +288,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
 
         {/* Search */}
 
-        {
+        {/* {
            window.location.pathname === "/employer-dashboard" || window.location.pathname === "/employer-profile" || window.location.pathname === "/employer-jobs" || window.location.pathname === "/employer-applications" || window.location.pathname==="/employer-courses" || window.location.pathname === "/employer-transactions" ?  
        ""
         :  <div className="">
@@ -342,7 +342,7 @@ const Header = ({ onChangeLayoutMode, layoutModeType, headerClass }) => {
         </div>
       </div>
 
-                    }
+                    } */}
       </Row>
     </React.Fragment>
   );

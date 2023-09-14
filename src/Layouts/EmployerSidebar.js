@@ -140,7 +140,7 @@ const EmployerSidebar = () => {
 
   return (
     <>
-      <div style={{ marginTop: "2.5rem", height: "" }}>
+      <div style={{ marginTop: "4rem", height: "" }}>
         <div
           className=""
           style={{ backgroundColor: "red", width: "max-content" }}
@@ -201,7 +201,7 @@ const EmployerSidebar = () => {
                       onMouseLeave={removetoggles}
                     ></div>
                     <NavItem
-                      className="sidebar-item p-4"
+                      className="sidebar-item p-3"
                       style={{
                         padding: "0",
                         // borderBottom: "1px solid white",
@@ -223,7 +223,7 @@ const EmployerSidebar = () => {
                           <p style={{ textAlign: "center" }}>
                             <i
                               className={item.icon}
-                              style={{ color: "white", fontSize: "1.5rem" }}
+                              style={{ color: "white", fontSize: "1rem" }}
                             ></i>
                           </p>
                           <h5 style={{ textAlign: "center" }}>

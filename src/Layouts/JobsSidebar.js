@@ -8,6 +8,7 @@ import {
   NavItem,
   Col,
   Container,
+  Row
 } from "reactstrap";
 //import { FaHome, FaUser, FaCog, FaBars } from "react-icons/fa";
 import Footer from "../pages/Pages/JobSeeker/footer";
@@ -140,7 +141,8 @@ const Sidebar = () => {
 
   return (
     <>
-      <div style={{ marginTop: "2.5rem", height: "" }}>
+   
+      <div style={{ marginTop: "4rem", height: ""}}>
         <div
           className=""
           style={{ backgroundColor: "red", width: "max-content" }}
@@ -158,9 +160,12 @@ const Sidebar = () => {
               aria-label="Toggle navigation"
               style={{
                 position: "absolute",
-                top: "-18rem",
-                zIndex: "1",
+                top: "-17rem",
+                zIndex: "99999",
                 boxShadow: "none",
+                backgroundColor: '#244a59',
+               marginRight: "4rem", 
+               color: 'white'
               }}
             >
               <i className="mdi mdi-menu"></i>
@@ -193,7 +198,7 @@ const Sidebar = () => {
                         window.location.pathname === item?.link4
                           ? "#3f494c"
                           : "",
-                        height: "2rem",
+                        height: "1rem",
                         width: "100%",
                         borderTop: "1px solid white",
                         cursor: "pointer",
@@ -201,7 +206,7 @@ const Sidebar = () => {
                       onMouseLeave={removetoggles}
                     ></div>
                     <NavItem
-                      className="sidebar-item p-4"
+                      className="sidebar-item p-3"
                       style={{
                         padding: "0",
                         // borderBottom: "1px solid white",
@@ -223,7 +228,7 @@ const Sidebar = () => {
                           <p style={{ textAlign: "center" }}>
                             <i
                               className={item.icon}
-                              style={{ color: "white", fontSize: "1.5rem" }}
+                              style={{ color: "white", fontSize: "1rem" }}
                             ></i>
                           </p>
                           <h5 style={{ textAlign: "center" }}>
@@ -352,6 +357,7 @@ const Sidebar = () => {
           </Navbar>
         </div>
       </div>
+      
     </>
   );
 };

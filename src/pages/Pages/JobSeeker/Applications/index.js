@@ -5,6 +5,7 @@ import data from "./data";
 const Applications = () => {
   return (
     <>
+   
       <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="mt-3">
         My Applications
       </h5>
@@ -54,6 +55,7 @@ const Applications = () => {
           </Table>
         </div>
       </Col>
+     
     </>
   );
 };

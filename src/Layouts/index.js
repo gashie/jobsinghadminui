@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import withRouter from "../Components/Common/withRouter";
+import { Container, Row, Col } from 'reactstrap'
 
 //import Components
 import Header from "./Header";
@@ -135,28 +136,31 @@ const Layout = (props) => {
 
   return (
     <React.Fragment>
-   
+      <Header />
       <div id="layout-wrapper">
-        <Header
-          headerClass={headerClass}
-          layoutModeType={layoutModeType}
-          // onChangeLayoutMode={onChangeLayoutMode}
-        />
-        {/* <Navbar  /> */}
-        {/* <Sidebar layoutType='vertical' /> */}
-{
-  console.log(window.location.href)
-}
-        {
-        window.location.pathname === "/employer-dashboard" || window.location.pathname === "/employer-profile" || window.location.pathname === "/employer-jobs" || window.location.pathname === "/employer-applications" || window.location.pathname==="/employer-courses" || window.location.pathname === "/employer-transactions" ? <EmployerSidebar /> :
-        <JobsSidebar />
-}
-        <div className="main-content">{props.children}</div>
-        <Footer />
+        <Row>
+          <Row>
+            {window.location.pathname === "/employer-dashboard" ||
+             window.location.pathname === "/employer-profile" ||
+             window.location.pathname === "/employer-jobs" ||
+             window.location.pathname === "/employer-applications" ||
+             window.location.pathname === "/employer-courses" ||
+             window.location.pathname === "/employer-transactions" ? (
+               <Col md="2">
+                 <EmployerSidebar />
+               </Col>
+             ) : (
+               <Col md="2">
+                 <JobsSidebar />
+               </Col>
+             )}
+            <Col md="10">
+              {props.children}
+            </Col>
+          </Row>
+        </Row>
       </div>
-
-      {/* <RightSidebar /> */}
-      
+      <Footer />
     </React.Fragment>
   );
 };
