@@ -121,7 +121,10 @@ const CoverLetters = ({
                     <td>{formatDate(item?.updatedAt) || "-"}</td>
                     <td>
                       <p
-                        onClick={handleEditCoverLetter}
+                        onClick={()=>{
+                          handleEditCoverLetter()
+                          Letter(item)
+                        }}
                         style={{ cursor: "pointer" }}
                       >
                         {" "}
@@ -135,6 +138,7 @@ const CoverLetters = ({
                           color: "red",
                           cursor: "pointer",
                         }}
+                        onClick={handleEditCoverLetter}
                       >
                         Delete
                       </p>

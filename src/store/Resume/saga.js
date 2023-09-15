@@ -23,6 +23,8 @@ import {
   createCvError,
   updateResumeSuccess,
   updateResumeError,
+  updateCvSuccess,
+  updateCvError,
 } from "./action";
 
 import {
@@ -31,6 +33,7 @@ import {
   createResumeURL,
   createCvURL,
   updateResumeURL,
+  updateCvURL,
 } from "../../helpers/fakebackend_helper";
 
 function* viewResumes({ payload: action }) {
@@ -87,7 +90,7 @@ function* createCv({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createCvSuccess());
-      toast.success("Job Alert Created Successfully", {
+      toast.success("Cover Created Successfully", {
         autoClose: 3000,
       });
     } else {
@@ -117,6 +120,24 @@ function* updateResume ({payload}){
   }
 }
 
+function* updateCv ({payload}){
+  try {
+    const response = yield call(updateCvURL, payload);
+
+    if (response && response?.status === 200 && response?.data?.status === 1) {
+      yield put(updateCvSuccess());
+      toast.success("Cover Letter Edit Succesful", {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(updateCvError(response));
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(updateCvError(error));
+  }
+}
+
 function* ResumeSaga() {
 
   yield takeEvery(CREATE_CV, createCv);
@@ -124,6 +145,7 @@ function* ResumeSaga() {
   yield takeEvery(VIEW_CV, viewCv);
   yield takeEvery(VIEW_RESUME, viewResumes);
   yield takeEvery(UPDATE_RESUME, updateResume);
+  yield takeEvery(UPDATE_CV, updateCv);
 }
 
 export default ResumeSaga;

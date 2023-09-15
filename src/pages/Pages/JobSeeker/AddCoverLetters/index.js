@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import {createCv} from '../../../../store/Resume/action'
 import { useEffect } from "react";
 
-const AddCoverLetters = () => {
+const AddCoverLetters = ({handleCoverLetters}) => {
   const dispatch = useDispatch();
 
   const [textFromEditor, setTextFromEditor] = useState("");
@@ -39,7 +39,7 @@ const AddCoverLetters = () => {
     onSubmit: (values) => {
       const data = {
         coverLetterName: values.name,
-        coverLetterDescription: text,
+        coverLetterDescription: textFromEditor,
       };
       // Dispatch an action or perform other operations with the data
       console.log(data);

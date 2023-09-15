@@ -110,9 +110,11 @@ const dispatch = useDispatch()
                   
                 </Dropzone>
 
-<Button classname='btn btn-soft-light' onClick={()=>{
-  handleCreateResume();
-}}>
+<Button classname='btn btn-dark mt-4 w-100' onClick={()=>{
+  handleCreateResume()
+}}
+style={{backgroundColor: '#244159'}}
+>
   Submit
 </Button>
 

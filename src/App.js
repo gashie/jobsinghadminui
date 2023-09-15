@@ -11,6 +11,8 @@ import Route from './Routes';
 
 // Fake Backend 
 import fakeBackend from "./helpers/AuthType/fakeBackend";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Activating fake backend
 // fakeBackend();
@@ -32,6 +34,7 @@ import fakeBackend from "./helpers/AuthType/fakeBackend";
 function App() {
   return (
     <React.Fragment>
+     <ToastContainer />
       <Route />
     </React.Fragment>
   );
