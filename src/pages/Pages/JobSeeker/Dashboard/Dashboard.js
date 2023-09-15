@@ -17,6 +17,7 @@ import Applications from "../Applications";
 import Alerts from "../Alerts";
 import SavedJobs from "../SavedJobs";
 import { Link } from "react-router-dom";
+import {useSelector} from 'react-redux'
 
 const Dashboard = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -63,6 +64,12 @@ const Dashboard = () => {
       window.removeEventListener("resize", updateWindowSize);
     };
   }, []);
+
+   const { loading, error, userInfo } = useSelector((state) => ({
+      loading: state.Login.loading,
+      error: state.Login.error, 
+      userInfo: state.Login.userInfo
+    }));
 
   return (
     <>
@@ -140,7 +147,9 @@ const Dashboard = () => {
               >
                 <Row md={20}>
                   <h5 style={{ fontWeight: "bolder" }} className="mt-4">
-                    Welcome John,
+                    {
+                      loading === false && error === false ? `Welcome, ${userInfo?.userInfo?.username}` : ""
+                    }
                   </h5>
 
                   <div className="d-flex mt-5 gap-2">

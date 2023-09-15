@@ -38,14 +38,15 @@ const Profile = () => {
   const [edit, setEdit] = useState(false);
   return (
     <>
-      <Row style={{ height: "120vh" }}>
-        <Col
-          xxl={11}
-          className="m-0"
-          md={10}
-          xs={15}
-          style={{ position: "relative", top: "-3rem" }}
-        >
+      <Row >
+      <Col
+        xxl={11}
+        // className="m-0"
+        md={13}
+        sm={20}
+        style={{ position: "relative", top: "1rem" }}
+      >
+        
           <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
             <CardBody>
               <Nav tabs className="nav-tabs nav-justified mb-3">
@@ -91,7 +92,10 @@ const Profile = () => {
               </Nav>
 
               <TabContent activeTab={justifyTab} className="text-muted">
-                <TabPane tabId="1" id="base-justified-home">
+                <TabPane tabId="1" id="base-justified-home"
+                 style={{ height: "700px", position: "relative", overflow: 'scroll' }}
+                 className="scroll-change"
+                >
                   <Col xxl={10} xs={12} md={12}>
                     <Card
                       style={{ border: "none", boxShadow: "0px 0px 0px white" }}
@@ -165,11 +169,17 @@ const Profile = () => {
                   </Col>
                 </TabPane>
 
-                <TabPane tabId="2" id="product">
+                <TabPane tabId="2" id="product"
+                 style={{ height: "700px", position: "relative", overflow: 'scroll' }}
+                 className="scroll-change"
+                >
                   <EditProfile />
                 </TabPane>
 
-                <TabPane tabId="3" id="base-justified-messages">
+                <TabPane tabId="3" id="base-justified-messages" 
+                 style={{ height: "700px", position: "relative", overflow: 'scroll' }}
+                 className="scroll-change"
+                >
                   <ChangePassword />
                 </TabPane>
                 {/* 

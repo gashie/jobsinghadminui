@@ -5,6 +5,8 @@ import {
   CREATE_JOB_ALERT,
   CREATE_JOB_ALERT_SUCCESS,
   CREATE_JOB_ALERT_ERROR,
+  UPDATE_JOB_ALERT,
+  UPDATE_JOB_ALERT_SUCCESS,
 } from "./actionTypes";
 
 export const viewjobAlerts = (payload) => {
@@ -44,6 +46,26 @@ export const createJobAlertSuccess = () => {
 export const createJobAlertError = (payload) => {
   return {
     type: CREATE_JOB_ALERT_ERROR,
+    payload: payload,
+  };
+};
+
+export const updateJobAlert = (payload) => {
+  return {
+    type: UPDATE_JOB_ALERT,
+    payload: payload,
+  };
+};
+
+export const updateJobAlertSuccess = () => {
+  return {
+    type: UPDATE_JOB_ALERT_SUCCESS,
+  };
+};
+
+export const updateJobAlertError = (payload) => {
+  return {
+    type: UPDATE_JOB_ALERT_SUCCESS,
     payload: payload,
   };
 };

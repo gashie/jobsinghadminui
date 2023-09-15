@@ -14,7 +14,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 import data from "./data";
-import { createJobAlert, viewjobAlerts } from "../../../../store/actions";
+import { createJobAlert, viewjobAlerts, updateJobAlert } from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -26,11 +26,14 @@ const Alerts = () => {
 
   const dispatch = useDispatch();
 
-  const { jobAlerts, jobAlertsError, jobAlertsLoading } = useSelector(
+  const { jobAlerts, jobAlertsError, jobAlertsLoading, loading, error } = useSelector(
     (state) => ({
       jobAlerts: state.JobAlerts.jobAlerts,
       jobAlertsError: state.JobAlerts.jobAlertsError,
       jobAlertsLoading: state.JobAlerts.jobAlertsLoading,
+      loading: state.JobAlerts.loading,
+      error: state.JobAlerts.error,
+      
     })
   );
 
@@ -149,6 +152,35 @@ const Alerts = () => {
     },
   });
 
+  
+const [deleteItem, setDeleteItem] = useState()
+
+const handleDelete = (item) =>{
+  console.log(item)
+
+
+  setDeleteItem({
+    deleterecord: true, 
+    alertId:item?.alertId, 
+    restore: 0,
+    patch: false, 
+    patchData: {
+      alertName: item?.alertName, 
+      alertKeyword: item?.alertKeyword, 
+      alertKeywordCriteria: item?.alertKeywordCriteria, 
+      runEvery: item?.runEvery, 
+      locationId: item?.locationId, 
+      jobCategoryId: "",
+      jobTypeId: item?.jobTypeId, 
+      experienceLevel: item?.experienceLevel
+    }
+  })
+
+ dispatch(updateJobAlert(deleteItem))
+ dispatch(viewjobAlerts({ viewAction: "" }));
+}
+
+
   return (
     <>
       {create === false ? (
@@ -204,6 +236,11 @@ const Alerts = () => {
                             <p
                               style={{
                                 color: "red",
+                                cursor: 'pointer'
+                              }}
+                              className="fw-pointer"
+                              onClick={()=>{
+                                handleDelete(item)
                               }}
                             >
                               Delete

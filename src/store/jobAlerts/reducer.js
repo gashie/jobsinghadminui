@@ -5,6 +5,9 @@ import {
   CREATE_JOB_ALERT,
   CREATE_JOB_ALERT_ERROR,
   CREATE_JOB_ALERT_SUCCESS,
+  UPDATE_JOB_ALERT, 
+  UPDATE_JOB_ALERT_ERROR, 
+  UPDATE_JOB_ALERT_SUCCESS
 } from "./actionTypes";
 
 const initalState = {
@@ -65,6 +68,28 @@ const JobAlerts = (state = initalState, action) => {
         ...state,
         loading: false,
         error: false,
+      };
+      break;
+    case UPDATE_JOB_ALERT:
+      state = {
+        ...state,
+        loading: true,
+        error: false,
+      };
+      break;
+    case UPDATE_JOB_ALERT_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        error: false,
+      };
+      break;
+    case UPDATE_JOB_ALERT_ERROR:
+      state = {
+        ...state,
+        loading: false,
+        error: false,
+        errorMsg: action.payload
       };
       break;
     default:

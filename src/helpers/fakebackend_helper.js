@@ -433,6 +433,7 @@ export const verifyTokenURL = () =>  api.create(url.VERIFYTOKEN)
 //jobalert
 export const viewJobAlertsURL = (data) => api.create(url.VIEW_JOB_ALERTS, data);
 export const createJobAlertURL = (data) => api.create(url.CREATE_JOB_ALERT, data);
+export const updateJobAlertURL = (data) => api.create(url.UPDATE_JOB_ALERT, data);
 
 //resume and coverletters
 export const viewResumeURL = (data) => api.create(url.VIEW_RESUME, data)

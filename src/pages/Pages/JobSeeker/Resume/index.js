@@ -48,11 +48,20 @@ const Resume = () => {
   const handleEditCoverLetter = () =>{
     justifyToggle("4")
   }
-  const handleViewCoverLetter = () =>{
+  const handleViewCoverLetter = (data) =>{
     justifyToggle("5")
   }
 
-  const [edit, setEdit] = useState(false)
+  const [letter, setLetter] = useState("")
+
+  
+const handleLetter = (data) =>{
+   setLetter(data)
+}
+
+
+
+
   return (
     <>
    
@@ -152,6 +161,7 @@ const Resume = () => {
                 handleAddCoverLetter={handleAddCoverLetter}
                 handleEditCoverLetter={handleEditCoverLetter}
                 handleViewCoverLetter={handleViewCoverLetter}
+                Letter={handleLetter}
                 />
               </TabPane>
 
@@ -173,7 +183,7 @@ const Resume = () => {
                style={{ height: "700px", position: "relative", overflow: "scroll" }}
                className="scroll-change"
               >
-                <ViewCoverLetter />
+                <ViewCoverLetter data={letter}/>
               </TabPane>
             </TabContent>
           </CardBody>
