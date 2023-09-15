@@ -5,9 +5,12 @@ import {
   CREATE_JOB_ALERT,
   CREATE_JOB_ALERT_ERROR,
   CREATE_JOB_ALERT_SUCCESS,
-  UPDATE_JOB_ALERT, 
-  UPDATE_JOB_ALERT_ERROR, 
-  UPDATE_JOB_ALERT_SUCCESS
+  UPDATE_JOB_ALERT,
+  UPDATE_JOB_ALERT_ERROR,
+  UPDATE_JOB_ALERT_SUCCESS,
+  VIEW_SAVED_JOBS_ERROR,
+  VIEW_SAVED_JOBS_SUCCESS,
+  VIEW_SAVED_JOBS,
 } from "./actionTypes";
 
 const initalState = {
@@ -17,6 +20,7 @@ const initalState = {
   jobAlerts: null,
   jobAlertsError: false,
   jobAlertsLoading: false,
+  savedJobs: "",
 };
 
 const JobAlerts = (state = initalState, action) => {
@@ -46,6 +50,31 @@ const JobAlerts = (state = initalState, action) => {
         loading: false,
         jobAlertsLoading: false,
         jobAlerts: action.payload,
+      };
+      break;
+    case VIEW_SAVED_JOBS:
+      state = {
+        ...state,
+        loading: true,
+        error: false,
+      };
+      break;
+    case VIEW_SAVED_JOBS_ERROR:
+      state = {
+        ...state,
+
+        loading: false,
+        errorMsg: action.payload,
+        error: true,
+      };
+      break;
+    case VIEW_SAVED_JOBS_SUCCESS:
+      state = {
+        ...state,
+
+        loading: false,
+        error: false,
+        savedJobs: action.payload,
       };
       break;
     case CREATE_JOB_ALERT:
@@ -89,7 +118,7 @@ const JobAlerts = (state = initalState, action) => {
         ...state,
         loading: false,
         error: false,
-        errorMsg: action.payload
+        errorMsg: action.payload,
       };
       break;
     default:

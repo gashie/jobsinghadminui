@@ -250,3 +250,4 @@ export const VIEW_RESUME = `${version}/myresume/`
 export const CREATE_CV = `${version}/createcv/`
 export const VIEW_CV = `${version}/mycv/`
 export const UPDATE_CV = `${version}/updatecv/`
+export const VIEW_SAVED_JOBS = `${version}/viewmyjobs/`

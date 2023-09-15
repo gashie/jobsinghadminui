@@ -7,6 +7,9 @@ import {
   CREATE_JOB_ALERT_ERROR,
   UPDATE_JOB_ALERT,
   UPDATE_JOB_ALERT_SUCCESS,
+  VIEW_SAVED_JOBS_SUCCESS,
+  VIEW_SAVED_JOBS_ERROR,
+  VIEW_SAVED_JOBS,
 } from "./actionTypes";
 
 export const viewjobAlerts = (payload) => {
@@ -26,6 +29,27 @@ export const viewjobAlertsSuccess = (payload) => {
 export const viewjobAlertsError = (payload) => {
   return {
     type: VIEW_JOB_ALERTS_ERROR,
+    payload: payload,
+  };
+};
+
+export const viewSavedJobs = (payload) => {
+  return {
+    type: VIEW_SAVED_JOBS,
+    payload: payload,
+  };
+};
+
+export const viewSavedJobsSuccess = (payload) => {
+  return {
+    type: VIEW_SAVED_JOBS_SUCCESS,
+    payload: payload,
+  };
+};
+
+export const viewSavedJobsError = (payload) => {
+  return {
+    type: VIEW_SAVED_JOBS_ERROR,
     payload: payload,
   };
 };
@@ -69,3 +93,4 @@ export const updateJobAlertError = (payload) => {
     payload: payload,
   };
 };
+

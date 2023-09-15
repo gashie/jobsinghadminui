@@ -13,9 +13,11 @@ import {
   createJobAlertError,
   updateJobAlertSuccess,
   updateJobAlertError,
+  viewSavedJobsSuccess,
+  viewSavedJobsError,
 } from "./action";
 
-import { viewJobAlertsURL,createJobAlertURL, updateJobAlertURL } from "../../helpers/fakebackend_helper";
+import { viewJobAlertsURL,createJobAlertURL, updateJobAlertURL, viewSavedJobsURL } from "../../helpers/fakebackend_helper";
 
 function* viewJobAlerts ({payload: action}){
   try{
@@ -23,12 +25,40 @@ function* viewJobAlerts ({payload: action}){
  
     if(response && response?.status === 200 && response?.data?.status === 1){
        yield put(viewjobAlertsSuccess(response?.data?.data))
+       toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }else{
       yield put(viewjobAlertsError(response))
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   }catch(error){
     console.log(error)
     yield put(viewjobAlertsError(error))
+  }
+}
+
+
+function* viewSavedJobs ({payload: action}){
+  try{
+    const response  = yield call(viewSavedJobsURL, action);
+ 
+    if(response && response?.status === 200 && response?.data?.status === 1){
+       yield put(viewSavedJobsSuccess(response?.data?.data))
+       toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
+    }else{
+      yield put(viewSavedJobsError(response))
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
+    }
+  }catch(error){
+    console.log(error)
+    yield put(viewSavedJobsError(error))
   }
 }
 
@@ -38,11 +68,14 @@ function *createJobAlert ({payload: data}){
  
     if(response && response?.status === 200 && response?.data?.status === 1){
        yield put(createJobAlertSuccess())
-       toast.success("Job Alert Created Successfully", {
+       toast.success(`${response.message}`, {
         autoClose: 3000,
       });
     }else{
       yield put(createJobAlertError(response))
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   }catch(error){
     console.log(error)
@@ -56,11 +89,14 @@ function* updateJobAlert ({payload}){
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(updateJobAlertSuccess());
-      toast.warning("Job Alert Deleted Successfully", {
+      toast.warning(`${response.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(updateJobAlertError(response));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);

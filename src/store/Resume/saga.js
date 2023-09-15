@@ -42,8 +42,14 @@ function* viewResumes({ payload: action }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(viewResumeSuccess(response?.data));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     } else {
       yield put(viewResumeError(response));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -57,8 +63,14 @@ function* viewCv({ payload: action }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(viewCvSuccess(response?.data?.data));
+       toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     } else {
       yield put(viewCvError(response));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -72,11 +84,14 @@ function* createResume({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createResumeSuccess());
-      toast.success("Job Alert Created Successfully", {
+      toast.success(`${response.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(createResumeError(response));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -90,11 +105,14 @@ function* createCv({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createCvSuccess());
-      toast.success("Cover Created Successfully", {
+      toast.success(`${response.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(createCvError(response));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -108,11 +126,14 @@ function* updateResume ({payload}){
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(updateResumeSuccess());
-      toast.success("Job Alert Created Successfully", {
+      toast.success(`${response.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(updateResumeError(response));
+       toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -126,11 +147,14 @@ function* updateCv ({payload}){
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(updateCvSuccess());
-      toast.success("Cover Letter Edit Succesful", {
+      toast.success(`${response.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(updateCvError(response));
+      toast.success(`${response.message}`, {
+        autoClose: 3000,
+      });
     }
   } catch (error) {
     console.log(error);
