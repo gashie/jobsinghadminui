@@ -240,4 +240,4 @@ export const VERIFYTOKEN = `${version}/auth/`
 
 //jobsekerURLS
 //alerts
-export const VIEW_JOB_ALERTS = `${version}/api/v1/jobs/myjobalert`
+export const VIEW_JOB_ALERTS = `${version}/myjobalert/`
