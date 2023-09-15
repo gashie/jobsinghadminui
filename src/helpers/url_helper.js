@@ -237,3 +237,7 @@ export const TEST_VERIFY = 'http://localhost:9000/'
 //login 
 export const LOGIN = `${version}/login/`
 export const VERIFYTOKEN = `${version}/auth/`
+
+//jobsekerURLS
+//alerts
+export const VIEW_JOB_ALERTS = `${version}/api/v1/jobs/myjobalert`

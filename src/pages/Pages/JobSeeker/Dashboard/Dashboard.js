@@ -70,7 +70,7 @@ const Dashboard = () => {
         xxl={11}
         // className="m-0"
         md={13}
-        xs={15}
+        sm={20}
         style={{ position: "relative", top: "1rem" }}
       >
         <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
@@ -135,7 +135,8 @@ const Dashboard = () => {
               <TabPane
                 tabId="1"
                 id="base-justified-home"
-                style={{ height: "700px", position: "relative" }}
+                style={{ height: "700px", position: "relative", overflow: 'scroll' }}
+                className="scroll-change"
               >
                 <Row md={20}>
                   <h5 style={{ fontWeight: "bolder" }} className="mt-4">

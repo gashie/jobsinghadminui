@@ -1,5 +1,5 @@
 module.exports = {
   api: {
-    API_URL: "",
+    API_URL: ""
   }
 };

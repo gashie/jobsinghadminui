@@ -427,6 +427,8 @@ export const testLoginURL = (user) => api.create(url.TEST_LOGIN, user)
 export const testVerifyURL = () => api.get(url.TEST_VERIFY)
 
 //jobsinGhanaURLS
-
 export const loginURL = (data) => api.create(url.LOGIN, data)
 export const verifyTokenURL = () =>  api.create(url.VERIFYTOKEN)
+
+//jobalert
+export const viewJobAlertsURL = (data) => api.create(url.VIEW_JOB_ALERTS, data);

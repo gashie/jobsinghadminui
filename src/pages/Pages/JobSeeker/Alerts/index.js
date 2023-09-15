@@ -1,11 +1,20 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { Col, Row, Table, Button, Card, CardBody, Container, Input, Label } from "reactstrap";
 import data from "./data";
+import { viewjobAlerts } from '../../../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Alerts = () => {
 
 const [create, setCreate] = useState(false)
+
+const dispatch = useDispatch()
+
+useEffect(()=>{
+    dispatch(viewjobAlerts({viewAction: ""}))
+})
+
 
   return (
     <>

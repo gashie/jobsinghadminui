@@ -6,7 +6,7 @@ import { getMe } from "../store/auth/login/actions";
 import TriggerRoute from "../Routes/TriggerRoute";
 
 // default
-axios.defaults.baseURL = process.env.APP_PROXY;
+axios.defaults.baseURL = "http://108.166.181.225:5050/";
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 // axios.defaults.withCredentials = true;

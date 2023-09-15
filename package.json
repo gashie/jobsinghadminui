@@ -163,5 +163,5 @@
     "babel-plugin-prismjs": "^2.1.0"
   }, 
 
-  "proxy": "http://jobs.asimeglobal.com"
+  "proxy": "http://108.166.181.225:5050/"
 }

@@ -60,6 +60,12 @@ import todos from "./todos/saga";
 import ApplicationSaga from "./job/saga";
 //API Key
 import APIKeysaga from "./apikey/saga";
+
+//jobsingh
+import jobAlertSaga from "./jobAlerts/saga";
+
+
+
 export default function* rootSaga() {
   yield all([
     //public
@@ -89,5 +95,6 @@ export default function* rootSaga() {
     fork(todos),
     fork(ApplicationSaga),
     fork(APIKeysaga),
+    fork(jobAlertSaga)
   ]);
 }

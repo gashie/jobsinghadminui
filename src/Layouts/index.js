@@ -4,7 +4,8 @@ import withRouter from "../Components/Common/withRouter";
 import { Container, Row, Col } from 'reactstrap'
 
 //import Components
-import Header from "./Header";
+//import Header from "./Header";
+
 import Sidebar from "./Sidebar";
 //import Footer from "./Footer";
 import RightSidebar from "../Components/Common/RightSidebar";
@@ -136,7 +137,7 @@ const Layout = (props) => {
 
   return (
     <React.Fragment>
-      <Header />
+      <Navbar />
       <div id="layout-wrapper">
         <Row>
           <Row>

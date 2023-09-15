@@ -68,6 +68,10 @@ import Todos from "./todos/reducer";
 import Jobs from "./job/reducer";
 //API Key
 import APIKey from "./apikey/reducer";
+
+//jobsinGhana
+import JobAlerts from "./jobAlerts/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -97,6 +101,7 @@ const rootReducer = combineReducers({
   Todos,
   Jobs,
   APIKey,
+  JobAlerts
 });
 
 export default rootReducer;
