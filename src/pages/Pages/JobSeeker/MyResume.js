@@ -1,14 +1,16 @@
 import React, {useState} from 'react'
 import Dropzone from 'react-dropzone'
-import {Card, Col, Row} from 'reactstrap'
+import {Card, Col, Row, Button} from 'reactstrap'
 import {Link} from 'react-router-dom'
+import {useDispatch}from 'react-redux'
+import { createResume, updateResume } from '../../../store/actions'
 
 function MyResume() {
+const dispatch = useDispatch()
 
 
 
-
-    const [selectedFilesSelfie, setselectedFilesSelfie] = useState([]);
+    const [file, setfile] = useState([]);
 
     function formatBytes(bytes, decimals = 2) {
         if (bytes === 0) return "0 Bytes";
@@ -29,15 +31,27 @@ function MyResume() {
             formattedSize: formatBytes(file.size),
           })
         );
-        setselectedFilesSelfie(files);
+        setfile(files);
+        console.log(file)
         }
+
+        console.log(file)
+
+    const handleCreateResume = () =>{
+       const formData = new FormData();
+       formData.append('myCv', file[0])
+       formData.append('resumeId', "e527149a-40af-46c7-aa4a-d21d35b5c0c7")
+       formData.append('patch', "true")
+
+      dispatch(updateResume(formData))
+    }
 
     
   return (
     
     <>
    <div className="list-unstyled mb-0" id="file-previews">
-                  {selectedFilesSelfie.map((f, i) => {
+                  {file.map((f, i) => {
                     return (
                       <Card
                         className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
@@ -96,7 +110,11 @@ function MyResume() {
                   
                 </Dropzone>
 
-
+<Button classname='btn btn-soft-light' onClick={()=>{
+  handleCreateResume();
+}}>
+  Submit
+</Button>
 
  </>
   )

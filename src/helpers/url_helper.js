@@ -242,3 +242,10 @@ export const VERIFYTOKEN = `${version}/auth/`
 //alerts
 export const VIEW_JOB_ALERTS = `${version}/myjobalert/`
 export const CREATE_JOB_ALERT = `${version}/createjobalert/`
+//resume & cover letters 
+export const CREATE_RESUME = `${version}/createresume/`
+export const UPDATE_RESUME = `${version}/updateresume/`
+export const VIEW_RESUME = `${version}/myresume/`
+export const CREATE_CV = `${version}/createcv/`
+export const VIEW_CV = `${version}/mycv/`
+export const UPDATE_CV = `${version}/updatecv/`

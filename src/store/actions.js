@@ -53,3 +53,4 @@ export * from "./apikey/action";
 
 //jobsingh
 export * from './jobAlerts/action'
+export * from './Resume/action'

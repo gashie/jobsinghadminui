@@ -71,6 +71,7 @@ import APIKey from "./apikey/reducer";
 
 //jobsinGhana
 import JobAlerts from "./jobAlerts/reducer";
+import Resumes from './Resume/reducer'
 
 const rootReducer = combineReducers({
   // public
@@ -101,7 +102,8 @@ const rootReducer = combineReducers({
   Todos,
   Jobs,
   APIKey,
-  JobAlerts
+  JobAlerts, 
+  Resumes,
 });
 
 export default rootReducer;

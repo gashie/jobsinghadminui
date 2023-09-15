@@ -63,6 +63,7 @@ import APIKeysaga from "./apikey/saga";
 
 //jobsingh
 import jobAlertSaga from "./jobAlerts/saga";
+import ResumeSaga from "./Resume/saga";
 
 
 
@@ -95,6 +96,7 @@ export default function* rootSaga() {
     fork(todos),
     fork(ApplicationSaga),
     fork(APIKeysaga),
-    fork(jobAlertSaga)
+    fork(jobAlertSaga),
+    fork(ResumeSaga),
   ]);
 }
