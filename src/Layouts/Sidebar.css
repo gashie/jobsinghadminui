@@ -4,11 +4,11 @@
   }
   
   .scroll-change::-webkit-scrollbar-track {
-    background: #ebeff0;
+    background: white;
   }
   
   .scroll-change::-webkit-scrollbar-thumb {
-    background: #e0e0e0;
+    background: white;
     border-radius: 5px;
   }
   

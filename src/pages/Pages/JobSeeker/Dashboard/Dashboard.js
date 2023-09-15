@@ -389,7 +389,8 @@ const Dashboard = () => {
               <TabPane
                 tabId="3"
                 id="base-justified-messages"
-                style={{ height: "700px", position: "relative" }}
+                style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                className="scroll-change"
               >
                 <Alerts />
               </TabPane>

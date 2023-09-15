@@ -241,3 +241,4 @@ export const VERIFYTOKEN = `${version}/auth/`
 //jobsekerURLS
 //alerts
 export const VIEW_JOB_ALERTS = `${version}/myjobalert/`
+export const CREATE_JOB_ALERT = `${version}/createjobalert/`

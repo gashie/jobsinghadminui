@@ -10,10 +10,16 @@ import {
   Container,
   Input,
   Label,
+  Form,
+  FormFeedback,
 } from "reactstrap";
 import data from "./data";
-import { viewjobAlerts } from "../../../../store/actions";
+import { createJobAlert, viewjobAlerts } from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Alerts = () => {
   const [create, setCreate] = useState(false);
@@ -32,21 +38,32 @@ const Alerts = () => {
     dispatch(viewjobAlerts({ viewAction: "" }));
   }, [dispatch]);
 
-
-
-//Date formatter
+  //Date formatter
   function formatDate(timestamp) {
     // Create a Date object from the input timestamp
     const date = new Date(timestamp);
-  
+
     // Define months array for formatting
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
     // Get the date components
     const day = date.getDate();
     const month = months[date.getMonth()];
     const year = date.getFullYear();
-  
+
     // Function to add the "st," "nd," "rd," or "th" suffix to the day
     function getDayWithSuffix(day) {
       if (day >= 11 && day <= 13) {
@@ -63,17 +80,80 @@ const Alerts = () => {
           return `${day}th`;
       }
     }
-  
+
     // Format the date in the desired format
     const formattedDate = `${getDayWithSuffix(day)} ${month}, ${year}`;
-  
+
     return formattedDate;
   }
+
+  const [selectedOption, setSelectedOption] = useState("any"); // Default selected option
+  const [selectedFrequency, setSelectedFrequency] = useState("Daily");
+
+  const handleRadioChange = (event) => {
+    event.preventDefault()
+    setSelectedOption(event.target.value);
+  };
+
+  const handleFreqChange = (event) => {
+    event.preventDefault()
+    setSelectedFrequency(event.target.value);
+  };
+
+  //create alert validation form
+  const validation = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      keyword: "",
+      name: "",
+      criteria: selectedOption,
+      frequency: selectedFrequency,
+      location: "",
+      category: "",
+      experience: "",
+      jobType: "",
+    },
+    validateOnChange: true,
+    validationSchema: Yup.object({
+      keyword: Yup.string().required("Please enter a keyword"),
+      name: Yup.string().required("Please enter a name"),
+      criteria: Yup.string().required("Please choose a search criteria"),
+      frequency: Yup.string().required("Please select a frequency"),
+      location: Yup.string().required("Please select a location"),
+      category: Yup.string().required("Please select a category"),
+      experience: Yup.string().required("Please select an experience level"),
+      jobType: Yup.string().required("Please select a job type"),
+    }),
+    onSubmit: (values) => {
+      const alertDetails = {
+        alertName: values.name,
+        alertKeyword: values.keyword,
+        alertKeywordCriteria: values.criteria,
+        runEvery: values.frequency,
+        locationId: values.location,
+        jobCategoryId: "",
+        jobTypeId: values.jobType,
+        experienceLevel: values.experience,
+      };
+      console.log(values);
+
+      dispatch(createJobAlert(alertDetails));
+      toast.success("Job Alert Created Successfully", {
+        autoClose: 3000,
+      });
+      setCreate(false);
+      dispatch(viewjobAlerts({ viewAction: "" }));
+      dispatch(viewjobAlerts({ viewAction: "" }));
+      dispatch(viewjobAlerts({ viewAction: "" }));
+      validation.resetForm();
+    },
+  });
 
   return (
     <>
       {create === false ? (
         <>
+        <ToastContainer />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h5
               style={{ fontWeight: "bolder", color: "#244a59" }}
@@ -134,7 +214,9 @@ const Alerts = () => {
                     </>
                   ))
                 ) : (
-                  <p className="htstack justify-content-center mt-4">Loading Data...</p>
+                  <p className="htstack justify-content-center mt-4">
+                    Loading Data...
+                  </p>
                 )}
               </Table>
             </div>
@@ -142,63 +224,90 @@ const Alerts = () => {
         </>
       ) : (
         <>
-          <p style={{ cursor: "pointer" }} onClick={() => setCreate(false)}>
-            Back
-          </p>
-          <h5
-            style={{ fontWeight: "bolder", color: "#244a59" }}
-            className="mt-3"
-          >
-            Create job Alert
-          </h5>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              validation.handleSubmit();
+              return false;
             }}
           >
-            <Col className="" lg={8}>
-              <Container className="p-5">
-                <Card className="p-5">
-                  <CardBody>
+            <div>
+              <p style={{ cursor: "pointer" }} onClick={() => setCreate(false)}>
+                Back
+              </p>
+              <h5
+                style={{ fontWeight: "bolder", color: "#244a59" }}
+                className="mt-3"
+              >
+                Create job Alert
+              </h5>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Col className="" lg={8}>
+                  <Container className="p-5">
                     <Row className="mb-3">
-                      <Col lg={3}>
-                        <p
-                          htmlFor="nameInput"
-                          className="form-right "
-                          style={{ textAlign: "right" }}
-                        >
-                          Name:
-                        </p>
-                      </Col>
-                      <Col lg={9}>
+                      <Col lg={15}>
+                        <Label htmlFor="useremail" className="form-label">
+                          Name<span className="text-danger">*</span>
+                        </Label>
                         <Input
-                          type="text"
-                          className="form-control"
-                          id="nameInput"
+                          id="name"
+                          name="name"
+                          className="form-control p-3"
                           placeholder="Enter your name"
+                          type="text"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.name || ""}
+                          invalid={
+                            validation.touched.name && validation.errors.name
+                              ? true
+                              : false
+                          }
                         />
+                        {validation.touched.name && validation.errors.name ? (
+                          <FormFeedback type="invalid">
+                            <div>{validation.errors.name}</div>
+                          </FormFeedback>
+                        ) : null}
                       </Col>
                     </Row>
                     <Row className="mb-3">
-                      <Col lg={3}>
+                      <Col lg={15}>
                         <p
                           htmlFor="nameInput"
                           className="form-right "
-                          style={{ textAlign: "right" }}
+                          style={{ textAlign: "left" }}
                         >
                           Keyword:
                         </p>
-                      </Col>
-
-                      <Col lg={9}>
                         <Input
-                          type="url"
-                          className="form-control"
-                          id="websiteUrl"
-                          placeholder="Enter your url"
+                          id="keyword"
+                          name="keyword"
+                          className="form-control p-3"
+                          placeholder="Enter alert keyword"
+                          type="text"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.keyword || ""}
+                          invalid={
+                            validation.touched.keyword &&
+                            validation.errors.keyword
+                              ? true
+                              : false
+                          }
                         />
+                        {validation.touched.keyword &&
+                        validation.errors.keyword ? (
+                          <FormFeedback type="invalid">
+                            <div>{validation.errors.keyword}</div>
+                          </FormFeedback>
+                        ) : null}
                       </Col>
                     </Row>
 
@@ -209,49 +318,47 @@ const Alerts = () => {
                             <p
                               htmlFor="nameInput"
                               className="form-right "
-                              style={{ textAlign: "right" }}
+                              style={{ textAlign: "left" }}
                             >
                               Choose your search criteria
                             </p>
                           </Col>
                         </div>
                         <div>
-                          <Label
-                            className="form-check-label"
-                            for="flexRadioDefault1"
-                          >
+                          <label className="form-check-label">
+                            <input
+                              type="radio"
+                              className="form-check-input"
+                              name="searchCriteria"
+                              value="any"
+                              checked={selectedOption === "any"}
+                              onChange={handleRadioChange}
+                            />
                             Any of these words
-                          </Label>
-                          <Input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                          ></Input>
+                          </label>
                         </div>
                         <div>
-                          <Label
-                            className="form-check-label"
-                            for="flexRadioDefault1"
-                          >
+                          <label className="form-check-label">
+                            <input
+                              type="radio"
+                              className="form-check-input"
+                              name="searchCriteria"
+                              value="all"
+                              checked={selectedOption === "all"}
+                              onChange={handleRadioChange}
+                            />
                             All of these words
-                          </Label>
-                          <Input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                          ></Input>
+                          </label>
                         </div>
                       </div>
                     </Col>
 
-                    <Row className="mb-3 mt-5">
+                    <Row className="mb-3 mt-5 ">
                       <Col lg={3}>
                         <p
                           htmlFor="nameInput"
                           className="form-right "
-                          style={{ textAlign: "right" }}
+                          style={{ textAlign: "left" }}
                         >
                           Get job alerts
                         </p>
@@ -259,46 +366,55 @@ const Alerts = () => {
                       <Col lg={9}>
                         <div className="d-flex gap-5 form-check">
                           <div>
-                            <Input
-                              className="form-check-input"
+                            <input
                               type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                            ></Input>
-                            <Label
+                              className="form-check-input"
+                              name="frequencyRadio"
+                              id="dailyRadio"
+                              value="daily"
+                              checked={selectedFrequency === "daily"}
+                              onChange={handleFreqChange}
+                            />
+                            <label
                               className="form-check-label"
-                              for="flexRadioDefault1"
+                              htmlFor="dailyRadio"
                             >
                               Daily
-                            </Label>
+                            </label>
                           </div>
                           <div>
-                            <Input
-                              className="form-check-input"
+                            <input
                               type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                            ></Input>
-                            <Label
+                              className="form-check-input"
+                              name="frequencyRadio"
+                              id="weeklyRadio"
+                              value="weekly"
+                              checked={selectedFrequency === "weekly"}
+                              onChange={handleFreqChange}
+                            />
+                            <label
                               className="form-check-label"
-                              for="flexRadioDefault1"
+                              htmlFor="weeklyRadio"
                             >
                               Weekly
-                            </Label>
+                            </label>
                           </div>
                           <div>
-                            <Input
-                              className="form-check-input"
+                            <input
                               type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                            ></Input>
-                            <Label
+                              className="form-check-input"
+                              name="frequencyRadio"
+                              id="monthlyRadio"
+                              value="monthly"
+                              checked={selectedFrequency === "monthly"}
+                              onChange={handleFreqChange}
+                            />
+                            <label
                               className="form-check-label"
-                              for="flexRadioDefault1"
+                              htmlFor="monthlyRadio"
                             >
                               Monthly
-                            </Label>
+                            </label>
                           </div>
                         </div>
                       </Col>
@@ -309,15 +425,21 @@ const Alerts = () => {
                         <p
                           htmlFor="nameInput"
                           className="form-right "
-                          style={{ textAlign: "right" }}
+                          style={{ textAlign: "left" }}
                         >
                           Location:
                         </p>
                       </Col>
+
                       <Col lg={9}>
                         <select
-                          className="form-select mb-3"
-                          aria-label="Default"
+                          id="location"
+                          name="location"
+                          className="form-select mb-3 p-3"
+                          aria-label="Location"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.location}
                         >
                           <option>Select Question Type</option>
                           <option>Account Information</option>
@@ -326,20 +448,26 @@ const Alerts = () => {
                         </select>
                       </Col>
                     </Row>
+
                     <Row className="mb-3">
                       <Col lg={3}>
                         <p
                           htmlFor="nameInput"
                           className="form-right "
-                          style={{ textAlign: "right" }}
+                          style={{ textAlign: "left" }}
                         >
                           Job category:
                         </p>
                       </Col>
                       <Col lg={9}>
                         <select
-                          className="form-select mb-3"
+                          id="category"
+                          name="category"
+                          className="form-select mb-3 p-3"
                           aria-label="Default"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.category}
                         >
                           <option>All job Categories</option>
                           <option>Accounting</option>
@@ -374,15 +502,20 @@ const Alerts = () => {
                         <p
                           htmlFor="nameInput"
                           className="form-right "
-                          style={{ textAlign: "right" }}
+                          style={{ textAlign: "left" }}
                         >
                           Job type:
                         </p>
                       </Col>
                       <Col lg={9}>
                         <select
-                          className="form-select mb-3"
+                          id="jobType"
+                          name="jobType"
+                          className="form-select mb-3 p-3"
                           aria-label="Default"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.jobType}
                         >
                           <option>Any time</option>
                           <option>Full-time</option>
@@ -401,15 +534,20 @@ const Alerts = () => {
                         <p
                           htmlFor="nameInput"
                           className="form-right "
-                          style={{ textAlign: "right" }}
+                          style={{ textAlign: "left" }}
                         >
                           Any Experience:
                         </p>
                       </Col>
                       <Col lg={9}>
                         <select
-                          className="form-select mb-3"
-                          aria-label="Default"
+                          id="experience"
+                          name="experience"
+                          className="form-select mb-3 p-3"
+                          aria-label="Experience"
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.experience}
                         >
                           <option>Any experience</option>
                           <option>1 year</option>
@@ -421,20 +559,18 @@ const Alerts = () => {
                       </Col>
                     </Row>
 
-                    <div className="text-start">
-                      <button
-                        type="submit"
-                        className="btn btn-dark"
-                        style={{ backgroundColor: "#244a59" }}
-                      >
-                        Create job alert
-                      </button>
-                    </div>
-                  </CardBody>
-                </Card>
-              </Container>
-            </Col>
-          </div>
+                    <button
+                      type="submit"
+                      className="btn btn-dark"
+                      style={{ backgroundColor: "#244a59" }}
+                    >
+                      Create job alert
+                    </button>
+                  </Container>
+                </Col>
+              </div>
+            </div>
+          </Form>
         </>
       )}
     </>

@@ -2,6 +2,9 @@ import {
   VIEW_JOB_ALERTS,
   VIEW_JOB_ALERTS_SUCCESS,
   VIEW_JOB_ALERTS_ERROR,
+  CREATE_JOB_ALERT,
+  CREATE_JOB_ALERT_ERROR,
+  CREATE_JOB_ALERT_SUCCESS,
 } from "./actionTypes";
 
 const initalState = {
@@ -29,7 +32,8 @@ const JobAlerts = (state = initalState, action) => {
         jobAlertsError: true,
         jobAlertsLoading: false,
         loading: false,
-        error: action.payload,
+        errorMsg: action.payload,
+        error: true,
       };
       break;
     case VIEW_JOB_ALERTS_SUCCESS:
@@ -41,6 +45,28 @@ const JobAlerts = (state = initalState, action) => {
         jobAlerts: action.payload,
       };
       break;
+    case CREATE_JOB_ALERT:
+      state = {
+        ...state,
+        loading: true,
+        error: false,
+      };
+      break;
+    case CREATE_JOB_ALERT_ERROR:
+      state = {
+        ...state,
+        loading: false,
+        error: true,
+        errorMsg: action.payload,
+      };
+      break;
+    case CREATE_JOB_ALERT_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        error: false,
+      };
+      break;
     default:
       state = { ...state };
       break;
@@ -48,4 +74,4 @@ const JobAlerts = (state = initalState, action) => {
   return state;
 };
 
-export default JobAlerts
+export default JobAlerts;

@@ -34,8 +34,7 @@ const JobSeekerLogin = () => {
   const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
   const userInfo = useSelector((state)=> state.Login.userInfo)
 
-  console.log('trigger')
-
+ 
   useEffect(() => {
     if (isLoggedIn && userInfo?.userInfo?.roleid === 3) {
       // Dispatch the getMe action when the user is logged in
