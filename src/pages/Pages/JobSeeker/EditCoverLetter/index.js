@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Editor from "./Editor";
-import { updateCv } from "../../../../store/actions";
+import { updateCv, viewCv } from "../../../../store/actions";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
@@ -42,7 +42,7 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
     onSubmit: (values) => {
       const editData = {
         coverLetterName: data?.coverLetterName,
-        coverLetterDescription: textFromEditor,
+        coverLetterDescription: text,
 
         deleterecord: false,
         restore: 0,
@@ -50,13 +50,21 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
         patch: true,
         patchData: {
           coverLetterName: values.name,
-          coverLetterDescription: textFromEditor,
+          coverLetterDescription: text,
         },
       };
+      dispatch(viewCv({viewAction: ""}))
+      dispatch(viewCv({viewAction: ""}))
       // Dispatch an action or perform other operations with the data
       console.log(editData);
+      
       dispatch(updateCv(editData));
-      handleCoverLetters();
+      
+      if(dispatch(viewCv({viewAction: ""}))){
+        handleCoverLetters();
+      }
+    
+    
       validation.resetForm();
     },
   });

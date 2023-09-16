@@ -11,6 +11,9 @@ import {
   TEST_VERIFY_FAIL,
   GET_ME_SUCCESS,
   GET_ME_FAIL,
+  UPDATE_PROFILE,
+  UPDATE_PROFILE_ERROR,
+  UPDATE_PROFILE_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
@@ -22,7 +25,6 @@ const initialState = {
   loggedIn: false,
   errorUserinfo: null,
   loadingUserinfo: null,
-
   verifyInfo: false,
   verifyLoading: false,
   verifyError: null,
@@ -43,7 +45,7 @@ const login = (state = initialState, action) => {
         loading: false,
         error: false,
         logeedIn: true,
-        userInfo: action.payload
+        userInfo: action.payload,
       };
       break;
     case LOGIN_RESET:
@@ -119,6 +121,27 @@ const login = (state = initialState, action) => {
         loading: false,
         error: false,
       };
+      break;
+
+    case UPDATE_PROFILE:
+      state = {...state, 
+        loading: true,
+        error: false,
+      };
+      break;
+    case UPDATE_PROFILE_ERROR:
+      state = {...state, 
+        loading: false,
+        errorMsg: action.payload,
+        error: false,
+      };
+      break;
+      case UPDATE_PROFILE_SUCCESS: 
+      state={
+        ...state, 
+        loading: false, 
+        error: false
+      }
       break;
     default:
       state = { ...state };

@@ -11,7 +11,10 @@ import {
   TEST_VERIFY_FAIL,
   GET_ME_SUCCESS,
   GET_ME_FAIL,
-  GET_ME
+  GET_ME,
+  UPDATE_PROFILE,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_ERROR
 } from "./actionTypes";
 
 
@@ -100,5 +103,17 @@ export const getMeError = (error) => ({
 
 export const getMe = () =>({
   type: GET_ME
+})
+
+export const updateProfile = () =>({
+  type: UPDATE_PROFILE
+})
+
+export const updateProfileSuccess = () =>({
+  type: UPDATE_PROFILE_SUCCESS
+})
+export const updateProfileError = (error) =>({
+  type: UPDATE_PROFILE_ERROR,
+  payload: error
 })
 

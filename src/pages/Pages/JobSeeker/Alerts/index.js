@@ -15,7 +15,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Spinner
+  Spinner,
 } from "reactstrap";
 import data from "./data";
 import {
@@ -28,6 +28,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import locations from "../../../../common/data/cities.json";
 
 const Alerts = () => {
   const [create, setCreate] = useState(false);
@@ -99,14 +100,14 @@ const Alerts = () => {
   const [selectedOption, setSelectedOption] = useState("any"); // Default selected option
   const [selectedFrequency, setSelectedFrequency] = useState("Daily");
 
-  const handleRadioChange = (event) => {
-    event.preventDefault();
-    setSelectedOption(event.target.value);
+  const handleRadioChange = (e) => {
+    e.preventDefault();
+    setSelectedOption(e.target.value);
   };
 
-  const handleFreqChange = (event) => {
-    event.preventDefault();
-    setSelectedFrequency(event.target.value);
+  const handleFreqChange = (e) => {
+    e.preventDefault();
+    setSelectedFrequency(e.target.value);
   };
 
   //create alert validation form
@@ -126,12 +127,12 @@ const Alerts = () => {
     validationSchema: Yup.object({
       keyword: Yup.string().required("Please enter a keyword"),
       name: Yup.string().required("Please enter a name"),
-      criteria: Yup.string().required("Please choose a search criteria"),
-      frequency: Yup.string().required("Please select a frequency"),
-      location: Yup.string().required("Please select a location"),
-      category: Yup.string().required("Please select a category"),
-      experience: Yup.string().required("Please select an experience level"),
-      jobType: Yup.string().required("Please select a job type"),
+      // criteria: Yup.string().required("Please choose a search criteria"),
+      // frequency: Yup.string().required("Please select a frequency"),
+      // location: Yup.string().required("Please select a location"),
+      // category: Yup.string().required("Please select a category"),
+      // experience: Yup.string().required("Please select an experience level"),
+      // jobType: Yup.string().required("Please select a job type"),
     }),
     onSubmit: (values) => {
       const alertDetails = {
@@ -147,17 +148,14 @@ const Alerts = () => {
       console.log(values);
 
       dispatch(createJobAlert(alertDetails));
-      toast.success("Job Alert Created Successfully", {
-        autoClose: 3000,
-      });
+
       setCreate(false);
       dispatch(viewjobAlerts({ viewAction: "" }));
       dispatch(viewjobAlerts({ viewAction: "" }));
       dispatch(viewjobAlerts({ viewAction: "" }));
-      validation.resetForm();
+      // validation.resetForm();
     },
   });
-
 
   const [deleteItem, setDeleteItem] = useState();
   const [editItem, setEditItem] = useState();
@@ -179,12 +177,12 @@ const Alerts = () => {
     validationSchema: Yup.object({
       keyword: Yup.string().required("Please enter a keyword"),
       name: Yup.string().required("Please enter a name"),
-      criteria: Yup.string().required("Please choose a search criteria"),
-      frequency: Yup.string().required("Please select a frequency"),
-      location: Yup.string().required("Please select a location"),
-      category: Yup.string().required("Please select a category"),
-      experience: Yup.string().required("Please select an experience level"),
-      jobType: Yup.string().required("Please select a job type"),
+      // criteria: Yup.string().required("Please choose a search criteria"),
+      // frequency: Yup.string().required("Please select a frequency"),
+      // location: Yup.string().required("Please select a location"),
+      // category: Yup.string().required("Please select a category"),
+      // experience: Yup.string().required("Please select an experience level"),
+      // jobType: Yup.string().required("Please select a job type"),
     }),
     onSubmit: (values) => {
       const alertDetails = {
@@ -202,18 +200,16 @@ const Alerts = () => {
           jobTypeId: values.jobType,
           experienceLevel: values.experience,
         },
-      }
-    
+      };
+
       dispatch(updateJobAlert(alertDetails));
-    
+
       setCreate(false);
       dispatch(viewjobAlerts({ viewAction: "" }));
       setmodal_grid(false);
       editValidation.resetForm();
     },
   });
-
-  
 
   const handleDelete = (item) => {
     console.log(item);
@@ -234,29 +230,28 @@ const Alerts = () => {
         experienceLevel: item?.experienceLevel,
       },
     });
-
+    dispatch(viewjobAlerts({ viewAction: "" }));
     dispatch(updateJobAlert(deleteItem));
     dispatch(viewjobAlerts({ viewAction: "" }));
   };
 
   const handleEdit = (item) => {
-
     setEditItem({
-        deleterecord: false,
-        alertId: item?.alertId,
-        restore: 0,
-        patch: false,
-        patchData: {
-          alertName: item?.alertName,
-          alertKeyword: item?.alertKeyword,
-          alertKeywordCriteria: item?.alertKeywordCriteria,
-          runEvery: item?.runEvery,
-          locationId: item?.locationId,
-          jobCategoryId: "",
-          jobTypeId: item?.jobTypeId,
-          experienceLevel: item?.experienceLevel,
-        },
-      })
+      deleterecord: false,
+      alertId: item?.alertId,
+      restore: 0,
+      patch: false,
+      patchData: {
+        alertName: item?.alertName,
+        alertKeyword: item?.alertKeyword,
+        alertKeywordCriteria: item?.alertKeywordCriteria,
+        runEvery: item?.runEvery,
+        locationId: item?.locationId,
+        jobCategoryId: "",
+        jobTypeId: item?.jobTypeId,
+        experienceLevel: item?.experienceLevel,
+      },
+    });
     // dispatch(
     //   updateJobAlert({
     //     deleterecord: false,
@@ -277,7 +272,7 @@ const Alerts = () => {
     // );
   };
 
-  console.log(editItem, 343434)
+  console.log(editItem, 343434);
 
   const [modal_grid, setmodal_grid] = useState(false);
 
@@ -322,58 +317,69 @@ const Alerts = () => {
                   </tr>
                 </thead>
                 {jobAlertsError === false && jobAlertsLoading === false ? (
-                  jobAlerts?.map((item, key) => (
-                    <>
-                      <tbody key={key}>
-                        <tr>
-                          <th scope="row">
-                            <Link to="#" className="fw-medium">
-                              {item?.alertName}
-                            </Link>
-                          </th>
+  jobAlerts?.map((item, key) => (
+    <tr key={key}>
+      <th scope="row">
+        <Link to="#" className="fw-medium">
+          {item?.alertName}
+        </Link>
+      </th>
+      <td>{formatDate(item?.createdAt)}</td>
+      <td>
+        {item?.updatedAt === null
+          ? "No updates made yet"
+          : formatDate(item?.updatedAt)}
+      </td>
+      <td>{item?.jobTypeId}</td>
+      <td
+        style={{
+          cursor: "pointer",
+        }}
+        className="fw-pointer"
+        onClick={() => {
+          handleEdit(item);
+          setmodal_grid(true);
+        }}
+      >
+        Edit
+      </td>
+      <td
+        style={{
+          color: "red",
+          cursor: "pointer",
+        }}
+        className="fw-pointer"
+        onClick={() => {
+          handleDelete(item);
+        }}
+      >
+        Delete
+      </td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td colSpan="7" className="text-center mt-5">
+      <div className="d-flex align-items-center justify-content-center">
+        {jobAlerts?.length > 1 ? (
+          <Spinner
+            size="lg"
+            className="me-2 mt-5"
+            style={{ color: "#244a59" }}
+          >
+            Loading...
+            {console.log(jobAlerts.length)}
+          </Spinner>
+        ) : (
+          <p className="fw-light mt-5">
+            You currently don't have any Job alerts.
+          </p>
+        )}
+      </div>
+    </td>
+  </tr>
+)}
 
-                          <td>{formatDate(item?.createdAt)}</td>
-                          <td>{formatDate(item?.updatedAt)}</td>
-                          <td>{item?.jobTypeId}</td>
-                          <td
-                            style={{
-                              cursor: "pointer",
-                            }}
-                            className="fw-pointer"
-                            onClick={() => {
-                              handleEdit(item)
-                              setmodal_grid(true);
-                            }}
-                          >
-                            Edit
-                          </td>
-                          <td
-                            style={{
-                              color: "red",
-                              cursor: "pointer",
-                            }}
-                            className="fw-pointer"
-                            onClick={() => {
-                              handleDelete(item);
-                            }}
-                          >
-                            Delete
-                          </td>
-                        </tr>
-                      </tbody>
-                    </>
-                  ))
-                ) : (
-                  <tr>
-                  <td colSpan="7" className="text-center mt-5">
-                    <div className="d-flex align-items-center justify-content-center">
-                      <Spinner size="lg" className="me-2 mt-5" style={{color: "#244a59"}}>
-                        Loading...
-                      </Spinner>
-                    </div>
-                  </td>
-                </tr>
-                )}
               </Table>
             </div>
           </Col>
@@ -408,7 +414,7 @@ const Alerts = () => {
                   <Container className="p-5">
                     <Row className="mb-3">
                       <Col lg={15}>
-                        <Label htmlFor="useremail" className="form-label">
+                        <Label className="form-label">
                           Name<span className="text-danger">*</span>
                         </Label>
                         <Input
@@ -468,11 +474,10 @@ const Alerts = () => {
                     </Row>
 
                     <Col lg={10}>
-                      <div className="d-flex gap-5 form-check">
+                      <div className="d-flex gap-5 ">
                         <div>
                           <Col lg={20}>
                             <p
-                              htmlFor="nameInput"
                               className="form-right "
                               style={{ textAlign: "left" }}
                             >
@@ -485,10 +490,9 @@ const Alerts = () => {
                             <input
                               type="radio"
                               className="form-check-input"
-                              name="searchCriteria"
                               value="any"
                               checked={selectedOption === "any"}
-                              onChange={handleRadioChange}
+                              onChange={validation.handleChange}
                             />
                             Any of these words
                           </label>
@@ -498,10 +502,9 @@ const Alerts = () => {
                             <input
                               type="radio"
                               className="form-check-input"
-                              name="searchCriteria"
                               value="all"
                               checked={selectedOption === "all"}
-                              onChange={handleRadioChange}
+                              onChange={validation.handleChange}
                             />
                             All of these words
                           </label>
@@ -512,7 +515,6 @@ const Alerts = () => {
                     <Row className="mb-3 mt-5 ">
                       <Col lg={3}>
                         <p
-                          htmlFor="nameInput"
                           className="form-right "
                           style={{ textAlign: "left" }}
                         >
@@ -597,10 +599,16 @@ const Alerts = () => {
                           onBlur={validation.handleBlur}
                           value={validation.values.location}
                         >
-                          <option>Select Question Type</option>
-                          <option>Account Information</option>
-                          <option>Advertising</option>
-                          <option>Applying to a job</option>
+                          <option value="">Select Location</option>
+                          {Object.entries(locations).map(([region, cities]) => (
+                            <optgroup label={region} key={region}>
+                              {cities.map((city) => (
+                                <option key={city} value={city}>
+                                  {city}
+                                </option>
+                              ))}
+                            </optgroup>
+                          ))}
                         </select>
                       </Col>
                     </Row>
@@ -775,18 +783,20 @@ const Alerts = () => {
                           id="name"
                           name="name"
                           className="form-control p-3"
-                          placeholder= {editItem?.patchData?.alertName}
+                          placeholder={editItem?.patchData?.alertName}
                           type="text"
                           onChange={editValidation.handleChange}
                           onBlur={editValidation.handleBlur}
                           value={editValidation.values.name}
                           invalid={
-                            editValidation.touched.name && editValidation.errors.name
+                            editValidation.touched.name &&
+                            editValidation.errors.name
                               ? true
                               : false
                           }
                         />
-                        {editValidation.touched.name && editValidation.errors.name ? (
+                        {editValidation.touched.name &&
+                        editValidation.errors.name ? (
                           <FormFeedback type="invalid">
                             <div>{editValidation.errors.name}</div>
                           </FormFeedback>
@@ -953,14 +963,20 @@ const Alerts = () => {
                           name="location"
                           className="form-select mb-3 p-3"
                           aria-label="Location"
-                          onChange={editValidation.handleChange}
-                          onBlur={editValidation.handleBlur}
-                          value={editValidation.values.location}
+                          onChange={validation.handleChange}
+                          onBlur={validation.handleBlur}
+                          value={validation.values.location}
                         >
-                          <option>Select Question Type</option>
-                          <option>Account Information</option>
-                          <option>Advertising</option>
-                          <option>Applying to a job</option>
+                          <option value="">Select Location</option>
+                          {Object.entries(locations).map(([region, cities]) => (
+                            <optgroup label={region} key={region}>
+                              {cities.map((city) => (
+                                <option key={city} value={city}>
+                                  {city}
+                                </option>
+                              ))}
+                            </optgroup>
+                          ))}
                         </select>
                       </Col>
                     </Row>

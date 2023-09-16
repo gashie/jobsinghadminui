@@ -6,7 +6,7 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import {createCv} from '../../../../store/Resume/action'
+import {createCv, viewCv} from '../../../../store/Resume/action'
 import { useEffect } from "react";
 
 const AddCoverLetters = ({handleCoverLetters}) => {
@@ -39,11 +39,15 @@ const AddCoverLetters = ({handleCoverLetters}) => {
     onSubmit: (values) => {
       const data = {
         coverLetterName: values.name,
-        coverLetterDescription: textFromEditor,
+        coverLetterDescription: text,
       };
+
+      console.log(text)
       // Dispatch an action or perform other operations with the data
       console.log(data);
       dispatch(createCv(data))
+      dispatch(viewCv({viewAction: ""}))
+      handleCoverLetters()
       validation.resetForm();
     },
     

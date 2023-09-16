@@ -80,6 +80,7 @@ function* createResume({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createResumeSuccess());
+      console.log(response)
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
@@ -122,12 +123,13 @@ function* updateResume ({payload}){
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(updateResumeSuccess());
+      console.log(response)
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(updateResumeError(response));
-       toast.error(`$response?.data?.message}`, {
+      toast.error(`${response?.data?.message}. Please Try Again`, {
         autoClose: 3000,
       });
     }

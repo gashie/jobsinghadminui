@@ -138,7 +138,12 @@ const CoverLetters = ({
                     </th>
 
                     <td>{formatDate(item?.createdAt)}</td>
-                    <td>{formatDate(item?.updatedAt) || "-"}</td>
+                    <td>
+                      {" "}
+                      {item?.updatedAt === null
+                        ? "No updates made yet"
+                        : formatDate(item?.updatedAt)}
+                    </td>
                     <td>
                       <p
                         onClick={() => {
@@ -192,14 +197,18 @@ const CoverLetters = ({
                 ))
               ) : (
                 <tr>
-                <td colSpan="7" className="text-center mt-5">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <Spinner size="lg" className="me-2 mt-5" style={{color: "#244a59"}}>
-                      Loading...
-                    </Spinner>
-                  </div>
-                </td>
-              </tr>
+                  <td colSpan="7" className="text-center mt-5">
+                    <div className="d-flex align-items-center justify-content-center">
+                      <Spinner
+                        size="lg"
+                        className="me-2 mt-5"
+                        style={{ color: "#244a59" }}
+                      >
+                        Loading...
+                      </Spinner>
+                    </div>
+                  </td>
+                </tr>
               )}
             </tbody>
           </Table>

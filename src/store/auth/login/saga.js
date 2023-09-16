@@ -15,6 +15,8 @@ import {
   loginSuccess,
   logoutUserSuccess,
   testVerifySuccess,
+  updateProfileError,
+  updateProfileSuccess,
 } from "./actions";
 
 
@@ -27,6 +29,7 @@ import {
   postSocialLogin,
   testLoginURL,
   testVerifyURL,
+  updateProfileURL,
   verifyTokenURL,
 } from "../../../helpers/fakebackend_helper";
 
@@ -35,6 +38,9 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Nav = (location) =>{
@@ -190,6 +196,27 @@ function* loginUser({ payload: user }) {
     }
   } catch (error) {
     console.log(error);
+  }
+}
+
+function* updateProfile({payload: data}){
+  try {
+    const response = yield call(updateProfile, data);
+
+    if (response && response?.status === 200 && response?.data?.status === 1) {
+      yield put(updateProfileSuccess());
+      toast.warning(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(updateProfileError(response));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(updateProfileError(error));
   }
 }
 

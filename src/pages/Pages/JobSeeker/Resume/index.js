@@ -56,6 +56,8 @@ const Resume = () => {
     justifyToggle("2")
   }
 
+  
+
   const [letter, setLetter] = useState("")
 
   
@@ -173,7 +175,7 @@ const handleLetter = (data) =>{
                style={{ height: "700px", position: "relative", overflow: "scroll" }}
                className="scroll-change"
               >
-                <AddCoverLetters />
+                <AddCoverLetters  handleCoverLetters={handleCoverLetters}/>
               </TabPane>
 
               <TabPane tabId="4" id="base-justified-settings"

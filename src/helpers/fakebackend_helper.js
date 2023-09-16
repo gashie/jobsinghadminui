@@ -444,3 +444,5 @@ export const viewCvURL = (data) => api.create(url.VIEW_CV, data)
 export const updateCvURL = (data) => api.create(url.UPDATE_CV, data)
 export const viewSavedJobsURL = (data) => api.create(url.VIEW_SAVED_JOBS, data)
 
+export const updateProfileURL = (data) => api.create(url.UPDATE_PROFILE, data)
+export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data)

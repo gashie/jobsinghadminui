@@ -251,3 +251,6 @@ export const CREATE_CV = `${version}/createcv/`
 export const VIEW_CV = `${version}/mycv/`
 export const UPDATE_CV = `${version}/updatecv/`
 export const VIEW_SAVED_JOBS = `${version}/viewmyjobs/`
+//user-profile
+export const UPDATE_PROFILE = `${version}/updateuser/`
+export const CHANGE_PASSWORD = `${version}/sendresetcode/`
