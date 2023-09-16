@@ -15,6 +15,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
+  Spinner
 } from "reactstrap";
 import data from "./data";
 import {
@@ -363,9 +364,15 @@ const Alerts = () => {
                     </>
                   ))
                 ) : (
-                  <p className="htstack justify-content-center mt-4">
-                  { jobAlerts.length === 0 ? <p>no Data</p> : <p>Loading</p> }
-                  </p>
+                  <tr>
+                  <td colSpan="7" className="text-center mt-5">
+                    <div className="d-flex align-items-center justify-content-center">
+                      <Spinner size="lg" className="me-2 mt-5" style={{color: "#244a59"}}>
+                        Loading...
+                      </Spinner>
+                    </div>
+                  </td>
+                </tr>
                 )}
               </Table>
             </div>

@@ -5,6 +5,7 @@ import { CREATE_JOB_ALERT, UPDATE_JOB_ALERT, VIEW_JOB_ALERTS, VIEW_SAVED_JOBS } 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 import {
   viewjobAlerts,
   viewjobAlertsSuccess,

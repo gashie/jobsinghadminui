@@ -2,9 +2,9 @@ import { Table, Button, Col } from "reactstrap";
 import data from "./data";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { viewCv, updateCv,  } from "../../../../store/actions";
+import { viewCv, updateCv } from "../../../../store/actions";
 
 const CoverLetters = ({
   handleAddCoverLetter,
@@ -71,7 +71,7 @@ const CoverLetters = ({
   }
 
   const [viewData, setViewData] = useState();
-  const [deleteData, setDeleteData] = useState()
+  const [deleteData, setDeleteData] = useState();
 
   console.log(viewData);
 
@@ -88,10 +88,10 @@ const CoverLetters = ({
         coverLetterDescription: item?.coverLetterDescription,
       },
     };
-  dispatch(updateCv(deleteData))
-  console.log('delete worlgin')
-  console.log(deleteData)
-  dispatch(viewCv({ viewAction: "" }));
+    dispatch(updateCv(deleteData));
+    console.log("delete worlgin");
+    console.log(deleteData);
+    dispatch(viewCv({ viewAction: "" }));
   };
 
   return (
@@ -158,7 +158,7 @@ const CoverLetters = ({
                           color: "red",
                           cursor: "pointer",
                         }}
-                        onClick={()=>handleDeleteRecord(item)}
+                        onClick={() => handleDeleteRecord(item)}
                       >
                         Delete
                       </p>
@@ -191,7 +191,15 @@ const CoverLetters = ({
                   </tr>
                 ))
               ) : (
-                <p>Loading Data ...</p>
+                <tr>
+                <td colSpan="7" className="text-center mt-5">
+                  <div className="d-flex align-items-center justify-content-center">
+                    <Spinner size="lg" className="me-2 mt-5" style={{color: "#244a59"}}>
+                      Loading...
+                    </Spinner>
+                  </div>
+                </td>
+              </tr>
               )}
             </tbody>
           </Table>

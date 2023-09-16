@@ -17,7 +17,8 @@ import Applications from "../Applications";
 import Alerts from "../Alerts";
 import SavedJobs from "../SavedJobs";
 import { Link } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { viewCv, viewResume, viewSavedJobs, viewjobAlerts } from "../../../../store/actions";
 
 const Dashboard = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -70,6 +71,16 @@ const Dashboard = () => {
       error: state.Login.error, 
       userInfo: state.Login.userInfo
     }));
+
+const dispatch = useDispatch()
+
+    useEffect(()=>{
+      dispatch(viewCv({viewAction: ""}))
+      dispatch(viewjobAlerts({viewAction: ""}))
+      dispatch(viewResume({viewAction: ""}))
+      dispatch(viewSavedJobs({viewAction: ""}))
+    
+    }, [dispatch])
 
   return (
     <>
