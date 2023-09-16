@@ -105,8 +105,9 @@ export const getMe = () =>({
   type: GET_ME
 })
 
-export const updateProfile = () =>({
-  type: UPDATE_PROFILE
+export const updateProfile = (data) =>({
+  type: UPDATE_PROFILE,
+  payload: data
 })
 
 export const updateProfileSuccess = () =>({

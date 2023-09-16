@@ -89,9 +89,9 @@ const dispatch = useDispatch()
       <Col
         xxl={11}
         // className="m-0"
-        md={13}
+        md={11}
         sm={20}
-        style={{ position: "relative", top: "1rem" }}
+        style={{ position: "relative", top: "1rem", marginLeft: '1rem' }}
       >
         <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
           <CardBody>

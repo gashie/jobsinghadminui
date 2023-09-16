@@ -6,6 +6,7 @@ import {
   LOGOUT_USER,
   SOCIAL_LOGIN,
   TEST_VERIFY,
+  UPDATE_PROFILE,
 } from "./actionTypes";
 import {
   apiError,
@@ -189,9 +190,15 @@ function* loginUser({ payload: user }) {
           // }
         } else {
           yield put(getMeError(verifyToken?.data?.data));
+          toast.error(`${response?.data?.message}`, {
+            autoClose: 3000,
+          });
         }
       } catch (error) {
         console.log(error);
+        toast.error(`${response?.data?.message}`, {
+          autoClose: 3000,
+        });
       }
     }
   } catch (error) {
@@ -201,11 +208,12 @@ function* loginUser({ payload: user }) {
 
 function* updateProfile({payload: data}){
   try {
-    const response = yield call(updateProfile, data);
-
+    const response = yield call(updateProfileURL, data);
+  
     if (response && response?.status === 200 && response?.data?.status === 1) {
+
       yield put(updateProfileSuccess());
-      toast.warning(`${response?.data?.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
@@ -227,6 +235,7 @@ function* authSaga() {
   // yield takeEvery(LOGIN_USER, testLoginUser);
   // yield takeEvery(TEST_VERIFY, testVerifyUser)
   yield takeEvery(LOGIN_USER, loginUser);
+  yield takeEvery(UPDATE_PROFILE, updateProfile);
 }
 
 export default authSaga;

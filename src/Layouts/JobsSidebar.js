@@ -160,15 +160,16 @@ const Sidebar = () => {
               aria-label="Toggle navigation"
               style={{
                 position: "absolute",
-                top: "-17rem",
-                zIndex: "99999",
+                top: "0rem",
+                zIndex: "",
                 boxShadow: "none",
-                backgroundColor: '#244a59',
-               marginRight: "4rem", 
+                backgroundColor: '#e0e0e0',
+             textAlign: 'right', 
+             right: '-20rem',
                color: 'white'
               }}
             >
-              <i className="mdi mdi-menu"></i>
+              <i className=" bx bx-right-arrow-alt fs-13"></i>
             </NavbarToggler>
             <Collapse isOpen={isOpen} navbar>
               <Nav

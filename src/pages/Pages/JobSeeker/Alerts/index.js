@@ -317,69 +317,69 @@ const Alerts = () => {
                   </tr>
                 </thead>
                 {jobAlertsError === false && jobAlertsLoading === false ? (
-  jobAlerts?.map((item, key) => (
-    <tr key={key}>
-      <th scope="row">
-        <Link to="#" className="fw-medium">
-          {item?.alertName}
-        </Link>
-      </th>
-      <td>{formatDate(item?.createdAt)}</td>
-      <td>
-        {item?.updatedAt === null
-          ? "No updates made yet"
-          : formatDate(item?.updatedAt)}
-      </td>
-      <td>{item?.jobTypeId}</td>
-      <td
-        style={{
-          cursor: "pointer",
-        }}
-        className="fw-pointer"
-        onClick={() => {
-          handleEdit(item);
-          setmodal_grid(true);
-        }}
-      >
-        Edit
-      </td>
-      <td
-        style={{
-          color: "red",
-          cursor: "pointer",
-        }}
-        className="fw-pointer"
-        onClick={() => {
-          handleDelete(item);
-        }}
-      >
-        Delete
-      </td>
-    </tr>
-  ))
-) : (
-  <tr>
-    <td colSpan="7" className="text-center mt-5">
-      <div className="d-flex align-items-center justify-content-center">
-        {jobAlerts?.length > 1 ? (
-          <Spinner
-            size="lg"
-            className="me-2 mt-5"
-            style={{ color: "#244a59" }}
-          >
-            Loading...
-            {console.log(jobAlerts.length)}
-          </Spinner>
-        ) : (
-          <p className="fw-light mt-5">
-            You currently don't have any Job alerts.
-          </p>
-        )}
-      </div>
-    </td>
-  </tr>
-)}
-
+                  jobAlerts?.map((item, key) => (
+                    <tr key={key} >
+                      <th scope="row">
+                        <Link to="#" className="fw-medium">
+                          {item?.alertName}
+                        </Link>
+                      </th>
+                      <td className="p-2">{formatDate(item?.createdAt)}</td>
+                      <td className="p-2">
+                        {item?.updatedAt === null
+                          ? "No updates made yet"
+                          : formatDate(item?.updatedAt)}
+                      </td>
+                      <td className="p-2">{item?.jobTypeId}</td>
+                      <td
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        className="fw-pointer p-2"
+                        onClick={() => {
+                          handleEdit(item);
+                          setmodal_grid(true);
+                        }}
+                      >
+                        Edit
+                      </td>
+                      <td
+                     
+                        style={{
+                          color: "red",
+                          cursor: "pointer",
+                        }}
+                        className="fw-pointer p-2"
+                        onClick={() => {
+                          handleDelete(item);
+                        }}
+                      >
+                        Delete
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="7" className="text-center mt-5">
+                      <div className="d-flex align-items-center justify-content-center">
+                        {jobAlerts?.length > 1 ? (
+                          <Spinner
+                            size="lg"
+                            className="me-2 mt-5"
+                            style={{ color: "#244a59" }}
+                          >
+                            Loading...
+                            {console.log(jobAlerts.length)}
+                          </Spinner>
+                        ) : (
+                          <p className="fw-light mt-5">
+                            You currently don't have any Job alerts.
+                          </p>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                )}
               </Table>
             </div>
           </Col>

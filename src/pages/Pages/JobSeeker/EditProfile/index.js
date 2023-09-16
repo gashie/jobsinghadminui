@@ -1,52 +1,103 @@
-import { Col, Label, Input, Row } from "reactstrap";
+import { Col, Label, Input, Row, Form, FormFeedback } from "reactstrap";
 import avatar1 from "../profile.png";
-
-import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../../../store/actions";
 
 const EditProfile = () => {
-  const validationSchema = Yup.object({
-    // firstName: Yup.string().required("First Name is required"),
-    // lastName: Yup.string().required("Last Name is required"),
-    // birthDate: Yup.date().required("Birth Date is required"),
-    // gender: Yup.string().required("Gender is required"),
-    // address: Yup.string().required("Address is required"),
-    // country: Yup.string().required("Country is required"),
-    // phoneNumber: Yup.string().required("Phone Number is required"),
-  });
+  const dispatch = useDispatch();
 
-  const formik = useFormik({
+  const { userInfo, loading, error } = useSelector((state) => ({
+    userInfo: state.Login.userInfo,
+    loading: state.Login.loading,
+    error: state.Login.error,
+  }));
+
+
+  const validation = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      firstName: "",
-      lastName: "",
+      fullName: userInfo?.userInfo?.fullName,
+      username: userInfo?.userInfo?.username,
+      phone: userInfo?.userInfo?.phone,
+      email: userInfo?.userInfo?.email,
+      roleid: "2",
       birthDate: "",
-      gender: "",
       address: "",
-      country: "",
-      phoneNumber: "",
+      maritalStatus: "",
+      gender: "",
+      userType: "jobSeeker",
+      country: "Ghana",
     },
-    // validationSchema,
+    validateOnChange: true,
+    validationSchema: Yup.object({
+      birthDate: Yup.string().required("Please Select A Date"),
+    }),
     onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
+      const userData = {
+        reset: false,
+        blockUser: false,
+        allow: 1,
+        deleterecord: false,
+        restore: 1,
+        userId: userInfo?.userInfo?.userId,
+        patch: true,
+        profile: {
+          fullName: values.fullName,
+          username: values.username,
+          phone: values.phone,
+          email: values.email,
+          roleid: "2",
+          address: values.address,
+          country: "Ghana",
+          birthDate: values.birthDate ?? " ",
+          maritalStatus: 1,
+          gender: values.gender,
+          userType: "jobseeker",
+        },
+      };
+
+      console.log(typeof userData);
+      // dispatch(viewCv({ viewAction: "" }));
+      //dispatch(viewCv({ viewAction: "" }));
+      // Dispatch an action or perform other operations with the data
+      console.log(userData);
+
+      dispatch(updateProfile(userData))
+
+      //dispatch(updateCv(userData));
+
+      // if (dispatch(viewCv({ viewAction: "" }))) {
+      //   handleCoverLetters();
+      // }
+
+      validation.resetForm();
     },
   });
 
+ 
   return (
     <>
-   
-        <h4
-          style={{
-            textAlign: "center",
-            fontWeight: "bolder",
-            color: "#244a59",
-            marginTop: "3rem",
-          }}
-        >
-          Profile Information
-        </h4>
+      <h4
+        style={{
+          textAlign: "center",
+          fontWeight: "bolder",
+          color: "#244a59",
+          marginTop: "3rem",
+        }}
+      >
+        Profile Information
+      </h4>
 
-        <div className="text-center mt">
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          validation.handleSubmit();
+          return false;
+        }}
+      >
+        <div className="text-center mt-4">
           <div className="profile-user position-relative d-inline-block mx-auto  mb-4">
             <img
               src={avatar1}
@@ -70,7 +121,7 @@ const EditProfile = () => {
             </div>
           </div>
         </div>
-        <form onSubmit={formik.handleSubmit}>
+
         <Row style={{ marginTop: "2rem" }}>
           <Col md={6} className="mt-4">
             <div className="mb-3">
@@ -78,128 +129,197 @@ const EditProfile = () => {
                 First Name
               </Label>
               <Input
-                type="text"
+                id="fullName"
+                name="fullName"
                 className="form-control p-3"
-                placeholder="Enter your firstname"
-                id="firstNameinput"
+                placeholder="Enter New Name"
+                type="text"
+                onChange={validation.handleChange}
+                onBlur={validation.handleBlur}
+                value={validation.values.fullName || ""}
+                invalid={
+                  validation.touched.fullName && validation.errors.fullName
+                    ? true
+                    : false
+                }
               />
+              {validation.touched.fullName && validation.errors.fullName ? (
+                <FormFeedback type="invalid">
+                  <div>{validation.errors.fullName}</div>
+                </FormFeedback>
+              ) : null}
             </div>
           </Col>
           <Col md={6}>
             <div className="mb-3 mt-4">
               <Label for="lastNameinput" className="form-label">
-                Last Name
+                UserName
               </Label>
               <Input
-                type="text"
+                id="username"
+                name="username"
                 className="form-control p-3"
-                placeholder="Enter your lastname"
-                id="lastNameinput"
+                placeholder="Enter New Name"
+                type="text"
+                onChange={validation.handleChange}
+                onBlur={validation.handleBlur}
+                value={validation.values.username || ""}
+                invalid={
+                  validation.touched.username && validation.errors.username
+                    ? true
+                    : false
+                }
               />
+              {validation.touched.username && validation.errors.username ? (
+                <FormFeedback type="invalid">
+                  <div>{validation.errors.username}</div>
+                </FormFeedback>
+              ) : null}
             </div>
           </Col>
         </Row>
 
         <Row>
-  <Col md={6}>
-    <div className="mb-3">
-      <Label for="birthDateInput" className="form-label">
-        Birth Date
-      </Label>
-      <Input
-        type="date"
-        className="form-control p-3"
-        placeholder="Enter your birth date"
-        id="birthDateInput"
-        name="birthDate" // Add a "name" attribute to link the input to Formik
-        onChange={formik.handleChange} // Use handleChange to update the Formik state
-        value={formik.values.birthDate} // Set the value from Formik's state
-      />
-    </div>
-  </Col>
-  <Col md={6}>
-    <div className="mb-3">
-      <Label for="genderSelect" className="form-label">
-        Gender
-      </Label>
-      <select
-        className="form-select mb-3 p-3"
-        aria-label="Gender"
-        id="genderSelect"
-        name="gender" // Add a "name" attribute to link the input to Formik
-        onChange={formik.handleChange} // Use handleChange to update the Formik state
-        value={formik.values.gender} // Set the value from Formik's state
-      >
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-    </div>
-  </Col>
-</Row>
-
-<Col md={12}>
-  <div className="mb-3">
-    <Label for="addressInput" className="form-label">
-      Address
-    </Label>
-    <Input
-      type="text"
-      className="form-control p-3"
-      placeholder="Labone Silver Lane"
-      id="addressInput"
-      name="address" // Add a "name" attribute to link the input to Formik
-      onChange={formik.handleChange} // Use handleChange to update the Formik state
-      value={formik.values.address} // Set the value from Formik's state
-    />
-  </div>
-</Col>
-
-<Row>
-  <Col md={6}>
-    <div className="mb-3">
-      <Label for="countryInput" className="form-label">
-        Country
-      </Label>
-      <Input
-        type="text"
-        className="form-control p-3"
-        placeholder="Address 1"
-        id="countryInput"
-        name="country" // Add a "name" attribute to link the input to Formik
-        onChange={formik.handleChange} // Use handleChange to update the Formik state
-        value={formik.values.country} // Set the value from Formik's state
-      />
-    </div>
-  </Col>
-  <Col md={6}>
-    <div className="mb-3">
-      <Label for="phoneNumberInput" className="form-label">
-        Phone Number
-      </Label>
-      <Input
-        type="text"
-        className="form-control p-3"
-        placeholder="+233559690060"
-        id="phoneNumberInput"
-        name="phoneNumber" // Add a "name" attribute to link the input to Formik
-        onChange={formik.handleChange} // Use handleChange to update the Formik state
-        value={formik.values.phoneNumber} // Set the value from Formik's state
-      />
-    </div>
-  </Col>
-</Row>
-
+          <Col md={6}>
+            <div className="mb-3">
+              <Label for="compnayNameinput" className="form-label">
+                Birth Date
+              </Label>
+              <Input
+                id="birthDate"
+                name="birthDate"
+                className="form-control p-3"
+                type="date"
+                onChange={validation.handleChange}
+                onBlur={validation.handleBlur}
+                value={validation.values.birthDate || ""}
+                invalid={
+                  validation.touched.birthDate && validation.errors.birthDate
+                    ? true
+                    : false
+                }
+              />
+              {validation.touched.birthDate && validation.errors.birthDate ? (
+                <FormFeedback type="invalid">
+                  <div>{validation.errors.birthDate}</div>
+                </FormFeedback>
+              ) : null}
+            </div>
+          </Col>
+          <Col md={6}>
+            <div className="mb-3">
+              <Label for="phonenumberInput" className="form-label">
+                Gender
+              </Label>
+              <select
+                name="gender"
+                id="gender"
+                className="form-select mb-3 p-3"
+                aria-label="Default select example"
+                onChange={validation.handleChange}
+                onBlur={validation.handleBlur}
+                value={validation.values.gender}
+              >
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </Col>
+        </Row>
 
         <Col md={12}>
-          <div className="text-start mt-3">
-          <div className="text-start mt-3">
-          <button type="submit" className="btn btn-dark" style={{ backgroundColor: '#244a59' }}>
-            Save
-          </button>
-        </div>
+          <div className="mb-3">
+            <Label for="emailidInput" className="form-label">
+              Address
+            </Label>
+            <Input
+              id="address"
+              name="address"
+              className="form-control p-3"
+              placeholder="Enter New Name"
+              type="text"
+              onChange={validation.handleChange}
+              onBlur={validation.handleBlur}
+              value={validation.values.address || ""}
+              invalid={
+                validation.touched.address && validation.errors.address
+                  ? true
+                  : false
+              }
+            />
+            {validation.touched.address && validation.errors.address ? (
+              <FormFeedback type="invalid">
+                <div>{validation.errors.address}</div>
+              </FormFeedback>
+            ) : null}
           </div>
         </Col>
-      </form>
+
+        <Row>
+          <Col md={6}>
+            <div className="mb-3">
+              <Label for="address1ControlTextarea" className="form-label">
+                Country
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                className="form-control p-3"
+                placeholder="Enter New Name"
+                type="text"
+                onChange={validation.handleChange}
+                onBlur={validation.handleBlur}
+                value={validation.values.country || ""}
+                invalid={
+                  validation.touched.country && validation.errors.country
+                    ? true
+                    : false
+                }
+              />
+              {validation.touched.country && validation.errors.country ? (
+                <FormFeedback type="invalid">
+                  <div>{validation.errors.country}</div>
+                </FormFeedback>
+              ) : null}
+            </div>
+          </Col>
+          <Col md={6}>
+            <div className="mb-3">
+              <Label for="citynameInput" className="form-label">
+                Phone Number
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                className="form-control p-3"
+                placeholder="Enter New Name"
+                type="text"
+                onChange={validation.handleChange}
+                onBlur={validation.handleBlur}
+                value={validation.values.phone || ""}
+                invalid={
+                  validation.touched.phone && validation.errors.phone
+                    ? true
+                    : false
+                }
+              />
+              {validation.touched.phone && validation.errors.phone ? (
+                <FormFeedback type="invalid">
+                  <div>{validation.errors.phone}</div>
+                </FormFeedback>
+              ) : null}
+            </div>
+          </Col>
+        </Row>
+
+        <button
+          type="submit"
+          className="btn btn-dark mt-2"
+          style={{ backgroundColor: "#244a59" }}
+        >
+          Save
+        </button>
+      </Form>
     </>
   );
 };
