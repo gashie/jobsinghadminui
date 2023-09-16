@@ -20,7 +20,7 @@ const initalState = {
   jobAlerts: null,
   jobAlertsError: false,
   jobAlertsLoading: false,
-  savedJobs: "",
+  savedJobs: null,
 };
 
 const JobAlerts = (state = initalState, action) => {

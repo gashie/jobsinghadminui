@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { viewCv } from "../../../../store/actions";
+import { viewCv, updateCv,  } from "../../../../store/actions";
 
 const CoverLetters = ({
   handleAddCoverLetter,
   handleEditCoverLetter,
   handleViewCoverLetter,
-  Letter
+  Letter,
 }) => {
   const dispatch = useDispatch();
 
@@ -71,8 +71,28 @@ const CoverLetters = ({
   }
 
   const [viewData, setViewData] = useState();
+  const [deleteData, setDeleteData] = useState()
 
   console.log(viewData);
+
+  const handleDeleteRecord = (item) => {
+    const deleteData = {
+      coverLetterName: item?.coverLetterName,
+      coverLetterDescription: item?.coverLetterDescription,
+      deleterecord: true,
+      restore: 0,
+      coverLetterId: item?.coverLetterId,
+      patch: false,
+      patchData: {
+        coverLetterName: item?.coverLetterName,
+        coverLetterDescription: item?.coverLetterDescription,
+      },
+    };
+  dispatch(updateCv(deleteData))
+  console.log('delete worlgin')
+  console.log(deleteData)
+  dispatch(viewCv({ viewAction: "" }));
+  };
 
   return (
     <>
@@ -121,9 +141,9 @@ const CoverLetters = ({
                     <td>{formatDate(item?.updatedAt) || "-"}</td>
                     <td>
                       <p
-                        onClick={()=>{
-                          handleEditCoverLetter()
-                          Letter(item)
+                        onClick={() => {
+                          handleEditCoverLetter();
+                          Letter(item);
                         }}
                         style={{ cursor: "pointer" }}
                       >
@@ -138,7 +158,7 @@ const CoverLetters = ({
                           color: "red",
                           cursor: "pointer",
                         }}
-                        onClick={handleEditCoverLetter}
+                        onClick={()=>handleDeleteRecord(item)}
                       >
                         Delete
                       </p>
@@ -152,7 +172,7 @@ const CoverLetters = ({
                         onClick={() => {
                           handleViewCoverLetter();
                           console.log(item);
-                          Letter(item)
+                          Letter(item);
                         }}
                       >
                         View

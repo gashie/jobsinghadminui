@@ -27,15 +27,15 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    if (window.location.pathname === "/job-seeker-applications") {
-      setjustifyTab("2");
-    } else if (window.location.pathname === "/job-seeker-alerts") {
-      setjustifyTab("3");
-    } else if (window.location.pathname === "/job-seeker-saved-jobs") {
-      setjustifyTab("4");
-    } else setjustifyTab("1");
-  });
+  // useEffect(() => {
+  //   if (window.location.pathname === "/job-seeker-applications") {
+  //     setjustifyTab("2");
+  //   } else if (window.location.pathname === "/job-seeker-alerts") {
+  //     setjustifyTab("3");
+  //   } else if (window.location.pathname === "/job-seeker-saved-jobs") {
+  //     setjustifyTab("4");
+  //   } else setjustifyTab("1");
+  // }, []);
 
   const [height, setHeight] = useState("");
 

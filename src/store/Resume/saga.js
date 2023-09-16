@@ -42,12 +42,10 @@ function* viewResumes({ payload: action }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(viewResumeSuccess(response?.data));
-      toast.success(`${response.message}`, {
-        autoClose: 3000,
-      });
+    console.log(response)
     } else {
       yield put(viewResumeError(response));
-      toast.success(`${response.message}`, {
+      toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     }
@@ -63,12 +61,10 @@ function* viewCv({ payload: action }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(viewCvSuccess(response?.data?.data));
-       toast.success(`${response.message}`, {
-        autoClose: 3000,
-      });
+     
     } else {
       yield put(viewCvError(response));
-      toast.success(`${response.message}`, {
+      toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     }
@@ -84,12 +80,12 @@ function* createResume({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createResumeSuccess());
-      toast.success(`${response.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(createResumeError(response));
-      toast.success(`${response.message}`, {
+      toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     }
@@ -105,12 +101,12 @@ function* createCv({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createCvSuccess());
-      toast.success(`${response.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(createCvError(response));
-      toast.success(`${response.message}`, {
+      toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     }
@@ -126,12 +122,12 @@ function* updateResume ({payload}){
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(updateResumeSuccess());
-      toast.success(`${response.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(updateResumeError(response));
-       toast.success(`${response.message}`, {
+       toast.error(`$response?.data?.message}`, {
         autoClose: 3000,
       });
     }
@@ -147,12 +143,12 @@ function* updateCv ({payload}){
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(updateCvSuccess());
-      toast.success(`${response.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(updateCvError(response));
-      toast.success(`${response.message}`, {
+      toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     }
