@@ -46,13 +46,13 @@ const { user, errorMsg, loading, error } = useSelector((state) => ({
 }));
 
 
-const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
+// const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
 
-  if (!isLoggedIn) {
-    return (
-      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-    );
-    }
+//   if (!isLoggedIn) {
+//     return (
+//       <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+//     );
+//     }
 
 
   

@@ -122,13 +122,13 @@ const EmployerDashboard = () => {
 
   return (
     <>
-      <Row style={{ height: "120vh" }}>
+  
         <Col
-          xxl={11}
-          className="m-0"
-          md={10}
-          xs={15}
-          style={{ position: "relative", top: "-3rem" }}
+            xxl={11}
+            // className="m-0"
+            md={11}
+            sm={20}
+            style={{ position: "relative", top: "1rem", marginLeft: '1rem' }}
         >
           <Card
             style={{
@@ -153,7 +153,10 @@ const EmployerDashboard = () => {
                 </NavItem>
               </Nav>
 
-              <TabContent activeTab={justifyTab} className="text-muted">
+              <TabContent activeTab={justifyTab}
+               style={{ height: "700px", position: "relative", overflow: "scroll" }}
+               className="scroll-change"
+              >
                 <TabPane tabId="1" id="base-justified-home">
                   <h5 style={{ fontWeight: "bolder" }} className="mt-4">
                     Welcome John,
@@ -800,7 +803,7 @@ const EmployerDashboard = () => {
             </CardBody>
           </Card>
         </Col>
-      </Row>
+     
     </>
   );
 };

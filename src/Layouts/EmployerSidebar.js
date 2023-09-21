@@ -158,12 +158,16 @@ const EmployerSidebar = () => {
               aria-label="Toggle navigation"
               style={{
                 position: "absolute",
-                top: "-18rem",
-                zIndex: "1",
+                top: "0rem",
+                zIndex: "",
                 boxShadow: "none",
+                backgroundColor: '#e0e0e0',
+             textAlign: 'right', 
+             right: '-20rem',
+               color: 'white'
               }}
             >
-              <i className="mdi mdi-menu"></i>
+               <i className=" bx bx-right-arrow-alt fs-13"></i>
             </NavbarToggler>
             <Collapse isOpen={isOpen} navbar>
               <Nav
@@ -191,12 +195,12 @@ const EmployerSidebar = () => {
                         window.location.pathname === item?.link2 ||
                         window.location.pathname === item?.link3 ||
                         window.location.pathname === item?.link4
-                          ? "#3f494c"
-                          : "",
-                        height: "2rem",
-                        width: "100%",
-                        borderTop: "1px solid white",
-                        cursor: "pointer",
+                        ? "#3f494c"
+                        : "",
+                      height: "1rem",
+                      width: "100%",
+                      borderTop: "1px solid white",
+                      cursor: "pointer",
                       }}
                       onMouseLeave={removetoggles}
                     ></div>
@@ -273,12 +277,12 @@ const EmployerSidebar = () => {
                     display: "flex",
                     flexDirection: "column",
                     position: "absolute",
-                    top: "-4rem",
+                    top: "-4.9rem",
                     zIndex: "1",
                     backgroundColor: "#3f494c",
                     left: "8.4rem",
                     width: "20rem",
-                    height: "129.4vh",
+                    height: "78vh",
                     color: "white",
                   }}
                   onMouseLeave={removetoggles}

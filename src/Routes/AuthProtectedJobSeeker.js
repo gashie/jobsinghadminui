@@ -55,11 +55,11 @@ const AuthProtectedJobSeeker = (props) => {
 
  
 
-  if (!isLoggedIn) {
-    return (
-      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-    );
-  }
+  // if (!isLoggedIn) {
+  //   return (
+  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+  //   );
+  // }
 
 
 

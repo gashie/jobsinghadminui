@@ -29,13 +29,13 @@ const EmployerProfile = () => {
   const [edit, setEdit] = useState(false);
   return (
     <>
-      <Row style={{ height: "120vh" }}>
+     
         <Col
-          xxl={11}
-          className="m-0"
-          md={10}
-          xs={15}
-          style={{ position: "relative", top: "-3rem" }}
+           xxl={11}
+           // className="m-0"
+           md={11}
+           sm={20}
+           style={{ position: "relative", top: "1rem", marginLeft: '1rem' }}
         >
           <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
             <CardBody>
@@ -188,15 +188,24 @@ const EmployerProfile = () => {
                   </Col>
                 </TabPane>
 
-                <TabPane tabId="2" id="product">
+                <TabPane tabId="2" id="product"
+                   style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                   className="scroll-change"
+                >
                   <EditProfile />
                 </TabPane>
 
-                <TabPane tabId="3" id="base-justified-messages">
+                <TabPane tabId="3" id="base-justified-messages"
+                   style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                   className="scroll-change"
+                >
                   <ChangePassword />
                 </TabPane>
                 
-              <TabPane tabId="4" id="base-justified-settings">
+              <TabPane tabId="4" id="base-justified-settings"
+              
+              style={{ height: "700px", position: "relative", overflow: "scroll" }}
+              className="scroll-change">
                  <Logo />
               </TabPane>
 
@@ -204,7 +213,7 @@ const EmployerProfile = () => {
             </CardBody>
           </Card>
         </Col>
-      </Row>
+     
     </>
   );
 };

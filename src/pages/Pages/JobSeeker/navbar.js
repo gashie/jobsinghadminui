@@ -235,7 +235,7 @@ const Navbar = () => {
                 <li className="nav-item" style={{ marginTop: "0.5rem", cursor: "pointer" }}>
                   <Link
                     className="fs-12 btn btn-success"
-                    onClick={() => navigate("/employer-dashboard")}
+                   to="/employer-dashboard"
                    
                   >
                     Employers
