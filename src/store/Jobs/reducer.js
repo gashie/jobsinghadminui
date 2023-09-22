@@ -1,25 +1,25 @@
 import {
-  CREATE_JOB_STATUS,
-  CREATE_JOB_STATUS_SUCCESS,
-  CREATE_JOB_STATUS_ERROR,
-  JOB_STATUS,
-  JOB_STATUS_SUCCESS,
-  JOB_STATUS_ERROR,
-  UPDATE_JOB_STATUS,
-  UPDATE_JOB_STATUS_SUCCESS,
-  UPDATE_JOB_STATUS_ERROR,
   CREATE_JOB,
   CREATE_JOB_SUCCESS,
   CREATE_JOB_ERROR,
+  CREATE_JOB_STATUS,
+  CREATE_JOB_STATUS_SUCCESS,
+  CREATE_JOB_STATUS_ERROR,
   UPDATE_JOB,
   UPDATE_JOB_SUCCESS,
   UPDATE_JOB_ERROR,
+  UPDATE_JOB_STATUS,
+  UPDATE_JOB_STATUS_SUCCESS,
+  UPDATE_JOB_STATUS_ERROR,
   JOBS,
   JOBS_SUCCESS,
   JOBS_ERROR,
   APPROVE_JOBS,
   APPROVE_JOBS_SUCCESS,
   APPROVE_JOBS_ERROR,
+  JOB_STATUS,
+  JOB_STATUS_SUCCESS,
+  JOB_STATUS_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -30,6 +30,9 @@ const initialState = {
   errMssg: null,
   jobStatusInfo: null,
   jobsInfo: null,
+  idLoading: false,
+  idError: false,
+  id: "",
 };
 
 const Jobs = (state = initialState, action) => {
@@ -42,6 +45,7 @@ const Jobs = (state = initialState, action) => {
         ...state,
         infoLoading: true,
         infoError: false,
+       
       };
 
     case CREATE_JOB_STATUS:
@@ -74,7 +78,6 @@ const Jobs = (state = initialState, action) => {
         errMssg: action.payload,
       };
 
-    case CREATE_JOB_SUCCESS:
     case UPDATE_JOB_SUCCESS:
     case JOBS_SUCCESS:
     case APPROVE_JOBS_SUCCESS:
@@ -84,6 +87,17 @@ const Jobs = (state = initialState, action) => {
         infoError: false,
         jobsInfo: action.payload,
       };
+
+    case CREATE_JOB_SUCCESS:
+      return {
+        ...state,
+        infoLoading: false,
+        infoError: false,
+        id: action.payload,
+        idLoading: false, 
+        idError: false
+      };
+
     case CREATE_JOB_STATUS_SUCCESS:
     case JOB_STATUS_SUCCESS:
     case UPDATE_JOB_STATUS_SUCCESS:

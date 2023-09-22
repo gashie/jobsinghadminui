@@ -60,8 +60,8 @@ import {
 function* createJobStatus({payload: data}) {
   try {
     const response = yield call(createjobStatusURL, data);
-    if (response.status === 1) {
-      yield put(createStatusSuccess(response?.data));
+    if (response.data.status === 1) {
+      yield put(createStatusSuccess(response?.data?.data));
       yield put (jobStatusAction({viewAction: ""}))
     } else {
       yield put(createStatusError(response));
@@ -76,7 +76,7 @@ function* createJobStatus({payload: data}) {
 function* jobStatus({payload: data}) {
   try {
     const response = yield call(jobStatusURL, data);
-    if (response?.data?.status === 1) {
+    if (response.data.status === 1) {
       yield put(jobStatusSuccess(response?.data?.data));
    
     } else {
@@ -92,7 +92,7 @@ function* jobStatus({payload: data}) {
 function* updateJobStatus({payload: data}) {
   try {
     const response = yield call(updateJobStatusURL, data);
-    if (response.status === 1) {
+    if (response.data.status) {
       yield put(updateStatusSuccess(response?.data));
       yield put (jobStatusAction({viewAction: ""}))
     } else {
@@ -108,8 +108,8 @@ function* updateJobStatus({payload: data}) {
 function* createJob({payload: data}) {
   try {
     const response = yield call(createJobURL, data);
-    if (response.status === 1) {
-      yield put(createJobSuccess(response.data));
+    if (response.data.status === 1) {
+      yield put(createJobSuccess(response.data.data));
       yield put (jobAction({viewAction: ""}))
     } else {
       yield put(createJobError(response));
@@ -124,7 +124,7 @@ function* createJob({payload: data}) {
 function* updateJob({payload: data}) {
   try {
     const response = yield call(updateJobURL, data);
-    if (response.status === 1) {
+    if (response.data.status === 1) {
       yield put(updateJobSuccess(response.data));
       yield put (jobAction({viewAction: ""}))
     } else {
@@ -157,7 +157,7 @@ function* Jobs({payload: data}) {
 function* approveJobs({payload: data}) {
   try {
     const response = yield call(approveJobURL, data);
-    if (response.status === 1) {
+    if (response.data.status === 1) {
       yield put(approveJobsSuccess(response.data));
       yield put (jobAction({viewAction: ""}))
     } else {

@@ -467,3 +467,8 @@ export const updateIndustryURL = (data) =>api.create(url.UPDATE_INDUSTRY, data);
 export const categoryURL = (data) => api.create(url.CATEGORY, data);
 export const createCategoryURL = (data) =>api.create(url.CREATE_CATEGORY, data);
 export const updateCategoryURL = (data) =>api.create(url.UPDATE_CATEGORY, data);
+
+export const createQuestionURL = (data) => api.create(url.CREATE_QUESTION, data);
+export const linkJobQuestionURL = (data) => api.create(url.LINK_QUESTIOSN, data);
+export const unlinkJobQuestionURL = (data) => api.create(url.UNLINK_QUESTIOSN, data);
+export const createBulkQuestionURL = (data) => api.create(url.CREATE_BULK_QUESTION, data);

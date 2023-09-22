@@ -278,3 +278,8 @@ export const CATEGORY = `${version}/viewjobcategory/`
 export const CREATE_CATEGORY = `${version}/createjobcategory/`
 export const UPDATE_CATEGORY = `${version}/updatejobcategory/`
 
+
+export const CREATE_QUESTION = `${version}/createquestion/`
+export const LINK_QUESTIOSN = `${version}/linkquestion/`
+export const UNLINK_QUESTIOSN = `${version}/unlinkquestion/`
+export const CREATE_BULK_QUESTION = `${version}/createbulkquestion/`

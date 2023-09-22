@@ -16,57 +16,19 @@ import {
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Editor from "./Editor";
-import { category, createJob, employers, jobStatus } from "../../../../store/actions";
+import {
+  category,
+  createJob,
+  employers,
+  jobStatus,
+} from "../../../../store/actions";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import AddQuestion from "./Questions";
 
 const AddJob = () => {
-  const handleEditorChange = (event, editor) => {
-    const data = editor.getData();
-    console.log(data); // This will log the content of the editor to the console
-  };
 
-  const [modal_standard, setmodal_standard] = useState(false);
-
-  function tog_standard() {
-    setmodal_standard(!modal_standard);
-  }
-
-  const [selectedOption, setSelectedOption] = useState("Select one");
-
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-
-  // const handleCheckboxChange = (event) => {
-  //   const value = event.target.value;
-  //   if (event.target.checked) {
-  //     setSelectedCheckboxes([...selectedCheckboxes, value]);
-  //   } else {
-  //     setSelectedCheckboxes(
-  //       selectedCheckboxes.filter((item) => item !== value)
-  //     );
-  //   }
-  // };
-
-  // Sample list of checkbox items
-  const list1 = [{ id: 1, label: "Use auto responder" }];
-  const list2 = [
-    { id: 1, label: "Equal or more than passing score" },
-    { id: 2, label: "Less than passing score" },
-  ];
-  const list3 = [
-    { id: 1, label: "Equal or more than passing score" },
-    { id: 2, label: "Less than passing score" },
-  ];
-  const list4 = [
-    { id: 1, label: "Yes/No" },
-    { id: 2, label: "List of answers with multiple choice" },
-    { id: 3, label: "List of answers with sinlge choice" },
-  ];
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -116,17 +78,12 @@ const AddJob = () => {
     }
   };
 
-  const [email, setEmail] = useState("Redirect to my website");
-  const [url, setUrl] = useState("");
-
-  const [questionName, setQuestionName] = useState("Redirect to my website");
-  const [description, setDescription] = useState()
+ 
+  const [description, setDescription] = useState();
 
   const handleEditorContentChange = (content) => {
-    setDescription(content)
+    setDescription(content);
   };
-
- 
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -167,11 +124,9 @@ const AddJob = () => {
         applyLink: "",
       };
 
-      
       dispatch(createJob(finalData));
-      
+      toggleModal()
       validation.resetForm();
-     
     },
   });
 
@@ -183,13 +138,31 @@ const AddJob = () => {
     setIsConfidential(!isConfidential);
   };
 
-  
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalIsOpen(!modalIsOpen);
+  };
+
+
+  const [secondIsOpen, setSecondIsOpen] = useState(false);
+
+  const toggleSecondModal = () => {
+    setSecondIsOpen(!secondIsOpen);
+  };
+
+
+  const [questionIsOpen, setQuestionIsOpen] = useState(false);
+
+  const toggleQuestionModal = () => {
+    setQuestionIsOpen(!questionIsOpen);
+  };
+
 
   return (
     <>
       <div className="m-2 p-2 mb-5">
-      
-
         <div className="p-3">
           <Form
             onSubmit={(e) => {
@@ -200,18 +173,6 @@ const AddJob = () => {
           >
             <Row>
               {/* left */}
-
-              {/* <Col lg={20} className="mb-3">
-                <select className="form-select p-3">
-                  {loading === false && error === false ? (
-                    employerInfo?.map((item, key) => (
-                      <option key={key}>{item?.fullName}</option>
-                    ))
-                  ) : (
-                    <option>loading employers...</option>
-                  )}
-                </select>
-              </Col> */}
 
               <Col>
                 <label>Job Title</label>
@@ -268,39 +229,6 @@ const AddJob = () => {
                     </label>
                   </Col>
                 </Row>
-
-                {/* <Row className="mb-3">
-                  <label>Enter Education Level</label>
-                  <Col lg={15}>
-                    <Input
-                      type="text"
-                      className="form-control p-3"
-                      id="websitetext"
-                      placeholder="Education"
-                      onChange={validation.handleChange}
-                      value={validation.values.education || ""}
-                    />
-                  </Col>
-                </Row> */}
-
-                {/* <Row className="mb-3">
-                  <Col
-                    lg={15}
-                    className="d-flex gap-3 p-2"
-                    style={{
-                      border: "1px solid #ebeff0",
-                      borderRadius: "0.5rem",
-                    }}
-                  >
-                    <Button
-                      className="btn btn-light"
-                      onClick={() => tog_standard()}
-                    >
-                      How to apply
-                    </Button>
-                    <p style={{ color: "red" }}>Not set</p>
-                  </Col>
-                </Row> */}
               </Col>
 
               {/* right */}
@@ -327,29 +255,6 @@ const AddJob = () => {
                     </select>
                   </Col>
                 </Row>
-
-                {/* <Row className="mb-3">
-                  <label>Select Category</label>
-                  <Col lg={15}>
-                    <select
-                      className="form-select p-3"
-                      name="jobCategoryId"
-                      id="jobCategoryId"
-                      value={validation.values.jobCategoryId}
-                      onChange={validation.handleChange}
-                    >
-                      {catLoading === false && catError === false ? (
-                        categoryInfo?.map((item, key) => (
-                          <option key={key} value={item?.jobCategoryId}>
-                            {item?.jobCategoryName}
-                          </option>
-                        ))
-                      ) : (
-                        <option>loading categories...</option>
-                      )}
-                    </select>
-                  </Col>
-                </Row> */}
 
                 <Row className="mb-3">
                   <Col lg={15} className="p-2">
@@ -396,17 +301,6 @@ const AddJob = () => {
                     />
                   </Col>
                 </Row>
-
-                {/* <Row className="mb-3">
-                <Col lg={15}>
-                  <Input
-                    type="date"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="End date"
-                  />
-                </Col>
-              </Row> */}
               </Col>
             </Row>
 
@@ -415,35 +309,11 @@ const AddJob = () => {
                 Description
               </h6>
               <Col lg={12}>
-                {/* <Form method="post">
-                <CKEditor
-                  editor={ClassicEditor}
-                  data=""
-                  onChange={handleEditorChange} // Use the custom handleEditorChange function
-                />
-              </Form> */}
                 <Editor onContentChange={handleEditorContentChange} />
               </Col>
             </Row>
-            {/* 
-            <Row className="mt-3">
-              <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
-                How to apply
-              </h6>
-              <Col lg={12}> */}
-            {/* <Form method="post">
-                <CKEditor
-                  editor={ClassicEditor}
-                  data=""
-                  onChange={handleEditorChange} // Use the custom handleEditorChange function
-                />
-              </Form> */}
-            {/* <Editor />
-              </Col>
-            </Row> */}
 
             <div className="text-start d-flex gap-3 mt-4">
-              
               <button
                 type="submit"
                 className="btn btn-dark"
@@ -451,286 +321,61 @@ const AddJob = () => {
               >
                 Submit
               </button>
-             
             </div>
           </Form>
         </div>
       </div>
 
-      {/* Modals */}
-      {/* 
-      <Button color="primary" onClick={() => tog_standard()}>
-        Standard Modal
-      </Button> */}
-
-      <Modal
-        id="myModal"
-        isOpen={modal_standard}
-        toggle={() => {
-          tog_standard();
-        }}
-        style={{ borderRadius: "1rem" }}
-      >
-        <div
-          className="d-flex p-3"
-          style={{
-            justifyContent: "space-between",
-            backgroundColor: "#244a59",
-          }}
-        >
-          <div></div>
-
-          <div>
-            <h5 className="modal-title text-light" id="myModalLabel">
-              Application settings
-            </h5>
-          </div>
-          <div className="text-end">
-            <Button
-              style={{
-                backgroundColor: "#4e6d79",
-                borderRadius: "0.7rem",
-                color: "#304852",
-              }}
-              type="button"
-              className="btn-close p-1"
-              onClick={() => {
-                setmodal_standard(false);
-                setSelectedOption("Select one");
-              }}
-              aria-label="Close"
-            ></Button>
-          </div>
-        </div>
-
+{/* First Step */}
+      <Modal isOpen={modalIsOpen} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}></ModalHeader>
         <ModalBody>
-          {selectedOption === "Select one" ? (
-            <Row className="mb-3">
-              <Col lg={15}>
-                <label>Receive application:</label>
-                <select
-                  className="form-select p-3"
-                  onChange={handleSelectChange}
-                  value={selectedOption}
-                >
-                  <option>Select one</option>
-                  <option>Redirect to my website</option>
-                  <option>Receive via email</option>
-                  {/* <option>Application tracker</option> */}
-                </select>
-              </Col>
-            </Row>
-          ) : selectedOption === "Application tracker" ? (
-            <Row>
-              <Col xl={9} md={9} className="">
-                <label className="fs-11">
-                  Accept resume with these keywords
-                </label>
-                <Input
-                  type="text"
-                  className="form-control p-3"
-                  id="websitetext"
-                  placeholder=""
-                />
-                <p className="fw-light fs-10 mt-2">
-                  Please separate each keyword with comma. eg. Banking, Nurse
-                </p>
-              </Col>
-
-              <Col xl={3} md={3}>
-                <label className="fs-11"></label>
-                <select className="form-select p-3 form-control mt-2">
-                  <option>None</option>
-                  <option>...</option>
-                </select>
-              </Col>
-
-              <hr className="mt-3" />
-
-              <h6 className="mt-2">Screening questionnaires</h6>
-
-              <Row>
-                <Col xl={20} md={20} className="mt-4">
-                  <label className="fs-11">Question Name</label>
-                  <Input
-                    type="text"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="Enter question name"
-                  />
-                </Col>
-              </Row>
-
-              <Row>
-                <Col xl={20} md={20} className="mt-4">
-                  <label className="fs-11">Passing score</label>
-                  <Input
-                    type="text"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="Select passing score"
-                  />
-                </Col>
-              </Row>
-
-              {list1.map((item) => (
-                <Row key={item.id} className="mt-3">
-                  <FormGroup check>
-                    <Label check>
-                      <Input
-                        type="checkbox"
-                        value={item.label}
-                        checked={selectedCheckboxes.includes(item.label)}
-                        onChange={handleCheckboxChange}
-                      />{" "}
-                      {item.label}
-                    </Label>
-                  </FormGroup>
-                </Row>
-              ))}
-
-              <p className="mt-3">
-                Send auto-reply email to candidates whose score is
-              </p>
-              {list2.map((item) => (
-                <Row key={item.id}>
-                  <FormGroup check>
-                    <Label check>
-                      <Input
-                        type="checkbox"
-                        value={item.label}
-                        checked={selectedCheckboxes.includes(item.label)}
-                        onChange={handleCheckboxChange}
-                      />{" "}
-                      {item.label}
-                    </Label>
-                  </FormGroup>
-                </Row>
-              ))}
-              <p className="mt-3">
-                Send auto-reply email to candidates whose score is
-              </p>
-              {list3.map((item) => (
-                <Row key={item.id}>
-                  <FormGroup check>
-                    <Label check>
-                      <Input
-                        type="checkbox"
-                        value={item.label}
-                        checked={selectedCheckboxes.includes(item.label)}
-                        onChange={handleCheckboxChange}
-                      />{" "}
-                      {item.label}
-                    </Label>
-                  </FormGroup>
-                </Row>
-              ))}
-              <p className="mt-3">Question answer type</p>
-              {list4.map((item) => (
-                <Row key={item.id}>
-                  <FormGroup check>
-                    <Label check>
-                      <Input
-                        type="checkbox"
-                        value={item.label}
-                        checked={selectedCheckboxes.includes(item.label)}
-                        onChange={handleCheckboxChange}
-                      />{" "}
-                      {item.label}
-                    </Label>
-                  </FormGroup>
-                </Row>
-              ))}
-            </Row>
-          ) : selectedOption === "Receive via email" ? (
-            <Row>
-              <h6 className="mt-2">Screening questionnaires</h6>
-
-              <div>
-                <Row>
-                  <Col xl={20} md={20} className="mt-4">
-                    <label className="fs-11">Receive application</label>
-                    <Input
-                      type="text"
-                      className="form-control p-3"
-                      id="websitetext"
-                      placeholder="Enter question name"
-                      value={questionName} // Use state variable for value
-                      onChange={(e) => setQuestionName(e.target.value)} // Update state on change
-                    />
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col xl={20} md={20} className="mt-4">
-                    <Input
-                      type="text"
-                      className="form-control p-3"
-                      id="websitetext"
-                      placeholder="Enter url (eg. http://email@gmail.com.com)"
-                      value={url} // Use state variable for value
-                      onChange={(e) => setUrl(e.target.value)} // Update state on change
-                    />
-                  </Col>
-                </Row>
-              </div>
-            </Row>
-          ) : selectedOption === "Redirect to my website" ? (
-            <Row>
-              <h6 className="mt-2">Screening questionnaires</h6>
-
-              <div>
-                <Row>
-                  <Col xl={20} md={20} className="mt-4">
-                    <label className="fs-11">Receive application</label>
-                    <Input
-                      type="text"
-                      className="form-control p-3"
-                      id="emailtext"
-                      placeholder="Enter email"
-                      value={email} // Use state variable for value
-                      onChange={(e) => setEmail(e.target.value)} // Update state on change
-                    />
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col xl={20} md={20} className="mt-4">
-                    <Input
-                      type="text"
-                      className="form-control p-3"
-                      id="urltext"
-                      placeholder="Enter url (eg. email@gmail.com)"
-                      value={url} // Use state variable for value
-                      onChange={(e) => setUrl(e.target.value)} // Update state on change
-                    />
-                  </Col>
-                </Row>
-              </div>
-            </Row>
-          ) : (
-            ""
-          )}
+          Would you like to save this job or procced to add questions?
         </ModalBody>
-
-        <div className="text-start p-3">
-          <Button
-            className="btn btn-dark text-end"
-            style={{ backgroundColor: "#244a59" }}
-          >
-            Apply settings
-          </Button>{" "}
-          <Button
-            className="btn btn-light"
-            style={{ border: "1px solid #244a59" }}
-            onClick={() => {
-              tog_standard();
-              setSelectedOption("Select one");
-            }}
-          >
-            Cancel
+        <ModalFooter>
+          <Button color="secondary" onClick={toggleModal} style={{backgroundColor: '#244a59'}}>
+            Save
           </Button>
-        </div>
+          <Button color="primary" onClick={()=>{
+            toggleModal()
+            toggleQuestionModal()
+          }} style={{backgroundColor: '#244a59'}}>
+            Add Questions
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+{/* Second Step */}
+      <Modal isOpen={secondIsOpen} toggle={toggleSecondModal}>
+        <ModalHeader toggle={toggleSecondModal}>Simple Modal</ModalHeader>
+        <ModalBody>
+          Would you like to Pay for Job Posting Now?
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggleSecondModal}>
+            Pay now
+          </Button>
+          <Button color="primary" onClick={toggleSecondModal}>
+           Pay Later
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+
+{/* Question Step */}
+      <Modal isOpen={questionIsOpen} toggle={toggleQuestionModal} size="xl" className="modal-fullscreen">
+        <ModalHeader toggle={toggleQuestionModal}></ModalHeader>
+        <ModalBody>
+         <AddQuestion />
+        </ModalBody>
+        {/* <ModalFooter>
+          <Button color="secondary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>
+            Save
+          </Button>
+          <Button color="primary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>
+            Add Questions
+          </Button>
+        </ModalFooter> */}
       </Modal>
     </>
   );

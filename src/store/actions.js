@@ -57,3 +57,4 @@ export * from './Resume/action'
 export * from './Jobs/action'
 export * from './users/action'
 export * from './Industry/action'
+export * from "./Questions/action"
