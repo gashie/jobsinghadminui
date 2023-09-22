@@ -140,8 +140,9 @@ function* updateJob({payload: data}) {
 function* Jobs({payload: data}) {
   try {
     const response = yield call(jobsURL, data);
-    if (response.status === 1) {
-      yield put(jobsSuccess(response.data));
+    console.log(response)
+    if (response && response.data.status === 1) {
+      yield put(jobsSuccess(response.data.data));
     
     } else {
       yield put(jobsError(response));

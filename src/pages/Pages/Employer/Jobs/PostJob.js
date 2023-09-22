@@ -88,7 +88,7 @@ const AddJob = () => {
   const { jobloading, joberror, jobsInfo } = useSelector((state) => ({
     jobloading: state.Jobs.loading,
     joberror: state.Jobs.error,
-    jobsInfo: state.Jobs.jobsInfo,
+    jobsInfo: state.Jobs.jobStatusInfo,
   }));
 
   const [inputValue, setInputValue] = useState("");

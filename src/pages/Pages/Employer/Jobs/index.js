@@ -16,6 +16,7 @@ import classnames from "classnames";
 import PostJob from "./PostJob";
 import ApplicantTracking from "./ApplicantTracking";
 import { Link } from "react-router-dom";
+import ManageJobs from "./ManageJobs";
 
 const EmployerJobs = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -54,7 +55,7 @@ const EmployerJobs = () => {
                     justifyToggle("1");
                   }}
                 >
-                  Post a job
+                  Manage Jobs
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -63,6 +64,17 @@ const EmployerJobs = () => {
                   className={classnames({ active: justifyTab === "2" })}
                   onClick={() => {
                     justifyToggle("2");
+                  }}
+                >
+                  Post a job
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  style={{ cursor: "pointer" }}
+                  className={classnames({ active: justifyTab === "3" })}
+                  onClick={() => {
+                    justifyToggle("3");
                   }}
                 >
                   Applicant tracking
@@ -75,7 +87,19 @@ const EmployerJobs = () => {
                 tabId="1"
                 id="base-justified-home"
                 style={{
-                  height: "600px",
+                  height: "800px",
+                  position: "relative",
+                  overflow: "scroll",
+                }}
+                className="scroll-change"
+              >
+               <ManageJobs />
+              </TabPane>
+              <TabPane
+                tabId="2"
+                id="base-justified-home"
+                style={{
+                  height: "800px",
                   position: "relative",
                   overflow: "scroll",
                 }}
@@ -85,10 +109,10 @@ const EmployerJobs = () => {
               </TabPane>
 
               <TabPane
-                tabId="2"
+                tabId="3"
                 id="product"
                 style={{
-                  height: "700px",
+                  height: "800px",
                   position: "relative",
                   overflow: "scroll",
                 }}
