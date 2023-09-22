@@ -188,26 +188,9 @@ const AddJob = () => {
   return (
     <>
       <div className="m-2 p-2 mb-5">
-        <div className="p-3 mt-5" style={{ marginTop: "0rem" }}>
-          <div className="d-flex" style={{ justifyContent: "space-between" }}>
-            <div className="mt-">
-              <h4 className="fw-bolder mt-5">Jobs</h4>
-              <p className="">
-                <b>Dashboard</b> / Jobs
-              </p>
-            </div>
+      
 
-            <div className="mt-5">
-              <Link to="manage-jobs">
-          <p className="text-end mt-0">
-            <button className="bg-success btn btn-success">Back to Jobs</button>
-          </p>
-          </Link>
-        </div>
-          </div>
-        </div>
-
-        <Card className="p-3">
+        <div className="p-3">
           <Form
             onSubmit={(e) => {
               e.preventDefault();
@@ -471,7 +454,7 @@ const AddJob = () => {
              
             </div>
           </Form>
-        </Card>
+        </div>
       </div>
 
       {/* Modals */}
