@@ -8,77 +8,41 @@ import { useProfile } from "../Components/Hooks/UserHooks";
 import { logoutUser, testVerify } from "../store/actions";
 import TriggerRoute from "./TriggerRoute";
 
+import { getMe } from "../store/auth/login/actions";
+import { useNavigate } from "react-router-dom";
+
 const AuthProtectedJobSeeker = (props) => {
   const dispatch = useDispatch();
- 
-  // const { userProfile, loading, token } = useProfile();
-  // useEffect(() => {
-  //   if (userProfile && !loading && token) {
-  //     // setAuthorization(token);
-  //   } else if (!userProfile && loading && !token) {
-  //     dispatch(logoutUser());
-  //   }
-  // }, [token, userProfile, loading, dispatch]);
-
-  /*
-    Navigate is un-auth access protected routes via url
-    */
-
-    // const { verifyInfo, verifyError, verifyLoading } = useSelector((state) => ({
-    //   verifyInfo: state.Login.verifyInfo,
-    //   verifyError: state.Login.verifyError, 
-    //   verifyLoading: state.Login.verifyLoading
-    // }));
-
-    // console.log()
-
-  // if (!userProfile && loading && !token) {
-  //   return (
-  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-  //   );
-  // }
-
-  const { userInfo, isloggedIn,loadingUserinfo,errorUserinfo } = useSelector((state) => ({
-    userInfo: state.Login.userInfo,
-    loadingUserinfo: state.Login.loadingUserinfo,
-    errorUserinfo: state.Login.errorUserinfo,
-    isloggedIn:state.Login.isloggedIn
-  }));
-  
-  // if (!loadingUserinfo && !isloggedIn) {
-  //   return (
-  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-  //   );
-  // }
 
   const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
+  const userId = useSelector((state) => state.Login.userInfo);
+  const userInfo = useSelector((state) => state.Login.userInfo);
 
- 
+  console.log(userId?.userInfo?.roleid);
+  console.log(!isLoggedIn && userId?.userInfo?.roleid !== 3);
 
-  // if (!isLoggedIn) {
-  //   return (
-  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-  //   );
-  // }
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(getMe());
+    if (isLoggedIn && userInfo?.userInfo?.roleid === 3) {
+      // dispatch(getMe());
 
+      navigate("/employer-dashboard");
+    }
 
-  // if (errorUserinfo) {
-  //   return (
-  //     <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
-  //   );
-  //   }
-  
-       
+    if (isLoggedIn && userInfo?.userInfo?.roleid === 2) {
+      // dispatch(getMe());
 
-  
-  // if (verifyInfo?.role === "Seeker" || verifyInfo?.role === "Employer") {
-  //     return (
-  //       <Navigate to={{ pathname: "/test-login", state: { from: props.location } }} />
-  //     );
-  //   }
+      navigate("/job-seeker-dashboard");
+    }
+  }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
 
-
+  if (!isLoggedIn) {
+    return (
+      <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
+    );
+  }
 
   return <>{props.children}</>;
 };
@@ -87,8 +51,13 @@ const AccessRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
-        return (<> <Component {...props} /> </>);
+      render={(props) => {
+        return (
+          <>
+            {" "}
+            <Component {...props} />{" "}
+          </>
+        );
       }}
     />
   );
