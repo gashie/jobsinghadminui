@@ -263,3 +263,18 @@ export const CREATE_JOB = `${version}/setupjob/`
 export const UPDATE_JOB = `${version}/updatejob/`
 export const JOBS = `${version}/viewmyjobs/`
 export const APPROVE_JOBS = `${version}/approvejob/`
+
+export const JOBSEEKERS = `${version}/allusers/`
+export const EMPLOYERS = `${version}/allusers/`
+export const UPDATE_USER_PROFILE = `${version}/updateuser/`
+
+
+//industries
+export const INDUSTRY = `${version}/viewindustry/`
+export const CREATE_INDUSTRY = `${version}/createindustry/`
+export const UPDATE_INDUSTRY = `${version}/updateindustry/`
+
+export const CATEGORY = `${version}/viewjobcategory/`
+export const CREATE_CATEGORY = `${version}/createjobcategory/`
+export const UPDATE_CATEGORY = `${version}/updatejobcategory/`
+

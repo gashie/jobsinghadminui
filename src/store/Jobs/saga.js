@@ -76,11 +76,11 @@ function* createJobStatus({payload: data}) {
 function* jobStatus({payload: data}) {
   try {
     const response = yield call(jobStatusURL, data);
-    if (response.status === 1) {
-      yield put(jobStatusSuccess(response?.data));
+    if (response?.data?.status === 1) {
+      yield put(jobStatusSuccess(response?.data?.data));
    
     } else {
-      yield put(jobStatusError(response));
+      yield put(jobStatusError(response?.data));
     
     }
   } catch (error) {

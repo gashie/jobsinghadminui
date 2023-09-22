@@ -55,3 +55,5 @@ export * from "./apikey/action";
 export * from './jobAlerts/action'
 export * from './Resume/action'
 export * from './Jobs/action'
+export * from './users/action'
+export * from './Industry/action'

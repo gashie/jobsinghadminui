@@ -454,3 +454,16 @@ export const approveJobURL = (data) => api.create(url.APPROVE_JOBS, data);
 export const createjobStatusURL = (data) => api.create(url.CREATE_JOB_STATUS, data);
 export const jobStatusURL = (data) => api.create(url.JOB_STATUS, data);
 export const updateJobStatusURL = (data) => api.create(url.UPDATE_JOB_STATUS, data);
+
+export const updateUserProfileURL = (data) => api.create(url.UPDATE_USER_PROFILE, data);
+export const jobseekersURL = (data) => api.create(url.JOBSEEKERS, data);
+export const employersURL = (data) => api.create(url.EMPLOYERS, data);
+
+
+export const industryURL = (data) => api.create(url.INDUSTRY, data);
+export const createIndustryURL = (data) =>api.create(url.CREATE_INDUSTRY, data);
+export const updateIndustryURL = (data) =>api.create(url.UPDATE_INDUSTRY, data);
+
+export const categoryURL = (data) => api.create(url.CATEGORY, data);
+export const createCategoryURL = (data) =>api.create(url.CREATE_CATEGORY, data);
+export const updateCategoryURL = (data) =>api.create(url.UPDATE_CATEGORY, data);

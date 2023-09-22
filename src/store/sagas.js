@@ -65,6 +65,8 @@ import APIKeysaga from "./apikey/saga";
 import jobAlertSaga from "./jobAlerts/saga";
 import ResumeSaga from "./Resume/saga";
 import JobsSaga from "./Jobs/saga";
+import UsersSaga from "./users/saga";
+import IndustrySaga from "./Industry/saga";
 
 
 
@@ -100,5 +102,7 @@ export default function* rootSaga() {
     fork(jobAlertSaga),
     fork(ResumeSaga),
     fork(JobsSaga),
+    fork(UsersSaga),
+    fork(IndustrySaga),
   ]);
 }

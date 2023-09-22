@@ -73,6 +73,8 @@ import APIKey from "./apikey/reducer";
 import JobAlerts from "./jobAlerts/reducer";
 import Resumes from './Resume/reducer'
 import Jobs from "./Jobs/reducer";
+import Users from "./users/reducer";
+import Industry from "./Industry/reducer";
 
 const rootReducer = combineReducers({
   // public
@@ -106,6 +108,8 @@ const rootReducer = combineReducers({
   JobAlerts, 
   Resumes,
   Jobs,
+  Users,
+  Industry,
 });
 
 export default rootReducer;

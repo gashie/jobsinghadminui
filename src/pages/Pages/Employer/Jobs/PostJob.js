@@ -7,14 +7,21 @@ import {
   Container,
   Button,
   Form,
-  Label,
+  Card,
+  ModalHeader,
+  ModalFooter,
   FormGroup,
+  Label,
 } from "reactstrap";
-import { useState } from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Editor from "./Editor";
+import { category, createJob, employers, jobStatus } from "../../../../store/actions";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
-const PostJob = () => {
+const AddJob = () => {
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
     console.log(data); // This will log the content of the editor to the console
@@ -32,18 +39,18 @@ const PostJob = () => {
     setSelectedOption(event.target.value);
   };
 
-  const handleCheckboxChange = (event) => {
-    const value = event.target.value;
-    if (event.target.checked) {
-      setSelectedCheckboxes([...selectedCheckboxes, value]);
-    } else {
-      setSelectedCheckboxes(
-        selectedCheckboxes.filter((item) => item !== value)
-      );
-    }
-  };
-
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+
+  // const handleCheckboxChange = (event) => {
+  //   const value = event.target.value;
+  //   if (event.target.checked) {
+  //     setSelectedCheckboxes([...selectedCheckboxes, value]);
+  //   } else {
+  //     setSelectedCheckboxes(
+  //       selectedCheckboxes.filter((item) => item !== value)
+  //     );
+  //   }
+  // };
 
   // Sample list of checkbox items
   const list1 = [{ id: 1, label: "Use auto responder" }];
@@ -61,294 +68,418 @@ const PostJob = () => {
     { id: 3, label: "List of answers with sinlge choice" },
   ];
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(employers({ viewAction: "notdeleted", userType: 3 }));
+    dispatch(category({ viewAction: "" }));
+    dispatch(jobStatus({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { loading, error, employerInfo, catLoading, catError, categoryInfo } =
+    useSelector((state) => ({
+      loading: state.Users.loading,
+      error: state.Users.error,
+      employerInfo: state.Users.employersInfo,
+      catLoading: state.Industry.loading,
+      catError: state.Industry.error,
+      categoryInfo: state.Industry.categoryInfo,
+    }));
+
+  const { jobloading, joberror, jobsInfo } = useSelector((state) => ({
+    jobloading: state.Jobs.loading,
+    joberror: state.Jobs.error,
+    jobsInfo: state.Jobs.jobsInfo,
+  }));
+
+  const [inputValue, setInputValue] = useState("");
+  const [selectedLocations, setSelectedLocations] = useState([]);
+  const [finalLocations, setFinalLocations] = useState([]);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === " " && inputValue.trim() !== "") {
+      const newLocation = { locationName: inputValue.trim() };
+      setSelectedLocations([...selectedLocations, newLocation]);
+      setFinalLocations([...finalLocations, newLocation]);
+      setInputValue("");
+    } else if (
+      e.key === "Backspace" &&
+      inputValue === "" &&
+      selectedLocations.length > 0
+    ) {
+      const newLocations = [...selectedLocations];
+      newLocations.pop();
+      setSelectedLocations(newLocations);
+    }
+  };
+
+  const [email, setEmail] = useState("Redirect to my website");
+  const [url, setUrl] = useState("");
+
+  const [questionName, setQuestionName] = useState("Redirect to my website");
+  const [description, setDescription] = useState()
+
+  const handleEditorContentChange = (content) => {
+    setDescription(content)
+  };
+
+ 
+
+  const validation = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      jobTitle: "",
+      jobCategoryId: null,
+      jobLocation: "",
+      jobSalaryAmount: "",
+      companyId: "",
+      isCompanyConfidential: "",
+      jobDescription: "",
+      jobSkillsId: "",
+      jobSalaryCurrency: "",
+      jobStatusId: null,
+      applyMode: "",
+      applyLink: "",
+    },
+    validateOnChange: true,
+    // validationSchema: Yup.object({
+    //   rateTitle: Yup.string().required("Please enter a rate title"),
+    //   rateDescription: Yup.string().required("Please enter a rate description"),
+    //   ratePrice: Yup.string().required("Please enter rate price"),
+    //   rateLimit: Yup.string().required("Please enter rate limit"),
+    // }),
+    onSubmit: (values) => {
+      const finalData = {
+        jobTitle: values.jobTitle,
+        jobCategoryId: values.jobCategoryId,
+        jobLocation: finalLocations,
+        jobSalaryAmount: values.jobSalaryAmount,
+        companyId: "",
+        isCompanyConfidential: isConfidential,
+        jobDescription: description,
+        jobSkillsId: "1",
+        jobSalaryCurrency: "Ghc",
+        jobStatusId: values.jobStatusId,
+        applyMode: "",
+        applyLink: "",
+      };
+
+      
+      dispatch(createJob(finalData));
+      
+      validation.resetForm();
+     
+    },
+  });
+
+  // Define state for the checkbox
+  const [isConfidential, setIsConfidential] = useState(false);
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = () => {
+    setIsConfidential(!isConfidential);
+  };
+
+  
+
   return (
     <>
-      <h4 style={{ color: "#244a59", fontWeight: "bolder" }} className="m-3">
-        Post a job
-      </h4>
+      <div className="m-2 p-2 mb-5">
+        <div className="p-3 mt-5" style={{ marginTop: "0rem" }}>
+          <div className="d-flex" style={{ justifyContent: "space-between" }}>
+            <div className="mt-">
+              <h4 className="fw-bolder mt-5">Jobs</h4>
+              <p className="">
+                <b>Dashboard</b> / Jobs
+              </p>
+            </div>
 
-      <Container>
-        <Row>
-          {/* left */}
-          <Col>
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Gashie Technology"
-                />
+            <div className="mt-5">
+              <Link to="manage-jobs">
+          <p className="text-end mt-0">
+            <button className="bg-success btn btn-success">Back to Jobs</button>
+          </p>
+          </Link>
+        </div>
+          </div>
+        </div>
+
+        <Card className="p-3">
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              validation.handleSubmit();
+              return false;
+            }}
+          >
+            <Row>
+              {/* left */}
+
+              {/* <Col lg={20} className="mb-3">
+                <select className="form-select p-3">
+                  {loading === false && error === false ? (
+                    employerInfo?.map((item, key) => (
+                      <option key={key}>{item?.fullName}</option>
+                    ))
+                  ) : (
+                    <option>loading employers...</option>
+                  )}
+                </select>
+              </Col> */}
+
+              <Col>
+                <label>Job Title</label>
+                <Row className="mb-3">
+                  <Col lg={15}>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="jobTitle"
+                      placeholder="Job title"
+                      onChange={validation.handleChange}
+                      value={validation.values.jobTitle || ""}
+                    />
+                  </Col>
+                </Row>
+
+                <Row className="mb-3">
+                  <label>Select Category</label>
+                  <Col lg={15}>
+                    <select
+                      className="form-select p-3"
+                      name="jobCategoryId"
+                      id="jobCategoryId"
+                      value={validation.values.jobCategoryId}
+                      onChange={validation.handleChange}
+                    >
+                      {catLoading === false && catError === false ? (
+                        categoryInfo?.map((item, key) => (
+                          <option key={key} value={item?.jobCategoryId}>
+                            {item?.jobCategoryName}
+                          </option>
+                        ))
+                      ) : (
+                        <option>loading categories...</option>
+                      )}
+                    </select>
+                  </Col>
+                </Row>
+
+                <Row className="mb-3">
+                  <Col lg={15} className="d-flex align-items-center">
+                    <Input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="confidentialCheckbox"
+                      checked={isConfidential} // Use state variable for checked attribute
+                      onChange={handleCheckboxChange} // Update state on change
+                    />
+                    <label
+                      htmlFor="confidentialCheckbox"
+                      className="form-check-label"
+                    >
+                      Mark company as confidential
+                    </label>
+                  </Col>
+                </Row>
+
+                {/* <Row className="mb-3">
+                  <label>Enter Education Level</label>
+                  <Col lg={15}>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="websitetext"
+                      placeholder="Education"
+                      onChange={validation.handleChange}
+                      value={validation.values.education || ""}
+                    />
+                  </Col>
+                </Row> */}
+
+                {/* <Row className="mb-3">
+                  <Col
+                    lg={15}
+                    className="d-flex gap-3 p-2"
+                    style={{
+                      border: "1px solid #ebeff0",
+                      borderRadius: "0.5rem",
+                    }}
+                  >
+                    <Button
+                      className="btn btn-light"
+                      onClick={() => tog_standard()}
+                    >
+                      How to apply
+                    </Button>
+                    <p style={{ color: "red" }}>Not set</p>
+                  </Col>
+                </Row> */}
+              </Col>
+
+              {/* right */}
+              <Col>
+                <Row className="mb-3">
+                  <label>Select Status</label>
+                  <Col lg={12}>
+                    <select
+                      className="form-select p-3"
+                      name="jobStatusId"
+                      id="jobStatusId"
+                      value={validation.values.jobStatusId}
+                      onChange={validation.handleChange}
+                    >
+                      {jobloading === false && joberror === false ? (
+                        jobsInfo?.map((item, key) => (
+                          <option key={key} value={item?.jobStatusId}>
+                            {item?.jobStatusTitle}
+                          </option>
+                        ))
+                      ) : (
+                        <option>loading status...</option>
+                      )}
+                    </select>
+                  </Col>
+                </Row>
+
+                {/* <Row className="mb-3">
+                  <label>Select Category</label>
+                  <Col lg={15}>
+                    <select
+                      className="form-select p-3"
+                      name="jobCategoryId"
+                      id="jobCategoryId"
+                      value={validation.values.jobCategoryId}
+                      onChange={validation.handleChange}
+                    >
+                      {catLoading === false && catError === false ? (
+                        categoryInfo?.map((item, key) => (
+                          <option key={key} value={item?.jobCategoryId}>
+                            {item?.jobCategoryName}
+                          </option>
+                        ))
+                      ) : (
+                        <option>loading categories...</option>
+                      )}
+                    </select>
+                  </Col>
+                </Row> */}
+
+                <Row className="mb-3">
+                  <Col lg={15} className="p-2">
+                    <div>
+                      <div className="d-flex gap-1">
+                        {finalLocations.map((location, index) => (
+                          <div
+                            className="selected-location p-1"
+                            key={index}
+                            style={{
+                              backgroundColor: "#e0e0e0",
+                              borderRadius: "6px",
+                            }}
+                          >
+                            {location.locationName}
+                          </div>
+                        ))}
+                      </div>
+                      <br />
+                      <Input
+                        type="text"
+                        className="form-control p-3"
+                        id="websitetext"
+                        placeholder="Job location eg. Accra, Tarkwa"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        onKeyUp={handleKeyUp}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+
+                <Row className="mb-3">
+                  <label>Job Salary Amount</label>
+                  <Col lg={15}>
+                    <Input
+                      type="number"
+                      className="form-control p-3"
+                      id="jobSalaryAmount"
+                      // name='jobSalaryAmount'
+                      placeholder="Enter Job Salary Amount"
+                      onChange={validation.handleChange}
+                      value={validation.values.jobSalaryAmount || ""}
+                    />
+                  </Col>
+                </Row>
+
+                {/* <Row className="mb-3">
+                <Col lg={15}>
+                  <Input
+                    type="date"
+                    className="form-control p-3"
+                    id="websitetext"
+                    placeholder="End date"
+                  />
+                </Col>
+              </Row> */}
               </Col>
             </Row>
 
-            {/* <Row className="mb-3">
-              <Col lg={15}>
-                <div
-                  style={{
-                    backgroundColor: "#EFF1F2",
-                    height: "35vh",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                ></div>
+            <Row className="mt-3">
+              <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
+                Description
+              </h6>
+              <Col lg={12}>
+                {/* <Form method="post">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data=""
+                  onChange={handleEditorChange} // Use the custom handleEditorChange function
+                />
+              </Form> */}
+                <Editor onContentChange={handleEditorContentChange} />
+              </Col>
+            </Row>
+            {/* 
+            <Row className="mt-3">
+              <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
+                How to apply
+              </h6>
+              <Col lg={12}> */}
+            {/* <Form method="post">
+                <CKEditor
+                  editor={ClassicEditor}
+                  data=""
+                  onChange={handleEditorChange} // Use the custom handleEditorChange function
+                />
+              </Form> */}
+            {/* <Editor />
               </Col>
             </Row> */}
 
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Gashie Technology"
-                />
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <select className="form-select p-3">
-                  <option>Choose Job Category</option>
-                  <option>Accounting</option>
-                  <option>Banking</option>
-                  <option>Data Management</option>
-                  <option>Extractive</option>
-                  <option>Health and Nutrition</option>
-                  <option>Insurance</option>
-                  <option>Policy</option>
-                  <option>Science</option>
-                  <option>Automation/Machinery/Aviation</option>
-                  <option>Driving/Transportation</option>
-                  <option>Agriculture</option>
-                  <option>Marketing</option>
-                  <option>Publishing /Printing</option>
-                  <option>Procurement</option>
-                  <option>Social Work</option>
-                  <option>Consulting</option>
-                  <option>Customer Service</option>
-                  <option>Poroject Development</option>
-                  <option>Supply CHain</option>
-                  <option>Internships</option>
-                  <option>Operations</option>
-                  <option>Food Service</option>
-                  <option>I.T</option>
-                  <option>Other</option>
-                </select>
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <select className="form-select p-3">
-                  <option>Default industry upon registration</option>
-               
-                    <option>Please Select</option>
-                    <option>Accounting</option>
-                    <option>Banking</option>
-                    <option>Data Management</option>
-                    <option>Extractive</option>
-                    <option>Health and Nutrition</option>
-                    <option>Insurance</option>
-                    <option>Policy</option>
-                    <option>Science</option>
-                    <option>Automation/Machinery/Aviation</option>
-                    <option>Driving/Transportation</option>
-                    <option>Agriculture</option>
-                    <option>Marketing</option>
-                    <option>Publishing /Printing</option>
-                    <option>Procurement</option>
-                    <option>Social Work</option>
-                    <option>Consulting</option>
-                    <option>Customer Service</option>
-                    <option>Poroject Development</option>
-                    <option>Supply CHain</option>
-                    <option>Internships</option>
-                    <option>Operations</option>
-                    <option>Food Service</option>
-                    <option>I.T</option>
-                    <option>Other</option>
-                 
-                </select>
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Education"
-                />
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control"
-                  id="websiteUrl"
-                  placeholder="Starting Date"
-                />
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col
-                lg={15}
-                className="d-flex gap-3 p-2"
-                style={{ border: "1px solid #ebeff0", borderRadius: "0.5rem" }}
+            <div className="text-start d-flex gap-3 mt-4">
+              
+              <button
+                type="submit"
+                className="btn btn-dark"
+                style={{ backgroundColor: "#244a59" }}
               >
-                <Button
-                  className="btn btn-light"
-                  onClick={() => tog_standard()}
-                >
-                  How to apply
-                </Button>
-                <p style={{ color: "red" }}>Not set</p>
-              </Col>
-            </Row>
-          </Col>
+                Submit
+              </button>
+             
+            </div>
+          </Form>
+        </Card>
+      </div>
 
-          {/* right */}
-          <Col>
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Partner Category"
-                />
-              </Col>
-            </Row>
+      {/* Modals */}
+      {/* 
+      <Button color="primary" onClick={() => tog_standard()}>
+        Standard Modal
+      </Button> */}
 
-            {/* mdi-trending-down */}
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Job status"
-                />
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <select className="form-select p-3">
-                 
-                    <option>Chosee Job Category</option>
-                    <option>Accounting</option>
-                    <option>Banking</option>
-                    <option>Data Management</option>
-                    <option>Extractive</option>
-                    <option>Health and Nutrition</option>
-                    <option>Insurance</option>
-                    <option>Policy</option>
-                    <option>Science</option>
-                    <option>Automation/Machinery/Aviation</option>
-                    <option>Driving/Transportation</option>
-                    <option>Agriculture</option>
-                    <option>Marketing</option>
-                    <option>Publishing /Printing</option>
-                    <option>Procurement</option>
-                    <option>Social Work</option>
-                    <option>Consulting</option>
-                    <option>Customer Service</option>
-                    <option>Poroject Development</option>
-                    <option>Supply CHain</option>
-                    <option>Internships</option>
-                    <option>Operations</option>
-                    <option>Food Service</option>
-                    <option>I.T</option>
-                    <option>Other</option>
-                 
-                </select>
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15} className="p-2">
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Job location eg. Accra, Tarkwa"
-                />
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="Years of experience"
-                />
-              </Col>
-            </Row>
-
-            <Row className="mb-3">
-              <Col lg={15}>
-                <Input
-                  type="url"
-                  className="form-control p-3"
-                  id="websiteUrl"
-                  placeholder="End date"
-                />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-
-        <Row className="mt-3">
-          <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
-            Description
-          </h6>
-          <Col lg={12}>
-            <Form method="post">
-              <CKEditor
-                editor={ClassicEditor}
-                data=""
-                onChange={handleEditorChange} // Use the custom handleEditorChange function
-              />
-            </Form>
-          </Col>
-        </Row>
-
-        <Row className="mt-3">
-          <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
-            How to apply
-          </h6>
-          <Col lg={12}>
-            <Form method="post">
-              <CKEditor
-                editor={ClassicEditor}
-                data=""
-                onChange={handleEditorChange} // Use the custom handleEditorChange function
-              />
-            </Form>
-          </Col>
-        </Row>
-
-        <div className="text-start d-flex gap-3 mt-4">
-          <button
-            type="submit"
-            className="btn btn-dark"
-            style={{ backgroundColor: "#244a59" }}
-          >
-            Submit
-          </button>
-        </div>
-      </Container>
-
-      {/* Modal */}
       <Modal
         id="myModal"
         isOpen={modal_standard}
@@ -402,7 +533,7 @@ const PostJob = () => {
                   <option>Select one</option>
                   <option>Redirect to my website</option>
                   <option>Receive via email</option>
-                  <option>Application tracker</option>
+                  {/* <option>Application tracker</option> */}
                 </select>
               </Col>
             </Row>
@@ -532,55 +663,67 @@ const PostJob = () => {
             <Row>
               <h6 className="mt-2">Screening questionnaires</h6>
 
-              <Row>
-                <Col xl={20} md={20} className="mt-4">
-                  <label className="fs-11">Receive application</label>
-                  <Input
-                    type="text"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="Enter question name"
-                    value="Recieve via email"
-                  />
-                </Col>
-              </Row>
+              <div>
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <label className="fs-11">Receive application</label>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="websitetext"
+                      placeholder="Enter question name"
+                      value={questionName} // Use state variable for value
+                      onChange={(e) => setQuestionName(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
 
-              <Row>
-                <Col xl={20} md={20} className="mt-4">
-                  <Input
-                    type="text"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="Enter email aaddress"
-                  />
-                </Col>
-              </Row>
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="websitetext"
+                      placeholder="Enter url (eg. http://email@gmail.com.com)"
+                      value={url} // Use state variable for value
+                      onChange={(e) => setUrl(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+              </div>
             </Row>
           ) : selectedOption === "Redirect to my website" ? (
             <Row>
-              <Row>
-                <Col xl={20} md={20} className="mt-4">
-                  <label className="fs-11">Receive application</label>
-                  <Input
-                    type="text"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="Enter question name"
-                    value="Redirec to my website"
-                  />
-                </Col>
-              </Row>
+              <h6 className="mt-2">Screening questionnaires</h6>
 
-              <Row>
-                <Col xl={20} md={20} className="mt-4">
-                  <Input
-                    type="text"
-                    className="form-control p-3"
-                    id="websitetext"
-                    placeholder="Enter url (eg. http://gashietechnology.com)"
-                  />
-                </Col>
-              </Row>
+              <div>
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <label className="fs-11">Receive application</label>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="emailtext"
+                      placeholder="Enter email"
+                      value={email} // Use state variable for value
+                      onChange={(e) => setEmail(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="urltext"
+                      placeholder="Enter url (eg. email@gmail.com)"
+                      value={url} // Use state variable for value
+                      onChange={(e) => setUrl(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+              </div>
             </Row>
           ) : (
             ""
@@ -610,4 +753,4 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default AddJob;
