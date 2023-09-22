@@ -446,3 +446,11 @@ export const viewSavedJobsURL = (data) => api.create(url.VIEW_SAVED_JOBS, data)
 
 export const updateProfileURL = (data) => api.create(url.UPDATE_PROFILE, data)
 export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data)
+
+export const createJobURL = (data) => api.create(url.CREATE_JOB, data);
+export const updateJobURL = (data) => api.create(url.UPDATE_JOB, data);
+export const jobsURL = (data) => api.create(url.JOBS, data);
+export const approveJobURL = (data) => api.create(url.APPROVE_JOBS, data);
+export const createjobStatusURL = (data) => api.create(url.CREATE_JOB_STATUS, data);
+export const jobStatusURL = (data) => api.create(url.JOB_STATUS, data);
+export const updateJobStatusURL = (data) => api.create(url.UPDATE_JOB_STATUS, data);

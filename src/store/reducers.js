@@ -65,13 +65,14 @@ import FileManager from "./fileManager/reducer";
 // To do
 import Todos from "./todos/reducer";
 //Jobs
-import Jobs from "./job/reducer";
+//import Jobs from "./job/reducer";
 //API Key
 import APIKey from "./apikey/reducer";
 
 //jobsinGhana
 import JobAlerts from "./jobAlerts/reducer";
 import Resumes from './Resume/reducer'
+import Jobs from "./Jobs/reducer";
 
 const rootReducer = combineReducers({
   // public
@@ -100,10 +101,11 @@ const rootReducer = combineReducers({
   Team,
   FileManager,
   Todos,
-  Jobs,
+ // Jobs,
   APIKey,
   JobAlerts, 
   Resumes,
+  Jobs,
 });
 
 export default rootReducer;

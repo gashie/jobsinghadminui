@@ -31,11 +31,11 @@ const AuthProtectedJobSeeker = (props) => {
       navigate("/employer-dashboard");
     }
 
-    if (isLoggedIn && userInfo?.userInfo?.roleid === 2) {
-      // dispatch(getMe());
+    // if (isLoggedIn && userInfo?.userInfo?.roleid === 2) {
+    //   // dispatch(getMe());
 
-      navigate("/job-seeker-dashboard");
-    }
+    //   navigate("/job-seeker-dashboard");
+    // }
   }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
 
   if (!isLoggedIn) {

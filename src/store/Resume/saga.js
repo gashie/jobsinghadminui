@@ -44,10 +44,10 @@ function* viewResumes({ payload: action }) {
       yield put(viewResumeSuccess(response?.data));
     console.log(response)
     } else {
-      yield put(viewResumeError(response));
-      toast.error(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // yield put(viewResumeError(response));
+      // toast.error(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);
@@ -64,9 +64,9 @@ function* viewCv({ payload: action }) {
      
     } else {
       yield put(viewCvError(response));
-      toast.error(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.error(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);

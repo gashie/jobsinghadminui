@@ -254,3 +254,12 @@ export const VIEW_SAVED_JOBS = `${version}/viewmyjobs/`
 //user-profile
 export const UPDATE_PROFILE = `${version}/updateuser/`
 export const CHANGE_PASSWORD = `${version}/sendresetcode/`
+
+
+export const CREATE_JOB_STATUS = `${version}/createjobstatus/`
+export const JOB_STATUS = `${version}/viewjobstatus/`
+export const UPDATE_JOB_STATUS = `${version}/updatejobstatus/`
+export const CREATE_JOB = `${version}/setupjob/`
+export const UPDATE_JOB = `${version}/updatejob/`
+export const JOBS = `${version}/viewmyjobs/`
+export const APPROVE_JOBS = `${version}/approvejob/`

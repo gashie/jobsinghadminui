@@ -6,7 +6,15 @@ import Footer from '../pages/Pages/JobSeeker/footer'
 //redux
 import { useSelector } from "react-redux";
 
+
+
 const NonAuthLayout = ({ children }) => {
+
+
+
+
+
+    
     const {
         layoutModeType,
     } = useSelector(state => ({

@@ -1,13 +1,17 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
-import { CREATE_JOB_ALERT, UPDATE_JOB_ALERT, VIEW_JOB_ALERTS, VIEW_SAVED_JOBS } from "./actionTypes";
+import {
+  CREATE_JOB_ALERT,
+  UPDATE_JOB_ALERT,
+  VIEW_JOB_ALERTS,
+  VIEW_SAVED_JOBS,
+} from "./actionTypes";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import {
-  viewjobAlerts,
+  viewjobAlerts as alertAction,
   viewjobAlertsSuccess,
   viewjobAlertsError,
   createJobAlertSuccess,
@@ -18,69 +22,74 @@ import {
   viewSavedJobsError,
 } from "./action";
 
-import { viewJobAlertsURL,createJobAlertURL, updateJobAlertURL, viewSavedJobsURL } from "../../helpers/fakebackend_helper";
+import {
+  viewJobAlertsURL,
+  createJobAlertURL,
+  updateJobAlertURL,
+  viewSavedJobsURL,
+} from "../../helpers/fakebackend_helper";
 
-function* viewJobAlerts ({payload: action}){
-  try{
-    const response  = yield call(viewJobAlertsURL, action);
- 
-    if(response && response?.status === 200 && response?.data?.status === 1){
-       yield put(viewjobAlertsSuccess(response?.data?.data))
-    console.log(response)
-    }else{
-      yield put(viewjobAlertsError(response))
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
-    }
-  }catch(error){
-    console.log(error)
-    yield put(viewjobAlertsError(error))
-  }
-}
+function* viewJobAlerts({ payload: action }) {
+  try {
+    const response = yield call(viewJobAlertsURL, action);
 
-
-function* viewSavedJobs ({payload: action}){
-  try{
-    const response  = yield call(viewSavedJobsURL, action);
- 
-    if(response && response?.status === 200 && response?.data?.status === 1){
-       yield put(viewSavedJobsSuccess(response?.data?.data))
+    if (response && response?.status === 200 && response?.data?.status === 1) {
+      yield put(viewjobAlertsSuccess(response?.data?.data));
      
-    }else{
-      yield put(viewSavedJobsError(response))
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+    } else {
+      yield put(viewjobAlertsError(response));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
-  }catch(error){
-    console.log(error)
-    yield put(viewSavedJobsError(error))
+  } catch (error) {
+    console.log(error);
+    yield put(viewjobAlertsError(error));
   }
 }
 
-function *createJobAlert ({payload: data}){
-  try{
-    const response  = yield call(createJobAlertURL, data);
- 
-    if(response && response?.status === 200 && response?.data?.status === 1){
-       yield put(createJobAlertSuccess())
-       toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
-    }else{
-      yield put(createJobAlertError(response))
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+function* viewSavedJobs({ payload: action }) {
+  try {
+    const response = yield call(viewSavedJobsURL, action);
+
+    if (response && response?.status === 200 && response?.data?.status === 1) {
+      yield put(viewSavedJobsSuccess(response?.data));
+    } else {
+      yield put(viewSavedJobsError(response));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
-  }catch(error){
-    console.log(error)
-    yield put(createJobAlertError(error))
+  } catch (error) {
+   
+    yield put(viewSavedJobsError(error));
   }
 }
 
-function* updateJobAlert ({payload}){
+function* createJobAlert({ payload: data }) {
+  try {
+    const response = yield call(createJobAlertURL, data);
+
+    if (response && response?.status === 200 && response?.data?.status === 1) {
+      yield put(createJobAlertSuccess());
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+      yield put(alertAction({viewAction: ""}))
+    } else {
+      yield put(createJobAlertError(response));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+      yield put(alertAction({viewAction: ""}))
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(createJobAlertError(error));
+  }
+}
+
+function* updateJobAlert({ payload }) {
   try {
     const response = yield call(updateJobAlertURL, payload);
 
@@ -89,11 +98,13 @@ function* updateJobAlert ({payload}){
       toast.warning(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(alertAction({viewAction: ""}))
     } else {
       yield put(updateJobAlertError(response));
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(alertAction({viewAction: ""}))
     }
   } catch (error) {
     console.log(error);
@@ -101,12 +112,11 @@ function* updateJobAlert ({payload}){
   }
 }
 
-
-function* jobAlertSaga(){
-    yield takeEvery(VIEW_JOB_ALERTS, viewJobAlerts)
-    yield takeEvery(CREATE_JOB_ALERT, createJobAlert)
-    yield takeEvery(UPDATE_JOB_ALERT, updateJobAlert)
-    yield takeEvery(VIEW_SAVED_JOBS, viewSavedJobs)
+function* jobAlertSaga() {
+  yield takeEvery(VIEW_JOB_ALERTS, viewJobAlerts);
+  yield takeEvery(CREATE_JOB_ALERT, createJobAlert);
+  yield takeEvery(UPDATE_JOB_ALERT, updateJobAlert);
+  yield takeEvery(VIEW_SAVED_JOBS, viewSavedJobs);
 }
 
 export default jobAlertSaga;

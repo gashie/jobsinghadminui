@@ -197,7 +197,7 @@ const EmployerSidebar = () => {
                         window.location.pathname === item?.link4
                         ? "#3f494c"
                         : "",
-                      height: "1rem",
+                      height: "23px",
                       width: "100%",
                       borderTop: "1px solid white",
                       cursor: "pointer",
