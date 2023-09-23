@@ -60,6 +60,7 @@ function AddQuestion({toggleQuestionModal, toggleSecondModal}) {
     setFinalQuestions(questionsData);
     setSendQuestion({
       jobId: loading === false && error === false ? idInfo?.jobId : "",
+      hasQuestions: "yes",
       questions: questionsData,
     });
     dispatch(viewMyQuestions())
@@ -239,7 +240,7 @@ console.log(idInfo?.jobId, item?.jobId)
                         <Button
                           style={{ backgroundColor: "#00d084", border: "none" }}
                           className="btn btn-dark"
-                          disabled={finalQuestions.length === 0}
+                        //   disabled={finalQuestions.length === 0}
                           onClick={handleSubmitQuestion}
                         >
                           Save Job

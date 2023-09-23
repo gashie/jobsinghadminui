@@ -26,6 +26,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import AddQuestion from "./Questions";
+import { rateCard } from "../../../../store/Rates/action";
+import Payment from './Payment/index'
+
 
 const AddJob = ({payLater}) => {
   const dispatch = useDispatch();
@@ -158,6 +161,17 @@ const AddJob = ({payLater}) => {
   const toggleQuestionModal = () => {
     setQuestionIsOpen(!questionIsOpen);
   };
+
+
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+
+  const togglePaymentModal = () => {
+    setIsPaymentOpen(!isPaymentOpen);
+  };
+
+  useEffect(()=>{
+    dispatch(rateCard({viewAction: ""}))
+  }, [dispatch])
 
   return (
     <>
@@ -431,7 +445,10 @@ const AddJob = ({payLater}) => {
         <ModalHeader toggle={toggleSecondModal}></ModalHeader>
         <ModalBody>Would you like to Pay for Job Posting Now?</ModalBody>
         <ModalFooter>
-          <Button className="btn btn-dark" onClick={toggleSecondModal} style={{backgroundColor: '#244a59'}}>
+          <Button className="btn btn-dark" onClick={()=>{
+            toggleSecondModal()
+            togglePaymentModal()
+          }} style={{backgroundColor: '#244a59'}} >
             Pay now
           </Button>
           <Button className="btn btn-dark" onClick={()=>{
@@ -443,10 +460,18 @@ const AddJob = ({payLater}) => {
         </ModalFooter>
       </Modal>
 
+
+
       {/* Transaction Step */}
-      <Modal isOpen={secondIsOpen} toggle={toggleSecondModal}>
-        <ModalHeader toggle={toggleSecondModal}></ModalHeader>
-        <ModalBody>Would you like to Pay for Job Posting Now?</ModalBody>
+      <Modal isOpen={isPaymentOpen} toggle={togglePaymentModal}
+       size="xl"
+       className="modal-fullscreen"
+      >
+        <ModalHeader toggle={togglePaymentModal}></ModalHeader>
+        <ModalBody>
+
+         <Payment />
+        </ModalBody>
         <ModalFooter>
           <Button className="btn btn-dark" onClick={toggleSecondModal} style={{backgroundColor: '#244a59'}}>
             Pay now
@@ -459,6 +484,8 @@ const AddJob = ({payLater}) => {
           </Button>
         </ModalFooter>
       </Modal>
+
+
 
       {/* Question Step */}
       <Modal

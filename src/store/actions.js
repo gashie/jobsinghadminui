@@ -58,3 +58,5 @@ export * from './Jobs/action'
 export * from './users/action'
 export * from './Industry/action'
 export * from "./Questions/action"
+export * from "./Courses/action"
+export * from "./Rates/action"

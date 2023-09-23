@@ -476,3 +476,28 @@ export const createBulkQuestionURL = (data) => api.create(url.CREATE_BULK_QUESTI
 export const viewMyQuestions = (data) => api.create(url.VIEW_QUESTIONS, data)
 
 export const employerSignUpURL = (data) =>api.create(url.EMPLOYER_SIGNUP, data)
+
+export const rateCardURL = (data) => api.create(url.RATE_CARD, data);
+export const updateRatecardURL = (data) => api.create(url.UPDATE_RATE_CARD, data);
+export const approveRateCardURL = (data) => api.create(url.APPROVE_RATE_CARD, data);
+export const createRateCardURL = (data) => api.create(url.CREATE_RATE_CARD, data);
+
+export const courseContentURL = (data) => api.create(url.COURSE_CONTENT, data);
+export const saveCourseContetntURL = (data) => api.create(url.SAVE_COURSE_CONTENT, data);
+export const updateCourseContentURL = (data) => api.create(url.UPDATE_COURSE_CONTENT, data);
+
+export const coursePartnershipURL = (data) => api.create(url.COURSE_PARTNERSHIP, data);
+export const updateCoursePartnershipURL = (data) => api.create(url.UPDATE_COURSE_PARTNERSHIP, data);
+export const saveCoursePartnershipURL = (data) => api.create(url.SAVE_COURSE_PARTNERSHIP, data);
+
+export const courseScheduleURL = (data) => api.create(url.COURSE_SCHEDULE, data);
+export const saveCourseScheduleURL = (data) => api.create(url.SAVE_COURSE_SCHEDULE, data);
+export const updateCourseScheduleURL = (data) => api.create(url.UPDATE_COURSE_SCHEDULE, data);
+
+export const courseURL = (data) => api.create(url.COURSE, data);
+export const updateCourseURL = (data) => api.create(url.UPDATE_COURSE, data);
+export const approveCourseURL = (data) => api.create(url.APPROVE_COURSE, data);
+export const saveCourseURL = (data) => api.create(url.SAVE_COURSE, data);
+
+export const payURL = (data) => api.create(url.PAY, data);
+

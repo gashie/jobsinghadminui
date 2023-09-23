@@ -287,3 +287,27 @@ export const VIEW_QUESTIONS = `${version}/viewmyquestions/`
 
 
 export const EMPLOYER_SIGNUP = `${version}/signup/`
+
+
+export const RATE_CARD = `${version}/viewratecards/`
+export const CREATE_RATE_CARD = `${version}/saveratecard/`
+export const UPDATE_RATE_CARD = `${version}/viewschedule/`
+export const APPROVE_RATE_CARD = `${version}/approveratecards/`
+
+export const COURSE = `${version}/viewsavedcourses/`
+export const SAVE_COURSE = `${version}/savecourse/`
+export const UPDATE_COURSE = `${version}/updatesavedcourse/`
+export const APPROVE_COURSE = `${version}/approveuserfeeds/`
+
+export const COURSE_CONTENT = `${version}/viewcontent/`
+export const SAVE_COURSE_CONTENT = `${version}/savecontent/`
+export const UPDATE_COURSE_CONTENT = `${version}/updatecontent/`
+export const COURSE_PARTNERSHIP = `${version}/viewpartnerships/`
+export const SAVE_COURSE_PARTNERSHIP = `${version}/savepartnerships/`
+export const UPDATE_COURSE_PARTNERSHIP = `${version}/updatepartnerships/`
+export const COURSE_SCHEDULE = `${version}/viewschedule/`
+export const SAVE_COURSE_SCHEDULE = `${version}/saveschedule/`
+export const UPDATE_COURSE_SCHEDULE = `${version}/updateschedule/`
+
+
+export const PAY = `${version}/verifypayment/`

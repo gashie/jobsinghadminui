@@ -25,6 +25,10 @@ const EmployerCourses = () => {
     }
   };
 
+  const handleCourse = () =>{
+    justifyToggle("2")
+  }
+
   const [edit, setEdit] = useState(false);
   return (
     <>
@@ -72,12 +76,12 @@ const EmployerCourses = () => {
               </Nav>
 
               <TabContent activeTab={justifyTab} className="text-muted">
-                <TabPane tabId="1" id="base-justified-home"   style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                <TabPane tabId="1" id="base-justified-home"   style={{ height: "800px", position: "relative", overflow: "scroll" }}
                className="scroll-change">
-                  <Courses />
+                  <Courses handleCourse={handleCourse}/>
                 </TabPane>
 
-                <TabPane tabId="2" id="product"   style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                <TabPane tabId="2" id="product"   style={{ height: "800px", position: "relative", overflow: "scroll" }}
                className="scroll-change">
                   <PostCourse />
                 </TabPane>

@@ -76,6 +76,8 @@ import Jobs from "./Jobs/reducer";
 import Users from "./users/reducer";
 import Industry from "./Industry/reducer";
 import Questions from "./Questions/reducer";
+import Courses from "./Courses/reducer";
+import Rates from "./Rates/reducer";
 
 const rootReducer = combineReducers({
   // public
@@ -112,6 +114,8 @@ const rootReducer = combineReducers({
   Users,
   Industry,
   Questions,
+  Courses,
+  Rates,
 });
 
 export default rootReducer;
