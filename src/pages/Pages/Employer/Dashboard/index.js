@@ -24,6 +24,7 @@ import SavedJobs from "../../JobSeeker/SavedJobs";
 import JobsSidebar from "../../../../Layouts/JobsSidebar";
 
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const EmployerDashboard = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -87,6 +88,12 @@ const EmployerDashboard = () => {
     setSelectedStatus(status);
     setIsOpenStatus(false);
   };
+
+  const {loading, error, userInfo} = useSelector((state)=>({
+    loading: state.Login.loading, 
+    error: state.Login.error, 
+    userInfo: state.Login.userInfo
+  }))
 
   
 
@@ -159,7 +166,9 @@ const EmployerDashboard = () => {
               >
                 <TabPane tabId="1" id="base-justified-home">
                   <h5 style={{ fontWeight: "bolder" }} className="mt-4">
-                    Welcome John,
+                   {
+                      loading === false && error === false ? `Welcome, ${userInfo?.userInfo?.fullName}` : ""
+                    },
                   </h5>
 
                   <div className="d-flex mt-5 gap-2">

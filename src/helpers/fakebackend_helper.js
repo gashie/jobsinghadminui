@@ -472,3 +472,7 @@ export const createQuestionURL = (data) => api.create(url.CREATE_QUESTION, data)
 export const linkJobQuestionURL = (data) => api.create(url.LINK_QUESTIOSN, data);
 export const unlinkJobQuestionURL = (data) => api.create(url.UNLINK_QUESTIOSN, data);
 export const createBulkQuestionURL = (data) => api.create(url.CREATE_BULK_QUESTION, data);
+
+export const viewMyQuestions = (data) => api.create(url.VIEW_QUESTIONS, data)
+
+export const employerSignUpURL = (data) =>api.create(url.EMPLOYER_SIGNUP, data)

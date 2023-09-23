@@ -23,12 +23,20 @@ import {
     LINK_JOB_QUESTION,
     LINK_JOB_QUESTION_SUCCESS,
     LINK_JOB_QUESTION_ERROR,
+    VIEW_MY_QUESTIONS,
+    VIEW_MY_QUESTIONS_SUCCESS,
+    VIEW_MY_QUESTIONS_ERROR,
   } from "./actionTypes";
   
   const initialState = {
     loading: false,
     error: null,
     data: null,
+    questions: null,
+    viewQuestionsLoading: false, 
+    viewQuestionsError: false,
+    errMssg: ""
+
   };
   
   const Questions = (state = initialState, action) => {
@@ -72,9 +80,31 @@ import {
         return {
           ...state,
           loading: false,
-          error: action.payload,
+          errMssg: action.payload,
           data: null,
+          error: false
         };
+
+        case VIEW_MY_QUESTIONS: 
+        return {
+            ...state, 
+            viewQuestionsError: false, 
+            viewQuestionsLoading: true
+        }
+        case VIEW_MY_QUESTIONS_SUCCESS: 
+        return {
+            ...state, 
+            viewQuestionsError: false, 
+            viewQuestionsLoading: false, 
+            questions: action.payload
+        }
+        case VIEW_MY_QUESTIONS_ERROR: 
+        return {
+            ...state, 
+            viewQuestionsError: false, 
+            viewQuestionsLoading: false,
+            errMssg: action.payload
+        }
       default:
         return state;
     }

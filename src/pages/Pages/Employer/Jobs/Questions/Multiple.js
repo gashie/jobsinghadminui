@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { useSelector } from 'react-redux';
 
 const Multiple = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
@@ -30,6 +31,13 @@ const Multiple = ({ onSubmit }) => {
     setIdealAnswerIndex(parseInt(e.target.value, 10));
   };
 
+
+  const {loading, error, idInfo} = useSelector((state)=>({
+    loading: state.Jobs.idLoading,
+    error: state.Jobs.idError,
+    idInfo: state.Jobs.id,
+}))
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,7 +45,7 @@ const Multiple = ({ onSubmit }) => {
     const formattedData = {
       questionTitle: question,
       questionType: 'multi',
-      jobId: '61d3bab7-20ff-40ab-9b97-2296cd567a11',
+      jobId: loading === false && error === false ? idInfo?.jobId : "",
       questionOption: answerOptions.map((option, index) => ({
         optionLabel: `Answer ${index + 1}`,
         optionValue: option,
@@ -53,6 +61,10 @@ const Multiple = ({ onSubmit }) => {
     setAnswerOptions(['']);
     setIdealAnswerIndex(0);
   };
+
+
+ 
+
 
   return (
     <Form onSubmit={handleSubmit}>

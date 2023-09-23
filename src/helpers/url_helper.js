@@ -283,3 +283,7 @@ export const CREATE_QUESTION = `${version}/createquestion/`
 export const LINK_QUESTIOSN = `${version}/linkquestion/`
 export const UNLINK_QUESTIOSN = `${version}/unlinkquestion/`
 export const CREATE_BULK_QUESTION = `${version}/createbulkquestion/`
+export const VIEW_QUESTIONS = `${version}/viewmyquestions/`
+
+
+export const EMPLOYER_SIGNUP = `${version}/signup/`

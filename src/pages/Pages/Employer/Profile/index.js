@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   NavItem,
   TabPane,
@@ -17,6 +17,7 @@ import img1 from './img1.png'
 import EditProfile from "./EditProfile"
 import ChangePassword from "./ChangePassword";
 import Logo from './Logo'
+import {useSelector} from 'react-redux'
 
 const EmployerProfile = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -26,7 +27,42 @@ const EmployerProfile = () => {
     }
   };
 
-  const [edit, setEdit] = useState(false);
+  const [display, setDisplay] = useState("");
+
+  const updateWindowSize = () => {
+    const newWindowSize = document.documentElement.clientWidth;
+    if (newWindowSize <= 375) {
+      setDisplay("none");
+    } else if (newWindowSize <= 1200) {
+      setDisplay("none");
+    } else if (newWindowSize >= 1200) {
+      setDisplay("");
+    } else if (newWindowSize > 375) {
+      setDisplay("");
+    }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+
+  const {loading, error, userInfo} = useSelector((state)=>({
+    loading: state.Login.loading,
+    error: state.Login.error,
+    userInfo: state.Login.userInfo,
+  }))
+
+
   return (
     <>
      
@@ -100,7 +136,7 @@ const EmployerProfile = () => {
                       >
                         <Row>
                             <h4>Company's Profile</h4>
-                          <Col style={{position: "relative", left: "6rem", marginTop: "10rem"}}>
+                          <Col style={{position: "relative", left: "6rem", marginTop: "10rem"}} xl={3} md={4} xs={7}>
                             <p style={{textAlign: 'center'}}>
                             <img src={img1} alt="profile-img" className="img-fluid avatar-xxl"></img>
                             </p>
@@ -118,19 +154,20 @@ const EmployerProfile = () => {
                                 borderLeft: "1px dashed black",
                                 height: "100%",
                                position: 'relative', 
-                               left: '12rem'
+                               left: '12rem',
+                               display: display
                               }}
                             ></div>
                           </Col>
 
-                          <Col style={{ display: "grid", gap: "2rem" }}>
+                          <Col style={{ display: "grid", gap: "2rem"}} xl={4} md={5} xs={10} className="mt-3">
                             <div style={{ display: "flex", gap: "0.4rem" }}>
                               <h6 style={{color: '#244a59'}}>Phone:</h6>
-                              <h6>+233559690060</h6>
+                              <h6>{userInfo?.userInfo?.phone}</h6>
                             </div>
                             <div style={{ display: "flex", gap: "0.4rem" }}>
                               <h6 style={{color: '#244a59'}}>Email:</h6>
-                              <h6 style={{color: '#244a59'}}>mickbrown@gmail.com</h6>
+                              <h6 style={{color: '#244a59'}}>{userInfo?.userInfo?.email}</h6>
                             </div>
                             <div style={{ display: "flex", gap: "0.4rem" }}>
                               <h6 style={{color: '#244a59'}}>Date Establised:</h6>

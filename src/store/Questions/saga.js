@@ -13,6 +13,7 @@ import {
   RATE_CARD,
   UNLINK_JOB_QUESTION,
   UPDATE_RATE_CARD,
+  VIEW_MY_QUESTIONS,
 } from "./actionTypes";
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -37,6 +38,8 @@ import {
   createQuestionYNError,
   createQuestionSuccess,
   createQuestionError,
+  viewMyQuestionsSuccess,
+  viewMyQuestionsError,
 } from "./action";
 import {
  
@@ -46,6 +49,7 @@ import {
   linkJobQuestionURL,
  
   unlinkJobQuestionURL,
+  viewMyQuestions,
  
 } from "../../helpers/fakebackend_helper";
 
@@ -221,6 +225,31 @@ function* createQuestionY_N ({ payload: data }) {
   }
 }
 
+
+function* viewQuestions ({ payload: data }) {
+  try {
+    const response = yield call(viewMyQuestions, data);
+
+    if (response && response.data.status === 1) {
+      yield put(viewMyQuestionsSuccess(response.data.data));
+     // yield put(rateCardAction({ viewAction: "" }));
+      toast.success(`${response.data.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(viewMyQuestionsError(response));
+      toast.success(`${response.data.message}`, {
+        autoClose: 3000,
+      });
+   //   yield put(rateCardAction({ viewAction: "" }));
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(viewMyQuestionsError(error));
+  //  yield put(rateCardAction({ viewAction: "" }));
+  }
+}
+
 function* QuestionsSaga() {
   yield takeEvery(CREATE_QUESTION_Y_N, createQuestionY_N);
   yield takeEvery(CREATE_QUESTION_MULTIPLE, createQuestionMultiple);
@@ -229,6 +258,7 @@ function* QuestionsSaga() {
   yield takeEvery(CREATE_QUESTION, createQuestions);
   yield takeEvery(UNLINK_JOB_QUESTION, unlinkQuestion);
   yield takeEvery(LINK_JOB_QUESTION, linkQuestion);
+  yield takeEvery(VIEW_MY_QUESTIONS, viewQuestions);
  
 }
 

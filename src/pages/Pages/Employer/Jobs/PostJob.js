@@ -27,9 +27,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import AddQuestion from "./Questions";
 
-const AddJob = () => {
-
-
+const AddJob = ({payLater}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(employers({ viewAction: "notdeleted", userType: 3 }));
@@ -78,7 +76,6 @@ const AddJob = () => {
     }
   };
 
- 
   const [description, setDescription] = useState();
 
   const handleEditorContentChange = (content) => {
@@ -100,6 +97,10 @@ const AddJob = () => {
       jobStatusId: null,
       applyMode: "",
       applyLink: "",
+      education: "",
+      goLiveDate: "",
+      yearsOfExperience: null,
+      appliedEmail: "",
     },
     validateOnChange: true,
     // validationSchema: Yup.object({
@@ -117,15 +118,17 @@ const AddJob = () => {
         companyId: "",
         isCompanyConfidential: isConfidential,
         jobDescription: description,
-        jobSkillsId: "1",
+        jobSkills: [],
         jobSalaryCurrency: "Ghc",
-        jobStatusId: values.jobStatusId,
-        applyMode: "",
-        applyLink: "",
+        jobStatus: values.jobStatusId,
+        applyMode: values.applyMode,
+        applyLink: values.applyLink,
+        yearsOfExperience: values.yearsOfExperience,
+        appliedEmail: values.appliedEmail,
       };
 
       dispatch(createJob(finalData));
-      toggleModal()
+      toggleModal();
       validation.resetForm();
     },
   });
@@ -138,13 +141,11 @@ const AddJob = () => {
     setIsConfidential(!isConfidential);
   };
 
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
-
 
   const [secondIsOpen, setSecondIsOpen] = useState(false);
 
@@ -152,13 +153,11 @@ const AddJob = () => {
     setSecondIsOpen(!secondIsOpen);
   };
 
-
   const [questionIsOpen, setQuestionIsOpen] = useState(false);
 
   const toggleQuestionModal = () => {
     setQuestionIsOpen(!questionIsOpen);
   };
-
 
   return (
     <>
@@ -185,6 +184,35 @@ const AddJob = () => {
                       placeholder="Job title"
                       onChange={validation.handleChange}
                       value={validation.values.jobTitle || ""}
+                    />
+                  </Col>
+                </Row>
+
+                <label>Years of Experience</label>
+                <Row className="mb-3">
+                  <Col lg={15}>
+                    <Input
+                      type="number"
+                      className="form-control p-3"
+                      id="yearsOfExperience"
+                      placeholder="Job title"
+                      onChange={validation.handleChange}
+                      value={validation.values.yearsOfExperience || ""}
+                    />
+                  </Col>
+                </Row>
+
+                <label>Go Live Date</label>
+                <Row className="mb-3">
+                  <Col lg={15}>
+                    <Input
+                      type="date"
+                      className="form-control p-3"
+                      id="goLiveDate"
+                      name="goLiveDate"
+                      placeholder=""
+                      onChange={validation.handleChange}
+                      value={validation.values.goLiveDate || ""}
                     />
                   </Col>
                 </Row>
@@ -243,18 +271,63 @@ const AddJob = () => {
                       value={validation.values.jobStatusId}
                       onChange={validation.handleChange}
                     >
-                      {jobloading === false && joberror === false ? (
-                        jobsInfo?.map((item, key) => (
-                          <option key={key} value={item?.jobStatusId}>
-                            {item?.jobStatusTitle}
-                          </option>
-                        ))
-                      ) : (
-                        <option>loading status...</option>
-                      )}
+                      <option>Permanent</option>
+                      <option>Contract</option>
+                      <option>Part Time</option>
                     </select>
                   </Col>
                 </Row>
+
+                <Row className="mb-3">
+                  <label>Select Apply Mode</label>
+                  <Col lg={12}>
+                    <select
+                      className="form-select p-3"
+                      name="applyMode"
+                      id="applyMode"
+                      value={validation.values.applyMode}
+                      onChange={validation.handleChange}
+                    >
+                      <option>select apply mode</option>
+                      <option>Email</option>
+                      <option>Website</option>
+                    </select>
+                  </Col>
+                </Row>
+
+                {validation.values.applyMode === "Email" ? (
+                   <Row className="mb-3">
+                   <label>Apply Email</label>
+                   <Col lg={12}>
+                     <Input
+                       className="form-select p-3"
+                       name="appliedEmail"
+                       id="appliedEmail"
+                       type="text"
+                       value={validation.values.appliedEmail}
+                       onChange={validation.handleChange}
+                     />
+                     
+                   
+                   </Col>
+                 </Row>
+                ) : validation.values.applyMode === "Website" ? (
+                  <Row className="mb-3">
+                  <label>Apply Link</label>
+                  <Col lg={12}>
+                    <Input
+                      className="form-select p-3"
+                      name="applyLink"
+                      id="applyLink"
+                      type='text'
+                      value={validation.values.applyLink}
+                      onChange={validation.handleChange}
+                   />
+                  </Col>
+                </Row>
+                ) : (
+                  ""
+                )}
 
                 <Row className="mb-3">
                   <Col lg={15} className="p-2">
@@ -326,47 +399,77 @@ const AddJob = () => {
         </div>
       </div>
 
-{/* First Step */}
+      {/* First Step */}
       <Modal isOpen={modalIsOpen} toggle={toggleModal}>
         <ModalHeader toggle={toggleModal}></ModalHeader>
         <ModalBody>
           Would you like to save this job or procced to add questions?
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggleModal} style={{backgroundColor: '#244a59'}}>
+          <Button
+            color="secondary"
+            onClick={toggleModal}
+            style={{ backgroundColor: "#244a59" }}
+          >
             Save
           </Button>
-          <Button color="primary" onClick={()=>{
-            toggleModal()
-            toggleQuestionModal()
-          }} style={{backgroundColor: '#244a59'}}>
+          <Button
+            color="primary"
+            onClick={() => {
+              toggleModal();
+              toggleQuestionModal();
+            }}
+            style={{ backgroundColor: "#244a59" }}
+          >
             Add Questions
           </Button>
         </ModalFooter>
       </Modal>
 
-{/* Second Step */}
+      {/* Second Step */}
       <Modal isOpen={secondIsOpen} toggle={toggleSecondModal}>
-        <ModalHeader toggle={toggleSecondModal}>Simple Modal</ModalHeader>
-        <ModalBody>
-          Would you like to Pay for Job Posting Now?
-        </ModalBody>
+        <ModalHeader toggle={toggleSecondModal}></ModalHeader>
+        <ModalBody>Would you like to Pay for Job Posting Now?</ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggleSecondModal}>
+          <Button className="btn btn-dark" onClick={toggleSecondModal} style={{backgroundColor: '#244a59'}}>
             Pay now
           </Button>
-          <Button color="primary" onClick={toggleSecondModal}>
-           Pay Later
+          <Button className="btn btn-dark" onClick={()=>{
+            toggleSecondModal()
+            payLater()
+          }} style={{backgroundColor: '#244a59'}}>
+            Pay Later
           </Button>
         </ModalFooter>
       </Modal>
 
+      {/* Transaction Step */}
+      <Modal isOpen={secondIsOpen} toggle={toggleSecondModal}>
+        <ModalHeader toggle={toggleSecondModal}></ModalHeader>
+        <ModalBody>Would you like to Pay for Job Posting Now?</ModalBody>
+        <ModalFooter>
+          <Button className="btn btn-dark" onClick={toggleSecondModal} style={{backgroundColor: '#244a59'}}>
+            Pay now
+          </Button>
+          <Button className="btn btn-dark" onClick={()=>{
+            toggleSecondModal()
+            payLater()
+          }} style={{backgroundColor: '#244a59'}}>
+            Pay Later
+          </Button>
+        </ModalFooter>
+      </Modal>
 
-{/* Question Step */}
-      <Modal isOpen={questionIsOpen} toggle={toggleQuestionModal} size="xl" className="modal-fullscreen">
+      {/* Question Step */}
+      <Modal
+        isOpen={questionIsOpen}
+        toggle={toggleQuestionModal}
+        size="xl"
+        className="modal-fullscreen"
+      >
         <ModalHeader toggle={toggleQuestionModal}></ModalHeader>
         <ModalBody>
-         <AddQuestion />
+          <AddQuestion toggleQuestionModal={toggleQuestionModal} toggleSecondModal={toggleSecondModal} />
         </ModalBody>
         {/* <ModalFooter>
           <Button color="secondary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>

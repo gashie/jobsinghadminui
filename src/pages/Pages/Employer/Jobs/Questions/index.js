@@ -23,17 +23,12 @@ import YesNo from "./YesNo";
 import Range from "./Range";
 import Multiple from "./Multiple";
 import Single from "./YesNo";
-import { useDispatch } from "react-redux";
-import { createJobQuestion } from "../../../../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { createJobQuestion, linkJobQuestion, viewMyQuestions } from "../../../../../store/actions";
 
-function AddQuestion() {
- 
- 
-  const dispatch = useDispatch()
+function AddQuestion({toggleQuestionModal, toggleSecondModal}) {
+  const dispatch = useDispatch();
 
-  
- 
-  
   const [questionsData, setQuestionsData] = useState([]);
 
   const handleFormSubmit = (formData) => {
@@ -41,20 +36,67 @@ function AddQuestion() {
     console.log(questionsData);
   };
 
+  const {
+    loading,
+    error,
+    idInfo,
+    questionsLoading,
+    questionsError,
+    questions,
+  } = useSelector((state) => ({
+    loading: state.Jobs.idLoading,
+    error: state.Jobs.idError,
+    idInfo: state.Jobs.id,
+    questionsLoading: state.Questions.viewQuestionsLoading,
+    questionsError: state.Questions.viewQuestionsError,
+    questions: state.Questions.questions,
+  }));
+
   const [finalQuestions, setFinalQuestions] = useState([]);
+  const [sendQuestion, setSendQuestion] = useState({});
 
   useEffect(() => {
     console.log(questionsData);
     setFinalQuestions(questionsData);
-  }, [questionsData]);
+    setSendQuestion({
+      jobId: loading === false && error === false ? idInfo?.jobId : "",
+      questions: questionsData,
+    });
+    dispatch(viewMyQuestions())
+  }, [questionsData, dispatch]);
 
   const [questionType, setQuestionType] = useState("");
 
-  const handleSubmitQuestion = () =>{
-      dispatch(createJobQuestion(finalQuestions))
-      console.log(finalQuestions)
+  const handleSubmitQuestion = () => {
+    dispatch(createJobQuestion(sendQuestion));
+    dispatch(viewMyQuestions())
+    toggleQuestionModal()
+    toggleSecondModal()
+  };
+
+  const [linkStatus, setLinkStatus] = useState("")
+  const [linkstate, setLinkState] = useState(true)
+
+  const handleLink = (item) =>{
+   
+   console.log(item) 
+     setLinkStatus(item.questionId)
+     setLinkState(true)
+
+
+console.log(idInfo?.jobId, item?.jobId)
+     if(idInfo?.jobId !== item?.questionId){
+       dispatch( linkJobQuestion({
+            questionId: item?.questionId, 
+            jobId: idInfo?.jobId
+        }))
+        console.log("link will be amde")
+        console.log(idInfo?.jobId, item?.jobId)
+     }
+    
   }
 
+ 
   return (
     <>
       <div>
@@ -63,10 +105,7 @@ function AddQuestion() {
             <div className="d-flex" style={{ justifyContent: "space-between" }}>
               <div className="mt-">
                 <h4 className="fw-bolder mt-5">Add Questions</h4>
-
               </div>
-
-          
             </div>
           </div>
         </div>
@@ -121,61 +160,89 @@ function AddQuestion() {
                       </Col>
 
                       <Col>
-                      <h4>Generated Questions (Step 2)</h4>
-                      <div className="d-flex gap-2" style={{flexWrap: 'wrap'}}>
-                        {finalQuestions.map((item, key) => (
-                            <Row key={key} >
-                        
-                            <div>
-                              <p
-                                style={{
-                                  border: "1px solid black",
-                                  borderRadius: "10px",
-                                }}
-                                className="p-1"
-                              >
-                                {item.questionTitle}{" "}
-                               
-                              </p>
-                            </div>
-                        
-                          </Row>
-                        ))}
-                          </div>
-
-                        <Button style={{backgroundColor: "#00d084", border: 'none'}} className="btn btn-dark" disabled={finalQuestions.length === 0}
-                        onClick={handleSubmitQuestion}
+                        <h4>Generated Questions (Step 2)</h4>
+                        <div
+                          className="d-flex gap-2"
+                          style={{ flexWrap: "wrap" }}
                         >
-                            Add all generated questions
+                          {finalQuestions.map((item, key) => (
+                            <Row key={key}>
+                              <div>
+                                <p
+                                  style={{
+                                    border: "1px solid black",
+                                    borderRadius: "10px",
+                                  }}
+                                  className="p-1"
+                                >
+                                  {item.questionTitle}{" "}
+                                </p>
+                              </div>
+                            </Row>
+                          ))}
+                        </div>
+
+                        <Button
+                          style={{ backgroundColor: "#00d084", border: "none" }}
+                          className="btn btn-dark"
+                          disabled={finalQuestions.length === 0}
+                          onClick={handleSubmitQuestion}
+                        >
+                          Add all generated questions
                         </Button>
                       </Col>
                       <Col>
-                      <h4>Link Questions to Job (Step 3)</h4>
-                      <div className="d-flex gap-2" style={{flexWrap: 'wrap'}}>
-                        {finalQuestions.map((item, key) => (
-                            <Row key={key} >
-                        
-                            <div>
-                              <p
-                                style={{
-                                  border: "1px solid black",
-                                  borderRadius: "10px",
-                                }}
-                                className="p-1"
-                              >
-                                {item.questionTitle}{" "}
-                                <i className="bx bx-link p-2 fw-bolder fs-17" style={{color: '#00d084', backgroundColor: '#dcf1d4', borderRadius: "5px", cursor: 'pointer' }}></i>
-                              </p>
-                            </div>
-                        
-                          </Row>
-                        ))}
-                          </div>
-
-                        <Button style={{backgroundColor: "#00d084", border: 'none'}} className="btn btn-dark" disabled={finalQuestions.length === 0}
-                        onClick={handleSubmitQuestion}
+                        <h4>Link Questions to Job (Step 3)</h4>
+                        <div
+                          className="d-flex gap-2"
+                          style={{ flexWrap: "wrap" }}
                         >
-                            Continue
+                     
+
+                          {questionsLoading === false &&
+                          questionsError === false ? (
+                            questions?.map((item, key) => (
+                              <Row key={key}>
+                                <div>
+                                  <p
+                                    style={{
+                                      border:  `1px solid ${idInfo?.jobId === item?.jobId ? "#00d084" : "black"}`,
+                                      borderRadius: "10px",
+                                      backgroundColor: `${idInfo?.jobId === item?.jobId ? "#00d084" : "white"}`
+                                    }}
+
+                                    className="p-1"
+                                  >
+                                    {item.questionTitle}{" "}
+                                    <i
+                                      className={`bx ${idInfo?.jobId === item?.jobId ? "bx-link" : "bx-link"} p-2 fw-bolder fs-17`}
+                                      style={{
+                                        color: "#00d084",
+                                        backgroundColor: "#dcf1d4",
+                                        borderRadius: "5px",
+                                        cursor: "pointer",
+                                      }}
+                                      onClick={()=>{
+                                        handleLink(item)
+                                       
+                                      }}
+                                    ></i>
+                                  </p>
+                                </div>
+                              </Row>
+                            ))
+                          ) : (
+                            <p>Loading Questions</p>
+                          )}
+                        </div>
+
+                        <Button
+                          style={{ backgroundColor: "#00d084", border: "none" }}
+                          className="btn btn-dark"
+                          disabled={finalQuestions.length === 0}
+                          onClick={handleSubmitQuestion}
+                        >
+                          Save Job
                         </Button>
                       </Col>
                     </Row>
@@ -186,7 +253,6 @@ function AddQuestion() {
           </Row>
         </div>
       </div>
-
     </>
   );
 }

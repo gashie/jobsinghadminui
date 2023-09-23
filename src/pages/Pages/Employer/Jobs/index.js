@@ -26,6 +26,10 @@ const EmployerJobs = () => {
     }
   };
 
+  const payLater =() =>{
+   justifyToggle("1")
+  }
+
   const [edit, setEdit] = useState(false);
   return (
     <>
@@ -105,7 +109,7 @@ const EmployerJobs = () => {
                 }}
                 className="scroll-change"
               >
-                <PostJob />
+                <PostJob payLater={payLater}/>
               </TabPane>
 
               <TabPane

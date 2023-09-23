@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { useSelector } from 'react-redux';
 
 const Range = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
@@ -23,6 +24,12 @@ const Range = ({ onSubmit }) => {
     setIdealValue(e.target.value);
   };
 
+  const {loading, error, idInfo} = useSelector((state)=>({
+    loading: state.Jobs.idLoading,
+    error: state.Jobs.idError,
+    idInfo: state.Jobs.id,
+}))
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,7 +37,7 @@ const Range = ({ onSubmit }) => {
     const formattedData = {
       questionTitle: question,
       questionType: 'range',
-      jobId: '61d3bab7-20ff-40ab-9b97-2296cd567a11',
+      jobId: loading === false && error === false ? idInfo?.jobId : "",
       benchMark: parseInt(idealValue, 10),
       minimumValue: parseInt(minValue, 10),
       maximumValue: parseInt(maxValue, 10),
