@@ -4,55 +4,74 @@ import { useState } from "react";
 import { Container, Row, Col, Button, Input } from "reactstrap";
 //import { Redirect } from "react-router-dom"; // You'll need to install react-router-dom
 import { Link } from "react-router-dom";
+import { useSearchParams, Outlet, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { activateUser, resendActivationCode } from "../../../store/actions";
 
 function EmailAction() {
-  // const [redirect, setRedirect] = useState(false);
+  // Use useSearchParams to get query parameters from the URL
+  const [searchParams] = useSearchParams();
 
-  // useEffect(() => {
-  //   // Simulate an automatic redirection after 5 seconds
-  //   // const redirectTimer = setTimeout(() => {
-  //   //   setRedirect(true);
-  //   // }, 5000);
+  const dispatch = useDispatch();
 
-  //   return () => clearTimeout(redirectTimer);
-  // }, []);
+  // Extract the 'token' and 'email' parameters from the URL
 
-  const [token, setToken] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("")
+ 
+  useEffect(() => {
+    const token = searchParams.get("token");
+    const email = searchParams.get("email");
+
+    if (token && email) {
+      dispatch(activateUser({
+        email: email,
+        token: token,
+      }));
+     
+      setEmail(email)
+    } else {
+      // Handle the case where token or email is missing
+      console.error("Token or email not found in URL.");
+    }
+  }, [dispatch, searchParams]);
+
+  const navigateAction = useSelector((state) => state.Account.navigateAction);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Get the current URL
-    const currentUrl = window.location.href;
+    if (navigateAction) {
+      // Perform the redirection based on the navigateAction value
+      navigate(navigateAction);
+    }
+  }, [navigate, navigateAction]);
 
-    // Parse the URL to extract query parameters
-    const urlParams = new URLSearchParams(currentUrl);
 
-    // Extract the 'token' and 'email' parameters
-    const token = urlParams.get('token');
-    const email = urlParams.get('email');
+  const handleResend = () =>{
+    dispatch(resendActivationCode({
+      email: email
+    }))
+  }
 
-    // Update the state with the extracted values
-    setToken(token);
-    setEmail(email);
-  }, [window.location.href]); // Add window.location.href to the dependency array
-
-  console.log(token , email)
 
   return (
     <>
       <Container fluid>
-        <Row className="justify-content-center mt-5">
+        <Row className="justify-content-center mt-5" style={{backgroundColor: '', height: "70vh"}}>
           <Col xs="12" md="6" className="text-center">
-            <h5>Redirection Page</h5>
-            <p>You are being redirected to the login page.</p>
+            <h5>Proceed to Login</h5>
+            <p>Your account has been activated</p>
             {/* {redirect ? (
               <Redirect to="/login" />
             ) : ( */}
-            <Link to="/employer-profile">
-              <Button color="primary">Redirect to Login</Button>
-              </Link>
+            <Link to="/login">
+              <Button style={{backgroundColor: '#244a59'}} className="btn btn-dark">Go to Login</Button>
+            </Link>
             {/* )} */}
           </Col>
+          
+          <p className="d-flex hstack justify-content-center mt-5" style={{cursor: 'pointer'}}
+          onClick={handleResend}
+          >Resend Code</p>
         </Row>
       </Container>
     </>

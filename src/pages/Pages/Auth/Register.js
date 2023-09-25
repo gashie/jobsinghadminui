@@ -29,6 +29,8 @@ import fb from "./images/fb.png";
 import verification from "./images/verification.png";
 
 import OTP from "./OTP";
+import { useDispatch } from "react-redux";
+import { registerUser, signUp } from "../../../store/actions";
 
 const Register = () => {
   const [activeTab, setactiveTab] = useState(1);
@@ -48,33 +50,48 @@ const Register = () => {
     setprogressbarvalue(value);
   }
 
- 
+  const dispatch = useDispatch();
 
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
 
     initialValues: {
-      fullName: "", 
-      userName: "", 
-      phone: "", 
-      password: "", 
-      address: "", 
-      country: "", 
-      birthDate: "", 
-      maritalStatus: "", 
-      
+      fullName: "",
+      username: "",
+      phone: "",
+      email: "",
+      password: "",
+      address: "",
+      country: "",
+      birthDate: "",
+      maritalStatus: 1,
+      gender: "M",
+      userType: "jobseeker",
     },
     // validationSchema: Yup.object({
     //     digit1_input: Yup.string().required("Please Enter Your Phone Number"),
     //     password: Yup.string().required("Please Enter Your Password"),
     // }),
     onSubmit: (values) => {
-     
+      const data = {
+        fullName: values.fullName,
+        username: values.username,
+        phone: values.phone,
+        email: values.email,
+        password: values.password,
+        address: values.address,
+        country: values.country,
+        birthDate: values.birthDate,
+        maritalStatus: 1,
+        gender: values.gender === "Male" ? "M" : "F",
+        userType: "jobseeker",
+      };
+    
+      dispatch(signUp(data));
+    
     },
   });
-
-
 
   const [selectedFilesSelfie, setselectedFilesSelfie] = useState([]);
 
@@ -113,7 +130,13 @@ const Register = () => {
             className="p-4 m-5"
           >
             <CardBody>
-              <Form >
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  validation.handleSubmit();
+                  return false;
+                }}
+              >
                 <Row
                   className="d-flex"
                   style={{ justifyContent: "space-evenly" }}
@@ -166,7 +189,6 @@ const Register = () => {
                             </p>
                           </div>
                           <Button
-                         
                             id="pills-gen-info-tab"
                             className={classnames(
                               {
@@ -216,7 +238,6 @@ const Register = () => {
                             </p>
                           </div>
                           <Button
-                          
                             id="pills-gen-info-tab"
                             className={classnames(
                               {
@@ -273,7 +294,6 @@ const Register = () => {
                             </p>
                           </div>
                           <Button
-                          
                             id="pills-gen-info-tab"
                             className={classnames(
                               {
@@ -445,7 +465,7 @@ const Register = () => {
                               })}
                             </div>
 
-                            <Dropzone
+                            {/* <Dropzone
                               onDrop={(acceptedFiles) => {
                                 handleAcceptedFiles(acceptedFiles);
                               }}
@@ -477,7 +497,7 @@ const Register = () => {
                                   </h6>
                                 </div>
                               )}
-                            </Dropzone>
+                            </Dropzone> */}
                           </div>
 
                           <Row className="mt-3">
@@ -492,7 +512,10 @@ const Register = () => {
                                 <Input
                                   type="text"
                                   className="form-control"
-                                  id="gen-info-email-input"
+                                  id="fullName"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.fullName || ""}
                                   placeholder="Enter email"
                                 />
                               </div>
@@ -503,12 +526,15 @@ const Register = () => {
                                   className="form-label"
                                   htmlFor="gen-info-username-input"
                                 >
-                                  Email ID
+                                  Email
                                 </Label>
                                 <Input
                                   type="text"
                                   className="form-control"
-                                  id="gen-info-username-input"
+                                  id="email"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.email || ""}
                                   placeholder="Enter user name"
                                 />
                               </div>
@@ -524,14 +550,123 @@ const Register = () => {
                             <Input
                               type="password"
                               className="form-control"
-                              id="gen-info-password-input"
+                              id="password"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.password || ""}
                               placeholder="Minimun 6 characters"
                             />
                           </div>
+                          <div className="mb-3">
+                            <Label
+                              className="form-label"
+                              htmlFor="gen-info-password-input"
+                            >
+                              Username
+                            </Label>
+                            <Input
+                              type="text"
+                              className="form-control"
+                              id="username"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.username || ""}
+                              placeholder="Enter Username"
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <Label
+                              className="form-label"
+                              htmlFor="gen-info-password-input"
+                            >
+                              Phonenumber
+                            </Label>
+                            <Input
+                              type="text"
+                              className="form-control"
+                              id="phone"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.phone || ""}
+                              placeholder="Enter Phonenumber"
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <Label
+                              className="form-label"
+                              htmlFor="gen-info-password-input"
+                            >
+                              Address
+                            </Label>
+                            <Input
+                              type="text"
+                              className="form-control"
+                              id="address"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.address || ""}
+                              placeholder="Enter Address"
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <Label
+                              className="form-label"
+                              htmlFor="gen-info-password-input"
+                            >
+                              BirthDate
+                            </Label>
+                            <Input
+                              type="date"
+                              className="form-control"
+                              id="birthDate"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.birthDate || ""}
+                              placeholder="Enter Address"
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <Label
+                              for="phonenumberInput"
+                              className="form-label"
+                            >
+                              Gender
+                            </Label>
+                            <select
+                              name="gender"
+                              id="gender"
+                              className="form-select mb-3 p-3"
+                              aria-label="Default select example"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.gender}
+                            >
+                              <option>Male</option>
+                              <option>Female</option>
+                            </select>
+                          </div>
+                          <div className="mb-3">
+                            <Label
+                              for="phonenumberInput"
+                              className="form-label"
+                            >
+                              Marital Status
+                            </Label>
+                            <select
+                              name="maritalStatus"
+                              id="maritalStatus"
+                              className="form-select mb-3 p-3"
+                              aria-label="Default select example"
+                              onChange={validation.handleChange}
+                              onBlur={validation.handleBlur}
+                              value={validation.values.maritalStatus}
+                            >
+                              <option>Single</option>
+                              <option>Married</option>
+                            </select>
+                          </div>
 
-                       
-
-                          <div className="form-check form-switch form-switch-success mb-3 mt-5">
+                          {/* <div className="form-check form-switch form-switch-success mb-3 mt-5">
                             <Input
                               className="form-check-input"
                               type="checkbox"
@@ -559,11 +694,11 @@ const Register = () => {
                               malter and communication settings governing the
                               use of <b>jobsinghana.</b>
                             </p>
-                          </div>
+                          </div> */}
 
                           <div>
                             <Button
-                              type="button"
+                              type="submit"
                               onClick={() => {
                                 toggleTab(activeTab + 1, 50);
                               }}
@@ -577,10 +712,21 @@ const Register = () => {
                             </Button>
                           </div>
                         </div>
-                      
                       </TabPane>
 
-                      <TabPane tabId={2}></TabPane>
+                      <TabPane tabId={2}>
+                        <div className="d-grid hstack justify-content-center">
+                          <h2
+                            className="text-dark"
+                            style={{ fontFamily: "impact", color: "#244a59" }}
+                          >
+                            Welcome to JobsInGhana
+                          </h2>
+                          <p className="mt-5">
+                            Please check your mail for further instructions.
+                          </p>
+                        </div>
+                      </TabPane>
 
                       <TabPane tabId={3}>
                         <div>

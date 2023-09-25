@@ -288,7 +288,7 @@ export const CREATE_BULK_QUESTION = `${version}/createbulkquestion/`
 export const VIEW_QUESTIONS = `${version}/viewmyquestions/`
 
 
-export const EMPLOYER_SIGNUP = `${version}/signup/`
+export const SIGN_UP = `${version}/signup/`
 
 
 export const RATE_CARD = `${version}/viewratecards/`
@@ -314,3 +314,6 @@ export const UPDATE_COURSE_SCHEDULE = `${version}/updateschedule/`
 
 export const PAYMENT = `${version}/pay/`
 export const LOGOUT = `${version}/logout/`
+
+export const ACTIVATE_USER = `${version}/activate/`
+export const RESEND_ACTIVATION_CODE = `${version}/resendactivatecode/`

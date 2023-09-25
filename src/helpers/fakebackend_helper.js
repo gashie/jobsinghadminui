@@ -475,7 +475,7 @@ export const createBulkQuestionURL = (data) => api.create(url.CREATE_BULK_QUESTI
 
 export const viewMyQuestions = (data) => api.create(url.VIEW_QUESTIONS, data)
 
-export const employerSignUpURL = (data) =>api.create(url.EMPLOYER_SIGNUP, data)
+export const SignUpURL = (data) =>api.create(url.SIGN_UP, data)
 
 export const rateCardURL = (data) => api.create(url.RATE_CARD, data);
 export const updateRatecardURL = (data) => api.create(url.UPDATE_RATE_CARD, data);
@@ -505,3 +505,7 @@ export const resetCodeURL = (data) => api.create(url.RESET_CODE, data);
 export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data);
 
 export const logoutURL = () =>api.create(url.LOGOUT)
+
+export const activateUserURL = (data) =>api.create(url.ACTIVATE_USER, data)
+
+export const resendActivationCode = (data) => api.create(url.RESEND_ACTIVATION_CODE, data)

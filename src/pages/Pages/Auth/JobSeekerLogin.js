@@ -233,11 +233,11 @@ const JobSeekerLogin = () => {
                   </Col>
 
                   <Button
-                            color="success"
+                           style={{backgroundColor: "#244a59"}}
                             // disabled={
                             //   error ? null : loading 
                             // }
-                            className="btn btn-success w-100 mt-4"
+                            className="btn btn-dark w-100 mt-4"
                             type="submit"
                           >
                             {error ? null : loading ? (

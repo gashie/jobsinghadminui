@@ -192,6 +192,9 @@ function* loginUser({ payload: user }) {
           // }else{
           //   console.log('working')
           // }
+          toast.success(`${response.data.message}`, {
+            autoClose: 3000,
+          });
         } else {
           yield put(getMeError(verifyToken?.data?.data));
           toast.error(`${response?.data?.message}`, {
@@ -214,7 +217,7 @@ function* updateProfile({payload: data}){
   try {
     const response = yield call(updateProfileURL, data);
   
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    if (response  && response?.data?.status === 1) {
 
       yield put(updateProfileSuccess());
       toast.success(`${response?.data?.message}`, {
@@ -222,17 +225,18 @@ function* updateProfile({payload: data}){
       });
     } else {
       yield put(updateProfileError(response));
-      toast.success(`${response?.data?.message}`, {
+      toast.warn(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     }
   } catch (error) {
     console.log(error);
     yield put(updateProfileError(error));
+    
   }
 }
 
-function* logout({payload: data}){
+function* logout(){
   try{
      const response = yield call(logoutURL)
      if(response && response?.status === 200 && response?.data?.status === 1){
