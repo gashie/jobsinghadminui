@@ -14,7 +14,10 @@ import {
   GET_ME,
   UPDATE_PROFILE,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_ERROR
+  UPDATE_PROFILE_ERROR,
+  LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR
 } from "./actionTypes";
 
 
@@ -116,5 +119,21 @@ export const updateProfileSuccess = () =>({
 export const updateProfileError = (error) =>({
   type: UPDATE_PROFILE_ERROR,
   payload: error
+})
+
+//logout 
+
+export const logout = () => ({
+  type: LOGOUT 
+})
+
+export const logoutSuccess = (data) =>({
+  type: LOGOUT_SUCCESS, 
+  payload: data
+})
+
+export const logoutError = (data) => ({
+  type: LOGOUT_ERROR, 
+  payload: data
 })
 

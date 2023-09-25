@@ -7,6 +7,7 @@ import {
   SOCIAL_LOGIN,
   TEST_VERIFY,
   UPDATE_PROFILE,
+  LOGOUT
 } from "./actionTypes";
 import {
   apiError,
@@ -14,6 +15,8 @@ import {
   getMeError,
   getMeSuccess,
   loginSuccess,
+  logoutError,
+  logoutSuccess,
   logoutUserSuccess,
   testVerifySuccess,
   updateProfileError,
@@ -25,6 +28,7 @@ import {
 import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
   loginURL,
+  logoutURL,
   postFakeLogin,
   postJwtLogin,
   postSocialLogin,
@@ -228,6 +232,29 @@ function* updateProfile({payload: data}){
   }
 }
 
+function* logout({payload: data}){
+  try{
+     const response = yield call(logoutURL)
+     if(response && response?.status === 200 && response?.data?.status === 1){
+         yield put(logoutSuccess(response.data.data))
+         toast.success(`${response?.data?.message}`, {
+          autoClose: 3000,
+        });
+     }else{
+        yield put(logoutError(response.data.message))
+        toast.error(`${response?.data?.message}`, {
+          autoClose: 3000,
+        });
+     }
+  }catch(error){
+    console.log(error)
+    yield put(logoutError(error))
+    toast.success(`${error}`, {
+      autoClose: 3000,
+    });
+  }
+}
+
 function* authSaga() {
   // yield takeEvery(LOGIN_USER, loginUser);
   // yield takeLatest(SOCIAL_LOGIN, socialLogin);
@@ -236,6 +263,7 @@ function* authSaga() {
   // yield takeEvery(TEST_VERIFY, testVerifyUser)
   yield takeEvery(LOGIN_USER, loginUser);
   yield takeEvery(UPDATE_PROFILE, updateProfile);
+  yield takeEvery(LOGOUT, logout);
 }
 
 export default authSaga;

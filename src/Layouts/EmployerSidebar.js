@@ -13,6 +13,8 @@ import {
 import Footer from "../pages/Pages/JobSeeker/footer";
 import SimpleBar from "simplebar-react";
 import "./Sidebar.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/actions";
 
 const EmployerSidebar = () => {
   const [color, setColor] = useState(false);
@@ -25,6 +27,9 @@ const EmployerSidebar = () => {
   const [isJobs, setIsJobs] = useState(false);
   const [isAccount, setisAccount] = useState(false);
   const [isLogout, setLogout] = useState(false);
+
+  const dispatch = useDispatch()
+
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -56,6 +61,7 @@ const EmployerSidebar = () => {
   const toggleLogout = () => {
     setLogout(!isLogout);
     setColor(true);
+    dispatch(logout())
   };
 
   const removetoggles = () => {
@@ -83,8 +89,12 @@ const EmployerSidebar = () => {
     }
     if (isLogout === true) {
       toggleLogout();
+      window.location.hre = "/login"
     }
   };
+
+
+  
 
   const sidebarItems = [
     {

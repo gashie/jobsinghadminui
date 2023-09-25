@@ -312,4 +312,5 @@ export const SAVE_COURSE_SCHEDULE = `${version}/saveschedule/`
 export const UPDATE_COURSE_SCHEDULE = `${version}/updateschedule/`
 
 
-export const PAY = `${version}/verifypayment/`
+export const PAYMENT = `${version}/pay/`
+export const LOGOUT = `${version}/logout/`

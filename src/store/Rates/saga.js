@@ -1,10 +1,11 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, takeEvery, takeLates, select } from "redux-saga/effects";
 
 // Login Redux States
 import {
   APPROVE_RATE_CARD,
   CREATE_RATE_CARD,
   PAY,
+  PAYMENT,
   RATE_CARD,
   UPDATE_RATE_CARD,
 } from "./actionTypes";
@@ -19,19 +20,21 @@ import {
   rateCardSuccess,
   rateCardError,
   updateRateCardSuccess,
-  rateCard,
+ 
   approveRateCardSuccess,
   approveRateCardError,
   updateRateCardError,
   createRateCardSuccess,
   createRateCardError,
-  paySuccess,
-  payError,
+ 
+  makePaymentSuccess,
+  makePaymentError,
 } from "./action";
 import {
   approveRateCardURL,
   createRateCardURL,
-  payURL,
+
+  paymentURL,
   rateCardURL,
   updateRatecardURL,
 } from "../../helpers/fakebackend_helper";
@@ -65,22 +68,24 @@ function* rateCards({ payload: data }) {
 
 function* pay({ payload: data }) {
   try {
-    const response = yield call(payURL, data);
+    const response = yield call(paymentURL, data);
     console.log(response);
     if (response && response.data.status === 1) {
-      yield put(paySuccess(response.data.data));
+      yield put(makePaymentSuccess(response.data.data));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
+      const link = yield select((state) => state.Rates.payInfo)
+      window.open(link?.authorization_url, "_blank")
     } else {
-      yield put(payError(response));
+      yield put(makePaymentError(response));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
     }
   } catch (error) {
     console.log(error);
-    yield put(payError(error));
+    yield put(makePaymentError(error));
   }
 }
 
@@ -162,7 +167,7 @@ function* RatesSaga() {
   yield takeEvery(APPROVE_RATE_CARD, approveRateCard);
   yield takeEvery(UPDATE_RATE_CARD, updateRateCard);
   yield takeEvery(CREATE_RATE_CARD, createRateCard);
-  yield takeEvery(PAY, pay);
+  yield takeEvery(PAYMENT, pay);
 }
 
 export default RatesSaga;

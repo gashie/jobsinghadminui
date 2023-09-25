@@ -499,9 +499,9 @@ export const updateCourseURL = (data) => api.create(url.UPDATE_COURSE, data);
 export const approveCourseURL = (data) => api.create(url.APPROVE_COURSE, data);
 export const saveCourseURL = (data) => api.create(url.SAVE_COURSE, data);
 
-export const payURL = (data) => api.create(url.PAY, data);
+export const paymentURL = (data) => api.create(url.PAYMENT, data);
 
 export const resetCodeURL = (data) => api.create(url.RESET_CODE, data);
 export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data);
 
- 
+export const logoutURL = () =>api.create(url.LOGOUT)

@@ -12,9 +12,27 @@ import {
     APPROVE_RATE_CARD,
     APPROVE_RATE_CARD_ERROR,
     APPROVE_RATE_CARD_SUCCESS,
-    PAY_SUCCESS,
-    PAY_ERROR,
+    PAYMENT,
+    PAYMENT_SUCCESS, 
+    PAYMENT_ERROR, 
   } from "./actionTypes";
+
+
+export const makePayment = (data) =>({
+  type: PAYMENT,
+  payload: data
+})
+
+export const makePaymentSuccess = (data) =>({
+  type: PAYMENT_SUCCESS, 
+  payload: data
+})
+
+export const makePaymentError = (data) => ({
+  type: PAYMENT_SUCCESS, 
+  payload: data
+})
+
   
   export const rateCard = () => {
     return {
@@ -88,22 +106,3 @@ import {
     };
   };
 
-  export const pay =(data)=>{
-    return{
-      type: PAY,
-      payload: data
-    }
-  }
-  export const paySuccess =(data)=>{
-    return{
-      type: PAY_SUCCESS, 
-      payload: data
-    }
-  }
-  export const payError =(data)=>{
-    return{
-      type: PAY_ERROR,
-      payload: data
-    }
-  }
-  

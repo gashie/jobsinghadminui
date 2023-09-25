@@ -14,6 +14,9 @@ import {
     PAY_ERROR,
     PAY_SUCCESS,
     PAY,
+    PAYMENT,
+    PAYMENT_SUCCESS,
+    PAYMENT_ERROR,
   } from "./actionTypes";
   
   const initialState = {
@@ -112,14 +115,14 @@ import {
           rateCardInfo: action.payload,
         };
         break;
-      case PAY:
+      case PAYMENT:
         state = {
           ...state,
           payloading: true,
           payError: false,
         };
         break;
-      case PAY_SUCCESS:
+      case PAYMENT_SUCCESS:
         state = {
           ...state,
           payloading: false,
@@ -127,7 +130,7 @@ import {
           payInfo: action.payload
         };
         break;
-      case PAY_ERROR:
+      case PAYMENT_ERROR:
         state = {
           ...state,
           payloading: false,

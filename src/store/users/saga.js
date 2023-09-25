@@ -59,8 +59,8 @@ function* updateProfile({ payload: data }) {
       //  yield put(updateRatecardURL());
       yield put(updateUserProfileSuccess());
       // yield put(rateCardAction({ viewAction: "" }));
-      toast.success(`${response?.message}`, {
-        autoClose: 3000,
+      toast.success(`Changes to your profile has been made, please logout and login again to view changes`, {
+        autoClose: 6000,
       });
     } else {
       yield put(updateUserProfileError(response));

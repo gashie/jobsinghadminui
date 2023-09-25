@@ -14,6 +14,9 @@ import {
   UPDATE_PROFILE,
   UPDATE_PROFILE_ERROR,
   UPDATE_PROFILE_SUCCESS,
+  LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -28,6 +31,9 @@ const initialState = {
   verifyInfo: false,
   verifyLoading: false,
   verifyError: null,
+  logoutLoading: false,
+  logoutError: false,
+  logoutData: null,
 };
 
 const login = (state = initialState, action) => {
@@ -124,24 +130,46 @@ const login = (state = initialState, action) => {
       break;
 
     case UPDATE_PROFILE:
-      state = {...state, 
-        loading: true,
-        error: false,
-      };
+      state = { ...state, loading: true, error: false };
       break;
     case UPDATE_PROFILE_ERROR:
-      state = {...state, 
+      state = {
+        ...state,
         loading: false,
         errorMsg: action.payload,
         error: false,
       };
       break;
-      case UPDATE_PROFILE_SUCCESS: 
-      state={
-        ...state, 
-        loading: false, 
-        error: false
-      }
+    case UPDATE_PROFILE_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        error: false,
+      };
+      break;
+
+    case LOGOUT:
+      state = {
+        ...state,
+        logoutError: false,
+        logoutLoading: true,
+      };
+      break;
+    case LOGOUT_SUCCESS:
+      state = {
+        ...state,
+        logoutError: false,
+        logoutLoading: false,
+        logoutData: action.payload
+      };
+      break;
+    case LOGOUT_ERROR:
+      state = {
+        ...state,
+        logoutError: false,
+        logoutLoading: false,
+        logoutData: action.payload
+      };
       break;
     default:
       state = { ...state };

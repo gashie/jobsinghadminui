@@ -18,7 +18,6 @@ import ser5 from "./ser5.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-
 import {
   Container,
   Row,
@@ -29,34 +28,58 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import { pay } from "../../../../../store/actions";
+import { makePayment } from "../../../../../store/actions";
 
-function Index() {
+function Index({togglePaymentModal, payLater}) {
   const { loading, error, rateInfo } = useSelector((state) => ({
     loading: state.Rates.loading,
     error: state.Rates.error,
     rateInfo: state.Rates.rateCardInfo,
   }));
 
+  const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
+    loading: state.Jobs.idLoading,
+    error: state.Jobs.idError,
+    idInfo: state.Jobs.id,
+    payloading: state.Rates.payloading,
+    payInfo: state.Rates.payInfo,
+    payError: state.Rates.payError,
+  }));
+
   const [selectedItem, setSelectedItem] = useState(null);
-console.log(selectedItem)
+  console.log(selectedItem);
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-const [inputValue, setInputValue] = useState(""); // Initialize with an empty string or your desired initial value
+  const [inputValue, setInputValue] = useState(""); // Initialize with an empty string or your desired initial value
 
-const handleInputChange = (e) => {
-  setInputValue(e.target.value);
+   const triggerLink = () =>{
+    if(payloading === false && payError === false){
+      togglePaymentModal()
+      payLater()
+    }
+  }
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handlePay = () => {
+    console.log("pay");
+    const payData = {
+      courseId: "",
+      rateId: selectedItem?.rateId || "",
+      transactionFor: "job",
+      paymentDescription: inputValue,
+      jobId: idInfo?.jobId,
+    };
+
+    dispatch(makePayment(payData));
+    triggerLink()
+  };
+
+
  
-
-};
-
-const handlePay = () =>{
-    console.log('pay')
-   dispatch(pay({
-    reference: "zofed146qs"
-   }))
-}
 
   return (
     <>
@@ -120,35 +143,34 @@ const handlePay = () =>{
           >
             <CardBody>
               {loading === false && error === false ? (
-               rateInfo?.map((item, key) => (
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                  key={key}
-                >
-                  <div>
-                    <input
-                      type="radio"
-                      checked={item === selectedItem}
-                      onChange={() => setSelectedItem(item)}
-                    />{" "}
-                    {item?.rateTitle}
+                rateInfo?.map((item, key) => (
+                  <div
+                    className="d-flex p-3"
+                    style={{ justifyContent: "space-between" }}
+                    key={key}
+                  >
+                    <div>
+                      <input
+                        type="radio"
+                        checked={item === selectedItem}
+                        onChange={() => setSelectedItem(item)}
+                      />{" "}
+                      {item?.rateTitle}
+                    </div>
+                    <div>
+                      <p style={{ textAlign: "left" }} className="">
+                        <i
+                          className="bx bxs-badge-check"
+                          style={{ color: "#00D084" }}
+                        ></i>{" "}
+                        {item?.rateDescription}
+                      </p>
+                    </div>
+                    <div>
+                      <strong>GHS {item?.ratePrice || ""}</strong>
+                    </div>
                   </div>
-                  <div>
-                    <p style={{ textAlign: "left" }} className="">
-                      <i
-                        className="bx bxs-badge-check"
-                        style={{ color: "#00D084" }}
-                      ></i>{" "}
-                      {item?.rateDescription}
-                    </p>
-                  </div>
-                  <div>
-                    <strong>GHS {item?.ratePrice || ""}</strong>
-                  </div>
-                </div>
-              ))
-              
+                ))
               ) : (
                 <p>Loading ...</p>
               )}
@@ -172,24 +194,25 @@ const handlePay = () =>{
           className="mt-5 mb-5 p-3"
           style={{ border: "1px solid #ebeff0", width: "100%" }}
         >
-          <p className="fs-15"><b>GHS {selectedItem?.ratePrice || ""}</b> {" "}{" "}{" "} For {" "}{" "}{" "}{selectedItem?.rateTitle} </p>
+          <p className="fs-15">
+            <b>GHS {selectedItem?.ratePrice || ""}</b> For{" "}
+            {selectedItem?.rateTitle}{" "}
+          </p>
         </div>
 
         {
-            <>
-            selectedItem &&
+          <>
             <Input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Enter something..."
-      />
-     
-
-</>
-      
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Enter something..."
+            />
+          </>
         }
- <Button className="btn btn-dark" onClick={handlePay}>Make Payment</Button>
+        <Button className="btn btn-dark mt-5 p-3" onClick={handlePay} style={{backgroundColor: '#244a59'}}>
+          Make Payment
+        </Button>
 
         {/* logos */}
       </Container>

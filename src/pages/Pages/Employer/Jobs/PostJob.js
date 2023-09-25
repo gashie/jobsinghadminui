@@ -488,18 +488,10 @@ const AddJob = ({payLater}) => {
         <ModalHeader toggle={togglePaymentModal}></ModalHeader>
         <ModalBody>
 
-         <Payment />
+         <Payment togglePaymentModal={togglePaymentModal} payLater={payLater}/>
         </ModalBody>
         <ModalFooter>
-          <Button className="btn btn-dark" onClick={toggleSecondModal} style={{backgroundColor: '#244a59'}}>
-            Pay now
-          </Button>
-          <Button className="btn btn-dark" onClick={()=>{
-            toggleSecondModal()
-            payLater()
-          }} style={{backgroundColor: '#244a59'}}>
-            Pay Later
-          </Button>
+       
         </ModalFooter>
       </Modal>
 
