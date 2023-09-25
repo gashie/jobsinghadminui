@@ -53,7 +53,9 @@ const handleInputChange = (e) => {
 
 const handlePay = () =>{
     console.log('pay')
-   dispatch(pay())
+   dispatch(pay({
+    reference: "zofed146qs"
+   }))
 }
 
   return (

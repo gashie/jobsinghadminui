@@ -1,58 +1,24 @@
 import { takeEvery, fork, put, all, call } from "redux-saga/effects";
+import { resetCodeURL } from "../../../helpers/fakebackend_helper";
 
-// Login Redux States
-import { FORGET_PASSWORD } from "./actionTypes";
-import { userForgetPasswordSuccess, userForgetPasswordError } from "./actions";
 
-//Include Both Helper File with needed methods
-import { getFirebaseBackend } from "../../../helpers/firebase_helper";
-import {
-  postFakeForgetPwd,
-  postJwtForgetPwd,
-} from "../../../helpers/fakebackend_helper";
 
-const fireBaseBackend = getFirebaseBackend();
 
-//If user is send successfully send mail link then dispatch redux action's are directly from here.
-function* forgetUser({ payload: { user, history } }) {
+
+
+function* forgetUser({ payload: data }) {
   try {
-    if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-      const response = yield call(fireBaseBackend.forgetPassword, user.email);
-      if (response) {
-        yield put(
-          userForgetPasswordSuccess(
-            "Reset link are sended to your mailbox, check there first"
-          )
-        );
-      }
-    } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
-      const response = yield call(postJwtForgetPwd, "/jwt-forget-pwd", {
-        email: user.email,
-      });
-      if (response) {
-        yield put(
-          userForgetPasswordSuccess(
-            "Reset link are sended to your mailbox, check there first"
-          )
-        );
-      }
-    } else if (process.env.REACT_APP_API_URL) {
-      const response = yield call(postFakeForgetPwd, user);
-      if (response) {
-        yield put(
-          userForgetPasswordSuccess(
-            "Reset link are sended to your mailbox, check there first"
-          )
-        );
-      }
+    const response = yield call (resetCodeURL, data)
+    if(response && response.data.status === 1){
+        // yield put resetPass
     }
   } catch (error) {
-    yield put(userForgetPasswordError(error));
+     console.log(error)
   }
 }
 
 export function* watchUserPasswordForget() {
-  yield takeEvery(FORGET_PASSWORD, forgetUser);
+  // yield takeEvery(FORGET_PASSWORD, forgetUser);
 }
 
 function* forgetPasswordSaga() {

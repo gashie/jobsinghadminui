@@ -1,17 +1,17 @@
-import { Row, Col, Form, Input, Button } from "reactstrap";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { useState } from "react";
-import PhoneInput from "react-phone-input-2";
+// import { Row, Col, Form, Input, Button } from "reactstrap";
+// import * as Yup from "yup";
+// import { useFormik } from "formik";
+// import { useState } from "react";
+// import PhoneInput from "react-phone-input-2";
 
-const OTP = () => {
+// const OTP = () => {
  
 
-  return (
-    <>
+//   return (
+//     <>
       
-    </>
-  );
-};
+//     </>
+//   );
+// };
 
-export default OTP;
+// export default OTP;

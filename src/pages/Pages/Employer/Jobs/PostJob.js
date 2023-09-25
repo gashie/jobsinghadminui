@@ -128,6 +128,7 @@ const AddJob = ({payLater}) => {
         applyLink: values.applyLink,
         yearsOfExperience: values.yearsOfExperience,
         appliedEmail: values.appliedEmail,
+        education: values.education
       };
 
       dispatch(createJob(finalData));
@@ -149,6 +150,8 @@ const AddJob = ({payLater}) => {
   const toggleModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
+
+  console.log(validation.values.jobCategoryId)
 
   const [secondIsOpen, setSecondIsOpen] = useState(false);
 
@@ -209,7 +212,7 @@ const AddJob = ({payLater}) => {
                       type="number"
                       className="form-control p-3"
                       id="yearsOfExperience"
-                      placeholder="Job title"
+                     
                       onChange={validation.handleChange}
                       value={validation.values.yearsOfExperience || ""}
                     />
@@ -241,6 +244,7 @@ const AddJob = ({payLater}) => {
                       value={validation.values.jobCategoryId}
                       onChange={validation.handleChange}
                     >
+                       <option>Select Category</option>
                       {catLoading === false && catError === false ? (
                         categoryInfo?.map((item, key) => (
                           <option key={key} value={item?.jobCategoryId}>
@@ -251,6 +255,20 @@ const AddJob = ({payLater}) => {
                         <option>loading categories...</option>
                       )}
                     </select>
+                  </Col>
+                </Row>
+
+                <label>Education Level</label>
+                <Row className="mb-3">
+                  <Col lg={15}>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="education"
+                      placeholder=""
+                      onChange={validation.handleChange}
+                      value={validation.values.education || ""}
+                    />
                   </Col>
                 </Row>
 

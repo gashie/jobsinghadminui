@@ -53,7 +53,7 @@ const EditProfile = () => {
           country: "Ghana",
           birthDate: values.birthDate ?? " ",
           maritalStatus: 1,
-          gender: values.gender,
+          gender: values.gender === "Male" ? "M" : "F",
           userType: "jobseeker",
         },
       };

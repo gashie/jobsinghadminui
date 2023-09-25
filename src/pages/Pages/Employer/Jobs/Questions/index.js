@@ -24,9 +24,13 @@ import Range from "./Range";
 import Multiple from "./Multiple";
 import Single from "./YesNo";
 import { useDispatch, useSelector } from "react-redux";
-import { createJobQuestion, linkJobQuestion, viewMyQuestions } from "../../../../../store/actions";
+import {
+  createJobQuestion,
+  linkJobQuestion,
+  viewMyQuestions,
+} from "../../../../../store/actions";
 
-function AddQuestion({toggleQuestionModal, toggleSecondModal}) {
+function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
   const dispatch = useDispatch();
 
   const [questionsData, setQuestionsData] = useState([]);
@@ -63,41 +67,39 @@ function AddQuestion({toggleQuestionModal, toggleSecondModal}) {
       hasQuestions: "yes",
       questions: questionsData,
     });
-    dispatch(viewMyQuestions())
+    dispatch(viewMyQuestions());
   }, [questionsData, dispatch]);
 
   const [questionType, setQuestionType] = useState("");
 
   const handleSubmitQuestion = () => {
     dispatch(createJobQuestion(sendQuestion));
-    dispatch(viewMyQuestions())
-    toggleQuestionModal()
-    toggleSecondModal()
+    dispatch(viewMyQuestions());
+    toggleQuestionModal();
+    toggleSecondModal();
   };
 
-  const [linkStatus, setLinkStatus] = useState("")
-  const [linkstate, setLinkState] = useState(true)
+  const [linkStatus, setLinkStatus] = useState("");
+  const [linkstate, setLinkState] = useState(true);
 
-  const handleLink = (item) =>{
-   
-   console.log(item) 
-     setLinkStatus(item.questionId)
-     setLinkState(true)
+  const handleLink = (item) => {
+    console.log(item);
+    setLinkStatus(item.questionId);
+    setLinkState(true);
 
+    console.log(idInfo?.jobId, item?.jobId);
+    if (idInfo?.jobId !== item?.questionId) {
+      dispatch(
+        linkJobQuestion({
+          questionId: item?.questionId,
+          jobId: idInfo?.jobId,
+        })
+      );
+      console.log("link will be amde");
+      console.log(idInfo?.jobId, item?.jobId);
+    }
+  };
 
-console.log(idInfo?.jobId, item?.jobId)
-     if(idInfo?.jobId !== item?.questionId){
-       dispatch( linkJobQuestion({
-            questionId: item?.questionId, 
-            jobId: idInfo?.jobId
-        }))
-        console.log("link will be amde")
-        console.log(idInfo?.jobId, item?.jobId)
-     }
-    
-  }
-
- 
   return (
     <>
       <div>
@@ -198,8 +200,6 @@ console.log(idInfo?.jobId, item?.jobId)
                           className="d-flex gap-2"
                           style={{ flexWrap: "wrap" }}
                         >
-                     
-
                           {questionsLoading === false &&
                           questionsError === false ? (
                             questions?.map((item, key) => (
@@ -207,25 +207,35 @@ console.log(idInfo?.jobId, item?.jobId)
                                 <div>
                                   <p
                                     style={{
-                                      border:  `1px solid ${idInfo?.jobId === item?.jobId ? "#00d084" : "black"}`,
+                                      border: `1px solid ${
+                                        idInfo?.jobId === item?.jobId
+                                          ? "#00d084"
+                                          : "black"
+                                      }`,
                                       borderRadius: "10px",
-                                      backgroundColor: `${idInfo?.jobId === item?.jobId ? "#00d084" : "white"}`
+                                      backgroundColor: `${
+                                        idInfo?.jobId === item?.jobId
+                                          ? "#00d084"
+                                          : "white"
+                                      }`,
                                     }}
-
                                     className="p-1"
                                   >
                                     {item.questionTitle}{" "}
                                     <i
-                                      className={`bx ${idInfo?.jobId === item?.jobId ? "bx-link" : "bx-link"} p-2 fw-bolder fs-17`}
+                                      className={`bx ${
+                                        idInfo?.jobId === item?.jobId
+                                          ? "bx-link"
+                                          : "bx-link"
+                                      } p-2 fw-bolder fs-17`}
                                       style={{
                                         color: "#00d084",
                                         backgroundColor: "#dcf1d4",
                                         borderRadius: "5px",
                                         cursor: "pointer",
                                       }}
-                                      onClick={()=>{
-                                        handleLink(item)
-                                       
+                                      onClick={() => {
+                                        handleLink(item);
                                       }}
                                     ></i>
                                   </p>
@@ -240,7 +250,7 @@ console.log(idInfo?.jobId, item?.jobId)
                         <Button
                           style={{ backgroundColor: "#00d084", border: "none" }}
                           className="btn btn-dark"
-                        //   disabled={finalQuestions.length === 0}
+                          //   disabled={finalQuestions.length === 0}
                           onClick={handleSubmitQuestion}
                         >
                           Save Job

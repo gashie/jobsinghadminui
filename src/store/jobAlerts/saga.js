@@ -53,7 +53,7 @@ function* viewSavedJobs({ payload: action }) {
     const response = yield call(viewSavedJobsURL, action);
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
-      yield put(viewSavedJobsSuccess(response?.data));
+      yield put(viewSavedJobsSuccess(response?.data.data));
     } else {
       yield put(viewSavedJobsError(response));
       // toast.success(`${response?.data?.message}`, {

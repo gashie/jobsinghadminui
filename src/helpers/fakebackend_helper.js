@@ -445,7 +445,7 @@ export const updateCvURL = (data) => api.create(url.UPDATE_CV, data)
 export const viewSavedJobsURL = (data) => api.create(url.VIEW_SAVED_JOBS, data)
 
 export const updateProfileURL = (data) => api.create(url.UPDATE_PROFILE, data)
-export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data)
+//export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data)
 
 export const createJobURL = (data) => api.create(url.CREATE_JOB, data);
 export const updateJobURL = (data) => api.create(url.UPDATE_JOB, data);
@@ -501,3 +501,7 @@ export const saveCourseURL = (data) => api.create(url.SAVE_COURSE, data);
 
 export const payURL = (data) => api.create(url.PAY, data);
 
+export const resetCodeURL = (data) => api.create(url.RESET_CODE, data);
+export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data);
+
+ 

@@ -1,31 +1,68 @@
 import {
-  FORGET_PASSWORD,
-  FORGET_PASSWORD_SUCCESS,
-  FORGET_PASSWORD_ERROR,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
+  CHANGE_PASSWORD_SUCCESS,
+  RESET_PASSWORD,
+  RESET_PASSWORD_ERROR,
+  RESET_PASSWORD_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
-  forgetSuccessMsg: null,
-  forgetError: null,
+  resetLoading: false,
+  resetError: false,
+  resetInfo: null,
+  loading: false,
+  error: false,
+  errMssg: null
 };
 
 const forgetPassword = (state = initialState, action) => {
   switch (action.type) {
-    case FORGET_PASSWORD:
+    case RESET_PASSWORD:
       state = {
         ...state,
-        forgetSuccessMsg: null,
-        forgetError: null,
+        resetLoading: false,
+        resetError: false,
       };
       break;
-    case FORGET_PASSWORD_SUCCESS:
+    case RESET_PASSWORD_ERROR:
       state = {
         ...state,
-        forgetSuccessMsg: action.payload,
+        resetLoading: false,
+        resetError: false, 
+        errMssg: action.payload
       };
       break;
-    case FORGET_PASSWORD_ERROR:
-      state = { ...state, forgetError: action.payload };
+    case RESET_PASSWORD_SUCCESS:
+      state = {
+         ...state,
+         resetLoading: false,
+         resetError: false, 
+         resetInfo: action.payload
+         };
+      break;
+    case CHANGE_PASSWORD:
+      state = {
+        ...state,
+        loading: false,
+        error: false,
+      };
+      break;
+    case CHANGE_PASSWORD_ERROR:
+      state = {
+        ...state,
+        loading: false,
+        error: false, 
+        errMssg: action.payload
+      };
+      break;
+    case CHANGE_PASSWORD_SUCCESS:
+      state = {
+         ...state,
+         loading: false,
+         error: false, 
+         resetInfo: action.payload
+         };
       break;
     default:
       state = { ...state };

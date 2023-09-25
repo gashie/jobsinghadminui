@@ -1,26 +1,50 @@
 import {
-  FORGET_PASSWORD,
-  FORGET_PASSWORD_SUCCESS,
-  FORGET_PASSWORD_ERROR,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
+  CHANGE_PASSWORD_SUCCESS,
+  RESET_PASSWORD,
+  RESET_PASSWORD_ERROR,
+  RESET_PASSWORD_SUCCESS,
 } from "./actionTypes";
 
-export const userForgetPassword = (user, history) => {
+export const resetCode = (data) => {
   return {
-    type: FORGET_PASSWORD,
-    payload: { user, history },
+    type: RESET_PASSWORD,
+    payload: data,
   };
 };
 
-export const userForgetPasswordSuccess = message => {
+export const resetCodeSuccess = data => {
   return {
-    type: FORGET_PASSWORD_SUCCESS,
-    payload: message,
+    type: RESET_PASSWORD_SUCCESS,
+    payload: data,
   };
 };
 
-export const userForgetPasswordError = message => {
+export const resetCodeError = data => {
   return {
-    type: FORGET_PASSWORD_ERROR,
-    payload: message,
+    type: RESET_PASSWORD_ERROR,
+    payload: data,
+  };
+}
+
+export const changePassword = (data) => {
+  return {
+    type: CHANGE_PASSWORD,
+    payload: data,
+  };
+};
+
+export const changePasswordSuccess = data => {
+  return {
+    type: CHANGE_PASSWORD_SUCCESS,
+    payload: data,
+  };
+};
+
+export const changePasswordError = data => {
+  return {
+    type: CHANGE_PASSWORD_ERROR,
+    payload: data,
   };
 };

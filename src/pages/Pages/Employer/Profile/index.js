@@ -62,6 +62,10 @@ const EmployerProfile = () => {
     userInfo: state.Login.userInfo,
   }))
 
+  const toProfile = () =>{
+    justifyToggle("1")
+  }
+
 
   return (
     <>
@@ -175,7 +179,7 @@ const EmployerProfile = () => {
                             </div>
                             <div style={{ display: "flex", gap: "0.4rem" }}>
                               <h6 style={{color: '#244a59'}}>Address:</h6>
-                              <h6>Labone, Silver Lave</h6>
+                              <h6>{userInfo?.userInfo?.company?.location}</h6>
                             </div>
                             <div style={{ display: "flex", gap: "0.4rem" }}>
                               <h6 style={{color: '#244a59'}}>Country:</h6>
@@ -203,12 +207,12 @@ const EmployerProfile = () => {
                             </div>
                             <div style={{ display: "flex", gap: "0.4rem" }}>
                               <h6 style={{color: '#244a59'}}> Company Description:</h6>
-                              <h6>Lorem ipsum dolor sit amet consectetur. Quisque sapien amet quam id eget vestibulum. Aenean interdum porttitor est id integer urna. A odio vestibulum mi ac lorem mi tellus tortor. Sit at nunc consequat eu eget dictum.</h6>
+                              <h6>{userInfo?.userInfo?.company?.companyProfile}</h6>
                             </div>
                           </Col>
                         </Row>
 
-                        <p>
+                        {/* <p>
                           <i
                             className="bx bxs-pencil"
                             style={{
@@ -219,21 +223,21 @@ const EmployerProfile = () => {
                               cursor: "pointer",
                             }}
                           ></i>
-                        </p>
+                        </p> */}
                       </CardBody>
                     </Card>
                   </Col>
                 </TabPane>
 
                 <TabPane tabId="2" id="product"
-                   style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                   style={{ height: "740px", position: "relative", overflow: "scroll" }}
                    className="scroll-change"
                 >
-                  <EditProfile />
+                  <EditProfile toProfile={toProfile}/>
                 </TabPane>
 
                 <TabPane tabId="3" id="base-justified-messages"
-                   style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                   style={{ height: "800px", position: "relative", overflow: "scroll" }}
                    className="scroll-change"
                 >
                   <ChangePassword />
@@ -241,7 +245,7 @@ const EmployerProfile = () => {
                 
               <TabPane tabId="4" id="base-justified-settings"
               
-              style={{ height: "700px", position: "relative", overflow: "scroll" }}
+              style={{ height: "800px", position: "relative", overflow: "scroll" }}
               className="scroll-change">
                  <Logo />
               </TabPane>

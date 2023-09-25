@@ -237,6 +237,8 @@ export const TEST_VERIFY = 'http://localhost:9000/'
 //login 
 export const LOGIN = `${version}/login/`
 export const VERIFYTOKEN = `${version}/auth/`
+export const RESET_CODE = `${version}/sendresetcode/`
+export const CHANGE_PASSWORD = `${version}/passwordreset/`
 
 //jobsekerURLS
 //alerts
@@ -253,7 +255,7 @@ export const UPDATE_CV = `${version}/updatecv/`
 export const VIEW_SAVED_JOBS = `${version}/viewmyjobs/`
 //user-profile
 export const UPDATE_PROFILE = `${version}/updateuser/`
-export const CHANGE_PASSWORD = `${version}/sendresetcode/`
+
 
 
 export const CREATE_JOB_STATUS = `${version}/createjobstatus/`
