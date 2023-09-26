@@ -123,7 +123,7 @@ const CoverLetters = ({
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
                 <th scope="col">View</th>
-                <th scope="col">Duplicate</th>
+                {/* <th scope="col">Duplicate</th> */}
               </tr>
             </thead>
 
@@ -145,34 +145,38 @@ const CoverLetters = ({
                         : formatDate(item?.updatedAt)}
                     </td>
                     <td>
-                      <p
+                      <span
                         onClick={() => {
                           handleEditCoverLetter();
                           Letter(item);
                         }}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", 
+                        marginTop: '2rem', position: 'relative', top: '-0.2rem'
+                      }}
                       >
                         {" "}
                         Edit
-                      </p>
+                      </span>
                     </td>
 
                     <td>
-                      <p
+                      <span
                         style={{
                           color: "red",
                           cursor: "pointer",
+                          marginTop: '2rem', position: 'relative', top: '-0.2rem'
                         }}
                         onClick={() => handleDeleteRecord(item)}
                       >
                         Delete
-                      </p>
+                      </span>
                     </td>
                     <td>
-                      <p
+                      <span
                         style={{
                           color: "#244a59",
                           cursor: "pointer",
+                          marginTop: '2rem', position: 'relative', top: '-0.2rem'
                         }}
                         onClick={() => {
                           handleViewCoverLetter();
@@ -181,9 +185,9 @@ const CoverLetters = ({
                         }}
                       >
                         View
-                      </p>
+                      </span>
                     </td>
-                    <td>
+                    {/* <td>
                       <p
                         style={{
                           color: "#244a59",
@@ -192,23 +196,29 @@ const CoverLetters = ({
                       >
                         Duplicate
                       </p>
-                    </td>
+                    </td> */}
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="text-center mt-5">
-                    <div className="d-flex align-items-center justify-content-center">
+                <td colSpan="7" className="text-center mt-5">
+                  <div className="d-flex align-items-center justify-content-center">
+                    {cvInfo?.length >= 1 ? (
                       <Spinner
                         size="lg"
                         className="me-2 mt-5"
                         style={{ color: "#244a59" }}
                       >
-                        Loading...
+                        
                       </Spinner>
-                    </div>
-                  </td>
-                </tr>
+                    ) : (
+                      <p className="fw-light mt-5">
+                        You currently don't have any Cv.
+                      </p>
+                    )}
+                  </div>
+                </td>
+              </tr>
               )}
             </tbody>
           </Table>

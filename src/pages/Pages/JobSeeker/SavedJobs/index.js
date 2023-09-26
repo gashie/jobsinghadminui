@@ -13,11 +13,16 @@ import {
   InputGroupText,
   Card,
   Input,
+  Spinner
 } from "reactstrap";
 import data from "./data";
 import SeaTech from "../../../../assets/images/jobsinghana/seatec.png";
 import img1 from "./img1.png";
-import { fullJobDetails, viewSavedJobs } from "../../../../store/actions";
+import {
+  fullJobDetails,
+  updateSavedJobs,
+  viewSavedJobs,
+} from "../../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import JobDetails from "./JobDetails";
 import Questionnaire from "./Questionnaire";
@@ -39,8 +44,6 @@ const SavedJobs = () => {
 
   const [infoModal, setInfoModal] = useState(false);
 
-  
-
   function tog_standard() {
     setmodal_standard(!modal_standard);
   }
@@ -52,7 +55,6 @@ const SavedJobs = () => {
     setInfoModal(!infoModal);
   }
 
-  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -120,8 +122,6 @@ const SavedJobs = () => {
 
   const handleFullInfo = (item) => {
     dispatch(fullJobDetails({ jobId: item }));
-
-   
   };
 
   useEffect(() => {
@@ -166,6 +166,20 @@ const SavedJobs = () => {
                         color: "red",
                         cursor: "pointer",
                       }}
+                      onClick={() => {
+                        dispatch(
+                          updateSavedJobs({
+                            deleterecord: true,
+                            restore: 0,
+                            jobId: item?.jobId,
+                            patch: false,
+                            patchData: {
+                              jobTitle: item?.jobId,
+                              companyName: item?.companyName,
+                            },
+                          })
+                        );
+                      }}
                     >
                       Delete
                     </td>
@@ -175,7 +189,6 @@ const SavedJobs = () => {
                         cursor: "pointer",
                       }}
                       onClick={() => {
-                       
                         handleFullInfo(item?.jobId);
                         tog_info();
                       }}
@@ -189,7 +202,7 @@ const SavedJobs = () => {
                       <td
                         onClick={() => {
                           // console.log(item?.jobId);
-                           handleFullInfo(item?.jobId);
+                          handleFullInfo(item?.jobId);
                         }}
                       >
                         Apply
@@ -200,7 +213,25 @@ const SavedJobs = () => {
               ) : savedJobsInfo?.length < 1 ? (
                 <p>No Data</p>
               ) : (
-                <p>Loading</p>
+                <tr>
+                              <td colSpan="7" className="text-center mt-5">
+                                <div className="d-flex align-items-center justify-content-center">
+                                  {savedJobsInfo?.length > 1 ? (
+                                    <Spinner
+                                      size="lg"
+                                      className="me-2 mt-5"
+                                      style={{ color: "#244a59" }}
+                                    >
+                                      Loading...
+                                    </Spinner>
+                                  ) : (
+                                    <p className="fw-light mt-5">
+                                      You currently don't have rate cards.
+                                    </p>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
               )}
             </tbody>
           </Table>
@@ -230,7 +261,7 @@ const SavedJobs = () => {
           ></Button>
         </ModalHeader>
         <ModalBody>
-             <Apply questionInfo={questionInfo}/>
+          <Apply questionInfo={questionInfo} />
         </ModalBody>
         <ModalFooter>
           <Button

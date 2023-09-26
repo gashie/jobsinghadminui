@@ -132,7 +132,7 @@ function* updateJobAlert({ payload }) {
 function* updateSavedJobs({ payload }) {
   try {
     const response = yield call(updateSavedJobsURL, payload);
-
+console.log(response)
     if (response && response?.data?.status === 1) {
       yield put(updateSavedJobsSuccess());
       toast.warning(`${response?.data?.message}`, {

@@ -25,6 +25,8 @@ import {
   updateResumeError,
   updateCvSuccess,
   updateCvError,
+  viewCv as cvAction, 
+  viewResume as resumeAction
 } from "./action";
 
 import {
@@ -80,7 +82,7 @@ function* createResume({ payload: data }) {
 
     if (response && response?.status === 200 && response?.data?.status === 1) {
       yield put(createResumeSuccess());
-      console.log(response)
+      yield put (cvAction({viewAction: ""}))
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
@@ -89,10 +91,12 @@ function* createResume({ payload: data }) {
       toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put (cvAction({viewAction: ""}))
     }
   } catch (error) {
     console.log(error);
     yield put(createResumeError(error));
+    yield put (cvAction({viewAction: ""}))
   }
 }
 
@@ -105,15 +109,18 @@ function* createCv({ payload: data }) {
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(cvAction({viewAction: ""}))
     } else {
       yield put(createCvError(response));
       toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(cvAction({viewAction: ""}))
     }
   } catch (error) {
     console.log(error);
     yield put(createCvError(error));
+    yield put(cvAction({viewAction: ""}))
   }
 }
 
@@ -127,15 +134,18 @@ function* updateResume ({payload}){
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(resumeAction({viewAction: ""}))
     } else {
       yield put(updateResumeError(response));
       toast.error(`${response?.data?.message}. Please Try Again`, {
         autoClose: 3000,
       });
+      yield put(resumeAction({viewAction: ""}))
     }
   } catch (error) {
     console.log(error);
     yield put(updateResumeError(error));
+    yield put(resumeAction({viewAction: ""}))
   }
 }
 
@@ -148,15 +158,18 @@ function* updateCv ({payload}){
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(cvAction({viewAction: ""}))
     } else {
       yield put(updateCvError(response));
       toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put(cvAction({viewAction: ""}))
     }
   } catch (error) {
     console.log(error);
     yield put(updateCvError(error));
+    yield put(cvAction({viewAction: ""}))
   }
 }
 

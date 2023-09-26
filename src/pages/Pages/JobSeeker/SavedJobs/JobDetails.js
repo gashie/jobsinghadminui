@@ -307,12 +307,12 @@ const JobDetails = ({ jobInfo }) => {
                       className="text-center"
                       style={{ width: "100%" }}
                     > */}
-                    <Button
+                    {/* <Button
                       className="btn btn-dark p-3"
                       style={{ width: "100%", backgroundColor: "#244a59" }}
                     >
                       Apply
-                    </Button>
+                    </Button> */}
                     {/* </Link> */}
                   </div>
 
