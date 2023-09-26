@@ -509,3 +509,10 @@ export const logoutURL = () =>api.create(url.LOGOUT)
 export const activateUserURL = (data) =>api.create(url.ACTIVATE_USER, data)
 
 export const resendActivationCode = (data) => api.create(url.RESEND_ACTIVATION_CODE, data)
+
+
+export const saveJobURL = (data) => api.create(url.SAVE_JOB, data)
+export const updateSavedJobsURL = (data) => api.create(url.UPDATE_SAVED_JOBS, data)
+
+export const fullJobDetailsURL = (data) =>api.create(url.FULL_JOB_DETAILS, data)
+export const applyForJobURL = (data) =>api.create(url.APPLY_FOR_JOB, data)

@@ -252,7 +252,7 @@ export const VIEW_RESUME = `${version}/myresume/`
 export const CREATE_CV = `${version}/createcv/`
 export const VIEW_CV = `${version}/mycv/`
 export const UPDATE_CV = `${version}/updatecv/`
-export const VIEW_SAVED_JOBS = `${version}/viewmyjobs/`
+export const VIEW_SAVED_JOBS = `${version}/mysavedjobs/`
 //user-profile
 export const UPDATE_PROFILE = `${version}/updateuser/`
 
@@ -317,3 +317,10 @@ export const LOGOUT = `${version}/logout/`
 
 export const ACTIVATE_USER = `${version}/activate/`
 export const RESEND_ACTIVATION_CODE = `${version}/resendactivatecode/`
+
+
+export const SAVE_JOB = `${version}/savejob/`
+export const UPDATE_SAVED_JOBS = `${version}/updatesavedjob/`
+
+export const FULL_JOB_DETAILS = `${version}/jobdetails/`
+export const APPLY_FOR_JOB = `${version}/apply/`

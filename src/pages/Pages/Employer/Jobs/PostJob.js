@@ -48,10 +48,11 @@ const AddJob = ({payLater}) => {
       categoryInfo: state.Industry.categoryInfo,
     }));
 
-  const { jobloading, joberror, jobsInfo } = useSelector((state) => ({
+  const { jobloading, joberror, jobsInfo, userInfo } = useSelector((state) => ({
     jobloading: state.Jobs.loading,
     joberror: state.Jobs.error,
     jobsInfo: state.Jobs.jobStatusInfo,
+    userInfo: state.Login.userInfo
   }));
 
   const [inputValue, setInputValue] = useState("");
@@ -118,7 +119,7 @@ const AddJob = ({payLater}) => {
         jobCategoryId: values.jobCategoryId,
         jobLocation: finalLocations,
         jobSalaryAmount: values.jobSalaryAmount,
-        companyId: "",
+        companyId: userInfo?.userInfo?.company?.id,
         isCompanyConfidential: isConfidential,
         jobDescription: description,
         jobSkills: [],
@@ -128,7 +129,9 @@ const AddJob = ({payLater}) => {
         applyLink: values.applyLink,
         yearsOfExperience: values.yearsOfExperience,
         appliedEmail: values.appliedEmail,
-        education: values.education
+        education: values.education,
+        goLiveDate: values.goLiveDate,
+      
       };
 
       dispatch(createJob(finalData));
@@ -226,7 +229,7 @@ const AddJob = ({payLater}) => {
                       type="date"
                       className="form-control p-3"
                       id="goLiveDate"
-                      name="goLiveDate"
+                     
                       placeholder=""
                       onChange={validation.handleChange}
                       value={validation.values.goLiveDate || ""}
@@ -239,7 +242,7 @@ const AddJob = ({payLater}) => {
                   <Col lg={15}>
                     <select
                       className="form-select p-3"
-                      name="jobCategoryId"
+                    
                       id="jobCategoryId"
                       value={validation.values.jobCategoryId}
                       onChange={validation.handleChange}
@@ -257,6 +260,7 @@ const AddJob = ({payLater}) => {
                     </select>
                   </Col>
                 </Row>
+
 
                 <label>Education Level</label>
                 <Row className="mb-3">
@@ -298,7 +302,7 @@ const AddJob = ({payLater}) => {
                   <Col lg={12}>
                     <select
                       className="form-select p-3"
-                      name="jobStatusId"
+                    
                       id="jobStatusId"
                       value={validation.values.jobStatusId}
                       onChange={validation.handleChange}
@@ -333,7 +337,7 @@ const AddJob = ({payLater}) => {
                    <Col lg={12}>
                      <Input
                        className="form-select p-3"
-                       name="appliedEmail"
+                       
                        id="appliedEmail"
                        type="text"
                        value={validation.values.appliedEmail}
@@ -349,7 +353,7 @@ const AddJob = ({payLater}) => {
                   <Col lg={12}>
                     <Input
                       className="form-select p-3"
-                      name="applyLink"
+                     
                       id="applyLink"
                       type='text'
                       value={validation.values.applyLink}

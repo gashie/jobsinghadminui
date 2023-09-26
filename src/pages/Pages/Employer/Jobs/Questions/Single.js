@@ -2,68 +2,55 @@ import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { useSelector } from 'react-redux';
 
-const Multiple = ({ onSubmit }) => {
-  // State variables
+const Single = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
-  const [answerOptions, setAnswerOptions] = useState([{ text: '', isSelected: false }]);
+  const [answerOptions, setAnswerOptions] = useState(['']); // Initial answer option
+  const [idealAnswerIndex, setIdealAnswerIndex] = useState(0); // Index of the ideal answer
 
-  // Handle question input change
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
   };
 
-  // Handle answer text change
-  const handleAnswerChange = (index, text) => {
+  const handleAnswerChange = (index, value) => {
     const updatedOptions = [...answerOptions];
-    updatedOptions[index].text = text;
+    updatedOptions[index] = value;
     setAnswerOptions(updatedOptions);
   };
 
-  // Handle answer checkbox change
-  const handleCheckboxChange = (index) => {
-    const updatedOptions = [...answerOptions];
-    updatedOptions[index].isSelected = !updatedOptions[index].isSelected;
-    setAnswerOptions(updatedOptions);
-  };
-
-  // Add a new answer option
   const handleAddAnswer = () => {
-    setAnswerOptions([...answerOptions, { text: '', isSelected: false }]);
+    setAnswerOptions([...answerOptions, '']);
   };
 
-  // Remove an answer option
   const handleRemoveAnswer = (index) => {
     const updatedOptions = [...answerOptions];
     updatedOptions.splice(index, 1);
     setAnswerOptions(updatedOptions);
   };
 
-  // Redux selector for job information
-  const { loading, error, idInfo } = useSelector((state) => ({
+  const handleIdealAnswerChange = (e) => {
+    setIdealAnswerIndex(parseInt(e.target.value, 10));
+  };
+
+
+  const {loading, error, idInfo} = useSelector((state)=>({
     loading: state.Jobs.idLoading,
     error: state.Jobs.idError,
     idInfo: state.Jobs.id,
-  }));
+}))
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create an array of selected answer options
-    const selectedOptions = answerOptions
-      .filter((option) => option.isSelected)
-      .map((option, index) => ({
-        optionLabel: `Answer ${index + 1}`,
-        optionValue: option.text,
-        optionBenchMark: index + 1,
-      }));
-
-    // Create the formatted data object without idealAnswerIndices
+    // Format the data to match the desired JSON structure
     const formattedData = {
       questionTitle: question,
       questionType: 'multi',
       jobId: loading === false && error === false ? idInfo?.jobId : "",
-      questionOption: selectedOptions,
+      questionOption: answerOptions.map((option, index) => ({
+        optionLabel: `Answer ${index + 1}`,
+        optionValue: option,
+        optionBenchMark: index + 1,
+      })),
     };
 
     // Pass the formatted data to the parent component
@@ -71,8 +58,13 @@ const Multiple = ({ onSubmit }) => {
 
     // Reset form values to default after submission
     setQuestion('');
-    setAnswerOptions([{ text: '', isSelected: false }]);
+    setAnswerOptions(['']);
+    setIdealAnswerIndex(0);
   };
+
+
+ 
+
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -94,34 +86,50 @@ const Multiple = ({ onSubmit }) => {
             <Input
               type="text"
               id={`answer-${index}`}
-              value={answer.text}
+              value={answer}
               onChange={(e) => handleAnswerChange(index, e.target.value)}
               placeholder={`Enter answer ${index + 1}`}
             />
             <Button
-              color='light'
+             color='light'
               className="ml-4"
               style={{ marginLeft: '3px'}}
             >
               <i className='bx bx-trash bx-tada-hover fs-17' onClick={() => handleRemoveAnswer(index)}></i>
             </Button>
-            <Input
-              type="checkbox"
-              className="ml-4 mt-2"
-              checked={answer.isSelected}
-              onChange={() => handleCheckboxChange(index)}
-            />
           </div>
         </FormGroup>
       ))}
-      <Button color="primary" onClick={handleAddAnswer} style={{ backgroundColor: '#244a59' }}>
+      <Button color="primary" onClick={handleAddAnswer} style={{backgroundColor: '#244a59'}}>
         Add Answer
       </Button>
-      <Button color="primary" type="submit" style={{ backgroundColor: '#244a59' }}>
+      <FormGroup className='mt-4'>
+        <Label for="idealAnswer">Ideal Answer</Label>
+        <Input
+          type="select"
+          id="idealAnswer"
+          value={idealAnswerIndex}
+          onChange={handleIdealAnswerChange}
+        >
+          {answerOptions.map((_, index) => (
+            <option key={index} value={index}>
+              Answer {index + 1}
+            </option>
+          ))}
+        </Input>
+      </FormGroup>
+      <Button color="primary" type="submit" style={{backgroundColor: '#244a59'}}>
         Add Question
       </Button>
+      {/* Display formatted data below the form */}
+      {/* {formattedData && (
+        <div className="mt-4">
+          <h2>Formatted Data</h2>
+          <pre>{JSON.stringify(formattedData, null, 2)}</pre>
+        </div>
+      )} */}
     </Form>
   );
 };
 
-export default Multiple;
+export default Single;

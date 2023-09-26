@@ -11,6 +11,16 @@ import {
   VIEW_SAVED_JOBS_ERROR,
   VIEW_SAVED_JOBS_SUCCESS,
   VIEW_SAVED_JOBS,
+  SAVE_JOBS,
+  SAVE_JOBS_SUCCESS,
+  SAVE_JOBS_ERROR,
+  UPDATE_SAVED_JOBS,
+  UPDATE_SAVED_JOBS_SUCCESS,
+  UPDATE_SAVED_JOBS_ERROR,
+  APPLY_FOR_JOBS, 
+  APPLY_FOR_JOBS_ERROR, 
+  APPLY_FOR_JOBS_SUCCESS, 
+  FULL_JOB_DETAILS, FULL_JOB_DETAILS_ERROR, FULL_JOB_DETAILS_SUCCESS
 } from "./actionTypes";
 
 const initalState = {
@@ -21,6 +31,13 @@ const initalState = {
   jobAlertsError: false,
   jobAlertsLoading: false,
   savedJobs: null,
+  savedJobsLoading: false, 
+  savedJobsError: false, 
+  fullJobDetails: null,
+  fullJobDetailsLoading: false,
+  fullJobDetailsError: false,
+  applyForJobsLoading: false,
+  applyForJobsError: false,
 };
 
 const JobAlerts = (state = initalState, action) => {
@@ -55,25 +72,25 @@ const JobAlerts = (state = initalState, action) => {
     case VIEW_SAVED_JOBS:
       state = {
         ...state,
-        loading: true,
-        error: false,
+        savedJobsLoading: true,
+        savedJobsError: false,
       };
       break;
     case VIEW_SAVED_JOBS_ERROR:
       state = {
         ...state,
 
-        loading: false,
+        savedJobsLoading: false,
         errorMsg: action.payload,
-        error: true,
+        savedJobsError: true,
       };
       break;
     case VIEW_SAVED_JOBS_SUCCESS:
       state = {
         ...state,
 
-        loading: false,
-        error: false,
+        savedJobsLoading: false,
+        savedJobsError: false,
         savedJobs: action.payload,
       };
       break;
@@ -121,6 +138,83 @@ const JobAlerts = (state = initalState, action) => {
         errorMsg: action.payload,
       };
       break;
+      case SAVE_JOBS:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case SAVE_JOBS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMsg: action.payload,
+      };
+    case SAVE_JOBS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+      };
+    case UPDATE_SAVED_JOBS:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case UPDATE_SAVED_JOBS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+      };
+    case UPDATE_SAVED_JOBS_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMsg: action.payload,
+      };
+      case FULL_JOB_DETAILS:
+        return {
+          ...state,
+          fullJobDetailsLoading: true,
+          fullJobDetailsError: false,
+        };
+      case FULL_JOB_DETAILS_SUCCESS:
+        return {
+          ...state,
+          fullJobDetailsLoading: false,
+          fullJobDetailsError: false,
+          fullJobDetails: action.payload,
+        };
+      case FULL_JOB_DETAILS_ERROR:
+        return {
+          ...state,
+          fullJobDetailsLoading: false,
+          fullJobDetailsError: true,
+          errorMsg: action.payload,
+        };
+      case APPLY_FOR_JOBS:
+        return {
+          ...state,
+          applyForJobsLoading: true,
+          applyForJobsError: false,
+        };
+      case APPLY_FOR_JOBS_SUCCESS:
+        return {
+          ...state,
+          applyForJobsLoading: false,
+          applyForJobsError: false,
+        };
+      case APPLY_FOR_JOBS_ERROR:
+        return {
+          ...state,
+          applyForJobsLoading: false,
+          applyForJobsError: true,
+          errorMsg: action.payload,
+        };
     default:
       state = { ...state };
       break;
