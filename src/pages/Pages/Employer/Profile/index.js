@@ -147,7 +147,7 @@ const EmployerProfile = () => {
                             <h5
                               style={{ textAlign: "center", marginTop: "1rem" }}
                             >
-                             Gashie Technologies
+                             {userInfo?.userInfo?.company?.companyName}
                             </h5>
                            
                           </Col>

@@ -126,7 +126,7 @@ const dispatch = useDispatch()
                       />
                     </Col>
                   </Row>
-                  <Row className="mb-3">
+                  {/* <Row className="mb-3">
                     <Col lg={3}>
                       <p
                         htmlFor="nameInput"
@@ -147,7 +147,7 @@ const dispatch = useDispatch()
                         value={validation.values.companyName}
                       />
                     </Col>
-                  </Row>
+                  </Row> */}
                   <Row className="mb-3">
                     <Col lg={3}>
                       <p

@@ -45,6 +45,9 @@ jobStatusSuccess,
 
 } from "./action";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   createJobStatusURL,
   jobStatusURL,
@@ -62,13 +65,21 @@ function* createJobStatus({payload: data}) {
     const response = yield call(createjobStatusURL, data);
     if (response.data.status === 1) {
       yield put(createStatusSuccess(response?.data?.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobStatusAction({viewAction: ""}))
+
     } else {
       yield put(createStatusError(response));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobStatusAction({viewAction: ""}))
     }
   } catch (error) {
     yield put(createStatusError(error));
+    
     yield put (jobStatusAction({viewAction: ""}))
   }
 }
@@ -78,9 +89,15 @@ function* jobStatus({payload: data}) {
     const response = yield call(jobStatusURL, data);
     if (response.data.status === 1) {
       yield put(jobStatusSuccess(response?.data?.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
    
     } else {
-      yield put(jobStatusError(response?.data));
+      yield put(jobStatusError(response?.data.message));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
     
     }
   } catch (error) {
@@ -93,10 +110,16 @@ function* updateJobStatus({payload: data}) {
   try {
     const response = yield call(updateJobStatusURL, data);
     if (response.data.status) {
-      yield put(updateStatusSuccess(response?.data));
+      yield put(updateStatusSuccess(response?.data.data));
       yield put (jobStatusAction({viewAction: ""}))
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
     } else {
       yield put(updateStatusError(response));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobStatusAction({viewAction: ""}))
     }
   } catch (error) {
@@ -110,9 +133,15 @@ function* createJob({payload: data}) {
     const response = yield call(createJobURL, data);
     if (response.data.status === 1) {
       yield put(createJobSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobAction({viewAction: ""}))
     } else {
       yield put(createJobError(response));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobAction({viewAction: ""}))
     }
   } catch (error) {
@@ -125,10 +154,16 @@ function* updateJob({payload: data}) {
   try {
     const response = yield call(updateJobURL, data);
     if (response.data.status === 1) {
-      yield put(updateJobSuccess(response.data));
+      yield put(updateJobSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobAction({viewAction: ""}))
     } else {
       yield put(updateJobError(response));
+       toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobAction({viewAction: ""}))
     }
   } catch (error) {
@@ -143,9 +178,15 @@ function* Jobs({payload: data}) {
     console.log(response)
     if (response && response.data.status === 1) {
       yield put(jobsSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
     
     } else {
-      yield put(jobsError(response));
+      yield put(jobsError(response.data.message));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
     
     }
   } catch (error) {
@@ -158,10 +199,16 @@ function* approveJobs({payload: data}) {
   try {
     const response = yield call(approveJobURL, data);
     if (response.data.status === 1) {
-      yield put(approveJobsSuccess(response.data));
+      yield put(approveJobsSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobAction({viewAction: ""}))
     } else {
-      yield put(approveJobsError(response));
+      yield put(approveJobsError(response.data.message));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       yield put (jobAction({viewAction: ""}))
     }
   } catch (error) {

@@ -35,13 +35,13 @@ function* jobseekers({ payload: data }) {
     const response = yield call(jobseekersURL, data);
 
     if (response && response?.status === 1) {
-      yield put(jobseekersSuccess(response?.data));
-      toast.success(`${response?.message}`, {
+      yield put(jobseekersSuccess(response?.data.data));
+      toast.success(`${response?.data.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(jobseekersError(response));
-      toast.success(`${response?.message}`, {
+      toast.warn(`${response?.data.message}`, {
         autoClose: 3000,
       });
     }
@@ -55,7 +55,7 @@ function* updateProfile({ payload: data }) {
   try {
     const response = yield call(updateUserProfileURL, data);
 
-    if (response && response?.status === 1) {
+    if (response && response?.data.status === 1) {
       //  yield put(updateRatecardURL());
       yield put(updateUserProfileSuccess());
       // yield put(rateCardAction({ viewAction: "" }));
@@ -64,7 +64,7 @@ function* updateProfile({ payload: data }) {
       });
     } else {
       yield put(updateUserProfileError(response));
-      toast.success(`${response?.message}`, {
+      toast.warn(`${response?.data.message}`, {
         autoClose: 3000,
       });
       // yield put(rateCardAction({ viewAction: "" }));
@@ -80,15 +80,15 @@ function* employers({ payload: data }) {
   try {
     const response = yield call(employersURL, data);
 
-    if (response && response?.status === 1) {
+    if (response && response?.data.status === 1) {
       // yield put(rateCardAction({ viewAction: "" }));
-      yield put(employersSuccess(response?.data));
-      toast.success(`${response?.message}`, {
+      yield put(employersSuccess(response?.data.data));
+      toast.success(`${response?.data.message}`, {
         autoClose: 3000,
       });
     } else {
       yield put(employersError(response));
-      toast.success(`${response?.message}`, {
+      toast.warn(`${response?.data.message}`, {
         autoClose: 3000,
       });
       // yield put(rateCardAction({ viewAction: "" }));

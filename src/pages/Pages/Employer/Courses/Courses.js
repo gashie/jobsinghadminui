@@ -43,7 +43,7 @@ import {
 import AddContent from "./AddContent";
 import EditCourse from "./EditCourse";
 
-function Courses({handleCourse}) {
+function Courses({ handleCourse }) {
   const actionList = [
     {
       label: "Approve ",
@@ -145,10 +145,9 @@ function Courses({handleCourse}) {
     dispatch(course({ viewAction: "" }));
   }, [dispatch]);
 
-  const [editData, setEditData] = useState({})
+  const [editData, setEditData] = useState({});
 
   const handleOptionClick = (action, item, check) => {
-    
     if (check === "Approve") {
       dispatch(
         approveCourse({
@@ -159,10 +158,9 @@ function Courses({handleCourse}) {
     }
 
     if (check === "Edit") {
-      toggleQuestionModal()
-      setEditData(item)
+      toggleQuestionModal();
+      setEditData(item);
     }
-
 
     if (check === "Add Content") {
       setAddContentModal(true);
@@ -171,14 +169,14 @@ function Courses({handleCourse}) {
     }
 
     if (check === "Add Partnership") {
+      setEditContent("");
       setAddPartnershipModal(true);
     }
 
     if (check === "Add Schedule") {
+      setEditContent("");
       setAddScheduleModal(true);
     }
-
-   
 
     if (check === "Delete") {
       console.log(item);
@@ -226,11 +224,11 @@ function Courses({handleCourse}) {
     toggleAddPartnershipModal();
   };
 
-  const handleEditSch = (edit) =>{
+  const handleEditSch = (edit) => {
     setEditContent("edit");
     setEditschInfo(edit);
     toggleScheduleModal();
-  }
+  };
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -290,42 +288,32 @@ function Courses({handleCourse}) {
 
     onSubmit: (values) => {
       const saveData = new FormData();
-   
-   
 
       if (editContent !== "edit") {
         saveData.append("courseId", presentId);
         saveData.append("institutionName", values.institutionName);
         saveData.append("institutionLogo", logo);
-  
+
         dispatch(saveCoursePartnership(saveData));
-   
       }
 
-      
       if (editContent === "edit") {
         const patchData = {
-          courseId: presentId, 
-          institutionName: values.institutionName
-       }
-  
-  
-        const saveDataPatch = new FormData()
-        saveDataPatch.append("patch", true )
-        saveDataPatch.append("institutionLogo", logo )
-        saveDataPatch.append("partnerId",editPartInfo?.partnerId )
-        saveDataPatch.append("patchData", JSON.stringify(patchData) )
-        saveDataPatch.append("restore", false )
-        dispatch(updateCoursePartnership(saveDataPatch))
+          courseId: presentId,
+          institutionName: values.institutionName,
+        };
+
+        const saveDataPatch = new FormData();
+        saveDataPatch.append("patch", true);
+        saveDataPatch.append("institutionLogo", logo);
+        saveDataPatch.append("partnerId", editPartInfo?.partnerId);
+        saveDataPatch.append("patchData", JSON.stringify(patchData));
+        saveDataPatch.append("restore", false);
+        dispatch(updateCoursePartnership(saveDataPatch));
       }
-
-
-
 
       validation.resetForm();
       setAddPartnershipModal(false);
-
-
     },
   });
 
@@ -339,28 +327,24 @@ function Courses({handleCourse}) {
     validateOnChange: true,
 
     onSubmit: (values) => {
-     
-    
-
-
-      if(editContent === "edit"){
+      if (editContent === "edit") {
         const patchData = {
-          deleterecord: false, 
-          restore: 0, 
-          scheduleId: editschInfo.scheduleId, 
-          patch: true, 
+          deleterecord: false,
+          restore: 0,
+          scheduleId: editschInfo.scheduleId,
+          patch: true,
           patchData: {
-           courseId: presentId, 
-           scheduleTitle: values.scheduleTitle, 
-           startTime: values.startTime, 
-           endTime: values.endTIme
-          }
-         }
+            courseId: presentId,
+            scheduleTitle: values.scheduleTitle,
+            startTime: values.startTime,
+            endTime: values.endTIme,
+          },
+        };
 
-         dispatch(updateCourseSchedule(patchData))
+        dispatch(updateCourseSchedule(patchData));
       }
 
-      if(editContent !== "edit"){
+      if (editContent !== "edit") {
         const saveData = {
           courseId: presentId,
           scheduleTitle: values.scheduleTitle,
@@ -368,7 +352,6 @@ function Courses({handleCourse}) {
           endTime: values.endTIme,
         };
         dispatch(saveCourseSchedule(saveData));
-  
       }
 
       validation.resetForm();
@@ -382,9 +365,9 @@ function Courses({handleCourse}) {
     setQuestionIsOpen(!questionIsOpen);
   };
 
-  const handleEditModal = () =>{
-    toggleQuestionModal()
-  }
+  const handleEditModal = () => {
+    toggleQuestionModal();
+  };
 
   return (
     <>
@@ -392,8 +375,6 @@ function Courses({handleCourse}) {
         <div className="m-2 p-2 mb-2">
           <div className="p-3" style={{ marginTop: "0rem" }}>
             <div className="d-flex" style={{ justifyContent: "space-between" }}>
-             
-
               <div className="mt d-flex gap-2">
                 {/* <p className="text-end d-flex gap-1 mt-1">
                   <i
@@ -406,17 +387,15 @@ function Courses({handleCourse}) {
                   ></i>
                 </p> */}
                 <p className="text-end ">
-               
-                    <button
-                      className="btn btn-dark p-3"
-                      onClick={() => {
-                        handleCourse()
-                      }}
-                      style={{backgroundColor: '#244a59'}}
-                    >
-                      Add New Course
-                    </button>
-                
+                  <button
+                    className="btn btn-dark p-3"
+                    onClick={() => {
+                      handleCourse();
+                    }}
+                    style={{ backgroundColor: "#244a59" }}
+                  >
+                    Add New Course
+                  </button>
                 </p>
               </div>
             </div>
@@ -623,7 +602,7 @@ function Courses({handleCourse}) {
                             <tr>
                               <td colSpan="7" className="text-center mt-5">
                                 <div className="d-flex align-items-center justify-content-center">
-                                  {courseInfo?.length === 0 ? (
+                                  {loading === false ? (
                                     <>
                                       <p className="fw-light mt-5">
                                         You currently don't courses set up.
@@ -635,9 +614,7 @@ function Courses({handleCourse}) {
                                         size="lg"
                                         className="me-2 mt-5"
                                         style={{ color: "#244a59" }}
-                                      >
-                                        Loading...
-                                      </Spinner>
+                                      ></Spinner>
                                     </>
                                   )}
                                 </div>
@@ -702,7 +679,7 @@ function Courses({handleCourse}) {
               ></Button>
             </p>
 
-            <h5 className="text-center">Add Content</h5>
+            <h5 className="text-center"> Content</h5>
 
             <Col lg={20} className="mb-3">
               <label>Title</label>
@@ -790,9 +767,9 @@ function Courses({handleCourse}) {
                 </Button>
                 <Button
                   color="light"
-                    onClick={() => {
-                      toggleAddContentModal();
-                    }}
+                  onClick={() => {
+                    toggleAddContentModal();
+                  }}
                   className="w-50"
                   type="button"
                 >
@@ -836,7 +813,7 @@ function Courses({handleCourse}) {
               ></Button>
             </p>
 
-            <h5 className="text-center">Add Partnership</h5>
+            <h5 className="text-center"> Partnership</h5>
 
             <Col lg={20} className="mb-3">
               <label>Institution Name</label>
@@ -930,7 +907,9 @@ function Courses({handleCourse}) {
               ></Button>
             </p>
 
-            <h5 className="text-center">{editContent === "edit"? "Add" : "Edit"} Content</h5>
+            <h5 className="text-center">
+              {editContent === "edit" ? "Add" : "Edit"} Content
+            </h5>
 
             <Col lg={20} className="mb-3">
               <label>Schedule Title</label>
@@ -1079,7 +1058,23 @@ function Courses({handleCourse}) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                No content has been set for this course
+             
+                  {error === false && content?.length < 0  ? (
+                    <>
+                      <p className="fw-light">
+                        No contents have been setup
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <Spinner
+                        size="lg"
+                        className="me-2 mt-5"
+                        style={{ color: "#244a59" }}
+                      ></Spinner>
+                    </>
+                  )}
+            
               </p>
             )}
           </div>
@@ -1148,7 +1143,23 @@ function Courses({handleCourse}) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                No content has been set for this course
+             
+                  {error === false && partnership?.length < 0  ? (
+                    <>
+                      <p className="fw-light">
+                        No partnerships have been setup
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <Spinner
+                        size="lg"
+                        className="me-2 mt-5"
+                        style={{ color: "#244a59" }}
+                      ></Spinner>
+                    </>
+                  )}
+            
               </p>
             )}
 
@@ -1228,7 +1239,23 @@ function Courses({handleCourse}) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                No content has been set for this course
+             
+                  {error === false && schedule?.length < 0  ? (
+                    <>
+                      <p className="fw-light">
+                        No schedules have been setup
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <Spinner
+                        size="lg"
+                        className="me-2 mt-5"
+                        style={{ color: "#244a59" }}
+                      ></Spinner>
+                    </>
+                  )}
+            
               </p>
             )}
 
@@ -1244,13 +1271,15 @@ function Courses({handleCourse}) {
         </ModalBody>
       </Modal>
 
-
-      <Modal isOpen={questionIsOpen} toggle={toggleQuestionModal} size="xl" className="modal-fullscreen">
+      <Modal
+        isOpen={questionIsOpen}
+        toggle={toggleQuestionModal}
+        size="xl"
+        className="modal-fullscreen"
+      >
         <ModalHeader toggle={toggleQuestionModal}></ModalHeader>
         <ModalBody>
-          <EditCourse data={editData} handleEditModal={handleEditModal}/>
-
-          
+          <EditCourse data={editData} handleEditModal={handleEditModal} />
         </ModalBody>
         {/* <ModalFooter>
           <Button color="secondary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>

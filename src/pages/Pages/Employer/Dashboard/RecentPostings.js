@@ -26,7 +26,7 @@ import { formatDate } from "../../../../Components/Hooks/formatDate";
 import { Spinner } from "reactstrap";
 import EditJobs from "./EditJobs";
 
-const ManageJobs = () => {
+const RecentPostings = () => {
   const [isOpenAction, setIsOpenAction] = useState({});
 
   const toggleAction = (industryId) => {
@@ -339,4 +339,4 @@ const ManageJobs = () => {
   );
 };
 
-export default ManageJobs;
+export default RecentPostings;

@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { saveCourse } from "../../../../store/actions";
 import { useNavigate } from "react-router-dom";
 
-const PostCourse = () => {
+const PostCourse = ({handleBack}) => {
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
     console.log(data); // This will log the content of the editor to the console
@@ -579,6 +579,7 @@ const PostCourse = () => {
                         type="submit"
                         className="btn btn-dark"
                         style={{ backgroundColor: "#244a59" }}
+                        onClick={handleBack}
                       >
                         Submit
                       </button>

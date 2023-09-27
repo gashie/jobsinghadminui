@@ -29,6 +29,10 @@ const EmployerCourses = () => {
     justifyToggle("2")
   }
 
+  const handleBack = () =>{
+    justifyToggle("1")
+  }
+
   const [edit, setEdit] = useState(false);
   return (
     <>
@@ -83,7 +87,7 @@ const EmployerCourses = () => {
 
                 <TabPane tabId="2" id="product"   style={{ height: "800px", position: "relative", overflow: "scroll" }}
                className="scroll-change">
-                  <PostCourse />
+                  <PostCourse handleBack={handleBack}/>
                 </TabPane>
               </TabContent>
             </CardBody>

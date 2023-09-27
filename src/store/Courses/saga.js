@@ -54,6 +54,9 @@ import {
   saveCoursePartnershipError,
   saveCourseScheduleSuccess,
   saveCourseScheduleError,
+  courseContent as contentAction, 
+  courseSchedule as scheduleAction, 
+  coursePartnership as partnershipAction
 } from "./action";
 import {
   approveCourseURL,
@@ -187,7 +190,7 @@ function* updateCourseSchedule({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(updateCourseScheduleSuccess());
-      yield put(courseAction({ viewAction: "" }));
+      yield put(scheduleAction({ viewAction: "" }));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -196,12 +199,12 @@ function* updateCourseSchedule({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      yield put(courseAction({ viewAction: "" }));
+      yield put(scheduleAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
     yield put(updateCourseScheduleError(error));
-    yield put(courseAction({ viewAction: "" }));
+    yield put(scheduleAction({ viewAction: "" }));
   }
 }
 
@@ -211,7 +214,8 @@ function* updateCourseContent({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(updateCourseContentSuccess());
-      yield put(courseAction({ viewAction: "" }));
+      yield put(contentAction({viewAction: ""}))
+  ;
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -220,12 +224,13 @@ function* updateCourseContent({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      yield put(courseAction({ viewAction: "" }));
+      
+      yield put(contentAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
     yield put(updateCourseContentError(error));
-    yield put(courseAction({ viewAction: "" }));
+    yield put(contentAction({ viewAction: "" }));
   }
 }
 function* updateCoursePartnership({ payload: data }) {
@@ -234,7 +239,7 @@ function* updateCoursePartnership({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(updateCourseContentSuccess());
-      yield put(courseAction({ viewAction: "" }));
+      yield put(partnershipAction({ viewAction: "" }));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -243,12 +248,12 @@ function* updateCoursePartnership({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      yield put(courseAction({ viewAction: "" }));
+      yield put(partnershipAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
     yield put(updateCourseContentError(error));
-    yield put(courseAction({ viewAction: "" }));
+    yield put(partnershipAction({ viewAction: "" }));
   }
 }
 
@@ -305,7 +310,7 @@ function* saveCourseContent({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(saveCourseContentSuccess());
-      yield put(courseAction({ viewAction: "" }));
+      yield put(contentAction({ viewAction: "" }));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -314,12 +319,12 @@ function* saveCourseContent({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      yield put(courseAction({ viewAction: "" }));
+      yield put(contentAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
     yield put(saveCourseContentError(error));
-    yield put(courseAction({ viewAction: "" }));
+    yield put(contentAction({ viewAction: "" }));
   }
 }
 function* saveCoursePartnership({ payload: data }) {
@@ -328,7 +333,7 @@ function* saveCoursePartnership({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(saveCoursePartnershipSuccess());
-      yield put(courseAction({ viewAction: "" }));
+      yield put(partnershipAction({ viewAction: "" }));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -337,12 +342,12 @@ function* saveCoursePartnership({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      yield put(courseAction({ viewAction: "" }));
+      yield put(partnershipAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
     yield put(saveCoursePartnershipError(error));
-    yield put(courseAction({ viewAction: "" }));
+    yield put(partnershipAction({ viewAction: "" }));
   }
 }
 function* saveCourseSchedule({ payload: data }) {
@@ -351,7 +356,7 @@ function* saveCourseSchedule({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(saveCourseScheduleSuccess());
-      yield put(courseAction({ viewAction: "" }));
+      yield put(scheduleAction({ viewAction: "" }));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -360,12 +365,12 @@ function* saveCourseSchedule({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      yield put(courseAction({ viewAction: "" }));
+      yield put(scheduleAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
     yield put(saveCourseScheduleError(error));
-    yield put(courseAction({ viewAction: "" }));
+    yield put(scheduleAction({ viewAction: "" }));
   }
 }
 

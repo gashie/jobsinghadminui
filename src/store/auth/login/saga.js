@@ -148,6 +148,9 @@ function* testLoginUser({ payload: user }) {
     if (response.role === "seeker") {
       alert("Logged in");
       loginSuccess(response);
+       toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
       navigate("/test-home");
     } else {
       alert("Error");
@@ -197,13 +200,13 @@ function* loginUser({ payload: user }) {
           });
         } else {
           yield put(getMeError(verifyToken?.data?.data));
-          toast.error(`${response?.data?.message}`, {
+          toast.warn(`${response?.data?.message}`, {
             autoClose: 3000,
           });
         }
       } catch (error) {
         console.log(error);
-        toast.error(`${response?.data?.message}`, {
+        toast.warn(`${response?.data?.message}`, {
           autoClose: 3000,
         });
       }
