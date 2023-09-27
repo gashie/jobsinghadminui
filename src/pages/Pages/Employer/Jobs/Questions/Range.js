@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { useSelector } from 'react-redux';
+import { createQuestion, createQuestionRange } from '../../../../../store/actions';
 
 const Range = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
@@ -24,11 +25,7 @@ const Range = ({ onSubmit }) => {
     setIdealValue(e.target.value);
   };
 
-  const {loading, error, idInfo} = useSelector((state)=>({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-}))
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +34,7 @@ const Range = ({ onSubmit }) => {
     const formattedData = {
       questionTitle: question,
       questionType: 'range',
-      jobId: loading === false && error === false ? idInfo?.jobId : "",
+      jobId: '',
       benchMark: parseInt(idealValue, 10),
       minimumValue: parseInt(minValue, 10),
       maximumValue: parseInt(maxValue, 10),
@@ -45,6 +42,10 @@ const Range = ({ onSubmit }) => {
 
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
+
+    console.log('eyy')
+
+    dispatch(createQuestion(formattedData))
 
     // Reset form values to default after submission
     setQuestion('');

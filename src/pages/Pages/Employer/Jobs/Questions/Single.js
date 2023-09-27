@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { useSelector } from 'react-redux';
+import { createQuestionMultiple } from '../../../../../store/actions';
 
 const Single = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
   const [answerOptions, setAnswerOptions] = useState(['']); // Initial answer option
   const [idealAnswerIndex, setIdealAnswerIndex] = useState(0); // Index of the ideal answer
+
+const dispatch = useDispatch()
 
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
@@ -31,21 +34,16 @@ const Single = ({ onSubmit }) => {
     setIdealAnswerIndex(parseInt(e.target.value, 10));
   };
 
-
-  const {loading, error, idInfo} = useSelector((state)=>({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-}))
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
 
     // Format the data to match the desired JSON structure
     const formattedData = {
       questionTitle: question,
       questionType: 'multi',
-      jobId: loading === false && error === false ? idInfo?.jobId : "",
+      jobId: '',
       questionOption: answerOptions.map((option, index) => ({
         optionLabel: `Answer ${index + 1}`,
         optionValue: option,
@@ -53,18 +51,18 @@ const Single = ({ onSubmit }) => {
       })),
     };
 
+   
+
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
+
+    dispatch(createQuestionMultiple(formattedData))
 
     // Reset form values to default after submission
     setQuestion('');
     setAnswerOptions(['']);
     setIdealAnswerIndex(0);
   };
-
-
- 
-
 
   return (
     <Form onSubmit={handleSubmit}>

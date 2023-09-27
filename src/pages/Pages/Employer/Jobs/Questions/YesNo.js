@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
-import { useSelector } from "react-redux";
+import { createQuestionYN } from "../../../../../store/actions";
 
 function YesNo({ onSubmit }) {
   const [question, setQuestion] = useState("");
@@ -13,14 +14,8 @@ function YesNo({ onSubmit }) {
   const handleAnswerChange = (e) => {
     setAnswer(e.target.value);
   };
-  
-  const {loading, error, idInfo} = useSelector((state)=>({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-}))
 
-
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,12 +24,14 @@ function YesNo({ onSubmit }) {
     const formattedData = {
       questionTitle: question,
       questionType: "yesno",
-      jobId: loading === false && error === false ? idInfo?.jobId : "",
+      jobId: "",
       benchMark: answer,
     };
 
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
+
+    dispatch(createQuestionYN(formattedData))
 
     // Reset form values to default after submission
     setQuestion("");

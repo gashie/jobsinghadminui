@@ -22,7 +22,7 @@ import Select from "react-select";
 import YesNo from "./YesNo";
 import Range from "./Range";
 import Multiple from "./Multiple";
-import Single from "./YesNo";
+import Single from "./Single";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createJobQuestion,
@@ -140,6 +140,13 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                           </Button>
                           <Button
                             className="btn btn-light"
+                            onClick={() => setQuestionType("Single")}
+                            style={{ border: "1px solid #244a59" }}
+                          >
+                           Single
+                          </Button>
+                          <Button
+                            className="btn btn-light"
                             onClick={() => setQuestionType("Multiple")}
                             style={{ border: "1px solid #244a59" }}
                           >
@@ -152,6 +159,8 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                             <YesNo onSubmit={handleFormSubmit} />
                           ) : questionType === "Range" ? (
                             <Range onSubmit={handleFormSubmit} />
+                          ) : questionType === "Single" ? (
+                            <Single onSubmit={handleFormSubmit} />
                           ) : questionType === "Multiple" ? (
                             <Multiple onSubmit={handleFormSubmit} />
                           ) : (
@@ -185,14 +194,14 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                           ))}
                         </div>
 
-                        <Button
+                        {/* <Button
                           style={{ backgroundColor: "#00d084", border: "none" }}
                           className="btn btn-dark"
                           disabled={finalQuestions.length === 0}
                           onClick={handleSubmitQuestion}
                         >
                           Add all generated questions
-                        </Button>
+                        </Button> */}
                       </Col>
                       <Col>
                         <h4>Link Questions to Job (Step 3)</h4>

@@ -1,77 +1,70 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { useSelector } from 'react-redux';
+import { createQuestionMultiple } from '../../../../../store/actions';
 
 const Multiple = ({ onSubmit }) => {
-  // State variables
   const [question, setQuestion] = useState('');
-  const [answerOptions, setAnswerOptions] = useState([{ text: '', isSelected: false }]);
+  const [answerLabels, setAnswerLabels] = useState(['']); // Initial answer labels
+  const [idealAnswerIndices, setIdealAnswerIndices] = useState([]); // Indices of the ideal answers
 
-  // Handle question input change
+  const dispatch = useDispatch();
+
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
   };
 
-  // Handle answer text change
-  const handleAnswerChange = (index, text) => {
-    const updatedOptions = [...answerOptions];
-    updatedOptions[index].text = text;
-    setAnswerOptions(updatedOptions);
+  const handleAnswerChange = (index, value) => {
+    const updatedLabels = [...answerLabels];
+    updatedLabels[index] = value;
+    setAnswerLabels(updatedLabels);
   };
 
-  // Handle answer checkbox change
-  const handleCheckboxChange = (index) => {
-    const updatedOptions = [...answerOptions];
-    updatedOptions[index].isSelected = !updatedOptions[index].isSelected;
-    setAnswerOptions(updatedOptions);
-  };
-
-  // Add a new answer option
   const handleAddAnswer = () => {
-    setAnswerOptions([...answerOptions, { text: '', isSelected: false }]);
+    setAnswerLabels([...answerLabels, '']);
   };
 
-  // Remove an answer option
   const handleRemoveAnswer = (index) => {
-    const updatedOptions = [...answerOptions];
-    updatedOptions.splice(index, 1);
-    setAnswerOptions(updatedOptions);
+    const updatedLabels = [...answerLabels];
+    updatedLabels.splice(index, 1);
+    setAnswerLabels(updatedLabels);
   };
 
-  // Redux selector for job information
-  const { loading, error, idInfo } = useSelector((state) => ({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-  }));
+  const handleIdealAnswerChange = (index) => {
+    if (idealAnswerIndices.includes(index)) {
+      // If the index is already in the array, remove it
+      const updatedIndices = idealAnswerIndices.filter((item) => item !== index);
+      setIdealAnswerIndices(updatedIndices);
+    } else {
+      // If the index is not in the array, add it
+      setIdealAnswerIndices([...idealAnswerIndices, index]);
+    }
+  };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create an array of selected answer options
-    const selectedOptions = answerOptions
-      .filter((option) => option.isSelected)
-      .map((option, index) => ({
-        optionLabel: `Answer ${index + 1}`,
-        optionValue: option.text,
-        optionBenchMark: index + 1,
-      }));
-
-    // Create the formatted data object without idealAnswerIndices
+    // Format the data to match the desired JSON structure
     const formattedData = {
       questionTitle: question,
       questionType: 'multi',
-      jobId: loading === false && error === false ? idInfo?.jobId : "",
-      questionOption: selectedOptions,
+      jobId: '',
+      questionOption: answerLabels.map((label, index) => ({
+        optionLabel: label,
+        optionValue: label,
+        optionBenchMark: idealAnswerIndices.includes(index) ? 1 : 0, // Use 1 for ideal answers, 0 for others
+      })),
     };
 
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
 
+    dispatch(createQuestionMultiple(formattedData));
+
     // Reset form values to default after submission
     setQuestion('');
-    setAnswerOptions([{ text: '', isSelected: false }]);
+    setAnswerLabels(['']);
+    setIdealAnswerIndices([]);
   };
 
   return (
@@ -87,30 +80,33 @@ const Multiple = ({ onSubmit }) => {
           required
         />
       </FormGroup>
-      {answerOptions.map((answer, index) => (
+      {answerLabels.map((label, index) => (
         <FormGroup key={index}>
           <Label for={`answer-${index}`}>Answer {index + 1}</Label>
           <div className="d-flex">
             <Input
               type="text"
               id={`answer-${index}`}
-              value={answer.text}
+              value={label}
               onChange={(e) => handleAnswerChange(index, e.target.value)}
               placeholder={`Enter answer ${index + 1}`}
             />
             <Button
-              color='light'
+              color="light"
               className="ml-4"
-              style={{ marginLeft: '3px'}}
+              style={{ marginLeft: '3px' }}
+              onClick={() => handleRemoveAnswer(index)}
             >
-              <i className='bx bx-trash bx-tada-hover fs-17' onClick={() => handleRemoveAnswer(index)}></i>
+              <i className="bx bx-trash bx-tada-hover fs-17"></i>
             </Button>
-            <Input
-              type="checkbox"
-              className="ml-4 mt-2"
-              checked={answer.isSelected}
-              onChange={() => handleCheckboxChange(index)}
-            />
+            <Label check className="ml-4">
+              <Input
+                type="checkbox"
+                checked={idealAnswerIndices.includes(index)}
+                onChange={() => handleIdealAnswerChange(index)}
+              />
+              Ideal Answer
+            </Label>
           </div>
         </FormGroup>
       ))}
