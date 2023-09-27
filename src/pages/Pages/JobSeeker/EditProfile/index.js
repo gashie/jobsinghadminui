@@ -3,7 +3,8 @@ import avatar1 from "../profile.png";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfile } from "../../../../store/actions";
+import { updateProfile, updateProfileImage } from "../../../../store/actions";
+import { useState } from "react";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,6 @@ const EditProfile = () => {
     loading: state.Login.loading,
     error: state.Login.error,
   }));
-
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -64,7 +64,7 @@ const EditProfile = () => {
       // Dispatch an action or perform other operations with the data
       console.log(userData);
 
-      dispatch(updateProfile(userData))
+      dispatch(updateProfile(userData));
 
       //dispatch(updateCv(userData));
 
@@ -76,7 +76,15 @@ const EditProfile = () => {
     },
   });
 
- 
+  const [image, setImage] = useState();
+
+  const handleImage = () => {
+    const formData = new FormData();
+    formData.append("profileImage", image);
+
+    dispatch(updateProfileImage(formData));
+  };
+
   return (
     <>
       <h4
@@ -320,6 +328,29 @@ const EditProfile = () => {
           Save
         </button>
       </Form>
+
+      <Col className="mb-3" mt-5>
+        <label className="mt-5">Profile Image</label>
+        <Input
+          id="courseVideo"
+          name="courseVideo"
+          className="form-control p-3"
+          type="file"
+          onChange={(e) => {
+            const selectedFile = e.target.files[0];
+            setImage(selectedFile);
+          }}
+          onBlur={validation.handleBlur}
+        />
+      </Col>
+      <button
+        type="button"
+        className="btn btn-dark mt-2"
+        onClick={handleImage}
+        style={{ backgroundColor: "#244a59" }}
+      >
+        Change Profile Image
+      </button>
     </>
   );
 };

@@ -10,6 +10,7 @@ import {
   LOGOUT,
   CHANGE_PASSWORD,
   RESET_PASSWORD_CODE,
+  UPDATE_PROFILE_IMAGE,
 } from "./actionTypes";
 import {
   apiError,
@@ -27,6 +28,8 @@ import {
   resetPasswordCodeSuccess,
   testVerifySuccess,
   updateProfileError,
+  updateProfileImageError,
+  updateProfileImageSuccess,
   updateProfileSuccess,
 } from "./actions";
 
@@ -42,6 +45,7 @@ import {
   resetCodeURL,
   testLoginURL,
   testVerifyURL,
+  updateProfileImageURL,
   updateProfileURL,
   verifyTokenURL,
 } from "../../../helpers/fakebackend_helper";
@@ -263,6 +267,7 @@ function* resetPCode({ payload: data } ) {
     
   }
 }
+
 function* changePassword({ payload: data }) {
   try {
     const response = yield call(changePasswordURL, data);
@@ -281,6 +286,27 @@ function* changePassword({ payload: data }) {
   } catch (error) {
     console.log(error);
     yield put(changePasswordError(error));
+  }
+}
+
+function* updateProfileImage({ payload: data }) {
+  try {
+    const response = yield call(updateProfileImageURL, data);
+
+    if (response && response?.data?.status === 1) {
+      yield put(updateProfileImageSuccess());
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(updateProfileImageError(response));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(updateProfileImageError(error));
   }
 }
 
@@ -320,6 +346,7 @@ function* authSaga() {
   yield takeEvery(LOGIN_USER, loginUser);
   yield takeEvery(UPDATE_PROFILE, updateProfile);
   yield takeEvery(LOGOUT, logout);
+  yield takeEvery(UPDATE_PROFILE_IMAGE, updateProfileImage);
   
 }
 

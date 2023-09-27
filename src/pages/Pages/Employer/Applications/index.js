@@ -27,6 +27,9 @@ const EmployerApplications = () => {
     }
   };
 
+
+  
+
   const [edit, setEdit] = useState(false);
   return (
     <>

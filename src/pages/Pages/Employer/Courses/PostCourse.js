@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Editor from "./Editor";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveCourse } from "../../../../store/actions";
 import { useNavigate } from "react-router-dom";
 
@@ -90,6 +90,16 @@ const PostCourse = ({handleBack}) => {
     
     },
   });
+
+  const { loading, error, employerInfo, catLoading, catError, categoryInfo } =
+    useSelector((state) => ({
+      loading: state.Users.loading,
+      error: state.Users.error,
+      employerInfo: state.Users.employersInfo,
+      catLoading: state.Industry.loading,
+      catError: state.Industry.error,
+      categoryInfo: state.Industry.categoryInfo,
+    }));
 
   const [Brochure, setBrochure] = useState();
   const [Image, setImage] = useState();
@@ -423,30 +433,26 @@ const PostCourse = ({handleBack}) => {
                     </Row>
 
                     <Row>
-                      <Col className="mb-3">
-                        <label>Category</label>
-                        <select
-                          className="form-select p-3"
-                          onChange={validation.handleChange}
-                          value={validation.values.category}
-                          id="category"
-                        >
-                          <option>Select Category </option>
-                          <option>Salary/Benefits </option>
-                          <option>Career Development </option>
-                          <option>Entrepreneurship </option>
-                          <option>Compensation </option>
-                          <option>Diversity </option>
-                          <option>Health & Safety </option>
-                          <option>Ghana Labour Laws </option>
-                          <option>Job Search </option>
-                          <option>Leadership </option>
-                          <option>Learning & Development </option>
-                          <option>Workforce</option>
-                          <option>Workplace</option>
-                          <option>Performance </option>
-                        </select>
-                      </Col>
+                    <Col lg={15}>
+                    <select
+                      className="form-select p-3"
+                    
+                      id="jobCategoryId"
+                      value={validation.values.jobCategoryId}
+                      onChange={validation.handleChange}
+                    >
+                       <option>Select Category</option>
+                      {catLoading === false && catError === false ? (
+                        categoryInfo?.map((item, key) => (
+                          <option key={key} value={item?.jobCategoryId}>
+                            {item?.jobCategoryName}
+                          </option>
+                        ))
+                      ) : (
+                        <option>loading categories...</option>
+                      )}
+                    </select>
+                  </Col>
 
                       <Col className="mb-3">
                         <label>Course Link</label>

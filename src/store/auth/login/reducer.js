@@ -20,8 +20,12 @@ import {
   RESET_PASSWORD_CODE,
   RESET_PASSWORD_CODE_SUCCESS,
   RESET_PASSWORD_CODE_ERROR,
-  CHANGE_PASSWORD, 
-  CHANGE_PASSWORD_ERROR, CHANGE_PASSWORD_SUCCESS
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
+  CHANGE_PASSWORD_SUCCESS,
+  UPDATE_PROFILE_IMAGE,
+  UPDATE_PROFILE_IMAGE_SUCCESS,
+  UPDATE_PROFILE_IMAGE_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -43,9 +47,12 @@ const initialState = {
   tokenLoading: false,
   tokenError: false,
   tkMssg: null,
-  changeLoading: false, 
-  changeError: false, 
-  changeMssg: null
+  changeLoading: false,
+  changeError: false,
+  changeMssg: null,
+  updateProfileImageLoading: false,
+  updateProfileImageError: false,
+  updateProfileImageInfo: null,
 };
 
 const login = (state = initialState, action) => {
@@ -228,6 +235,29 @@ const login = (state = initialState, action) => {
         changeError: false,
         changeLoading: false,
         changeMssg: action.payload,
+      };
+      break;
+    case UPDATE_PROFILE_IMAGE:
+      state = {
+        ...state,
+        updateProfileImageError: false,
+        updateProfileImageLoading: true,
+      };
+      break;
+    case UPDATE_PROFILE_IMAGE_SUCCESS:
+      state = {
+        ...state,
+        updateProfileImageError: false,
+        updateProfileImageLoading: false,
+        updateProfileImageInfo: action.payload,
+      };
+      break;
+    case UPDATE_PROFILE_IMAGE_ERROR:
+      state = {
+        ...state,
+        updateProfileImageError: false,
+        updateProfileImageLoading: false,
+        updateProfileImageInfo: action.payload,
       };
       break;
 

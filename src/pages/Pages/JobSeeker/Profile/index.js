@@ -141,7 +141,7 @@ const Profile = () => {
                                   marginTop: "1rem",
                                 }}
                               >
-                                Gashie Technologies
+                                {userInfo?.userInfo?.fullName}
                               </h5>
                             </Col>
 
@@ -156,39 +156,45 @@ const Profile = () => {
                             {loading === false && error === false ? (
                              
                                 <Col
-                                  style={{ display: "grid", gap: "0.4rem" }}
+                                  style={{ display: "grid", gap: "2rem" }}
                                  
                                 >
                                   <div
                                     style={{ display: "flex", gap: "0.4rem" }}
                                   >
-                                    <h6>Phone:</h6>
-                                    <h6>{userInfo?.userInfo?.phone}</h6>
+                                    <h5 className="fw-bolder">Username:</h5>
+                                    <h5>{userInfo?.userInfo?.username}</h5>
                                   </div>
                                   <div
                                     style={{ display: "flex", gap: "0.4rem" }}
                                   >
-                                    <h6>Email:</h6>
-                                    <h6>{userInfo?.userInfo?.email}</h6>
+                                    <h5 className="fw-bolder">Phone:</h5>
+                                    <h5>{userInfo?.userInfo?.phone}</h5>
                                   </div>
                                   <div
                                     style={{ display: "flex", gap: "0.4rem" }}
                                   >
-                                    <h6>Birthday:</h6>
-                                    <h6>{""}</h6>
+                                    <h5 className="fw-bolder">Email:</h5>
+                                    <h5>{userInfo?.userInfo?.email}</h5>
                                   </div>
+                                  {/* <div
+                                    style={{ display: "flex", gap: "0.4rem" }}
+                                  >
+                                    <h5>Birthday:</h5>
+                                    <h5>{""}</h5>
+                                  </div> */}
                                   <div
                                     style={{ display: "flex", gap: "0.4rem" }}
                                   >
-                                    <h6>Country:</h6>
-                                    <h6>Ghana</h6>
+                                    <h5 className="fw-bolder">Country:</h5>
+                                    <h5>Ghana</h5>
                                   </div>
-                                  <div
+                                  {/* <div
                                     style={{ display: "flex", gap: "0.4rem" }}
                                   >
                                     <h6>Gender:</h6>
                                     <h6>Male</h6>
-                                  </div>
+                                  </div> */}
                                 </Col>
                            
                             ) : (

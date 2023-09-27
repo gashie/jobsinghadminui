@@ -17,8 +17,13 @@ import Applications from "../Applications";
 import Alerts from "../Alerts";
 import SavedJobs from "../SavedJobs";
 import { Link } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux'
-import { viewCv, viewResume, viewSavedJobs, viewjobAlerts } from "../../../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  viewCv,
+  viewResume,
+  viewSavedJobs,
+  viewjobAlerts,
+} from "../../../../store/actions";
 
 const Dashboard = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -66,23 +71,40 @@ const Dashboard = () => {
     };
   }, []);
 
-   const { loading, error, userInfo } = useSelector((state) => ({
-      loading: state.Login.loading,
-      error: state.Login.error, 
-      userInfo: state.Login.userInfo
-    }));
+  const { loading, error, userInfo } = useSelector((state) => ({
+    loading: state.Login.loading,
+    error: state.Login.error,
+    userInfo: state.Login.userInfo,
+  }));
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    useEffect(()=>{
-      dispatch(viewCv({viewAction: ""}))
-      dispatch(viewjobAlerts({viewAction: ""}))
-      dispatch(viewResume({viewAction: ""}))
-      dispatch(viewSavedJobs({viewAction: ""}))
-    
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(viewCv({ viewAction: "" }));
+    dispatch(viewjobAlerts({ viewAction: "" }));
+    dispatch(viewResume({ viewAction: "" }));
+    dispatch(viewSavedJobs({ viewAction: "" }));
+  }, [dispatch]);
 
-    
+  useEffect(() => {
+    dispatch(viewSavedJobs({ viewAction: "" }));
+  }, [dispatch]);
+
+  const {
+    savedJobsInfo,
+    savedLoading,
+    savedError,
+    details,
+    detailLoading,
+    detailerror,
+  } = useSelector((state) => ({
+    savedLoading: state.JobAlerts.savedJobsLoading,
+    savedError: state.JobAlerts.savedJobsError,
+    savedJobsInfo: state.JobAlerts.savedJobs,
+    details: state.JobAlerts.fullJobDetails,
+    detailLoading: state.JobAlerts.fullJobDetailsLoading,
+    detailerror: state.JobAlerts.fullJobDetailsError,
+  }));
 
   return (
     <>
@@ -91,7 +113,7 @@ const dispatch = useDispatch()
         // className="m-0"
         md={11}
         sm={20}
-        style={{ position: "relative", top: "1rem", marginLeft: '1rem' }}
+        style={{ position: "relative", top: "1rem", marginLeft: "1rem" }}
       >
         <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
           <CardBody>
@@ -155,14 +177,18 @@ const dispatch = useDispatch()
               <TabPane
                 tabId="1"
                 id="base-justified-home"
-                style={{ height: "700px", position: "relative", overflow: 'scroll' }}
+                style={{
+                  height: "700px",
+                  position: "relative",
+                  overflow: "scroll",
+                }}
                 className="scroll-change"
               >
                 <Row md={20}>
                   <h5 style={{ fontWeight: "bolder" }} className="mt-4">
-                    {
-                      loading === false && error === false ? `Welcome, ${userInfo?.userInfo?.username}` : ""
-                    }
+                    {loading === false && error === false
+                      ? `Welcome, ${userInfo?.userInfo?.fullName}`
+                      : ""}
                   </h5>
 
                   <div className="d-flex mt-5 gap-2">
@@ -198,128 +224,80 @@ const dispatch = useDispatch()
                     </div>
                   </div>
 
-                  {/* Company side */}
-                  <Col xl={5}>
-                    <div
-                      className="d-flex mt-5 gap-2"
-                      style={{
-                        justifyContent: "space-between",
-                        border: "1px solid #dbdbdb",
-                        padding: "0.4rem",
-                        borderRadius: "0.3rem",
-                        display: "flex",
-
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <div className="d-flex gap-2">
-                        <div>
-                          <img
-                            src={img1}
-                            alt="logo"
-                            className="img-fluid avatar-xxl"
-                          ></img>
-                        </div>
-
-                        <div style={{ display: "grid" }}>
-                          <h5
-                            style={{
-                              position: "relative",
-                              top: "0.6rem",
-                              color: "#244a59",
-                              fontWeight: "bolder",
-                            }}
-                          >
-                            Sahrenut Procument Officer
-                          </h5>
-                          <p
-                            style={{
-                              color: "#244a59",
-                              fontWeight: "lighter",
-                            }}
-                          >
-                            Seatech
-                          </p>
-                        </div>
-                      </div>
-
-                      <div>
-                        <Button
-                          className="btn btn-dark"
-                          style={{
-                            backgroundColor: "#244a59",
-                            position: "relative",
-                            top: "0rem",
-                          }}
-                        >
-                          Quick Apply
-                        </Button>
-                      </div>
-                    </div>
-                  </Col>
-
                   {/* New company */}
-                  <Col xl={5}>
-                    <div
-                      className="d-flex mt-5 gap-2"
-                      style={{
-                        justifyContent: "space-between",
-                        border: "1px solid #dbdbdb",
-                        padding: "0.4rem",
-                        borderRadius: "0.3rem",
-                        display: "flex",
 
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <div className="d-flex gap-2">
-                        <div>
-                          <img
-                            src={img1}
-                            alt="logo"
-                            className="img-fluid avatar-xxl"
-                          ></img>
-                        </div>
-
-                        <div style={{ display: "grid" }}>
-                          <h5
+                  {savedLoading === false && savedError === false ? (
+                    savedJobsInfo?.map((item, key) => (
+                      <>
+                        <Col xl={5} key={key}>
+                          <div
+                            className="d-flex mt-5 gap-2"
                             style={{
-                              position: "relative",
-                              top: "0.6rem",
-                              color: "#244a59",
-                              fontWeight: "bolder",
+                              justifyContent: "space-between",
+                              border: "1px solid #dbdbdb",
+                              padding: "0.4rem",
+                              borderRadius: "0.3rem",
+                              display: "flex",
+
+                              flexWrap: "wrap",
                             }}
                           >
-                            Sahrenut Procument Officer
-                          </h5>
-                          <p
-                            style={{
-                              color: "#244a59",
-                              fontWeight: "lighter",
-                            }}
-                          >
-                            Seatech
-                          </p>
-                        </div>
-                      </div>
+                            <div className="d-flex gap-2">
+                              <div>
+                                <img
+                                  src={img1}
+                                  alt="logo"
+                                  className="img-fluid avatar-xxl"
+                                ></img>
+                              </div>
 
-                      <div>
-                        <Button
-                          className="btn btn-dark"
-                          style={{
-                            backgroundColor: "#244a59",
-                            position: "relative",
-                            top: "0rem",
-                          }}
-                        >
-                          Quick Apply
-                        </Button>
-                      </div>
-                    </div>
-                  </Col>
+                              <div style={{ display: "grid" }}>
+                                <h5
+                                  style={{
+                                    position: "relative",
+                                    top: "0.6rem",
+                                    color: "#244a59",
+                                    fontWeight: "bolder",
+                                  }}
+                                >
+                                 {item.jobTitle}
+                                </h5>
+                                <p
+                                  style={{
+                                    color: "#244a59",
+                                    fontWeight: "lighter",
+                                  }}
+                                >
+                                 {item.companyName}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div>
+                              <Button
+                                className="btn btn-dark"
+                                style={{
+                                  backgroundColor: "#244a59",
+                                  position: "relative",
+                                  top: "0rem",
+                                }}
+                                onClick={()=>{
+                                  justifyToggle("4")
+                                }}
+                              >
+                                Quick Apply
+                              </Button>
+                            </div>
+                          </div>
+                        </Col>
+                      </>
+                    ))
+                  ) : (
+                    <p>Loading ...</p>
+                  )}
                   {/* End company */}
 
-                  <div>
+                  {/* <div>
                     <p style={{ textAlign: "center" }} className="mt-5">
                       <Button
                         className="btn btn-light"
@@ -331,7 +309,7 @@ const dispatch = useDispatch()
                         View More
                       </Button>
                     </p>
-                  </div>
+                  </div> */}
 
                   <div className="d-flex mt-5 gap-2">
                     <div>
@@ -380,7 +358,7 @@ const dispatch = useDispatch()
                         }}
                       ></i>
                     </div>
-                    <div style={{ display: "grid" }}>
+                    <div style={{ display: "grid", cursor: "pointer" }}>
                       <h5
                         style={{
                           position: "relative",
@@ -411,7 +389,11 @@ const dispatch = useDispatch()
               <TabPane
                 tabId="3"
                 id="base-justified-messages"
-                style={{ height: "700px", position: "relative", overflow: "scroll" }}
+                style={{
+                  height: "700px",
+                  position: "relative",
+                  overflow: "scroll",
+                }}
                 className="scroll-change"
               >
                 <Alerts />

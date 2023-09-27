@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  employerApplications,
+  jobseekerApplications,
+} from "../../../../store/actions";
 
 const Approved = () => {
   const [margin, setMargin] = useState("");
@@ -33,6 +38,18 @@ const Approved = () => {
     };
   }, []);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(jobseekerApplications({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { loading, error, details } = useSelector((state) => ({
+    loading: state.Jobs.jobseekerApplicationsLoading,
+    error: state.Jobs.jobseekerApplicationsError,
+    details: state.Jobs.jobseekerApplications,
+  }));
+
   return (
     <>
       <Row>
@@ -58,7 +75,7 @@ const Approved = () => {
                                         />
                                       </div>
                                     </th> */}
-                        <th>#</th>
+
                         <th>Applicant Name</th>
                         <th>Position</th>
                         <th>Email</th>
@@ -68,74 +85,81 @@ const Approved = () => {
                       </tr>
                     </thead>
                     <tbody className="list form-check-all">
-                     
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
+                      {loading === false && error === null ? (
+                        details?.map((item, key) => (
+                          <>
+                            <tr key={key}>
+                              <td className="customer_name">Kofi Kwame</td>
+                              <td className="customer_name">
+                              {item?.jobTitle}
+                              </td>
 
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              color: "#00d084",
-                            }}
-                          >
-                            Approved
-                          </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
+                              <td className="startDate">kofi@gmail.com</td>
+                              <td className="startDate">0553368892</td>
+                              <td className="startDate">20th May, 2023</td>
+                              <td className="startDate">
+                                <p
+                                  style={{
+                                    color: "#00d084",
+                                  }}
+                                >
+                                  Approved
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="id">
+                                <Link to="#" className="fw-medium link-primary">
+                                  1
+                                </Link>
+                              </td>
+                              <td className="customer_name">Kofi Kwame</td>
+                              <td className="customer_name">
+                                Warehouse Clerck
+                              </td>
 
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              color: "#00d084",
-                            }}
-                          >
-                            Approved
-                          </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
+                              <td className="startDate">kofi@gmail.com</td>
+                              <td className="startDate">0553368892</td>
+                              <td className="startDate">20th May, 2023</td>
+                              <td className="startDate">
+                                <p
+                                  style={{
+                                    color: "#00d084",
+                                  }}
+                                >
+                                  Approved
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="id">
+                                <Link to="#" className="fw-medium link-primary">
+                                  1
+                                </Link>
+                              </td>
+                              <td className="customer_name">Kofi Kwame</td>
+                              <td className="customer_name">
+                                Warehouse Clerck
+                              </td>
 
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              color: "#00d084",
-                            }}
-                          >
-                            Approved
-                          </p>
-                        </td>
-                      </tr>
-                    
+                              <td className="startDate">kofi@gmail.com</td>
+                              <td className="startDate">0553368892</td>
+                              <td className="startDate">20th May, 2023</td>
+                              <td className="startDate">
+                                <p
+                                  style={{
+                                    color: "#00d084",
+                                  }}
+                                >
+                                  Approved
+                                </p>
+                              </td>
+                            </tr>
+                          </>
+                        ))
+                      ) : (
+                        <p>Loading</p>
+                      )}
                     </tbody>
                   </table>
                 </div>

@@ -332,4 +332,5 @@ export const EMPLOYER_SHORTLIST_APPLICATIONS = `${version}/employer/viewmyshortl
 export const EMPLOYER_APPLICATIONS = `${version}/employer/viewmyapplications`
 
 export const UPDATE_LOGO = `${version}/employer/updateemployerlogo/`
+export const UPDATE_PROFILE_IMAGE = `${version}/updateprofileimage/`
 

@@ -522,3 +522,6 @@ export const approveApplicationsURL = (data) => api.create(url.APPROVE_APPLICATI
 export const employerShortlistApplicationsURL = (data) => api.create(url.EMPLOYER_SHORTLIST_APPLICATIONS, data)
 export const employerApplicationsURL = (data) => api.create(url.EMPLOYER_APPLICATIONS, data)
 export const updateLogoURL = (data) => api.create(url.UPDATE_LOGO, data)
+
+
+export const updateProfileImageURL = (data) => api.create(url.UPDATE_PROFILE_IMAGE, data)
