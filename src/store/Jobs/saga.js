@@ -54,8 +54,8 @@ approveApplicationsError,
 employerApplicationsSuccess,
 employerShortlistError,
 employerApplicationsError,
-updateLogoSuccess,
-updateLogoError,
+// updateLogoSuccess,
+// updateLogoError,
 
 } from "./action";
 
@@ -76,7 +76,7 @@ import {
   approveApplicationsURL,
   employerShortlistApplicationsURL,
   employerApplicationsURL,
-  updateLogoURL,
+  //updateLogoURL,
 } from "../../helpers/fakebackend_helper";
 
 function* createJobStatus({payload: data}) {
@@ -318,26 +318,26 @@ function* employerApplications({payload: data}) {
   }
 }
 
-function* updateLogo({payload: data}) {
-  try {
+// function* updateLogo({payload: data}) {
+//   try {
    
-    const response = yield call(updateLogoURL, data);
+//     const response = yield call(updateLogoURL, data);
    
-    if(response && response.data.status){
-      yield put(updateLogoSuccess(response.data.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
-    }else{
-      yield put(updateLogoError(response.data.data));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
-    }
-  } catch (error) {
-    yield put(updateLogoError(error));
-  }
-}
+//     if(response && response.data.status){
+//       yield put(updateLogoSuccess(response.data.data));
+//       toast.success(`${response?.data?.message}`, {
+//         autoClose: 3000,
+//       });
+//     }else{
+//       yield put(updateLogoError(response.data.data));
+//       toast.warn(`${response?.data?.message}`, {
+//         autoClose: 3000,
+//       });
+//     }
+//   } catch (error) {
+//     yield put(updateLogoError(error));
+//   }
+// }
 
 function* JobsSaga() {
   yield takeEvery(CREATE_JOB_STATUS, createJobStatus);
@@ -348,7 +348,7 @@ function* JobsSaga() {
   yield takeEvery(JOBS, Jobs);
   yield takeEvery(APPROVE_JOBS, approveJobs);
 
-  yield takeEvery(UPDATE_LOGO, updateLogo);
+  //yield takeEvery(UPDATE_LOGO, updateLogo);
   yield takeEvery(EMPLOYER_APPLICATIONS, employerApplications);
   yield takeEvery(EMPLOYER_SHORTLIST, employerShortlist);
   yield takeEvery(JOBSEEKER_APPLICATIONS, jobSeekerApplications);

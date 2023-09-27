@@ -204,18 +204,18 @@ export const employerApplicationsError = (error) => ({
   payload: error,
 });
 
-export const updateLogo = () => ({
-  type: UPDATE_LOGO,
-});
+// export const updateLogo = () => ({
+//   type: UPDATE_LOGO,
+// });
 
-export const updateLogoSuccess = () => ({
-  type: UPDATE_LOGO_SUCCESS,
-});
+// export const updateLogoSuccess = () => ({
+//   type: UPDATE_LOGO_SUCCESS,
+// });
 
-export const updateLogoError = (error) => ({
-  type: UPDATE_LOGO_ERROR,
-  payload: error,
-});
+// export const updateLogoError = (error) => ({
+//   type: UPDATE_LOGO_ERROR,
+//   payload: error,
+// });
 
 
 

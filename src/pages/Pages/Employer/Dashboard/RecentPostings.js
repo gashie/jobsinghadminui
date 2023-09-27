@@ -174,7 +174,7 @@ const RecentPostings = () => {
                   <div id="customerList">
                     <div
                       className="table-responsive table-card mt-3 mb-1"
-                      style={{ height: "50vh" }}
+                      style={{ height: "max-content" }}
                     >
                       <table
                         className="table align-middle table-nowrap"

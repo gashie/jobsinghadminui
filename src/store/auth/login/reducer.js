@@ -26,6 +26,9 @@ import {
   UPDATE_PROFILE_IMAGE,
   UPDATE_PROFILE_IMAGE_SUCCESS,
   UPDATE_PROFILE_IMAGE_ERROR,
+  UPDATE_LOGO,
+  UPDATE_LOGO_SUCCESS,
+  UPDATE_LOGO_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -53,6 +56,9 @@ const initialState = {
   updateProfileImageLoading: false,
   updateProfileImageError: false,
   updateProfileImageInfo: null,
+  updateLogoLoading: false,
+  updateLogoError: false,
+  updateLogoInfo: null,
 };
 
 const login = (state = initialState, action) => {
@@ -258,6 +264,29 @@ const login = (state = initialState, action) => {
         updateProfileImageError: false,
         updateProfileImageLoading: false,
         updateProfileImageInfo: action.payload,
+      };
+      break;
+    case UPDATE_LOGO:
+      state = {
+        ...state,
+        updateLogoError: false,
+        updateLogoLoading: true,
+      };
+      break;
+    case UPDATE_LOGO_SUCCESS:
+      state = {
+        ...state,
+        updateLogoError: false,
+        updateLogoLoading: false,
+        updateLogoInfo: action.payload,
+      };
+      break;
+    case UPDATE_LOGO_ERROR:
+      state = {
+        ...state,
+        updateLogoError: false,
+        updateLogoLoading: false,
+        updateLogoInfo: action.payload,
       };
       break;
 

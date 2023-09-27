@@ -208,14 +208,14 @@ const EmployerDashboard = () => {
                           <RecentPostings />
               
 
-                  <p style={{ textAlign: "center" }} className="mt-5">
+                  {/* <p style={{ textAlign: "center" }} className="mt-5">
                     <Button
                       className="btn btn-light"
                       style={{ border: "1px solid #244a59" }}
                     >
                       View More
                     </Button>
-                  </p>
+                  </p> */}
 
                   <div className="d-flex mt-5 gap-2">
                     <div>

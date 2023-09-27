@@ -26,7 +26,10 @@ import {
   CHANGE_PASSWORD_SUCCESS,
   UPDATE_PROFILE_IMAGE,
   UPDATE_PROFILE_IMAGE_ERROR,
-  UPDATE_PROFILE_IMAGE_SUCCESS
+  UPDATE_PROFILE_IMAGE_SUCCESS,
+  UPDATE_LOGO,
+  UPDATE_LOGO_ERROR,
+  UPDATE_LOGO_SUCCESS
 } from "./actionTypes";
 
 
@@ -182,5 +185,18 @@ export const updateProfileImageSuccess = (data) =>({
 })
 export const updateProfileImageError = (data) =>({
   type: UPDATE_PROFILE_IMAGE_ERROR, 
+  payload: data
+})
+
+export const updateLogo = (data) =>({
+  type: UPDATE_LOGO, 
+  payload: data
+})
+export const updateLogoError = (data) =>({
+  type: UPDATE_LOGO_ERROR, 
+  payload: data
+})
+export const updateLogoSuccess = (data) =>({
+  type: UPDATE_LOGO_SUCCESS, 
   payload: data
 })

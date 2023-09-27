@@ -11,6 +11,7 @@ import {
   CHANGE_PASSWORD,
   RESET_PASSWORD_CODE,
   UPDATE_PROFILE_IMAGE,
+  UPDATE_LOGO,
 } from "./actionTypes";
 import {
   apiError,
@@ -27,6 +28,8 @@ import {
   resetPasswordCodeError,
   resetPasswordCodeSuccess,
   testVerifySuccess,
+  updateLogoError,
+  updateLogoSuccess,
   updateProfileError,
   updateProfileImageError,
   updateProfileImageSuccess,
@@ -45,6 +48,7 @@ import {
   resetCodeURL,
   testLoginURL,
   testVerifyURL,
+  updateLogoURL,
   updateProfileImageURL,
   updateProfileURL,
   verifyTokenURL,
@@ -310,6 +314,27 @@ function* updateProfileImage({ payload: data }) {
   }
 }
 
+function* updateLogo({ payload: data }) {
+  try {
+    const response = yield call(updateLogoURL, data);
+
+    if (response && response?.data?.status === 1) {
+      yield put(updateLogoSuccess());
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(updateLogoError(response));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(updateLogoError(error));
+  }
+}
+
 function* logout() {
   try {
     const response = yield call(logoutURL);
@@ -347,6 +372,7 @@ function* authSaga() {
   yield takeEvery(UPDATE_PROFILE, updateProfile);
   yield takeEvery(LOGOUT, logout);
   yield takeEvery(UPDATE_PROFILE_IMAGE, updateProfileImage);
+  yield takeEvery(UPDATE_LOGO, updateLogo);
   
 }
 
