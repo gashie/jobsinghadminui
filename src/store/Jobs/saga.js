@@ -21,6 +21,11 @@ import {
   APPROVE_JOBS,
   APPROVE_JOBS_SUCCESS,
   APPROVE_JOBS_ERROR,
+  UPDATE_LOGO,
+  EMPLOYER_APPLICATIONS,
+  EMPLOYER_SHORTLIST,
+  JOBSEEKER_APPLICATIONS,
+  APPROVE_APPLICATIONS,
 } from "./actionTypes";
 
 import {
@@ -42,6 +47,15 @@ import {
 jobStatus as jobStatusAction,
 jobStatusError,
 jobStatusSuccess,
+jobseekerApplicationsSuccess,
+jobseekerApplicationsError,
+approveApplicationsSuccess,
+approveApplicationsError,
+employerApplicationsSuccess,
+employerShortlistError,
+employerApplicationsError,
+updateLogoSuccess,
+updateLogoError,
 
 } from "./action";
 
@@ -58,6 +72,11 @@ import {
   approveJobsURL,
   createjobStatusURL,
   approveJobURL,
+  jobSeekerApplicationsURL,
+  approveApplicationsURL,
+  employerShortlistApplicationsURL,
+  employerApplicationsURL,
+  updateLogoURL,
 } from "../../helpers/fakebackend_helper";
 
 function* createJobStatus({payload: data}) {
@@ -217,6 +236,109 @@ function* approveJobs({payload: data}) {
   }
 }
 
+function* jobSeekerApplications({payload: data}) {
+  try {
+    // Make the API call here
+    const response = yield call(jobSeekerApplicationsURL, data);
+   
+    if(response && response.data.status){
+      yield put(jobseekerApplicationsSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }else{
+      yield put(jobseekerApplicationsError(response.data.data));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    yield put(jobseekerApplicationsError(error));
+  }
+}
+
+function* approveApplications({payload: data}) {
+  try {
+    
+    const response = yield call(approveApplicationsURL, data);
+   
+    if(response && response.data.status){
+      yield put(approveApplicationsSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }else{
+      yield put(approveApplicationsError(response.data.data));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    yield put(approveApplicationsError(error));
+  }
+}
+
+function* employerShortlist({payload: data}) {
+  try {
+    const response = yield call(employerShortlistApplicationsURL, data);
+   
+    if(response && response.data.status){
+      yield put(employerShortlistError(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }else{
+      yield put(employerShortlistError(response.data.data));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    yield put(employerShortlistError(error));
+  }
+}
+
+function* employerApplications({payload: data}) {
+  try {
+    const response = yield call(employerApplicationsURL, data);
+   
+    if(response && response.data.status){
+      yield put(employerApplicationsSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }else{
+      yield put(employerApplicationsError(response.data.data));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    yield put(employerApplicationsError(error));
+  }
+}
+
+function* updateLogo({payload: data}) {
+  try {
+   
+    const response = yield call(updateLogoURL, data);
+   
+    if(response && response.data.status){
+      yield put(updateLogoSuccess(response.data.data));
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }else{
+      yield put(updateLogoError(response.data.data));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    yield put(updateLogoError(error));
+  }
+}
+
 function* JobsSaga() {
   yield takeEvery(CREATE_JOB_STATUS, createJobStatus);
   yield takeEvery(JOB_STATUS, jobStatus);
@@ -225,6 +347,13 @@ function* JobsSaga() {
   yield takeEvery(UPDATE_JOB, updateJob);
   yield takeEvery(JOBS, Jobs);
   yield takeEvery(APPROVE_JOBS, approveJobs);
+
+  yield takeEvery(UPDATE_LOGO, updateLogo);
+  yield takeEvery(EMPLOYER_APPLICATIONS, employerApplications);
+  yield takeEvery(EMPLOYER_SHORTLIST, employerShortlist);
+  yield takeEvery(JOBSEEKER_APPLICATIONS, jobSeekerApplications);
+  yield takeEvery(APPROVE_APPLICATIONS, approveApplications);
+
 }
 
 export default JobsSaga;

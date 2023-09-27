@@ -17,6 +17,11 @@ import {
   LOGOUT,
   LOGOUT_SUCCESS,
   LOGOUT_ERROR,
+  RESET_PASSWORD_CODE,
+  RESET_PASSWORD_CODE_SUCCESS,
+  RESET_PASSWORD_CODE_ERROR,
+  CHANGE_PASSWORD, 
+  CHANGE_PASSWORD_ERROR, CHANGE_PASSWORD_SUCCESS
 } from "./actionTypes";
 
 const initialState = {
@@ -34,6 +39,13 @@ const initialState = {
   logoutLoading: false,
   logoutError: false,
   logoutData: null,
+  token: null,
+  tokenLoading: false,
+  tokenError: false,
+  tkMssg: null,
+  changeLoading: false, 
+  changeError: false, 
+  changeMssg: null
 };
 
 const login = (state = initialState, action) => {
@@ -160,7 +172,7 @@ const login = (state = initialState, action) => {
         ...state,
         logoutError: false,
         logoutLoading: false,
-        logoutData: action.payload
+        logoutData: action.payload,
       };
       break;
     case LOGOUT_ERROR:
@@ -168,9 +180,57 @@ const login = (state = initialState, action) => {
         ...state,
         logoutError: false,
         logoutLoading: false,
-        logoutData: action.payload
+        logoutData: action.payload,
       };
       break;
+
+    case RESET_PASSWORD_CODE:
+      state = {
+        ...state,
+        tokenError: false,
+        tokenLoading: true,
+      };
+      break;
+    case RESET_PASSWORD_CODE_SUCCESS:
+      state = {
+        ...state,
+        tokenError: false,
+        tokenLoading: false,
+        token: action.payload,
+      };
+      break;
+    case RESET_PASSWORD_CODE_ERROR:
+      state = {
+        ...state,
+        tokenError: false,
+        tokenLoading: false,
+        tkMssg: action.payload,
+      };
+      break;
+    case CHANGE_PASSWORD:
+      state = {
+        ...state,
+        changeError: false,
+        changeLoading: true,
+      };
+      break;
+    case CHANGE_PASSWORD_SUCCESS:
+      state = {
+        ...state,
+        changeError: false,
+        changeLoading: false,
+        changeMssg: action.payload,
+      };
+      break;
+    case CHANGE_PASSWORD_ERROR:
+      state = {
+        ...state,
+        changeError: false,
+        changeLoading: false,
+        changeMssg: action.payload,
+      };
+      break;
+
     default:
       state = { ...state };
       break;

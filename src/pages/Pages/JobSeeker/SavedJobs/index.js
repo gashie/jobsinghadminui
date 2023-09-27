@@ -261,7 +261,7 @@ const SavedJobs = () => {
           ></Button>
         </ModalHeader>
         <ModalBody>
-          <Apply questionInfo={questionInfo} />
+          <Apply questionInfo={questionInfo} jobInfo={jobInfo} />
         </ModalBody>
         <ModalFooter>
           <Button

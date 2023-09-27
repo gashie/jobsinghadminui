@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 
-function Apply({ questionInfo }) {
+function Apply({ questionInfo, jobInfo }) {
 
 
     const {userInfo} = useSelector((state) => ({
@@ -35,6 +35,8 @@ function Apply({ questionInfo }) {
     setStep(1);
   };
 
+  const {id} = useSelector((state)=>state.Jobs.id)
+
   const [data, setData] = useState({});
 
   const handleData = () => {
@@ -42,11 +44,14 @@ function Apply({ questionInfo }) {
       phone: phone,
       email: email,
       fullName: fullName,
-      file: selectedFilesSelfie[0]
+      file: selectedFilesSelfie[0],
+      jobId: jobInfo.jobId
     };
 
     setData(info);
   };
+
+  console.log(jobInfo.jobId)
 
 
 

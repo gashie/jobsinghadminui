@@ -324,3 +324,12 @@ export const UPDATE_SAVED_JOBS = `${version}/updatesavedjob/`
 
 export const FULL_JOB_DETAILS = `${version}/jobdetails/`
 export const APPLY_FOR_JOB = `${version}/apply/`
+
+export const JOBSEEKER_APPLICATIONS = `${version}/jobseeker/viewmyappliedjobs/`
+
+export const APPROVE_APPLICATIONS = `${version}/approveapplication/`
+export const EMPLOYER_SHORTLIST_APPLICATIONS = `${version}/employer/viewmyshortlisted/`
+export const EMPLOYER_APPLICATIONS = `${version}/employer/viewmyapplications`
+
+export const UPDATE_LOGO = `${version}/employer/updateemployerlogo/`
+

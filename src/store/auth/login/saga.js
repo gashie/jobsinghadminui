@@ -7,10 +7,14 @@ import {
   SOCIAL_LOGIN,
   TEST_VERIFY,
   UPDATE_PROFILE,
-  LOGOUT
+  LOGOUT,
+  CHANGE_PASSWORD,
+  RESET_PASSWORD_CODE,
 } from "./actionTypes";
 import {
   apiError,
+  changePasswordError,
+  changePasswordSuccess,
   getMe,
   getMeError,
   getMeSuccess,
@@ -18,41 +22,39 @@ import {
   logoutError,
   logoutSuccess,
   logoutUserSuccess,
+  resetPasswordCode,
+  resetPasswordCodeError,
+  resetPasswordCodeSuccess,
   testVerifySuccess,
   updateProfileError,
   updateProfileSuccess,
 } from "./actions";
 
-
 //Include Both Helper File with needed methods
 import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
+  changePasswordURL,
   loginURL,
   logoutURL,
   postFakeLogin,
   postJwtLogin,
   postSocialLogin,
+  resetCodeURL,
   testLoginURL,
   testVerifyURL,
   updateProfileURL,
   verifyTokenURL,
 } from "../../../helpers/fakebackend_helper";
 
-import {
-  useLocation,
-  useNavigate,
-  useParams
-} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-const Nav = (location) =>{
+const Nav = (location) => {
   let navigate = useNavigate();
-  navigate(`${location}`)
-
-}
+  navigate(`${location}`);
+};
 
 // function* loginUser({ payload: { user, history } }) {
 //   try {
@@ -148,7 +150,7 @@ function* testLoginUser({ payload: user }) {
     if (response.role === "seeker") {
       alert("Logged in");
       loginSuccess(response);
-       toast.success(`${response?.data?.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
       navigate("/test-home");
@@ -188,7 +190,7 @@ function* loginUser({ payload: user }) {
         ) {
           yield put(getMeSuccess(verifyToken?.data?.data));
           yield put(loginSuccess(verifyToken?.data?.data));
-        yield put(getMe())
+          yield put(getMe());
           // window.location.href = "/job-seeker-admin"
           // if(verifyToken?.data?.data?.userInfo?.roleid === 2){
           //   window.location.href = '/job-seeker-dashboard'
@@ -216,12 +218,11 @@ function* loginUser({ payload: user }) {
   }
 }
 
-function* updateProfile({payload: data}){
+function* updateProfile({ payload: data }) {
   try {
     const response = yield call(updateProfileURL, data);
-  
-    if (response  && response?.data?.status === 1) {
 
+    if (response && response?.data?.status === 1) {
       yield put(updateProfileSuccess());
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
@@ -235,27 +236,73 @@ function* updateProfile({payload: data}){
   } catch (error) {
     console.log(error);
     yield put(updateProfileError(error));
+  }
+}
+function* resetPCode({ payload: data } ) {
+  try {
+    const response = yield call(resetCodeURL, data);
+    if (response?.data?.status === 1) {
+      // console.log('register succesful')
+      yield put(resetPasswordCodeSuccess(response?.data?.results));
+    //  yield put(registersignUser(response?.data?.results));
+     // history(`/login`)
+     toast.success(`${response.data.message}`, {
+      autoClose: 3000,
+    });
+     window.location.href ="/test-home"
+  
+    } else {
+      yield put(resetPasswordCodeError(response?.data?.detail));
+      toast.warn(`${response.data.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    yield put(resetPasswordCodeError(error.response.data));
+    
     
   }
 }
+function* changePassword({ payload: data }) {
+  try {
+    const response = yield call(changePasswordURL, data);
 
-function* logout(){
-  try{
-     const response = yield call(logoutURL)
-     if(response && response?.status === 200 && response?.data?.status === 1){
-         yield put(logoutSuccess(response.data.data))
-         toast.success(`${response?.data?.message}`, {
-          autoClose: 3000,
-        });
-     }else{
-        yield put(logoutError(response.data.message))
-        toast.error(`${response?.data?.message}`, {
-          autoClose: 3000,
-        });
-     }
-  }catch(error){
-    console.log(error)
-    yield put(logoutError(error))
+    if (response && response?.data?.status === 1) {
+      yield put(changePasswordSuccess());
+      toast.success(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(changePasswordError(response));
+      toast.warn(`${response?.data?.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(changePasswordError(error));
+  }
+}
+
+function* logout() {
+  try {
+    const response = yield call(logoutURL);
+    console.log(response)
+    if ( response?.status === 200) {
+      yield put(logoutSuccess(response.data.Message));
+      toast.success(`${response?.data?.Message}`, {
+        autoClose: 3000,
+      });
+      window.location.href ="/login"
+    } else {
+      yield put(logoutError(response.data.Message));
+      toast.error(`${response?.data?.Message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(logoutError(error));
     toast.success(`${error}`, {
       autoClose: 3000,
     });
@@ -263,6 +310,8 @@ function* logout(){
 }
 
 function* authSaga() {
+  yield takeEvery(CHANGE_PASSWORD, changePassword);
+  yield takeEvery(RESET_PASSWORD_CODE, resetPCode);
   // yield takeEvery(LOGIN_USER, loginUser);
   // yield takeLatest(SOCIAL_LOGIN, socialLogin);
   // yield takeEvery(LOGOUT_USER, logoutUser);
@@ -271,6 +320,7 @@ function* authSaga() {
   yield takeEvery(LOGIN_USER, loginUser);
   yield takeEvery(UPDATE_PROFILE, updateProfile);
   yield takeEvery(LOGOUT, logout);
+  
 }
 
 export default authSaga;

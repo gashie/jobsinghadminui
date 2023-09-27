@@ -14,35 +14,35 @@ export const resetCode = (data) => {
   };
 };
 
-export const resetCodeSuccess = data => {
+export const resetCodeS = data => {
   return {
     type: RESET_PASSWORD_SUCCESS,
     payload: data,
   };
 };
 
-export const resetCodeError = data => {
+export const resetCodeE = data => {
   return {
     type: RESET_PASSWORD_ERROR,
     payload: data,
   };
 }
 
-export const changePassword = (data) => {
+export const changePasswords = (data) => {
   return {
     type: CHANGE_PASSWORD,
     payload: data,
   };
 };
 
-export const changePasswordSuccess = data => {
+export const changePasswordS = data => {
   return {
     type: CHANGE_PASSWORD_SUCCESS,
     payload: data,
   };
 };
 
-export const changePasswordError = data => {
+export const changePasswordE = data => {
   return {
     type: CHANGE_PASSWORD_ERROR,
     payload: data,

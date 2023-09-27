@@ -516,3 +516,9 @@ export const updateSavedJobsURL = (data) => api.create(url.UPDATE_SAVED_JOBS, da
 
 export const fullJobDetailsURL = (data) =>api.create(url.FULL_JOB_DETAILS, data)
 export const applyForJobURL = (data) =>api.create(url.APPLY_FOR_JOB, data)
+
+export const jobSeekerApplicationsURL = (data) => api.create(url.JOBSEEKER_APPLICATIONS, data)
+export const approveApplicationsURL = (data) => api.create(url.APPROVE_APPLICATIONS, data)
+export const employerShortlistApplicationsURL = (data) => api.create(url.EMPLOYER_SHORTLIST_APPLICATIONS, data)
+export const employerApplicationsURL = (data) => api.create(url.EMPLOYER_APPLICATIONS, data)
+export const updateLogoURL = (data) => api.create(url.UPDATE_LOGO, data)

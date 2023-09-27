@@ -42,6 +42,8 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
     formData.append("phone", data?.phone);
     formData.append("resume", data?.file);
     formData.append("answers", JSON.stringify(answers));
+    formData.append("jobId", data?.jobId);
+    
 
     dispatch(applyForJobs(formData));
   };

@@ -20,6 +20,21 @@ import {
   JOB_STATUS,
   JOB_STATUS_SUCCESS,
   JOB_STATUS_ERROR,
+  JOBSEEKER_APPLICATIONS,
+  JOBSEEKER_APPLICATIONS_SUCCESS,
+  JOBSEEKER_APPLICATIONS_ERROR,
+  APPROVE_APPLICATIONS,
+  APPROVE_APPLICATIONS_SUCCESS,
+  APPROVE_APPLICATIONS_ERROR,
+  EMPLOYER_SHORTLIST,
+  EMPLOYER_SHORTLIST_SUCCESS,
+  EMPLOYER_SHORTLIST_ERROR,
+  EMPLOYER_APPLICATIONS,
+  EMPLOYER_APPLICATIONS_SUCCESS,
+  EMPLOYER_APPLICATIONS_ERROR,
+  UPDATE_LOGO,
+  UPDATE_LOGO_SUCCESS,
+  UPDATE_LOGO_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -33,6 +48,20 @@ const initialState = {
   idLoading: false,
   idError: false,
   id: "",
+  jobseekerApplications: null,
+  jobseekerApplicationsLoading: false,
+  jobseekerApplicationsError: null,
+  approveApplicationsLoading: false,
+  approveApplicationsError: null,
+  employerShortlist: null,
+  employerShortlistLoading: false,
+  employerShortlistError: null,
+  employerApplications: null,
+  employerApplicationsLoading: false,
+  employerApplicationsError: null,
+  logoUpdateLoading: false,
+  logoUpdateError: null,
+  
 };
 
 const Jobs = (state = initialState, action) => {
@@ -45,7 +74,6 @@ const Jobs = (state = initialState, action) => {
         ...state,
         infoLoading: true,
         infoError: false,
-       
       };
 
     case CREATE_JOB_STATUS:
@@ -94,8 +122,8 @@ const Jobs = (state = initialState, action) => {
         infoLoading: false,
         infoError: false,
         id: action.payload,
-        idLoading: false, 
-        idError: false
+        idLoading: false,
+        idError: false,
       };
 
     case CREATE_JOB_STATUS_SUCCESS:
@@ -107,7 +135,94 @@ const Jobs = (state = initialState, action) => {
         error: false,
         jobStatusInfo: action.payload,
       };
-
+    case JOBSEEKER_APPLICATIONS:
+      return {
+        ...state,
+        jobseekerApplicationsLoading: true,
+        jobseekerApplicationsError: null,
+      };
+    case JOBSEEKER_APPLICATIONS_SUCCESS:
+      return {
+        ...state,
+        jobseekerApplications: action.payload,
+        jobseekerApplicationsLoading: false,
+      };
+    case JOBSEEKER_APPLICATIONS_ERROR:
+      return {
+        ...state,
+        jobseekerApplicationsLoading: false,
+        jobseekerApplicationsError: action.payload,
+      };
+    case APPROVE_APPLICATIONS:
+      return {
+        ...state,
+        approveApplicationsLoading: true,
+        approveApplicationsError: null,
+      };
+    case APPROVE_APPLICATIONS_SUCCESS:
+      return {
+        ...state,
+        approveApplicationsLoading: false,
+      };
+    case APPROVE_APPLICATIONS_ERROR:
+      return {
+        ...state,
+        approveApplicationsLoading: false,
+        approveApplicationsError: action.payload,
+      };
+    case EMPLOYER_SHORTLIST:
+      return {
+        ...state,
+        employerShortlistLoading: true,
+        employerShortlistError: null,
+      };
+    case EMPLOYER_SHORTLIST_SUCCESS:
+      return {
+        ...state,
+        employerShortlist: action.payload,
+        employerShortlistLoading: false,
+      };
+    case EMPLOYER_SHORTLIST_ERROR:
+      return {
+        ...state,
+        employerShortlistLoading: false,
+        employerShortlistError: action.payload,
+      };
+    case EMPLOYER_APPLICATIONS:
+      return {
+        ...state,
+        employerApplicationsLoading: true,
+        employerApplicationsError: null,
+      };
+    case EMPLOYER_APPLICATIONS_SUCCESS:
+      return {
+        ...state,
+        employerApplications: action.payload,
+        employerApplicationsLoading: false,
+      };
+    case EMPLOYER_APPLICATIONS_ERROR:
+      return {
+        ...state,
+        employerApplicationsLoading: false,
+        employerApplicationsError: action.payload,
+      };
+    case UPDATE_LOGO:
+      return {
+        ...state,
+        logoUpdateLoading: true,
+        logoUpdateError: null,
+      };
+    case UPDATE_LOGO_SUCCESS:
+      return {
+        ...state,
+        logoUpdateLoading: false,
+      };
+    case UPDATE_LOGO_ERROR:
+      return {
+        ...state,
+        logoUpdateLoading: false,
+        logoUpdateError: action.payload,
+      };
     default:
       return state;
   }

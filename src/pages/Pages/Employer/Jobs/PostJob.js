@@ -119,7 +119,7 @@ const AddJob = ({payLater}) => {
         jobCategoryId: values.jobCategoryId,
         jobLocation: finalLocations,
         jobSalaryAmount: values.jobSalaryAmount,
-        companyId: userInfo?.userInfo?.company?.id,
+        companyId: userInfo?.userInfo?.company?.companyId,
         isCompanyConfidential: isConfidential,
         jobDescription: description,
         jobSkills: [],

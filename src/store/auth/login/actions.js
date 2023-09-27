@@ -17,7 +17,13 @@ import {
   UPDATE_PROFILE_ERROR,
   LOGOUT,
   LOGOUT_SUCCESS,
-  LOGOUT_ERROR
+  LOGOUT_ERROR, 
+  RESET_PASSWORD_CODE, 
+  RESET_PASSWORD_CODE_ERROR, 
+  RESET_PASSWORD_CODE_SUCCESS,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_ERROR,
+  CHANGE_PASSWORD_SUCCESS
 } from "./actionTypes";
 
 
@@ -137,3 +143,28 @@ export const logoutError = (data) => ({
   payload: data
 })
 
+export const resetPasswordCode = (data) =>({
+  type: RESET_PASSWORD_CODE, 
+  payload: data
+})
+export const resetPasswordCodeError = (data) =>({
+  type: RESET_PASSWORD_CODE_ERROR, 
+  payload: data
+})
+export const resetPasswordCodeSuccess = (data) =>({
+  type: RESET_PASSWORD_CODE_SUCCESS, 
+  payload: data
+})
+
+export const changePassword = (data) =>({
+  type: CHANGE_PASSWORD, 
+  payload: data
+})
+export const changePasswordSuccess = (data) =>({
+  type: CHANGE_PASSWORD_SUCCESS, 
+  payload: data
+})
+export const changePasswordError = (data) =>({
+  type: CHANGE_PASSWORD_ERROR, 
+  payload: data
+})
