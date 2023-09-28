@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   approveJobs,
+  employerApplications,
   employers,
   jobs,
   updateJob,
@@ -26,7 +27,7 @@ import { formatDate } from "../../../../Components/Hooks/formatDate";
 import { Spinner } from "reactstrap";
 import EditJobs from "./EditJobs";
 
-const ManageJobs = () => {
+const ManageJobs = ({handleApplicant}) => {
   const [isOpenAction, setIsOpenAction] = useState({});
 
   const toggleAction = (industryId) => {
@@ -55,6 +56,12 @@ const ManageJobs = () => {
       color: "black",
       icon: "ri-delete-bin-fill",
       check: "Delete",
+    },
+    {
+      label: "View Applicants",
+      color: "black",
+      icon: "ri-delete-bin-fill",
+      check: "viewApplicants",
     },
   ];
 
@@ -159,6 +166,12 @@ const ManageJobs = () => {
       setEditData(item);
       console.log("edit");
       toggleModal();
+    }
+
+
+    if(check === "viewApplicants"){
+      handleApplicant()
+      dispatch(employerApplications({jobId: item?.jobId}))
     }
   };
 

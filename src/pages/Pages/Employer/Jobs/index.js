@@ -30,6 +30,10 @@ const EmployerJobs = () => {
    justifyToggle("1")
   }
 
+  const handleApplicant = () =>{
+    justifyToggle("3")
+  }
+
   const [edit, setEdit] = useState(false);
   return (
     <>
@@ -97,7 +101,7 @@ const EmployerJobs = () => {
                 }}
                 className="scroll-change"
               >
-               <ManageJobs />
+               <ManageJobs handleApplicant={handleApplicant}/>
               </TabPane>
               <TabPane
                 tabId="2"

@@ -190,8 +190,9 @@ export const employerShortlistError = (error) => ({
   payload: error,
 });
 
-export const employerApplications = () => ({
+export const employerApplications = (data) => ({
   type: EMPLOYER_APPLICATIONS,
+  payload: data
 });
 
 export const employerApplicationsSuccess = (data) => ({

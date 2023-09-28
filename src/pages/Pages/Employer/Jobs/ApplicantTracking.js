@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const ApplicantTracking = () => {
   const [margin, setMargin] = useState("");
@@ -33,6 +35,12 @@ const ApplicantTracking = () => {
     };
   }, []);
 
+  const { loading, error, details } = useSelector((state) => ({
+    loading: state.Jobs.employerApplicationsLoading,
+    error: state.Jobs.employerApplicationsError,
+    details: state.Jobs.employerApplications,
+  }));
+
   return (
     <>
       <Row>
@@ -48,17 +56,6 @@ const ApplicantTracking = () => {
                   >
                     <thead className="table-light">
                       <tr>
-                        {/* <th scope="col" style={{ width: "50px" }}>
-                                      <div className="form-check">
-                                        <input
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          id="checkAll"
-                                          value="option"
-                                        />
-                                      </div>
-                                    </th> */}
-                        <th>#</th>
                         <th>Applicant Name</th>
                         <th>Position</th>
                         <th>Email</th>
@@ -68,231 +65,95 @@ const ApplicantTracking = () => {
                       </tr>
                     </thead>
                     <tbody className="list form-check-all">
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
+                      {loading === false && error === null ? (
+                        details?.map((item, key) => (
+                          <>
+                            <tr key={key}>
+                              <td className="customer_name">{item?.applicantName}</td>
+                              <td className="customer_name">
+                              {item?.jobTitle}
+                              </td>
 
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              cursor: "pointer",
-                              color:
-                                takeAction === "Reject"
-                                  ? "red"
-                                  : takeAction === "Approve"
-                                  ? "#00D084"
-                                  : takeAction === "Pending"
-                                  ? "#E79637"
-                                  : "a",
-                            }}
-                            onClick={() => {
-                              setAction(!action);
-                            }}
-                          >
-                            {takeAction === "Reject"
-                              ? "Rejected"
-                              : takeAction === "Approve"
-                              ? "Approve"
-                              : takeAction === "Pending"
-                              ? "Pending approval"
-                              : <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>}
-                          </p>
-                          <Card
-                            style={{
-                              position: "absolute",
-                              padding: "1rem",
-                              marginLeft: margin,
-                              display: action === false ? "none" : "block",
-                            }}
-                          >
-                            <p
-                              style={{ color: "red", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Reject");
-                                setAction(!action);
-                              }}
-                            >
-                              Reject
-                            </p>
-                            <p
-                              style={{ color: "#00D084", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Approve");
-                                setAction(!action);
-                              }}
-                            >
-                              Approve
-                            </p>
-                            <p
-                              style={{ color: "#E79637", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Pending");
-                                setAction(!action);
-                              }}
-                            >
-                              Pending
-                            </p>
-                          </Card>
-                        </td>
-                      </tr>
-                      {/* <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
-
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              cursor: "pointer",
-                              color:
-                                takeAction === "Reject"
-                                  ? "red"
-                                  : takeAction === "Approve"
-                                  ? "#00D084"
-                                  : takeAction === "Pending"
-                                  ? "#E79637"
-                                  : "a",
-                            }}
-                            onClick={() => {
-                              setAction(!action);
-                            }}
-                          >
-                            {takeAction === "Reject"
-                              ? "Rejected"
-                              : takeAction === "Approve"
-                              ? "Approve"
-                              : takeAction === "Pending"
-                              ? "Pending approval"
-                              : <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>}
-                          </p>
-                          <Card
-                            style={{
-                              position: "absolute",
-                              padding: "1rem",
-                              marginLeft: margin,
-                              display: action === false ? "none" : "block",
-                            }}
-                          >
-                            <p
-                              style={{ color: "red", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Reject");
-                                setAction(!action);
-                              }}
-                            >
-                              Reject
-                            </p>
-                            <p
-                              style={{ color: "#00D084", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Approve");
-                                setAction(!action);
-                              }}
-                            >
-                              Approve
-                            </p>
-                            <p
-                              style={{ color: "#E79637", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Pending");
-                                setAction(!action);
-                              }}
-                            >
-                              Pending
-                            </p>
-                          </Card>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
-
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              cursor: "pointer",
-                              color:
-                                takeAction === "Reject"
-                                  ? "red"
-                                  : takeAction === "Approve"
-                                  ? "#00D084"
-                                  : takeAction === "Pending"
-                                  ? "#E79637"
-                                  : "a",
-                            }}
-                            onClick={() => {
-                              setAction(!action);
-                            }}
-                          >
-                            {takeAction === "Reject"
-                              ? "Rejected"
-                              : takeAction === "Approve"
-                              ? "Approve"
-                              : takeAction === "Pending"
-                              ? "Pending approval"
-                              : <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>}
-                          </p>
-                          <Card
-                            style={{
-                              position: "absolute",
-                              padding: "1rem",
-                              marginLeft: margin,
-                              display: action === false ? "none" : "block",
-                            }}
-                          >
-                            <p
-                              style={{ color: "red", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Reject");
-                                setAction(!action);
-                              }}
-                            >
-                              Reject
-                            </p>
-                            <p
-                              style={{ color: "#00D084", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Approve");
-                                setAction(!action);
-                              }}
-                            >
-                              Approve
-                            </p>
-                            <p
-                              style={{ color: "#E79637", cursor: "pointer" }}
-                              onClick={() => {
-                                setTakeAction("Pending");
-                                setAction(!action);
-                              }}
-                            >
-                              Pending
-                            </p>
-                          </Card>
-                        </td>
-                      </tr> */}
+                              <td className="startDate">{item?.applicantEmail}</td>
+                              <td className="startDate">{item?.applicantPhone}</td>
+                              <td className="startDate">{formatDate(item?.appliedAt)}</td>
+                              <td className="startDate">
+                                <p
+                                  style={{
+                                    cursor: "pointer",
+                                    color:
+                                      takeAction === "Reject"
+                                        ? "red"
+                                        : takeAction === "Approve"
+                                        ? "#00D084"
+                                        : takeAction === "Pending"
+                                        ? "#E79637"
+                                        : "a",
+                                  }}
+                                  onClick={() => {
+                                    setAction(!action);
+                                  }}
+                                >
+                                  {takeAction === "Reject" ? (
+                                    "Rejected"
+                                  ) : takeAction === "Approve" ? (
+                                    "Approve"
+                                  ) : takeAction === "Pending" ? (
+                                    "Pending approval"
+                                  ) : (
+                                    <i className="bx bx-dots-vertical-rounded fs-20 fw-bolder"></i>
+                                  )}
+                                </p>
+                                <Card
+                                  style={{
+                                    position: "absolute",
+                                    padding: "1rem",
+                                    marginLeft: margin,
+                                    display:
+                                      action === false ? "none" : "block",
+                                  }}
+                                >
+                                  <p
+                                    style={{ color: "red", cursor: "pointer" }}
+                                    onClick={() => {
+                                      setTakeAction("Reject");
+                                      setAction(!action);
+                                    }}
+                                  >
+                                    Reject
+                                  </p>
+                                  <p
+                                    style={{
+                                      color: "#00D084",
+                                      cursor: "pointer",
+                                    }}
+                                    onClick={() => {
+                                      setTakeAction("Approve");
+                                      setAction(!action);
+                                    }}
+                                  >
+                                    Approve
+                                  </p>
+                                  <p
+                                    style={{
+                                      color: "#E79637",
+                                      cursor: "pointer",
+                                    }}
+                                    onClick={() => {
+                                      setTakeAction("Pending");
+                                      setAction(!action);
+                                    }}
+                                  >
+                                    Pending
+                                  </p>
+                                </Card>
+                              </td>
+                            </tr>
+                          </>
+                        ))
+                      ) : (
+                        <p>Loading</p>
+                      )}
                     </tbody>
                   </table>
                 </div>
