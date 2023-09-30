@@ -12,6 +12,7 @@ import {
   RESET_PASSWORD_CODE,
   UPDATE_PROFILE_IMAGE,
   UPDATE_LOGO,
+  GET_ME,
 } from "./actionTypes";
 import {
   apiError,
@@ -34,6 +35,7 @@ import {
   updateProfileImageError,
   updateProfileImageSuccess,
   updateProfileSuccess,
+  resetLoginFlag
 } from "./actions";
 
 //Include Both Helper File with needed methods
@@ -185,44 +187,98 @@ function* testVerifyUser() {
 }
 
 //official
+
 function* loginUser({ payload: user }) {
   try {
     const response = yield call(loginURL, user);
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    console.log(response);
+    if (response && response?.data.status === 1) {
       try {
         const verifyToken = yield call(verifyTokenURL);
-        if (
-          verifyToken &&
-          verifyToken?.status === 200 &&
-          verifyToken?.data?.status === 1
-        ) {
-          yield put(getMeSuccess(verifyToken?.data?.data));
-          yield put(loginSuccess(verifyToken?.data?.data));
+        yield put(resetLoginFlag());
+   console.log(verifyToken)
+        if (verifyToken && verifyToken?.data.status === 1) {
+          yield put(getMeSuccess(verifyToken?.data));
+          yield put(loginSuccess(verifyToken?.data));
           yield put(getMe());
+          yield put(resetLoginFlag());
           // window.location.href = "/job-seeker-admin"
           // if(verifyToken?.data?.data?.userInfo?.roleid === 2){
           //   window.location.href = '/job-seeker-dashboard'
           // }else{
           //   console.log('working')
           // }
-          toast.success(`${response.data.message}`, {
-            autoClose: 3000,
-          });
         } else {
-          yield put(getMeError(verifyToken?.data?.data));
-          toast.warn(`${response?.data?.message}`, {
+          yield put(getMeError(verifyToken?.data));
+          toast.error(`${response?.data.message}`, {
             autoClose: 3000,
           });
+          yield put(resetLoginFlag());
         }
       } catch (error) {
         console.log(error);
-        toast.warn(`${response?.data?.message}`, {
+        toast.warn(`${response?.data.message}`, {
           autoClose: 3000,
         });
+        yield put(resetLoginFlag());
       }
     }
   } catch (error) {
     console.log(error);
+    yield put(resetLoginFlag());
+    toast.warn("Please check your login credential and try again.", {
+      autoClose: 3000,
+    });
+  }
+}
+
+function* verify() {
+  try {
+    const verifyToken = yield call(verifyTokenURL);
+    yield put(resetLoginFlag());
+
+    if (verifyToken && verifyToken?.data.status === 1) {
+      yield put(getMeSuccess(verifyToken?.data.data));
+      // yield put(loginSuccess(verifyToken?.data));
+      // yield put(getMe());
+      yield put(resetLoginFlag());
+    } else {
+      yield put(getMeError(verifyToken?.data.data));
+      toast.error(`${verifyToken?.data.message}`, {
+        autoClose: 3000,
+      });
+      yield put(resetLoginFlag());
+    }
+  } catch (error) {
+    console.log(error);
+    // toast.warn("Problem encountered Trying to Log you in. Please try again", {
+    //   autoClose: 3000,
+    // });
+    yield put(resetLoginFlag());
+  }
+}
+
+function* changePass({payload : data}) {
+  try {
+    const response = yield call(changePasswordURL, data);
+   
+    if (response && response?.data.status === 1) {
+      yield put(changePasswordSuccess(response?.data.data));
+      toast.success(`${response?.message}`, {
+        autoClose: 3000,
+      });
+      
+    } else {
+      yield put(changePasswordError(response?.data));
+      toast.warn(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+     
+    }
+  } catch (error) {
+    console.log(error);
+  
+    yield put(changePasswordError(error));
   }
 }
 
@@ -246,52 +302,7 @@ function* updateProfile({ payload: data }) {
     yield put(updateProfileError(error));
   }
 }
-function* resetPCode({ payload: data } ) {
-  try {
-    const response = yield call(resetCodeURL, data);
-    if (response?.data?.status === 1) {
-      // console.log('register succesful')
-      yield put(resetPasswordCodeSuccess(response?.data?.results));
-    //  yield put(registersignUser(response?.data?.results));
-     // history(`/login`)
-     toast.success(`${response.data.message}`, {
-      autoClose: 3000,
-    });
-     window.location.href ="/test-home"
-  
-    } else {
-      yield put(resetPasswordCodeError(response?.data?.detail));
-      toast.warn(`${response.data.message}`, {
-        autoClose: 3000,
-      });
-    }
-  } catch (error) {
-    yield put(resetPasswordCodeError(error.response.data));
-    
-    
-  }
-}
 
-function* changePassword({ payload: data }) {
-  try {
-    const response = yield call(changePasswordURL, data);
-
-    if (response && response?.data?.status === 1) {
-      yield put(changePasswordSuccess());
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
-    } else {
-      yield put(changePasswordError(response));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    yield put(changePasswordError(error));
-  }
-}
 
 function* updateProfileImage({ payload: data }) {
   try {
@@ -339,38 +350,41 @@ function* logout() {
   try {
     const response = yield call(logoutURL);
     console.log(response)
-    if ( response?.status === 200) {
-      yield put(logoutSuccess(response.data.Message));
-      toast.success(`${response?.data?.Message}`, {
+    if ( response) {
+      yield put(logoutSuccess(response.Message));
+      toast.warn(`${response?.Message}`, {
         autoClose: 3000,
       });
+      yield put (getMe())
       window.location.href ="/login"
     } else {
-      yield put(logoutError(response.data.Message));
-      toast.error(`${response?.data?.Message}`, {
+      yield put(logoutError(response.Message));
+      toast.warn(`${response?.Message}`, {
         autoClose: 3000,
       });
     }
   } catch (error) {
     console.log(error);
     yield put(logoutError(error));
-    toast.success(`${error}`, {
-      autoClose: 3000,
-    });
+    // toast.success(`${error}`, {
+    //   autoClose: 3000,
+    // });
   }
 }
 
 function* authSaga() {
-  yield takeEvery(CHANGE_PASSWORD, changePassword);
-  yield takeEvery(RESET_PASSWORD_CODE, resetPCode);
+  yield takeEvery(LOGIN_USER, loginUser);
+  yield takeEvery(GET_ME, verify);
+  yield takeEvery(CHANGE_PASSWORD, changePass);
+  yield takeEvery(LOGOUT, logout);
   // yield takeEvery(LOGIN_USER, loginUser);
   // yield takeLatest(SOCIAL_LOGIN, socialLogin);
   // yield takeEvery(LOGOUT_USER, logoutUser);
   // yield takeEvery(LOGIN_USER, testLoginUser);
   // yield takeEvery(TEST_VERIFY, testVerifyUser)
-  yield takeEvery(LOGIN_USER, loginUser);
+  // yield takeEvery(LOGIN_USER, loginUser);
   yield takeEvery(UPDATE_PROFILE, updateProfile);
-  yield takeEvery(LOGOUT, logout);
+  // yield takeEvery(LOGOUT, logout);
   yield takeEvery(UPDATE_PROFILE_IMAGE, updateProfileImage);
   yield takeEvery(UPDATE_LOGO, updateLogo);
   

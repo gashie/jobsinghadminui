@@ -29,6 +29,8 @@ import {
   UPDATE_LOGO,
   UPDATE_LOGO_SUCCESS,
   UPDATE_LOGO_ERROR,
+  GET_ME,
+  CHANGE_PASSWORD_FAIL,
 } from "./actionTypes";
 
 const initialState = {
@@ -94,9 +96,18 @@ const login = (state = initialState, action) => {
         userInfo: action.payload,
         isloggedIn: true,
         errorUserinfo: null,
+        inter: false,
       };
       break;
-
+    case GET_ME:
+      state = {
+        ...state,
+        loggedIn: false,
+        loadingUserinfo: true,
+        loading: true,
+        error: false,
+      };
+      break;
     case GET_ME_FAIL:
       state = {
         ...state,
@@ -130,49 +141,6 @@ const login = (state = initialState, action) => {
       };
       break;
 
-    case LOGOUT_USER:
-      state = { ...state, isUserLogout: false };
-      break;
-    case LOGOUT_USER_SUCCESS:
-      state = { ...state, isUserLogout: true };
-      break;
-    case API_ERROR:
-      state = {
-        ...state,
-        errorMsg: action.payload.data,
-        loading: true,
-        error: true,
-        isUserLogout: false,
-      };
-      break;
-    case RESET_LOGIN_FLAG:
-      state = {
-        ...state,
-        errorMsg: null,
-        loading: false,
-        error: false,
-      };
-      break;
-
-    case UPDATE_PROFILE:
-      state = { ...state, loading: true, error: false };
-      break;
-    case UPDATE_PROFILE_ERROR:
-      state = {
-        ...state,
-        loading: false,
-        errorMsg: action.payload,
-        error: false,
-      };
-      break;
-    case UPDATE_PROFILE_SUCCESS:
-      state = {
-        ...state,
-        loading: false,
-        error: false,
-      };
-      break;
-
     case LOGOUT:
       state = {
         ...state,
@@ -197,50 +165,50 @@ const login = (state = initialState, action) => {
       };
       break;
 
-    case RESET_PASSWORD_CODE:
+    case RESET_LOGIN_FLAG:
       state = {
         ...state,
-        tokenError: false,
-        tokenLoading: true,
+        errorMsg: null,
+        loading: false,
+        error: false,
+        inter: false,
       };
       break;
-    case RESET_PASSWORD_CODE_SUCCESS:
+
+    case UPDATE_PROFILE:
+      state = { ...state, loading: true, error: false };
+      break;
+    case UPDATE_PROFILE_ERROR:
       state = {
         ...state,
-        tokenError: false,
-        tokenLoading: false,
-        token: action.payload,
+        loading: false,
+        errorMsg: action.payload,
+        error: false,
       };
       break;
-    case RESET_PASSWORD_CODE_ERROR:
+    case UPDATE_PROFILE_SUCCESS:
       state = {
         ...state,
-        tokenError: false,
-        tokenLoading: false,
-        tkMssg: action.payload,
+        loading: false,
+        error: false,
       };
       break;
     case CHANGE_PASSWORD:
+      state = { ...state, passwordLoading: true, passwordError: false };
+      break;
+    case CHANGE_PASSWORD_FAIL:
       state = {
         ...state,
-        changeError: false,
-        changeLoading: true,
+        passwordLoading: false,
+        errorMsg: action.payload,
+        passwordError: false,
       };
       break;
     case CHANGE_PASSWORD_SUCCESS:
       state = {
         ...state,
-        changeError: false,
-        changeLoading: false,
-        changeMssg: action.payload,
-      };
-      break;
-    case CHANGE_PASSWORD_ERROR:
-      state = {
-        ...state,
-        changeError: false,
-        changeLoading: false,
-        changeMssg: action.payload,
+        passwordLoading: false,
+        passwordError: false,
       };
       break;
     case UPDATE_PROFILE_IMAGE:

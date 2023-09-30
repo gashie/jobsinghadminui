@@ -299,7 +299,7 @@ export const APPROVE_RATE_CARD = `${version}/approveratecards/`
 export const COURSE = `${version}/viewsavedcourses/`
 export const SAVE_COURSE = `${version}/savecourse/`
 export const UPDATE_COURSE = `${version}/updatesavedcourse/`
-export const APPROVE_COURSE = `${version}/approveuserfeeds/`
+export const APPROVE_COURSE = `${version}/approvecourses/`
 
 export const COURSE_CONTENT = `${version}/viewcontent/`
 export const SAVE_COURSE_CONTENT = `${version}/savecontent/`
@@ -333,4 +333,6 @@ export const EMPLOYER_APPLICATIONS = `${version}/employer/viewmyapplications`
 
 export const UPDATE_LOGO = `${version}/employer/updateemployerlogo/`
 export const UPDATE_PROFILE_IMAGE = `${version}/updateprofileimage/`
+
+
 

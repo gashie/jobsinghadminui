@@ -1,13 +1,10 @@
 import {
   LOGIN_USER,
   LOGIN_SUCCESS,
-  LOGOUT_USER,
-  LOGOUT_USER_SUCCESS,
-  API_ERROR,
   SOCIAL_LOGIN,
-  RESET_LOGIN_FLAG, 
-  TEST_VERIFY, 
-  TEST_VERIFY_SUCCESS, 
+  RESET_LOGIN_FLAG,
+  TEST_VERIFY,
+  TEST_VERIFY_SUCCESS,
   TEST_VERIFY_FAIL,
   GET_ME_SUCCESS,
   GET_ME_FAIL,
@@ -15,44 +12,33 @@ import {
   UPDATE_PROFILE,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_ERROR,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAIL,
   LOGOUT,
   LOGOUT_SUCCESS,
-  LOGOUT_ERROR, 
-  RESET_PASSWORD_CODE, 
-  RESET_PASSWORD_CODE_ERROR, 
-  RESET_PASSWORD_CODE_SUCCESS,
-  CHANGE_PASSWORD,
-  CHANGE_PASSWORD_ERROR,
-  CHANGE_PASSWORD_SUCCESS,
+  LOGOUT_ERROR,
   UPDATE_PROFILE_IMAGE,
-  UPDATE_PROFILE_IMAGE_ERROR,
   UPDATE_PROFILE_IMAGE_SUCCESS,
+  UPDATE_PROFILE_IMAGE_ERROR,
   UPDATE_LOGO,
   UPDATE_LOGO_ERROR,
-  UPDATE_LOGO_SUCCESS
+  UPDATE_LOGO_SUCCESS,
 } from "./actionTypes";
 
+export const logout = () => ({
+  type: LOGOUT,
+});
 
-export const logoutUser = history => {
-  return {
-    type: LOGOUT_USER,
-    payload: { history },
-  };
-};
+export const logoutSuccess = (data) => ({
+  type: LOGOUT_SUCCESS,
+  payload: data,
+});
 
-export const logoutUserSuccess = () => {
-  return {
-    type: LOGOUT_USER_SUCCESS,
-    payload: {},
-  };
-};
-
-export const apiError = error => {
-  return {
-    type: API_ERROR,
-    payload: error,
-  };
-};
+export const logoutError = (data) => ({
+  type: LOGOUT_ERROR,
+  payload: data,
+});
 
 export const socialLogin = (type, history) => {
   return {
@@ -64,30 +50,28 @@ export const socialLogin = (type, history) => {
 export const resetLoginFlag = () => {
   return {
     type: RESET_LOGIN_FLAG,
-  }
-}
+  };
+};
 
-export const testVerify = () =>{
+export const testVerify = () => {
   return {
-    type: TEST_VERIFY
-  }
-}
+    type: TEST_VERIFY,
+  };
+};
 
-
-export const testVerifySuccess = (payload) =>{
+export const testVerifySuccess = (payload) => {
   return {
-    type: TEST_VERIFY_SUCCESS, 
-    payload: payload
-  }
-}
+    type: TEST_VERIFY_SUCCESS,
+    payload: payload,
+  };
+};
 
 export const testVerifyError = (error) => {
   return {
-    type: TEST_VERIFY_FAIL, 
-    payload: error
-  }
-}
-
+    type: TEST_VERIFY_FAIL,
+    payload: error,
+  };
+};
 
 //jobsinghana
 
@@ -98,105 +82,75 @@ export const loginUser = (user) => {
   };
 };
 
-export const loginSuccess = user => {
+export const loginSuccess = (user) => {
   return {
     type: LOGIN_SUCCESS,
     payload: user,
   };
 };
 
-
 export const getMeSuccess = (data) => ({
-  type: GET_ME_SUCCESS, 
-  payload: data
-})
+  type: GET_ME_SUCCESS,
+  payload: data,
+});
 
 export const getMeError = (error) => ({
-  type: GET_ME_FAIL, 
-  payload: error
-})
+  type: GET_ME_FAIL,
+  payload: error,
+});
 
-export const getMe = () =>({
-  type: GET_ME
-})
+export const getMe = () => ({
+  type: GET_ME,
+});
 
-export const updateProfile = (data) =>({
+export const updateProfile = (data) => ({
   type: UPDATE_PROFILE,
-  payload: data
-})
+  payload: data,
+});
 
-export const updateProfileSuccess = () =>({
-  type: UPDATE_PROFILE_SUCCESS
-})
-export const updateProfileError = (error) =>({
+export const updateProfileSuccess = () => ({
+  type: UPDATE_PROFILE_SUCCESS,
+});
+export const updateProfileError = (error) => ({
   type: UPDATE_PROFILE_ERROR,
-  payload: error
-})
+  payload: error,
+});
 
-//logout 
+export const changePassword = (data) => ({
+  type: CHANGE_PASSWORD,
+  payload: data,
+});
+export const changePasswordSuccess = (data) => ({
+  type: CHANGE_PASSWORD_SUCCESS,
+  payload: data,
+});
+export const changePasswordError = (data) => ({
+  type: CHANGE_PASSWORD_FAIL,
+  payload: data,
+});
 
-export const logout = () => ({
-  type: LOGOUT 
-})
+export const updateProfileImage = (data) => ({
+  type: UPDATE_PROFILE_IMAGE,
+  payload: data,
+});
+export const updateProfileImageSuccess = (data) => ({
+  type: UPDATE_PROFILE_IMAGE_SUCCESS,
+  payload: data,
+});
+export const updateProfileImageError = (data) => ({
+  type: UPDATE_PROFILE_IMAGE_ERROR,
+  payload: data,
+});
 
-export const logoutSuccess = (data) =>({
-  type: LOGOUT_SUCCESS, 
-  payload: data
-})
-
-export const logoutError = (data) => ({
-  type: LOGOUT_ERROR, 
-  payload: data
-})
-
-export const resetPasswordCode = (data) =>({
-  type: RESET_PASSWORD_CODE, 
-  payload: data
-})
-export const resetPasswordCodeError = (data) =>({
-  type: RESET_PASSWORD_CODE_ERROR, 
-  payload: data
-})
-export const resetPasswordCodeSuccess = (data) =>({
-  type: RESET_PASSWORD_CODE_SUCCESS, 
-  payload: data
-})
-
-export const changePassword = (data) =>({
-  type: CHANGE_PASSWORD, 
-  payload: data
-})
-export const changePasswordSuccess = (data) =>({
-  type: CHANGE_PASSWORD_SUCCESS, 
-  payload: data
-})
-export const changePasswordError = (data) =>({
-  type: CHANGE_PASSWORD_ERROR, 
-  payload: data
-})
-
-export const updateProfileImage = (data) =>({
-  type: UPDATE_PROFILE_IMAGE, 
-  payload: data
-})
-export const updateProfileImageSuccess = (data) =>({
-  type: UPDATE_PROFILE_IMAGE_SUCCESS, 
-  payload: data
-})
-export const updateProfileImageError = (data) =>({
-  type: UPDATE_PROFILE_IMAGE_ERROR, 
-  payload: data
-})
-
-export const updateLogo = (data) =>({
-  type: UPDATE_LOGO, 
-  payload: data
-})
-export const updateLogoError = (data) =>({
-  type: UPDATE_LOGO_ERROR, 
-  payload: data
-})
-export const updateLogoSuccess = (data) =>({
-  type: UPDATE_LOGO_SUCCESS, 
-  payload: data
-})
+export const updateLogo = (data) => ({
+  type: UPDATE_LOGO,
+  payload: data,
+});
+export const updateLogoError = (data) => ({
+  type: UPDATE_LOGO_ERROR,
+  payload: data,
+});
+export const updateLogoSuccess = (data) => ({
+  type: UPDATE_LOGO_SUCCESS,
+  payload: data,
+});

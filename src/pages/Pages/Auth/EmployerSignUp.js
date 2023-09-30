@@ -344,7 +344,7 @@ const EmployerSignUp = () => {
                             Loading...{" "}
                           </Spinner>
                         ) : null}
-                        Login
+                        Register
                       </Button>
                     </div>
                   </Col>
