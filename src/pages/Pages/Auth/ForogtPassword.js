@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Col, Input, Row, Label, Card, CardBody, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { changePassword, resetPasswordCode } from "../../../store/actions";
+import { changePassword, passwordCode, resetPasswordCode } from "../../../store/actions";
 
 const ForgotPassword = () => {
   const [emailOrPhoneNumber, setEmailOrPhoneNumber] = useState("");
@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const handleSendClick = () => {
     console.log("as");
     const data = { email: emailOrPhoneNumber };
-    dispatch(changePassword(data));
+    dispatch(passwordCode(data));
   };
 
   return (

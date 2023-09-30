@@ -45,13 +45,13 @@ function Apply({ questionInfo, jobInfo }) {
       email: email,
       fullName: fullName,
       file: selectedFilesSelfie[0],
-      jobId: jobInfo.jobId
+      jobId: jobInfo?.jobId
     };
 
     setData(info);
   };
 
-  console.log(jobInfo.jobId)
+  console.log(jobInfo?.jobId)
 
 
 

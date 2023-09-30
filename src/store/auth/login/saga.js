@@ -13,6 +13,7 @@ import {
   UPDATE_PROFILE_IMAGE,
   UPDATE_LOGO,
   GET_ME,
+  CHANGE_PASS,
 } from "./actionTypes";
 import {
   apiError,
@@ -35,15 +36,21 @@ import {
   updateProfileImageError,
   updateProfileImageSuccess,
   updateProfileSuccess,
-  resetLoginFlag
+  resetLoginFlag,
+  passwordCodeSuccess,
+  passwordCodeError,
+  changePassSuccess,
+  changePassError
 } from "./actions";
 
 //Include Both Helper File with needed methods
 import { getFirebaseBackend } from "../../../helpers/firebase_helper";
 import {
+  changePassURL,
   changePasswordURL,
   loginURL,
   logoutURL,
+  passwordCodeURL,
   postFakeLogin,
   postJwtLogin,
   postSocialLogin,
@@ -60,6 +67,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PASSWORD_CODE } from "../../../helpers/url_helper";
 
 const Nav = (location) => {
   let navigate = useNavigate();
@@ -264,12 +272,12 @@ function* changePass({payload : data}) {
    
     if (response && response?.data.status === 1) {
       yield put(changePasswordSuccess(response?.data.data));
-      toast.success(`${response?.message}`, {
+      toast.success(`${response?.data.message}`, {
         autoClose: 3000,
       });
       
     } else {
-      yield put(changePasswordError(response?.data));
+      yield put(changePasswordError(response?.data.data));
       toast.warn(`${response?.data.message}`, {
         autoClose: 3000,
       });
@@ -279,6 +287,54 @@ function* changePass({payload : data}) {
     console.log(error);
   
     yield put(changePasswordError(error));
+  }
+}
+
+function* changePasswordOutsideAppCode({payload : data}) {
+  try {
+    const response = yield call(passwordCodeURL, data);
+   
+    if (response && response?.data.status === 1) {
+      yield put(passwordCodeSuccess(response?.data.data));
+      toast.success(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+      
+    } else {
+      yield put(passwordCodeError(response?.data.data));
+      toast.warn(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+     
+    }
+  } catch (error) {
+    console.log(error);
+  
+    yield put(passwordCodeError(error));
+  }
+}
+
+function* changePasswordOutsideApp({payload : data}) {
+  try {
+    const response = yield call(changePassURL, data);
+   
+    if (response && response?.data.status === 1) {
+      yield put(changePassSuccess(response?.data.data));
+      toast.success(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+      
+    } else {
+      yield put(changePassError(response?.data.data));
+      toast.warn(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+     
+    }
+  } catch (error) {
+    console.log(error);
+  
+    yield put(changePassError(error));
   }
 }
 
@@ -351,15 +407,15 @@ function* logout() {
     const response = yield call(logoutURL);
     console.log(response)
     if ( response) {
-      yield put(logoutSuccess(response.Message));
-      toast.warn(`${response?.Message}`, {
+      yield put(logoutSuccess(response.data.Message));
+      toast.warn(`${response?.data.Message}`, {
         autoClose: 3000,
       });
       yield put (getMe())
       window.location.href ="/login"
     } else {
-      yield put(logoutError(response.Message));
-      toast.warn(`${response?.Message}`, {
+      yield put(logoutError(response.data.Message));
+      toast.warn(`${response?.data.Message}`, {
         autoClose: 3000,
       });
     }
@@ -387,6 +443,8 @@ function* authSaga() {
   // yield takeEvery(LOGOUT, logout);
   yield takeEvery(UPDATE_PROFILE_IMAGE, updateProfileImage);
   yield takeEvery(UPDATE_LOGO, updateLogo);
+  yield takeEvery(CHANGE_PASS, changePasswordOutsideApp);
+  yield takeEvery(PASSWORD_CODE, changePasswordOutsideAppCode);
   
 }
 

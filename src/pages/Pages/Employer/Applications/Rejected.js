@@ -1,8 +1,24 @@
 import { useState, useEffect } from "react";
-import { Row, Col, Card, CardBody } from "reactstrap";
+import {
+  Row,
+  Col,
+  Card,
+  CardBody,
+  Spinner,
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+} from "reactstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  employerApplications,
+  jobseekerApplications,
+} from "../../../../store/actions";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
-const Rejected = () => {
+const Pending = () => {
   const [margin, setMargin] = useState("");
   const [action, setAction] = useState(false);
   const [takeAction, setTakeAction] = useState("");
@@ -33,6 +49,18 @@ const Rejected = () => {
     };
   }, []);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(jobseekerApplications({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { loading, error, details } = useSelector((state) => ({
+    loading: state.Jobs.employerApplicationsLoading,
+    error: state.Jobs.employerApplicationsError,
+    details: state.Jobs.employerApplications,
+  }));
+
   return (
     <>
       <Row>
@@ -48,94 +76,93 @@ const Rejected = () => {
                   >
                     <thead className="table-light">
                       <tr>
-                        {/* <th scope="col" style={{ width: "50px" }}>
-                                      <div className="form-check">
-                                        <input
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          id="checkAll"
-                                          value="option"
-                                        />
-                                      </div>
-                                    </th> */}
-                        <th>#</th>
                         <th>Applicant Name</th>
-                        <th>Position</th>
+                        <th>Job Title</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Application Status</th>
                         <th>Date Applied</th>
-                        <th>Action</th>
+                        {/* <th>Action</th> */}
                       </tr>
                     </thead>
-                    <tbody className="list form-check-all">
-                     
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
-
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              color: "red",
-                            }}
-                          >
-                            Rejected
-                          </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
-
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              color: "red",
-                            }}
-                          >
-                            Rejected
-                          </p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="id">
-                          <Link to="#" className="fw-medium link-primary">
-                            1
-                          </Link>
-                        </td>
-                        <td className="customer_name">Kofi Kwame</td>
-                        <td className="customer_name">Warehouse Clerck</td>
-
-                        <td className="startDate">kofi@gmail.com</td>
-                        <td className="startDate">0553368892</td>
-                        <td className="startDate">20th May, 2023</td>
-                        <td className="startDate">
-                          <p
-                            style={{
-                              color: "red",
-                            }}
-                          >
-                            Rejected
-                          </p>
-                        </td>
-                      </tr>
-                    
+                    <tbody
+                      className="list form-check-all"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      {loading === false && error === null ? (
+                        details
+                          .filter(
+                            (item) => item.applicationStatus === "rejected"
+                          )
+                          .map((item, key) => (
+                            <tr key={key}>
+                              <td className="location">
+                                {item?.applicantName}
+                              </td>
+                              <td className="startDate">{item?.jobTitle}</td>
+                              <td className="expDate">
+                                {item?.applicantEmail}
+                              </td>
+                              <td className="expDate">
+                                {item?.applicantPhone}
+                              </td>
+                              <td
+                                className="expDate"
+                                style={{
+                                  backgroundColor:
+                                    item?.applicationStatus === "accepted"
+                                      ? "#e7f8f5"
+                                      : item?.applicationStatus === "pending"
+                                      ? "#fef8ed"
+                                      : "#f7d5ca",
+                                  color:
+                                    item?.applicationStatus === "accepted"
+                                      ? "#00d084"
+                                      : item?.applicationStatus === "pending"
+                                      ? "#c89b51"
+                                      : "red",
+                                  borderRadius: "0px",
+                                  width: "max-content",
+                                }}
+                              >
+                                {item?.applicationStatus}
+                              </td>
+                              <td className="status">
+                                {item?.appliedAt === null
+                                  ? "No updates made yet"
+                                  : formatDate(item?.appliedAt)}
+                              </td>
+                            </tr>
+                          ))
+                      ) : (
+                        <tr>
+                          <td colSpan="7" className="text-center mt-5">
+                            <div className="d-flex align-items-center justify-content-center flex-column">
+                              {loading === true ? (
+                                <>
+                                  <Spinner
+                                    size="lg"
+                                    className="me-2 mt-5"
+                                    style={{ color: "#244a59" }}
+                                  ></Spinner>
+                                  <p className="mt-2">Loading...</p>
+                                </>
+                              ) : (
+                                <>
+                                  <p className="fw-light mt-5">
+                                    {details.every(
+                                      (item) =>
+                                        item.applicationStatus !== "rejected"
+                                    )
+                                      ? "No rejected applications found."
+                                      : "An error occurred while loading data."}
+                                  </p>
+                                </>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -148,4 +175,4 @@ const Rejected = () => {
   );
 };
 
-export default Rejected;
+export default Pending;

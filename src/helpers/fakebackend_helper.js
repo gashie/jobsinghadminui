@@ -525,3 +525,6 @@ export const updateLogoURL = (data) => api.create(url.UPDATE_LOGO, data)
 
 
 export const updateProfileImageURL = (data) => api.create(url.UPDATE_PROFILE_IMAGE, data)
+
+export const passwordCodeURL = (data) => api.create(url.PASSWORD_CODE, data)
+export const changePassURL = (data) => api.create(url.CHANGE_PASS, data)

@@ -163,12 +163,14 @@ export const jobseekerApplicationsError = (error) => ({
   payload: error,
 });
 
-export const approveApplications = () => ({
+export const approveApplications = (data) => ({
   type: APPROVE_APPLICATIONS,
+  payload: data
 });
 
-export const approveApplicationsSuccess = () => ({
+export const approveApplicationsSuccess = (data) => ({
   type: APPROVE_APPLICATIONS_SUCCESS,
+  payload: data
 });
 
 export const approveApplicationsError = (error) => ({
@@ -204,6 +206,8 @@ export const employerApplicationsError = (error) => ({
   type: EMPLOYER_APPLICATIONS_ERROR,
   payload: error,
 });
+
+
 
 // export const updateLogo = () => ({
 //   type: UPDATE_LOGO,

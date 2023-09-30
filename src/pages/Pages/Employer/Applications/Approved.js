@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
-import { Row, Col, Card, CardBody } from "reactstrap";
+import {
+  Row,
+  Col,
+  Card,
+  CardBody,
+  Spinner,
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+} from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   employerApplications,
   jobseekerApplications,
 } from "../../../../store/actions";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const Approved = () => {
   const [margin, setMargin] = useState("");
@@ -45,9 +56,9 @@ const Approved = () => {
   }, [dispatch]);
 
   const { loading, error, details } = useSelector((state) => ({
-    loading: state.Jobs.jobseekerApplicationsLoading,
-    error: state.Jobs.jobseekerApplicationsError,
-    details: state.Jobs.jobseekerApplications,
+    loading: state.Jobs.employerApplicationsLoading,
+    error: state.Jobs.employerApplicationsError,
+    details: state.Jobs.employerApplications,
   }));
 
   return (
@@ -65,100 +76,89 @@ const Approved = () => {
                   >
                     <thead className="table-light">
                       <tr>
-                        {/* <th scope="col" style={{ width: "50px" }}>
-                                      <div className="form-check">
-                                        <input
-                                          className="form-check-input"
-                                          type="checkbox"
-                                          id="checkAll"
-                                          value="option"
-                                        />
-                                      </div>
-                                    </th> */}
-
                         <th>Applicant Name</th>
-                        <th>Position</th>
+                        <th>Job Title</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Application Status</th>
                         <th>Date Applied</th>
-                        <th>Action</th>
+                        {/* <th>Action</th> */}
                       </tr>
                     </thead>
-                    <tbody className="list form-check-all">
+                    <tbody
+                      className="list form-check-all"
+                      style={{ backgroundColor: "white" }}
+                    >
                       {loading === false && error === null ? (
-                        details?.map((item, key) => (
-                          <>
-                            <tr key={key}>
-                              <td className="customer_name">Kofi Kwame</td>
-                              <td className="customer_name">
-                              {item?.jobTitle}
-                              </td>
-
-                              <td className="startDate">kofi@gmail.com</td>
-                              <td className="startDate">0553368892</td>
-                              <td className="startDate">20th May, 2023</td>
-                              <td className="startDate">
-                                <p
+                        details
+                          .filter(
+                            (item) => item.applicationStatus === "accepted"
+                          )
+                          .map((item, key) => (
+                            <>
+                              <tr>
+                                <td className="location">
+                                  {item?.applicantName}
+                                </td>
+                                <td className="startDate">{item?.jobTitle}</td>
+                                <td className="expDate">
+                                  {item?.applicantEmail}
+                                </td>
+                                <td className="expDate">
+                                  {item?.applicantPhone}
+                                </td>
+                                <td
+                                  className="expDate"
                                   style={{
-                                    color: "#00d084",
+                                    backgroundColor:
+                                      item?.applicationStatus === "accepted"
+                                        ? "#e7f8f5"
+                                        : item?.applicationStatus === "pending"
+                                        ? "#fef8ed"
+                                        : "#f7d5ca",
+                                    color:
+                                      item?.applicationStatus === "accepted"
+                                        ? "#00d084"
+                                        : item?.applicationStatus === "pending"
+                                        ? "#c89b51"
+                                        : "red",
+                                    borderRadius: "0px",
+                                    width: "max-content",
                                   }}
                                 >
-                                  Approved
-                                </p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="id">
-                                <Link to="#" className="fw-medium link-primary">
-                                  1
-                                </Link>
-                              </td>
-                              <td className="customer_name">Kofi Kwame</td>
-                              <td className="customer_name">
-                                Warehouse Clerck
-                              </td>
-
-                              <td className="startDate">kofi@gmail.com</td>
-                              <td className="startDate">0553368892</td>
-                              <td className="startDate">20th May, 2023</td>
-                              <td className="startDate">
-                                <p
-                                  style={{
-                                    color: "#00d084",
-                                  }}
-                                >
-                                  Approved
-                                </p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="id">
-                                <Link to="#" className="fw-medium link-primary">
-                                  1
-                                </Link>
-                              </td>
-                              <td className="customer_name">Kofi Kwame</td>
-                              <td className="customer_name">
-                                Warehouse Clerck
-                              </td>
-
-                              <td className="startDate">kofi@gmail.com</td>
-                              <td className="startDate">0553368892</td>
-                              <td className="startDate">20th May, 2023</td>
-                              <td className="startDate">
-                                <p
-                                  style={{
-                                    color: "#00d084",
-                                  }}
-                                >
-                                  Approved
-                                </p>
-                              </td>
-                            </tr>
-                          </>
-                        ))
+                                  {item?.applicationStatus}
+                                </td>
+                                <td className="status">
+                                  {item?.appliedAt === null
+                                    ? "No updates made yet"
+                                    : formatDate(item?.appliedAt)}
+                                </td>
+                              </tr>
+                            </>
+                          ))
                       ) : (
-                        <p>Loading</p>
+                        <tr>
+                          <td colSpan="7" className="text-center mt-5">
+                            <div className="d-flex align-items-center justify-content-center">
+                              {loading === true ? (
+                                <>
+                                  <Spinner
+                                    size="lg"
+                                    className="me-2 mt-5"
+                                    style={{ color: "#244a59" }}
+                                  ></Spinner>
+                                </>
+                              ) : (
+                                <>
+                                  <p className="fw-light mt-5">
+                                    You don't have any Approved Applications at
+                                    the moment.
+                                  </p>
+                                </>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
                       )}
                     </tbody>
                   </table>

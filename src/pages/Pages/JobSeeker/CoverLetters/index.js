@@ -14,10 +14,11 @@ const CoverLetters = ({
 }) => {
   const dispatch = useDispatch();
 
-  const { cvInfo, loading, error } = useSelector((state) => ({
+  const { cvInfo, loading, error, mssg } = useSelector((state) => ({
     loading: state.Resumes.loading,
     error: state.Resumes.error,
     cvInfo: state.Resumes.cvInfo,
+   
   }));
 
   useEffect(() => {
@@ -203,19 +204,22 @@ const CoverLetters = ({
                 <tr>
                 <td colSpan="7" className="text-center mt-5">
                   <div className="d-flex align-items-center justify-content-center">
-                    {cvInfo?.length >= 1 ? (
-                      <Spinner
-                        size="lg"
-                        className="me-2 mt-5"
-                        style={{ color: "#244a59" }}
-                      >
-                        
-                      </Spinner>
-                    ) : (
-                      <p className="fw-light mt-5">
-                        You currently don't have any Cv.
-                      </p>
-                    )}
+                  {loading === true  ? (
+                                    <>
+                                      <Spinner
+                                        size="lg"
+                                        className="me-2 mt-5"
+                                        style={{ color: "#244a59" }}
+                                      ></Spinner>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <p className="fw-light mt-5">
+                                        You don't have any cover letters at the
+                                        moment.
+                                      </p>
+                                    </>
+                                  )}
                   </div>
                 </td>
               </tr>

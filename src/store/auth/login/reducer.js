@@ -31,6 +31,12 @@ import {
   UPDATE_LOGO_ERROR,
   GET_ME,
   CHANGE_PASSWORD_FAIL,
+  PASSWORD_CODE,
+  PASSWORD_CODE_ERROR,
+  PASSWORD_CODE_SUCCESS,
+  CHANGE_PASS,
+  CHANGE_PASS_ERROR,
+  CHANGE_PASS_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
@@ -61,6 +67,11 @@ const initialState = {
   updateLogoLoading: false,
   updateLogoError: false,
   updateLogoInfo: null,
+  passwordCodeLoading: false,
+  passwordCodeError: false,
+  changePassLoading: false,
+  changePassError: false,
+  changePassInfo: null,
 };
 
 const login = (state = initialState, action) => {
@@ -255,6 +266,51 @@ const login = (state = initialState, action) => {
         updateLogoError: false,
         updateLogoLoading: false,
         updateLogoInfo: action.payload,
+      };
+      break;
+    case PASSWORD_CODE:
+      state = {
+        ...state,
+        passwordCodeError: false,
+        passwordCodeLoading: true,
+      };
+      break;
+    case PASSWORD_CODE_ERROR:
+      state = {
+        ...state,
+        passwordCodeError: true,
+        passwordCodeLoading: false,
+        errorMsg: action.payload,
+      };
+      break;
+    case PASSWORD_CODE_SUCCESS:
+      state = {
+        ...state,
+        passwordCodeError: false,
+        passwordCodeLoading: false,
+      };
+      break;
+    case CHANGE_PASS:
+      state = {
+        ...state,
+        changePassError: false,
+        changePassLoading: true,
+      };
+      break;
+    case CHANGE_PASS_ERROR:
+      state = {
+        ...state,
+        changePassError: true,
+        changePassLoading: false,
+        errorMsg: action.payload,
+      };
+      break;
+    case CHANGE_PASS_SUCCESS:
+      state = {
+        ...state,
+        changePassError: false,
+        changePassLoading: false,
+        changePassInfo: action.payload,
       };
       break;
 

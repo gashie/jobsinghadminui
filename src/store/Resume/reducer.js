@@ -23,8 +23,8 @@ const initalState = {
   loading: false,
   error: false,
   errMssg: null,
-  resumeInfo: null,
-  cvInfo: null,
+  resumeInfo: [],
+  cvInfo: [],
   resumeInfoLoading: false,
   cvInfoLoading: false,
   resumeInfoError: null,
@@ -42,25 +42,25 @@ const Resumes = (state = initalState, action) => {
         ...state,
         loading: true,
         error: false,
-        cvInfoLoading: true,
-        cvInfoError: null,
+        // cvInfoLoading: true,
+        // cvInfoError: null,
       };
       break;
     case CREATE_CV_SUCCESS:
       state = {
         ...state,
         loading: false,
-        error: false,
-        cvInfoLoading: false,
+        error: true,
+        // cvInfoLoading: false,
       };
       break;
     case CREATE_CV_ERROR:
       state = {
         ...state,
         loading: false,
-        error: false,
-        cvInfoLoading: false,
-        cvInfoError: action.payload,
+        error: true,
+        // cvInfoLoading: false,
+        // cvInfoError: action.payload,
         errMssg: action.payload,
       };
       break;
@@ -104,7 +104,7 @@ const Resumes = (state = initalState, action) => {
         ...state,
         loading: false,
         error: false,
-        resumeInfoLoading: false,
+        // resumeInfoLoading: false,
         resumeInfo: action.payload,
       };
       break;
@@ -112,9 +112,9 @@ const Resumes = (state = initalState, action) => {
       state = {
         ...state,
         loading: false,
-        error: false,
-        resumeInfoLoading: false,
-        resumeInfoError: action.payload,
+        error: true,
+        // resumeInfoLoading: false,
+        // resumeInfoError: action.payload,
         errMssg: action.payload,
       };
       break;
@@ -124,7 +124,7 @@ const Resumes = (state = initalState, action) => {
         ...state,
         loading: true,
         error: false,
-        cvInfoLoading: true,
+        // cvInfoLoading: true,
       };
       break;
     case VIEW_CV_SUCCESS:
@@ -132,7 +132,7 @@ const Resumes = (state = initalState, action) => {
         ...state,
         loading: false,
         error: false,
-        cvInfoLoading: false,
+        // cvInfoLoading: false,
         cvInfo: action.payload,
       };
       break;
@@ -140,9 +140,9 @@ const Resumes = (state = initalState, action) => {
       state = {
         ...state,
         loading: false,
-        error: false,
+        error: true,
         cvInfoLoading: false,
-        cvInfoError: action.payload,
+        // cvInfoError: action.payload,
         errMssg: action.payload,
       };
       break;
@@ -152,14 +152,14 @@ const Resumes = (state = initalState, action) => {
         ...state,
         loading: true,
         error: false,
-        updateCvLoading: true,
+        // updateCvLoading: true,
       };
       break;
     case UPDATE_CV_SUCCESS:
       state = {
         ...state,
         loading: false,
-        updateCvLoading: false,
+        // updateCvLoading: false,
         error: false,
       };
       break;
@@ -168,10 +168,10 @@ const Resumes = (state = initalState, action) => {
       state = {
         ...state,
         loading: false,
-        updateCvLoading: false,
+        // updateCvLoading: false,
         error: true,
         errMssg: action.payload,
-        updateCvError: action.payload,
+        // updateCvError: action.payload,
       };
       break;
 
@@ -180,14 +180,14 @@ const Resumes = (state = initalState, action) => {
         ...state,
         loading: true,
         error: false,
-        updateResumeLoading: true,
+        // updateResumeLoading: true,
       };
       break;
     case UPDATE_RESUME_SUCCESS:
       state = {
         ...state,
         loading: false,
-        updateResumeLoading: false,
+        // updateResumeLoading: false,
         error: false,
       };
       break;
@@ -196,10 +196,10 @@ const Resumes = (state = initalState, action) => {
       state = {
         ...state,
         loading: false,
-        updateResumeLoading: false,
+        // updateResumeLoading: false,
         error: true,
         errMssg: action.payload,
-        updateResumeError: action.payload,
+        // updateResumeError: action.payload,
       };
       break;
 

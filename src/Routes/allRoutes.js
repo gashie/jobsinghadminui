@@ -283,6 +283,7 @@ import TestHome from "../pages/Pages/Auth/TestHome";
 import EmployerOTP from "../pages/Pages/Auth/EmployerOTP";
 import EmployerOTPSucces from "../pages/Pages/Auth/EmployerOTPSuccess";
 import EmailAction from "../pages/Pages/Auth/EmailAction";
+import PasswordAction from "../pages/Pages/Auth/PasswordAction";
 
 
 
@@ -590,6 +591,7 @@ const publicRoutes = [
   {path: '/test-home', component: <TestHome />},
 
   {path: '/emailaction', component: <EmailAction />},
+  {path: '/passwordaction', component: <PasswordAction />},
 
 ];
 

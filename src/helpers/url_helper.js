@@ -238,7 +238,7 @@ export const TEST_VERIFY = 'http://localhost:9000/'
 export const LOGIN = `${version}/login/`
 export const VERIFYTOKEN = `${version}/auth/`
 export const RESET_CODE = `${version}/sendresetcode/`
-export const CHANGE_PASSWORD = `${version}/passwordreset/`
+export const CHANGE_PASSWORD = `${version}/passwordresetinapp/`
 
 //jobsekerURLS
 //alerts
@@ -333,6 +333,14 @@ export const EMPLOYER_APPLICATIONS = `${version}/employer/viewmyapplications`
 
 export const UPDATE_LOGO = `${version}/employer/updateemployerlogo/`
 export const UPDATE_PROFILE_IMAGE = `${version}/updateprofileimage/`
+
+export const PASSWORD_CODE = `${version}/sendresetcode/`
+export const CHANGE_PASS = `${version}/passwordreset/`
+
+
+
+
+
 
 
 

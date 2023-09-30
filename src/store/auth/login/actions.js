@@ -24,6 +24,12 @@ import {
   UPDATE_LOGO,
   UPDATE_LOGO_ERROR,
   UPDATE_LOGO_SUCCESS,
+  PASSWORD_CODE,
+  PASSWORD_CODE_ERROR,
+  PASSWORD_CODE_SUCCESS,
+  CHANGE_PASS,
+  CHANGE_PASS_ERROR,
+  CHANGE_PASS_SUCCESS,
 } from "./actionTypes";
 
 export const logout = () => ({
@@ -154,3 +160,33 @@ export const updateLogoSuccess = (data) => ({
   type: UPDATE_LOGO_SUCCESS,
   payload: data,
 });
+
+
+export const passwordCodeSuccess = (data) => {
+  return {
+    type: PASSWORD_CODE_SUCCESS,
+    payload: data,
+  };}
+export const passwordCode = (data) => {
+  return {
+    type: PASSWORD_CODE,
+    payload: data,
+  };}
+
+export const passwordCodeError = (data) => ({
+  type: PASSWORD_CODE_ERROR,
+  payload: data,
+})
+
+export const changePass = (data) => ({
+  type: CHANGE_PASS,
+  payload: data,
+})
+export const changePassSuccess = (data) => ({
+  type: CHANGE_PASS_SUCCESS,
+  payload: data,
+})
+export const changePassError = (data) => ({
+  type: CHANGE_PASS_ERROR,
+  payload: data,
+})

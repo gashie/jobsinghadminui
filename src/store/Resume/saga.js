@@ -42,11 +42,11 @@ function* viewResumes({ payload: action }) {
   try {
     const response = yield call(viewResumeURL, action);
 
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    if (response &&  response?.data?.status === 1) {
       yield put(viewResumeSuccess(response?.data));
     console.log(response)
     } else {
-      // yield put(viewResumeError(response));
+     // yield put(viewResumeError(response.data.message));
       // toast.error(`${response?.data?.message}`, {
       //   autoClose: 3000,
       // });
@@ -60,13 +60,15 @@ function* viewResumes({ payload: action }) {
 function* viewCv({ payload: action }) {
   try {
     const response = yield call(viewCvURL, action);
-
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+console.log(response)
+console.log(response.data)
+console.log(response.data.status)
+    if (response &&  response.data.status === 1) {
       yield put(viewCvSuccess(response?.data?.data));
      
     } else {
-      yield put(viewCvError(response));
-      // toast.error(`${response?.data?.message}`, {
+      yield put(viewCvError(response.data.message));
+      // toast.warn(`${response?.data?.message}`, {
       //   autoClose: 3000,
       // });
     }
@@ -80,14 +82,14 @@ function* createResume({ payload: data }) {
   try {
     const response = yield call(createResumeURL, data);
 
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    if (response &&response?.data?.status === 1) {
       yield put(createResumeSuccess());
       yield put (cvAction({viewAction: ""}))
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
     } else {
-      yield put(createResumeError(response));
+      yield put(createResumeError(response.data.message));
       toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
@@ -104,14 +106,14 @@ function* createCv({ payload: data }) {
   try {
     const response = yield call(createCvURL, data);
 
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    if (response && response?.data?.status === 1) {
       yield put(createCvSuccess());
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
       yield put(cvAction({viewAction: ""}))
     } else {
-      yield put(createCvError(response));
+      yield put(createCvError(response.data.message));
       toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
@@ -128,7 +130,7 @@ function* updateResume ({payload}){
   try {
     const response = yield call(updateResumeURL, payload);
 
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    if (response &&response?.data?.status === 1) {
       yield put(updateResumeSuccess());
       console.log(response)
       toast.success(`${response?.data?.message}`, {
@@ -136,7 +138,7 @@ function* updateResume ({payload}){
       });
       yield put(resumeAction({viewAction: ""}))
     } else {
-      yield put(updateResumeError(response));
+      yield put(updateResumeError(response.data.message));
       toast.error(`${response?.data?.message}. Please Try Again`, {
         autoClose: 3000,
       });
@@ -153,14 +155,14 @@ function* updateCv ({payload}){
   try {
     const response = yield call(updateCvURL, payload);
 
-    if (response && response?.status === 200 && response?.data?.status === 1) {
+    if (response && response?.data?.status === 1) {
       yield put(updateCvSuccess());
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
       yield put(cvAction({viewAction: ""}))
     } else {
-      yield put(updateCvError(response));
+      yield put(updateCvError(response.data.message));
       toast.error(`${response?.data?.message}`, {
         autoClose: 3000,
       });
