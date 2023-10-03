@@ -218,9 +218,9 @@ function* loginUser({ payload: user }) {
           // }
         } else {
           yield put(getMeError(verifyToken?.data));
-          toast.error(`${response?.data.message}`, {
-            autoClose: 3000,
-          });
+          // toast.error(`${response?.data.message}`, {
+          //   autoClose: 3000,
+          // });
           yield put(resetLoginFlag());
         }
       } catch (error) {
@@ -252,9 +252,9 @@ function* verify() {
       yield put(resetLoginFlag());
     } else {
       yield put(getMeError(verifyToken?.data.data));
-      toast.error(`${verifyToken?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.error(`${verifyToken?.data.message}`, {
+      //   autoClose: 3000,
+      // });
       yield put(resetLoginFlag());
     }
   } catch (error) {
@@ -408,16 +408,16 @@ function* logout() {
     console.log(response)
     if ( response) {
       yield put(logoutSuccess(response.data.Message));
-      toast.warn(`${response?.data.Message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data.Message}`, {
+      //   autoClose: 3000,
+      // });
       yield put (getMe())
       window.location.href ="/login"
     } else {
       yield put(logoutError(response.data.Message));
-      toast.warn(`${response?.data.Message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data.Message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);

@@ -53,18 +53,17 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
           coverLetterDescription: text,
         },
       };
-      dispatch(viewCv({viewAction: ""}))
-      dispatch(viewCv({viewAction: ""}))
+      dispatch(viewCv({ viewAction: "" }));
+      dispatch(viewCv({ viewAction: "" }));
       // Dispatch an action or perform other operations with the data
       console.log(editData);
-      
+
       dispatch(updateCv(editData));
-      
-      if(dispatch(viewCv({viewAction: ""}))){
+
+      if (dispatch(viewCv({ viewAction: "" }))) {
         handleCoverLetters();
       }
-    
-    
+
       validation.resetForm();
     },
   });
@@ -122,22 +121,27 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
               </Col>
             </Row>
 
-            <div className="text-start d-flex gap-3">
-              <button
-                type="submit"
-                className="btn btn-dark"
-                style={{ backgroundColor: "#244a59" }}
-              >
-                Update
-              </button>
-              <button
-                type="button"
-                className="btn btn-light"
-                style={{ color: "#244a59", border: "1px solid #244a59" }}
-              >
-                Cancel
-              </button>
-            </div>
+            <Row className="mb-3">
+              <Col lg={3}></Col>
+              <Col lg={9}>
+                <div className="text-start d-flex gap-3">
+                  <button
+                    type="submit"
+                    className="btn btn-dark"
+                    style={{ backgroundColor: "#244a59" }}
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-light"
+                    style={{ color: "#244a59", border: "1px solid #244a59" }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </Col>
+            </Row>
           </Form>
         </CardBody>
       </Card>

@@ -113,7 +113,13 @@ const AddCoverLetters = ({handleCoverLetters}) => {
               </Col>
             </Row>
 
-            <div className="text-start d-flex gap-3">
+            <Row className="mb-3">
+              {/* <Form></Form> */}
+              <Col lg={3}>
+              
+                </Col>
+                <Col lg={9}>
+                <div className="d-flex gap-3">
               <button
                 type="submit"
                 className="btn btn-dark"
@@ -129,6 +135,10 @@ const AddCoverLetters = ({handleCoverLetters}) => {
                 Cancel
               </button>
             </div>
+            </Col>
+            </Row>
+
+          
           </Form>
         </CardBody>
       </Card>

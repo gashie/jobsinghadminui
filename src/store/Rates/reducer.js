@@ -17,6 +17,9 @@ import {
     PAYMENT,
     PAYMENT_SUCCESS,
     PAYMENT_ERROR,
+    TRANSACTIONS,
+    TRANSACTIONS_ERROR,
+    TRANSACTIONS_SUCCESS,
   } from "./actionTypes";
   
   const initialState = {
@@ -27,7 +30,10 @@ import {
     payInfo: null, 
     payloading: false, 
     payError: false,
-    payErrMssg: null
+    payErrMssg: null,
+    transactionsLoading: false, 
+    transactionsError: false, 
+    transactions: [], 
   };
   
   const Rates = (state = initialState, action) => {
@@ -138,6 +144,29 @@ import {
           payErrMssg: action.payload
         };
         break;
+        case TRANSACTIONS:
+          state = {
+            ...state,
+            transactionsLoading: true,
+            transactionsError: false,
+          };
+          break;
+        case TRANSACTIONS_ERROR:
+          state = {
+            ...state,
+            transactionsLoading: false,
+            transactionsError: true,
+            errMssg: action.payload,
+          };
+          break;
+        case TRANSACTIONS_SUCCESS:
+          state = {
+            ...state,
+            transactionsLoading: false,
+            transactionsError: false,
+            transactions: action.payload
+          };
+          break;
   
       default:
         state = { ...state };

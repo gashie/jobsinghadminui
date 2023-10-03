@@ -10,6 +10,7 @@ import {
   Col,
   Row,
   Button,
+  Spinner,
 } from "reactstrap";
 import classnames from "classnames";
 import img1 from "../../../../assets/images/jobsinghana/seatec.png";
@@ -260,7 +261,7 @@ const Dashboard = () => {
                                     fontWeight: "bolder",
                                   }}
                                 >
-                                 {item.jobTitle}
+                                  {item.jobTitle}
                                 </h5>
                                 <p
                                   style={{
@@ -268,7 +269,7 @@ const Dashboard = () => {
                                     fontWeight: "lighter",
                                   }}
                                 >
-                                 {item.companyName}
+                                  {item.companyName}
                                 </p>
                               </div>
                             </div>
@@ -279,10 +280,10 @@ const Dashboard = () => {
                                 style={{
                                   backgroundColor: "#244a59",
                                   position: "relative",
-                                  top: "0rem",
+                                  top: "0.7rem",
                                 }}
-                                onClick={()=>{
-                                  justifyToggle("4")
+                                onClick={() => {
+                                  justifyToggle("4");
                                 }}
                               >
                                 Quick Apply
@@ -293,7 +294,28 @@ const Dashboard = () => {
                       </>
                     ))
                   ) : (
-                    <p>Loading ...</p>
+                    <tr>
+                      <td colSpan="7" className="text-center mt-5">
+                        <div className="d-flex align-items-center justify-content-center">
+                          {savedLoading === true ? (
+                            <>
+                              <Spinner
+                                size="lg"
+                                className="me-2 mt-5"
+                                style={{ color: "#244a59" }}
+                              ></Spinner>
+                            </>
+                          ) : (
+                            <>
+                              <p className="fw-light mt-5">
+                                You don't have any Service inquiries at the
+                                moment.
+                              </p>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
                   )}
                   {/* End company */}
 

@@ -7,6 +7,7 @@ import {
   PAY,
   PAYMENT,
   RATE_CARD,
+  TRANSACTIONS,
   UPDATE_RATE_CARD,
 } from "./actionTypes";
 
@@ -29,6 +30,8 @@ import {
  
   makePaymentSuccess,
   makePaymentError,
+  transactionsSuccess,
+  transactionsError,
 } from "./action";
 import {
   approveRateCardURL,
@@ -36,6 +39,7 @@ import {
 
   paymentURL,
   rateCardURL,
+  transactionsURL,
   updateRatecardURL,
 } from "../../helpers/fakebackend_helper";
 
@@ -162,12 +166,34 @@ function* createRateCard({ payload: data }) {
   }
 }
 
+function* viewTransactions({ payload: data }) {
+  try {
+    const response = yield call(transactionsURL, data);
+    console.log(response);
+    if (response && response?.data.status === 1) {
+      yield put(transactionsSuccess(response?.data.data));
+      toast.success(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(transactionsError(response.data.message));
+      toast.success(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(transactionsError(error));
+  }
+}
+
 function* RatesSaga() {
   yield takeEvery(RATE_CARD, rateCards);
   yield takeEvery(APPROVE_RATE_CARD, approveRateCard);
   yield takeEvery(UPDATE_RATE_CARD, updateRateCard);
   yield takeEvery(CREATE_RATE_CARD, createRateCard);
   yield takeEvery(PAYMENT, pay);
+  yield takeEvery(TRANSACTIONS, viewTransactions);
 }
 
 export default RatesSaga;

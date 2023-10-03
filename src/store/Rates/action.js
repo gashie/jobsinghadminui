@@ -14,7 +14,10 @@ import {
     APPROVE_RATE_CARD_SUCCESS,
     PAYMENT,
     PAYMENT_SUCCESS, 
-    PAYMENT_ERROR, 
+    PAYMENT_ERROR,
+    TRANSACTIONS,
+    TRANSACTIONS_SUCCESS,
+    TRANSACTIONS_ERROR, 
   } from "./actionTypes";
 
 
@@ -29,7 +32,7 @@ export const makePaymentSuccess = (data) =>({
 })
 
 export const makePaymentError = (data) => ({
-  type: PAYMENT_SUCCESS, 
+  type: PAYMENT_ERROR, 
   payload: data
 })
 
@@ -105,4 +108,17 @@ export const makePaymentError = (data) => ({
       type: APPROVE_RATE_CARD_SUCCESS,
     };
   };
+
+  export const transactions = (data) => ({
+    type: TRANSACTIONS, 
+    payload: data
+  })
+  export const transactionsSuccess = (data) => ({
+    type: TRANSACTIONS_SUCCESS, 
+    payload: data
+  })
+  export const transactionsError = (data) => ({
+    type: TRANSACTIONS_ERROR, 
+    payload: data
+  })
 

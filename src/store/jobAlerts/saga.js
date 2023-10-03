@@ -157,13 +157,13 @@ function* saveJob({ payload }) {
 
     if (response && response?.data?.status === 1) {
       yield put(saveJobsSuccess());
-      toast.warning(`${response?.data?.message}`, {
+      toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
       yield put(savedAction({viewAction: ""}))
     } else {
       yield put(saveJobsError(response));
-      toast.success(`${response?.data?.message}`, {
+      toast.warn(`${response?.data?.message}`, {
         autoClose: 3000,
       });
       yield put(savedAction({viewAction: ""}))

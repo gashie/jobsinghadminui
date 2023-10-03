@@ -13,7 +13,7 @@ import {
   InputGroupText,
   Card,
   Input,
-  Spinner
+  Spinner,
 } from "reactstrap";
 import data from "./data";
 import SeaTech from "../../../../assets/images/jobsinghana/seatec.png";
@@ -129,9 +129,29 @@ const SavedJobs = () => {
     setQuestionInfo(details?.Questions);
   }, [details?.jobInfo, details?.Questions]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Get the current page of items
+  const currentJobs = savedJobsInfo?.slice(startIndex, endIndex);
+
+  // Function to handle page changes
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Determine if "Previous" and "Next" links should be disabled
+  const isPrevDisabled = currentPage === 1;
+  const isNextDisabled = endIndex >= savedJobsInfo?.length;
+
+
   return (
     <>
-      <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="mt-3">
+    <div className="mt-5">
+      <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="mt-3 mx-5 px-2">
         List of saved jobs
       </h5>
 
@@ -151,7 +171,7 @@ const SavedJobs = () => {
             </thead>
             <tbody>
               {loading === false && error === false ? (
-                savedJobsInfo?.map((item, key) => (
+                currentJobs?.map((item, key) => (
                   <tr key={key}>
                     <th scope="row">
                       <Link to="#" className="fw-medium">
@@ -214,29 +234,68 @@ const SavedJobs = () => {
                 <p>No Data</p>
               ) : (
                 <tr>
-                              <td colSpan="7" className="text-center mt-5">
-                                <div className="d-flex align-items-center justify-content-center">
-                                  {savedJobsInfo?.length > 1 ? (
-                                    <Spinner
-                                      size="lg"
-                                      className="me-2 mt-5"
-                                      style={{ color: "#244a59" }}
-                                    >
-                                      Loading...
-                                    </Spinner>
-                                  ) : (
-                                    <p className="fw-light mt-5">
-                                      You currently don't have rate cards.
-                                    </p>
-                                  )}
-                                </div>
-                              </td>
-                            </tr>
+                  <td colSpan="7" className="text-center mt-5">
+                    <div className="d-flex align-items-center justify-content-center">
+                      {loading === true ? (
+                        <>
+                          <Spinner
+                            size="lg"
+                            className="me-2 mt-5"
+                            style={{ color: "#244a59" }}
+                          ></Spinner>
+                        </>
+                      ) : (
+                        <>
+                          <p className="fw-light mt-5">
+                            You don't have any Saved jobs at the moment.
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  </td>
+                </tr>
               )}
             </tbody>
           </Table>
         </div>
+
+        <div className="d-flex justify-content-end mt-4">
+              <div className="pagination-wrap hstack gap-2">
+                <Link
+                  className={`page-item pagination-prev ${
+                    isPrevDisabled ? "disabled" : ""
+                  }`}
+                  to="#"
+                  onClick={() =>
+                    !isPrevDisabled && handlePageChange(currentPage - 1)
+                  }
+                >
+                  Previous
+                </Link>
+                <span
+                  className="page-number p-2 px-3 text-light"
+                  style={{ backgroundColor: "#244a59" }}
+                >
+                  {" "}
+                  {currentPage}
+                </span>
+                <ul className="pagination listjs-pagination mb-0"></ul>
+                <Link
+                  className={`page-item pagination-next ${
+                    isNextDisabled ? "disabled" : ""
+                  }`}
+                  to="#"
+                  onClick={() =>
+                    !isNextDisabled && handlePageChange(currentPage + 1)
+                  }
+                >
+                  Next
+                </Link>
+              </div>
+            </div>
       </Col>
+
+      </div>
 
       <Modal
         id="myModal"
@@ -341,10 +400,27 @@ const SavedJobs = () => {
               <JobDetails jobInfo={jobInfo} />
             </p>
           ) : (
-            <p>Loading</p>
+            <div className="d-flex align-items-center justify-content-center">
+              {detailLoading === true ? (
+                <>
+                  <Spinner
+                    size="lg"
+                    className="me-2 mt-5"
+                    style={{ color: "#244a59" }}
+                  ></Spinner>
+                </>
+              ) : (
+                <>
+                  <p className="fw-light mt-5">
+                    You don't have any Service inquiries at the moment.
+                  </p>
+                </>
+              )}
+            </div>
           )}
         </ModalBody>
       </Modal>
+      
     </>
   );
 };

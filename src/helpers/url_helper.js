@@ -337,6 +337,8 @@ export const UPDATE_PROFILE_IMAGE = `${version}/updateprofileimage/`
 export const PASSWORD_CODE = `${version}/sendresetcode/`
 export const CHANGE_PASS = `${version}/passwordreset/`
 
+export const TRANSACTIONS = `${version}/transactionhistory/`
+
 
 
 

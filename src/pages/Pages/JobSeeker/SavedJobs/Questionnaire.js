@@ -43,7 +43,6 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
     formData.append("resume", data?.file);
     formData.append("answers", JSON.stringify(answers));
     formData.append("jobId", data?.jobId);
-    
 
     dispatch(applyForJobs(formData));
   };
@@ -205,10 +204,18 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
         <h4 className="d-flex htstack justify-content-center">
           Step 2 of 2 (Please answer all questions)
         </h4>
-        <p onClick={handleBack} style={{ cursor: "pointer" }}>
+        <p
+          onClick={handleBack}
+          style={{
+            cursor: "pointer",
+            // border: "1px solid #e0e0e0",
+            width: "max-width",
+          }}
+          className="p-3 mb-5 fw-bolder"
+        >
           Back
         </p>
-        <div className="mt-5">
+        <div  style={{marginTop: '10rem'}}>
           {questionInfo?.map((question) => renderQuestion(question))}
         </div>
         <Button

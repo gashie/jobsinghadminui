@@ -107,14 +107,14 @@ function* jobStatus({ payload: data }) {
     const response = yield call(jobStatusURL, data);
     if (response.data.status === 1) {
       yield put(jobStatusSuccess(response?.data?.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(jobStatusError(response?.data.message));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     yield put(jobStatusError(error));
@@ -193,14 +193,14 @@ function* Jobs({ payload: data }) {
     console.log(response);
     if (response && response.data.status === 1) {
       yield put(jobsSuccess(response.data.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(jobsError(response.data.message));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     yield put(jobsError(error));
@@ -277,14 +277,14 @@ function* employerShortlist({ payload: data }) {
 
     if (response && response.data.status) {
       yield put(employerShortlistError(response.data.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(employerShortlistError(response.data.data));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     yield put(employerShortlistError(error));
@@ -297,14 +297,14 @@ function* employerApplications({ payload: data }) {
 
     if (response && response.data.status) {
       yield put(employerApplicationsSuccess(response.data.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(employerApplicationsError(response.data.data));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     yield put(employerApplicationsError(error));

@@ -82,28 +82,35 @@ function MyResume() {
         })}
       </div>
 
-      <h5 className="mb-3 mt-3" style={{ fontWeight: "boder" }}>
-        Replace your CV
-      </h5>
-      <Dropzone
-        onDrop={(acceptedFiles) => {
-          handleAcceptedFiles(acceptedFiles);
-        }}
-      >
-        {({ getRootProps, getInputProps }) => (
-          <div className="dropzone dz-clickable">
-            <div className="dz-message needsclick" {...getRootProps()}>
-              <div className="mb-3">
-                <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+      <Row>
+        <Col xl={7}>
+          <h5 className="mb-3 mt-3" style={{ fontWeight: "boder" }}>
+            Replace your CV
+          </h5>
+          <Dropzone
+            onDrop={(acceptedFiles) => {
+              handleAcceptedFiles(acceptedFiles);
+            }}
+            
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div className="dropzone dz-clickable"
+              
+              style={{
+                cursor: 'pointer'
+              }}>
+                <div className="dz-message needsclick" {...getRootProps()}>
+                  <div className="mb-3">
+                    <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                  </div>
+                  <h5>Drag or Click to upload file</h5>
+                  <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
+                </div>
               </div>
-              <h5>Drag or Click to upload file</h5>
-              <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
-            </div>
-          </div>
-        )}
-      </Dropzone>
+            )}
+          </Dropzone>
 
-      {/* <Button
+          {/* <Button
         classname="btn btn-dark mt-4 w-100"
         onClick={() => {
           handleCreateResume();
@@ -113,25 +120,26 @@ function MyResume() {
         Submit
       </Button> */}
 
-      <Button
-        style={{ backgroundColor: "#244a59" }}
-        // disabled={
-        //   error ? null : loading
-        // }
-        className="btn btn-dark w-100 mt-4"
-        onClick={() => {
-          handleCreateResume();
-        }}
-      
-      >
-        {/* {error ? null : loading ? (
+          <Button
+            style={{ backgroundColor: "#244a59" }}
+            // disabled={
+            //   error ? null : loading
+            // }
+            className="btn btn-dark w-100 mt-4"
+            onClick={() => {
+              handleCreateResume();
+            }}
+          >
+            {/* {error ? null : loading ? (
           <Spinner size="sm" className="me-2">
             {" "}
             Loading...{" "}
           </Spinner>
         ) : null} */}
-        Submit
-      </Button>
+            Submit
+          </Button>
+        </Col>
+      </Row>
     </>
   );
 }

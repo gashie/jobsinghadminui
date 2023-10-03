@@ -528,3 +528,6 @@ export const updateProfileImageURL = (data) => api.create(url.UPDATE_PROFILE_IMA
 
 export const passwordCodeURL = (data) => api.create(url.PASSWORD_CODE, data)
 export const changePassURL = (data) => api.create(url.CHANGE_PASS, data)
+
+
+export const transactionsURL = (data) => api.create(url.TRANSACTIONS, data)

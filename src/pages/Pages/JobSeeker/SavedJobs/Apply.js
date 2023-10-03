@@ -85,7 +85,7 @@ function Apply({ questionInfo, jobInfo }) {
               <Link to="/job-details"></Link>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Col xl={11} md={12} xs={12}>
-                  <div style={{ width: "98%", marginLeft: "1rem" }}>
+                  <div style={{ width: "96%", marginLeft: "1rem" }}>
                     <Row
                       className="p-5 m-5"
                       style={{ border: "1px solid #e0e0e0", display: "flex" }}
@@ -116,7 +116,7 @@ function Apply({ questionInfo, jobInfo }) {
                 </Col>
               </div>
 
-              <div style={{ width: "98%", marginLeft: "1rem" }}>
+              <div style={{ width: "98%", marginLeft: "4.3rem" }}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <Form>
                     <Col xl={11}>
@@ -131,7 +131,7 @@ function Apply({ questionInfo, jobInfo }) {
                             </Label>
                             <Input
                               type="text"
-                              className="form-control"
+                              className="form-control p-3"
                               id="inputEmail4"
                               placeholder=""
                               value={fullName}
@@ -144,7 +144,7 @@ function Apply({ questionInfo, jobInfo }) {
                             </Label>
                             <Input
                               type="email"
-                              className="form-control"
+                              className="form-control p-3"
                               id="inputEmail4"
                               placeholder=""
                               value={email}
@@ -157,7 +157,7 @@ function Apply({ questionInfo, jobInfo }) {
                             </Label>
                             <Input
                               type="number"
-                              className="form-control"
+                              className="form-control p-3"
                               id="inputEmail4"
                               placeholder=""
                               value={phone}
@@ -165,13 +165,13 @@ function Apply({ questionInfo, jobInfo }) {
                             />
                           </Col>
                           <Row>
-                            <Col md={6} className="mt-4">
+                            <Col md={12} className="mt-4">
                               <Label for="inputState" className="form-label">
                                 City
                               </Label>
                               <select
                                 id="inputState"
-                                className="form-select"
+                                className="form-select p-3"
                                 data-choices
                                 data-choices-sorting="true"
                                 value={selectedLocation}
@@ -289,7 +289,7 @@ function Apply({ questionInfo, jobInfo }) {
                               </Label>
                               <select
                                 id="inputState"
-                                className="form-select"
+                                className="form-select p-3"
                                 data-choices
                                 data-choices-sorting="true"
                                 value={educationLevel}
@@ -312,7 +312,7 @@ function Apply({ questionInfo, jobInfo }) {
                             </Label>
                             <select
                               id="inputState"
-                              className="form-select"
+                              className="form-select p-3"
                               data-choices
                               data-choices-sorting="true"
                               value={experienceLevel}

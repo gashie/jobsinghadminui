@@ -83,6 +83,8 @@ const JobSeekerLogin = () => {
     },
   });
 
+
+  
   return (
     <>
       <Card style={{ height: "100vh" }}>

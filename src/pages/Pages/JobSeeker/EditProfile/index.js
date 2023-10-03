@@ -20,7 +20,7 @@ const EditProfile = () => {
     initialValues: {
       fullName: userInfo?.userInfo?.fullName,
       username: userInfo?.userInfo?.username,
-      phone: userInfo?.userInfo?.phone,
+      phone: userInfo?.userInfo?.phone || "",
       email: userInfo?.userInfo?.email,
       roleid: "2",
       birthDate: "",
@@ -297,8 +297,8 @@ const EditProfile = () => {
                 Phone Number
               </Label>
               <Input
-                id="name"
-                name="name"
+                id="phone"
+                name="phone"
                 className="form-control p-3"
                 placeholder="Enter New Name"
                 type="text"

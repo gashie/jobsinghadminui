@@ -8,12 +8,14 @@ import {
   NavItem,
   Col,
   Container,
-  Row
+  Row,
 } from "reactstrap";
 //import { FaHome, FaUser, FaCog, FaBars } from "react-icons/fa";
 import Footer from "../pages/Pages/JobSeeker/footer";
 import SimpleBar from "simplebar-react";
 import "./Sidebar.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/actions";
 
 const Sidebar = () => {
   const [color, setColor] = useState(false);
@@ -26,6 +28,8 @@ const Sidebar = () => {
   const [isJobs, setIsJobs] = useState(false);
   const [isAccount, setisAccount] = useState(false);
   const [isLogout, setLogout] = useState(false);
+
+  const dispatch = useDispatch()
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -57,6 +61,7 @@ const Sidebar = () => {
   const toggleLogout = () => {
     setLogout(!isLogout);
     setColor(true);
+    dispatch(logout())
   };
 
   const removetoggles = () => {
@@ -136,13 +141,17 @@ const Sidebar = () => {
     //   link: "/settings",
     //   toggle: toggleAccount,
     // },
-    { icon: "bx bx-left-arrow-circle", label: "Logout", link: "/settings", toggle: toggleLogout },
+    {
+      icon: "bx bx-left-arrow-circle",
+      label: "Logout",
+      link: "/settings",
+      toggle: toggleLogout,
+    },
   ];
 
   return (
     <>
-   
-      <div style={{ marginTop: "4rem", height: ""}}>
+      <div style={{ marginTop: "4rem", height: "" }}>
         <div
           className=""
           style={{ backgroundColor: "red", width: "max-content" }}
@@ -160,16 +169,17 @@ const Sidebar = () => {
               aria-label="Toggle navigation"
               style={{
                 position: "absolute",
-                top: "0rem",
-                zIndex: "",
+                top: "-7.2rem",
+                zIndex: "9999",
                 boxShadow: "none",
-                backgroundColor: '#e0e0e0',
-             textAlign: 'right', 
-             right: '-20rem',
-               color: 'white'
+                // backgroundColor: "#e0e0e0",
+                textAlign: "right",
+                right: "-3rem",
+                color: "white",
+                border: "none",
               }}
             >
-              <i className=" bx bx-right-arrow-alt fs-13"></i>
+              <i className= {isOpen ? `bx bx-menu-alt-left` : `bx bx-menu`}></i>
             </NavbarToggler>
             <Collapse isOpen={isOpen} navbar>
               <Nav
@@ -192,13 +202,13 @@ const Sidebar = () => {
                     <div
                       style={{
                         backgroundColor:
-                        window.location.pathname === item.link ||
-                        window.location.pathname === item?.link1 ||
-                        window.location.pathname === item?.link2 ||
-                        window.location.pathname === item?.link3 ||
-                        window.location.pathname === item?.link4
-                          ? "#3f494c"
-                          : "",
+                          window.location.pathname === item.link ||
+                          window.location.pathname === item?.link1 ||
+                          window.location.pathname === item?.link2 ||
+                          window.location.pathname === item?.link3 ||
+                          window.location.pathname === item?.link4
+                            ? "#3f494c"
+                            : "",
                         height: "1rem",
                         width: "100%",
                         borderTop: "1px solid white",
@@ -293,8 +303,11 @@ const Sidebar = () => {
                     <Container fluid>
                       <p className="fs-15 m-3 fw-bolder">Home</p>
                       <hr />
-                      <Link to="/job-seeker-dashboard" style={{pointer: 'cursor'}}>
-                      <p className="fs-12 text-light">Dashboard</p>
+                      <Link
+                        to="/job-seeker-dashboard"
+                        style={{ pointer: "cursor" }}
+                      >
+                        <p className="fs-12 text-light">Dashboard</p>
                       </Link>
                     </Container>
                   ) : null}
@@ -302,11 +315,17 @@ const Sidebar = () => {
                     <Container fluid>
                       <p className="fs-15 m-3 fw-bolder">Profile</p>
                       <hr />
-                      <Link to="/job-seeker-edit-profile" style={{pointer: 'cursor'}}>
-                      <p className="fs-12 text-light">Edit profile</p>
+                      <Link
+                        to="/job-seeker-edit-profile"
+                        style={{ pointer: "cursor" }}
+                      >
+                        <p className="fs-12 text-light">Edit profile</p>
                       </Link>
-                      <Link to="/job-seeker-change-password" style={{pointer: 'cursor'}}>
-                      <p className="fs-12 text-light">Change password</p>
+                      <Link
+                        to="/job-seeker-change-password"
+                        style={{ pointer: "cursor" }}
+                      >
+                        <p className="fs-12 text-light">Change password</p>
                       </Link>
                     </Container>
                   ) : null}
@@ -314,11 +333,17 @@ const Sidebar = () => {
                     <Container fluid>
                       <p className="fs-15 m-3">Resume/CV</p>
                       <hr />
-                       <Link to="/job-seeker-resume" style={{pointer: 'cursor'}}>
-                      <p className="fs-12 text-light">My resume</p>
+                      <Link
+                        to="/job-seeker-resume"
+                        style={{ pointer: "cursor" }}
+                      >
+                        <p className="fs-12 text-light">My resume</p>
                       </Link>
-                      <Link to="/job-seeker-my-cover-letters" style={{pointer: 'cursor'}}>
-                      <p className="fs-12 text-light">My cover letter</p>
+                      <Link
+                        to="/job-seeker-my-cover-letters"
+                        style={{ pointer: "cursor" }}
+                      >
+                        <p className="fs-12 text-light">My cover letter</p>
                       </Link>
                     </Container>
                   ) : null}
@@ -358,7 +383,6 @@ const Sidebar = () => {
           </Navbar>
         </div>
       </div>
-      
     </>
   );
 };

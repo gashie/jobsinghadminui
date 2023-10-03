@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect } from "react";
 
 //import Scss
-import './assets/scss/themes.scss';
+import "./assets/scss/themes.scss";
 
 //imoprt Route
-import Route from './Routes';
+import Route from "./Routes";
 
 // Import Firebase Configuration file
 // import { initFirebaseBackend } from "./helpers/firebase_helper";
 
-// Fake Backend 
+// Fake Backend
 import fakeBackend from "./helpers/AuthType/fakeBackend";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { getMe } from "./store/actions";
 
 // Activating fake backend
 // fakeBackend();
@@ -32,9 +34,14 @@ import "react-toastify/dist/ReactToastify.css";
 // initFirebaseBackend(firebaseConfig);
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
   return (
     <React.Fragment>
-     <ToastContainer />
+      <ToastContainer />
       <Route />
     </React.Fragment>
   );

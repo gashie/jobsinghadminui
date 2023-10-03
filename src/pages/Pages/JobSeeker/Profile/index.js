@@ -10,6 +10,7 @@ import {
   Col,
   Row,
   Button,
+  Spinner,
 } from "reactstrap";
 import classnames from "classnames";
 import img1 from "../../../../assets/images/jobsinghana/seatec.png";
@@ -198,7 +199,28 @@ const Profile = () => {
                                 </Col>
                            
                             ) : (
-                              <p>no Data</p>
+                              <tr>
+                              <td colSpan="7" className="text-center mt-5">
+                                <div className="d-flex align-items-center justify-content-center">
+                                  {loading === true ? (
+                                    <>
+                                      <Spinner
+                                        size="lg"
+                                        className="me-2 mt-5"
+                                        style={{ color: "#244a59" }}
+                                      ></Spinner>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <p className="fw-light mt-5">
+                                        You don't have any Service inquiries at the
+                                        moment.
+                                      </p>
+                                    </>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
                             )}
                           </Row>
 

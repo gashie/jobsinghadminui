@@ -233,14 +233,14 @@ function* viewQuestions ({ payload: data }) {
     if (response && response.data.status === 1) {
       yield put(viewMyQuestionsSuccess(response.data.data));
      // yield put(rateCardAction({ viewAction: "" }));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(viewMyQuestionsError(response));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
    //   yield put(rateCardAction({ viewAction: "" }));
     }
   } catch (error) {

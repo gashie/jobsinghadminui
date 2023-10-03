@@ -89,7 +89,7 @@ const EmployerSidebar = () => {
     }
     if (isLogout === true) {
       toggleLogout();
-      window.location.hre = "/login"
+      // window.location.href = "/login"
     }
   };
 
@@ -168,16 +168,17 @@ const EmployerSidebar = () => {
               aria-label="Toggle navigation"
               style={{
                 position: "absolute",
-                top: "0rem",
-                zIndex: "",
+                top: "-7.2rem",
+                zIndex: "9999",
                 boxShadow: "none",
-                backgroundColor: '#e0e0e0',
-             textAlign: 'right', 
-             right: '-20rem',
-               color: 'white'
+                // backgroundColor: "#e0e0e0",
+                textAlign: "right",
+                right: "-3rem",
+                color: "white",
+                border: "none",
               }}
             >
-               <i className=" bx bx-right-arrow-alt fs-13"></i>
+              <i className= {isOpen ? `bx bx-menu-alt-left` : `bx bx-menu`}></i>
             </NavbarToggler>
             <Collapse isOpen={isOpen} navbar>
               <Nav

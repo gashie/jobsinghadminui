@@ -75,9 +75,9 @@ const Navbar = () => {
     if (newWindowSize <= 375) {
       setSpaceLeft("0rem");
     } else if (newWindowSize <= 1200) {
-      setSpaceLeft("2rem");
+      setSpaceLeft("5rem");
     } else if (newWindowSize >= 1200) {
-      setSpaceLeft("-14rem");
+      setSpaceLeft("0rem");
     } else if (newWindowSize > 375) {
       setSpaceLeft("0rem");
     }
@@ -122,6 +122,7 @@ const Navbar = () => {
                     fontFamily: "impact",
                     color: "#244A59",
                     position: "relative",
+                    left: spaceLeft
                   }}
                 >
                   JobsinGhana
