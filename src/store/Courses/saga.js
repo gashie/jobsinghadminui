@@ -86,14 +86,14 @@ function* course({ payload: data }) {
     console.log(response);
     if (response && response.data.status === 1) {
       yield put(courseSuccess(response.data.data));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(courseError(response));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);
@@ -106,14 +106,14 @@ function* courseContent({ payload: data }) {
     console.log(response);
     if (response && response.data.status === 1) {
       yield put(courseContentSuccess(response?.data.data));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(courseContentError(response));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);
@@ -126,14 +126,14 @@ function* courseSchedule({ payload: data }) {
     console.log(response);
     if (response && response.data.status === 1) {
       yield put(courseScheduleSuccess(response?.data.data));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(courseScheduleError(response));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);
@@ -146,14 +146,14 @@ function* coursePartnership({ payload: data }) {
     console.log(response);
     if (response && response.data.status === 1) {
       yield put(coursePartnershipSuccess(response?.data.data));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(coursePartnershipError(response));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);

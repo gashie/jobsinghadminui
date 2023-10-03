@@ -55,17 +55,17 @@ function* rateCards({ payload: data }) {
     console.log(response);
     if (response && response.data.status === 1) {
       yield put(rateCardSuccess(response.data.data));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(rateCardError(response));
-      toast.success(`${response.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
-    console.log(error);
+    
     yield put(rateCardError(error));
   }
 }
@@ -172,14 +172,14 @@ function* viewTransactions({ payload: data }) {
     console.log(response);
     if (response && response?.data.status === 1) {
       yield put(transactionsSuccess(response?.data.data));
-      toast.success(`${response?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(transactionsError(response.data.message));
-      toast.success(`${response?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);

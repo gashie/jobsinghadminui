@@ -237,14 +237,14 @@ function* jobSeekerApplications({ payload: data }) {
     if (response && response.data.status) {
       yield put(jobseekerApplicationsSuccess(response.data.data));
      
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(jobseekerApplicationsError(response.data.data));
-      toast.warn(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     yield put(jobseekerApplicationsError(error));

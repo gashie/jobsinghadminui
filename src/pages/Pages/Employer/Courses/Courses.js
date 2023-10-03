@@ -374,8 +374,11 @@ function Courses({ handleCourse }) {
       <div>
         <div className="m-2 p-2 mb-2">
           <div className="p-3" style={{ marginTop: "0rem" }}>
-            <div className="d-flex" style={{ justifyContent: "space-between" }}>
+            <div className="d-flex" style={{ justifyContent: "right" }}>
               <div className="mt d-flex gap-2">
+                <div>
+                  
+                </div>
                 {/* <p className="text-end d-flex gap-1 mt-1">
                   <i
                     className="mdi mdi-view-headline fs-20 btn btn-icon btn-light"
@@ -386,17 +389,19 @@ function Courses({ handleCourse }) {
                     onClick={() => setView("grid")}
                   ></i>
                 </p> */}
-                <p className="text-end ">
-                  <button
-                    className="btn btn-dark p-3"
-                    onClick={() => {
-                      handleCourse();
-                    }}
-                    style={{ backgroundColor: "#244a59" }}
-                  >
-                    Add New Course
-                  </button>
-                </p>
+                <div className="d-flex" >
+                  <div>
+                    <button
+                      className="btn btn-dark p-3"
+                      onClick={() => {
+                        handleCourse();
+                      }}
+                      style={{ backgroundColor: "#244a59" }}
+                    >
+                      Add New Course
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1058,23 +1063,19 @@ function Courses({ handleCourse }) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-             
-                  {error === false && content?.length < 0  ? (
-                    <>
-                      <p className="fw-light">
-                        No contents have been setup
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <Spinner
-                        size="lg"
-                        className="me-2 mt-5"
-                        style={{ color: "#244a59" }}
-                      ></Spinner>
-                    </>
-                  )}
-            
+                {error === false && content?.length < 0 ? (
+                  <>
+                    <p className="fw-light">No contents have been setup</p>
+                  </>
+                ) : (
+                  <>
+                    <Spinner
+                      size="lg"
+                      className="me-2 mt-5"
+                      style={{ color: "#244a59" }}
+                    ></Spinner>
+                  </>
+                )}
               </p>
             )}
           </div>
@@ -1143,23 +1144,19 @@ function Courses({ handleCourse }) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-             
-                  {error === false && partnership?.length < 0  ? (
-                    <>
-                      <p className="fw-light">
-                        No partnerships have been setup
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <Spinner
-                        size="lg"
-                        className="me-2 mt-5"
-                        style={{ color: "#244a59" }}
-                      ></Spinner>
-                    </>
-                  )}
-            
+                {error === false && partnership?.length < 0 ? (
+                  <>
+                    <p className="fw-light">No partnerships have been setup</p>
+                  </>
+                ) : (
+                  <>
+                    <Spinner
+                      size="lg"
+                      className="me-2 mt-5"
+                      style={{ color: "#244a59" }}
+                    ></Spinner>
+                  </>
+                )}
               </p>
             )}
 
@@ -1239,23 +1236,19 @@ function Courses({ handleCourse }) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-             
-                  {error === false && schedule?.length < 0  ? (
-                    <>
-                      <p className="fw-light">
-                        No schedules have been setup
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <Spinner
-                        size="lg"
-                        className="me-2 mt-5"
-                        style={{ color: "#244a59" }}
-                      ></Spinner>
-                    </>
-                  )}
-            
+                {error === false && schedule?.length < 0 ? (
+                  <>
+                    <p className="fw-light">No schedules have been setup</p>
+                  </>
+                ) : (
+                  <>
+                    <Spinner
+                      size="lg"
+                      className="me-2 mt-5"
+                      style={{ color: "#244a59" }}
+                    ></Spinner>
+                  </>
+                )}
               </p>
             )}
 

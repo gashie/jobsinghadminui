@@ -36,14 +36,14 @@ function* jobseekers({ payload: data }) {
 
     if (response && response?.status === 1) {
       yield put(jobseekersSuccess(response?.data.data));
-      toast.success(`${response?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(jobseekersError(response));
-      toast.warn(`${response?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);
@@ -83,14 +83,14 @@ function* employers({ payload: data }) {
     if (response && response?.data.status === 1) {
       // yield put(rateCardAction({ viewAction: "" }));
       yield put(employersSuccess(response?.data.data));
-      toast.success(`${response?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(employersError(response));
-      toast.warn(`${response?.data.message}`, {
-        autoClose: 3000,
-      });
+      // toast.warn(`${response?.data.message}`, {
+      //   autoClose: 3000,
+      // });
       // yield put(rateCardAction({ viewAction: "" }));
     }
   } catch (error) {

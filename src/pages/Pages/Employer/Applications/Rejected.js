@@ -91,7 +91,7 @@ const Pending = () => {
                     >
                       {loading === false && error === null ? (
                         details
-                          .filter(
+                          ?.filter(
                             (item) => item.applicationStatus === "rejected"
                           )
                           .map((item, key) => (
@@ -150,7 +150,7 @@ const Pending = () => {
                               ) : (
                                 <>
                                   <p className="fw-light mt-5">
-                                    {details.every(
+                                    {details?.every(
                                       (item) =>
                                         item.applicationStatus !== "rejected"
                                     )

@@ -136,12 +136,13 @@ const EmployerDashboard = () => {
             // className="m-0"
             md={11}
             sm={20}
-            style={{ position: "relative", top: "1rem", marginLeft: '1rem' }}
+            style={{ position: "relative", top: "1rem", marginLeft: '1rem',  }}
         >
           <Card
             style={{
               border: "none",
               boxShadow: "0px 0px 0px white",
+             
               // overflow: "scroll",
             }}
             className="p-3"
@@ -150,7 +151,7 @@ const EmployerDashboard = () => {
               <Nav tabs className="nav-tabs nav-justified mb-3">
                 <NavItem>
                   <NavLink
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", width: '10rem', padding: '20px' }}
                     className={classnames({ active: justifyTab === "1" })}
                     onClick={() => {
                       justifyToggle("1");

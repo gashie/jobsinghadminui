@@ -91,7 +91,7 @@ const Approved = () => {
                     >
                       {loading === false && error === null ? (
                         details
-                          .filter(
+                          ?.filter(
                             (item) => item.applicationStatus === "accepted"
                           )
                           .map((item, key) => (

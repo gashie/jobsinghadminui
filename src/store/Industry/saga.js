@@ -51,14 +51,14 @@ function* Industry({ payload: data }) {
     console.log(response);
     if (response && response?.data?.status === 1) {
       yield put(industrySuccess(response?.data?.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(industryError(response));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);
@@ -116,14 +116,14 @@ function* category({ payload: data }) {
     console.log(response);
     if (response && response?.data?.status === 1) {
       yield put(categorySuccess(response?.data?.data));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     } else {
       yield put(categoryError(response));
-      toast.success(`${response?.data?.message}`, {
-        autoClose: 3000,
-      });
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
     }
   } catch (error) {
     console.log(error);

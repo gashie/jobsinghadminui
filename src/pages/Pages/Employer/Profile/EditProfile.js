@@ -90,8 +90,9 @@ const dispatch = useDispatch()
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "left",
         }}
+        className="mx-3"
       >
         <Col className="" xl={8} md={20}>
           <Container className="p-2">
@@ -118,7 +119,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="text"
-                        className="form-control"
+                        className="form-control p-3"
                         id="username"
                         placeholder=""
                         onChange={validation.handleChange}
@@ -152,7 +153,7 @@ const dispatch = useDispatch()
                     <Col lg={3}>
                       <p
                         htmlFor="nameInput"
-                        className="form-right "
+                        className="form-right"
                         style={{ textAlign: "left" }}
                       >
                         Email:
@@ -162,7 +163,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="text"
-                        className="form-control"
+                        className="form-control p-3"
                         id="email"
                       
                         onChange={validation.handleChange}
@@ -175,7 +176,7 @@ const dispatch = useDispatch()
                     <Col lg={3}>
                       <p
                         htmlFor="nameInput"
-                        className="form-right "
+                        className="form-right"
                         style={{ textAlign: "left" }}
                       >
                         Company Description:
@@ -185,7 +186,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="text"
-                        className="form-control"
+                        className="form-control p-3"
                         id="companyDescription"
                         onChange={validation.handleChange}
                         value={validation.values.companyDescription}
@@ -230,7 +231,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="text"
-                        className="form-control"
+                        className="form-control p-3"
                         id="address"
                         onChange={validation.handleChange}
                         value={validation.values.address}
@@ -251,7 +252,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="date"
-                        className="form-control"
+                        className="form-control p-3"
                         id="birthDate"
                         onChange={validation.handleChange}
                         value={validation.values.birthDate}
@@ -273,7 +274,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="text"
-                        className="form-control"
+                        className="form-control p-3"
                         id="phone"
                         onChange={validation.handleChange}
                         value={validation.values.phone}
@@ -299,7 +300,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="url"
-                        className="form-control"
+                        className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
                       />
@@ -320,7 +321,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="url"
-                        className="form-control"
+                        className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
                       />
@@ -341,7 +342,7 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="url"
-                        className="form-control"
+                        className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
                       />
@@ -362,14 +363,14 @@ const dispatch = useDispatch()
                     <Col lg={9}>
                       <Input
                         type="url"
-                        className="form-control"
+                        className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
                       />
                     </Col>
                   </Row>
 
-                  <Row className="mb-3">
+                  {/* <Row className="mb-3">
                     <Col lg={3}>
                       <p
                         htmlFor="nameInput"
@@ -388,7 +389,7 @@ const dispatch = useDispatch()
                         placeholder=""
                       />
                     </Col>
-                  </Row>
+                  </Row> */}
 
                   <div className="text-start">
                     <button
