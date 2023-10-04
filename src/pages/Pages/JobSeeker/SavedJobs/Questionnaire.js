@@ -8,7 +8,7 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
 
   useEffect(() => {
     // Initialize the answers state with the provided JSON data
-    const initialAnswers = questionInfo.map((question) => ({
+    const initialAnswers = questionInfo?.map((question) => ({
       questionId: question.questionId,
       ans: question.ans || "",
     }));
@@ -16,14 +16,14 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
   }, [questionInfo]);
 
   const handleInputChange = (questionId, value) => {
-    const updatedAnswers = answers.map((answer) =>
+    const updatedAnswers = answers?.map((answer) =>
       answer.questionId === questionId ? { ...answer, ans: value } : answer
     );
     setAnswers(updatedAnswers);
   };
 
   const handleMultiSelectChange = (questionId, selectedOptions) => {
-    const updatedAnswers = answers.map((answer) =>
+    const updatedAnswers = answers?.map((answer) =>
       answer.questionId === questionId
         ? { ...answer, ans: selectedOptions }
         : answer
@@ -78,7 +78,7 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
           <div key={question.questionId}>
             <FormGroup>
               <Label for={question.questionId}>{question.questionTitle}</Label>
-              {question.optionsData.map((option) => (
+              {question.optionsData?.map((option) => (
                 <div key={option.optionValue}>
                   <Label check>
                     <Input
@@ -183,7 +183,7 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
                 className="p-3"
               >
                 <option value="">Select an option</option>
-                {question.optionsData.map((option) => (
+                {question.optionsData?.map((option) => (
                   <option key={option.optionValue} value={option.optionValue}>
                     {option.optionLabel}
                   </option>

@@ -72,6 +72,7 @@ const initialState = {
   changePassLoading: false,
   changePassError: false,
   changePassInfo: null,
+  inter: true, 
 };
 
 const login = (state = initialState, action) => {

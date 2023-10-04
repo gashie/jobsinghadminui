@@ -66,7 +66,7 @@ function Apply({ questionInfo, jobInfo }) {
   }
 
   const handleAcceptedFiles = (files) => {
-    files.map((file) =>
+    files?.map((file) =>
       Object.assign(file, {
         preview: URL.createObjectURL(file),
         formattedSize: formatBytes(file.size),
@@ -182,9 +182,9 @@ function Apply({ questionInfo, jobInfo }) {
                                 <option value="" selected>
                                   Choose...
                                 </option>
-                                {Object.keys(jobLocations).map((region) => (
+                                {Object.keys(jobLocations)?.map((region) => (
                                   <optgroup key={region} label={region}>
-                                    {jobLocations[region].map(
+                                    {jobLocations[region]?.map(
                                       (location, index) => (
                                         <option key={index} value={location}>
                                           {location}
@@ -206,7 +206,7 @@ function Apply({ questionInfo, jobInfo }) {
                               className="list-unstyled mb-0"
                               id="file-previews"
                             >
-                              {selectedFilesSelfie.map((f, i) => {
+                              {selectedFilesSelfie?.map((f, i) => {
                                 return (
                                   <Card
                                     className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"

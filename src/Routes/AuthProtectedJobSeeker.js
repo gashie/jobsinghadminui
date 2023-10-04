@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Route } from "react-router-dom";
 // import { setAuthorization } from "../helpers/api_helper";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +37,22 @@ const AuthProtectedJobSeeker = (props) => {
     //   navigate("/job-seeker-dashboard");
     // }
   }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
+
+  const inter = useSelector((state) => state.Login.inter);
+
+  const [path, setPath] = useState("");
+
+  useEffect(() => {
+    setPath(window.location.pathname);
+  }, [window.location.pathname]);
+
+  if (inter === true) {
+    return (
+      <Navigate to={{ pathname: path, state: { from: props.location } }} />
+    );
+  }
+
+
 
   if (!isLoggedIn) {
     return (

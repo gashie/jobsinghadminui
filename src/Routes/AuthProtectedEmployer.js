@@ -9,20 +9,15 @@ import { useNavigate } from "react-router-dom";
 // import { useProfile } from "../Components/Hooks/UserHooks";
 
 import { logoutUser, testVerify } from "../store/actions";
+import { useState } from "react";
 
 const AuthProtectedEmployer = (props) => {
   const dispatch = useDispatch();
 
+ 
   
-  const { verifyInfo, verifyError, verifyLoading } = useSelector((state) => ({
-    verifyInfo: state.Login.verifyInfo,
-    verifyError: state.Login.verifyError,
-    verifyLoading: state.Login.verifyLoading,
-  }));
 
-  console.log();
-
-  
+  const inter = useSelector((state) => state.Login.inter);
 
   const { user, errorMsg, loading, error } = useSelector((state) => ({
     user: state.Account.user,
@@ -35,10 +30,14 @@ const AuthProtectedEmployer = (props) => {
   const userId = useSelector((state) => state.Login.userInfo);
   const userInfo = useSelector((state) => state.Login.userInfo);
 
-  console.log(userId?.userInfo?.roleid);
-  console.log(!isLoggedIn && userId?.userInfo?.roleid !== 3);
 
   const navigate = useNavigate();
+
+  const [path, setPath] = useState("");
+
+  useEffect(() => {
+    setPath(window.location.pathname);
+  }, [window.location.pathname]);
 
   useEffect(() => {
     dispatch(getMe());
@@ -50,6 +49,12 @@ const AuthProtectedEmployer = (props) => {
       navigate("/job-seeker-dashboard");
     }
   }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
+
+  if (inter === true) {
+    return (
+      <Navigate to={{ pathname: path, state: { from: props.location } }} />
+    );
+  }
 
   if (!isLoggedIn || userId?.userInfo?.roleid === 2) {
     return (

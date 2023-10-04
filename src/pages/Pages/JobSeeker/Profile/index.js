@@ -35,10 +35,9 @@ const Profile = () => {
     userInfo: state.Login.userInfo,
   }));
 
-
-  const handleEditProfile = () =>{
+  const handleEditProfile = () => {
     justifyToggle("2");
-  }
+  };
   // useEffect(() => {
   //   if (window.location.pathname === "/job-seeker-change-password") {
   //     setjustifyTab("3");
@@ -125,11 +124,12 @@ const Profile = () => {
                           style={{
                             display: "flex",
                             justifyContent: "space-evenly",
+                           
                           }}
                         >
-                          <Row>
+                          <Row className="p-5">
                             <Col>
-                              <div className="d-flex justify-content-center">
+                              <div className="d-flex justify-content-center mx-5 px-5">
                                 <img
                                   src={profile}
                                   alt="company-logo"
@@ -155,72 +155,97 @@ const Profile = () => {
                               ></div>
                             </Col>
                             {loading === false && error === false ? (
-                             
-                                <Col
-                                  style={{ display: "grid", gap: "2rem" }}
-                                 
+                              <Col style={{ display: "grid", gap: "2rem" }}>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: "0.4rem",
+                                    alignItems: "flex-start",
+                                  }}
                                 >
-                                  <div
-                                    style={{ display: "flex", gap: "0.4rem" }}
+                                  <h5
+                                    className="fw-bolder"
+                                    style={{ flex: "0 0 30%" }}
                                   >
-                                    <h5 className="fw-bolder">Username:</h5>
-                                    <h5>{userInfo?.userInfo?.username}</h5>
-                                  </div>
-                                  <div
-                                    style={{ display: "flex", gap: "0.4rem" }}
+                                    Username:
+                                  </h5>
+                                  <h5 style={{ flex: "0 0 70%" }}>
+                                    {userInfo?.userInfo?.username}
+                                  </h5>
+                                </div>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: "0.4rem",
+                                    alignItems: "flex-start",
+                                  }}
+                                >
+                                  <h5
+                                    className="fw-bolder"
+                                    style={{ flex: "0 0 30%" }}
                                   >
-                                    <h5 className="fw-bolder">Phone:</h5>
-                                    <h5>{userInfo?.userInfo?.phone}</h5>
-                                  </div>
-                                  <div
-                                    style={{ display: "flex", gap: "0.4rem" }}
+                                    Phone:
+                                  </h5>
+                                  <h5 style={{ flex: "0 0 70%" }}>
+                                    {userInfo?.userInfo?.phone}
+                                  </h5>
+                                </div>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: "0.4rem",
+                                    alignItems: "flex-start",
+                                  }}
+                                >
+                                  <h5
+                                    className="fw-bolder"
+                                    style={{ flex: "0 0 30%" }}
                                   >
-                                    <h5 className="fw-bolder">Email:</h5>
-                                    <h5>{userInfo?.userInfo?.email}</h5>
-                                  </div>
-                                  {/* <div
-                                    style={{ display: "flex", gap: "0.4rem" }}
+                                    Email:
+                                  </h5>
+                                  <h5 style={{ flex: "0 0 70%" }}>
+                                    {userInfo?.userInfo?.email}
+                                  </h5>
+                                </div>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: "0.4rem",
+                                    alignItems: "flex-start",
+                                  }}
+                                >
+                                  <h5
+                                    className="fw-bolder"
+                                    style={{ flex: "0 0 30%" }}
                                   >
-                                    <h5>Birthday:</h5>
-                                    <h5>{""}</h5>
-                                  </div> */}
-                                  <div
-                                    style={{ display: "flex", gap: "0.4rem" }}
-                                  >
-                                    <h5 className="fw-bolder">Country:</h5>
-                                    <h5>Ghana</h5>
-                                  </div>
-                                  {/* <div
-                                    style={{ display: "flex", gap: "0.4rem" }}
-                                  >
-                                    <h6>Gender:</h6>
-                                    <h6>Male</h6>
-                                  </div> */}
-                                </Col>
-                           
+                                    Country:
+                                  </h5>
+                                  <h5 style={{ flex: "0 0 70%" }}>Ghana</h5>
+                                </div>
+                              </Col>
                             ) : (
                               <tr>
-                              <td colSpan="7" className="text-center mt-5">
-                                <div className="d-flex align-items-center justify-content-center">
-                                  {loading === true ? (
-                                    <>
-                                      <Spinner
-                                        size="lg"
-                                        className="me-2 mt-5"
-                                        style={{ color: "#244a59" }}
-                                      ></Spinner>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <p className="fw-light mt-5">
-                                        You don't have any Service inquiries at the
-                                        moment.
-                                      </p>
-                                    </>
-                                  )}
-                                </div>
-                              </td>
-                            </tr>
+                                <td colSpan="7" className="text-center mt-5">
+                                  <div className="d-flex align-items-center justify-content-center">
+                                    {loading === true ? (
+                                      <>
+                                        <Spinner
+                                          size="lg"
+                                          className="me-2 mt-5"
+                                          style={{ color: "#244a59" }}
+                                        ></Spinner>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <p className="fw-light mt-5">
+                                          You don't have any Service inquiries
+                                          at the moment.
+                                        </p>
+                                      </>
+                                    )}
+                                  </div>
+                                </td>
+                              </tr>
                             )}
                           </Row>
 
@@ -261,7 +286,7 @@ const Profile = () => {
                   }}
                   className="scroll-change"
                 >
-                  <EditProfile  handleEditProfile={handleEditProfile} />
+                  <EditProfile handleEditProfile={handleEditProfile} />
                 </TabPane>
 
                 <TabPane
