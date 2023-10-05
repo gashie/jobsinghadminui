@@ -549,34 +549,31 @@ const ManageJobs = ({handleApplicant}) => {
             </Col>
           </Row> */}
         </div>
-      </div>
 
-
-      <div>
+        <div>
           <Row>
             <Col lg={12} className="mt-2">
-            
-                  <div id="customerList">
-                    <div
-                      className="table-responsive table-card mt-3 mb-1"
-                      style={{ height: "50vh" }}
-                    >
-                      <table
-                        className="table align-middle table-nowrap"
-                        id="customerTable"
-                      >
-                        <thead className="table-light">
-                          <tr>
-                            <th data-sort="location">Job Title</th>
-                            <th data-sort="startDate">Location</th>
-                            <th data-sort="expDate">Start Date</th>
-                            <th data-sort="jobType">Expire Date</th>
-                            <th data-sort="jobType">Job Type</th>
-                            <th data-sort="jobType">Status</th>
+              <div id="customerList">
+                <div
+                  className="table-responsive table-card mt-3 mb-1"
+                  style={{ height: "max-content" }}
+                >
+                  <table
+                    className="table align-middle table-nowrap"
+                    id="customerTable"
+                  >
+                    <thead className="table-light">
+                      <tr>
+                        <th data-sort="location">Job Title</th>
+                        <th data-sort="startDate">Location</th>
+                        <th data-sort="expDate">Start Date</th>
+                        <th data-sort="jobType">Expire Date</th>
+                        <th data-sort="jobType">Job Type</th>
+                        <th data-sort="jobType">Status</th>
 
-                            <th data-sort="jobType">Applications</th>
-                            <th data-sort="jobType">Action</th>
-                            {/* <th  data-sort="jobType">
+                        <th data-sort="jobType">Applications</th>
+                        <th data-sort="jobType">Action</th>
+                        {/* <th  data-sort="jobType">
                               Job Type
                             </th>
 
@@ -584,38 +581,36 @@ const ManageJobs = ({handleApplicant}) => {
                               Applicants
                             </th>
                             <th data-sort="jobType">Action</th> */}
-                          </tr>
-                        </thead>
-                        <tbody className="list form-check-all">
-                          {loading === false && error === false ? (
-                            jobsInfo?.map((item, key) => (
-                              <tr key={key}>
-                                <td className="customer_name">
-                                  {item?.jobTitle}
-                                </td>
-                                <td className="location">
-                                  {item?.jobLocation === ""
-                                    ? "-"
-                                    : item?.jobLocation}
-                                </td>
-                                <td className="startDate">
-                                  {formatDate(item?.goLiveDate)}
-                                </td>
-                                <td className="startDate">
-                                  {item?.goLiveDate && (
-                                    <span>
-                                      {" "}
-                                      {formatDate(
-                                        new Date(
-                                          new Date(item?.goLiveDate).getTime() +
-                                            30 * 24 * 60 * 60 * 1000
-                                        )
-                                      )}
-                                    </span>
+                      </tr>
+                    </thead>
+                    <tbody className="list form-check-all">
+                      {loading === false && error === false ? (
+                        jobsInfo?.map((item, key) => (
+                          <tr key={key}>
+                            <td className="customer_name">{item?.jobTitle}</td>
+                            <td className="location">
+                              {item?.jobLocation === ""
+                                ? "-"
+                                : item?.jobLocation}
+                            </td>
+                            <td className="startDate">
+                              {formatDate(item?.goLiveDate)}
+                            </td>
+                            <td className="startDate">
+                              {item?.goLiveDate && (
+                                <span>
+                                  {" "}
+                                  {formatDate(
+                                    new Date(
+                                      new Date(item?.goLiveDate).getTime() +
+                                        30 * 24 * 60 * 60 * 1000
+                                    )
                                   )}
-                                </td>
+                                </span>
+                              )}
+                            </td>
 
-                                {/* <td className="status">
+                            {/* <td className="status">
                                   <p
                                     style={{
                                       backgroundColor:
@@ -635,69 +630,66 @@ const ManageJobs = ({handleApplicant}) => {
                                   </p>
                                 </td> */}
 
-                                <td>
-                                  <Dropdown
-                                    isOpen={isOpenActions[item.jobId] || false}
-                                    toggle={() => toggleAction(item.jobId)}
+                            <td>
+                              <Dropdown
+                                isOpen={isOpenActions[item.jobId] || false}
+                                toggle={() => toggleAction(item.jobId)}
+                              >
+                                <DropdownToggle
+                                  tag="p"
+                                  onClick={() => toggleAction(item.jobId)}
+                                  style={{
+                                    cursor: "pointer",
+                                    marginTop: "1rem",
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      border: "1px solid #e0e0e0",
+                                      borderRadius: "40px",
+                                      width: "max-content",
+                                      justifyContent: "space-between",
+                                    }}
+                                    className="p-2 d-flex"
                                   >
-                                    <DropdownToggle
-                                      tag="p"
-                                      onClick={() => toggleAction(item.jobId)}
-                                      style={{
-                                        cursor: "pointer",
-                                        marginTop: "1rem",
-                                      }}
+                                    <div
+                                      className="d-flex gap-2"
+                                      style={{ width: "max-width" }}
                                     >
-                                      <div
+                                      <i
+                                        className="ri-radio-button-line"
                                         style={{
-                                          border: "1px solid #e0e0e0",
-                                          borderRadius: "40px",
-                                          width: "max-content",
-                                          justifyContent: "space-between",
+                                          // color: selectedActions[item.jobId]
+                                          //   ? selectedActions[item.jobId]
+                                          //       .label === "Full Time"
+                                          //     ? "#EB596B"
+                                          //     : "#00d084"
+                                          //   : "#EB596B",
+                                          color:
+                                            item?.jobStatus === "Contract"
+                                              ? "#244A59"
+                                              : item?.jobStatus === "Internship"
+                                              ? "#706548"
+                                              : item?.jobStatus === "Part Time"
+                                              ? "#F7B84B"
+                                              : item?.jobStatus === "Part Time"
+                                              ? "0#0D084"
+                                              : "black",
                                         }}
-                                        className="p-2 d-flex"
-                                      >
-                                        <div
-                                          className="d-flex gap-2"
-                                          style={{ width: "max-width" }}
-                                        >
-                                          <i
-                                            className="ri-radio-button-line"
-                                            style={{
-                                              // color: selectedActions[item.jobId]
-                                              //   ? selectedActions[item.jobId]
-                                              //       .label === "Full Time"
-                                              //     ? "#EB596B"
-                                              //     : "#00d084"
-                                              //   : "#EB596B",
-                                              color:
-                                                item?.jobStatus === "Contract"
-                                                  ? "#244A59"
-                                                  : item?.jobStatus ===
-                                                    "Internship"
-                                                  ? "#706548"
-                                                  : item?.jobStatus ===
-                                                    "Part Time"
-                                                  ? "#F7B84B"
-                                                  : item?.jobStatus ===
-                                                    "Part Time"
-                                                  ? "0#0D084"
-                                                  : "black",
-                                            }}
-                                          ></i>
-                                          {/* {selectedActions[item.jobId]
+                                      ></i>
+                                      {/* {selectedActions[item.jobId]
                                             ? selectedActions[item.jobId].label
                                             : actionList[0].label}{" "} */}
 
-                                          {item?.jobStatus === null
-                                            ? "Not Set"
-                                            : item?.jobStatus}
-                                          {/* Display selected label or default text */}
-                                        </div>
-                                        {/* <i className="ri-arrow-down-s-fill fw-bolder"></i> */}
-                                      </div>
-                                    </DropdownToggle>
-                                    {/* <DropdownMenu>
+                                      {item?.jobStatus === null
+                                        ? "Not Set"
+                                        : item?.jobStatus}
+                                      {/* Display selected label or default text */}
+                                    </div>
+                                    {/* <i className="ri-arrow-down-s-fill fw-bolder"></i> */}
+                                  </div>
+                                </DropdownToggle>
+                                {/* <DropdownMenu>
                                       {actionList.map((action) => (
                                         <DropdownItem
                                           key={action.label}
@@ -721,172 +713,171 @@ const ManageJobs = ({handleApplicant}) => {
                                         </DropdownItem>
                                       ))}
                                     </DropdownMenu> */}
-                                  </Dropdown>
-                                </td>
-                                <td>
-                                  <Dropdown
-                                    isOpen={isOpenStatus[item.jobId] || false}
-                                    toggle={() => toggleStatus(item.jobId)}
+                              </Dropdown>
+                            </td>
+                            <td>
+                              <Dropdown
+                                isOpen={isOpenStatus[item.jobId] || false}
+                                toggle={() => toggleStatus(item.jobId)}
+                              >
+                                <DropdownToggle
+                                  tag="p"
+                                  onClick={() => toggleStatus(item.jobId)}
+                                  style={{
+                                    cursor: "pointer",
+                                    marginTop: "1rem",
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      border: "1px solid #e0e0e0",
+                                      borderRadius: "40px",
+                                      width: "max-content",
+                                      justifyContent: "space-between",
+                                    }}
+                                    className="p-2 d-flex"
                                   >
-                                    <DropdownToggle
-                                      tag="p"
-                                      onClick={() => toggleStatus(item.jobId)}
-                                      style={{
-                                        cursor: "pointer",
-                                        marginTop: "1rem",
-                                      }}
+                                    <div
+                                      className="d-flex gap-2"
+                                      style={{ width: "max-width" }}
                                     >
-                                      <div
+                                      <i
+                                        className="ri-radio-button-line"
+                                        // style={{
+                                        //   color: selectedStatus[item.jobId]
+                                        //     ? selectedStatus[item.jobId]
+                                        //         .label === "Close"
+                                        //       ? "#EB596B"
+                                        //       : "#00d084"
+                                        //     : "#EB596B",
+                                        // }}
                                         style={{
-                                          border: "1px solid #e0e0e0",
-                                          borderRadius: "40px",
-                                          width: "max-content",
-                                          justifyContent: "space-between",
+                                          color:
+                                            item?.jobState === "approved"
+                                              ? "#00d084"
+                                              : "#EB596B",
                                         }}
-                                        className="p-2 d-flex"
-                                      >
-                                        <div
-                                          className="d-flex gap-2"
-                                          style={{ width: "max-width" }}
-                                        >
-                                          <i
-                                            className="ri-radio-button-line"
-                                            // style={{
-                                            //   color: selectedStatus[item.jobId]
-                                            //     ? selectedStatus[item.jobId]
-                                            //         .label === "Close"
-                                            //       ? "#EB596B"
-                                            //       : "#00d084"
-                                            //     : "#EB596B",
-                                            // }}
-                                            style={{
-                                              color:
-                                                item?.jobState === "approved"
-                                                  ? "#00d084"
-                                                  : "#EB596B",
-                                            }}
-                                          ></i>
-                                          {/* {selectedStatus[item.jobId]
+                                      ></i>
+                                      {/* {selectedStatus[item.jobId]
                                             ? selectedStatus[item.jobId].label
                                             : actionList2[0].label}{" "} */}
 
-                                          {/* Display selected label or default text */}
-                                          {item?.jobState === "approved"
-                                            ? "Open"
-                                            : "Close"}
-                                        </div>
-                                        <i className="ri-arrow-down-s-fill fw-bolder"></i>
-                                      </div>
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                      {actionList2.map((action) => (
-                                        <DropdownItem
-                                          key={action.label}
-                                          onClick={() => {
-                                            handleStatusClick(
-                                              action.label,
-                                              item,
-                                              action.icon,
-                                              action.check
-                                            );
-                                          }}
-                                          style={{
-                                            cursor: "pointer",
-                                            // color: action.color,
-                                          }}
-                                        >
-                                          <i
-                                            className={action.icon}
-                                            style={{ color: action.color }}
-                                          ></i>{" "}
-                                          {action.label}
-                                        </DropdownItem>
-                                      ))}
-                                    </DropdownMenu>
-                                  </Dropdown>
-                                </td>
-
-                                <td className="location">
-                                  <Button
-                                    className="btn"
-                                    style={{
-                                      backgroundColor: "#00d084",
-                                      border: "none",
-                                    }}
-                                  >
-                                    {" "}
-                                    {item?.applicantCount?.map((count) => {
-                                      return count?.totalApplicants;
-                                    })}{" "}
-                                    Candidates
-                                  </Button>
-                                </td>
-
-                                <td>
-                                  <Dropdown
-                                    isOpen={isMenu[item?.jobId] || false}
-                                    toggle={() => toggleMenu(item?.jobId)}
-                                  >
-                                    <DropdownToggle
-                                      tag="p"
-                                      onClick={() => toggleMenu(item?.jobId)}
+                                      {/* Display selected label or default text */}
+                                      {item?.jobState === "approved"
+                                        ? "Open"
+                                        : "Close"}
+                                    </div>
+                                    <i className="ri-arrow-down-s-fill fw-bolder"></i>
+                                  </div>
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                  {actionList2.map((action) => (
+                                    <DropdownItem
+                                      key={action.label}
+                                      onClick={() => {
+                                        handleStatusClick(
+                                          action.label,
+                                          item,
+                                          action.icon,
+                                          action.check
+                                        );
+                                      }}
                                       style={{
                                         cursor: "pointer",
-                                        marginTop: "1rem",
+                                        // color: action.color,
                                       }}
                                     >
-                                      <i className="bx bx-dots-vertical-rounded fs-20"></i>{" "}
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                      {actionList3.map((action) => (
-                                        <DropdownItem
-                                          key={action.label}
-                                          onClick={() =>
-                                            handleMenuOption(item, action.check)
-                                          }
-                                          style={{
-                                            cursor: "pointer",
-                                            color: action.color,
-                                          }}
-                                        >
-                                          <i className={action.icon}></i>{" "}
-                                          {action.label}
-                                        </DropdownItem>
-                                      ))}
-                                    </DropdownMenu>
-                                  </Dropdown>
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr>
-                              <td colSpan="7" className="text-center mt-5">
-                                <div className="d-flex align-items-center justify-content-center">
-                                  {loading === true ? (
-                                    <>
-                                      <Spinner
-                                        size="lg"
-                                        className="me-2 mt-5"
-                                        style={{ color: "#244a59" }}
-                                      ></Spinner>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <p className="fw-light mt-5">
-                                        You don't have any Jobs Setup at the
-                                        moment.
-                                      </p>
-                                    </>
-                                  )}
-                                </div>
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
+                                      <i
+                                        className={action.icon}
+                                        style={{ color: action.color }}
+                                      ></i>{" "}
+                                      {action.label}
+                                    </DropdownItem>
+                                  ))}
+                                </DropdownMenu>
+                              </Dropdown>
+                            </td>
 
-                    {/* <div className="d-flex justify-content-end">
+                            <td className="location">
+                              <Button
+                                className="btn"
+                                style={{
+                                  backgroundColor: "#00d084",
+                                  border: "none",
+                                }}
+                              >
+                                {" "}
+                                {item?.applicantCount?.map((count) => {
+                                  return count?.totalApplicants;
+                                })}{" "}
+                                Candidates
+                              </Button>
+                            </td>
+
+                            <td>
+                              <Dropdown
+                                isOpen={isMenu[item?.jobId] || false}
+                                toggle={() => toggleMenu(item?.jobId)}
+                              >
+                                <DropdownToggle
+                                  tag="p"
+                                  onClick={() => toggleMenu(item?.jobId)}
+                                  style={{
+                                    cursor: "pointer",
+                                    marginTop: "1rem",
+                                  }}
+                                >
+                                  <i className="bx bx-dots-vertical-rounded fs-20"></i>{" "}
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                  {actionList3.map((action) => (
+                                    <DropdownItem
+                                      key={action.label}
+                                      onClick={() =>
+                                        handleMenuOption(item, action.check)
+                                      }
+                                      style={{
+                                        cursor: "pointer",
+                                        color: action.color,
+                                      }}
+                                    >
+                                      <i className={action.icon}></i>{" "}
+                                      {action.label}
+                                    </DropdownItem>
+                                  ))}
+                                </DropdownMenu>
+                              </Dropdown>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="7" className="text-center mt-5">
+                            <div className="d-flex align-items-center justify-content-center">
+                              {loading === true ? (
+                                <>
+                                  <Spinner
+                                    size="lg"
+                                    className="me-2 mt-5"
+                                    style={{ color: "#244a59" }}
+                                  ></Spinner>
+                                </>
+                              ) : (
+                                <>
+                                  <p className="fw-light mt-5">
+                                    You don't have any Jobs Setup at the moment.
+                                  </p>
+                                </>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* <div className="d-flex justify-content-end">
                       <div className="pagination-wrap hstack gap-2">
                         <Link
                           className={`page-item pagination-prev ${
@@ -920,12 +911,20 @@ const ManageJobs = ({handleApplicant}) => {
                         </Link>
                       </div>
                     </div> */}
-                  </div>
-              
+              </div>
             </Col>
           </Row>
         </div>
 
+        
+      </div>
+
+      
+
+      
+
+
+      
       <Modal isOpen={modalIsOpen} toggle={toggleModal} size="lg">
         <ModalHeader toggle={toggleModal}>Edit Job</ModalHeader>
         <ModalBody>

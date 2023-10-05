@@ -1,98 +1,124 @@
-import {
-  GET_INVOICES,
-  API_RESPONSE_SUCCESS,
-  API_RESPONSE_ERROR,
+import { CREATE_INVOICE, CREATE_INVOICE_ERROR, CREATE_INVOICE_SUCCESS, INVOICE, INVOICE_ERROR, INVOICE_SUCCESS, UPDATE_INVOICE, UPDATE_INVOICE_ERROR, UPDATE_INVOICE_SUCCESS , INVOICE_PAYMENT,
+  INVOICE_PAYMENT_SUCCESS,
+  INVOICE_PAYMENT_ERROR } from "./actionType";
 
-  ADD_INVOICE_SUCCESS,
-  ADD_INVOICE_FAIL,
-  UPDATE_INVOICE_SUCCESS,
-  UPDATE_INVOICE_FAIL,
-  DELETE_INVOICE_SUCCESS,
-  DELETE_INVOICE_FAIL,
-} from "./actionType";
-
-const INIT_STATE = {
-  invoices: [],
-  error: {},
+const initialState = {
+invoiceLoading: false,
+invoiceError: false,
+errMssg: null,
+invoice: [],
+updateInvoiceLoading: false, 
+updateInvoiceError: false,
+createLoading: false, 
+createError: false, 
+payInfo: null, 
+  payloading: false, 
+  payError: false,
+  payErrMssg: null,
 };
 
-const Invoice = (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case API_RESPONSE_SUCCESS:
-      switch (action.payload.actionType) {
-        case GET_INVOICES:
-          return {
-            ...state,
-            invoices: action.payload.data,
-            isInvoiceCreated: false,
-            isInvoiceSuccess: true
-          };
-        default:
-          return { ...state };
-      }
-    case API_RESPONSE_ERROR:
-      switch (action.payload.actionType) {
-        case GET_INVOICES:
-          return {
-            ...state,
-            error: action.payload.error,
-            isInvoiceCreated: false,
-            isInvoiceSuccess: false
-          };
-        default:
-          return { ...state };
-      }
-
-    case ADD_INVOICE_SUCCESS:
-      return {
+const Invoice = (state = initialState, action) => {
+switch (action.type) {
+  case INVOICE:
+    state = {
+      ...state,
+     invoiceLoading: true, 
+     invoiceError: false
+    };
+    break;
+  case INVOICE_ERROR:
+    state = {
+      ...state,
+      invoiceLoading: false,
+      invoiceError: true,
+      errMssg: action.payload
+    };
+    break;
+  case INVOICE_SUCCESS:
+    state = {
+      ...state,
+      invoiceLoading: false,
+      invoiceError: false,
+      invoice: action.payload,
+    };
+    break;
+  case UPDATE_INVOICE:
+    state = {
+      ...state,
+      updateInvoiceLoading: true,
+      updateInvoiceError: false,
+    };
+    break;
+  case UPDATE_INVOICE_ERROR:
+    state = {
+      ...state,
+      updateInvoiceLoading: false,
+      updateInvoiceError: true,
+      errMssg: action.payload,
+    };
+    break;
+  case UPDATE_INVOICE_SUCCESS:
+    state = {
+      ...state,
+      updateInvoiceLoading: false,
+      updateInvoiceError: false,
+    };
+    break;
+  case CREATE_INVOICE:
+    state = {
+      ...state,
+      createLoading: true,
+      createError: false,
+    };
+    break;
+  case CREATE_INVOICE_ERROR:
+    state = {
+      ...state,
+      createLoading: false,
+      createError: true,
+      errMssg: action.payload,
+    };
+    break;
+  case CREATE_INVOICE_SUCCESS:
+    state = {
+      ...state,
+      createLoading: false,
+      createError: false,
+     
+    };
+    break;
+    case INVOICE_PAYMENT:
+      state = {
         ...state,
-        isInvoiceCreated: true,
-        invoices: [...state.invoices, action.payload.data],
+        payloading: true,
+        payError: false,
       };
-
-    case ADD_INVOICE_FAIL:
-      return {
+      break;
+    case INVOICE_PAYMENT_SUCCESS:
+      state = {
         ...state,
-        error: action.payload,
+        payloading: false,
+        payError: false,
+        payInfo: action.payload
       };
-
-    case UPDATE_INVOICE_SUCCESS:
-      return {
+      break;
+    case INVOICE_PAYMENT_ERROR:
+      state = {
         ...state,
-        invoices: state.invoices.map(invoice =>
-          invoice._id.toString() === action.payload.data._id.toString()
-            ? { ...invoice, ...action.payload.data }
-            : invoice
-        ),
+        payloading: false,
+        payError: true,
+        payErrMssg: action.payload
       };
+      break;
+ 
+   
+  default:
+    state = { ...state };
 
-    case UPDATE_INVOICE_FAIL:
-      return {
-        ...state,
-        error: action.payload,
-      };
+    break;
+}
 
-    case DELETE_INVOICE_SUCCESS:
-      return {
-        ...state,
-        invoices: state.invoices.filter(
-          invoice => invoice._id.toString() !== action.payload.invoice.toString()
-        ),
-        isInvoiceDelete: true,
-        isInvoiceDeleteFail: false,
-      };
-
-    case DELETE_INVOICE_FAIL:
-      return {
-        ...state,
-        error: action.payload,
-        isInvoiceDelete: false,
-        isInvoiceDeleteFail: true,
-      };
-
-    default:
-      return { ...state };
-  }
+return state;
 };
 
-export default Invoice;
+export default Invoice

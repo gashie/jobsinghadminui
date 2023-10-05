@@ -11,15 +11,15 @@ import {
 } from "reactstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Editor from "./Editor";
 import { useDispatch, useSelector } from "react-redux";
-import { saveCourse } from "../../../../store/actions";
-import { useNavigate } from "react-router-dom";
+import { category, saveCourse } from "../../../../store/actions";
+import { Link, useNavigate } from "react-router-dom";
 
-const PostCourse = ({handleBack}) => {
+const PostCourse = () => {
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
     console.log(data); // This will log the content of the editor to the console
@@ -27,12 +27,28 @@ const PostCourse = ({handleBack}) => {
 
   const [modal_standard, setmodal_standard] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const Nav = (location) => {
     let navigate = useNavigate();
     navigate(`${location}`);
   };
+
+  const updateEditorData = (editorId, html) => {
+    setEditorData({
+      ...editorData,
+      [editorId]: html,
+    });
+  };
+
+  const [editorData, setEditorData] = useState({
+    editor1: "",
+    editor2: "",
+    editor3: "",
+    // Add more editors as needed
+  });
+
+  let navigate = useNavigate();
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -67,7 +83,7 @@ const PostCourse = ({handleBack}) => {
       const formData = new FormData();
 
       formData.append("courseTitle", values.title);
-      formData.append("courseDescription", values.description);
+      formData.append("courseDescription", editorData.editor3);
       formData.append("courseOrganiser", values.organizer);
       formData.append("courseVenue", values.venue);
       formData.append("courseCost", values.cost);
@@ -77,29 +93,18 @@ const PostCourse = ({handleBack}) => {
       formData.append("courseDuration", values.duration);
       formData.append("courseCategory", 1);
       formData.append("courseAudience", values.audience);
-      formData.append("courseGoals", values.courseGoals);
+      formData.append("courseGoals", editorData.editor1);
       formData.append("courseLink", values.courseLink);
-      formData.append("courseCertificationNote", values.courseCertificationNote);
+      formData.append("courseCertificationNote", editorData.editor2);
       formData.append("courseImage", Image);
       formData.append("courseVideoAd", Video);
       formData.append("courseBrochure", Brochure);
 
+      dispatch(saveCourse(formData));
 
-      dispatch(saveCourse(formData))
-     
-    
+      navigate("/course");
     },
   });
-
-  const { loading, error, employerInfo, catLoading, catError, categoryInfo } =
-    useSelector((state) => ({
-      loading: state.Users.loading,
-      error: state.Users.error,
-      employerInfo: state.Users.employersInfo,
-      catLoading: state.Industry.loading,
-      catError: state.Industry.error,
-      categoryInfo: state.Industry.categoryInfo,
-    }));
 
   const [Brochure, setBrochure] = useState();
   const [Image, setImage] = useState();
@@ -153,10 +158,33 @@ const PostCourse = ({handleBack}) => {
     return formattedDate;
   }
 
+  const { catLoading, catError, categoryInfo } = useSelector((state) => ({
+    catLoading: state.Industry.loading,
+    catError: state.Industry.error,
+    categoryInfo: state.Industry.categoryInfo,
+  }));
+
   return (
     <>
       <div className="mb-5">
-      
+        {/* <div>
+          <div className="m-2 p-2 mb-5">
+            <div className="p-3 mt-5" style={{ marginTop: "-2rem" }}>
+              <div
+                className="d-flex"
+                style={{ justifyContent: "space-between" }}
+              >
+                <div className="mt-">
+                  <h4 className="fw-bolder mt-5">Add New Course</h4>
+                  <p className="">
+                    <b>Dashboard</b> / Add New Course
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> */}
+
         <Container className=" mb-4" fluid>
           <Row className="justify-content-center">
             <Col xs="20" md="20" sm="20">
@@ -385,7 +413,7 @@ const PostCourse = ({handleBack}) => {
                           id="audience"
                           name="audience"
                           className="form-control p-3"
-                          placeholder="Enter study mode"
+                          placeholder="Audience"
                           type="text"
                           onChange={validation.handleChange}
                           onBlur={validation.handleBlur}
@@ -406,6 +434,21 @@ const PostCourse = ({handleBack}) => {
                       </Col>
 
                       <Col className="mb-3">
+                        <label>Course Image</label>
+                        <Input
+                          id="courseVideo"
+                          name="courseVideo"
+                          className="form-control p-3"
+                          type="file"
+                          onChange={(e) => {
+                            const selectedFile = e.target.files[0];
+                            setImage(selectedFile);
+                          }}
+                          onBlur={validation.handleBlur}
+                        />
+                      </Col>
+
+                      {/* <Col className="mb-3">
                         <label>Description</label>
                         <Input
                           id="description"
@@ -429,30 +472,31 @@ const PostCourse = ({handleBack}) => {
                             <div>{validation.errors.description}</div>
                           </FormFeedback>
                         ) : null}
-                      </Col>
+                      </Col> */}
                     </Row>
 
                     <Row>
-                    <Col lg={15}>
-                    <select
-                      className="form-select p-3"
-                    
-                      id="jobCategoryId"
-                      value={validation.values.jobCategoryId}
-                      onChange={validation.handleChange}
-                    >
-                       <option>Select Category</option>
-                      {catLoading === false && catError === false ? (
-                        categoryInfo?.map((item, key) => (
-                          <option key={key} value={item?.jobCategoryId}>
-                            {item?.jobCategoryName}
-                          </option>
-                        ))
-                      ) : (
-                        <option>loading categories...</option>
-                      )}
-                    </select>
-                  </Col>
+                      <label>Select Category</label>
+                      <Col lg={6}>
+                        <select
+                          className="form-select p-3"
+                          name="jobCategoryId"
+                          id="jobCategoryId"
+                          value={validation.values.jobCategoryId}
+                          onChange={validation.handleChange}
+                        >
+                          <option>Select Category</option>
+                          {catLoading === false && catError === false ? (
+                            categoryInfo?.map((item, key) => (
+                              <option key={key} value={item?.jobCategoryId}>
+                                {item?.jobCategoryName}
+                              </option>
+                            ))
+                          ) : (
+                            <option>loading categories...</option>
+                          )}
+                        </select>
+                      </Col>
 
                       <Col className="mb-3">
                         <label>Course Link</label>
@@ -482,7 +526,7 @@ const PostCourse = ({handleBack}) => {
                     </Row>
 
                     <Row>
-                      <Col className="mb-3">
+                      {/* <Col className="mb-3">
                         <label>Course Certification Note</label>
                         <select
                           className="form-select p-3"
@@ -494,27 +538,12 @@ const PostCourse = ({handleBack}) => {
                           <option>You will get a certification </option>
                           <option>You will not get a certification </option>
                         </select>
-                      </Col>
-
-                      <Col className="mb-3">
-                        <label>Course Image</label>
-                        <Input
-                          id="courseVideo"
-                          name="courseVideo"
-                          className="form-control p-3"
-                          type="file"
-                          onChange={(e) => {
-                            const selectedFile = e.target.files[0];
-                            setImage(selectedFile);
-                          }}
-                          onBlur={validation.handleBlur}
-                        />
-                      </Col>
+                      </Col> */}
                     </Row>
 
                     <Row>
                       <Col>
-                        <label>Course Video Add</label>
+                        <label>Course Video Adverts</label>
                         <Input
                           id="courseVideo"
                           name="courseVideo"
@@ -543,30 +572,28 @@ const PostCourse = ({handleBack}) => {
                       </Col>
                     </Row>
 
-                    <Col>
+                    <Col className="mt-5">
                       <label>Course Goals</label>
-                      <Input
-                        id="courseGoals"
-                        name="courseGoals"
-                        className="form-control p-3"
-                        placeholder="Add Course goals"
-                        type="test"
-                        onChange={validation.handleChange}
-                        onBlur={validation.handleBlur}
-                        value={validation.values.courseGoals || ""}
-                        invalid={
-                          validation.touched.courseGoals &&
-                          validation.errors.courseGoals
-                            ? true
-                            : false
-                        }
+                      <Editor
+                        editorId="editor1"
+                        transmitHtml={updateEditorData}
                       />
-                      {validation.touched.courseGoals &&
-                      validation.errors.courseGoals ? (
-                        <FormFeedback type="invalid">
-                          <div>{validation.errors.courseGoals}</div>
-                        </FormFeedback>
-                      ) : null}
+                    </Col>
+
+                    <Col className="mt-5">
+                      <label>Certification Note</label>
+                      <Editor
+                        editorId="editor2"
+                        transmitHtml={updateEditorData}
+                      />
+                    </Col>
+
+                    <Col className="mt-5">
+                      <label>Description</label>
+                      <Editor
+                        editorId="editor3"
+                        transmitHtml={updateEditorData}
+                      />
                     </Col>
                     {/* 
                     <Row className="mt-3">
@@ -581,14 +608,15 @@ const PostCourse = ({handleBack}) => {
                     </Row> */}
 
                     <div className="text-start d-flex gap-3 mt-4">
+                      {/* <Link to="/course"> */}
                       <button
                         type="submit"
                         className="btn btn-dark"
                         style={{ backgroundColor: "#244a59" }}
-                        onClick={handleBack}
                       >
                         Submit
                       </button>
+                      {/* </Link> */}
                     </div>
                   </Form>
                 </CardBody>
@@ -597,6 +625,8 @@ const PostCourse = ({handleBack}) => {
           </Row>
         </Container>
       </div>
+
+      <div></div>
     </>
   );
 };

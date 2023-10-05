@@ -24,7 +24,7 @@ export * from "./auth/profile/actions";
 // //crm
 // export * from "./crm/action";
 // //invoice
-// export * from "./invoice/action";
+ export * from "./invoice/action";
 // //mailbox
 // export * from "./mailbox/action";
 // // Dashboard Analytics

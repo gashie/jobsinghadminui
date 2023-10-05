@@ -39,22 +39,24 @@ import {
   updateCourseContent,
   updateCoursePartnership,
   updateCourseSchedule,
+  jobEditCloneData,
 } from "../../../../store/actions";
 import AddContent from "./AddContent";
 import EditCourse from "./EditCourse";
+import CloneCourse from "./CloneCourse";
 
-function Courses({ handleCourse }) {
+function Courses() {
   const actionList = [
-    {
-      label: "Approve ",
-      color: "black",
-      icon: "bx bx-pencil",
-      check: "Approve",
-    },
+    // {
+    //   label: "Approve ",
+    //   color: "black",
+    //   icon: "bx bx-check-circle",
+    //   check: "Approve",
+    // },
     {
       label: "Edit",
       color: "black",
-      icon: "ri-delete-bin-fill",
+      icon: "bx bx-pencil",
       check: "Edit",
     },
     {
@@ -66,20 +68,38 @@ function Courses({ handleCourse }) {
     {
       label: "Add Content",
       color: "black",
-      icon: "ri-delete-bin-fill",
+      icon: "bx bx-grid",
       check: "Add Content",
     },
     {
       label: "Add Partnership",
       color: "black",
-      icon: "ri-delete-bin-fill",
+      icon: "bx bx-group",
       check: "Add Partnership",
     },
     {
       label: "Add Schedule",
       color: "black",
-      icon: "ri-delete-bin-fill",
+      icon: "bx bx-calendar",
       check: "Add Schedule",
+    },
+    {
+      label: "Clone",
+      color: "black",
+      icon: "bx bx-block",
+      check: "clone",
+    },
+    {
+      label: "Enable",
+      color: "black",
+      icon: "mdi mdi-trending-up",
+      check: "enable",
+    },
+    {
+      label: "Disable",
+      color: "black",
+      icon: "mdi mdi-trending-down",
+      check: "disable",
     },
   ];
 
@@ -129,6 +149,8 @@ function Courses({ handleCourse }) {
 
   const [selectFile, setFile] = useState();
 
+  
+
   const { loading, error, courseInfo, content, schedule, partnership } =
     useSelector((state) => ({
       loading: state.Courses.loading,
@@ -148,7 +170,7 @@ function Courses({ handleCourse }) {
   const [editData, setEditData] = useState({});
 
   const handleOptionClick = (action, item, check) => {
-    if (check === "Approve") {
+    if (check === "enable") {
       dispatch(
         approveCourse({
           courseId: item?.courseId,
@@ -156,10 +178,24 @@ function Courses({ handleCourse }) {
         })
       );
     }
+    if (check === "disable") {
+      dispatch(
+        approveCourse({
+          courseId: item?.courseId,
+          status: false,
+        })
+      );
+    }
+
+    if(check === 'clone'){
+      toggleCloneModal()
+      dispatch(jobEditCloneData(item))
+    }
 
     if (check === "Edit") {
       toggleQuestionModal();
       setEditData(item);
+      dispatch(jobEditCloneData(item))
     }
 
     if (check === "Add Content") {
@@ -169,12 +205,10 @@ function Courses({ handleCourse }) {
     }
 
     if (check === "Add Partnership") {
-      setEditContent("");
       setAddPartnershipModal(true);
     }
 
     if (check === "Add Schedule") {
-      setEditContent("");
       setAddScheduleModal(true);
     }
 
@@ -184,9 +218,9 @@ function Courses({ handleCourse }) {
       const deleteData = new FormData();
 
       deleteData.append("courseId", item?.courseId);
-      // formData.append("patch", false);
+      deleteData.append("patch", false);
       deleteData.append("deleterecord", true);
-      // formData.append("restore", false);
+      deleteData.append("restore", false);
       // formData.append("patchData", patchData);
       // formData.append("courseImage", item?.courseImage);
       // formData.append("courseVideoAd", item?.courseVideoAd);
@@ -365,60 +399,81 @@ function Courses({ handleCourse }) {
     setQuestionIsOpen(!questionIsOpen);
   };
 
+  const [cloneisOpen, setCloneIsOpen] = useState(false);
+
+  const toggleCloneModal = () => {
+    setCloneIsOpen(!cloneisOpen);
+  };
+
   const handleEditModal = () => {
     toggleQuestionModal();
   };
 
+  const handleCloneModal = () => {
+    toggleCloneModal();
+  };
+
+  const [showEntries, setShowEntries] = useState(5);
+
+  const handleShowEntriesChange = (e) => {
+    setShowEntries(e.target.value);
+  };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = showEntries;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Get the current page of items
+  const filter = courseInfo?.slice(startIndex, endIndex);
+
+  // Function to handle page changes
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Determine if "Previous" and "Next" links should be disabled
+  const isPrevDisabled = currentPage === 1;
+  const isNextDisabled = endIndex >= courseInfo?.length;
+
   return (
     <>
       <div>
-        <div className="m-2 p-2 mb-2">
-          <div className="p-3" style={{ marginTop: "0rem" }}>
-            <div className="d-flex" style={{ justifyContent: "right" }}>
-              <div className="mt d-flex gap-2">
-                <div>
-                  
-                </div>
-                {/* <p className="text-end d-flex gap-1 mt-1">
-                  <i
-                    className="mdi mdi-view-headline fs-20 btn btn-icon btn-light"
-                    onClick={() => setView("list")}
-                  ></i>
-                  <i
-                    className="bx bxl-microsoft fs-20 btn btn-icon btn-light"
-                    onClick={() => setView("grid")}
-                  ></i>
-                </p> */}
-                <div className="d-flex" >
-                  <div>
-                    <button
-                      className="btn btn-dark p-3"
-                      onClick={() => {
-                        handleCourse();
-                      }}
-                      style={{ backgroundColor: "#244a59" }}
-                    >
-                      Add New Course
-                    </button>
-                  </div>
-                </div>
+       
+
+        {/* <div
+          className="d-flex mx-3"
+          style={{ justifyContent: "space-between", marginTop: "-4rem" }}
+        >
+          <div className="d-flex" style={{ justifyContent: "space-between" }}>
+            <div className="d-flex align-items-center p-3">
+              <span style={{ marginRight: "0.5rem" }}>Show</span>
+              <div style={{ marginRight: "0.5rem" }}>
+                <Input
+                  style={{ width: "4rem" }}
+                  type="number"
+                  value={showEntries}
+                  onChange={handleShowEntriesChange}
+                />
               </div>
+              <span>entries</span>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="m-2">
+        {/* <div className="m-2">
           <div className="p-3">
             <div className="d-flex" style={{ justifyContent: "space-between" }}>
-              <div className="mt-">
-                {/* <h4 className="fw-bolder mt-5">Interview Questions</h4>
+              <div className="mt-"> */}
+        {/* <h4 className="fw-bolder mt-5">Interview Questions</h4>
                 <p className="">
                   <b>Dashboard</b> / Interview Questions
                 </p> */}
-              </div>
+        {/* </div>
 
               <div className="d-flex gap-2">
-                {/* <p className="text-end ">
+                <p className="text-end ">
                   <select className="form-select p-3">
                     <option>Select Category </option>
                     <option>Salary/Benefits </option>
@@ -435,8 +490,8 @@ function Courses({ handleCourse }) {
                     <option>Workplace</option>
                     <option>Performance </option>
                   </select>
-                </p> */}
-                {/* <p className="text-end ">
+                </p>
+                <p className="text-end ">
                   <button
                     className="btn btn-dark p-3"
                     style={{ backgroundColor: "#244a59" }}
@@ -444,21 +499,21 @@ function Courses({ handleCourse }) {
                   >
                     Search
                   </button>
-                </p> */}
+                </p>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="p-2">
           <Row>
-            <Col lg={12} className="mt-0">
+            <Col lg={12} className="mt-2">
               <Card>
                 <CardBody>
                   <div id="customerList">
                     <div
-                      className="table-responsive table-card mt-0 mb-1"
-                      style={{ height: "50vh" }}
+                      className="table-responsive table-card mt-3 mb-1"
+                      style={{ height: "60vh" }}
                     >
                       <table
                         className="table align-middle table-nowrap"
@@ -500,7 +555,7 @@ function Courses({ handleCourse }) {
                         </thead>
                         <tbody className="list form-check-all">
                           {loading === false && error === false ? (
-                            courseInfo?.map((item, key) => (
+                            filter?.map((item, key) => (
                               <tr key={key}>
                                 <td className="location">
                                   {item?.courseTitle}
@@ -607,7 +662,7 @@ function Courses({ handleCourse }) {
                             <tr>
                               <td colSpan="7" className="text-center mt-5">
                                 <div className="d-flex align-items-center justify-content-center">
-                                  {loading === false ? (
+                                  {courseInfo?.length === 0 ? (
                                     <>
                                       <p className="fw-light mt-5">
                                         You currently don't courses set up.
@@ -619,7 +674,9 @@ function Courses({ handleCourse }) {
                                         size="lg"
                                         className="me-2 mt-5"
                                         style={{ color: "#244a59" }}
-                                      ></Spinner>
+                                      >
+                                        Loading...
+                                      </Spinner>
                                     </>
                                   )}
                                 </div>
@@ -630,20 +687,40 @@ function Courses({ handleCourse }) {
                       </table>
                     </div>
 
-                    {/* <div className="d-flex justify-content-end">
+                    <div className="d-flex justify-content-end">
                       <div className="pagination-wrap hstack gap-2">
                         <Link
-                          className="page-item pagination-prev disabled"
+                          className={`page-item pagination-prev ${
+                            isPrevDisabled ? "disabled" : ""
+                          }`}
                           to="#"
+                          onClick={() =>
+                            !isPrevDisabled && handlePageChange(currentPage - 1)
+                          }
                         >
                           Previous
                         </Link>
+                        <span
+                          className="page-number p-2 px-3 text-light"
+                          style={{ backgroundColor: "#244a59" }}
+                        >
+                          {" "}
+                          {currentPage}
+                        </span>
                         <ul className="pagination listjs-pagination mb-0"></ul>
-                        <Link className="page-item pagination-next" to="#">
+                        <Link
+                          className={`page-item pagination-next ${
+                            isNextDisabled ? "disabled" : ""
+                          }`}
+                          to="#"
+                          onClick={() =>
+                            !isNextDisabled && handlePageChange(currentPage + 1)
+                          }
+                        >
                           Next
                         </Link>
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                 </CardBody>
               </Card>
@@ -651,6 +728,20 @@ function Courses({ handleCourse }) {
           </Row>
         </div>
       </div>
+
+      {/* <div>
+        <p className="p-3 mb-5" style={{ position: "relative", top: "-0rem" }}>
+          Showing {"1"} to {showEntries} of {courseInfo?.length} entries
+        </p>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br /> */}
 
       {/* Add Modal */}
       <Modal
@@ -684,7 +775,7 @@ function Courses({ handleCourse }) {
               ></Button>
             </p>
 
-            <h5 className="text-center"> Content</h5>
+            <h5 className="text-center">Add Content</h5>
 
             <Col lg={20} className="mb-3">
               <label>Title</label>
@@ -818,7 +909,7 @@ function Courses({ handleCourse }) {
               ></Button>
             </p>
 
-            <h5 className="text-center"> Partnership</h5>
+            <h5 className="text-center">Add Partnership</h5>
 
             <Col lg={20} className="mb-3">
               <label>Institution Name</label>
@@ -1063,19 +1154,7 @@ function Courses({ handleCourse }) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                {error === false && content?.length < 0 ? (
-                  <>
-                    <p className="fw-light">No contents have been setup</p>
-                  </>
-                ) : (
-                  <>
-                    <Spinner
-                      size="lg"
-                      className="me-2 mt-5"
-                      style={{ color: "#244a59" }}
-                    ></Spinner>
-                  </>
-                )}
+                No content has been set for this course
               </p>
             )}
           </div>
@@ -1144,19 +1223,7 @@ function Courses({ handleCourse }) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                {error === false && partnership?.length < 0 ? (
-                  <>
-                    <p className="fw-light">No partnerships have been setup</p>
-                  </>
-                ) : (
-                  <>
-                    <Spinner
-                      size="lg"
-                      className="me-2 mt-5"
-                      style={{ color: "#244a59" }}
-                    ></Spinner>
-                  </>
-                )}
+                No content has been set for this course
               </p>
             )}
 
@@ -1236,19 +1303,7 @@ function Courses({ handleCourse }) {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                {error === false && schedule?.length < 0 ? (
-                  <>
-                    <p className="fw-light">No schedules have been setup</p>
-                  </>
-                ) : (
-                  <>
-                    <Spinner
-                      size="lg"
-                      className="me-2 mt-5"
-                      style={{ color: "#244a59" }}
-                    ></Spinner>
-                  </>
-                )}
+                No content has been set for this course
               </p>
             )}
 
@@ -1273,6 +1328,26 @@ function Courses({ handleCourse }) {
         <ModalHeader toggle={toggleQuestionModal}></ModalHeader>
         <ModalBody>
           <EditCourse data={editData} handleEditModal={handleEditModal} />
+        </ModalBody>
+        {/* <ModalFooter>
+          <Button color="secondary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>
+            Save
+          </Button>
+          <Button color="primary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>
+            Add Questions
+          </Button>
+        </ModalFooter> */}
+      </Modal>
+
+      <Modal
+        isOpen={cloneisOpen}
+        toggle={toggleCloneModal}
+        size="xl"
+        className="modal-fullscreen"
+      >
+        <ModalHeader toggle={toggleCloneModal}></ModalHeader>
+        <ModalBody>
+          <CloneCourse handleCloneModal={handleCloneModal} />
         </ModalBody>
         {/* <ModalFooter>
           <Button color="secondary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>

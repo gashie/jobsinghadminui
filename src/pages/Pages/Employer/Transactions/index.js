@@ -24,6 +24,10 @@ const EmployerTransactions = () => {
     }
   };
 
+  const viewReceipt = () => {
+    setjustifyTab("2");
+  };
+
   const [edit, setEdit] = useState(false);
   return (
     <>
@@ -79,7 +83,7 @@ const EmployerTransactions = () => {
                 }}
                 className="scroll-change"
               >
-                <Transactions />
+                <Transactions viewReceipt={viewReceipt}/>
               </TabPane>
 
               <TabPane
@@ -92,7 +96,7 @@ const EmployerTransactions = () => {
                 }}
                 className="scroll-change"
               >
-                <ViewReceipt />
+                <ViewReceipt viewReceipt={viewReceipt} />
               </TabPane>
             </TabContent>
           </CardBody>

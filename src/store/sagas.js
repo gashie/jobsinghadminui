@@ -26,7 +26,7 @@ import ProfileSaga from "./auth/profile/saga";
 // //crm
 // import crmSaga from "./crm/saga";
 // //invoice
-// import invoiceSaga from "./invoice/saga";
+ import invoiceSaga from "./invoice/saga";
 // //mailbox
 // import mailboxSaga from "./mailbox/saga";
 
@@ -90,7 +90,7 @@ export default function* rootSaga() {
     // fork(calendarSaga),
     // fork(ecommerceSaga),
     // fork(crmSaga),
-    // fork(invoiceSaga),
+    fork(invoiceSaga),
     // fork(mailboxSaga),
     // fork(dashboardAnalyticsSaga),
     // fork(dashboardCrmSaga),

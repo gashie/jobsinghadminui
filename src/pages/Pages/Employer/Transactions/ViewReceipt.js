@@ -1,6 +1,19 @@
-import { Container, Button } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Container } from "reactstrap";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const ViewReceipt = () => {
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
+  
+  
+  const itemsData =
+    data && typeof data.itemsData === "string"
+      ? JSON.parse(data.itemsData)
+      : [];
+
   return (
     <>
       <h4
@@ -11,10 +24,7 @@ const ViewReceipt = () => {
       </h4>
 
       <div className="px-4 mx-1">
-        <div
-          className="d-flex mt-4"
-          style={{ justifyContent: "space-between" }}
-        >
+        <div className="d-flex mt-4" style={{ justifyContent: "space-between" }}>
           <div className="mt-5">
             <p style={{ fontWeight: "bolder" }}>Gashie's Technologies</p>
             <p>23 Independent Avenue,</p>
@@ -23,16 +33,12 @@ const ViewReceipt = () => {
           </div>
 
           <div>
-            <p style={{ fontWeight: "bolder", textAlign: "right" }}>
-              Invoice Number
-            </p>
-            <p style={{ textAlign: "right" }}>1025632</p>
+            <p style={{ fontWeight: "bolder", textAlign: "right" }}>Invoice Number</p>
+            <p style={{ textAlign: "right" }}>{data.counter === null ? "" : data?.counter}</p>
             <p style={{ fontWeight: "bolder", textAlign: "right" }}>Date</p>
-            <p style={{ textAlign: "right" }}>23/05/23</p>
-            <p style={{ fontWeight: "bolder", textAlign: "right" }}>
-              Reference
-            </p>
-            <p style={{ textAlign: "right" }}>Invoice number 23</p>
+            <p style={{ textAlign: "right" }}>{formatDate(data.invoiceDate)}</p>
+            <p style={{ fontWeight: "bolder", textAlign: "right" }}>Reference</p>
+            <p style={{ textAlign: "right" }}>{data.invoiceFor}</p>
           </div>
         </div>
 
@@ -53,29 +59,22 @@ const ViewReceipt = () => {
                   </tr>
                 </thead>
                 <tbody className="list form-check-all">
-                  <tr>
-                    <td
-                      className="startDate"
-                      style={{ border: "1px solid black" }}
-                    >
-                      3 Job postings
-                    </td>
-                    <td
-                      className="startDate"
-                      style={{ border: "1px solid black" }}
-                    >
-                      500
-                    </td>
-                  </tr>
+                  {itemsData.map((item, index) => (
+                    <tr key={index}>
+                      <td className="startDate" style={{ border: "1px solid black" }}>
+                        {item.itemName}
+                      </td>
+                      <td className="startDate" style={{ border: "1px solid black" }}>
+                        {item.itemAmount}
+                      </td>
+                    </tr>
+                  ))}
                   <tr>
                     <td className="startDate">
                       <p style={{ textAlign: "right" }}>Total</p>
                     </td>
-                    <td
-                      className="startDate"
-                      style={{ border: "1px solid black" }}
-                    >
-                      500
+                    <td className="startDate" style={{ border: "1px solid black" }}>
+                      {data.grandTotal}
                     </td>
                   </tr>
                 </tbody>

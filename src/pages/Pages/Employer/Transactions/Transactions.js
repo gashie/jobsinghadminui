@@ -14,10 +14,11 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { transactions } from "../../../../store/actions";
+import { jobEditCloneData, transactions } from "../../../../store/actions";
 import { formatDate } from "../../../../Components/Hooks/formatDate";
+import { invoices, makeInvoicePayment } from "../../../../store/invoice/action";
 
-const Transactions = () => {
+const Transactions = ({ viewReceipt }) => {
   const [action, setAction] = useState(false);
   const [takeAction, setTakeAction] = useState("");
 
@@ -52,22 +53,19 @@ const Transactions = () => {
   };
 
   useEffect(() => {
-    dispatch(
-      transactions({
-        transactionFor: "job",
-      })
-    );
+    dispatch(invoices({ viewAction: "" }));
   }, [dispatch]);
 
-  const { transaction, loading, error } = useSelector((state) => ({
-    error: state.Rates.transactionsError,
-    loading: state.Rates.transactionsLoading,
-    transaction: state.Rates.transactions,
+  const { invoiceInfo, loading, error } = useSelector((state) => ({
+    error: state.Invoice.invoiceError,
+    loading: state.Invoice.invoiceLoading,
+    invoiceInfo: state.Invoice.invoice,
   }));
 
   return (
     <>
       <div>
+        <h4>List of transactions</h4>
         {/* <Container  className="d-flex" style={{justifyContent: 'right'}} fluid>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
@@ -122,14 +120,15 @@ const Transactions = () => {
                                         />
                                       </div>
                                     </th> */}
-                          <th data-sort="title">Company Name</th>
-                          <th data-sort="location">Job Title</th>
-                          <th data-sort="startDate">Rate Title</th>
-                          <th data-sort="expDate">Rate Price</th>
-                          <th data-sort="expDate">Email</th>
-                          <th data-sort="expDate">Payment Description</th>
-                          <th data-sort="jobType">Paid Amount</th>
-                          <th data-sort="jobType">Paid Date</th>
+                          <th data-sort="title">Date/Time</th>
+                          <th data-sort="location">Transaction ID</th>
+                          <th data-sort="startDate">Jobs Posted</th>
+                          <th data-sort="expDate">Amount Due</th>
+                          <th data-sort="expDate">Payment Amount</th>
+                          <th data-sort="expDate">Cash Balance</th>
+                          <th data-sort="jobType">Generate Receipt</th>
+                          <th data-sort="jobType">Pay</th>
+
                           {/* <th className="sort" data-sort="jobType">
                             Status
                           </th>
@@ -143,25 +142,47 @@ const Transactions = () => {
                       </thead>
                       <tbody className="list form-check-all">
                         {loading === false && error === false ? (
-                          transaction?.map((item, key) => (
+                          invoiceInfo?.map((item, key) => (
                             <tr key={key}>
                               <td className="id">
                                 <Link to="#" className="fw-medium link-primary">
-                                  {item?.companyName}
+                                  {formatDate(item?.createdAt)}
                                 </Link>
                               </td>
                               <td className="customer_name">
-                                {item?.jobTitle}
+                                {item?.counter === "null" ? "-" : item?.counter}
                               </td>
-                              <td className="location">{item?.rateTitle}</td>
-                              <td className="location">{item?.ratePrice}</td>
-                              <td className="location">{item?.email}</td>
+                              <td className="location">{" - "}</td>
                               <td className="location">
-                                {item?.paymentDescription}
+                                &#x20B5;{item?.grandTotal}
                               </td>
-                              <td className="location">{item?.amount}</td>
+                              <td className="location">{" - "}</td>
+                              <td className="location">{" - "}</td>
                               <td className="location">
-                                {formatDate(item?.createdAt)}
+                                <Button
+                                  color="danger"
+                                  onClick={() => {
+                                    viewReceipt();
+                                    dispatch(jobEditCloneData(item));
+                                  
+                                  }}
+                                >
+                                  View receipt
+                                </Button>
+                              </td>
+                              <td className="location">
+                                <Button
+                                  color="danger"
+                                  onClick={() => {
+                                    // viewReceipt();
+                                    // dispatch(jobEditCloneData(item));
+                                    dispatch(makeInvoicePayment({
+                                      invoiceId: item?.invoiceId
+                                    }))
+                                  }}
+                                >
+                                  Pay
+                                </Button>
                               </td>
                             </tr>
                           ))
@@ -182,7 +203,7 @@ const Transactions = () => {
                                 ) : (
                                   <>
                                     <p className="fw-light mt-5">
-                                      You currently don't have rate cards.
+                                      You currently don't have transactions.
                                     </p>
                                   </>
                                 )}

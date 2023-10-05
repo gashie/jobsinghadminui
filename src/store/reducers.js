@@ -33,7 +33,7 @@ import Profile from "./auth/profile/reducer";
 // import Crm from "./crm/reducer";
 
 // //Invoice
-// import Invoice from "./invoice/reducer";
+ import Invoice from "./invoice/reducer";
 
 // //Mailbox
 // import Mailbox from "./mailbox/reducer";
@@ -95,7 +95,7 @@ const rootReducer = combineReducers({
   // Crypto,
   // Tickets,
   // Crm,
-  // Invoice,
+   Invoice,
   // Mailbox,
   // DashboardAnalytics,
   // DashboardCRM,

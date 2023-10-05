@@ -342,6 +342,9 @@ export const TRANSACTIONS = `${version}/transactionhistory/`
 export const GENERAL_JOBS = `${version}/public/jobdata`
 
 
+export const INVOICES = `${version}/viewmyunpaid/`
+export const PAY_INVOICE = `${version}/payinvoice/`
+
 
 
 
