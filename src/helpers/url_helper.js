@@ -339,6 +339,8 @@ export const CHANGE_PASS = `${version}/passwordreset/`
 
 export const TRANSACTIONS = `${version}/transactionhistory/`
 
+export const GENERAL_JOBS = `${version}/public/jobdata`
+
 
 
 

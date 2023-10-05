@@ -35,6 +35,9 @@ import {
   UPDATE_LOGO,
   UPDATE_LOGO_SUCCESS,
   UPDATE_LOGO_ERROR,
+  GENERAL_JOBS_ERROR,
+  GENERAL_JOBS_SUCCESS,
+  GENERAL_JOBS,
 } from "./actionTypes";
 
 // Action creators for CREATE_JOB_STATUS
@@ -133,6 +136,21 @@ export const jobsError = (error) => ({
   payload: error,
 });
 
+export const generalJobs = (data) => ({
+  type: GENERAL_JOBS,
+  payload: data,
+});
+
+export const generalJobsSuccess = (data) => ({
+  type: GENERAL_JOBS_SUCCESS,
+  payload: data,
+});
+
+export const genralJobsError = (error) => ({
+  type: GENERAL_JOBS_ERROR,
+  payload: error,
+});
+
 // Action creators for APPROVE_JOBS
 export const approveJobs = (data) => ({
   type: APPROVE_JOBS,
@@ -206,6 +224,12 @@ export const employerApplicationsError = (error) => ({
   type: EMPLOYER_APPLICATIONS_ERROR,
   payload: error,
 });
+
+export const jobEditCloneData = (data) => ({
+  type: "JOB_EDIT_CLONE", 
+  payload: data
+
+})
 
 
 

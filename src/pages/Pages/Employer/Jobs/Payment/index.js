@@ -29,6 +29,7 @@ import {
   Input,
 } from "reactstrap";
 import { makePayment } from "../../../../../store/actions";
+import { useNavigate } from "react-router-dom";
 
 function Index({togglePaymentModal, payLater}) {
   const { loading, error, rateInfo } = useSelector((state) => ({
@@ -56,9 +57,11 @@ function Index({togglePaymentModal, payLater}) {
    const triggerLink = () =>{
     if(payloading === false && payError === false){
       togglePaymentModal()
-      payLater()
+      // 
     }
   }
+
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -75,6 +78,7 @@ function Index({togglePaymentModal, payLater}) {
     };
 
     dispatch(makePayment(payData));
+    navigate("/employer-jobs")
     triggerLink()
   };
 

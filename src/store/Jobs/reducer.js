@@ -35,6 +35,9 @@ import {
   UPDATE_LOGO,
   UPDATE_LOGO_SUCCESS,
   UPDATE_LOGO_ERROR,
+  GENERAL_JOBS,
+  GENERAL_JOBS_SUCCESS,
+  GENERAL_JOBS_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -61,7 +64,10 @@ const initialState = {
   employerApplicationsError: null,
   logoUpdateLoading: false,
   logoUpdateError: null,
-  
+  generalJobsLoaing: false,
+  generalJobsError: false,
+  generalJobs: [],
+  editCloneData: {},
 };
 
 const Jobs = (state = initialState, action) => {
@@ -222,6 +228,31 @@ const Jobs = (state = initialState, action) => {
         ...state,
         logoUpdateLoading: false,
         logoUpdateError: action.payload,
+      };
+      case GENERAL_JOBS: 
+      return{
+        ...state, 
+        generalJobsLoaing: false, 
+        generalJobsError: false
+      }
+      case GENERAL_JOBS_SUCCESS: 
+      return{
+        ...state, 
+        generalJobsLoaing: false, 
+        generalJobsError: false,
+        generalJobs: action.payload
+      }
+      case GENERAL_JOBS_ERROR: 
+      return{
+        ...state, 
+        generalJobsLoaing: false, 
+        generalJobsError: true, 
+        generalJobs: action.payload
+      }
+      case "JOB_EDIT_CLONE":
+      return {
+        ...state,
+        editCloneData: action.payload,
       };
     default:
       return state;

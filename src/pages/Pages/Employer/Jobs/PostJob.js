@@ -12,6 +12,7 @@ import {
   ModalFooter,
   FormGroup,
   Label,
+  FormFeedback,
 } from "reactstrap";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,18 +20,67 @@ import Editor from "./Editor";
 import {
   category,
   createJob,
+  employerCompanies,
   employers,
   jobStatus,
+  rateCard,
 } from "../../../../store/actions";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AddQuestion from "./Questions";
-import { rateCard } from "../../../../store/Rates/action";
-import Payment from './Payment/index'
+import Payment from "./Payment/index";
 
+const AddJob = () => {
+  const handleEditorChange = (event, editor) => {
+    const data = editor.getData();
+    console.log(data); // This will log the content of the editor to the console
+  };
 
-const AddJob = ({payLater}) => {
+  const navigate = useNavigate();
+
+  const [modal_standard, setmodal_standard] = useState(false);
+
+  function tog_standard() {
+    setmodal_standard(!modal_standard);
+  }
+
+  const [selectedOption, setSelectedOption] = useState("Select one");
+
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+
+  // const handleCheckboxChange = (event) => {
+  //   const value = event.target.value;
+  //   if (event.target.checked) {
+  //     setSelectedCheckboxes([...selectedCheckboxes, value]);
+  //   } else {
+  //     setSelectedCheckboxes(
+  //       selectedCheckboxes.filter((item) => item !== value)
+  //     );
+  //   }
+  // };
+
+  // Sample list of checkbox items
+  const list1 = [{ id: 1, label: "Use auto responder" }];
+  const list2 = [
+    { id: 1, label: "Equal or more than passing score" },
+    { id: 2, label: "Less than passing score" },
+  ];
+  const list3 = [
+    { id: 1, label: "Equal or more than passing score" },
+    { id: 2, label: "Less than passing score" },
+  ];
+  const list4 = [
+    { id: 1, label: "Yes/No" },
+    { id: 2, label: "List of answers with multiple choice" },
+    { id: 3, label: "List of answers with sinlge choice" },
+  ];
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(employers({ viewAction: "notdeleted", userType: 3 }));
@@ -48,11 +98,10 @@ const AddJob = ({payLater}) => {
       categoryInfo: state.Industry.categoryInfo,
     }));
 
-  const { jobloading, joberror, jobsInfo, userInfo } = useSelector((state) => ({
+  const { jobloading, joberror, jobsInfo } = useSelector((state) => ({
     jobloading: state.Jobs.loading,
     joberror: state.Jobs.error,
-    jobsInfo: state.Jobs.jobStatusInfo,
-    userInfo: state.Login.userInfo
+    jobsInfo: state.Jobs.jobsInfo,
   }));
 
   const [inputValue, setInputValue] = useState("");
@@ -80,11 +129,32 @@ const AddJob = ({payLater}) => {
     }
   };
 
+  const [email, setEmail] = useState("Redirect to my website");
+  const [url, setUrl] = useState("");
+
+  const [questionName, setQuestionName] = useState("Redirect to my website");
   const [description, setDescription] = useState();
 
   const handleEditorContentChange = (content) => {
     setDescription(content);
   };
+
+  const updateEditorData = (editorId, html) => {
+    setEditorData({
+      ...editorData,
+      [editorId]: html,
+    });
+  };
+
+  const [editorData, setEditorData] = useState({
+    editor1: "",
+    editor2: "",
+    // Add more editors as needed
+  });
+
+  const {user} = useSelector((state) => ({
+    user: state.Login.userInfo
+  }))
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -108,10 +178,10 @@ const AddJob = ({payLater}) => {
     },
     validateOnChange: true,
     // validationSchema: Yup.object({
-    //   rateTitle: Yup.string().required("Please enter a rate title"),
-    //   rateDescription: Yup.string().required("Please enter a rate description"),
-    //   ratePrice: Yup.string().required("Please enter rate price"),
-    //   rateLimit: Yup.string().required("Please enter rate limit"),
+    //   goLiveDate: Yup.date().required("Please select go live date"),
+    //   jobCategoryId: Yup.string().required("Please job category"),
+    //   companyId: Yup.string().required("Please a company"),
+    //   jobTitle: Yup.string().required("Please a job title"),
     // }),
     onSubmit: (values) => {
       const finalData = {
@@ -119,9 +189,9 @@ const AddJob = ({payLater}) => {
         jobCategoryId: values.jobCategoryId,
         jobLocation: finalLocations,
         jobSalaryAmount: values.jobSalaryAmount,
-        companyId: userInfo?.userInfo?.company?.companyId,
+        companyId: user?.userInfo?.company?.companyId,
         isCompanyConfidential: isConfidential,
-        jobDescription: description,
+      
         jobSkills: [],
         jobSalaryCurrency: "Ghc",
         jobStatus: values.jobStatusId,
@@ -130,12 +200,16 @@ const AddJob = ({payLater}) => {
         yearsOfExperience: values.yearsOfExperience,
         appliedEmail: values.appliedEmail,
         education: values.education,
+        howToApply: editorData.editor2,
+        jobDescription: editorData.editor2,
         goLiveDate: values.goLiveDate,
-      
       };
 
-      dispatch(createJob(finalData));
       toggleModal();
+      dispatch(createJob(finalData));
+
+      // navigate("/manage-jobs");
+
       validation.resetForm();
     },
   });
@@ -148,13 +222,24 @@ const AddJob = ({payLater}) => {
     setIsConfidential(!isConfidential);
   };
 
+  const { companyLoading, companyInfo, companyError } = useSelector(
+    (state) => ({
+      companyLoading: state.Users.companiesLoading,
+      companyError: state.Users.companiesError,
+      companyInfo: state.Users.employerCompanies,
+    })
+  );
+
+  // useEffect(() => {
+  //   dispatch(employerCompanies({ viewAction: "" }));
+  // }, [dispatch]);
+
+  //Payment Modals
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
-
-  console.log(validation.values.jobCategoryId)
 
   const [secondIsOpen, setSecondIsOpen] = useState(false);
 
@@ -168,30 +253,79 @@ const AddJob = ({payLater}) => {
     setQuestionIsOpen(!questionIsOpen);
   };
 
-
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 
   const togglePaymentModal = () => {
     setIsPaymentOpen(!isPaymentOpen);
   };
 
-  useEffect(()=>{
-    dispatch(rateCard({viewAction: ""}))
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(rateCard({ viewAction: "" }));
+  }, [dispatch]);
 
   return (
     <>
       <div className="m-2 p-2 mb-5">
-        <div className="p-3">
+        {/* <div className="p-3 mt-5" style={{ marginTop: "0rem" }}>
+          <div className="d-flex" style={{ justifyContent: "space-between" }}>
+            <div className="mt-">
+              <h4 className="fw-bolder mt-5">Add Job</h4>
+              <p className="">
+                <b>Dashboard</b> / Add Job
+              </p>
+            </div>
+
+            <div className="mt-5">
+              <Link to="/manage-jobs">
+                <p className="text-end mt-0">
+                  <button
+                    className="btn text-light p-3"
+                    style={{ backgroundColor: "#00d084" }}
+                  >
+                    Back to Jobs
+                  </button>
+                </p>
+              </Link>
+            </div>
+          </div>
+        </div> */}
+
+        <Card className="p-3">
           <Form
             onSubmit={(e) => {
               e.preventDefault();
               validation.handleSubmit();
+              // toggleSecondModal();
               return false;
             }}
           >
             <Row>
               {/* left */}
+
+              {/* <Col md={20}>
+                <div className="mb-3 mt-4">
+                  <Label for="emailidInput" className="form-label">
+                    Employer
+                  </Label>
+                  <select
+                    className="form-select p-3"
+                    id="companyId"
+                    value={validation.values.companyId}
+                    onChange={validation.handleChange}
+                  >
+                    <option>Select Company</option>
+                    {companyLoading === false && companyError === false ? (
+                      companyInfo?.map((item, key) => (
+                        <option key={key} value={item?.companyId}>
+                          {item?.companyName}
+                        </option>
+                      ))
+                    ) : (
+                      <option>loading employers...</option>
+                    )}
+                  </select>
+                </div>
+              </Col> */}
 
               <Col>
                 <label>Job Title</label>
@@ -207,6 +341,11 @@ const AddJob = ({payLater}) => {
                     />
                   </Col>
                 </Row>
+                {validation.touched.jobTitle && validation.errors.jobTitle ? (
+                  <FormFeedback type="invalid">
+                    <div>{validation.errors.jobTitle}</div>
+                  </FormFeedback>
+                ) : null}
 
                 <label>Years of Experience</label>
                 <Row className="mb-3">
@@ -215,7 +354,6 @@ const AddJob = ({payLater}) => {
                       type="number"
                       className="form-control p-3"
                       id="yearsOfExperience"
-                     
                       onChange={validation.handleChange}
                       value={validation.values.yearsOfExperience || ""}
                     />
@@ -229,7 +367,7 @@ const AddJob = ({payLater}) => {
                       type="date"
                       className="form-control p-3"
                       id="goLiveDate"
-                     
+                      name="goLiveDate"
                       placeholder=""
                       onChange={validation.handleChange}
                       value={validation.values.goLiveDate || ""}
@@ -242,12 +380,12 @@ const AddJob = ({payLater}) => {
                   <Col lg={15}>
                     <select
                       className="form-select p-3"
-                    
+                      name="jobCategoryId"
                       id="jobCategoryId"
                       value={validation.values.jobCategoryId}
                       onChange={validation.handleChange}
                     >
-                       <option>Select Category</option>
+                      <option>Select Category</option>
                       {catLoading === false && catError === false ? (
                         categoryInfo?.map((item, key) => (
                           <option key={key} value={item?.jobCategoryId}>
@@ -260,7 +398,6 @@ const AddJob = ({payLater}) => {
                     </select>
                   </Col>
                 </Row>
-
 
                 <label>Education Level</label>
                 <Row className="mb-3">
@@ -302,7 +439,7 @@ const AddJob = ({payLater}) => {
                   <Col lg={12}>
                     <select
                       className="form-select p-3"
-                    
+                      name="jobStatusId"
                       id="jobStatusId"
                       value={validation.values.jobStatusId}
                       onChange={validation.handleChange}
@@ -332,35 +469,33 @@ const AddJob = ({payLater}) => {
                 </Row>
 
                 {validation.values.applyMode === "Email" ? (
-                   <Row className="mb-3">
-                   <label>Apply Email</label>
-                   <Col lg={12}>
-                     <Input
-                       className="form-select p-3"
-                       
-                       id="appliedEmail"
-                       type="text"
-                       value={validation.values.appliedEmail}
-                       onChange={validation.handleChange}
-                     />
-                     
-                   
-                   </Col>
-                 </Row>
+                  <Row className="mb-3">
+                    <label>Apply Email</label>
+                    <Col lg={12}>
+                      <Input
+                        className="form-select p-3"
+                        name="appliedEmail"
+                        id="appliedEmail"
+                        type="text"
+                        value={validation.values.appliedEmail}
+                        onChange={validation.handleChange}
+                      />
+                    </Col>
+                  </Row>
                 ) : validation.values.applyMode === "Website" ? (
                   <Row className="mb-3">
-                  <label>Apply Link</label>
-                  <Col lg={12}>
-                    <Input
-                      className="form-select p-3"
-                     
-                      id="applyLink"
-                      type='text'
-                      value={validation.values.applyLink}
-                      onChange={validation.handleChange}
-                   />
-                  </Col>
-                </Row>
+                    <label>Apply Link</label>
+                    <Col lg={12}>
+                      <Input
+                        className="form-select p-3"
+                        name="applyLink"
+                        id="applyLink"
+                        type="text"
+                        value={validation.values.applyLink}
+                        onChange={validation.handleChange}
+                      />
+                    </Col>
+                  </Row>
                 ) : (
                   ""
                 )}
@@ -394,6 +529,7 @@ const AddJob = ({payLater}) => {
                       />
                     </div>
                   </Col>
+                  <p>Please hit space key after entering location.</p>
                 </Row>
 
                 <Row className="mb-3">
@@ -418,7 +554,16 @@ const AddJob = ({payLater}) => {
                 Description
               </h6>
               <Col lg={12}>
-                <Editor onContentChange={handleEditorContentChange} />
+                <Editor editorId="editor2" transmitHtml={updateEditorData} />
+              </Col>
+            </Row>
+
+            <Row className="mt-5">
+              <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
+                How to apply
+              </h6>
+              <Col lg={12}>
+                <Editor editorId="editor2" transmitHtml={updateEditorData} />
               </Col>
             </Row>
 
@@ -432,8 +577,284 @@ const AddJob = ({payLater}) => {
               </button>
             </div>
           </Form>
-        </div>
+        </Card>
       </div>
+
+      {/* Modals */}
+      {/* 
+      <Button color="primary" onClick={() => tog_standard()}>
+        Standard Modal
+      </Button> */}
+
+      <Modal
+        id="myModal"
+        isOpen={modal_standard}
+        toggle={() => {
+          tog_standard();
+        }}
+        style={{ borderRadius: "1rem" }}
+      >
+        <div
+          className="d-flex p-3"
+          style={{
+            justifyContent: "space-between",
+            backgroundColor: "#244a59",
+          }}
+        >
+          <div></div>
+
+          <div>
+            <h5 className="modal-title text-light" id="myModalLabel">
+              Application settings
+            </h5>
+          </div>
+          <div className="text-end">
+            <Button
+              style={{
+                backgroundColor: "#4e6d79",
+                borderRadius: "0.7rem",
+                color: "#304852",
+              }}
+              type="button"
+              className="btn-close p-1"
+              onClick={() => {
+                setmodal_standard(false);
+                setSelectedOption("Select one");
+              }}
+              aria-label="Close"
+            ></Button>
+          </div>
+        </div>
+
+        <ModalBody>
+          {selectedOption === "Select one" ? (
+            <Row className="mb-3">
+              <Col lg={15}>
+                <label>Receive application:</label>
+                <select
+                  className="form-select p-3"
+                  onChange={handleSelectChange}
+                  value={selectedOption}
+                >
+                  <option>Select one</option>
+                  <option>Redirect to my website</option>
+                  <option>Receive via email</option>
+                  {/* <option>Application tracker</option> */}
+                </select>
+              </Col>
+            </Row>
+          ) : selectedOption === "Application tracker" ? (
+            <Row>
+              <Col xl={9} md={9} className="">
+                <label className="fs-11">
+                  Accept resume with these keywords
+                </label>
+                <Input
+                  type="text"
+                  className="form-control p-3"
+                  id="websitetext"
+                  placeholder=""
+                />
+                <p className="fw-light fs-10 mt-2">
+                  Please separate each keyword with comma. eg. Banking, Nurse
+                </p>
+              </Col>
+
+              <Col xl={3} md={3}>
+                <label className="fs-11"></label>
+                <select className="form-select p-3 form-control mt-2">
+                  <option>None</option>
+                  <option>...</option>
+                </select>
+              </Col>
+
+              <hr className="mt-3" />
+
+              <h6 className="mt-2">Screening questionnaires</h6>
+
+              <Row>
+                <Col xl={20} md={20} className="mt-4">
+                  <label className="fs-11">Question Name</label>
+                  <Input
+                    type="text"
+                    className="form-control p-3"
+                    id="websitetext"
+                    placeholder="Enter question name"
+                  />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xl={20} md={20} className="mt-4">
+                  <label className="fs-11">Passing score</label>
+                  <Input
+                    type="text"
+                    className="form-control p-3"
+                    id="websitetext"
+                    placeholder="Select passing score"
+                  />
+                </Col>
+              </Row>
+
+              {list1.map((item) => (
+                <Row key={item.id} className="mt-3">
+                  <FormGroup check>
+                    <Label check>
+                      <Input
+                        type="checkbox"
+                        value={item.label}
+                        checked={selectedCheckboxes.includes(item.label)}
+                        onChange={handleCheckboxChange}
+                      />{" "}
+                      {item.label}
+                    </Label>
+                  </FormGroup>
+                </Row>
+              ))}
+
+              <p className="mt-3">
+                Send auto-reply email to candidates whose score is
+              </p>
+              {list2.map((item) => (
+                <Row key={item.id}>
+                  <FormGroup check>
+                    <Label check>
+                      <Input
+                        type="checkbox"
+                        value={item.label}
+                        checked={selectedCheckboxes.includes(item.label)}
+                        onChange={handleCheckboxChange}
+                      />{" "}
+                      {item.label}
+                    </Label>
+                  </FormGroup>
+                </Row>
+              ))}
+              <p className="mt-3">
+                Send auto-reply email to candidates whose score is
+              </p>
+              {list3.map((item) => (
+                <Row key={item.id}>
+                  <FormGroup check>
+                    <Label check>
+                      <Input
+                        type="checkbox"
+                        value={item.label}
+                        checked={selectedCheckboxes.includes(item.label)}
+                        onChange={handleCheckboxChange}
+                      />{" "}
+                      {item.label}
+                    </Label>
+                  </FormGroup>
+                </Row>
+              ))}
+              <p className="mt-3">Question answer type</p>
+              {list4.map((item) => (
+                <Row key={item.id}>
+                  <FormGroup check>
+                    <Label check>
+                      <Input
+                        type="checkbox"
+                        value={item.label}
+                        checked={selectedCheckboxes.includes(item.label)}
+                        onChange={handleCheckboxChange}
+                      />{" "}
+                      {item.label}
+                    </Label>
+                  </FormGroup>
+                </Row>
+              ))}
+            </Row>
+          ) : selectedOption === "Receive via email" ? (
+            <Row>
+              <h6 className="mt-2">Screening questionnaires</h6>
+
+              <div>
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <label className="fs-11">Receive application</label>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="websitetext"
+                      placeholder="Enter question name"
+                      value={questionName} // Use state variable for value
+                      onChange={(e) => setQuestionName(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="websitetext"
+                      placeholder="Enter url (eg. http://email@gmail.com.com)"
+                      value={url} // Use state variable for value
+                      onChange={(e) => setUrl(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Row>
+          ) : selectedOption === "Redirect to my website" ? (
+            <Row>
+              <h6 className="mt-2">Screening questionnaires</h6>
+
+              <div>
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <label className="fs-11">Receive application</label>
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="emailtext"
+                      placeholder="Enter email"
+                      value={email} // Use state variable for value
+                      onChange={(e) => setEmail(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col xl={20} md={20} className="mt-4">
+                    <Input
+                      type="text"
+                      className="form-control p-3"
+                      id="urltext"
+                      placeholder="Enter url (eg. email@gmail.com)"
+                      value={url} // Use state variable for value
+                      onChange={(e) => setUrl(e.target.value)} // Update state on change
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Row>
+          ) : (
+            ""
+          )}
+        </ModalBody>
+
+        <div className="text-start p-3">
+          <Button
+            className="btn btn-dark text-end"
+            style={{ backgroundColor: "#244a59" }}
+          >
+            Apply settings
+          </Button>{" "}
+          <Button
+            className="btn btn-light"
+            style={{ border: "1px solid #244a59" }}
+            onClick={() => {
+              tog_standard();
+              setSelectedOption("Select one");
+            }}
+          >
+            Cancel
+          </Button>
+        </div>
+      </Modal>
 
       {/* First Step */}
       <Modal isOpen={modalIsOpen} toggle={toggleModal}>
@@ -443,14 +864,17 @@ const AddJob = ({payLater}) => {
         </ModalBody>
         <ModalFooter>
           <Button
-            color="secondary"
-            onClick={toggleModal}
+            className="btn btn-dark"
+            onClick={()=>{
+              toggleModal()
+              toggleSecondModal()
+            }}
             style={{ backgroundColor: "#244a59" }}
           >
             Save
           </Button>
           <Button
-            color="primary"
+            className="btn btn-dark"
             onClick={() => {
               toggleModal();
               toggleQuestionModal();
@@ -467,39 +891,46 @@ const AddJob = ({payLater}) => {
         <ModalHeader toggle={toggleSecondModal}></ModalHeader>
         <ModalBody>Would you like to Pay for Job Posting Now?</ModalBody>
         <ModalFooter>
-          <Button className="btn btn-dark" onClick={()=>{
-            toggleSecondModal()
-            togglePaymentModal()
-          }} style={{backgroundColor: '#244a59'}} >
+          <Button
+            className="btn btn-dark"
+            onClick={() => {
+              toggleSecondModal();
+              togglePaymentModal();
+            }}
+            style={{ backgroundColor: "#244a59" }}
+          >
             Pay now
           </Button>
-          <Button className="btn btn-dark" onClick={()=>{
-            toggleSecondModal()
-            payLater()
-          }} style={{backgroundColor: '#244a59'}}>
+          <Button
+            className="btn btn-dark"
+            onClick={() => {
+              toggleSecondModal();
+              navigate('/employer-jobs')
+              // payLater()
+            }}
+            style={{ backgroundColor: "#244a59" }}
+          >
             Pay Later
           </Button>
         </ModalFooter>
       </Modal>
 
-
-
       {/* Transaction Step */}
-      <Modal isOpen={isPaymentOpen} toggle={togglePaymentModal}
-       size="xl"
-       className="modal-fullscreen"
+      <Modal
+        isOpen={isPaymentOpen}
+        toggle={togglePaymentModal}
+        size="xl"
+        className="modal-fullscreen"
       >
         <ModalHeader toggle={togglePaymentModal}></ModalHeader>
         <ModalBody>
-
-         <Payment togglePaymentModal={togglePaymentModal} payLater={payLater}/>
+          <Payment
+            togglePaymentModal={togglePaymentModal}
+            //  payLater={payLater}
+          />
         </ModalBody>
-        <ModalFooter>
-       
-        </ModalFooter>
+        <ModalFooter></ModalFooter>
       </Modal>
-
-
 
       {/* Question Step */}
       <Modal
@@ -510,7 +941,10 @@ const AddJob = ({payLater}) => {
       >
         <ModalHeader toggle={toggleQuestionModal}></ModalHeader>
         <ModalBody>
-          <AddQuestion toggleQuestionModal={toggleQuestionModal} toggleSecondModal={toggleSecondModal} />
+          <AddQuestion
+            toggleQuestionModal={toggleQuestionModal}
+            toggleSecondModal={toggleSecondModal}
+          />
         </ModalBody>
         {/* <ModalFooter>
           <Button color="secondary" onClick={toggleQuestionModal} style={{backgroundColor: '#244a59'}}>

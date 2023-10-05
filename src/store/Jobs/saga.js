@@ -26,6 +26,7 @@ import {
   EMPLOYER_SHORTLIST,
   JOBSEEKER_APPLICATIONS,
   APPROVE_APPLICATIONS,
+  GENERAL_JOBS,
 } from "./actionTypes";
 
 import {
@@ -56,7 +57,9 @@ import {
   employerApplicationsError,
   // updateLogoSuccess,
   // updateLogoError,
-  employerApplications as applicationsAction
+  employerApplications as applicationsAction,
+  generalJobsSuccess,
+  genralJobsError
 } from "./action";
 
 import { toast } from "react-toastify";
@@ -76,6 +79,7 @@ import {
   approveApplicationsURL,
   employerShortlistApplicationsURL,
   employerApplicationsURL,
+  generalJobsURL,
   //updateLogoURL,
 } from "../../helpers/fakebackend_helper";
 
@@ -204,6 +208,26 @@ function* Jobs({ payload: data }) {
     }
   } catch (error) {
     yield put(jobsError(error));
+  }
+}
+
+function* generalJobs({ payload: data }) {
+  try {
+    const response = yield call(generalJobsURL, data);
+    console.log(response);
+    if (response && response.data.status === 1) {
+      yield put(generalJobsSuccess(response.data.data));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    } else {
+      yield put(genralJobsError(response.data.message));
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    }
+  } catch (error) {
+    yield put(genralJobsError(error));
   }
 }
 
@@ -339,6 +363,7 @@ function* JobsSaga() {
   yield takeEvery(CREATE_JOB, createJob);
   yield takeEvery(UPDATE_JOB, updateJob);
   yield takeEvery(JOBS, Jobs);
+  yield takeEvery(GENERAL_JOBS, generalJobs);
   yield takeEvery(APPROVE_JOBS, approveJobs);
 
   //yield takeEvery(UPDATE_LOGO, updateLogo);

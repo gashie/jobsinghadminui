@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import FileInput from 'react-file-reader-input';
-import mammoth from 'mammoth'; // Import mammoth library
+import mammoth from 'mammoth';
 
-const Editor = ({ onContentChange }) => {
+const Editor = ({ editorId, transmitHtml }) => {
   const [editorHtml, setEditorHtml] = useState('');
 
   const handleFileUpload = (e, results) => {
     results.forEach(result => {
       const [e, file] = result;
-      // Check if the uploaded file is a Word document (docx)
+
       if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
         const reader = new FileReader();
         reader.onload = () => {
-          // Use mammoth to convert Word document to HTML with custom options
           const options = {
             styleMap: [
               "p[style-name='Heading 1'] => h1:fresh",
@@ -23,16 +22,22 @@ const Editor = ({ onContentChange }) => {
               "p[style-name='Heading 4'] => h4:fresh",
               "p[style-name='Heading 5'] => h5:fresh",
               "p[style-name='Heading 6'] => h6:fresh",
+              "p: => p", // Keep paragraph styles
               "table => table", // Keep the default table style
               "tr => tr", // Keep the default row style
               "td => td", // Keep the default cell style
+              "p[style-name='CustomStyle1'] => p.custom-style-1", // Example: CustomStyle1 in Word mapped to a CSS class
+              // Add more style mappings here as needed
             ],
           };
 
           mammoth.convertToHtml({ arrayBuffer: reader.result }, options)
             .then(result => {
-              // Set the extracted HTML as editorHtml
               setEditorHtml(result.value);
+              // Call transmitHtml to send HTML content to the parent component
+              transmitHtml(result.value);
+              // transmitDes(result.value);
+              // transmitCert(result.value);
             })
             .catch(error => {
               console.error('Error converting Word to HTML:', error);
@@ -47,17 +52,14 @@ const Editor = ({ onContentChange }) => {
 
   const handleChange = (html) => {
     setEditorHtml(html);
-   
-    onContentChange(html);
+    // Call transmitHtml to send HTML content to the parent component
+    transmitHtml(editorId, html);
   };
-
-
 
   return (
     <div>
-     
       <FileInput as="binary" onChange={handleFileUpload}>
-        <button className='btn btn-light mb-2' type="button">Upload Word Document</button>
+        <button className='btn btn-light mb-2' type='button'>Upload Word Document</button>
       </FileInput>
       <ReactQuill
         theme="snow"

@@ -19,10 +19,13 @@ import {
   CardFooter,
   Button,
   Collapse,
+  Spinner,
 } from "reactstrap";
+import { generalJobs, jobs } from "../../../../store/actions";
 import classnames from "classnames";
 
 import seaTech from "./seaTech.png";
+import { useSelector, useDispatch } from "react-redux";
 
 // import buss from "./buss.png";
 // import online from "./online.png";
@@ -30,172 +33,17 @@ import seaTech from "./seaTech.png";
 import { toast, ToastContainer } from "react-toastify";
 import placesData from "../../../../common/data/cities.json";
 import catData from "../../../../common/data/categories.json";
-// RangeSlider
-import Nouislider from "nouislider-react";
+
 import "nouislider/distribute/nouislider.css";
-import DeleteModal from "../../../../Components/Common/DeleteModal";
-
-import BreadCrumb from "../../../../Components/Common/BreadCrumb";
-import TableContainer from "../../../../Components/Common/TableContainer";
-// import { Rating, Published, Price } from "./EcommerceProductCol";
-//Import data
-import { productsData } from "../../../../common/data";
-
-//Import actions
-import {
-  getProducts as onGetProducts,
-  deleteProducts,
-} from "../../../../store/ecommerce/action";
-import { isEmpty } from "lodash";
-import Select from "react-select";
-
-//redux
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const JobList = (props) => {
   const dispatch = useDispatch();
 
-  const { products } = useSelector((state) => ({
-    products: state.Ecommerce.products,
-  }));
-
-  const [productList, setProductList] = useState([]);
-  const [activeTab, setActiveTab] = useState("1");
-  const [selectedMulti, setselectedMulti] = useState(null);
-  const [product, setProduct] = useState(null);
-
-  function handleMulti(selectedMulti) {
-    setselectedMulti(selectedMulti);
-  }
-
-  // const [locations, setLocations] = useState()
-
-  useEffect(() => {
-    if (products && !products.length) {
-      dispatch(onGetProducts());
-    }
-  }, [dispatch, products]);
-
-  useEffect(() => {
-    setProductList(products);
-  }, [products]);
-
-  useEffect(() => {
-    if (!isEmpty(products)) setProductList(products);
-  }, [products]);
-
-  const toggleTab = (tab, type) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-      let filteredProducts = products;
-      if (type !== "all") {
-        filteredProducts = products.filter(
-          (product) => product.status === type
-        );
-      }
-      setProductList(filteredProducts);
-    }
-  };
-
   const [showAll, setShowAll] = useState(false);
-
-  const [cate, setCate] = useState("all");
-
-  const categories = (category) => {
-    let filteredProducts = products;
-    if (category !== "all") {
-      filteredProducts = products.filter(
-        (product) => product.category === category
-      );
-    }
-    setProductList(filteredProducts);
-    setCate(category);
-  };
-
-  useEffect(() => {
-    onUpdate([0, 2000]);
-  }, []);
-
-  const onUpdate = (value) => {
-    setProductList(
-      productsData.filter(
-        (product) => product.price >= value[0] && product.price <= value[1],
-        (document.getElementById("minCost").value = value[0]),
-        (document.getElementById("maxCost").value = value[1])
-      )
-    );
-  };
-  const [ratingvalues, setRatingvalues] = useState([]);
-  /*
-  on change rating checkbox method
-  */
-  const onChangeRating = (value) => {
-    setProductList(productsData.filter((product) => product.rating >= value));
-
-    var modifiedRating = [...ratingvalues];
-    modifiedRating.push(value);
-    setRatingvalues(modifiedRating);
-  };
-
-  const onUncheckMark = (value) => {
-    var modifiedRating = [...ratingvalues];
-    const modifiedData = (modifiedRating || []).filter((x) => x !== value);
-    /*
-    find min values
-    */
-    var filteredProducts = productsData;
-    if (modifiedData && modifiedData.length && value !== 1) {
-      var minValue = Math.min(...modifiedData);
-      if (minValue && minValue !== Infinity) {
-        filteredProducts = productsData.filter(
-          (product) => product.rating >= minValue
-        );
-        setRatingvalues(modifiedData);
-      }
-    } else {
-      filteredProducts = productsData;
-    }
-    setProductList(filteredProducts);
-  };
-
-  //delete order
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [deleteModalMulti, setDeleteModalMulti] = useState(false);
-
-  const onClickDelete = (product) => {
-    setProduct(product);
-    setDeleteModal(true);
-  };
-
-  const handleDeleteProduct = () => {
-    if (product) {
-      dispatch(deleteProducts(product._id));
-      setDeleteModal(false);
-    }
-  };
 
   // Displat Delete Button
   const [dele, setDele] = useState(0);
-  const displayDelete = () => {
-    const ele = document.querySelectorAll(".productCheckBox:checked");
-    const del = document.getElementById("selection-element");
-    setDele(ele.length);
-    if (ele.length === 0) {
-      del.style.display = "none";
-    } else {
-      del.style.display = "block";
-    }
-  };
-
-  const [places, setPlaces] = useState(placesData);
-
-  const JobCategories = [
-    { name: "Banking", count: "0" },
-    { name: "ICT", count: "2900" },
-    { name: "Marketing", count: "20" },
-    { name: "Health and Nutrition", count: "200" },
-  ];
 
   const JobType = [
     { name: "Permanent", count: "0" },
@@ -219,12 +67,6 @@ const JobList = (props) => {
     { name: "Agency", count: "200" },
     { name: "Employer", count: "2900" },
   ];
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [isAccount, setIsAccount] = useState(false);
-  const [isResume, setIsResume] = useState(false);
-
-  const [view, setView] = useState("My Account");
 
   const [locations, setLocations] = useState(false);
   const [category, setCategory] = useState(false);
@@ -254,8 +96,6 @@ const JobList = (props) => {
 
   document.title = "Training Events | Jobs in Ghane";
 
-  const [eventView, setEventView] = useState("list");
-
   var [width, setWidth] = useState("");
 
   const [showAllPlaces, setShowAllPlaces] = useState(false);
@@ -273,6 +113,12 @@ const JobList = (props) => {
     }
   };
 
+  const decodeHTML = (html) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
   useEffect(() => {
     // Initial window size calculation
     updateWindowSize();
@@ -286,11 +132,95 @@ const JobList = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    dispatch(generalJobs({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { loading, error, jobsInfo } = useSelector((state) => ({
+    loading: state.Jobs.generalJobsLoaing,
+    error: state.Jobs.generalJobsError,
+    jobsInfo: state.Jobs.generalJobs,
+  }));
+
   return (
     <>
+      <Row
+        className="d-flex p-5"
+        style={{ justifyContent: "center", backgroundColor: "#244a59" }}
+      >
+        <Row
+          style={{ backgroundColor: "#244a59", height: "20vh",  }}
+          className="text-light align-items-center justify-content-center d-flex mx-5"
+          xl={7}
+        >
+          <Col xs={3}>
+            <Input
+              type="text"
+              style={{
+                borderBottom: "2px solid white",
+                background: "none",
+                color: "white",
+                borderRadius: '5px', 
+                borderTop: 'none', 
+                borderLeft: 'none', 
+                borderRight: 'none'
+              }}
+              placeholder="Job title, skills or company"
+              className="p-3 "
+            />
+          </Col>
+          <Col xs={3}>
+            <select
+              style={{
+                borderBottom: "2px solid white",
+                background: "none",
+                color: "white",
+                borderRadius: '5px',
+                borderTop: 'none', 
+                borderLeft: 'none', 
+                borderRight: 'none'
+              }}
+              className="p-3 w-100"
+            >
+              <option>Location</option>
+              <option>Category 1</option>
+              <option>Category 2</option>
+              <option>Category 3</option>
+            </select>
+          </Col>
+          <Col xs={3}>
+            <select
+              style={{
+                borderBottom: "2px solid white",
+                background: "none",
+                color: "white",
+                borderRadius: '5px',
+                borderTop: 'none', 
+                borderLeft: 'none', 
+                borderRight: 'none'
+              }}
+              className="p-3 w-100"
+            >
+              <option>All categories</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </Col>
+          <Col xs={3}>
+            <Button
+              style={{ backgroundColor: "#00d084", border: "none" }}
+              className="btn p-3 w-100"
+            >
+              Search
+            </Button>
+          </Col>
+        </Row>
+      </Row>
+
       <div className="page-content">
         <ToastContainer closeButton={false} limit={1} />
-        <DeleteModal
+        {/* <DeleteModal
           show={deleteModal}
           onDeleteClick={handleDeleteProduct}
           onCloseClick={() => setDeleteModal(false)}
@@ -301,7 +231,7 @@ const JobList = (props) => {
             setDeleteModalMulti(false);
           }}
           onCloseClick={() => setDeleteModalMulti(false)}
-        />
+        /> */}
 
         <Container fluid style={{ width: "85%" }}>
           <Row>
@@ -330,27 +260,23 @@ const JobList = (props) => {
                       <div className="d-flex flex-column gap-2 mt-3">
                         <Nav vertical>
                           <NavItem>
-                            <NavLink
-                              onClick={toggleLocations}
-                              
-                            >
+                            <NavLink onClick={toggleLocations}>
                               <div
-                               className="d-flex" style={{justifyContent: "space-between", color: "black"}}
+                                className="d-flex"
+                                style={{
+                                  justifyContent: "space-between",
+                                  color: "black",
+                                }}
                               >
                                 <div>
-                                  <h4
-                                    style={{
-                                    
-                                    }}
-                                    className="fw-bolder"
-                                  >
+                                  <h4 style={{}} className="fw-bolder">
                                     Locations
                                   </h4>
                                 </div>
 
                                 <div
                                   style={{
-                                   cursor: 'pointer'
+                                    cursor: "pointer",
                                   }}
                                 >
                                   {locations ? (
@@ -359,8 +285,6 @@ const JobList = (props) => {
                                     <i className="bx bxs-chevron-down fs-16 fw-bolder"></i>
                                   )}
                                 </div>
-
-
                               </div>
                             </NavLink>
                             <Collapse isOpen={locations} className="ml-4">
@@ -447,7 +371,7 @@ const JobList = (props) => {
                                         {showAllPlaces
                                           ? "Show Less"
                                           : "Show More"}
-                                          <i className="bx bx-chevron-down"></i>
+                                        <i className="bx bx-chevron-down"></i>
                                       </button>
                                     )}
                                   </div>
@@ -458,30 +382,22 @@ const JobList = (props) => {
                         </Nav>
                         <Nav vertical>
                           <NavItem>
-                            <NavLink
-                              onClick={toggleCategory}
-                             
-                            >
+                            <NavLink onClick={toggleCategory}>
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
                                   cursor: "pointer",
-                                  color: "black"
+                                  color: "black",
                                 }}
                               >
                                 <div>
-                                  <h4
-                                  
-                                    className="fw-bolder"
-                                  >
-                                    Category
-                                  </h4>
+                                  <h4 className="fw-bolder">Category</h4>
                                 </div>
 
                                 <div
                                   style={{
-                                  cursor: "pointer"
+                                    cursor: "pointer",
                                   }}
                                 >
                                   {category ? (
@@ -554,8 +470,9 @@ const JobList = (props) => {
                                   ))}
 
                                 {catData.categories.length > 5 && (
-                                  <button onClick={() => setShowAll(!showAll)}
-                                  className="btn btn-light mt-2 w-50"
+                                  <button
+                                    onClick={() => setShowAll(!showAll)}
+                                    className="btn btn-light mt-2 w-50"
                                   >
                                     {showAll ? "Show Less" : "Show More"}
                                     <i className="bx bx-chevron-down"></i>
@@ -569,31 +486,23 @@ const JobList = (props) => {
                         {/* Categories */}
                         <Nav vertical>
                           <NavItem>
-                            <NavLink
-                              onClick={toggleType}
-                            
-                            >
+                            <NavLink onClick={toggleType}>
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                
+
                                   color: "black",
                                   cursor: "pointer",
                                 }}
                               >
                                 <div>
-                                  <h4
-                                  
-                                    className="fw-bolder"
-                                  >
-                                    Job Type
-                                  </h4>
+                                  <h4 className="fw-bolder">Job Type</h4>
                                 </div>
 
                                 <div
                                   style={{
-                                   cursor: "pointer"
+                                    cursor: "pointer",
                                   }}
                                 >
                                   {type ? (
@@ -672,31 +581,23 @@ const JobList = (props) => {
 
                         <Nav vertical>
                           <NavItem>
-                            <NavLink
-                              onClick={toggleLevel}
-                            
-                            >
+                            <NavLink onClick={toggleLevel}>
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                
+
                                   color: "black",
                                   cursor: "pointer",
                                 }}
                               >
                                 <div>
-                                  <h4
-                                 
-                                    className="fw-bolder"
-                                  >
-                                    Job Level
-                                  </h4>
+                                  <h4 className="fw-bolder">Job Level</h4>
                                 </div>
 
                                 <div
                                   style={{
-                                   cursor:"pointer"
+                                    cursor: "pointer",
                                   }}
                                 >
                                   {level ? (
@@ -773,31 +674,23 @@ const JobList = (props) => {
 
                         <Nav vertical>
                           <NavItem>
-                            <NavLink
-                              onClick={toggleCompanyType}
-                             
-                            >
+                            <NavLink onClick={toggleCompanyType}>
                               <div
                                 style={{
                                   display: "flex",
                                   justifyContent: "space-between",
-                                
+
                                   color: "black",
                                   cursor: "pointer",
                                 }}
                               >
                                 <div>
-                                  <h4
-                                 
-                                    className="fw-bolder"
-                                  >
-                                    Company Type
-                                  </h4>
+                                  <h4 className="fw-bolder">Company Type</h4>
                                 </div>
 
                                 <div
                                   style={{
-                                   cursor: "pointer"
+                                    cursor: "pointer",
                                   }}
                                 >
                                   {companyType ? (
@@ -922,96 +815,138 @@ const JobList = (props) => {
                                 padding: "1rem",
                               }}
                             >
-                              400 Results Found
+                              {jobsInfo?.length} Results Found
                             </h5>
                           </div>
                         </div>
-                        <Card
-                          style={{
-                            border: "1px solid #ebeff0",
-                            boxShadow: "none",
-                          }}
-                          className="p-2"
-                        >
-                          <CardBody>
-                            <Col>
-                              <div
-                                className="d-flex"
-                                style={{
-                                  justifyContent: "space-between",
-                                  width: "93%",
-                                }}
-                              >
-                                <div>
-                                  <h4
-                                    style={{
-                                      fontWeight: "bolder",
-                                      color: "244a59",
-                                    }}
-                                  >
-                                    Finance Officer
-                                  </h4>
-                                  <h4
-                                    style={{
-                                      fontWeight: "bolder",
-                                      color: "244a59",
-                                    }}
-                                  >
-                                    SupeTech Limited
-                                  </h4>
-                                  <p>Tema</p>
-                                  <div className="d-flex">
-                                    <i
-                                      className="bx bx-calendar p-1"
-                                      style={{ marginTop: "0rem" }}
-                                    >
-                                      {" "}
-                                    </i>{" "}
-                                    Expired
-                                    <p>Jul 25, 2023</p>
-                                  </div>
-                                  <p className="mt-3 " style={{ width: "80%" }}>
-                                    Lorem ipsum dolor sit amet consectetur.
-                                    Turpis gravida quis quis nibh platea. Rutrum
-                                    imperdiet faucibus faucibus pharetra nisl
-                                    nulla pellentesque. Metus eget
-                                    ..............
-                                  </p>
-                                </div>
-                                <div></div>
 
-                                <div
-                                  className="d-flex"
-                                  style={{
-                                    flexDirection: "column",
-                                    justifyContent: "space-between",
-                                    width: "5%",
-                                  }}
-                                >
-                                  <div>
-                                    <img
-                                      src={seaTech}
-                                      alt="logo"
-                                      className="img-fluid avatar-xxl"
-                                    ></img>
-                                  </div>
-                                  <div>
-                                    <i
-                                      className="mdi mdi-cards-heart "
+                        {loading === false && error === false ? (
+                          jobsInfo?.map((item) => (
+                            <>
+                              <Card
+                                style={{
+                                  border: "1px solid #ebeff0",
+                                  boxShadow: "none",
+                                  cursor: "pointer",
+                                }}
+                                className="p-2"
+                              >
+                                <CardBody>
+                                  <Col>
+                                    <div
+                                      className="d-flex"
                                       style={{
-                                        cursor: "pointer",
-                                        color: "red",
-                                        fontSize: "2rem",
-                                        position: "relative",
-                                        top: "-1rem",
+                                        justifyContent: "space-between",
+                                        width: "93%",
                                       }}
-                                    ></i>
-                                  </div>
-                                </div>
-                              </div>
-                            </Col>
-                          </CardBody>
-                        </Card>
+                                    >
+                                      <div>
+                                        <h4
+                                          style={{
+                                            fontWeight: "bolder",
+                                            color: "244a59",
+                                          }}
+                                        >
+                                          {item?.jobTitle}
+                                        </h4>
+                                        <h4
+                                          style={{
+                                            fontWeight: "bolder",
+                                            color: "244a59",
+                                          }}
+                                        >
+                                          {item?.companyName}
+                                        </h4>
+                                        <p>{item?.jobLocation}</p>
+                                        <div className="d-flex">
+                                          <i
+                                            className="bx bx-calendar p-1"
+                                            style={{ marginTop: "0rem" }}
+                                          >
+                                            {" "}
+                                          </i>{" "}
+                                          Expired
+                                          <p className="mx-2">
+                                            {formatDate(item?.goLiveDate)}
+                                          </p>
+                                        </div>
+                                        <p
+                                          className="mt-3 "
+                                          style={{ width: "80%" }}
+                                        >
+                                          <div
+                                            dangerouslySetInnerHTML={{
+                                              __html: decodeHTML(
+                                                item?.jobDescription.substring(
+                                                  0,
+                                                  100
+                                                ) +
+                                                  (item?.jobDescription.length >
+                                                  100
+                                                    ? "..."
+                                                    : "")
+                                              ),
+                                            }}
+                                          ></div>
+                                        </p>
+                                      </div>
+                                      <div></div>
+
+                                      <div
+                                        className="d-flex"
+                                        style={{
+                                          flexDirection: "column",
+                                          justifyContent: "space-between",
+                                          width: "5%",
+                                        }}
+                                      >
+                                        <div>
+                                          <img
+                                            src={seaTech}
+                                            alt="logo"
+                                            className="img-fluid avatar-xxl"
+                                          ></img>
+                                        </div>
+                                        <div>
+                                          <i
+                                            className="mdi mdi-cards-heart "
+                                            style={{
+                                              cursor: "pointer",
+                                              color: "red",
+                                              fontSize: "2rem",
+                                              position: "relative",
+                                              top: "-1rem",
+                                            }}
+                                          ></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Col>
+                                </CardBody>
+                              </Card>
+                            </>
+                          ))
+                        ) : (
+                          <div className="d-flex align-items-center justify-content-center">
+                            {loading === true ? (
+                              <>
+                                <p className="d-flex hstack justify-content-center">
+                                  <Spinner
+                                    size="lg"
+                                    className="me-2 mt-5"
+                                    style={{ color: "#244a59" }}
+                                  ></Spinner>
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className="fw-light mt-5">
+                                  Job list information not available
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

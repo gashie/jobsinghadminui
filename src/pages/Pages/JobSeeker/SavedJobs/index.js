@@ -194,7 +194,7 @@ const SavedJobs = () => {
                             jobId: item?.jobId,
                             patch: false,
                             patchData: {
-                              jobTitle: item?.jobId,
+                              jobTitle: item?.jobTitle,
                               companyName: item?.companyName,
                             },
                           })

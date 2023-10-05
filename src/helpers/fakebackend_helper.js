@@ -531,3 +531,4 @@ export const changePassURL = (data) => api.create(url.CHANGE_PASS, data)
 
 
 export const transactionsURL = (data) => api.create(url.TRANSACTIONS, data)
+export const generalJobsURL = (data) => api.create(url.GENERAL_JOBS, data)

@@ -40,11 +40,7 @@ import TableContainer from "../../../../../Components/Common/TableContainer";
 import { productsData } from "../../../../../common/data";
 
 //Import actions
-import {
-  getProducts as onGetProducts,
-  deleteProducts,
-} from "../../../../../store/ecommerce/action";
-import { isEmpty } from "lodash";
+
 import Select from "react-select";
 
 //redux
@@ -66,10 +62,7 @@ const SingleOptions = [
 const TrainingEvents = (props) => {
   const dispatch = useDispatch();
 
-  const { products } = useSelector((state) => ({
-    products: state.Ecommerce.products,
-  }));
-
+  
   const [productList, setProductList] = useState([]);
   const [activeTab, setActiveTab] = useState("1");
   const [selectedMulti, setselectedMulti] = useState(null);
@@ -95,122 +88,18 @@ const TrainingEvents = (props) => {
   //   }
   // }
 
-  useEffect(() => {
-    if (products && !products.length) {
-      dispatch(onGetProducts());
-    }
-  }, [dispatch, products]);
-
-  useEffect(() => {
-    setProductList(products);
-  }, [products]);
-
-  useEffect(() => {
-    if (!isEmpty(products)) setProductList(products);
-  }, [products]);
-
-  const toggleTab = (tab, type) => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
-      let filteredProducts = products;
-      if (type !== "all") {
-        filteredProducts = products.filter(
-          (product) => product.status === type
-        );
-      }
-      setProductList(filteredProducts);
-    }
-  };
-
-  const [cate, setCate] = useState("all");
-
-  const categories = (category) => {
-    let filteredProducts = products;
-    if (category !== "all") {
-      filteredProducts = products.filter(
-        (product) => product.category === category
-      );
-    }
-    setProductList(filteredProducts);
-    setCate(category);
-  };
-
-  useEffect(() => {
-    onUpdate([0, 2000]);
-  }, []);
-
-  const onUpdate = (value) => {
-    setProductList(
-      productsData.filter(
-        (product) => product.price >= value[0] && product.price <= value[1],
-        (document.getElementById("minCost").value = value[0]),
-        (document.getElementById("maxCost").value = value[1])
-      )
-    );
-  };
-  const [ratingvalues, setRatingvalues] = useState([]);
+  
 
   const [showAll, setShowAll] = useState(false);
   /*
   on change rating checkbox method
   */
-  const onChangeRating = (value) => {
-    setProductList(productsData.filter((product) => product.rating >= value));
-
-    var modifiedRating = [...ratingvalues];
-    modifiedRating.push(value);
-    setRatingvalues(modifiedRating);
-  };
-
-  const onUncheckMark = (value) => {
-    var modifiedRating = [...ratingvalues];
-    const modifiedData = (modifiedRating || []).filter((x) => x !== value);
-    /*
-    find min values
-    */
-    var filteredProducts = productsData;
-    if (modifiedData && modifiedData.length && value !== 1) {
-      var minValue = Math.min(...modifiedData);
-      if (minValue && minValue !== Infinity) {
-        filteredProducts = productsData.filter(
-          (product) => product.rating >= minValue
-        );
-        setRatingvalues(modifiedData);
-      }
-    } else {
-      filteredProducts = productsData;
-    }
-    setProductList(filteredProducts);
-  };
 
   //delete order
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteModalMulti, setDeleteModalMulti] = useState(false);
 
-  const onClickDelete = (product) => {
-    setProduct(product);
-    setDeleteModal(true);
-  };
-
-  const handleDeleteProduct = () => {
-    if (product) {
-      dispatch(deleteProducts(product._id));
-      setDeleteModal(false);
-    }
-  };
-
-  // Displat Delete Button
-  const [dele, setDele] = useState(0);
-  const displayDelete = () => {
-    const ele = document.querySelectorAll(".productCheckBox:checked");
-    const del = document.getElementById("selection-element");
-    setDele(ele.length);
-    if (ele.length === 0) {
-      del.style.display = "none";
-    } else {
-      del.style.display = "block";
-    }
-  };
+ 
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedMonths, setSelectedMonths] = useState([]);
@@ -329,7 +218,7 @@ const TrainingEvents = (props) => {
         <ToastContainer closeButton={false} limit={1} />
         <DeleteModal
           show={deleteModal}
-          onDeleteClick={handleDeleteProduct}
+          // onDeleteClick={handleDeleteProduct}
           onCloseClick={() => setDeleteModal(false)}
         />
         <DeleteModal
@@ -491,7 +380,7 @@ const TrainingEvents = (props) => {
                         range={{ min: 0, max: 2000 }}
                         start={[0, 2000]}
                         connect
-                        onSlide={onUpdate}
+                        // onSlide={onUpdate}
                         data-slider-color="primary"
                         id="product-price-range"
                       />
@@ -636,7 +525,7 @@ const TrainingEvents = (props) => {
                                 id="select-content"
                                 className="text-body fw-semibold px-1"
                               >
-                                {dele}
+                                {/* {dele} */}
                               </div>{" "}
                               Result{" "}
                               <button
