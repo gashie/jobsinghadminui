@@ -120,7 +120,7 @@ const Dashboard = () => {
           <CardBody>
             <Nav tabs className="nav-tabs nav-justified mb-3">
               <NavItem>
-                <Link to="/job-seeker-dashboard">
+                <Link to="/app/job-seeker-dashboard">
                   <NavLink
                     style={{ cursor: "pointer", color: "black" }}
                     className={classnames({ active: justifyTab === "1" })}
@@ -133,7 +133,7 @@ const Dashboard = () => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/job-seeker-applications">
+                <Link to="/app/job-seeker-applications">
                   <NavLink
                     style={{ cursor: "pointer", color: "black" }}
                     className={classnames({ active: justifyTab === "2" })}
@@ -147,7 +147,7 @@ const Dashboard = () => {
               </NavItem>
 
               <NavItem>
-                <Link to="/job-seeker-alerts">
+                <Link to="/app/job-seeker-alerts">
                   <NavLink
                     style={{ cursor: "pointer", color: "black" }}
                     className={classnames({ active: justifyTab === "3" })}
@@ -160,7 +160,7 @@ const Dashboard = () => {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/job-seeker-saved-jobs">
+                <Link to="/app/job-seeker-saved-jobs">
                   <NavLink
                     style={{ cursor: "pointer", color: "black" }}
                     className={classnames({ active: justifyTab === "4" })}

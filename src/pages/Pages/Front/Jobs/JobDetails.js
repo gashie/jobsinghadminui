@@ -135,7 +135,7 @@ const JobDetails = () => {
                         <p className="m-1">Save</p>
                       </Button>
                       <Link
-                        to="/apply"
+                        to="/app/apply"
                         
                         className={` ${width}`}
                         style={{ width: "20%" }}
@@ -301,7 +301,7 @@ const JobDetails = () => {
 
                   <div className="m-4">
                     <Link
-                      to="/apply"
+                      to="/app/apply"
                       className="text-center"
                       style={{ width: "100%" }}
                     >

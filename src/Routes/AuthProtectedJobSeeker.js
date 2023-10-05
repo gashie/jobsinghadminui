@@ -28,7 +28,7 @@ const AuthProtectedJobSeeker = (props) => {
     if (isLoggedIn && userInfo?.userInfo?.roleid === 3) {
       // dispatch(getMe());
 
-      navigate("/employer-dashboard");
+      navigate("/app/employer-dashboard");
     }
 
     // if (isLoggedIn && userInfo?.userInfo?.roleid === 2) {

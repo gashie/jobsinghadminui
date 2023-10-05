@@ -46,7 +46,7 @@ const AuthProtectedEmployer = (props) => {
     // }
 
     if (isLoggedIn && userInfo?.userInfo?.roleid === 2) {
-      navigate("/job-seeker-dashboard");
+      navigate("/app/job-seeker-dashboard");
     }
   }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
 

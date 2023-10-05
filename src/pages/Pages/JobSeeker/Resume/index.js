@@ -83,7 +83,7 @@ const handleLetter = (data) =>{
           <CardBody>
             <Nav tabs className="nav-tabs nav-justified mb-3">
               <NavItem>
-                <Link to="/job-seeker-resume" >
+                <Link to="/app/job-seeker-resume" >
                 <NavLink
                   style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "1" })}
@@ -96,7 +96,7 @@ const handleLetter = (data) =>{
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/job-seeker-my-cover-letters" >
+                <Link to="/app/job-seeker-my-cover-letters" >
                 <NavLink
                   style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "2" })}
@@ -109,7 +109,7 @@ const handleLetter = (data) =>{
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/job-seeker-add-cover-letter" >
+                <Link to="/app/job-seeker-add-cover-letter" >
                 <NavLink
                   style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "3" })}
@@ -122,7 +122,7 @@ const handleLetter = (data) =>{
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/job-seeker-edit-cover-letter" >
+                <Link to="/app/job-seeker-edit-cover-letter" >
                 <NavLink
                   style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "4" })}
@@ -135,7 +135,7 @@ const handleLetter = (data) =>{
                 </Link>
               </NavItem>
               <NavItem>
-                <Link to="/job-seeker-view-cover-letter" >
+                <Link to="/app/job-seeker-view-cover-letter" >
                 <NavLink
                   style={{ cursor: "pointer", color: "black" }}
                   className={classnames({ active: justifyTab === "5" })}

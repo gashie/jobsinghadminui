@@ -46,6 +46,11 @@ const JobList = (props) => {
 
   const [showAll, setShowAll] = useState(false);
 
+
+  const {searchData} = useSelector((state)=>({
+    searchData: state.Jobs.search
+  }))
+
   // Displat Delete Button
   const [dele, setDele] = useState(0);
 
@@ -79,7 +84,7 @@ const JobList = (props) => {
   const [companyType, setCompanyType] = useState(false);
   const [salary, setSalary] = useState(false);
 
-  const [jobTitle, setJobTitle] = useState("");
+  const [jobTitle, setJobTitle] = useState(searchData || "");
   const [location, setLocation] = useState("Select Location");
   const [category, setCategory] = useState("Select Category");
 

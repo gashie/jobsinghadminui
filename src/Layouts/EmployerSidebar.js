@@ -100,13 +100,13 @@ const EmployerSidebar = () => {
     {
       icon: "bx bx-home",
       label: "Home",
-      link: "/employer-dashboard",
+      link: "/app/employer-dashboard",
       toggle: toggleLink,
     },
     {
       icon: "bx bx-user",
       label: "Profile",
-      link: "/employer-profile",
+      link: "/app/employer-profile",
     //   link1: "/job-seeker-edit-profile",
     //   link2: "/job-seeker-change-password",
       toggle: toggleProfile,
@@ -114,7 +114,7 @@ const EmployerSidebar = () => {
     {
       icon: "bx bx-briefcase",
       label: "Jobs",
-      link: "/employer-jobs",
+      link: "/app/employer-jobs",
     //   link1: "/job-seeker-my-cover-letters",
     //   link2: "/job-seeker-add-cover-letter",
     //   link3: "/job-seeker-edit-cover-letter",
@@ -124,19 +124,19 @@ const EmployerSidebar = () => {
     {
       icon: "ri-checkbox-circle-line",
       label: "Applications",
-      link: "/employer-applications",
+      link: "/app/employer-applications",
       toggle: toggleApplications,
     },
     {
       icon: "las la-graduation-cap",
       label: "Courses",
-      link: "/employer-courses",
+      link: "/app/employer-courses",
       toggle: toggleAlerts,
     },
     {
       icon: "ri-file-text-line",
       label: "Transactions",
-      link: "/employer-transactions",
+      link: "/app/employer-transactions",
       toggle: toggleJobs,
     },
     // {

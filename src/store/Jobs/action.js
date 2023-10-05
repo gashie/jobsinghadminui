@@ -231,6 +231,11 @@ export const jobEditCloneData = (data) => ({
 
 })
 
+export const searchJob = (data) => ({
+  type: "SEARCH", 
+  payload: data
+})
+
 
 
 // export const updateLogo = () => ({

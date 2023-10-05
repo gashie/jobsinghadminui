@@ -17,6 +17,9 @@ import { jobGrid } from "../../../../common/data/appsJobs";
 import classnames from "classnames";
 
 import SimpleBar from "simplebar-react";
+import { useDispatch, useSelector } from "react-redux";
+import { generalJobs } from "../../../../store/actions";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const FeaturedJobs = () => {
   const sortbyname = [
@@ -50,6 +53,12 @@ const FeaturedJobs = () => {
     }
   };
 
+  const decodeHTML = (html) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
   const [customActiveTab, setcustomActiveTab] = useState("1");
   const toggleCustom = (tab) => {
     if (customActiveTab !== tab) {
@@ -57,9 +66,9 @@ const FeaturedJobs = () => {
     }
   };
 
-  var [width, setWidth] = useState("")
-  const [spaceLeft, setSpaceLeft] = useState("")
-  const [relative, setRelative] = useState("")
+  var [width, setWidth] = useState("");
+  const [spaceLeft, setSpaceLeft] = useState("");
+  const [relative, setRelative] = useState("");
 
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
@@ -72,8 +81,6 @@ const FeaturedJobs = () => {
     } else if (newWindowSize > 375) {
       setWidth("100%");
     }
-
-
   };
 
   useEffect(() => {
@@ -89,17 +96,57 @@ const FeaturedJobs = () => {
     };
   }, []);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(generalJobs({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { loading, error, jobsInfo } = useSelector((state) => ({
+    loading: state.Jobs.generalJobsLoaing,
+    error: state.Jobs.generalJobsError,
+    jobsInfo: state.Jobs.generalJobs,
+  }));
+
+
+  const [showEntries, setShowEntries] = useState(4);
+
+  const handleShowEntriesChange = (e) => {
+    setShowEntries(e.target.value);
+  };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = showEntries;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Get the current page of items
+  const filter = jobsInfo?.slice(startIndex, endIndex);
+
+  // Function to handle page changes
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Determine if "Previous" and "Next" links should be disabled
+  const isPrevDisabled = currentPage === 1;
+  const isNextDisabled = endIndex >= jobsInfo?.length;
+
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-        <Container fluid className="col-md-10 col-xxl-10 mt-5 mb-5" style={{width: width}}>
+        <Container
+          fluid
+          className="col-md-10 col-xxl-10 mt-5 mb-5"
+          style={{ width: width }}
+        >
           <Row>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 marginTop: "3rem",
-               
               }}
               className=" p-4"
             >
@@ -107,51 +154,61 @@ const FeaturedJobs = () => {
                 Featured Jobs
               </h4>
               <Link to="/job-list">
-              <Button
-                style={{ backgroundColor: "#244a59" }}
-                className="btn btn-dark"
-              >
-                See all jobs
-              </Button>
+                <Button
+                  style={{ backgroundColor: "#244a59" }}
+                  className="btn btn-dark"
+                >
+                  See all jobs
+                </Button>
               </Link>
             </div>
           </Row>
           <Row id="job-list" className="p-3">
-            {jobGrid.map((item, key) => (
-              <Col xl={3} md={6} key={key} xs={15}>
-                <Link to='/job-details'>
-                <Card
-                  className=""
-                  style={{
-                    boxShadow: "none",
-                    border: "1px solid #e0e0e0",
-                    cursor: "pointer",
-                  }}
-                >
-                  <CardBody>
-                    <Button
-                      type="button"
-                      className="btn btn-dark btn-soft-primary float-end"
-                      style={{ backgroundColor: "white", boxShadow: "none" }}
+            {loading === false && error === false ? (
+              filter.map((item, key) => (
+                <Col xl={3} md={6} key={key} xs={15}>
+                  <Link to="/job-details">
+                    <Card
+                      className=""
+                      style={{
+                        boxShadow: "none",
+                        border: "1px solid #e0e0e0",
+                        cursor: "pointer",
+                      }}
                     >
-                      <i className="bx bx-heart fs-16" style={{color:'#244a59'}}></i>
-                    </Button>
-                    <div className="avatar-md mb-4">
-                      <div className="">
-                        <img
-                          src={item.companyLogo}
-                          alt=""
-                          className="avatar-xxl"
-                        />
-                      </div>
-                    </div>
-                    <Link to="#!">
-                      <h5 className="fw-bolder" style={{ color: "#244a59" }}>
-                        {item.jobTitle}
-                      </h5>
-                    </Link>
-                    {/* <p className="text-muted">{item.companyName} </p> */}
-                    {/* <div className="d-flex gap-4 mb-3">
+                      <CardBody>
+                        <Button
+                          type="button"
+                          className="btn btn-dark btn-soft-primary float-end"
+                          style={{
+                            backgroundColor: "white",
+                            boxShadow: "none",
+                          }}
+                        >
+                          <i
+                            className="bx bx-heart fs-16"
+                            style={{ color: "#244a59" }}
+                          ></i>
+                        </Button>
+                        <div className="avatar-md mb-4">
+                          <div className="">
+                            <img
+                              src={item.companyLogo}
+                              alt=""
+                              className="avatar-xxl"
+                            />
+                          </div>
+                        </div>
+                        <Link to="#!">
+                          <h5
+                            className="fw-bolder"
+                            style={{ color: "#244a59" }}
+                          >
+                            {item.jobTitle}
+                          </h5>
+                        </Link>
+                        {/* <p className="text-muted">{item.companyName} </p> */}
+                        {/* <div className="d-flex gap-4 mb-3">
                       <div>
                         <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>{" "}
                         {item.location}
@@ -161,52 +218,37 @@ const FeaturedJobs = () => {
                         {item.postDate}
                       </div>
                     </div> */}
-                    <p className="text-muted mt-5">{item.description}</p>
-                    <p className="text-muted mt-5">
-                      {" "}
-                      <i className="ri-map-pin-2-line text-muted me-1 align-bottom fs-20"></i>{" "}
-                      Accra
-                    </p>
-                    <p className="text-muted mt-4">
-                      {" "}
-                      <i className="bx bx-calendar text-muted me-1 align-bottom fs-20"></i>{" "}
-                      Expires Jul 25, 2023
-                    </p>
-                    {/* <div className="hstack gap-2">
-                      {item.requirement.map((subitem, key) => (
-                        <React.Fragment key={key}>
-                          {subitem === "Full Time" ? (
-                            <span className="badge badge-soft-success">
-                              {subitem}
-                            </span>
-                          ) : subitem === "Freelance" ? (
-                            <span className="badge badge-soft-primary">
-                              {subitem}
-                            </span>
-                          ) : (
-                            <span className="badge badge-soft-danger">
-                              {subitem}
-                            </span>
-                          )}
-                        </React.Fragment>
-                      ))}
-                    </div> */}
-                    {/* <div className="mt-4 hstack gap-2">
-                      <Link to="#!" className="btn btn-soft-primary w-100">
-                        Apply Job
-                      </Link>
-                      <Link
-                        to="/apps-job-details"
-                        className="btn btn-soft-success w-100"
-                      >
-                        Overview
-                      </Link>
-                    </div> */}
-                  </CardBody>
-                </Card>
-                </Link>
-              </Col>
-            ))}
+                        <p className="text-muted mt-5">
+                          {" "}
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: decodeHTML(
+                                item?.jobDescription.substring(0, 100) +
+                                  (item?.jobDescription.length > 100
+                                    ? "..."
+                                    : "")
+                              ),
+                            }}
+                          ></div>
+                        </p>
+                        <p className="text-muted mt-5">
+                          {" "}
+                          <i className="ri-map-pin-2-line text-muted me-1 align-bottom fs-20"></i>{" "}
+                          {item.jobLocation}
+                        </p>
+                        <p className="text-muted mt-4">
+                          {" "}
+                          <i className="bx bx-calendar text-muted me-1 align-bottom fs-20"></i>{" "}
+                          Expires {formatDate(item?.goLiveDate)}
+                        </p>
+                      </CardBody>
+                    </Card>
+                  </Link>
+                </Col>
+              ))
+            ) : (
+              <p>Loading</p>
+            )}
           </Row>
 
           {/* Browse Jobs */}

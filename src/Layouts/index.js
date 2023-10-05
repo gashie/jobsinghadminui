@@ -141,12 +141,12 @@ const Layout = (props) => {
       <div id="layout-wrapper">
         <Row>
           <Row>
-            {window.location.pathname === "/employer-dashboard" ||
-             window.location.pathname === "/employer-profile" ||
-             window.location.pathname === "/employer-jobs" ||
-             window.location.pathname === "/employer-applications" ||
-             window.location.pathname === "/employer-courses" ||
-             window.location.pathname === "/employer-transactions" ? (
+            {window.location.pathname === "/app/employer-dashboard" ||
+             window.location.pathname === "/app/employer-profile" ||
+             window.location.pathname === "/app/employer-jobs" ||
+             window.location.pathname === "/app/employer-applications" ||
+             window.location.pathname === "/app/employer-courses" ||
+             window.location.pathname === "/app/employer-transactions" ? (
                <Col md="2">
                  <EmployerSidebar />
                </Col>

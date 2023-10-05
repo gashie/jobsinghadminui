@@ -40,7 +40,7 @@ const JobSeekerLogin = () => {
       console.log("nav");
 
       // Perform redirection or other actions when the user is logged in
-      navigate("/employer-dashboard");
+      navigate("/app/employer-dashboard");
     }
 
     if (isLoggedIn && userInfo?.userInfo?.roleid === 2) {
@@ -50,7 +50,7 @@ const JobSeekerLogin = () => {
       console.log("nav");
 
       // Perform redirection or other actions when the user is logged in
-      navigate("/job-seeker-dashboard");
+      navigate("/app/job-seeker-dashboard");
     }
   }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
 

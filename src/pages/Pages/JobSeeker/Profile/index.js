@@ -61,7 +61,7 @@ const Profile = () => {
             <CardBody>
               <Nav tabs className="nav-tabs nav-justified mb-3">
                 <NavItem>
-                  <Link to="/job-seeker-profile">
+                  <Link to="/app/job-seeker-profile">
                     <NavLink
                       style={{ cursor: "pointer", color: "black" }}
                       className={classnames({ active: justifyTab === "1" })}
@@ -74,7 +74,7 @@ const Profile = () => {
                   </Link>
                 </NavItem>
                 <NavItem>
-                  <Link to="/job-seeker-edit-profile">
+                  <Link to="/app/job-seeker-edit-profile">
                     <NavLink
                       style={{ cursor: "pointer", color: "black" }}
                       className={classnames({ active: justifyTab === "2" })}
@@ -87,7 +87,7 @@ const Profile = () => {
                   </Link>
                 </NavItem>
                 <NavItem>
-                  <Link to="/job-seeker-change-password">
+                  <Link to="/app/job-seeker-change-password">
                     <NavLink
                       style={{ cursor: "pointer", color: "black" }}
                       className={classnames({ active: justifyTab === "3" })}

@@ -550,7 +550,7 @@ const publicRoutes = [
 
   //jobs
   {path: '/job-details', component: <JobDetails />},
-  {path: '/apply', component: <Apply />},
+  {path: '/app/apply', component: <Apply />},
   {path: '/job-list', component: <JobLists />},
 
   //carrer
@@ -597,21 +597,21 @@ const publicRoutes = [
 
 const jobSeekerRoutes = [
   //jobsInGhana
-  { path: "/admin-dashboard", component: <AdminDashboard /> },
-  { path: "/job-seeker-admin", component: <JobSeeker /> },
+  { path: "/app/admin-dashboard", component: <AdminDashboard /> },
+  { path: "/app/job-seeker-admin", component: <JobSeeker /> },
   // Job Seeker Routes
-  { path: "/job-seeker-dashboard", component: <Dashboard /> },
-  { path: "/job-seeker-applications", component: <Dashboard /> },
-  { path: "/job-seeker-alerts", component: <Dashboard /> },
-  { path: "/job-seeker-saved-jobs", component: <Dashboard /> },
-  { path: "/job-seeker-profile", component: <Profile /> },
-  { path: "/job-seeker-edit-profile", component: <Profile /> },
-  { path: "/job-seeker-change-password", component: <Profile /> },
-  { path: "/job-seeker-resume", component: <Resume /> },
-  { path: "/job-seeker-my-cover-letters", component: <Resume /> },
-  { path: "/job-seeker-add-cover-letter", component: <Resume /> },
-  { path: "/job-seeker-edit-cover-letter", component: <Resume /> },
-  { path: "/job-seeker-view-cover-letter", component: <Resume /> },
+  { path: "/app/job-seeker-dashboard", component: <Dashboard /> },
+  { path: "/app/job-seeker-applications", component: <Dashboard /> },
+  { path: "/app/job-seeker-alerts", component: <Dashboard /> },
+  { path: "/app/job-seeker-saved-jobs", component: <Dashboard /> },
+  { path: "/app/job-seeker-profile", component: <Profile /> },
+  { path: "/app/job-seeker-edit-profile", component: <Profile /> },
+  { path: "/app/job-seeker-change-password", component: <Profile /> },
+  { path: "/app/job-seeker-resume", component: <Resume /> },
+  { path: "/app/job-seeker-my-cover-letters", component: <Resume /> },
+  { path: "/app/job-seeker-add-cover-letter", component: <Resume /> },
+  { path: "/app/job-seeker-edit-cover-letter", component: <Resume /> },
+  { path: "/app/job-seeker-view-cover-letter", component: <Resume /> },
 
   {
     path: "/",
@@ -624,12 +624,12 @@ const jobSeekerRoutes = [
 
 
 const employerRoutes = [
-  { path: "/employer-dashboard", component: <EmployerDashboard />},
-  { path: "/employer-profile", component: <EmployerProfile />},
-  { path: "/employer-jobs", component: <EmployerJobs />},
-  { path: "/employer-applications", component: <EmployerApplications />},
-  { path: "/employer-courses", component: <EmployerCourses />},
-  { path: "/employer-transactions", component: <EmployerTransactions />},
+  { path: "/app/employer-dashboard", component: <EmployerDashboard />},
+  { path: "/app/employer-profile", component: <EmployerProfile />},
+  { path: "/app/employer-jobs", component: <EmployerJobs />},
+  { path: "/app/employer-applications", component: <EmployerApplications />},
+  { path: "/app/employer-courses", component: <EmployerCourses />},
+  { path: "/app/employer-transactions", component: <EmployerTransactions />},
 
   {
     path: "/",

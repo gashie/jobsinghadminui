@@ -96,43 +96,43 @@ const Sidebar = () => {
     {
       icon: "bx bx-home",
       label: "Home",
-      link: "/job-seeker-dashboard",
+      link: "/app/job-seeker-dashboard",
       toggle: toggleLink,
     },
     {
       icon: "bx bx-user",
       label: "Profile",
-      link: "/job-seeker-profile",
-      link1: "/job-seeker-edit-profile",
-      link2: "/job-seeker-change-password",
+      link: "/app/job-seeker-profile",
+      link1: "/app/job-seeker-edit-profile",
+      link2: "/app/job-seeker-change-password",
       toggle: toggleProfile,
     },
     {
       icon: "ri-file-text-line",
       label: "CV/Resume",
-      link: "/job-seeker-resume",
-      link1: "/job-seeker-my-cover-letters",
-      link2: "/job-seeker-add-cover-letter",
-      link3: "/job-seeker-edit-cover-letter",
-      link4: "/job-seeker-view-cover-letter",
+      link: "/app/job-seeker-resume",
+      link1: "/app/job-seeker-my-cover-letters",
+      link2: "/app/job-seeker-add-cover-letter",
+      link3: "/app/job-seeker-edit-cover-letter",
+      link4: "/app/job-seeker-view-cover-letter",
       toggle: toggleResume,
     },
     {
       icon: "ri-checkbox-circle-line",
       label: "Applications",
-      link: "/job-seeker-applications",
+      link: "/app/job-seeker-applications",
       toggle: toggleApplications,
     },
     {
       icon: "ri-mail-line",
       label: "Alerts",
-      link: "/job-seeker-alerts",
+      link: "/app/job-seeker-alerts",
       toggle: toggleAlerts,
     },
     {
       icon: "ri-briefcase-line",
       label: "Saved Jobs",
-      link: "/job-seeker-saved-jobs",
+      link: "/app/job-seeker-saved-jobs",
       toggle: toggleJobs,
     },
     // {
@@ -144,7 +144,7 @@ const Sidebar = () => {
     {
       icon: "bx bx-left-arrow-circle",
       label: "Logout",
-      link: "/settings",
+      link: "/app/settings",
       toggle: toggleLogout,
     },
   ];
@@ -304,7 +304,7 @@ const Sidebar = () => {
                       <p className="fs-15 m-3 fw-bolder">Home</p>
                       <hr />
                       <Link
-                        to="/job-seeker-dashboard"
+                        to="/app/job-seeker-dashboard"
                         style={{ pointer: "cursor" }}
                       >
                         <p className="fs-12 text-light">Dashboard</p>
@@ -316,13 +316,13 @@ const Sidebar = () => {
                       <p className="fs-15 m-3 fw-bolder">Profile</p>
                       <hr />
                       <Link
-                        to="/job-seeker-edit-profile"
+                        to="/app/job-seeker-edit-profile"
                         style={{ pointer: "cursor" }}
                       >
                         <p className="fs-12 text-light">Edit profile</p>
                       </Link>
                       <Link
-                        to="/job-seeker-change-password"
+                        to="/app/job-seeker-change-password"
                         style={{ pointer: "cursor" }}
                       >
                         <p className="fs-12 text-light">Change password</p>
@@ -334,13 +334,13 @@ const Sidebar = () => {
                       <p className="fs-15 m-3">Resume/CV</p>
                       <hr />
                       <Link
-                        to="/job-seeker-resume"
+                        to="/app/job-seeker-resume"
                         style={{ pointer: "cursor" }}
                       >
                         <p className="fs-12 text-light">My resume</p>
                       </Link>
                       <Link
-                        to="/job-seeker-my-cover-letters"
+                        to="/app/job-seeker-my-cover-letters"
                         style={{ pointer: "cursor" }}
                       >
                         <p className="fs-12 text-light">My cover letter</p>

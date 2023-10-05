@@ -139,7 +139,7 @@ const JobDetails = ({ jobInfo }) => {
                         <p className="m-1">Save</p>
                       </Button> */}
                       <Link
-                        to="/apply"
+                        to="/app/apply"
                         className={` ${width}`}
                         style={{ width: "20%" }}
                       >

@@ -224,7 +224,7 @@ const Navbar = () => {
                     Services
                   </NavLink>
                 </li>
-                <li className="nav-item"   onClick={() => navigate("/job-seeker-dashboard")}>
+                <li className="nav-item"   onClick={() => navigate("/app/job-seeker-dashboard")}>
                   <NavLink
                     className="fs-14"
                   
@@ -236,7 +236,7 @@ const Navbar = () => {
                 <li className="nav-item" style={{ marginTop: "0.5rem", cursor: "pointer" }}>
                   <Link
                     className="fs-12 btn btn-success"
-                   to="/employer-dashboard"
+                   to="/app/employer-dashboard"
                    
                   >
                     Employers
