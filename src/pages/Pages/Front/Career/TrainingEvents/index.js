@@ -50,6 +50,7 @@ import CategoryFilter from "./CategoryFilter";
 import MonthFilter from "./MonthFilter";
 import YearFilter from "./YearFilter";
 import LocationFilter from "./LocationFilter";
+import { course } from "../../../../../store/actions";
 
 const SingleOptions = [
   { value: "Watches", label: "Watches" },
@@ -60,9 +61,22 @@ const SingleOptions = [
 ];
 
 const TrainingEvents = (props) => {
+  const { loading, error, courseInfo, content, schedule, partnership } =
+    useSelector((state) => ({
+      loading: state.Courses.loading,
+      error: state.Courses.error,
+      courseInfo: state.Courses.courseInfo,
+      content: state.Courses.courseContent,
+      schedule: state.Courses.courseSchedule,
+      partnership: state.Courses.coursePartnership,
+    }));
+
   const dispatch = useDispatch();
 
-  
+  useEffect(() => {
+    dispatch(course({ viewAction: "" }));
+  }, [dispatch]);
+
   const [productList, setProductList] = useState([]);
   const [activeTab, setActiveTab] = useState("1");
   const [selectedMulti, setselectedMulti] = useState(null);
@@ -88,8 +102,6 @@ const TrainingEvents = (props) => {
   //   }
   // }
 
-  
-
   const [showAll, setShowAll] = useState(false);
   /*
   on change rating checkbox method
@@ -99,56 +111,31 @@ const TrainingEvents = (props) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteModalMulti, setDeleteModalMulti] = useState(false);
 
- 
-
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedMonths, setSelectedMonths] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedLocations, setSelectedLocations] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
 
-  const CourseList = [
-    {
-      name: "Contract Management Principles & practice",
+  const CourseList = [];
 
-      location: "Accra",
-      category: "Accounting",
-      date: "January",
-      year: "2023",
-    },
-    {
-      name: "Contract Management Principles & practice",
+  // Iterate through the original data and map it to the new structure
+  courseInfo?.forEach((course) => {
+    const newCourse = {
+      name: course.courseTitle,
+      location: course.courseVenue,
+      category: course.courseCategory === 1 ? "Accounting" : "Other", // Replace with actual category mapping
+      date: new Date(course.courseStartDate).toLocaleDateString("en-US", {
+        month: "long",
+      }),
+      year: new Date(course.courseStartDate).getFullYear(),
+    };
 
-      location: "Tema",
-      category: "Accounting",
-      date: "January",
-      year: "2023",
-    },
-    {
-      name: "Contract Management Principles & practice",
+    // Add the newCourse object to the CourseList array
+    CourseList.push(newCourse);
+  });
 
-      location: "Greater Accra - Accra",
-      category: "Policy",
-      date: "January",
-      year: "2023",
-    },
-    {
-      name: "Contract Management Principles & practice",
-
-      location: "Greater Accra - Accra",
-      category: "Science",
-      date: "February",
-      year: "2024",
-    },
-    {
-      name: "Contract Management Principles & practice",
-
-      location: "Greater Accra - Accra",
-      category: "Science",
-      date: "May",
-      year: "2024",
-    },
-  ];
+  console.log(CourseList);
 
   // Function to handle month selection
   const handleMonthChange = (selectedMonth) => {

@@ -12,13 +12,13 @@ import {
   TabContent,
   Nav,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { jobGrid } from "../../../../common/data/appsJobs";
 import classnames from "classnames";
 
 import SimpleBar from "simplebar-react";
 import { useDispatch, useSelector } from "react-redux";
-import { generalJobs } from "../../../../store/actions";
+import { category, generalJobs, searchJob } from "../../../../store/actions";
 import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const FeaturedJobs = () => {
@@ -83,6 +83,8 @@ const FeaturedJobs = () => {
     }
   };
 
+const navigate = useNavigate()
+
   useEffect(() => {
     // Initial window size calculation
     updateWindowSize();
@@ -108,7 +110,6 @@ const FeaturedJobs = () => {
     jobsInfo: state.Jobs.generalJobs,
   }));
 
-
   const [showEntries, setShowEntries] = useState(4);
 
   const handleShowEntriesChange = (e) => {
@@ -132,6 +133,16 @@ const FeaturedJobs = () => {
   // Determine if "Previous" and "Next" links should be disabled
   const isPrevDisabled = currentPage === 1;
   const isNextDisabled = endIndex >= jobsInfo?.length;
+
+  const { catLoading, catError, categoryInfo } = useSelector((state) => ({
+    catLoading: state.Industry.loading,
+    catError: state.Industry.error,
+    categoryInfo: state.Industry.categoryInfo,
+  }));
+
+  useEffect(() => {
+    dispatch(category({ viewAction: "" }));
+  }, [dispatch]);
 
   return (
     <>
@@ -306,96 +317,55 @@ const FeaturedJobs = () => {
                         flexWrap: "wrap",
                       }}
                     >
-                      <Col>
-                        <p>Accounting</p>
-                        <p>Data Management</p>
-                        <p>Extractive</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
-                      <Col>
-                        <p>Accounting</p>
-                        <p>Agriculture</p>
-                        <p>Driving/Transportation</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
-                      <Col>
-                        <p>Accounting</p>
-                        <p>Data Management</p>
-                        <p>Extractive</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
+                      {catLoading === false && catError === false ? (
+                        categoryInfo?.map((item) => (
+                          <>
+                            <Col md={2} xl={3}>
+                              <p style={{ cursor: "pointer" }}
+                              onClick={()=>{
+                                dispatch(searchJob(item.jobCategoryName))
+                                navigate("/job-list")
+                              }}
+                              >
+                                {item.jobCategoryName}
+                              </p>
+                            </Col>
+                          </>
+                        ))
+                      ) : (
+                        <p>Loading</p>
+                      )}
                     </div>
                   </div>
                 </TabPane>
                 <TabPane tabId="2">
-                  <div className="d-flex">
+                <div className="d-flex">
                     <div
                       className="ms-2 p-3"
                       style={{
                         display: "flex",
-                        gap: "1rem",
+                        gap: "2rem",
                         flexWrap: "wrap",
                       }}
                     >
-                      <Col>
-                        <p>Administration</p>
-                        <p>Agriculture</p>
-                        <p>Driving/Transportation</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
-                      <Col>
-                        <p>Administration</p>
-                        <p>Agriculture</p>
-                        <p>Driving/Transportation</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
-                      <Col>
-                        <p>Administration</p>
-                        <p>Agriculture</p>
-                        <p>Driving/Transportation</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
-                      <Col>
-                        <p>Accounting</p>
-                        <p>Agriculture</p>
-                        <p>Driving/Transportation</p>
-                        <p>Health and Nutrition</p>
-                        <p>Insurance</p>
-                        <p>Automotive/Machinery/Aviation</p>
-                        <p>Banking</p>
-                        <p>Policy</p>
-                        <p>Scince</p>
-                      </Col>
+                      {catLoading === false && catError === false ? (
+                        categoryInfo?.map((item) => (
+                          <>
+                            <Col md={2} xl={3}>
+                              <p style={{ cursor: "pointer" }}
+                              onClick={()=>{
+                                dispatch(searchJob(item.jobCategoryName))
+                                navigate("/job-list")
+                              }}
+                              >
+                                {item.jobCategoryName}
+                              </p>
+                            </Col>
+                          </>
+                        ))
+                      ) : (
+                        <p>Loading</p>
+                      )}
                     </div>
                   </div>
                 </TabPane>
