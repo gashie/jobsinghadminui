@@ -156,44 +156,18 @@ const JobList = (props) => {
     categoryInfo: state.Industry.categoryInfo,
   }));
 
-  const [selectedLocations, setSelectedLocations] = useState([]);
-
-  const toggleLocationSelection = (location) => {
-    // Check if the location is already selected
-    if (selectedLocations.includes(location)) {
-      // Deselect the location by removing it from the selectedLocations array
-      setSelectedLocations(
-        selectedLocations.filter((item) => item !== location)
-      );
-    } else {
-      // Select the location by adding it to the selectedLocations array
-      setSelectedLocations([...selectedLocations, location]);
-    }
-  };
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const toggleCategorySelection = (categoryName) => {
-    // Check if the category is already selected
-    if (selectedCategories.includes(categoryName)) {
-      // Deselect the category by removing it from the selectedCategories array
-      setSelectedCategories(selectedCategories.filter((item) => item !== categoryName));
-    } else {
-      // Select the category by adding it to the selectedCategories array
-      setSelectedCategories([...selectedCategories, categoryName]);
-    }
-  };
-
   useEffect(() => {
     dispatch(catAction({ viewAction: "" }));
   }, [dispatch]);
 
   const filteredData = jobsInfo?.filter((job) => {
-    const isTitleMatch = job.jobTitle.toLowerCase().includes(jobTitle.toLowerCase());
+    const isTitleMatch = job.jobTitle
+      .toLowerCase()
+      .includes(jobTitle.toLowerCase());
     const isLocationMatch =
-      location === 'Select Location' || selectedLocations.includes(job.jobLocation);
+      location === "Select Location" || job.jobLocation === location;
     const isCategoryMatch =
-      category === 'Select Category' || selectedCategories.includes(job.jobCategoryName);
+      category === "Select Category" || job.jobCategoryName === category;
 
     return isTitleMatch && isLocationMatch && isCategoryMatch;
   });
@@ -244,6 +218,7 @@ const JobList = (props) => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             >
+            
               <option>Select Location</option>
               {Object.entries(placesData).map(([region, cities], index) => (
                 <optgroup key={index} label={region}>
@@ -420,36 +395,17 @@ const JobList = (props) => {
                                               cursor: "pointer",
                                             }}
                                             className="mt-1"
-                                            onClick={() =>
-                                              toggleLocationSelection(location)
-                                            }
                                           >
                                             <p style={{ textAlign: "center" }}>
-                                              {selectedLocations.includes(
-                                                location
-                                              ) ? (
-                                                <i
-                                                  className="bx bx-x fs-16 fw-bolder"
-                                                  style={{
-                                                    color: "gray",
-                                                    textAlign: "center",
-                                                    position: "relative",
-                                                    top: "0.7rem",
-                                                    // backgroundColor: "gray"
-                                                  }}
-                                                ></i>
-                                              ) : (
-                                                <i
-                                                  className="bx bx-plus fs-16 fw-bolder"
-                                                  style={{
-                                                    color: "244a59",
-                                                    textAlign: "center",
-                                                    position: "relative",
-                                                    top: "0.7rem",
-                                                    // color: 'gray'
-                                                  }}
-                                                ></i>
-                                              )}
+                                              <i
+                                                className="bx bx-plus fs-16 fw-bolder"
+                                                style={{
+                                                  color: "244a59",
+                                                  textAlign: "center",
+                                                  position: "relative",
+                                                  top: "0.7rem",
+                                                }}
+                                              ></i>
                                             </p>
                                           </div>
                                         </div>
@@ -478,7 +434,6 @@ const JobList = (props) => {
                             </Collapse>
                           </NavItem>
                         </Nav>
-
                         <Nav vertical>
                           <NavItem>
                             <NavLink onClick={toggleCategory}>
@@ -510,71 +465,58 @@ const JobList = (props) => {
                             <Collapse isOpen={vetCategory} className="ml-4">
                               <Nav vertical>
                                 {categoryInfo?.map((category, index) => (
-                                  <div key={index} className="d-flex gap-1">
-                                    <NavItem
-                                      style={{
-                                        padding: "0.7rem",
-                                        backgroundColor: "#ebeff0",
-                                        borderRadius: "0.5rem",
-                                        width: "85%",
-                                      }}
-                                      className="mt-1"
-                                    >
-                                      <div
-                                        className="d-flex"
+                                    <div key={index} className="d-flex gap-1">
+                                      <NavItem
                                         style={{
-                                          justifyContent: "space-between",
+                                          padding: "0.7rem",
+                                          backgroundColor: "#ebeff0",
+                                          borderRadius: "0.5rem",
+                                          width: "85%",
                                         }}
+                                        className="mt-1"
                                       >
-                                        <NavLink
-                                          href="#"
+                                        <div
+                                          className="d-flex"
                                           style={{
-                                            color: "gray",
-                                            fontSize: "0.8rem",
+                                            justifyContent: "space-between",
                                           }}
                                         >
-                                          {category?.jobCategoryName}
-                                        </NavLink>
-                                      </div>
-                                    </NavItem>
+                                          <NavLink
+                                            href="#"
+                                            style={{
+                                              color: "gray",
+                                              fontSize: "0.8rem",
+                                            }}
+                                          >
+                                            {category?.jobCategoryName}
+                                          </NavLink>
+                                        </div>
+                                      </NavItem>
 
-                                    <div
-                                      style={{
-                                        padding: "0.7rem",
-                                        backgroundColor: "#ebeff0",
-                                        borderRadius: "0.5rem",
-                                        width: "15%",
-                                        cursor: "pointer",
-                                      }}
-                                      className="mt-1"
-                                      onClick={() => toggleCategorySelection(category?.jobCategoryName)}
-                                    >
-                                    <p style={{ textAlign: "center" }}>
-                      {selectedCategories.includes(category?.jobCategoryName) ? (
-                        <i
-                          className="bx bx-x fs-16 fw-bolder"
-                          style={{
-                            color: "red",
-                            textAlign: "center",
-                            position: "relative",
-                            top: "0.7rem",
-                          }}
-                        ></i>
-                      ) : (
-                        <i
-                          className="bx bx-plus fs-16 fw-bolder"
-                          style={{
-                            color: "244a59",
-                            textAlign: "center",
-                            position: "relative",
-                            top: "0.7rem",
-                          }}
-                        ></i>
-                      )}
-                    </p>
+                                      <div
+                                        style={{
+                                          padding: "0.7rem",
+                                          backgroundColor: "#ebeff0",
+                                          borderRadius: "0.5rem",
+                                          width: "15%",
+                                          cursor: "pointer",
+                                        }}
+                                        className="mt-1"
+                                      >
+                                        <p style={{ textAlign: "center" }}>
+                                          <i
+                                            className="bx bx-plus fs-16 fw-bolder"
+                                            style={{
+                                              color: "244a59",
+                                              textAlign: "center",
+                                              position: "relative",
+                                              top: "0.7rem",
+                                            }}
+                                          ></i>
+                                        </p>
+                                      </div>
                                     </div>
-                                  </div>
-                                ))}
+                                  ))}
 
                                 {/* {catData.categories.length > 5 && (
                                   <button
