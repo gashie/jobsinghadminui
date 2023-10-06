@@ -228,26 +228,21 @@ const JobSeekerLogin = () => {
                         </FormFeedback>
                       ) : null}
 
-
-<Button
-                      style={{ backgroundColor: "#244a59" }}
-                      disabled={
-                        error ? null : loading
-                      }
-                      className="btn btn-dark w-100 mt-4"
-                      type="submit"
-                    >
-                      {error ? null : loading ? (
-                        <Spinner size="sm" className="me-2">
-                          {" "}
-                          Loading...{" "}
-                        </Spinner>
-                      ) : null}
-                      Login
-                    </Button>
+                      <Button
+                        style={{ backgroundColor: "#244a59" }}
+                        disabled={error ? null : loading}
+                        className="btn btn-dark w-100 mt-4"
+                        type="submit"
+                      >
+                        {error ? null : loading ? (
+                          <Spinner size="sm" className="me-2">
+                            {" "}
+                            Loading...{" "}
+                          </Spinner>
+                        ) : null}
+                        Login
+                      </Button>
                     </Col>
-
-                   
                   </Row>
                 </Container>
               </div>

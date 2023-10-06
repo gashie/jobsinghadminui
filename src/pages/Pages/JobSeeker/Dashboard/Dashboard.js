@@ -107,6 +107,34 @@ const Dashboard = () => {
     detailerror: state.JobAlerts.fullJobDetailsError,
   }));
 
+  const [showEntries, setShowEntries] = useState(2);
+
+  const handleShowEntriesChange = (e) => {
+    setShowEntries(e.target.value);
+  };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = showEntries;
+  
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Get the current page of items
+  const filter =
+    loading === false &&
+    error === false &&
+    savedJobsInfo?.slice(startIndex, endIndex);
+
+  // Function to handle page changes
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Determine if "Previous" and "Next" links should be disabled
+  const isPrevDisabled = currentPage === 1;
+  const isNextDisabled = endIndex >= savedJobsInfo?.length;
+
   return (
     <>
       <Col
@@ -228,7 +256,7 @@ const Dashboard = () => {
                   {/* New company */}
 
                   {savedLoading === false && savedError === false ? (
-                    savedJobsInfo?.map((item, key) => (
+                    (filter || []).map((item, key) => (
                       <>
                         <Col xl={5} key={key}>
                           <div

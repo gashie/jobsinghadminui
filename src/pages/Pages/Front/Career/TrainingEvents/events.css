@@ -11,7 +11,7 @@
     filter: brightness(30%);
     opacity: 0.6;
   
-    background-image: url('./cover.png');
+    /* background-image: url('./cover.png'); */
     background-repeat: no-repeat;
 }
 

@@ -18,7 +18,13 @@ import classnames from "classnames";
 
 import SimpleBar from "simplebar-react";
 import { useDispatch, useSelector } from "react-redux";
-import { category, generalJobs, searchJob } from "../../../../store/actions";
+import {
+  category,
+  fullJobDetails,
+  generalJobs,
+  saveJobs,
+  searchJob,
+} from "../../../../store/actions";
 import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const FeaturedJobs = () => {
@@ -83,7 +89,7 @@ const FeaturedJobs = () => {
     }
   };
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Initial window size calculation
@@ -144,6 +150,16 @@ const navigate = useNavigate()
     dispatch(category({ viewAction: "" }));
   }, [dispatch]);
 
+  const [likedJobs, setLikedJobs] = useState({});
+
+  // Function to toggle the liked status for a specific job
+  const toggleLike = (jobId) => {
+    setLikedJobs((prevLikedJobs) => ({
+      ...prevLikedJobs,
+      [jobId]: !prevLikedJobs[jobId], // Toggle the liked status
+    }));
+  };
+
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
@@ -178,83 +194,78 @@ const navigate = useNavigate()
             {loading === false && error === false ? (
               filter.map((item, key) => (
                 <Col xl={3} md={6} key={key} xs={15}>
-                  <Link to="/job-details">
-                    <Card
-                      className=""
+                  <Card style={{ cursor: "pointer" }}>
+                    <CardBody
                       style={{
-                        boxShadow: "none",
+                        height: "40vh",
                         border: "1px solid #e0e0e0",
-                        cursor: "pointer",
+                        borderRadius: "10px",
                       }}
                     >
-                      <CardBody>
-                        <Button
-                          type="button"
-                          className="btn btn-dark btn-soft-primary float-end"
-                          style={{
-                            backgroundColor: "white",
-                            boxShadow: "none",
+                      <Button
+                        type="button"
+                        className="btn btn-dark btn-soft-primary float-end"
+                        style={{
+                          backgroundColor: "white",
+                          boxShadow: "none",
+                        }}
+                        onClick={() => {
+                          toggleLike(item.jobId);
+                          dispatch(saveJobs({ jobId: item?.jobId }));
+                        }}
+                      >
+                        <i
+                          className={`bx bx-heart fs-20 fw-bolder ${
+                            likedJobs[item.jobId] ? "bx bxs-heart" : ""
+                          }`}
+                          style={{ color: "#244a59" }}
+                        ></i>
+                      </Button>
+                      <div className="avatar-xxl mb-4 ">
+                        <div className="">
+                          <img
+                            src={
+                              "http://108.166.181.225:5050/uploads/image/logos/" +
+                              item?.companyLogo
+                            } // Use the actual image URL
+                            alt=""
+                            className="avatar-md img-fluid"
+                          />
+                        </div>
+                      </div>
+                     
+                        <h5
+                          className="fw-bolder"
+                          style={{ color: "#244a59" }}
+                          onClick={() => {
+                            // dispatch(searchJob(item?.jobTitle));
+                            dispatch(fullJobDetails({ jobId: item?.jobId }));
+                            navigate("/job-details");
                           }}
                         >
-                          <i
-                            className="bx bx-heart fs-16"
-                            style={{ color: "#244a59" }}
-                          ></i>
-                        </Button>
-                        <div className="avatar-md mb-4">
-                          <div className="">
-                            <img
-                              src={item.companyLogo}
-                              alt=""
-                              className="avatar-xxl"
-                            />
-                          </div>
-                        </div>
-                        <Link to="#!">
-                          <h5
-                            className="fw-bolder"
-                            style={{ color: "#244a59" }}
-                          >
-                            {item.jobTitle}
-                          </h5>
-                        </Link>
-                        {/* <p className="text-muted">{item.companyName} </p> */}
-                        {/* <div className="d-flex gap-4 mb-3">
-                      <div>
-                        <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>{" "}
-                        {item.location}
-                      </div>
-                      <div>
-                        <i className="ri-time-line text-primary me-1 align-bottom"></i>{" "}
-                        {item.postDate}
-                      </div>
-                    </div> */}
-                        <p className="text-muted mt-5">
-                          {" "}
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: decodeHTML(
-                                item?.jobDescription.substring(0, 100) +
-                                  (item?.jobDescription.length > 100
-                                    ? "..."
-                                    : "")
-                              ),
-                            }}
-                          ></div>
-                        </p>
-                        <p className="text-muted mt-5">
-                          {" "}
-                          <i className="ri-map-pin-2-line text-muted me-1 align-bottom fs-20"></i>{" "}
-                          {item.jobLocation}
-                        </p>
-                        <p className="text-muted mt-4">
-                          {" "}
-                          <i className="bx bx-calendar text-muted me-1 align-bottom fs-20"></i>{" "}
-                          Expires {formatDate(item?.goLiveDate)}
-                        </p>
-                      </CardBody>
-                    </Card>
-                  </Link>
+                          {item.jobTitle}
+                        </h5>
+                     
+                      <p className="text-muted mt-5">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: decodeHTML(
+                              item?.jobDescription.substring(0, 100) +
+                                (item?.jobDescription.length > 100 ? "..." : "")
+                            ),
+                          }}
+                        ></div>
+                      </p>
+                      <p className="text-muted mt-5">
+                        <i className="ri-map-pin-2-line text-muted me-1 align-bottom fs-20"></i>{" "}
+                        {item.jobLocation}
+                      </p>
+                      <p className="text-muted mt-4">
+                        <i className="bx bx-calendar text-muted me-1 align-bottom fs-20"></i>{" "}
+                        Expires {formatDate(item?.goLiveDate)}
+                      </p>
+                    </CardBody>
+                  </Card>
                 </Col>
               ))
             ) : (
@@ -321,11 +332,12 @@ const navigate = useNavigate()
                         categoryInfo?.map((item) => (
                           <>
                             <Col md={2} xl={3}>
-                              <p style={{ cursor: "pointer" }}
-                              onClick={()=>{
-                                dispatch(searchJob(item.jobCategoryName))
-                                navigate("/job-list")
-                              }}
+                              <p
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  dispatch(searchJob(item.jobCategoryName));
+                                  navigate("/job-list");
+                                }}
                               >
                                 {item.jobCategoryName}
                               </p>
@@ -339,7 +351,7 @@ const navigate = useNavigate()
                   </div>
                 </TabPane>
                 <TabPane tabId="2">
-                <div className="d-flex">
+                  <div className="d-flex">
                     <div
                       className="ms-2 p-3"
                       style={{
@@ -352,11 +364,12 @@ const navigate = useNavigate()
                         categoryInfo?.map((item) => (
                           <>
                             <Col md={2} xl={3}>
-                              <p style={{ cursor: "pointer" }}
-                              onClick={()=>{
-                                dispatch(searchJob(item.jobCategoryName))
-                                navigate("/job-list")
-                              }}
+                              <p
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  dispatch(searchJob(item.jobCategoryName));
+                                  navigate("/job-list");
+                                }}
                               >
                                 {item.jobCategoryName}
                               </p>

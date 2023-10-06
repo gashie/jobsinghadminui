@@ -50,7 +50,8 @@ import CategoryFilter from "./CategoryFilter";
 import MonthFilter from "./MonthFilter";
 import YearFilter from "./YearFilter";
 import LocationFilter from "./LocationFilter";
-import { course } from "../../../../../store/actions";
+import { course, frontCourse } from "../../../../../store/actions";
+import { formatDate } from "../../../../../Components/Hooks/formatDate";
 
 const SingleOptions = [
   { value: "Watches", label: "Watches" },
@@ -123,11 +124,15 @@ const TrainingEvents = (props) => {
   courseInfo?.forEach((course) => {
     const newCourse = {
       name: course.courseTitle,
+      id: course.courseId,
+      courseInfo: course,
       location: course.courseVenue,
       category: course.courseCategory === 1 ? "Accounting" : "Other", // Replace with actual category mapping
+      showDate: course.courseStartDate,
       date: new Date(course.courseStartDate).toLocaleDateString("en-US", {
         month: "long",
-      }),
+      }
+      ),
       year: new Date(course.courseStartDate).getFullYear(),
     };
 
@@ -531,16 +536,16 @@ const TrainingEvents = (props) => {
                       {eventView === "list" ? (
                         <>
                           {filteredCourses.map((data) => (
+
+         
+
+
                             <>
+                            
                               <Card>
                                 <CardBody>
-                                  <Col>
-                                    <div
-                                      style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                      }}
-                                    >
+                                  <Row>
+                                    <Col>
                                       <h5
                                         className="fs-13"
                                         style={{
@@ -550,6 +555,9 @@ const TrainingEvents = (props) => {
                                       >
                                         {data.name}
                                       </h5>
+                                    </Col>
+
+                                    <Col>
                                       <div
                                         style={{
                                           height: "2rem",
@@ -559,6 +567,9 @@ const TrainingEvents = (props) => {
                                           marginRight: "1.5rem",
                                         }}
                                       ></div>
+                                    </Col>
+
+                                    <Col>
                                       <h5
                                         className="fs-13"
                                         style={{
@@ -566,9 +577,14 @@ const TrainingEvents = (props) => {
                                           marginTop: "01rem",
                                           marginRight: "2rem",
                                         }}
-                                      >
-                                        {data.date}
+                                      > 
+                                       <p style={{display: 'none'}}>{(data.date)}</p> 
+                                        {formatDate(data.showDate)}
                                       </h5>
+                                    </Col>
+
+                                    <Col>
+                                      {" "}
                                       <div
                                         style={{
                                           height: "2rem",
@@ -578,39 +594,59 @@ const TrainingEvents = (props) => {
                                           marginRight: "2rem",
                                         }}
                                       ></div>
+                                    </Col>
 
-                                      <h5
-                                        className="fs-13"
-                                        style={{
-                                          fontWeight: "bolder",
-                                          marginTop: "0.4rem",
-                                          width: "max-content",
-                                          marginRight: "2rem",
-                                        }}
+                                    
+                                    <Col>
+                                    <h5
+                                      className="fs-13"
+                                      style={{
+                                        fontWeight: "bolder",
+                                        marginTop: "0.4rem",
+                                        width: "max-content",
+                                        marginRight: "2rem",
+                                      }}
+                                    >
+                                      {data.location} - GH
+                                      <Link 
+                                      to="/course-details"
+                                      onClick={()=>{
+                                        dispatch(frontCourse(data.courseInfo))
+
+                                        // courseInfo?.map((a)=>{
+                                        //   if()
+                                        // })
+
+
+                                      }}
                                       >
-                                        {data.location}
-                                        <Link to="/course-details">
-                                          <i
-                                            className="bx bxs-chevron-right-circle"
-                                            style={{
-                                              fontSize: "1.5rem",
-                                              padding: "0.5rem",
-                                              position: "relative",
-                                              top: "0.3rem",
-                                              color: "#244a59",
-                                            }}
-                                          ></i>
-                                        </Link>
-                                      </h5>
-                                    </div>
-                                  </Col>
+                                        <i
+                                          className="bx bxs-chevron-right-circle"
+                                          style={{
+                                            fontSize: "1.5rem",
+                                            padding: "0.5rem",
+                                            position: "relative",
+                                            top: "0.3rem",
+                                            color: "#244a59",
+                                          }}
+                                        ></i>
+                                      </Link>
+                                    </h5>
+                                    </Col>
+
+                                
+                                  </Row>
                                 </CardBody>
                               </Card>
+
                             </>
+
+
                           ))}
                         </>
                       ) : (
                         // Grid view
+
                         <div>
                           <Col>
                             <Card>
@@ -685,6 +721,9 @@ const TrainingEvents = (props) => {
                             </Card>
                           </Col>
                         </div>
+
+
+
                       )}
 
                       {filteredCourses.length === 0 && (
@@ -723,7 +762,12 @@ const TrainingEvents = (props) => {
         className="mt-5"
       >
         <div>
-          <img src={online} alt="online-img" className="img-fluid"></img>
+          <img 
+          
+          src={online}
+          
+          
+          alt="online-img" className="img-fluid"></img>
         </div>
         <div className="p-3">
           <div style={{ marginTop: "5rem" }}>

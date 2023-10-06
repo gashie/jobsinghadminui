@@ -38,6 +38,9 @@ import {
     UPDATE_COURSE_SCHEDULE,
     UPDATE_COURSE_SCHEDULE_ERROR,
     UPDATE_COURSE_SCHEDULE_SUCCESS,
+    FIND_COURSE,
+    FIND_COURSE_SUCCESS,
+    FIND_COURSE_ERROR,
     } from "./actionTypes";
     
     // Action creators
@@ -313,5 +316,31 @@ import {
       type: UPDATE_COURSE_SCHEDULE_SUCCESS,
       payload: data,
     };
+  }
+
+  export function frontCourse(data) {
+    return {
+      type: "FRONT_COURSE",
+      payload: data,
+    };
+  }
+
+  export function findCourse (data) {
+    return {
+      type: FIND_COURSE, 
+      payload: data
+    }
+  }
+  export function findCourseSuccess (data) {
+    return {
+      type: FIND_COURSE_SUCCESS, 
+      payload: data
+    }
+  }
+  export function findCourseError (data) {
+    return {
+      type: FIND_COURSE_ERROR, 
+      payload: data
+    }
   }
   

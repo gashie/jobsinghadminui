@@ -25,7 +25,7 @@ const AuthProtectedJobSeeker = (props) => {
 
   useEffect(() => {
     dispatch(getMe());
-    if (isLoggedIn && userInfo?.userInfo?.roleid === 3) {
+    if (isLoggedIn &&( userInfo?.userInfo?.roleid === 3) ) {
       // dispatch(getMe());
 
       navigate("/app/employer-dashboard");

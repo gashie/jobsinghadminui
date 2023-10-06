@@ -34,6 +34,10 @@ import logo2 from "./logo2.png";
 import logo3 from "./logo3.png";
 import logo4 from "./logo4.png";
 import logo5 from "./logo5.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
+import { rateCard } from "../../../../store/actions";
 
 const JobPosting = () => {
   const iconList = [
@@ -60,6 +64,19 @@ const JobPosting = () => {
       des: "Unlock your best matches using CV Search Credit",
     },
   ];
+
+  const { loading, error, rateInfo } = useSelector((state) => ({
+    loading: state.Rates.loading,
+    error: state.Rates.error,
+    rateInfo: state.Rates.rateCardInfo,
+  }));
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+   dispatch(rateCard({viewAction: ""}))
+  }, [dispatch])
 
   return (
     <>
@@ -248,102 +265,40 @@ const JobPosting = () => {
                 width: "40rem",
               }}
             >
-              <CardBody>
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <div>
-                    <input type="radio"></input> <strong>1</strong> Job posting
+               <CardBody>
+              {loading === false && error === false ? (
+                rateInfo?.map((item, key) => (
+                  <div
+                    className="d-flex p-3"
+                    style={{ justifyContent: "space-between" }}
+                    key={key}
+                  >
+                    <div>
+                      <input
+                        type="radio"
+                        checked={item === selectedItem}
+                        onChange={() => setSelectedItem(item)}
+                      />{" "}
+                      {item?.rateTitle}
+                    </div>
+                    <div>
+                      <p style={{ textAlign: "left" }} className="">
+                        <i
+                          className="bx bxs-badge-check"
+                          style={{ color: "#00D084" }}
+                        ></i>{" "}
+                        {item?.rateDescription}
+                      </p>
+                    </div>
+                    <div>
+                      <strong>GHS {item?.ratePrice || ""}</strong>
+                    </div>
                   </div>
-                  <div></div>
-                  <div>
-                    <strong>GHS 100.00</strong>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <div>
-                    <input type="radio"></input> <strong>2</strong> Job posting
-                  </div>
-                  <div>
-                    {" "}
-                    <i
-                      className="bx bxs-badge-check"
-                      style={{ color: "#00D084" }}
-                    ></i>{" "}
-                    3% Savings
-                  </div>
-                  <div>
-                    <strong>GHS 194.00</strong>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <div>
-                    <input type="radio"></input> <strong>3</strong> Job posting
-                  </div>
-                  <div>
-                    {" "}
-                    <i
-                      className="bx bxs-badge-check"
-                      style={{ color: "#00D084" }}
-                    ></i>{" "}
-                    5% Savings
-                  </div>
-                  <div>
-                    <strong>GHS 285.00</strong>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <div>
-                    {" "}
-                    <input type="radio"></input> <strong>4</strong> Job postings
-                  </div>
-                  <div>
-                    {" "}
-                    <i
-                      className="bx bxs-badge-check"
-                      style={{ color: "#00D084" }}
-                    ></i>{" "}
-                    7% Savings
-                  </div>
-                  <div>
-                    <strong>GHS372.00</strong>
-                  </div>
-                </div>
-                <hr />
-                <div
-                  className="d-flex p-3"
-                  style={{ justifyContent: "space-between" }}
-                >
-                  <div>
-                    {" "}
-                    <input type="radio"></input> <strong>5</strong> Job postings
-                  </div>
-                  <div>
-                    {" "}
-                    <i
-                      className="bx bxs-badge-check"
-                      style={{ color: "#00D084" }}
-                    ></i>{" "}
-                    10% Savings
-                  </div>
-                  <div>
-                    <strong>GHS450.00</strong>
-                  </div>
-                </div>
-              </CardBody>
+                ))
+              ) : (
+                <p>Loading ...</p>
+              )}
+            </CardBody>
             </Card>
           </Col>
 

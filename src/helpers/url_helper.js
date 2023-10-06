@@ -296,7 +296,7 @@ export const CREATE_RATE_CARD = `${version}/saveratecard/`
 export const UPDATE_RATE_CARD = `${version}/viewschedule/`
 export const APPROVE_RATE_CARD = `${version}/approveratecards/`
 
-export const COURSE = `${version}/viewsavedcourses/`
+export const COURSE = `${version}/mysavedcourses/`
 export const SAVE_COURSE = `${version}/savecourse/`
 export const UPDATE_COURSE = `${version}/updatesavedcourse/`
 export const APPROVE_COURSE = `${version}/approvecourses/`
@@ -344,6 +344,12 @@ export const GENERAL_JOBS = `${version}/public/jobdata`
 
 export const INVOICES = `${version}/viewmyunpaid/`
 export const PAY_INVOICE = `${version}/payinvoice/`
+
+export const SERVICE = `${version}/services/`
+
+
+
+
 
 
 

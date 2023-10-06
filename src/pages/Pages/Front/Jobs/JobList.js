@@ -25,6 +25,8 @@ import {
   generalJobs,
   jobs,
   category as catAction,
+  saveJobs,
+  fullJobDetails,
 } from "../../../../store/actions";
 import classnames from "classnames";
 
@@ -40,16 +42,16 @@ import catData from "../../../../common/data/categories.json";
 
 import "nouislider/distribute/nouislider.css";
 import { formatDate } from "../../../../Components/Hooks/formatDate";
+import { useNavigate } from "react-router-dom";
 
 const JobList = (props) => {
   const dispatch = useDispatch();
 
   const [showAll, setShowAll] = useState(false);
 
-
-  const {searchData} = useSelector((state)=>({
-    searchData: state.Jobs.search
-  }))
+  const { searchData } = useSelector((state) => ({
+    searchData: state.Jobs.search,
+  }));
 
   // Displat Delete Button
   const [dele, setDele] = useState(0);
@@ -61,6 +63,8 @@ const JobList = (props) => {
     { name: "Part Time", count: "200" },
     { name: "Learnership", count: "200" },
   ];
+
+  const navigate = useNavigate
 
   const JobLevel = [
     { name: "Intermediate", count: "0" },
@@ -177,6 +181,16 @@ const JobList = (props) => {
     return isTitleMatch && isLocationMatch && isCategoryMatch;
   });
 
+  const [likedJobs, setLikedJobs] = useState({});
+
+  // Function to toggle the liked status for a specific job
+  const toggleLike = (jobId) => {
+    setLikedJobs((prevLikedJobs) => ({
+      ...prevLikedJobs,
+      [jobId]: !prevLikedJobs[jobId], // Toggle the liked status
+    }));
+  };
+
   return (
     <>
       <Row
@@ -223,7 +237,6 @@ const JobList = (props) => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             >
-            
               <option>Select Location</option>
               {Object.entries(placesData).map(([region, cities], index) => (
                 <optgroup key={index} label={region}>
@@ -470,58 +483,58 @@ const JobList = (props) => {
                             <Collapse isOpen={vetCategory} className="ml-4">
                               <Nav vertical>
                                 {categoryInfo?.map((category, index) => (
-                                    <div key={index} className="d-flex gap-1">
-                                      <NavItem
+                                  <div key={index} className="d-flex gap-1">
+                                    <NavItem
+                                      style={{
+                                        padding: "0.7rem",
+                                        backgroundColor: "#ebeff0",
+                                        borderRadius: "0.5rem",
+                                        width: "85%",
+                                      }}
+                                      className="mt-1"
+                                    >
+                                      <div
+                                        className="d-flex"
                                         style={{
-                                          padding: "0.7rem",
-                                          backgroundColor: "#ebeff0",
-                                          borderRadius: "0.5rem",
-                                          width: "85%",
+                                          justifyContent: "space-between",
                                         }}
-                                        className="mt-1"
                                       >
-                                        <div
-                                          className="d-flex"
+                                        <NavLink
+                                          href="#"
                                           style={{
-                                            justifyContent: "space-between",
+                                            color: "gray",
+                                            fontSize: "0.8rem",
                                           }}
                                         >
-                                          <NavLink
-                                            href="#"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "0.8rem",
-                                            }}
-                                          >
-                                            {category?.jobCategoryName}
-                                          </NavLink>
-                                        </div>
-                                      </NavItem>
-
-                                      <div
-                                        style={{
-                                          padding: "0.7rem",
-                                          backgroundColor: "#ebeff0",
-                                          borderRadius: "0.5rem",
-                                          width: "15%",
-                                          cursor: "pointer",
-                                        }}
-                                        className="mt-1"
-                                      >
-                                        <p style={{ textAlign: "center" }}>
-                                          <i
-                                            className="bx bx-plus fs-16 fw-bolder"
-                                            style={{
-                                              color: "244a59",
-                                              textAlign: "center",
-                                              position: "relative",
-                                              top: "0.7rem",
-                                            }}
-                                          ></i>
-                                        </p>
+                                          {category?.jobCategoryName}
+                                        </NavLink>
                                       </div>
+                                    </NavItem>
+
+                                    <div
+                                      style={{
+                                        padding: "0.7rem",
+                                        backgroundColor: "#ebeff0",
+                                        borderRadius: "0.5rem",
+                                        width: "15%",
+                                        cursor: "pointer",
+                                      }}
+                                      className="mt-1"
+                                    >
+                                      <p style={{ textAlign: "center" }}>
+                                        <i
+                                          className="bx bx-plus fs-16 fw-bolder"
+                                          style={{
+                                            color: "244a59",
+                                            textAlign: "center",
+                                            position: "relative",
+                                            top: "0.7rem",
+                                          }}
+                                        ></i>
+                                      </p>
                                     </div>
-                                  ))}
+                                  </div>
+                                ))}
 
                                 {/* {catData.categories.length > 5 && (
                                   <button
@@ -881,7 +894,6 @@ const JobList = (props) => {
                                 style={{
                                   border: "1px solid #ebeff0",
                                   boxShadow: "none",
-                                  cursor: "pointer",
                                 }}
                                 className="p-2"
                               >
@@ -899,6 +911,12 @@ const JobList = (props) => {
                                           style={{
                                             fontWeight: "bolder",
                                             color: "244a59",
+                                            cursor: "pointer",
+                                          }}
+                                          onClick={() => {
+                                            // dispatch(searchJob(item?.jobTitle));
+                                            dispatch(fullJobDetails({ jobId: item?.jobId }));
+                                            navigate("/job-details");
                                           }}
                                         >
                                           {item?.jobTitle}
@@ -956,22 +974,38 @@ const JobList = (props) => {
                                       >
                                         <div>
                                           <img
-                                            src={seaTech}
+                                            src={
+                                              "http://108.166.181.225:5050/uploads/image/logos/" +
+                                              item?.companyLogo
+                                            }
                                             alt="logo"
                                             className="img-fluid avatar-xxl"
                                           ></img>
                                         </div>
                                         <div>
-                                          <i
-                                            className="mdi mdi-cards-heart "
+                                          <Button
+                                            type="button"
+                                            className="btn btn-dark btn-soft-primary float-end"
                                             style={{
-                                              cursor: "pointer",
-                                              color: "red",
-                                              fontSize: "2rem",
-                                              position: "relative",
-                                              top: "-1rem",
+                                              backgroundColor: "white",
+                                              boxShadow: "none",
                                             }}
-                                          ></i>
+                                            onClick={() => {
+                                              toggleLike(item.jobId);
+                                              dispatch(
+                                                saveJobs({ jobId: item?.jobId })
+                                              );
+                                            }}
+                                          >
+                                            <i
+                                              className={`bx bx-heart fs-20 fw-bolder ${
+                                                likedJobs[item.jobId]
+                                                  ? "bx bxs-heart"
+                                                  : ""
+                                              }`}
+                                              style={{ color: "#244a59" }}
+                                            ></i>
+                                          </Button>
                                         </div>
                                       </div>
                                     </div>

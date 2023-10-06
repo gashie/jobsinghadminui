@@ -246,7 +246,7 @@ const Services = () => {
         </Col>
       </Row>
 
-      <Row className="mt-5">
+      <Row className="">
         <Col>
           {window.location.pathname === "/services" ? (
             <ServicesComp />

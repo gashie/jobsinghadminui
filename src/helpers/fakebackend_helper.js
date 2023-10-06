@@ -536,3 +536,4 @@ export const generalJobsURL = (data) => api.create(url.GENERAL_JOBS, data)
 export const invoiceURL = (data) => api.create(url.INVOICES, data)
 export const payInvoiceURL = (data) => api.create(url.PAY_INVOICE, data)
 
+export const sendServiceURL = (data) => api.create(url.SERVICE, data)

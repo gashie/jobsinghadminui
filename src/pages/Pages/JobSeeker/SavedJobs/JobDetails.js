@@ -27,8 +27,6 @@ const JobDetails = ({ jobInfo }) => {
     }
   };
 
- 
-
   useEffect(() => {
     // Initial window size calculation
     updateWindowSize();
@@ -212,7 +210,9 @@ const JobDetails = ({ jobInfo }) => {
                     dangerouslySetInnerHTML={{
                       __html: decodeHTML(jobInfo?.jobDescription),
                     }}
-                  ></div>
+                  >
+                    
+                  </div>
 
                   {/* <p className="mb-4">
                     Product designer is an exceptional career choice. The demand

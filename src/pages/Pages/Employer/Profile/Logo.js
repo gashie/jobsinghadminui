@@ -34,14 +34,7 @@ const ProfileLogo = () => {
     userInfo: state.Login.userInfo,
   }));
 
-  const handleLogo = () => {
-    const formData = new FormData();
-    formData.append("companyId", userInfo?.userInfo?.company?.companyId);
-    formData.append("appLogo", selectedFile);
-
-    dispatch(updateLogo(formData));
-  };
-
+  
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -56,6 +49,15 @@ const ProfileLogo = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  const handleLogo = () => {
+    const formData = new FormData();
+    formData.append("companyId", userInfo?.userInfo?.company?.companyId);
+    formData.append("appLogo", selectedFile);
+
+    dispatch(updateLogo(formData));
+  };
+
 
   return (
     <>
@@ -78,10 +80,11 @@ const ProfileLogo = () => {
               id="websitetext"
               placeholder="Enter Company Name"
               style={{ border: "1px solid #e0e0e0" }}
-              onChange={handleImageChange}
+              onChange={handleFileChange}
             />
           </Col>
           <Button
+          onClick={handleLogo}
             className="btn btn-dark mt-5 p-3 w-50 my-5"
             style={{ backgroundColor: "#244a59" }}
           >

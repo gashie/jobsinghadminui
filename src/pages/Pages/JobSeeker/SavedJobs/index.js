@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Col,
   Row,
@@ -20,6 +20,7 @@ import SeaTech from "../../../../assets/images/jobsinghana/seatec.png";
 import img1 from "./img1.png";
 import {
   fullJobDetails,
+  jobEditCloneData,
   updateSavedJobs,
   viewSavedJobs,
 } from "../../../../store/actions";
@@ -130,7 +131,7 @@ const SavedJobs = () => {
   }, [details?.jobInfo, details?.Questions]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 7;
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -147,63 +148,75 @@ const SavedJobs = () => {
   const isPrevDisabled = currentPage === 1;
   const isNextDisabled = endIndex >= savedJobsInfo?.length;
 
+  const navigate = useNavigate();
 
   return (
     <>
-    <div className="mt-5">
-      <h5 style={{ fontWeight: "bolder", color: "#244a59" }} className="mt-3 mx-5 px-2">
-        List of saved jobs
-      </h5>
+      <div className="mt-5">
+        <h5
+          style={{ fontWeight: "bolder", color: "#244a59" }}
+          className="mt-3 mx-5 px-2"
+        >
+          List of saved jobs
+        </h5>
 
-      <Col className="m-5">
-        <div className="table-responsive">
-          <Table className="align-middle table-nowrap mb-0">
-            <thead>
-              <tr>
-                <th scope="col">Job title</th>
-                <th scope="col">Company Name</th>
-                <th scope="col">Advertised on </th>
-                <th scope="col">Expired on</th>
-                <th scope="col">Delete</th>
-                <th scope="col">Full job Info</th>
-                <th scope="col">Apply</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading === false && error === false ? (
-                currentJobs?.map((item, key) => (
-                  <tr key={key}>
-                    <th scope="row">
-                      <Link to="#" className="fw-medium">
-                        {item?.jobTitle}
-                      </Link>
-                    </th>
-                    <td>{item?.companyName}</td>
-                    <td>{formatDate(item?.createdAt)}</td>
-                    <td>{formatDate(item?.createdAt)}</td>
-                    <td
-                      style={{
-                        color: "red",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        dispatch(
-                          updateSavedJobs({
-                            deleterecord: true,
-                            restore: 0,
-                            jobId: item?.jobId,
-                            patch: false,
-                            patchData: {
-                              jobTitle: item?.jobTitle,
-                              companyName: item?.companyName,
-                            },
-                          })
-                        );
-                      }}
-                    >
-                      Delete
-                    </td>
-                    <td
+        <Col className="m-5">
+          <div className="table-responsive">
+            <Table className="align-middle table-nowrap mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Job title</th>
+                  <th scope="col">Company Name</th>
+                  <th scope="col">Advertised on </th>
+                  <th scope="col">Expired on</th>
+                  <th scope="col">Delete</th>
+                  {/* <th scope="col">Full job Info</th> */}
+                  <th scope="col">Apply</th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading === false && error === false ? (
+                  currentJobs?.map((item, key) => (
+                    <tr key={key}>
+                      <td >
+                        <Link
+                          // to="/job-details"
+                          className="fw-medium"
+                          style={{ color: "#244a50" }}
+                          onClick={() => {
+                            //handleFullInfo(item?.jobId);
+                            // navigate('/admin/job-details')
+                          }}
+                        >
+                          {item?.jobTitle}
+                        </Link>
+                      </td>
+                      <td>{item?.companyName}</td>
+                      <td>{formatDate(item?.createdAt)}</td>
+                      <td>{formatDate(item?.createdAt)}</td>
+                      <td
+                        style={{
+                          color: "red",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => {
+                          dispatch(
+                            updateSavedJobs({
+                              deleterecord: true,
+                              restore: 0,
+                              jobId: item?.jobId,
+                              patch: false,
+                              patchData: {
+                                jobTitle: item?.jobTitle,
+                                companyName: item?.companyName,
+                              },
+                            })
+                          );
+                        }}
+                      >
+                        Delete
+                      </td>
+                      {/* <td
                       style={{
                         color: "black",
                         cursor: "pointer",
@@ -214,87 +227,91 @@ const SavedJobs = () => {
                       }}
                     >
                       Full job info
-                    </td>
-                    <td
-                      style={{ color: "#244A59", cursor: "pointer" }}
-                      onClick={() => tog_standard()}
-                    >
-                      <td
-                        onClick={() => {
-                          // console.log(item?.jobId);
-                          handleFullInfo(item?.jobId);
-                        }}
-                      >
-                        Apply
+                    </td> */}
+                      {/* <td
+                        style={{ color: "#244A59", cursor: "pointer" }}
+                        onClick={() => tog_standard()}
+                      > */}
+                       <td >
+                        <Link
+                          to="/job-details"
+                          className="fw-medium"
+                          style={{ color: "#244a50" }}
+                          onClick={() => {
+                            handleFullInfo(item?.jobId);
+                            // navigate('/admin/job-details')
+                          }}
+                        >
+                          Apply
+                        </Link>
                       </td>
+                      {/* </td> */}
+                    </tr>
+                  ))
+                ) : savedJobsInfo?.length < 1 ? (
+                  <p>No Data</p>
+                ) : (
+                  <tr>
+                    <td colSpan="7" className="text-center mt-5">
+                      <div className="d-flex align-items-center justify-content-center">
+                        {loading === true ? (
+                          <>
+                            <Spinner
+                              size="lg"
+                              className="me-2 mt-5"
+                              style={{ color: "#244a59" }}
+                            ></Spinner>
+                          </>
+                        ) : (
+                          <>
+                            <p className="fw-light mt-5">
+                              You don't have any Saved jobs at the moment.
+                            </p>
+                          </>
+                        )}
+                      </div>
                     </td>
                   </tr>
-                ))
-              ) : savedJobsInfo?.length < 1 ? (
-                <p>No Data</p>
-              ) : (
-                <tr>
-                  <td colSpan="7" className="text-center mt-5">
-                    <div className="d-flex align-items-center justify-content-center">
-                      {loading === true ? (
-                        <>
-                          <Spinner
-                            size="lg"
-                            className="me-2 mt-5"
-                            style={{ color: "#244a59" }}
-                          ></Spinner>
-                        </>
-                      ) : (
-                        <>
-                          <p className="fw-light mt-5">
-                            You don't have any Saved jobs at the moment.
-                          </p>
-                        </>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
-        </div>
+                )}
+              </tbody>
+            </Table>
+          </div>
 
-        <div className="d-flex justify-content-end mt-4">
-              <div className="pagination-wrap hstack gap-2">
-                <Link
-                  className={`page-item pagination-prev ${
-                    isPrevDisabled ? "disabled" : ""
-                  }`}
-                  to="#"
-                  onClick={() =>
-                    !isPrevDisabled && handlePageChange(currentPage - 1)
-                  }
-                >
-                  Previous
-                </Link>
-                <span
-                  className="page-number p-2 px-3 text-light"
-                  style={{ backgroundColor: "#244a59" }}
-                >
-                  {" "}
-                  {currentPage}
-                </span>
-                <ul className="pagination listjs-pagination mb-0"></ul>
-                <Link
-                  className={`page-item pagination-next ${
-                    isNextDisabled ? "disabled" : ""
-                  }`}
-                  to="#"
-                  onClick={() =>
-                    !isNextDisabled && handlePageChange(currentPage + 1)
-                  }
-                >
-                  Next
-                </Link>
-              </div>
+          <div className="d-flex justify-content-end mt-4">
+            <div className="pagination-wrap hstack gap-2">
+              <Link
+                className={`page-item pagination-prev ${
+                  isPrevDisabled ? "disabled" : ""
+                }`}
+                to="#"
+                onClick={() =>
+                  !isPrevDisabled && handlePageChange(currentPage - 1)
+                }
+              >
+                Previous
+              </Link>
+              <span
+                className="page-number p-2 px-3 text-light"
+                style={{ backgroundColor: "#244a59" }}
+              >
+                {" "}
+                {currentPage}
+              </span>
+              <ul className="pagination listjs-pagination mb-0"></ul>
+              <Link
+                className={`page-item pagination-next ${
+                  isNextDisabled ? "disabled" : ""
+                }`}
+                to="#"
+                onClick={() =>
+                  !isNextDisabled && handlePageChange(currentPage + 1)
+                }
+              >
+                Next
+              </Link>
             </div>
-      </Col>
-
+          </div>
+        </Col>
       </div>
 
       <Modal
@@ -420,7 +437,6 @@ const SavedJobs = () => {
           )}
         </ModalBody>
       </Modal>
-      
     </>
   );
 };

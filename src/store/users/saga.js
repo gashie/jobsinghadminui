@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 // Login Redux States
-import { EMPLOYERS, JOBSEEKER, UPDATE_PROILE } from "./actionTypes";
+import { EMPLOYERS, JOBSEEKER, SEND_SERVICE, UPDATE_PROILE } from "./actionTypes";
 
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {
   employersURL,
   jobseekersURL,
+  sendServiceURL,
   updateUserProfileURL,
 } from "../../helpers/fakebackend_helper";
 import {
@@ -20,6 +21,8 @@ import {
   employersSuccess,
   jobseekersError,
   jobseekersSuccess,
+  sendServiceError,
+  sendServiceSuccess,
   updateUserProfileError,
   updateUserProfileSuccess,
 } from "./action";
@@ -76,6 +79,31 @@ function* updateProfile({ payload: data }) {
   }
 }
 
+function* service({ payload: data }) {
+  try {
+    const response = yield call(sendServiceURL, data);
+
+    if (response && response?.data.status === 1) {
+      //  yield put(updateRatecardURL());
+      yield put(sendServiceSuccess());
+      // yield put(rateCardAction({ viewAction: "" }));
+      toast.success(`Invoice Enquiry Sent`, {
+        autoClose: 6000,
+      });
+    } else {
+      yield put(sendServiceError(response));
+      toast.warn(`${response?.data.message}`, {
+        autoClose: 3000,
+      });
+      // yield put(rateCardAction({ viewAction: "" }));
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(sendServiceError(error));
+    // yield put(rateCardAction({ viewAction: "" }));
+  }
+}
+
 function* employers({ payload: data }) {
   try {
     const response = yield call(employersURL, data);
@@ -104,6 +132,7 @@ function* UsersSaga() {
   yield takeEvery(JOBSEEKER, jobseekers);
   yield takeEvery(UPDATE_PROILE, updateProfile);
   yield takeEvery(EMPLOYERS, employers);
+  yield takeEvery(SEND_SERVICE, service);
 }
 
 export default UsersSaga;
