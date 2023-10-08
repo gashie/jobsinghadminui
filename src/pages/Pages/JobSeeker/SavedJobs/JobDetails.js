@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 
 import { useState, useEffect } from "react";
 import { formatDate } from "../../../../Components/Hooks/formatDate";
+import {  Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import ClipboardJS from 'clipboard';
 
 const JobDetails = ({ jobInfo }) => {
   var [left, setLeft] = useState("");
@@ -44,6 +46,45 @@ const JobDetails = ({ jobInfo }) => {
     const txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
+  };
+
+   const [popoverOpen, setPopoverOpen] = useState(false);
+  const [sharedUrl, setSharedUrl] = useState('');
+
+  const togglePopover = () => {
+    setPopoverOpen(!popoverOpen);
+  };
+
+  const handleClick = () => {
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Add data parameters (customize as needed)
+    const newData = {
+      param1: 'value1',
+      param2: 'value2',
+    };
+
+    // Create a new URL with the added data parameters
+    const newUrl = new URL(currentUrl);
+    Object.entries(newData).forEach(([key, value]) => {
+      newUrl.searchParams.append(key, value);
+    });
+
+    // Set the new URL as the shared URL
+    setSharedUrl(newUrl.href);
+
+    // Open the popover
+    togglePopover();
+  };
+
+  // Function to copy the URL to clipboard
+  const copyToClipboard = () => {
+    const clipboard = new ClipboardJS('.copy-button');
+    clipboard.on('success', function (e) {
+      e.clearSelection();
+      alert('URL copied to clipboard');
+    });
   };
 
   return (

@@ -10,6 +10,7 @@ import TriggerRoute from "./TriggerRoute";
 
 import { getMe } from "../store/auth/login/actions";
 import { useNavigate } from "react-router-dom";
+import Loading from "../pages/Pages/Front/Loading";
 
 const AuthProtectedJobSeeker = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const AuthProtectedJobSeeker = (props) => {
   const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
   const userId = useSelector((state) => state.Login.userInfo);
   const userInfo = useSelector((state) => state.Login.userInfo);
+  const loading = useSelector((state) => state.Login.loading);
 
   console.log(userId?.userInfo?.roleid);
   console.log(!isLoggedIn && userId?.userInfo?.roleid !== 3);
@@ -24,7 +26,7 @@ const AuthProtectedJobSeeker = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getMe());
+    //dispatch(getMe());
     if (isLoggedIn &&( userInfo?.userInfo?.roleid === 3) ) {
       // dispatch(getMe());
 
@@ -50,6 +52,12 @@ const AuthProtectedJobSeeker = (props) => {
     return (
       <Navigate to={{ pathname: path, state: { from: props.location } }} />
     );
+  }
+
+  if(loading === true){
+    return(
+      <Loading />
+    )
   }
 
 

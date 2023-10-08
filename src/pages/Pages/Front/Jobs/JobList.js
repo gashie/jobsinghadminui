@@ -64,7 +64,7 @@ const JobList = (props) => {
     { name: "Learnership", count: "200" },
   ];
 
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   const JobLevel = [
     { name: "Intermediate", count: "0" },
@@ -916,7 +916,7 @@ const JobList = (props) => {
                                           onClick={() => {
                                             // dispatch(searchJob(item?.jobTitle));
                                             dispatch(fullJobDetails({ jobId: item?.jobId }));
-                                            navigate("/job-details");
+                                             navigate(`/job-details?.title=B&id=${item?.jobId}`);
                                           }}
                                         >
                                           {item?.jobTitle}

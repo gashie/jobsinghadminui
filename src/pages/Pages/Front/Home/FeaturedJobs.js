@@ -197,7 +197,7 @@ const FeaturedJobs = () => {
                   <Card style={{ cursor: "pointer" }}>
                     <CardBody
                       style={{
-                        height: "40vh",
+                        height: "45vh",
                         border: "1px solid #e0e0e0",
                         borderRadius: "10px",
                       }}
@@ -240,7 +240,7 @@ const FeaturedJobs = () => {
                           onClick={() => {
                             // dispatch(searchJob(item?.jobTitle));
                             dispatch(fullJobDetails({ jobId: item?.jobId }));
-                            navigate("/job-details");
+                            navigate(`/job-details?.title=B&id=${item?.jobId}`);
                           }}
                         >
                           {item.jobTitle}

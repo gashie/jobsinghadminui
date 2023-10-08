@@ -52,6 +52,28 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
+  const [selectedFilesSelfie, setselectedFilesSelfie] = useState([]);
+
+  function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
+
+  const handleAcceptedFiles = (files) => {
+    files.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        formattedSize: formatBytes(file.size),
+      })
+    );
+    setselectedFilesSelfie(files);
+  };
+
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
@@ -87,33 +109,24 @@ const Register = () => {
         gender: values.gender === "Male" ? "M" : "F",
         userType: "jobseeker",
       };
-    
-      dispatch(signUp(data));
-    
+
+      const formData = new FormData();
+      formData.append("fullName", values.fullName);
+      formData.append("username", values.username);
+      formData.append("phone", values.phone);
+      formData.append("email", values.email);
+      formData.append("password", values.password);
+      formData.append("address", values.address);
+      formData.append("country", values.country);
+      formData.append("birthDate", values.birthDate);
+      formData.append("maritalStatus", 1);
+      formData.append("gender", values.gender === "Male" ? "M" : "F");
+      formData.append("userType", "jobseeker");
+      formData.append("myCv", selectedFilesSelfie[0]);
+
+      dispatch(signUp(formData));
     },
   });
-
-  const [selectedFilesSelfie, setselectedFilesSelfie] = useState([]);
-
-  function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return "0 Bytes";
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  }
-
-  const handleAcceptedFiles = (files) => {
-    files.map((file) =>
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
-        formattedSize: formatBytes(file.size),
-      })
-    );
-    setselectedFilesSelfie(files);
-  };
 
   return (
     <>
@@ -465,39 +478,40 @@ const Register = () => {
                               })}
                             </div>
 
-                            {/* <Dropzone
+                            <Dropzone
                               onDrop={(acceptedFiles) => {
                                 handleAcceptedFiles(acceptedFiles);
                               }}
                             >
                               {({ getRootProps, getInputProps }) => (
                                 <div
-                                  className="dropzone dz-clickable mt-3"
+                                  className="dropzone dz-clickable"
                                   style={{
-                                    border: "1px dashed #244a59",
                                     cursor: "pointer",
+                                    height: "50px", // Adjust the height as needed
                                   }}
                                 >
                                   <div
                                     className="dz-message needsclick"
                                     {...getRootProps()}
-                                  ></div>
-                                  <h5
-                                    className="fw-bolder text-left m-2"
-                                    style={{ color: "#244a59" }}
                                   >
-                                    Upload Resume
-                                  </h5>
-                                  <h6
-                                    className="text-left m-2"
-                                    style={{ color: "#244a59" }}
-                                  >
-                                    (.doc, .docx, .pdf, .rtf, .txt, Max size 2
-                                    MB)
-                                  </h6>
+                                    {/* <div className="mb-3">
+          <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+        </div> */}
+                                    <h5
+                                      className="fw-bolder text-left m-2"
+                                      style={{ color: "#244a59" }}
+                                    >
+                                      Upload Resume
+                                    </h5>
+                                    <h6>
+                                      (.doc, .docx, .pdf, .rtf, .txt, Max size 2
+                                      MB)
+                                    </h6>
+                                  </div>
                                 </div>
                               )}
-                            </Dropzone> */}
+                            </Dropzone>
                           </div>
 
                           <Row className="mt-3">

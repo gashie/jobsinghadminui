@@ -12,7 +12,9 @@ import { Link, useNavigate } from "react-router-dom";
 import lash from "./lash.png";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveJobs, searchJob } from "../../../../store/actions";
+import { fullJobDetails, saveJobs, searchJob } from "../../../../store/actions";
+import ClipboardJS from "clipboard";
+import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 const JobDetails = () => {
   var [left, setLeft] = useState("");
@@ -65,7 +67,73 @@ const JobDetails = () => {
   };
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [sharedUrl, setSharedUrl] = useState('');
+
+  const togglePopover = () => {
+    setPopoverOpen(!popoverOpen);
+  };
+
+  const handleClick = () => {
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Add data parameters (customize as needed)
+    const newData = {
+      title: details?.jobInfo?.jobTitle,
+      id: details?.jobInfo?.jobId,
+      // param2: details?.jobInfo?.jobDescription,
+    };
+
+    // Create a new URL with the added data parameters
+    const newUrl = new URL(currentUrl);
+    Object.entries(newData).forEach(([key, value]) => {
+      newUrl.searchParams.append(key, value);
+    });
+
+    // Set the new URL as the shared URL
+    setSharedUrl(newUrl.href);
+
+    // Open the popover
+    togglePopover();
+  };
+
+
+  // Get the current URL
+const currentUrl = window.location.href;
+
+// Create a URL object
+const url = new URL(currentUrl);
+
+// Get the search params
+const searchParams = url.searchParams;
+
+// Get individual parameters
+const param1 = searchParams.get('title');
+const param2 = searchParams.get('id');
+
+
+
+
+  useEffect(()=>{
+  dispatch(fullJobDetails({jobId: param2}))
+  }, [dispatch, param2])
+
+  // Function to copy the URL to clipboard
+  const copyToClipboard = () => {
+    const clipboard = new ClipboardJS('.copy-button', {
+      text: function () {
+        return sharedUrl;
+      },
+    });
+
+    clipboard.on('success', function (e) {
+      e.clearSelection();
+      alert('URL copied to clipboard');
+    });
+  };
 
   return (
     <>
@@ -159,7 +227,9 @@ const JobDetails = () => {
                             border: "1px solid #244a59",
                           }}
                           onClick={() => {
-                            dispatch(saveJobs({jobId: details?.jobInfo?.jobId}));
+                            dispatch(
+                              saveJobs({ jobId: details?.jobInfo?.jobId })
+                            );
                           }}
                         >
                           <i
@@ -188,6 +258,8 @@ const JobDetails = () => {
                           </Button>
                         </Link>
                         <Button
+                          id="shareButton"
+                          onClick={handleClick}
                           type="button"
                           className={`btn btn-icon btn-soft-light mt-3 p-4 ${width}`}
                           data-bs-toggle="button"
@@ -203,6 +275,19 @@ const JobDetails = () => {
                             style={{ color: "#244a59" }}
                           ></i>
                           <p className="m-1">Share</p>
+                          <Popover placement="bottom" isOpen={popoverOpen} target="shareButton" toggle={togglePopover}>
+        <PopoverHeader>Share URL</PopoverHeader>
+        <PopoverBody>
+          {sharedUrl && (
+            <>
+              <div>{sharedUrl}</div>
+              <button className="copy-button" data-clipboard-text={sharedUrl} onClick={copyToClipboard}>
+                Copy URL
+              </button>
+            </>
+          )}
+        </PopoverBody>
+      </Popover>
                         </Button>
                       </div>
                     </Col>
@@ -524,9 +609,9 @@ const JobDetails = () => {
                         <Button
                           style={{ width: "100%", border: "1px solid #244a59" }}
                           className="btn btn-light p-3 mt-3"
-                          onClick={()=>{
-                            dispatch(searchJob(details?.jobInfo?.jobCategory))
-                            navigate("/job-list")
+                          onClick={() => {
+                            dispatch(searchJob(details?.jobInfo?.jobCategory));
+                            navigate("/job-list");
                           }}
                         >
                           See all similar Offers
@@ -551,9 +636,7 @@ const JobDetails = () => {
             </>
           ) : (
             <>
-              <p className="fw-light mt-5">
-                Error Occured While displaying job detail
-              </p>
+              <p className="fw-light mt-5">Please login to View Job Detail</p>
             </>
           )}
         </div>

@@ -236,6 +236,11 @@ export const searchJob = (data) => ({
   payload: data
 })
 
+export const takeId =(data) => ({
+  type: "TAKE_ID",
+  payload: data
+})
+
 
 
 // export const updateLogo = () => ({

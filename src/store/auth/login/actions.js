@@ -162,21 +162,23 @@ export const updateLogoSuccess = (data) => ({
 });
 
 
-export const passwordCodeSuccess = (data) => {
+export const passwordCodeActionSuccess = (data) => {
   return {
     type: PASSWORD_CODE_SUCCESS,
     payload: data,
-  };}
-export const passwordCode = (data) => {
+  }}
+export const passwordCodeAction = (data) => {
   return {
     type: PASSWORD_CODE,
     payload: data,
-  };}
+  }}
 
-export const passwordCodeError = (data) => ({
+export const passwordCodeActionError = (data) => ({
   type: PASSWORD_CODE_ERROR,
   payload: data,
 })
+
+
 
 export const changePass = (data) => ({
   type: CHANGE_PASS,

@@ -234,12 +234,13 @@ const SavedJobs = () => {
                       > */}
                        <td >
                         <Link
-                          to="/job-details"
+                          to={`/job-details?.title=B&id=${item?.jobId}`}
                           className="fw-medium"
                           style={{ color: "#244a50" }}
                           onClick={() => {
-                            handleFullInfo(item?.jobId);
+                            // handleFullInfo(item?.jobId);
                             // navigate('/admin/job-details')
+                          //  navigate(`/job-details?.title=B&id=${item?.jobId}`);
                           }}
                         >
                           Apply

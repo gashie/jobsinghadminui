@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 //import Scss
 import "./assets/scss/themes.scss";
@@ -13,8 +13,9 @@ import Route from "./Routes";
 import fakeBackend from "./helpers/AuthType/fakeBackend";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMe } from "./store/actions";
+import Loading from "./pages/Pages/Front/Loading";
 
 // Activating fake backend
 // fakeBackend();
@@ -36,9 +37,19 @@ import { getMe } from "./store/actions";
 function App() {
   const dispatch = useDispatch();
 
+  const [loader, setLoader] = useState(false)
+
+  // const { loading, error } = useSelector((state) => ({
+  //   loading: state.Login.loading,
+  // }));
+
+
   useEffect(() => {
     dispatch(getMe());
   }, [dispatch]);
+
+  
+
   return (
     <React.Fragment>
       <ToastContainer />

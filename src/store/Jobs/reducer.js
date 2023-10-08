@@ -68,7 +68,8 @@ const initialState = {
   generalJobsError: false,
   generalJobs: [],
   editCloneData: {},
-  search: ""
+  search: "",
+  takeId: ""
 };
 
 const Jobs = (state = initialState, action) => {
@@ -259,6 +260,11 @@ const Jobs = (state = initialState, action) => {
       return {
         ...state,
         search: action.payload,
+      };
+      case "TAKE_ID":
+      return {
+        ...state,
+        takeId: action.payload,
       };
     default:
       return state;

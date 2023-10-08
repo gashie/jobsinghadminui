@@ -284,6 +284,8 @@ import EmployerOTP from "../pages/Pages/Auth/EmployerOTP";
 import EmployerOTPSucces from "../pages/Pages/Auth/EmployerOTPSuccess";
 import EmailAction from "../pages/Pages/Auth/EmailAction";
 import PasswordAction from "../pages/Pages/Auth/PasswordAction";
+import NotFound from "../pages/Pages/Front/NotFound";
+import Loading from "../pages/Pages/Front/Loading";
 
 
 
@@ -547,6 +549,8 @@ const publicRoutes = [
 
   //home
   { path: "/home", component: <Home /> },
+  { path: "/not-found", component: <NotFound /> },
+ // { path: "/loading", component: <Loading /> },
 
   //jobs
   {path: '/job-details', component: <JobDetails />},
@@ -616,9 +620,9 @@ const jobSeekerRoutes = [
   {
     path: "/",
     exact: true,
-    component: <Navigate to="/login" />,
+    component: <Navigate to="/not-found" />,
   },
-  { path: "*", component: <Navigate to="/login" /> },
+  { path: "*", component: <Navigate to="/not-found" /> },
 
 ]
 
@@ -634,9 +638,9 @@ const employerRoutes = [
   {
     path: "/",
     exact: true,
-    component: <Navigate to="/login" />,
+    component: <Navigate to="/not-found" />,
   },
-  { path: "*", component: <Navigate to="/login" /> },
+  { path: "*", component: <Navigate to="/not-found" /> },
 ]
 
 export { authProtectedRoutes, publicRoutes, jobSeekerRoutes, employerRoutes };

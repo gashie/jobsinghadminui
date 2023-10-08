@@ -265,7 +265,7 @@ const EmployerSignUp = () => {
                           </option>
                         ))
                       ) : (
-                        <option>loading categories...</option>
+                        <option>loading industries...</option>
                       )}
                     </select>
                     </div>

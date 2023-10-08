@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { logoutUser, testVerify } from "../store/actions";
 import { useState } from "react";
+import Loading from "../pages/Pages/Front/Loading";
 
 const AuthProtectedEmployer = (props) => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const AuthProtectedEmployer = (props) => {
   }, [window.location.pathname]);
 
   useEffect(() => {
-    dispatch(getMe());
+    // dispatch(getMe());
     // if (isLoggedIn && userInfo?.userInfo?.roleid === 3) {
     //   navigate("/employer-dashboard");
     // }
@@ -54,6 +55,12 @@ const AuthProtectedEmployer = (props) => {
     return (
       <Navigate to={{ pathname: path, state: { from: props.location } }} />
     );
+  }
+
+  if(loading){
+    return(
+      <Loading />
+    )
   }
 
   if (!isLoggedIn || userId?.userInfo?.roleid === 2) {

@@ -69,7 +69,8 @@ function PasswordAction() {
       token: token,
       password: currentPassword,
     };
-    dispatch(passwordCode(data));
+    // dispatch(passwordCode(data));
+    dispatch(changePass(data))
   };
 
   return (
@@ -112,9 +113,11 @@ function PasswordAction() {
               {/* )} */}
             </Col>
 
-            {/* <p className="d-flex hstack justify-content-center mt-5" style={{cursor: 'pointer'}}
-          onClick={handleResend}
-          >Resend Code</p> */}
+            <p className="d-flex hstack justify-content-center mt-5" style={{cursor: 'pointer'}}
+          onClick={()=>{
+            navigate("/login")
+          }}
+          >Procced to Login</p>
           </Row>
         </form>
       </Container>

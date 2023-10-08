@@ -14,6 +14,7 @@ import {
   UPDATE_LOGO,
   GET_ME,
   CHANGE_PASS,
+  PASSWORD_CODE,
 } from "./actionTypes";
 import {
   apiError,
@@ -37,10 +38,11 @@ import {
   updateProfileImageSuccess,
   updateProfileSuccess,
   resetLoginFlag,
-  passwordCodeSuccess,
-  passwordCodeError,
+ 
   changePassSuccess,
-  changePassError
+  changePassError,
+  passwordCodeActionSuccess,
+  passwordCodeActionError
 } from "./actions";
 
 //Include Both Helper File with needed methods
@@ -67,7 +69,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { PASSWORD_CODE } from "../../../helpers/url_helper";
+
 
 const Nav = (location) => {
   let navigate = useNavigate();
@@ -295,13 +297,13 @@ function* changePasswordOutsideAppCode({payload : data}) {
     const response = yield call(passwordCodeURL, data);
    
     if (response && response?.data.status === 1) {
-      yield put(passwordCodeSuccess(response?.data.data));
+      yield put(passwordCodeActionSuccess(response?.data.data));
       toast.success(`${response?.data.message}`, {
         autoClose: 3000,
       });
       
     } else {
-      yield put(passwordCodeError(response?.data.data));
+      yield put(passwordCodeActionError(response?.data.data));
       toast.warn(`${response?.data.message}`, {
         autoClose: 3000,
       });
@@ -310,7 +312,7 @@ function* changePasswordOutsideAppCode({payload : data}) {
   } catch (error) {
     console.log(error);
   
-    yield put(passwordCodeError(error));
+    yield put(passwordCodeActionError(error));
   }
 }
 
