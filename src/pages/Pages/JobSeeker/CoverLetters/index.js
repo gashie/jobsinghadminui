@@ -152,8 +152,8 @@ const CoverLetters = ({
               {loading === false && error === false ? (
                 currentJobs?.map((item, key) => (
                   <tr key={key}>
-                    <th scope="row">
-                      <Link to="#" className="fw-medium">
+                    <th scope="row"  className="p-3">
+                      <Link style={{color: '#244a59'}} lassName="fw-medium">
                         {item?.coverLetterName}
                       </Link>
                     </th>

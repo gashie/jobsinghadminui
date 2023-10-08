@@ -84,7 +84,7 @@ const Resumes = (state = initalState, action) => {
       state = {
         ...state,
         loading: false,
-        error: false,
+        error: true,
         cvInfoLoading: false,
         cvInfoError: action.payload,
         errMssg: action.payload,
@@ -178,26 +178,26 @@ const Resumes = (state = initalState, action) => {
     case UPDATE_RESUME:
       state = {
         ...state,
-        loading: true,
-        error: false,
+        updateResumeLoading: true,
+        updateResumeError: false,
         // updateResumeLoading: true,
       };
       break;
     case UPDATE_RESUME_SUCCESS:
       state = {
         ...state,
-        loading: false,
-        // updateResumeLoading: false,
-        error: false,
+        updateResumeLoading: false,
+        updateResumeError: false,
       };
       break;
 
     case UPDATE_RESUME_ERROR:
       state = {
         ...state,
-        loading: false,
+        updateResumeLoading: false,
+        updateResumeError: true,
         // updateResumeLoading: false,
-        error: true,
+      
         errMssg: action.payload,
         // updateResumeError: action.payload,
       };

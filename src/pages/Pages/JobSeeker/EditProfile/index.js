@@ -1,4 +1,4 @@
-import { Col, Label, Input, Row, Form, FormFeedback } from "reactstrap";
+import { Col, Label, Input, Row, Form, FormFeedback, Spinner } from "reactstrap";
 import avatar1 from "../profile.png";
 import * as Yup from "yup";
 import { useFormik } from "formik";
@@ -32,7 +32,14 @@ const EditProfile = () => {
     },
     validateOnChange: true,
     validationSchema: Yup.object({
-      birthDate: Yup.string().required("Please Select A Date"),
+      birthDate: Yup.string().required("Please Select a date"),
+      fullName: Yup.string().required("Please Select a fullname"),
+      username: Yup.string().required("Please ernter a username"),
+      phone: Yup.string().required("Please enter a phone number"),
+      email: Yup.string().required("Please Select an email"),
+      address: Yup.string().required("Please enter an address"),
+     // maritalStatus: Yup.string().required("Please Select a marital status"),
+      gender: Yup.string().required("Please Select a gender"),
     }),
     onSubmit: (values) => {
       const userData = {
@@ -85,6 +92,8 @@ const EditProfile = () => {
     dispatch(updateProfileImage(formData));
   };
 
+   console.log(validation.errors)
+
   return (
     <>
       <h4
@@ -134,7 +143,7 @@ const EditProfile = () => {
           <Col md={6} className="mt-4">
             <div className="mb-3">
               <Label for="firstNameinput" className="form-label">
-                First Name
+                Full Name
               </Label>
               <Input
                 id="fullName"
@@ -151,11 +160,7 @@ const EditProfile = () => {
                     : false
                 }
               />
-              {validation.touched.fullName && validation.errors.fullName ? (
-                <FormFeedback type="invalid">
-                  <div>{validation.errors.fullName}</div>
-                </FormFeedback>
-              ) : null}
+            
             </div>
           </Col>
           <Col md={6}>
@@ -178,11 +183,7 @@ const EditProfile = () => {
                     : false
                 }
               />
-              {validation.touched.username && validation.errors.username ? (
-                <FormFeedback type="invalid">
-                  <div>{validation.errors.username}</div>
-                </FormFeedback>
-              ) : null}
+           
             </div>
           </Col>
         </Row>
@@ -219,18 +220,24 @@ const EditProfile = () => {
               <Label for="phonenumberInput" className="form-label">
                 Gender
               </Label>
-              <select
+              <Input
                 name="gender"
                 id="gender"
+                type="select"
                 className="form-select mb-3 p-3"
                 aria-label="Default select example"
                 onChange={validation.handleChange}
                 onBlur={validation.handleBlur}
                 value={validation.values.gender}
+                invalid={
+                  validation.touched.gender && validation.errors.gender
+                    ? true
+                    : false
+                }
               >
                 <option>Male</option>
                 <option>Female</option>
-              </select>
+              </Input>
             </div>
           </Col>
         </Row>
@@ -321,12 +328,23 @@ const EditProfile = () => {
         </Row>
 
         <button
-          type="submit"
-          className="btn btn-dark mt-2"
-          style={{ backgroundColor: "#244a59" }}
-        >
-          Save
-        </button>
+                type="submit"
+                className="btn p-3 px-5"
+                style={{
+                  backgroundColor: "#244a59",
+                  color: "white",
+                }}
+                disabled={error ? null : loading}
+                // onClick={handleSubmit}
+              >
+                {error ? null : loading ? (
+                  <Spinner size="sm" className="me-2">
+                    {" "}
+                    Loading...{" "}
+                  </Spinner>
+                ) : null}
+                Save
+              </button>
       </Form>
 
       <Col className="mb-3" mt-5>
@@ -345,7 +363,7 @@ const EditProfile = () => {
       </Col>
       <button
         type="button"
-        className="btn btn-dark mt-2"
+        className="btn btn-dark mt-2 p-3"
         onClick={handleImage}
         style={{ backgroundColor: "#244a59" }}
       >

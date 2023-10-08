@@ -1,16 +1,31 @@
 import { Card, CardBody } from "reactstrap";
 
-const ViewCoverLetter = ({data}) => {
+const ViewCoverLetter = ({ data }) => {
+  const decodeHTML = (html) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
   return (
     <>
       <Card>
         <CardBody className="p-5">
-          <h4 style={{ color: "#244a59", fontWeight: "bolder", textAlign :'center' }}>
-          {data?.coverLetterName}
+          <h4
+            style={{
+              color: "#244a59",
+              fontWeight: "bolder",
+              textAlign: "center",
+            }}
+          >
+            {data?.coverLetterName}
           </h4>
-          <p style={{textAlign: 'justify'}} className="fs-13 mt-4">
-          {data?.coverLetterDescription}
-          </p>
+
+          <div
+            dangerouslySetInnerHTML={{
+              __html: decodeHTML(data?.coverLetterDescription),
+            }}
+          ></div>
         </CardBody>
       </Card>
     </>

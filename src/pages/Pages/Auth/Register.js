@@ -15,7 +15,7 @@ import {
   TabContent,
   Button,
 } from "reactstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classnames from "classnames";
 import dummyUser from "../../../assets/images/users/user-dummy-img.jpg";
 import PhoneInput from "react-phone-input-2";
@@ -74,6 +74,15 @@ const Register = () => {
     setselectedFilesSelfie(files);
   };
 
+  function ScrollToTop() {
+    const { pathname } = window.location;
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+  }
+
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
@@ -85,16 +94,24 @@ const Register = () => {
       email: "",
       password: "",
       address: "",
-      country: "",
+      country: "Ghana",
       birthDate: "",
       maritalStatus: 1,
       gender: "M",
       userType: "jobseeker",
     },
-    // validationSchema: Yup.object({
-    //     digit1_input: Yup.string().required("Please Enter Your Phone Number"),
-    //     password: Yup.string().required("Please Enter Your Password"),
-    // }),
+    validationSchema: Yup.object({
+      fullName: Yup.string().required("Please Enter Your full name"),
+      username: Yup.string().required("Please Enter Your username"),
+      phone: Yup.string().required("Please Enter Your phone"),
+      email: Yup.string().required("Please Enter Your email"),
+      password: Yup.string().required("Please Enter Your password"),
+      address: Yup.string().required("Please Enter Your address"),
+      country: Yup.string().required("Please Enter Your country"),
+      birthDate: Yup.string().required("Please Enter Your birthDate"),
+      maritalStatus: Yup.string().required("Please Enter Your marital status"),
+      gender: Yup.string().required("Please Enter Your gender"),
+    }),
     onSubmit: (values) => {
       const data = {
         fullName: values.fullName,
@@ -127,6 +144,8 @@ const Register = () => {
       dispatch(signUp(formData));
     },
   });
+
+  console.log(validation.errors)
 
   return (
     <>
@@ -341,7 +360,7 @@ const Register = () => {
                     </div>
                   </Col>
 
-                  <Col style={{ marginTop: "8rem" }} xxl={4}>
+                  <Col style={{ marginTop: "8rem" }} xxl={4} xs={12}>
                     <TabContent activeTab={activeTab}>
                       <TabPane tabId={1}>
                         <div>
@@ -478,40 +497,42 @@ const Register = () => {
                               })}
                             </div>
 
-                            <Dropzone
-                              onDrop={(acceptedFiles) => {
-                                handleAcceptedFiles(acceptedFiles);
-                              }}
-                            >
-                              {({ getRootProps, getInputProps }) => (
-                                <div
-                                  className="dropzone dz-clickable"
-                                  style={{
-                                    cursor: "pointer",
-                                    height: "50px", // Adjust the height as needed
-                                  }}
-                                >
+                            <div>
+                              <Dropzone
+                                onDrop={(acceptedFiles) => {
+                                  handleAcceptedFiles(acceptedFiles);
+                                }}
+                              >
+                                {({ getRootProps, getInputProps }) => (
                                   <div
-                                    className="dz-message needsclick"
-                                    {...getRootProps()}
+                                    className="dropzone dz-clickable"
+                                    style={{
+                                      cursor: "pointer",
+                                      height: "50px", // Adjust the height as needed
+                                    }}
                                   >
-                                    {/* <div className="mb-3">
+                                    <div
+                                      className="dz-message needsclick"
+                                      {...getRootProps()}
+                                    >
+                                      {/* <div className="mb-3">
           <i className="display-4 text-muted ri-upload-cloud-2-fill" />
         </div> */}
-                                    <h5
-                                      className="fw-bolder text-left m-2"
-                                      style={{ color: "#244a59" }}
-                                    >
-                                      Upload Resume
-                                    </h5>
-                                    <h6>
-                                      (.doc, .docx, .pdf, .rtf, .txt, Max size 2
-                                      MB)
-                                    </h6>
+                                      <h5
+                                        className="fw-bolder text-left m-2"
+                                        style={{ color: "#244a59" }}
+                                      >
+                                        Upload Resume
+                                      </h5>
+                                      <h6>
+                                        (.doc, .docx, .pdf, .rtf, .txt, Max size
+                                        2 MB)
+                                      </h6>
+                                    </div>
                                   </div>
-                                </div>
-                              )}
-                            </Dropzone>
+                                )}
+                              </Dropzone>
+                            </div>
                           </div>
 
                           <Row className="mt-3">
@@ -530,8 +551,12 @@ const Register = () => {
                                   onChange={validation.handleChange}
                                   onBlur={validation.handleBlur}
                                   value={validation.values.fullName || ""}
-                                  placeholder="Enter email"
+                                  placeholder="Enter full name"
+                                  invalid={ validation.touched.fullName && validation.errors.fullName
+                                    ? true
+                                    : false}
                                 />
+                              
                               </div>
                             </Col>
                             <Col lg={6}>
@@ -550,6 +575,9 @@ const Register = () => {
                                   onBlur={validation.handleBlur}
                                   value={validation.values.email || ""}
                                   placeholder="Enter user name"
+                                  invalid={ validation.touched.email && validation.errors.email
+                                    ? true
+                                    : false}
                                 />
                               </div>
                             </Col>
@@ -569,6 +597,9 @@ const Register = () => {
                               onBlur={validation.handleBlur}
                               value={validation.values.password || ""}
                               placeholder="Minimun 6 characters"
+                              invalid={ validation.touched.password && validation.errors.password
+                                ? true
+                                : false}
                             />
                           </div>
                           <div className="mb-3">
@@ -586,6 +617,9 @@ const Register = () => {
                               onBlur={validation.handleBlur}
                               value={validation.values.username || ""}
                               placeholder="Enter Username"
+                              invalid={ validation.touched.username && validation.errors.username
+                                ? true
+                                : false}
                             />
                           </div>
                           <div className="mb-3">
@@ -603,6 +637,9 @@ const Register = () => {
                               onBlur={validation.handleBlur}
                               value={validation.values.phone || ""}
                               placeholder="Enter Phonenumber"
+                              invalid={ validation.touched.phone && validation.errors.phone
+                                ? true
+                                : false}
                             />
                           </div>
                           <div className="mb-3">
@@ -620,6 +657,9 @@ const Register = () => {
                               onBlur={validation.handleBlur}
                               value={validation.values.address || ""}
                               placeholder="Enter Address"
+                              invalid={ validation.touched.address && validation.errors.address
+                                ? true
+                                : false}
                             />
                           </div>
                           <div className="mb-3">
@@ -637,6 +677,9 @@ const Register = () => {
                               onBlur={validation.handleBlur}
                               value={validation.values.birthDate || ""}
                               placeholder="Enter Address"
+                              invalid={ validation.touched.birthDate && validation.errors.birthDate
+                                ? true
+                                : false}
                             />
                           </div>
                           <div className="mb-3">
@@ -646,18 +689,22 @@ const Register = () => {
                             >
                               Gender
                             </Label>
-                            <select
+                            <Input
                               name="gender"
                               id="gender"
+                              type="select"
                               className="form-select mb-3 p-3"
                               aria-label="Default select example"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               value={validation.values.gender}
+                              invalid={ validation.touched.address && validation.errors.fullName
+                                ? true
+                                : false}
                             >
                               <option>Male</option>
                               <option>Female</option>
-                            </select>
+                            </Input>
                           </div>
                           <div className="mb-3">
                             <Label
@@ -666,18 +713,22 @@ const Register = () => {
                             >
                               Marital Status
                             </Label>
-                            <select
+                            <Input
                               name="maritalStatus"
                               id="maritalStatus"
+                              type="select"
                               className="form-select mb-3 p-3"
                               aria-label="Default select example"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               value={validation.values.maritalStatus}
+                              invalid={ validation.touched.maritalStatus && validation.errors.fullName
+                                ? true
+                                : false}
                             >
                               <option>Single</option>
                               <option>Married</option>
-                            </select>
+                            </Input>
                           </div>
 
                           {/* <div className="form-check form-switch form-switch-success mb-3 mt-5">
@@ -714,7 +765,13 @@ const Register = () => {
                             <Button
                               type="submit"
                               onClick={() => {
-                                toggleTab(activeTab + 1, 50);
+                                if (Object.keys(validation.errors).length > 0) {
+                                  console.log(
+                                    Object.keys(validation.errors).length
+                                  );
+                                } else {
+                                  toggleTab(activeTab + 1, 50);
+                                }
                               }}
                               className="btn btn-dark mt-4"
                               style={{
@@ -728,7 +785,8 @@ const Register = () => {
                         </div>
                       </TabPane>
 
-                      <TabPane tabId={2}>
+                      <TabPane tabId={2} style={{ height: "100vh" }}>
+                        {/* <ScrollToTop /> */}
                         <div className="d-grid hstack justify-content-center">
                           <h2
                             className="text-dark"

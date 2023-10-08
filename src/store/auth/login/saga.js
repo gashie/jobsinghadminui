@@ -414,7 +414,7 @@ function* logout() {
       //   autoClose: 3000,
       // });
       yield put (getMe())
-      window.location.href ="/login"
+     // window.location.href ="/login"
     } else {
       yield put(logoutError(response.data.Message));
       // toast.warn(`${response?.data.Message}`, {

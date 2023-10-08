@@ -28,10 +28,7 @@ function MyResume() {
       })
     );
     setfile(files);
-    console.log(file);
   };
-
-  console.log(file);
 
   const { loading, error } = useSelector((state) => ({
     loading: state.Resumes.updateResumeLoading,
@@ -45,6 +42,7 @@ function MyResume() {
     formData.append("patch", "true");
 
     dispatch(updateResume(formData));
+    setfile([])
   };
 
   return (
@@ -87,57 +85,53 @@ function MyResume() {
           <h5 className="mb-3 mt-3" style={{ fontWeight: "boder" }}>
             Replace your CV
           </h5>
-          <Dropzone
-            onDrop={(acceptedFiles) => {
-              handleAcceptedFiles(acceptedFiles);
-            }}
-            
+
+          <div
+            className="d-flex hstack justify-content-center"
+            style={{ justifyContent: "center" }}
           >
-            {({ getRootProps, getInputProps }) => (
-              <div className="dropzone dz-clickable"
-              
-              style={{
-                cursor: 'pointer'
-              }}>
-                <div className="dz-message needsclick" {...getRootProps()}>
-                  <div className="mb-3">
-                    <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+            <div className="col-xl-12 ">
+              <Dropzone
+                onDrop={(acceptedFiles) => {
+                  handleAcceptedFiles(acceptedFiles);
+                }}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    className="dropzone dz-clickable"
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    <div className="dz-message needsclick" {...getRootProps()}>
+                      <div className="mb-3">
+                        <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                      </div>
+                      <h5>Drag or Click to upload file</h5>
+                      <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
+                    </div>
                   </div>
-                  <h5>Drag or Click to upload file</h5>
-                  <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
-                </div>
-              </div>
-            )}
-          </Dropzone>
+                )}
+              </Dropzone>
 
-          {/* <Button
-        classname="btn btn-dark mt-4 w-100"
-        onClick={() => {
-          handleCreateResume();
-        }}
-        style={{ backgroundColor: "#244159" }}
-      >
-        Submit
-      </Button> */}
-
-          <Button
-            style={{ backgroundColor: "#244a59" }}
-            // disabled={
-            //   error ? null : loading
-            // }
-            className="btn btn-dark w-100 mt-4"
-            onClick={() => {
-              handleCreateResume();
-            }}
-          >
-            {/* {error ? null : loading ? (
-          <Spinner size="sm" className="me-2">
-            {" "}
-            Loading...{" "}
-          </Spinner>
-        ) : null} */}
-            Submit
-          </Button>
+              <Button
+                style={{ backgroundColor: "#244a59" }}
+                disabled={error || file.length === 0 || loading}
+                className="btn btn-dark w-100 mt-4"
+                onClick={() => {
+                  handleCreateResume();
+                }}
+              >
+                {error ? null : loading ? (
+                  <Spinner size="sm" className="me-2">
+                    {" "}
+                    Loading...{" "}
+                  </Spinner>
+                ) : null}
+                Submit
+              </Button>
+            </div>
+          </div>
         </Col>
       </Row>
     </>

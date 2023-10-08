@@ -26,9 +26,12 @@ const Editor = ({ onPlainTextChange, content }) => {
               "p[style-name='Heading 4'] => h4:fresh",
               "p[style-name='Heading 5'] => h5:fresh",
               "p[style-name='Heading 6'] => h6:fresh",
-              "table => table",
-              "tr => tr",
-              "td => td",
+              "p: => p", // Keep paragraph styles
+              "table => table", // Keep the default table style
+              "tr => tr", // Keep the default row style
+              "td => td", // Keep the default cell style
+              "p[style-name='CustomStyle1'] => p.custom-style-1", // Example: CustomStyle1 in Word mapped to a CSS class
+              // Add more style mappings here as needed
             ],
           };
 
@@ -36,6 +39,8 @@ const Editor = ({ onPlainTextChange, content }) => {
             .convertToHtml({ arrayBuffer: reader.result }, options)
             .then((result) => {
               setEditorHtml(result.value);
+
+              // content(result.value);
             })
             .catch((error) => {
               console.error("Error converting Word to HTML:", error);
@@ -52,23 +57,19 @@ const Editor = ({ onPlainTextChange, content }) => {
     setEditorHtml(html);
 
     // Extract plain text from the HTML content
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-    const plainText = tempDiv.textContent || tempDiv.innerText || "";
-    setPlainText(plainText);
+    // const tempDiv = document.createElement("div");
+    // tempDiv.innerHTML = html;
+    // const plainText = tempDiv.textContent || tempDiv.innerText || "";
+    // setPlainText(plainText);
 
-    onPlainTextChange(plainText);
+   // onPlainTextChange(html);
   };
 
   const [Des, setDes] = useState();
 
   useEffect(() => {
     setDes(content);
-
-    
   }, [content, Des]);
-
-
 
   return (
     <div>
