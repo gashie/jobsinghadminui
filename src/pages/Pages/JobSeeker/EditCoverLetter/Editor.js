@@ -3,9 +3,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import FileInput from "react-file-reader-input";
 import mammoth from "mammoth";
+import { html } from "gridjs";
 
 const Editor = ({ onPlainTextChange, content, data }) => {
-
   function decodeEntities(encodedString) {
     const textarea = document.createElement("textarea");
     textarea.innerHTML = encodedString;
@@ -16,9 +16,15 @@ const Editor = ({ onPlainTextChange, content, data }) => {
   const decodedData = decodeEntities(data); // Assuming you have a decodeEntities function
   const formattedContent = `<div>${decodedData}</div>`;
 
+  const [finalForm, setFinalForm] = useState();
 
+  useEffect(() => {
+    setFinalForm(formattedContent);
+  }, [formattedContent]);
 
-  const [editorHtml, setEditorHtml] = useState(formattedContent);
+  console.log(finalForm);
+
+  const [editorHtml, setEditorHtml] = useState(finalForm || "");
   const [Des, setDes] = useState("");
 
   const handleFileUpload = (e, results) => {
@@ -77,10 +83,6 @@ const Editor = ({ onPlainTextChange, content, data }) => {
     setDes(content);
   }, [content]);
 
-  
-
-
-
   return (
     <div>
       <FileInput as="binary" onChange={handleFileUpload}>
@@ -92,6 +94,7 @@ const Editor = ({ onPlainTextChange, content, data }) => {
         theme="snow"
         value={editorHtml}
         onChange={handleChange}
+        readOnly={false}
       />
     </div>
   );

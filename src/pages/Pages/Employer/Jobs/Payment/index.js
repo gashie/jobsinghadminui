@@ -78,7 +78,7 @@ function Index({togglePaymentModal, payLater}) {
     };
 
     dispatch(makePayment(payData));
-    navigate("/employer-jobs")
+    navigate("/app/employer-jobs")
     triggerLink()
   };
 

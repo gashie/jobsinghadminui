@@ -30,6 +30,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { formatDate2 } from "../../../../Components/Hooks/formatDate2";
+import locationData from "../../../../common/data/cities.json";
+import Select from "react-select";
 
 const EditJobs = ({ handleCloseHandle }) => {
   const dispatch = useDispatch();
@@ -163,19 +165,39 @@ const EditJobs = ({ handleCloseHandle }) => {
 
   const navigate = useNavigate();
 
+  const [selectedMulti, setSelectedMulti] = useState([]);
+
+  const options = [];
+  for (const region in locationData) {
+    const cities = locationData[region].map((city) => ({
+      value: city,
+      label: city,
+    }));
+
+    options.push(...cities);
+  }
+
+  const handleMulti = (selectedOptions) => {
+    setSelectedMulti(selectedOptions);
+  };
+
+  const formattedSelectedMulti = selectedMulti.map((option) => ({
+    locationName: option.label,
+  }));
+
   const validation = useFormik({
     enableReinitialize: true,
     initialValues: {
       jobTitle: data?.jobTitle || "",
-      jobCategoryId: null,
-      jobLocation: data?.jobLocation || "",
+      jobCategoryId: data?.jobCategoryId,
+      jobLocation: formattedSelectedMulti,
       jobSalaryAmount: data?.jobSalaryAmount || "",
       companyId: "",
       isCompanyConfidential: "",
       jobDescription: data?.jobDescription || "",
       jobSkillsId: "",
       jobSalaryCurrency: "",
-      jobStatusId: "",
+      jobStatusId: data?.jobStatus || "",
       applyMode: data?.applyMode || "",
       applyLink: data?.applyLink || "",
       education: data?.education || "",
@@ -192,8 +214,8 @@ const EditJobs = ({ handleCloseHandle }) => {
         .typeError("Salary must be a number")
         .required("Please enter a salary amount"),
       // companyId: Yup.string().required("Please select a company"),
-      isCompanyConfidential: Yup.boolean(),
-      jobDescription: Yup.string().required("Please enter a job description"),
+      // isCompanyConfidential: Yup.boolean(),
+     // jobDescription: Yup.string().required("Please enter a job description"),
 
       jobStatusId: Yup.string().required("Please select a job category"),
       applyMode: Yup.string().required("Please select a job category"),
@@ -233,7 +255,7 @@ const EditJobs = ({ handleCloseHandle }) => {
         patchData: {
           jobTitle: values?.jobTitle,
           jobCategoryId: values?.jobCategoryId,
-          jobLocation: finalLocations,
+          jobLocation: formattedSelectedMulti,
           jobSalaryAmount: values?.jobSalaryAmount,
           companyId: data?.companyId,
           isCompanyConfidential: isConfidential,
@@ -255,8 +277,8 @@ const EditJobs = ({ handleCloseHandle }) => {
     },
   });
 
-
-  console.log(editorData.editor1)
+  console.log(validation.errors)
+  console.log(editorData.editor1);
 
   const { inLoading, inError, info } = useSelector((state) => ({
     catLoading: state.Industry.loading,
@@ -284,9 +306,7 @@ const EditJobs = ({ handleCloseHandle }) => {
     setIsConfidential(!isConfidential);
   };
 
-  console.log(validation.errors)
-
- 
+  console.log(validation.errors);
 
   return (
     <>
@@ -578,42 +598,34 @@ const EditJobs = ({ handleCloseHandle }) => {
                   ""
                 )}
 
-                <Row className="mb-3">
-                  <Col lg={15} className="p-2">
+                <Row>
+                  <Col lg={15} className="">
                     <div>
                       <div className="d-flex gap-1">
-                        {finalLocations.map((location, index) => (
-                          <div
-                            className="selected-location p-1"
-                            key={index}
-                            style={{
-                              backgroundColor: "#e0e0e0",
-                              borderRadius: "6px",
-                            }}
-                          >
-                            {location.locationName}
-                          </div>
-                        ))}
+                        <label>Select Job Location</label>
                       </div>
-                      <br />
-                      <Input
-                        type="text"
-                        className="form-control p-3"
-                        id="jobLocation"
-                        placeholder="Job location eg. Accra, Tarkwa"
-                        value={inputValue}
-                        onChange={handleInputChange}
-                        onKeyUp={handleKeyUp}
-                        invalid={
+                      <Select
+                        isMulti
+                        value={selectedMulti}
+                        onChange={handleMulti}
+                        options={options}
+                        className={
                           validation.touched.jobLocation &&
                           validation.errors.jobLocation
-                            ? true
-                            : false
+                            ? "invalid-select"
+                            : ""
                         }
+                        id="jobLocation"
+                        name="jobLocation"
                       />
+                      {validation.touched.jobLocation &&
+                      validation.errors.jobLocation ? (
+                        <div className="invalid-feedback">
+                          {validation.errors.jobLocation}
+                        </div>
+                      ) : null}
                     </div>
                   </Col>
-                  <p>Please hit space key after entering location.</p>
                 </Row>
 
                 <Row className="mb-3">

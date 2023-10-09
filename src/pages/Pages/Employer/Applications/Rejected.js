@@ -106,26 +106,29 @@ const Pending = () => {
                               <td className="expDate">
                                 {item?.applicantPhone}
                               </td>
-                              <td
-                                className="expDate"
-                                style={{
-                                  backgroundColor:
-                                    item?.applicationStatus === "accepted"
-                                      ? "#e7f8f5"
-                                      : item?.applicationStatus === "pending"
-                                      ? "#fef8ed"
-                                      : "#f7d5ca",
-                                  color:
-                                    item?.applicationStatus === "accepted"
-                                      ? "#00d084"
-                                      : item?.applicationStatus === "pending"
-                                      ? "#c89b51"
-                                      : "red",
-                                  borderRadius: "0px",
-                                  width: "max-content",
-                                }}
-                              >
-                                {item?.applicationStatus}
+                              <td className="expDate">
+                                <p
+                                  style={{
+                                    backgroundColor:
+                                      item?.applicationStatus === "accepted"
+                                        ? "#e7f8f5"
+                                        : item?.applicationStatus === "pending"
+                                        ? "#fef8ed"
+                                        : "#f7d5ca",
+                                    color:
+                                      item?.applicationStatus === "accepted"
+                                        ? "#00d084"
+                                        : item?.applicationStatus === "pending"
+                                        ? "#c89b51"
+                                        : "red",
+                                    borderRadius: "10px",
+                                    width: "max-content",
+                                  }}
+                                  className="p-1"
+                                >
+                                  {" "}
+                                  {item?.applicationStatus}
+                                </p>
                               </td>
                               <td className="status">
                                 {item?.appliedAt === null

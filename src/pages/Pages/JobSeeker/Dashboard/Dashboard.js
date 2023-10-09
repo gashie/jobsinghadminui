@@ -274,7 +274,8 @@ const Dashboard = () => {
                             <div className="d-flex gap-2">
                               <div>
                                 <img
-                                  src={img1}
+                                  src={ "https://108.166.181.225:5050/uploads/image/logos/" +
+                                  item?.companyLogo}
                                   alt="logo"
                                   className="img-fluid avatar-xxl"
                                 ></img>

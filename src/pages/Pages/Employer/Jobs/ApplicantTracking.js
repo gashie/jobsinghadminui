@@ -9,42 +9,97 @@ import {
   DropdownMenu,
   DropdownItem,
   Dropdown,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { formatDate } from "../../../../Components/Hooks/formatDate";
-import { approveApplications, employerApplications } from "../../../../store/actions";
+import {
+  approveApplications,
+  employerApplications,
+} from "../../../../store/actions";
 
 const ApplicantTracking = () => {
   const [margin, setMargin] = useState("");
   const [action, setAction] = useState(false);
   const [takeAction, setTakeAction] = useState("");
 
+  // const updateWindowSize = () => {
+  //   const newWindowSize = document.documentElement.clientWidth;
+  //   if (newWindowSize <= 375) {
+  //     setMargin("-25rem");
+  //   } else if (newWindowSize <= 1200) {
+  //     setMargin("");
+  //   } else if (newWindowSize >= 1200) {
+  //     setMargin("");
+  //   } else if (newWindowSize > 375) {
+  //     setMargin("");
+  //   }
+  // };
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const [justifyTab, setjustifyTab] = useState("1");
+  const justifyToggle = (tab) => {
+    if (justifyTab !== tab) {
+      setjustifyTab(tab);
+    }
+  };
+
+  const [display, setDisplay] = useState("");
+
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
-      setMargin("-25rem");
+      setDisplay("none");
     } else if (newWindowSize <= 1200) {
-      setMargin("");
+      setDisplay("none");
     } else if (newWindowSize >= 1200) {
-      setMargin("");
+      setDisplay("");
     } else if (newWindowSize > 375) {
-      setMargin("");
+      setDisplay("");
     }
+  };
+
+  useEffect(() => {
+    // Initial window size calculation
+    updateWindowSize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", updateWindowSize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+    };
+  }, []);
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
   };
 
   const actionList = [
     {
       label: "Accept Application",
-      color: "#00d084",
+      color: "black",
       icon: "bx bx-pencil",
       check: "accept",
     },
     {
       label: "Reject Application",
-      color: "red",
+      color: "black",
       icon: "ri-delete-bin-fill",
       check: "reject",
+    },
+    {
+      label: "View Profile",
+      color: "black",
+      icon: "ri-eye-line",
+      check: "view",
     },
   ];
 
@@ -75,7 +130,7 @@ const ApplicantTracking = () => {
     };
   }, []);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { loading, error, details } = useSelector((state) => ({
     loading: state.Jobs.employerApplicationsLoading,
@@ -83,25 +138,40 @@ const ApplicantTracking = () => {
     details: state.Jobs.employerApplications,
   }));
 
+  const [profile, setProfile] = useState({});
+
   const handleOptionClick = (item, check) => {
     if (check === "accept") {
-      dispatch(approveApplications({
-        applicationId: item?.applicationId, 
-        applicationStatus: true
-      }))
-      dispatch(employerApplications({
-        jobId: item?.jobId
-      }))
+      dispatch(
+        approveApplications({
+          applicationId: item?.applicationId,
+          applicationStatus: true,
+        })
+      );
+      dispatch(
+        employerApplications({
+          jobId: item?.jobId,
+        })
+      );
     }
 
     if (check === "reject") {
-      dispatch(approveApplications({
-        applicationId: item?.applicationId, 
-        applicationStatus: false
-      }))
-      dispatch(employerApplications({
-        jobId: item?.jobId
-      }))
+      dispatch(
+        approveApplications({
+          applicationId: item?.applicationId,
+          applicationStatus: false,
+        })
+      );
+      dispatch(
+        employerApplications({
+          jobId: item?.jobId,
+        })
+      );
+    }
+
+    if (check === "view") {
+      toggleModal();
+      setProfile(item);
     }
   };
 
@@ -147,26 +217,28 @@ const ApplicantTracking = () => {
                               <td className="expDate">
                                 {item?.applicantPhone}
                               </td>
-                              <td
-                                className="expDate"
-                                style={{
-                                  backgroundColor:
-                                    item?.applicationStatus === "accepted"
-                                      ? "#e7f8f5"
-                                      : item?.applicationStatus === "pending"
-                                      ? "#fef8ed"
-                                      : "#f7d5ca",
-                                  color:
-                                    item?.applicationStatus === "accepted"
-                                      ? "#00d084"
-                                      :  item?.applicationStatus === "pending"
-                                      ? "#c89b51"
-                                      : "red",
-                                  borderRadius: "0px",
-                                  width: "max-content",
-                                }}
-                              >
-                                {item?.applicationStatus}
+                              <td className="expDate">
+                                <p
+                                  style={{
+                                    backgroundColor:
+                                      item?.applicationStatus === "accepted"
+                                        ? "#e7f8f5"
+                                        : item?.applicationStatus === "pending"
+                                        ? "#fef8ed"
+                                        : "#f7d5ca",
+                                    color:
+                                      item?.applicationStatus === "accepted"
+                                        ? "#00d084"
+                                        : item?.applicationStatus === "pending"
+                                        ? "#c89b51"
+                                        : "red",
+                                    borderRadius: "10px",
+                                    width: "max-content",
+                                  }}
+                                  className="p-1"
+                                >
+                                  {item?.applicationStatus}
+                                </p>
                               </td>
                               <td className="status">
                                 {" "}
@@ -233,7 +305,8 @@ const ApplicantTracking = () => {
                               ) : (
                                 <>
                                   <p className="fw-light mt-5">
-                                    You don't have any Applications at the moment.
+                                    You don't have any Applications at the
+                                    moment.
                                   </p>
                                 </>
                               )}
@@ -249,6 +322,222 @@ const ApplicantTracking = () => {
           </Card>
         </Col>
       </Row>
+
+      <div>
+        {/* <Button color="primary" onClick={toggleModal}>
+        Open Profile Modal
+      </Button> */}
+
+        <Modal isOpen={modalOpen} toggle={toggleModal} size="xl">
+          <ModalHeader toggle={toggleModal}>Applicant Profile </ModalHeader>
+          <ModalBody>
+            <Row>
+              {/* <h4>Company's Profile</h4> */}
+              <Col
+                style={{
+                  position: "relative",
+                  left: "6rem",
+                  marginTop: "10rem",
+                }}
+                xl={3}
+                md={4}
+                xs={7}
+              >
+                <p style={{ textAlign: "center" }}>
+                  <img
+                    src={
+                      "https://108.166.181.225:5050/uploads/image/logos/" +
+                      profile?.userInfo?.company?.companyLogo
+                    }
+                    alt="profile-img"
+                    className="img-fluid avatar-xxl"
+                  ></img>
+                </p>
+                <h5 style={{ textAlign: "center", marginTop: "1rem" }}>
+                  {profile?.userInfo?.company?.companyName}
+                </h5>
+              </Col>
+
+              <Col>
+                <div
+                  style={{
+                    borderLeft: "1px dashed black",
+                    height: "100%",
+                    position: "relative",
+                    left: "12rem",
+                    display: display,
+                  }}
+                ></div>
+              </Col>
+
+              <Col
+                style={{ display: "grid", gap: "2.5rem", marginRight: "-4rem" }}
+                xl={6}
+                md={5}
+                xs={10}
+                className="mt-3 px-5"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>Applicant Name:</h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {profile?.applicantName}
+                  </h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>Phone:</h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {profile?.applicantPhone}
+                  </h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>Email:</h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {profile?.applicantEmail}
+                  </h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Date Applied:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>30th August, 1992</h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Address:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {formatDate(profile?.appliedAt)}
+                  </h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Application Status:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicationStatus}</h6>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Resume (Click to download resume):
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicantResume === null ? "No Resume"  : ""}</h6>
+                </div>
+                {/* <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Website:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>ghashietechnologie.net</h6>
+                </div> */}
+                {/* <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Facebook Page Url:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>ghashietechnologie.net</h6>
+                </div> */}
+                {/* <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Twitter Page Url:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>ghashietechnologie.net</h6>
+                </div> */}
+                {/* <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    LinkedIn Page Url:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>ghashietechnologie.net</h6>
+                </div> */}
+                {/* <div
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Company Description:
+                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {profile?.userInfo?.company?.companyProfile}
+                  </h6>
+                </div> */}
+              </Col>
+            </Row>
+          </ModalBody>
+          <ModalFooter>
+            <Button style={{backgroundColor: "#244a59"}} onClick={toggleModal}>
+              Close
+            </Button>
+            {/* <Button style={{backgroundColor: "#244a59"}} onClick={toggleModal}>
+              Save Changes
+            </Button> */}
+          </ModalFooter>
+        </Modal>
+      </div>
     </>
   );
 };

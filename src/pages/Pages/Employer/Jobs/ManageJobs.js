@@ -20,6 +20,7 @@ import {
   approveJobs,
   employerApplications,
   employers,
+  fullJobDetails,
   jobEditCloneData,
   jobs,
   updateJob,
@@ -29,6 +30,8 @@ import { Spinner } from "reactstrap";
 import EditJobs from "./EditJobs";
 import RepostJob from "./RepostJob";
 import RenewJob from "./RenewJob";
+import JobDetails from "./JobDetails";
+
 
 const ManageJobs = ({handleApplicant}) => {
   const [isOpenAction, setIsOpenAction] = useState({});
@@ -110,11 +113,18 @@ const ManageJobs = ({handleApplicant}) => {
     },
 
     {
+      label: "View Job detials",
+      color: "black",
+      icon: " ri-eye-line",
+      check: "viewJobDetails",
+    },
+    {
       label: "View Applicants",
       color: "black",
-      icon: "bx bx-eye",
+      icon: "ri-file-user-line",
       check: "viewApplicants",
     },
+    
   ];
 
 
@@ -136,7 +146,13 @@ const ManageJobs = ({handleApplicant}) => {
     setRenewIsOpen(!renewIsOpen);
   };
 
- 
+  const [isCustomModalOpen, setCustomModal] = useState(false);
+
+  const toggleCustomModal = () => {
+    setCustomModal(!isCustomModalOpen);
+  };
+
+
 
   const options = [
     { label: "Option 1", color: "red", icon: "bx bx-radio-circle-marked" },
@@ -249,6 +265,12 @@ const ManageJobs = ({handleApplicant}) => {
       handleApplicant()
       dispatch(employerApplications({jobId: item?.jobId}))
     }
+
+    if(check === "viewJobDetails"){
+      dispatch(fullJobDetails({jobId: item?.jobId}))
+      toggleCustomModal()
+    
+    }
   };
 
   const handleStatusClick = (label, item, icon, check) => {
@@ -290,7 +312,7 @@ const ManageJobs = ({handleApplicant}) => {
   const handleMenuOption = (item, check) => {
     // Handle the selected menu option here
     // You can perform actions based on the selected option, if needed
-    console.log(`Selected option for jobId ${item.jobId}: ${check}`);
+    // console.log(`Selected option for jobId ${item.jobId}: ${check}`);
     toggleMenu(item.jobId); // Close the dropdown after selection if desired
 
     if (check === "Approve") {
@@ -389,6 +411,11 @@ const ManageJobs = ({handleApplicant}) => {
     if(check === "viewApplicants"){
       handleApplicant()
       dispatch(employerApplications({jobId: item?.jobId}))
+    }
+    if(check === "viewJobDetails"){
+      toggleCustomModal()
+      dispatch(fullJobDetails({jobId: item?.jobId}))
+      // dispatch(employerApplications({jobId: item?.jobId}))
     }
   };
 
@@ -558,7 +585,7 @@ const ManageJobs = ({handleApplicant}) => {
               <div id="customerList">
                 <div
                   className="table-responsive table-card mt-3 mb-1"
-                  style={{ height: "50vh" }}
+                  style={{ height: "100vh" }}
                 >
                   <table
                     className="table align-middle table-nowrap"
@@ -947,6 +974,25 @@ const ManageJobs = ({handleApplicant}) => {
           <RenewJob data={editData} handleCloseRenew={handleCloseRenew} />
         </ModalBody>
       </Modal>
+
+      <div>
+    
+
+      <Modal isOpen={isCustomModalOpen} toggle={toggleCustomModal} size="lg">
+        <ModalHeader toggle={toggleCustomModal}></ModalHeader>
+        <ModalBody>
+        <JobDetails />
+        </ModalBody>
+        <ModalFooter>
+          <Button  className="btn btn-dark" style={{backgroundColor: '#244a59'}} onClick={toggleCustomModal}>
+            Close
+          </Button>
+          {/* <Button color="primary" onClick={toggleCustomModal}>
+            Save Custom Settings
+          </Button> */}
+        </ModalFooter>
+      </Modal>
+    </div>
 
     </>
   );

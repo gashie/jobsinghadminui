@@ -1149,7 +1149,21 @@ function Courses() {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                No content has been set for this course
+                {loading === true ? (
+                  <>
+                    <Spinner
+                      size="lg"
+                      className="me-2 mt-5"
+                      style={{ color: "#244a59" }}
+                    ></Spinner>
+                  </>
+                ) : (
+                  <>
+                    <p className="fw-light mt-5">
+                      You don't have any Courses content for this course.
+                    </p>
+                  </>
+                )}
               </p>
             )}
           </div>
@@ -1218,7 +1232,21 @@ function Courses() {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                No content has been set for this course
+                {loading === true ? (
+                  <>
+                    <Spinner
+                      size="lg"
+                      className="me-2 mt-5"
+                      style={{ color: "#244a59" }}
+                    ></Spinner>
+                  </>
+                ) : (
+                  <>
+                    <p className="fw-light mt-5">
+                      You don't have any partnerships at the moment.
+                    </p>
+                  </>
+                )}
               </p>
             )}
 
@@ -1298,7 +1326,22 @@ function Courses() {
                 ))
             ) : (
               <p className="hstack justify-content-center">
-                No content has been set for this course
+                {loading === true ? (
+                  <>
+                    <Spinner
+                      size="lg"
+                      className="me-2 mt-5"
+                      style={{ color: "#244a59" }}
+                    ></Spinner>
+                  </>
+                ) : (
+                  <>
+                    <p className="fw-light mt-5">
+                      You don't have any schedules for this course at the
+                      moment.
+                    </p>
+                  </>
+                )}
               </p>
             )}
 

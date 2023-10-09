@@ -71,7 +71,7 @@ const PostCourse = () => {
     validateOnChange: true,
     validationSchema: Yup.object().shape({
       title: Yup.string().required('Title is required'),
-      description: Yup.string().required('Description is required'),
+      // description: Yup.string().required('Description is required'),
       organizer: Yup.string().required('Organizer is required'),
       venue: Yup.string().required('Venue is required'),
       cost: Yup.string().required('Cost is required'),
@@ -81,9 +81,9 @@ const PostCourse = () => {
       duration: Yup.string().required('Duration is required'),
       category: Yup.string().required('Category is required'),
       courseLink: Yup.string().url('Invalid URL').required('Course Link is required'),
-      courseGoals: Yup.string().required('Course Goals are required'),
+      // courseGoals: Yup.string().required('Course Goals are required'),
       audience: Yup.string().required('Audience is required'),
-      courseCertificationNote: Yup.string(),
+      // courseCertificationNote: Yup.string(),
     }),
     onSubmit: (values) => {
       const formData = new FormData();
@@ -108,9 +108,11 @@ const PostCourse = () => {
 
       dispatch(saveCourse(formData));
 
-      // navigate("/app/employer-courses");
+       navigate("/app/employer-courses");
     },
   });
+
+  console.log(validation.errors)
 
   const [Brochure, setBrochure] = useState();
   const [Image, setImage] = useState();
@@ -484,9 +486,9 @@ const PostCourse = () => {
                       <Col lg={6}>
                         <select
                           className="form-select p-3"
-                          name="jobCategoryId"
-                          id="jobCategoryId"
-                          value={validation.values.jobCategoryId}
+                          name="category"
+                          id="category"
+                          value={validation.values.category}
                           onChange={validation.handleChange}
                         >
                           <option>Select Category</option>

@@ -260,7 +260,7 @@ const Navbar = () => {
                 {isLoggedIn && userInfo?.userInfo?.roleid === 3 && (
                   <>
                     <li
-                      className="nav-item"
+                      className="nav-item mx-1"
                       style={{ marginTop: "0.5rem", cursor: "pointer" }}
                     >
                       <Link
