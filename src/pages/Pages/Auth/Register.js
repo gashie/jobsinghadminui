@@ -498,40 +498,28 @@ const Register = () => {
                             </div>
 
                             <div>
-                              <Dropzone
-                                onDrop={(acceptedFiles) => {
-                                  handleAcceptedFiles(acceptedFiles);
-                                }}
-                              >
-                                {({ getRootProps, getInputProps }) => (
-                                  <div
-                                    className="dropzone dz-clickable"
-                                    style={{
-                                      cursor: "pointer",
-                                      height: "50px", // Adjust the height as needed
-                                    }}
-                                  >
-                                    <div
-                                      className="dz-message needsclick"
-                                      {...getRootProps()}
-                                    >
-                                      {/* <div className="mb-3">
-          <i className="display-4 text-muted ri-upload-cloud-2-fill" />
-        </div> */}
-                                      <h5
-                                        className="fw-bolder text-left m-2"
-                                        style={{ color: "#244a59" }}
-                                      >
-                                        Upload Resume
-                                      </h5>
-                                      <h6>
-                                        (.doc, .docx, .pdf, .rtf, .txt, Max size
-                                        2 MB)
-                                      </h6>
-                                    </div>
-                                  </div>
-                                )}
-                              </Dropzone>
+                            <Dropzone
+                onDrop={(acceptedFiles) => {
+                  handleAcceptedFiles(acceptedFiles);
+                }}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    className="dropzone dz-clickable"
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    <div className="dz-message needsclick" {...getRootProps()}>
+                      <div className="mb-3">
+                        <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                      </div>
+                      <h5>Drag or Click to upload file</h5>
+                      <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
+                    </div>
+                  </div>
+                )}
+              </Dropzone>
                             </div>
                           </div>
 

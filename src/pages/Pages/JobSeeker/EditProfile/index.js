@@ -39,6 +39,12 @@ const EditProfile = () => {
     profile: state.Login.profile,
   }));
 
+  const { imageLoading, imageError } = useSelector((state) => ({
+    imageLoading: state.Login.updateProfileImageLoading,
+    imageError: state.Login.updateProfileImageError,
+   
+  }));
+
   const validation = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -50,7 +56,7 @@ const EditProfile = () => {
       birthDate: formatDate2(profile?.birthDate),
       address: profile?.address,
       maritalStatus: "",
-      gender: "",
+      gender: profile?.gender,
       userType: "jobSeeker",
       country: "Ghana",
     },
@@ -93,7 +99,7 @@ const EditProfile = () => {
       // dispatch(viewCv({ viewAction: "" }));
       //dispatch(viewCv({ viewAction: "" }));
       // Dispatch an action or perform other operations with the data
-      console.log(userData);
+    
 
       dispatch(updateProfile(userData));
 
@@ -123,6 +129,7 @@ const EditProfile = () => {
   // Function to handle the image load event
   const handleImageLoad = () => {
     setImageLoaded(true);
+    // dispatch(viewProfile({ viewAction: "" }));
   };
 
   return (
@@ -270,8 +277,21 @@ const EditProfile = () => {
                     : false
                 }
               >
-                <option>Male</option>
-                <option>Female</option>
+                <option value={profile?.gender === "M" ? "Male" : "Female"}>
+                  {profile?.gender === "M" ? "Male" : "Female"}
+                </option>
+                <option
+                  value="Male"
+                  style={{ display: profile?.gender === "M" ? "none" : "" }}
+                >
+                  Male
+                </option>
+                <option
+                  value="Female"
+                  style={{ display: profile?.gender === "F" ? "none" : "" }}
+                >
+                  Female
+                </option>
               </Input>
             </div>
           </Col>
@@ -398,13 +418,13 @@ const EditProfile = () => {
       </Col>
       <Button
         style={{ backgroundColor: "#244a59" }}
-        disabled={profileError || !image || profileLoading}
+        disabled={imageError || !image || imageLoading}
         className="btn btn-dark px-5 mt-4 p-3"
         onClick={() => {
           handleImage();
         }}
       >
-        {profileError ? null : profileLoading ? (
+        { imageLoading ? (
           <Spinner size="sm" className="me-2">
             {" "}
             Loading...{" "}

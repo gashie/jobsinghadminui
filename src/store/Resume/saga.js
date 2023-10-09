@@ -43,7 +43,7 @@ function* viewResumes({ payload: action }) {
     const response = yield call(viewResumeURL, action);
 
     if (response && response?.data?.status === 1) {
-      yield put(viewResumeSuccess(response?.data));
+      yield put(viewResumeSuccess(response?.data.data));
       console.log(response);
     } else {
       // yield put(viewResumeError(response.data.message));

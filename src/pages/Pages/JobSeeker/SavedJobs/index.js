@@ -180,8 +180,8 @@ const SavedJobs = () => {
                     <tr key={key}>
                       <td >
                         <Link
-                          // to="/job-details"
-                          className="fw-medium"
+                         to={`/job-details?.title=B&id=${item?.jobId}`}
+                          className="fw-bolder"
                           style={{ color: "#244a50" }}
                           onClick={() => {
                             //handleFullInfo(item?.jobId);
@@ -234,12 +234,13 @@ const SavedJobs = () => {
                       > */}
                        <td >
                         <Link
-                          to={`/job-details?.title=B&id=${item?.jobId}`}
+                          to={`/app/apply`}
                           className="fw-medium"
                           style={{ color: "#244a50" }}
                           onClick={() => {
                             // handleFullInfo(item?.jobId);
                             // navigate('/admin/job-details')
+                            dispatch(fullJobDetails({jobId: item?.jobId}))
                           //  navigate(`/job-details?.title=B&id=${item?.jobId}`);
                           }}
                         >

@@ -152,8 +152,8 @@ const handleLetter = (data) =>{
 
             <TabContent activeTab={justifyTab} className="text-muted">
               <TabPane tabId="1" id="base-justified-home" 
-                 style={{ height: "700px", position: "relative", overflow: "scroll" }}
-                 className="scroll-change"
+                 style={{ height: "700px", position: "relative", overflow: "scroll",  }}
+                 className="scroll-change p-5"
               >
             
                 <MyResume />

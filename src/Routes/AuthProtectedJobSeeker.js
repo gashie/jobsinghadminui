@@ -20,8 +20,6 @@ const AuthProtectedJobSeeker = (props) => {
   const userInfo = useSelector((state) => state.Login.userInfo);
   const loading = useSelector((state) => state.Login.loading);
 
-  console.log(userId?.userInfo?.roleid);
-  console.log(!isLoggedIn && userId?.userInfo?.roleid !== 3);
 
   const navigate = useNavigate();
 

@@ -45,7 +45,9 @@ import {
   passwordCodeActionSuccess,
   passwordCodeActionError,
   viewProfileSuccess,
-  viewProfileError
+  viewProfileError,
+
+  viewProfile as profileAction
 } from "./actions";
 
 //Include Both Helper File with needed methods
@@ -372,14 +374,18 @@ function* updateProfileImage({ payload: data }) {
 
     if (response && response?.data?.status === 1) {
       yield put(updateProfileImageSuccess());
+
       toast.success(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+
+      yield put (profileAction({viewAction: ""}))
     } else {
       yield put(updateProfileImageError(response));
       toast.warn(`${response?.data?.message}`, {
         autoClose: 3000,
       });
+      yield put (profileAction({viewAction: ""}))
     }
   } catch (error) {
     console.log(error);

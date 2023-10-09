@@ -20,6 +20,8 @@ import { useNavigate } from "react-router-dom";
 // Import Images
 import logodark from "../../../assets/images/logo-dark.png";
 import logolight from "../../../assets/images/logo-light.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../store/actions";
 
 const Navbar = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -31,6 +33,9 @@ const Navbar = () => {
     window.addEventListener("scroll", scrollNavigation, true);
   });
 
+  const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
+  const userInfo = useSelector((state) => state.Login.userInfo);
+
   function scrollNavigation() {
     var scrollup = document.documentElement.scrollTop;
     if (scrollup > 50) {
@@ -41,6 +46,8 @@ const Navbar = () => {
   }
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -112,6 +119,8 @@ const Navbar = () => {
             borderColor: "#244A59",
             borderRight: "0px",
             width: "100%",
+
+            zIndex: "999",
           }}
         >
           <Container fluid className="htsack justify-content-center col-xl-10">
@@ -122,7 +131,7 @@ const Navbar = () => {
                     fontFamily: "impact",
                     color: "#244A59",
                     position: "relative",
-                    left: spaceLeft
+                    left: spaceLeft,
                   }}
                 >
                   JobsinGhana
@@ -170,7 +179,7 @@ const Navbar = () => {
                   <NavLink
                     className="fs-14"
                     onClick={() => navigate("/home")}
-                    style={{cursor: "pointer"}}
+                    style={{ cursor: "pointer" }}
                     // style={{
                     // backgroundColor: window.location.pathname === "/home" ? '#244a59': "",
                     // color: window.location.pathname === "/home" && "white",
@@ -183,32 +192,39 @@ const Navbar = () => {
                   <NavLink
                     className="fs-14"
                     onClick={() => navigate("/job-list")}
-                    style={{cursor: "pointer"}}
+                    style={{ cursor: "pointer" }}
                   >
                     Jobs
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
-                    <DropdownToggle nav caret className="fs-14"
-                      style={{cursor: "pointer"}}>
+                    <DropdownToggle
+                      nav
+                      caret
+                      className="fs-14"
+                      style={{ cursor: "pointer" }}
+                    >
                       Career Resources
                     </DropdownToggle>
                     <DropdownMenu
                       style={{ position: "absolute", zIndex: "999" }}
                     >
-                      <DropdownItem onClick={() => navigate("/career-advice")}
-                        style={{cursor: "pointer"}}>
+                      <DropdownItem
+                        onClick={() => navigate("/career-advice")}
+                        style={{ cursor: "pointer" }}
+                      >
                         Career Advice
                       </DropdownItem>
-                      <DropdownItem onClick={() => navigate("/latest-news")}
-                        style={{cursor: "pointer"}}>
-                         
+                      <DropdownItem
+                        onClick={() => navigate("/latest-news")}
+                        style={{ cursor: "pointer" }}
+                      >
                         HR News
                       </DropdownItem>
                       <DropdownItem
                         onClick={() => navigate("/training-events")}
-                        style={{cursor: "pointer"}}
+                        style={{ cursor: "pointer" }}
                       >
                         TrainingEvents
                       </DropdownItem>
@@ -219,29 +235,88 @@ const Navbar = () => {
                   <NavLink
                     className="fs-14"
                     onClick={() => navigate("/services")}
-                    style={{cursor: "pointer"}}
+                    style={{ cursor: "pointer" }}
                   >
                     Services
                   </NavLink>
                 </li>
-                <li className="nav-item"   onClick={() => navigate("/app/job-seeker-dashboard")}>
-                  <NavLink
-                    className="fs-14"
-                  
-                    style={{cursor: "pointer"}}
-                  >
-                    Jobseekers
-                  </NavLink>
-                </li>
-                <li className="nav-item" style={{ marginTop: "0.5rem", cursor: "pointer" }}>
-                  <Link
-                    className="fs-12 btn btn-success"
-                   to="/app/employer-dashboard"
-                   
-                  >
-                    Employers
-                  </Link>
-                </li>
+
+                {isLoggedIn && userInfo?.userInfo?.roleid === 2 && (
+                  <>
+                    <li
+                      className="nav-item mx-1"
+                      onClick={() => navigate("/app/job-seeker-dashboard")}
+                      style={{ marginTop: "0.5rem", cursor: "pointer" }}
+                    >
+                      <Link
+                        className="fs-12 btn btn-success"
+                        style={{ cursor: "pointer" }}
+                      >
+                        Jobseekers
+                      </Link>
+                    </li>
+                  </>
+                )}
+                {isLoggedIn && userInfo?.userInfo?.roleid === 3 && (
+                  <>
+                    <li
+                      className="nav-item"
+                      style={{ marginTop: "0.5rem", cursor: "pointer" }}
+                    >
+                      <Link
+                        className="fs-12 btn btn-success"
+                        to="/app/employer-dashboard"
+                      >
+                        Employers
+                      </Link>
+                    </li>
+                  </>
+                )}
+
+                {isLoggedIn && (
+                  <>
+                    <li
+                      className="nav-item"
+                      style={{ marginTop: "0.5rem", cursor: "pointer" }}
+                    >
+                      <Link
+                        className="fs-12 btn btn-dark"
+                        to="/login"
+                        style={{ backgroundColor: "#244a59" }}
+                        onClick={()=>{
+                          dispatch(logout())
+                        }}
+                      >
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                )}
+
+                {!isLoggedIn && (
+                  <>
+                    <li
+                      className="nav-item"
+                      onClick={() => navigate("/app/job-seeker-dashboard")}
+                    >
+                      <NavLink className="fs-14" style={{ cursor: "pointer" }}>
+                        Jobseekers
+                      </NavLink>
+                    </li>
+
+                    <li
+                      className="nav-item"
+                      style={{ marginTop: "0.5rem", cursor: "pointer" }}
+                    >
+                      <Link
+                        className="fs-12 btn btn-success"
+                        to="/app/employer-dashboard"
+                      >
+                        Employers
+                      </Link>
+                    </li>
+                  </>
+                )}
               </Scrollspy>
             </Collapse>
           </Container>

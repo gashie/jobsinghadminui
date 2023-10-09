@@ -98,7 +98,13 @@ const Alerts = () => {
     return formattedDate;
   }
 
-  const [selectedOption, setSelectedOption] = useState(""); // Default selected option
+  const [editItem, setEditItem] = useState();
+
+  const [any, setAny] = useState(editItem?.patchData?.alertKeywordCriteria)
+
+  const [selectedOption, setSelectedOption] = useState(
+   any
+  ); // Default selected option
   const [selectedFrequency, setSelectedFrequency] = useState("");
 
   const handleRadioChange = (e) => {
@@ -110,6 +116,8 @@ const Alerts = () => {
     e.preventDefault();
     setSelectedFrequency(e.target.value);
   };
+
+ 
 
   //create alert validation form
   const validation = useFormik({
@@ -155,20 +163,18 @@ const Alerts = () => {
     },
   });
 
-  const [editItem, setEditItem] = useState();
-
   //edit
   const editValidation = useFormik({
     enableReinitialize: true,
     initialValues: {
       keyword: editItem?.patchData?.alertKeyword,
       name: editItem?.patchData?.alertName,
-      criteria: selectedOption,
-      frequency: selectedFrequency,
-      location: editItem?.locationId,
-      category: editItem?.jobCategoryId,
-      experience: editItem?.experienceLevel,
-      jobType: editItem?.jobTypeId,
+      criteria: editItem?.patchData?.alertKeywordCriteria,
+      frequency: editItem?.patchData?.runEvery,
+      location: editItem?.patchData?.locationId,
+      category: editItem?.patchData?.jobCategoryId,
+      experience: editItem?.patchData?.experienceLevel,
+      jobType: editItem?.patchData?.jobTypeId,
     },
     validateOnChange: true,
     validationSchema: Yup.object({
@@ -236,8 +242,6 @@ const Alerts = () => {
     dispatch(viewjobAlerts({ viewAction: "" }));
   };
 
-  
-
   const handleEdit = (item) => {
     setEditItem({
       deleterecord: false,
@@ -250,13 +254,13 @@ const Alerts = () => {
         alertKeywordCriteria: item?.alertKeywordCriteria,
         runEvery: item?.runEvery,
         locationId: item?.locationId,
-        jobCategoryId: "",
+        jobCategoryId: item?.jobCategoryId,
         jobTypeId: item?.jobTypeId,
         experienceLevel: item?.experienceLevel,
       },
     });
 
-    console.log(item, "edits")
+    console.log(item, "edits");
   };
 
   useEffect(() => {});
@@ -285,9 +289,9 @@ const Alerts = () => {
   const isPrevDisabled = currentPage === 1;
   const isNextDisabled = endIndex >= jobAlerts?.length;
 
-  useEffect(()=>{
-dispatch(category({viewAction: ""}))
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(category({ viewAction: "" }));
+  }, [dispatch]);
 
   const { catLoading, catError, categoryInfo } = useSelector((state) => ({
     catLoading: state.Industry.loading,
@@ -295,7 +299,7 @@ dispatch(category({viewAction: ""}))
     categoryInfo: state.Industry.categoryInfo,
   }));
 
- 
+  const [locationId, setLocationId] = useState(editItem?.locationId);
 
   return (
     <>
@@ -339,7 +343,7 @@ dispatch(category({viewAction: ""}))
                 {jobAlertsError === false && loading === false ? (
                   currentJobs?.map((item, key) => (
                     <tr key={key}>
-                      <th scope="row"  className="p-3">
+                      <th scope="row" className="p-3">
                         <Link to="#" className="fw-medium">
                           {item?.alertName}
                         </Link>
@@ -781,310 +785,317 @@ dispatch(category({viewAction: ""}))
           ></Button>
         </ModalHeader>
         <ModalBody>
-        <Form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  editValidation.handleSubmit();
-                  return false;
-                }}
-              >
-                <div className="mb-3">
-                  <label htmlFor="name">
-                    Name<span className="text-danger">*</span>
-                  </label>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              editValidation.handleSubmit();
+              return false;
+            }}
+          >
+            <div className="mb-3">
+              <label htmlFor="name">
+                Name<span className="text-danger">*</span>
+              </label>
+              <Input
+                id="name"
+                name="name"
+                className="form-control p-3"
+                placeholder="Enter your name"
+                type="text"
+                onChange={editValidation.handleChange}
+                onBlur={editValidation.handleBlur}
+                value={editValidation.values.name || ""}
+                invalid={
+                  editValidation.touched.name && editValidation.errors.name
+                    ? true
+                    : false
+                }
+              />
+              {editValidation.touched.name && editValidation.errors.name ? (
+                <FormFeedback type="invalid">
+                  <div>{editValidation.errors.name}</div>
+                </FormFeedback>
+              ) : null}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="keyword">Keyword:</label>
+              <Input
+                id="keyword"
+                name="keyword"
+                className="form-control p-3"
+                placeholder="Enter alert keyword"
+                type="text"
+                onChange={editValidation.handleChange}
+                onBlur={editValidation.handleBlur}
+                value={editValidation.values.keyword || ""}
+                invalid={
+                  editValidation.touched.keyword &&
+                  editValidation.errors.keyword
+                    ? true
+                    : false
+                }
+              />
+              {editValidation.touched.keyword &&
+              editValidation.errors.keyword ? (
+                <FormFeedback type="invalid">
+                  <div>{editValidation.errors.keyword}</div>
+                </FormFeedback>
+              ) : null}
+            </div>
+
+            {/* Search Criteria */}
+            <div className="mb-3">
+              <label className="form-right" style={{ textAlign: "left" }}>
+                Choose your search criteria
+              </label>
+              <div className="d-flex gap-5">
+                <label>
                   <Input
-                    id="name"
-                    name="name"
-                    className="form-control p-3"
-                    placeholder="Enter your name"
-                    type="text"
+                    type="radio"
+                    className="form-check-input"
+                    name="criteria"
+                    value="any"
+                    checked={editValidation.values.criteria === "any"}
                     onChange={editValidation.handleChange}
-                    onBlur={editValidation.handleBlur}
-                    value={editValidation.values.name || ""}
-                    invalid={
-                      editValidation.touched.name && editValidation.errors.name
-                        ? true
-                        : false
-                    }
+                    invalid={!!editValidation.errors.criteria}
                   />
-                  {editValidation.touched.name && editValidation.errors.name ? (
-                    <FormFeedback type="invalid">
-                      <div>{editValidation.errors.name}</div>
-                    </FormFeedback>
-                  ) : null}
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="keyword">Keyword:</label>
+                  Any of these words
+                </label>
+                <label>
                   <Input
-                    id="keyword"
-                    name="keyword"
-                    className="form-control p-3"
-                    placeholder="Enter alert keyword"
-                    type="text"
+                    type="radio"
+                    className="form-check-input"
+                    name="criteria"
+                    value="all"
+                    checked={editValidation.values.criteria === "all"}
                     onChange={editValidation.handleChange}
-                    onBlur={editValidation.handleBlur}
-                    value={editValidation.values.keyword || ""}
-                    invalid={
-                      editValidation.touched.keyword && editValidation.errors.keyword
-                        ? true
-                        : false
-                    }
+                    invalid={!!editValidation.errors.criteria}
                   />
-                  {editValidation.touched.keyword && editValidation.errors.keyword ? (
-                    <FormFeedback type="invalid">
-                      <div>{editValidation.errors.keyword}</div>
-                    </FormFeedback>
-                  ) : null}
-                </div>
+                  All of These word
+                </label>
+              </div>
+              <FormFeedback type="invalid">
+                {editValidation.errors.criteria}
+              </FormFeedback>
+            </div>
 
-                {/* Search Criteria */}
-                <div className="mb-3">
-                  <label className="form-right" style={{ textAlign: "left" }}>
-                    Choose your search criteria
-                  </label>
-                  <div className="d-flex gap-5">
-                    <label>
-                      <Input
-                        type="radio"
-                        className="form-check-input"
-                        name="criteria"
-                        value="any"
-                        checked={editValidation.values.criteria === "any"}
-                        onChange={editValidation.handleChange}
-                        invalid={!!editValidation.errors.criteria}
-                      />
-                      Any of these words
-                    </label>
-                    <label>
-                      <Input
-                        type="radio"
-                        className="form-check-input"
-                        name="criteria"
-                        value="all"
-                        checked={editValidation.values.criteria === "all"}
-                        onChange={editValidation.handleChange}
-                        invalid={!!editValidation.errors.criteria}
-                      />
-                      All of These word
-                    </label>
-                  </div>
-                  <FormFeedback type="invalid">
-                    {editValidation.errors.criteria}
-                  </FormFeedback>
-                </div>
+            {/* Frequency */}
+            <div className="mb-3 mt-5">
+              <label className="form-right" style={{ textAlign: "left" }}>
+                Get job alerts
+              </label>
+              <div className="d-flex gap-5 form-check">
+                <label>
+                  <Input
+                    type="radio"
+                    className="form-check-input"
+                    name="frequency"
+                    value="daily"
+                    checked={editValidation.values.frequency === "daily"}
+                    onChange={editValidation.handleChange}
+                    invalid={!!editValidation.errors.frequency}
+                  />
+                  Daily
+                </label>
+                <label>
+                  <Input
+                    type="radio"
+                    className="form-check-input"
+                    name="frequency"
+                    value="weekly"
+                    checked={editValidation.values.frequency === "weekly"}
+                    onChange={editValidation.handleChange}
+                    invalid={!!editValidation.errors.frequency}
+                  />
+                  Weekly
+                </label>
+                <label>
+                  <Input
+                    type="radio"
+                    className="form-check-input"
+                    name="frequency"
+                    value="monthly"
+                    checked={editValidation.values.frequency === "monthly"}
+                    onChange={editValidation.handleChange}
+                    invalid={!!editValidation.errors.frequency}
+                  />
+                  Monthly
+                </label>
+              </div>
 
-                {/* Frequency */}
-                <div className="mb-3 mt-5">
-                  <label className="form-right" style={{ textAlign: "left" }}>
-                    Get job alerts
-                  </label>
-                  <div className="d-flex gap-5 form-check">
-                    <label>
-                      <Input
-                        type="radio"
-                        className="form-check-input"
-                        name="frequency"
-                        value="daily"
-                        checked={editValidation.values.frequency === "daily"}
-                        onChange={editValidation.handleChange}
-                        invalid={!!editValidation.errors.frequency}
-                      />
-                      Daily
-                    </label>
-                    <label>
-                      <Input
-                        type="radio"
-                        className="form-check-input"
-                        name="frequency"
-                        value="weekly"
-                        checked={editValidation.values.frequency === "weekly"}
-                        onChange={editValidation.handleChange}
-                        invalid={!!editValidation.errors.frequency}
-                      />
-                      Weekly
-                    </label>
-                    <label>
-                      <Input
-                        type="radio"
-                        className="form-check-input"
-                        name="frequency"
-                        value="monthly"
-                        checked={editValidation.values.frequency === "monthly"}
-                        onChange={editValidation.handleChange}
-                        invalid={!!editValidation.errors.frequency}
-                      />
-                      Monthly
-                    </label>
-                  </div>
+              <FormFeedback type="invalid">
+                {editValidation.errors.frequency}
+              </FormFeedback>
+            </div>
 
-                  <FormFeedback type="invalid">
-                    {editValidation.errors.frequency}
-                  </FormFeedback>
-                </div>
-
-                <Row className="mb-3">
-                  <Col lg={3}>
-                    <p
-                      htmlFor="nameInput"
-                      className="form-right "
-                      style={{ textAlign: "left" }}
-                    >
-                      Location:
-                    </p>
-                  </Col>
-
-                  <Col lg={9}>
-                    <Input
-                      id="location"
-                      type="select"
-                      name="location"
-                      className="form-select mb-3 p-3"
-                      aria-label="Location"
-                      onChange={editValidation.handleChange}
-                      onBlur={editValidation.handleBlur}
-                      value={editValidation.values.location}
-                      invalid={!!editValidation.errors.location}
-                    >
-                      <option value="">Select Location</option>
-                      {Object.entries(locations).map(([region, cities]) => (
-                        <optgroup label={region} key={region}>
-                          {cities.map((city) => (
-                            <option key={city} value={city}>
-                              {city}
-                            </option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </Input>
-
-                    <FormFeedback type="invalid">
-                      {editValidation.errors.location}
-                    </FormFeedback>
-                  </Col>
-                </Row>
-
-                <Row className="mb-3">
-                  <Col lg={3}>
-                    <p
-                      htmlFor="nameInput"
-                      className="form-right "
-                      style={{ textAlign: "left" }}
-                    >
-                      Job category:
-                    </p>
-                  </Col>
-
-                  <Col lg={15}>
-                    <Input
-                      id="category"
-                      type="select"
-                      name="category"
-                      className="form-select mb-3 p-3"
-                      aria-label="Default"
-                      onChange={editValidation.handleChange}
-                      onBlur={editValidation.handleBlur}
-                      value={editValidation.values.category}
-                      invalid={!!editValidation.errors.category}
-                    >
-                      <option>Select Category</option>
-                      {catLoading === false && catError === false ? (
-                        categoryInfo?.map((item, key) => (
-                          <option key={key} value={item?.jobCategoryId}>
-                            {item?.jobCategoryName}
-                          </option>
-                        ))
-                      ) : (
-                        <option>loading categories...</option>
-                      )}
-                    </Input>
-                    <FormFeedback type="invalid">
-                      {editValidation.errors.category}
-                    </FormFeedback>
-                  </Col>
-                </Row>
-
-                <Row className="mb-3">
-                  <Col lg={3}>
-                    <p
-                      htmlFor="nameInput"
-                      className="form-right "
-                      style={{ textAlign: "left" }}
-                    >
-                      Job type:
-                    </p>
-                  </Col>
-                  <Col lg={9}>
-                    <Input
-                      id="jobType"
-                      name="jobType"
-                      className="form-select mb-3 p-3"
-                      type="select"
-                      aria-label="Default"
-                      onChange={editValidation.handleChange}
-                      onBlur={editValidation.handleBlur}
-                      value={editValidation.values.jobType}
-                      invalid={!!editValidation.errors.jobType}
-                    >
-                      <option>Any time</option>
-                      <option>Full-time</option>
-                      <option>Part-time</option>
-                      <option>Contract</option>
-                      <option>Permanent</option>
-                      <option>Temporary</option>
-                      <option>Internship</option>
-                      <option>Remote</option>
-                      <option>Science</option>
-                    </Input>
-                    <FormFeedback type="invalid">
-                      {editValidation.errors.jobType}
-                    </FormFeedback>
-                  </Col>
-                </Row>
-
-                <Row className="mb-3">
-                  <Col lg={3}>
-                    <p
-                      htmlFor="nameInput"
-                      className="form-right "
-                      style={{ textAlign: "left" }}
-                    >
-                      Any Experience:
-                    </p>
-                  </Col>
-                  <Col lg={9}>
-                    <Input
-                      id="experience"
-                      type="select"
-                      name="experience"
-                      className="form-select mb-3 p-3"
-                      aria-label="Experience"
-                      onChange={editValidation.handleChange}
-                      onBlur={editValidation.handleBlur}
-                      value={editValidation.values.experience}
-                      invalid={!!editValidation.errors.experience}
-                    >
-                      <option>Any experience</option>
-                      <option>1 year</option>
-                      <option>1 year to 3years</option>
-                      <option>3 years to 6 years</option>
-                      <option>6 years to 10 years</option>
-                      <option>10 years plus</option>
-                    </Input>
-                    <FormFeedback type="invalid">
-                      {editValidation.errors.experience}
-                    </FormFeedback>
-                  </Col>
-                </Row>
-
-                <button
-                  type="submit"
-                  className="btn btn-dark"
-                  style={{ backgroundColor: "#244a59" }}
+            <Row className="mb-3">
+              <Col lg={3}>
+                <p
+                  htmlFor="nameInput"
+                  className="form-right "
+                  style={{ textAlign: "left" }}
                 >
-                  Edit Job Alert
-                </button>
-              </Form>
+                  Location:
+                </p>
+              </Col>
+
+              <Col lg={9}>
+                <Input
+                  id="location"
+                  type="select"
+                  name="location"
+                  className="form-select mb-3 p-3"
+                  aria-label="Location"
+                  onChange={editValidation.handleChange}
+                  onBlur={editValidation.handleBlur}
+                  value={editValidation.values.location}
+                  invalid={!!editValidation.errors.location}
+                >
+                  {/* <option value={editItem?.patchData?.locationId}>{editItem?.patchData?.locationId}</option> */}
+                  {Object.entries(locations).map(([region, cities]) => (
+                    <optgroup label={region} key={region}>
+                      {cities.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </Input>
+
+                <FormFeedback type="invalid">
+                  {editValidation.errors.location}
+                </FormFeedback>
+              </Col>
+            </Row>
+
+            <Row className="mb-3">
+              <Col lg={3}>
+                <p
+                  htmlFor="nameInput"
+                  className="form-right "
+                  style={{ textAlign: "left" }}
+                >
+                  Job category:
+                </p>
+              </Col>
+
+              <Col lg={15}>
+                <Input
+                  id="category"
+                  type="select"
+                  name="category"
+                  className="form-select mb-3 p-3"
+                  aria-label="Default"
+                  onChange={editValidation.handleChange}
+                  onBlur={editValidation.handleBlur}
+                  value={editValidation.values.category}
+                  invalid={!!editValidation.errors.category}
+                >
+                  {/* <option value={editItem?.patchData?.jobCategoryId}>
+                        
+                        {editItem?.patchData?.jobCategoryId}
+                        
+                        </option> */}
+                  {catLoading === false && catError === false ? (
+                    categoryInfo?.map((item, key) => (
+                      <option key={key} value={item?.jobCategoryId}>
+                        {item?.jobCategoryName}
+                      </option>
+                    ))
+                  ) : (
+                    <option>loading categories...</option>
+                  )}
+                </Input>
+                <FormFeedback type="invalid">
+                  {editValidation.errors.category}
+                </FormFeedback>
+              </Col>
+            </Row>
+
+            <Row className="mb-3">
+              <Col lg={3}>
+                <p
+                  htmlFor="nameInput"
+                  className="form-right "
+                  style={{ textAlign: "left" }}
+                >
+                  Job type:
+                </p>
+              </Col>
+              <Col lg={9}>
+                <Input
+                  id="jobType"
+                  name="jobType"
+                  className="form-select mb-3 p-3"
+                  type="select"
+                  aria-label="Default"
+                  onChange={editValidation.handleChange}
+                  onBlur={editValidation.handleBlur}
+                  value={editValidation.values.jobType}
+                  invalid={!!editValidation.errors.jobType}
+                >
+                  <option>Any time</option>
+                  <option>Any time</option>
+                  <option>Full-time</option>
+                  <option>Part-time</option>
+                  <option>Contract</option>
+                  <option>Permanent</option>
+                  <option>Temporary</option>
+                  <option>Internship</option>
+                  <option>Remote</option>
+                  <option>Science</option>
+                </Input>
+                <FormFeedback type="invalid">
+                  {editValidation.errors.jobType}
+                </FormFeedback>
+              </Col>
+            </Row>
+
+            <Row className="mb-3">
+              <Col lg={3}>
+                <p
+                  htmlFor="nameInput"
+                  className="form-right "
+                  style={{ textAlign: "left" }}
+                >
+                  Any Experience:
+                </p>
+              </Col>
+              <Col lg={9}>
+                <Input
+                  id="experience"
+                  type="select"
+                  name="experience"
+                  className="form-select mb-3 p-3"
+                  aria-label="Experience"
+                  onChange={editValidation.handleChange}
+                  onBlur={editValidation.handleBlur}
+                  value={editValidation.values.experience}
+                  invalid={!!editValidation.errors.experience}
+                >
+                  <option>Any experience</option>
+                  <option>1 year</option>
+                  <option>1 year to 3years</option>
+                  <option>3 years to 6 years</option>
+                  <option>6 years to 10 years</option>
+                  <option>10 years plus</option>
+                </Input>
+                <FormFeedback type="invalid">
+                  {editValidation.errors.experience}
+                </FormFeedback>
+              </Col>
+            </Row>
+
+            <button
+              type="submit"
+              className="btn btn-dark"
+              style={{ backgroundColor: "#244a59" }}
+            >
+              Edit Job Alert
+            </button>
+          </Form>
         </ModalBody>
       </Modal>
     </>

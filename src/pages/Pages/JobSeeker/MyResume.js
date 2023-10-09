@@ -3,7 +3,8 @@ import Dropzone from "react-dropzone";
 import { Card, Col, Row, Button, Spinner } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createResume, updateResume } from "../../../store/actions";
+import { createResume, updateResume, viewResume } from "../../../store/actions";
+import { useEffect } from "react";
 
 function MyResume() {
   const dispatch = useDispatch();
@@ -35,18 +36,51 @@ function MyResume() {
     error: state.Resumes.updateResumeError,
   }));
 
+  const { viewResumeLoading, viewResumeError, Resume } = useSelector(
+    (state) => ({
+      viewResumeLoading: state.Resumes.loading,
+      viewResumeError: state.Resumes.error,
+      Resume: state.Resumes.resumeInfo,
+    })
+  );
+
+  useEffect(() => {
+    dispatch(viewResume({ viewAction: "" }));
+  }, [dispatch]);
+
   const handleCreateResume = () => {
     const formData = new FormData();
     formData.append("myCv", file[0]);
-    formData.append("resumeId", "e527149a-40af-46c7-aa4a-d21d35b5c0c7");
-    formData.append("patch", "true");
+    // formData.append("resumeId", "e527149a-40af-46c7-aa4a-d21d35b5c0c7");
+    // formData.append("patch", true);
 
-    dispatch(updateResume(formData));
-    setfile([])
+    dispatch(createResume(formData));
+    setfile([]);
   };
+
+  const pdf = "https://108.166.181.225:5050/upload/pdf/resume/";
+
+  function handleOpenInNewTab(e) {
+    // Prevent the default behavior of the link
+    e.preventDefault();
+
+    // Specify the URL of the PDF file
+    const pdfUrl = pdf + Resume?.fileName;
+
+    // Open a new window or tab with custom styles
+    const newWindow = window.open(pdfUrl, "_blank", "width=800,height=600");
+
+    // Apply custom styles to the new window
+    if (newWindow) {
+      newWindow.document.body.style.backgroundColor = "black";
+      newWindow.document.body.style.margin = "0";
+      // You can add more custom styles as needed
+    }
+  }
 
   return (
     <>
+    <div className="">
       <div className="list-unstyled mb-0" id="file-previews">
         {file.map((f, i) => {
           return (
@@ -79,18 +113,40 @@ function MyResume() {
           );
         })}
       </div>
-
+      {/* http://108.166.181.225:5050/uploads/pdf/course/ */}
       <Row>
-        <Col xl={7}>
-          <h5 className="mb-3 mt-3" style={{ fontWeight: "boder" }}>
-            Replace your CV
-          </h5>
+        <Col xl={12}>
 
+          
           <div
-            className="d-flex hstack justify-content-center"
-            style={{ justifyContent: "center" }}
+            className="d-flex mb-4"
+            style={{ justifyContent: "space-between" }}
           >
-            <div className="col-xl-12 ">
+            <div>
+              {" "}
+              <h5
+                className="mb-3 mt-3 fw-bolder"
+                style={{ fontWeight: "boder" }}
+              >
+                Replace your CV
+              </h5>
+            </div>
+
+            <div>
+              <Link target="_blank" onClick={handleOpenInNewTab}>
+                <Button
+                  style={{ backgroundColor: "#244a59" }}
+                  className="btn btn-dark p-3"
+                >
+                  Download Resume
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+
+     
+          
               <Dropzone
                 onDrop={(acceptedFiles) => {
                   handleAcceptedFiles(acceptedFiles);
@@ -130,10 +186,12 @@ function MyResume() {
                 ) : null}
                 Submit
               </Button>
-            </div>
-          </div>
+         
+        
+
         </Col>
       </Row>
+      </div>
     </>
   );
 }

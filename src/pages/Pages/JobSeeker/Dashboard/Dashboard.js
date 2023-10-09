@@ -20,6 +20,7 @@ import SavedJobs from "../SavedJobs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  fullJobDetails,
   viewCv,
   viewResume,
   viewSavedJobs,
@@ -115,7 +116,6 @@ const Dashboard = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = showEntries;
-  
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -303,19 +303,22 @@ const Dashboard = () => {
                             </div>
 
                             <div>
-                              <Button
-                                className="btn btn-dark"
-                                style={{
-                                  backgroundColor: "#244a59",
-                                  position: "relative",
-                                  top: "0.7rem",
-                                }}
-                                onClick={() => {
-                                  justifyToggle("4");
-                                }}
-                              >
-                                Quick Apply
-                              </Button>
+                              <Link to="/app/apply">
+                                <Button
+                                  className="btn btn-dark"
+                                  style={{
+                                    backgroundColor: "#244a59",
+                                    position: "relative",
+                                    top: "0.7rem",
+                                  }}
+                                  onClick={() => {
+                                    justifyToggle("4");
+                                    dispatch(fullJobDetails({jobId: item?.jobId}))
+                                  }}
+                                >
+                                  Quick Apply
+                                </Button>
+                              </Link>
                             </div>
                           </div>
                         </Col>
