@@ -3,11 +3,23 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import FileInput from "react-file-reader-input";
 import mammoth from "mammoth";
-import { useDispatch } from "react-redux";
 
-const Editor = ({ onPlainTextChange, content }) => {
-  const [editorHtml, setEditorHtml] = useState("");
-  const [plainText, setPlainText] = useState(""); // Add state for plain text
+const Editor = ({ onPlainTextChange, content, data }) => {
+
+  function decodeEntities(encodedString) {
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = encodedString;
+    return textarea.value;
+  }
+
+  // Wrap the plain text data in minimal HTML structure
+  const decodedData = decodeEntities(data); // Assuming you have a decodeEntities function
+  const formattedContent = `<div>${decodedData}</div>`;
+
+
+
+  const [editorHtml, setEditorHtml] = useState(formattedContent);
+  const [Des, setDes] = useState("");
 
   const handleFileUpload = (e, results) => {
     results.forEach((result) => {
@@ -26,21 +38,21 @@ const Editor = ({ onPlainTextChange, content }) => {
               "p[style-name='Heading 4'] => h4:fresh",
               "p[style-name='Heading 5'] => h5:fresh",
               "p[style-name='Heading 6'] => h6:fresh",
-              "p: => p", // Keep paragraph styles
-              "table => table", // Keep the default table style
-              "tr => tr", // Keep the default row style
-              "td => td", // Keep the default cell style
-              "p[style-name='CustomStyle1'] => p.custom-style-1", // Example: CustomStyle1 in Word mapped to a CSS class
-              // Add more style mappings here as needed
+              "p: => p",
+              "table => table",
+              "tr => tr",
+              "td => td",
+              "p[style-name='CustomStyle1'] => p.custom-style-1",
             ],
           };
 
           mammoth
             .convertToHtml({ arrayBuffer: reader.result }, options)
             .then((result) => {
-              setEditorHtml(result.value);
-
-              // content(result.value);
+              const html = result.value;
+              setEditorHtml(html);
+              onPlainTextChange(html);
+              setDes(html);
             })
             .catch((error) => {
               console.error("Error converting Word to HTML:", error);
@@ -55,21 +67,19 @@ const Editor = ({ onPlainTextChange, content }) => {
 
   const handleChange = (html) => {
     setEditorHtml(html);
-
-    // Extract plain text from the HTML content
-    // const tempDiv = document.createElement("div");
-    // tempDiv.innerHTML = html;
-    // const plainText = tempDiv.textContent || tempDiv.innerText || "";
-    // setPlainText(plainText);
-
     onPlainTextChange(html);
+    setDes(html);
   };
 
-  const [Des, setDes] = useState();
-
   useEffect(() => {
+    // Set initial content when 'content' prop changes
+    setEditorHtml(content);
     setDes(content);
-  }, [content, Des]);
+  }, [content]);
+
+  
+
+
 
   return (
     <div>
@@ -82,7 +92,6 @@ const Editor = ({ onPlainTextChange, content }) => {
         theme="snow"
         value={editorHtml}
         onChange={handleChange}
-        placeholder={Des}
       />
     </div>
   );

@@ -32,7 +32,7 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
   const validation = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name: "",
+      name: data?.coverLetterName,
       description: "",
     },
     validateOnChange: true,
@@ -65,6 +65,8 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
       validation.resetForm();
     },
   });
+
+ 
 
   return (
     <>
@@ -115,7 +117,8 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
                 </Label>
               </Col>
               <Col lg={9}>
-                <Editor onPlainTextChange={handlePlainTextChange} />
+              <Editor onPlainTextChange={handlePlainTextChange} content={textFromEditor} data={data?.coverLetterDescription}/>
+
               </Col>
             </Row>
 
@@ -125,14 +128,14 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
                 <div className="text-start d-flex gap-3">
                   <button
                     type="submit"
-                    className="btn btn-dark"
+                    className="btn btn-dark px-3 p-3"
                     style={{ backgroundColor: "#244a59" }}
                   >
                     Update
                   </button>
                   <button
                     type="button"
-                    className="btn btn-light"
+                    className="btn btn-light  px-3 p-3"
                     style={{ color: "#244a59", border: "1px solid #244a59" }}
                   >
                     Cancel

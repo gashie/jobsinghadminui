@@ -58,7 +58,7 @@ function MyResume() {
     setfile([]);
   };
 
-  const pdf = "https://108.166.181.225:5050/upload/pdf/resume/";
+  const pdf = "https://108.166.181.225:5050/uploads/jobseeker/resume/";
 
   function handleOpenInNewTab(e) {
     // Prevent the default behavior of the link
