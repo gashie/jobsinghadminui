@@ -171,7 +171,7 @@ const param2 = searchParams.get('id');
                         <div className="avatar-title bg-light" style={{}}>
                           <img
                             src={
-                              "http://108.166.181.225:5050/uploads/image/logos/" +
+                              "https://108.166.181.225:5050/uploads/image/logos/" +
                               details?.jobInfo?.companyLogo
                             }
                             alt=""

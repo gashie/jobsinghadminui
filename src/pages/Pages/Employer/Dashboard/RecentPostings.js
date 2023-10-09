@@ -243,8 +243,11 @@ const RecentPostings = () => {
     setIsOpen(!isOpen); // Toggle the dropdown menu's visibility
   };
 
-  const toggleStatus = () => {
-    setIsOpenStatus(!isOpenStatus);
+  const toggleStatus = (feedId) => {
+    setIsOpenStatus({
+      ...isOpenStatus,
+      [feedId]: !isOpenStatus[feedId],
+    });
   };
 
   // const handleOptionClick = (option) => {
@@ -413,7 +416,7 @@ const RecentPostings = () => {
               <div id="customerList">
                 <div
                   className="table-responsive table-card mt-3 mb-1"
-                  style={{ height: "max-content" }}
+                  style={{ height: "40vh" }}
                 >
                   <table
                     className="table align-middle table-nowrap"
@@ -487,7 +490,7 @@ const RecentPostings = () => {
                                   </p>
                                 </td> */}
 
-                            <td>
+<td>
                               <Dropdown
                                 isOpen={isOpenActions[item.jobId] || false}
                                 toggle={() => toggleAction(item.jobId)}

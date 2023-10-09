@@ -30,6 +30,9 @@ import {
   CHANGE_PASS,
   CHANGE_PASS_ERROR,
   CHANGE_PASS_SUCCESS,
+  VIEW_PROFILE,
+  VIEW_PROFILE_SUCCESS,
+  VIEW_PROFILE_ERROR,
 } from "./actionTypes";
 
 export const logout = () => ({
@@ -191,4 +194,17 @@ export const changePassSuccess = (data) => ({
 export const changePassError = (data) => ({
   type: CHANGE_PASS_ERROR,
   payload: data,
+})
+
+export const viewProfile = (data) =>({
+  type: VIEW_PROFILE, 
+  payload: data
+})
+export const viewProfileSuccess = (data) =>({
+  type: VIEW_PROFILE_SUCCESS, 
+  payload: data
+})
+export const viewProfileError = (data) =>({
+  type: VIEW_PROFILE_ERROR, 
+  payload: data
 })

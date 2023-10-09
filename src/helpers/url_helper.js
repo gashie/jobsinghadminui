@@ -329,7 +329,7 @@ export const JOBSEEKER_APPLICATIONS = `${version}/jobseeker/viewmyappliedjobs/`
 
 export const APPROVE_APPLICATIONS = `${version}/approveapplication/`
 export const EMPLOYER_SHORTLIST_APPLICATIONS = `${version}/employer/viewmyshortlisted/`
-export const EMPLOYER_APPLICATIONS = `${version}/employer/viewmyapplications`
+export const EMPLOYER_APPLICATIONS = `${version}/viewmyapplications`
 
 export const UPDATE_LOGO = `${version}/employer/updateemployerlogo/`
 export const UPDATE_PROFILE_IMAGE = `${version}/updateprofileimage/`
@@ -346,6 +346,8 @@ export const INVOICES = `${version}/viewmyunpaid/`
 export const PAY_INVOICE = `${version}/payinvoice/`
 
 export const SERVICE = `${version}/services/`
+
+export const VIEW_PROFILE = `${version}/myprofile/`
 
 
 

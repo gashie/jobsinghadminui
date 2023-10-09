@@ -149,8 +149,6 @@ function Courses() {
 
   const [selectFile, setFile] = useState();
 
-  
-
   const { loading, error, courseInfo, content, schedule, partnership } =
     useSelector((state) => ({
       loading: state.Courses.loading,
@@ -187,15 +185,15 @@ function Courses() {
       );
     }
 
-    if(check === 'clone'){
-      toggleCloneModal()
-      dispatch(jobEditCloneData(item))
+    if (check === "clone") {
+      toggleCloneModal();
+      dispatch(jobEditCloneData(item));
     }
 
     if (check === "Edit") {
       toggleQuestionModal();
       setEditData(item);
-      dispatch(jobEditCloneData(item))
+      dispatch(jobEditCloneData(item));
     }
 
     if (check === "Add Content") {
@@ -440,8 +438,6 @@ function Courses() {
   return (
     <>
       <div>
-       
-
         {/* <div
           className="d-flex mx-3"
           style={{ justifyContent: "space-between", marginTop: "-4rem" }}
@@ -662,21 +658,20 @@ function Courses() {
                             <tr>
                               <td colSpan="7" className="text-center mt-5">
                                 <div className="d-flex align-items-center justify-content-center">
-                                  {courseInfo?.length === 0 ? (
-                                    <>
-                                      <p className="fw-light mt-5">
-                                        You currently don't courses set up.
-                                      </p>
-                                    </>
-                                  ) : (
+                                  {loading === true ? (
                                     <>
                                       <Spinner
                                         size="lg"
                                         className="me-2 mt-5"
                                         style={{ color: "#244a59" }}
-                                      >
-                                        Loading...
-                                      </Spinner>
+                                      ></Spinner>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <p className="fw-light mt-5">
+                                        You don't have any Courses at the
+                                        moment.
+                                      </p>
                                     </>
                                   )}
                                 </div>

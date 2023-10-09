@@ -7,10 +7,13 @@ import {
   Container,
   CardBody,
   Form,
+  Spinner,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { updateUserProfile } from "../../../../store/actions";
+import { updateUserProfile, viewProfile } from "../../../../store/actions";
+import * as Yup from "yup";
+import { useEffect } from "react";
 
 const EditEmployerProfile = ({ toProfile }) => {
   const { loading, error, userInfo } = useSelector((state) => ({
@@ -19,7 +22,12 @@ const EditEmployerProfile = ({ toProfile }) => {
     userInfo: state.Login.userInfo,
   }));
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+
+  useEffect(()=>{
+    dispatch(viewProfile({viewAction: ""}))
+  }, [dispatch])
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -36,15 +44,19 @@ const dispatch = useDispatch()
       gender: "M",
       userType: "jobseeker",
       companyDescription: userInfo?.userInfo?.company?.companyProfile || "",
-      website: userInfo?.userInfo?.company?.website || ""
+      website: userInfo?.userInfo?.company?.wesbite || "",
     },
     validateOnChange: true,
-    // validationSchema: Yup.object({
-    //   rateTitle: Yup.string().required("Please enter a rate title"),
-    //   rateDescription: Yup.string().required("Please enter a rate description"),
-    //   ratePrice: Yup.string().required("Please enter rate price"),
-    //   rateLimit: Yup.string().required("Please enter rate limit"),
-    // }),
+    validationSchema: Yup.object({
+      companyName: Yup.string().required("Please enter a company Name"),
+      username: Yup.string().required("Please enter a rate description"),
+      phone: Yup.string().required("Please enter rate price"),
+      email: Yup.string().required("Please enter rate limit"),
+      address: Yup.string().required("Please enter rate limit"),
+      companyDescription: Yup.string().required("Please enter rate limit"),
+      website: Yup.string().required("Please enter rate limit"),
+      // email: Yup.string().required("Please enter rate limit"),
+    }),
     onSubmit: (values) => {
       const patch = {
         reset: false,
@@ -52,7 +64,7 @@ const dispatch = useDispatch()
         allow: 1,
         deleterecord: false,
         restore: 1,
-        userId:  userInfo?.userInfo?.userId,
+        userId: userInfo?.userInfo?.userId,
         patch: true,
         profile: {
           fullName: values.companyName,
@@ -69,7 +81,7 @@ const dispatch = useDispatch()
         },
       };
 
-     dispatch(updateUserProfile(patch))
+      dispatch(updateUserProfile(patch));
     },
   });
 
@@ -97,12 +109,11 @@ const dispatch = useDispatch()
         <Col className="" xl={8} md={20}>
           <Container className="p-2">
             <Form
-             onSubmit={(e) => {
-              e.preventDefault();
-              validation.handleSubmit();
-              return false;
-            }}
-            
+              onSubmit={(e) => {
+                e.preventDefault();
+                validation.handleSubmit();
+                return false;
+              }}
             >
               <div className="">
                 <div>
@@ -124,6 +135,12 @@ const dispatch = useDispatch()
                         placeholder=""
                         onChange={validation.handleChange}
                         value={validation.values.username}
+                        invalid={
+                          validation.touched.username &&
+                          validation.errors.username
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -165,9 +182,13 @@ const dispatch = useDispatch()
                         type="text"
                         className="form-control p-3"
                         id="email"
-                      
                         onChange={validation.handleChange}
                         value={validation.values.email}
+                        invalid={
+                          validation.touched.email && validation.errors.email
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -190,6 +211,12 @@ const dispatch = useDispatch()
                         id="companyDescription"
                         onChange={validation.handleChange}
                         value={validation.values.companyDescription}
+                        invalid={
+                          validation.touched.companyDescription &&
+                          validation.errors.companyDescription
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -235,6 +262,12 @@ const dispatch = useDispatch()
                         id="address"
                         onChange={validation.handleChange}
                         value={validation.values.address}
+                        invalid={
+                          validation.touched.address &&
+                          validation.errors.address
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -256,6 +289,12 @@ const dispatch = useDispatch()
                         id="birthDate"
                         onChange={validation.handleChange}
                         value={validation.values.birthDate}
+                        invalid={
+                          validation.touched.birthDate &&
+                          validation.errors.birthDate
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -278,6 +317,11 @@ const dispatch = useDispatch()
                         id="phone"
                         onChange={validation.handleChange}
                         value={validation.values.phone}
+                        invalid={
+                          validation.touched.phone && validation.errors.phone
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -287,11 +331,8 @@ const dispatch = useDispatch()
                       <p
                         htmlFor="nameInput"
                         className="form-right "
-
                         id="website"
                         style={{ textAlign: "left" }}
-                        onChange={validation.handleChange}
-                        value={validation.values.website}
                       >
                         Website:
                       </p>
@@ -303,6 +344,14 @@ const dispatch = useDispatch()
                         className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
+                        onChange={validation.handleChange}
+                        value={validation.values.website}
+                        invalid={
+                          validation.touched.website &&
+                          validation.errors.website
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -391,13 +440,24 @@ const dispatch = useDispatch()
                     </Col>
                   </Row> */}
 
-                  <div className="text-start">
+                  <div className="text-start mb-3 col-xl-20 mt-3">
                     <button
                       type="submit"
-                      className="btn btn-dark"
-                      style={{ backgroundColor: "#244a59" }}
+                      className="btn px-5"
+                      style={{
+                        backgroundColor: "#244a59",
+                        color: "white",
+                      }}
+                      disabled={error ? null : loading}
+                      // onClick={handleSubmit}
                     >
-                      Update
+                      {error ? null : loading ? (
+                        <Spinner size="sm" className="me-2">
+                          {" "}
+                          Loading...{" "}
+                        </Spinner>
+                      ) : null}
+                      Save
                     </button>
                   </div>
 

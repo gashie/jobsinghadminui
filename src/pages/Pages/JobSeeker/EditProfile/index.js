@@ -1,10 +1,24 @@
-import { Col, Label, Input, Row, Form, FormFeedback, Spinner } from "reactstrap";
+import {
+  Col,
+  Label,
+  Input,
+  Row,
+  Form,
+  FormFeedback,
+  Spinner,
+  Button,
+} from "reactstrap";
 import avatar1 from "../profile.png";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProfile, updateProfileImage } from "../../../../store/actions";
-import { useState } from "react";
+import {
+  updateProfile,
+  updateProfileImage,
+  viewProfile,
+} from "../../../../store/actions";
+import { useEffect, useState } from "react";
+import { formatDate2 } from "../../../../Components/Hooks/formatDate2";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -15,16 +29,26 @@ const EditProfile = () => {
     error: state.Login.error,
   }));
 
+  useEffect(() => {
+    dispatch(viewProfile({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { profileLoading, profileError, profile } = useSelector((state) => ({
+    profileLoading: state.Login.viewProfileLoading,
+    profileError: state.Login.viewProfileError,
+    profile: state.Login.profile,
+  }));
+
   const validation = useFormik({
     enableReinitialize: true,
     initialValues: {
-      fullName: userInfo?.userInfo?.fullName,
-      username: userInfo?.userInfo?.username,
-      phone: userInfo?.userInfo?.phone || "",
-      email: userInfo?.userInfo?.email,
+      fullName: profile?.fullName,
+      username: profile?.username,
+      phone: profile?.phone || "",
+      email: profile?.email,
       roleid: "2",
-      birthDate: "",
-      address: "",
+      birthDate: formatDate2(profile?.birthDate),
+      address: profile?.address,
       maritalStatus: "",
       gender: "",
       userType: "jobSeeker",
@@ -38,7 +62,7 @@ const EditProfile = () => {
       phone: Yup.string().required("Please enter a phone number"),
       email: Yup.string().required("Please Select an email"),
       address: Yup.string().required("Please enter an address"),
-     // maritalStatus: Yup.string().required("Please Select a marital status"),
+      // maritalStatus: Yup.string().required("Please Select a marital status"),
       gender: Yup.string().required("Please Select a gender"),
     }),
     onSubmit: (values) => {
@@ -92,7 +116,14 @@ const EditProfile = () => {
     dispatch(updateProfileImage(formData));
   };
 
-   console.log(validation.errors)
+  const photo = "https://108.166.181.225:5050/uploads/image/profile/";
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Function to handle the image load event
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   return (
     <>
@@ -116,12 +147,18 @@ const EditProfile = () => {
       >
         <div className="text-center mt-4">
           <div className="profile-user position-relative d-inline-block mx-auto  mb-4">
+            {!imageLoaded && <Spinner style={{ color: "#244a59" }} />}
+
+            {/* Render the image once it's loaded */}
             <img
-              src={avatar1}
-              className="rounded-circle avatar-xl img-thumbnail user-profile-image"
+              src={photo + profile?.profileImage}
+              className={`rounded-circle avatar-xl fluid-img ${
+                imageLoaded ? "d-block" : "d-none"
+              }`}
               alt="user-profile"
+              onLoad={handleImageLoad} // Call the handleImageLoad function when the image loads
             />
-            <div className="avatar-xs p-0 rounded-circle profile-photo-edit">
+            {/* <div className="avatar-xs p-0 rounded-circle profile-photo-edit">
               <Input
                 id="profile-img-file-input"
                 type="file"
@@ -135,7 +172,7 @@ const EditProfile = () => {
                   <i className="ri-camera-fill"></i>
                 </span>
               </Label>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -160,7 +197,6 @@ const EditProfile = () => {
                     : false
                 }
               />
-            
             </div>
           </Col>
           <Col md={6}>
@@ -183,7 +219,6 @@ const EditProfile = () => {
                     : false
                 }
               />
-           
             </div>
           </Col>
         </Row>
@@ -328,23 +363,23 @@ const EditProfile = () => {
         </Row>
 
         <button
-                type="submit"
-                className="btn p-3 px-5"
-                style={{
-                  backgroundColor: "#244a59",
-                  color: "white",
-                }}
-                disabled={error ? null : loading}
-                // onClick={handleSubmit}
-              >
-                {error ? null : loading ? (
-                  <Spinner size="sm" className="me-2">
-                    {" "}
-                    Loading...{" "}
-                  </Spinner>
-                ) : null}
-                Save
-              </button>
+          type="submit"
+          className="btn p-3 px-5"
+          style={{
+            backgroundColor: "#244a59",
+            color: "white",
+          }}
+          disabled={error ? null : loading}
+          // onClick={handleSubmit}
+        >
+          {error ? null : loading ? (
+            <Spinner size="sm" className="me-2">
+              {" "}
+              Loading...{" "}
+            </Spinner>
+          ) : null}
+          Save
+        </button>
       </Form>
 
       <Col className="mb-3" mt-5>
@@ -361,14 +396,22 @@ const EditProfile = () => {
           onBlur={validation.handleBlur}
         />
       </Col>
-      <button
-        type="button"
-        className="btn btn-dark mt-2 p-3"
-        onClick={handleImage}
+      <Button
         style={{ backgroundColor: "#244a59" }}
+        disabled={profileError || !image || profileLoading}
+        className="btn btn-dark px-5 mt-4 p-3"
+        onClick={() => {
+          handleImage();
+        }}
       >
-        Change Profile Image
-      </button>
+        {profileError ? null : profileLoading ? (
+          <Spinner size="sm" className="me-2">
+            {" "}
+            Loading...{" "}
+          </Spinner>
+        ) : null}
+        Change profile image
+      </Button>
     </>
   );
 };

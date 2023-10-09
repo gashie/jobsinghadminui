@@ -15,6 +15,7 @@ import {
   GET_ME,
   CHANGE_PASS,
   PASSWORD_CODE,
+  VIEW_PROFILE,
 } from "./actionTypes";
 import {
   apiError,
@@ -42,7 +43,9 @@ import {
   changePassSuccess,
   changePassError,
   passwordCodeActionSuccess,
-  passwordCodeActionError
+  passwordCodeActionError,
+  viewProfileSuccess,
+  viewProfileError
 } from "./actions";
 
 //Include Both Helper File with needed methods
@@ -52,6 +55,7 @@ import {
   changePasswordURL,
   loginURL,
   logoutURL,
+  myProfileURL,
   passwordCodeURL,
   postFakeLogin,
   postJwtLogin,
@@ -404,6 +408,28 @@ function* updateLogo({ payload: data }) {
   }
 }
 
+function* profileView({ payload: data }) {
+  try {
+    const response = yield call(myProfileURL, data);
+
+    if (response && response?.data?.status === 1) {
+      yield put(viewProfileSuccess(response?.data.data));
+      
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    } else {
+      yield put(viewProfileError(response?.data.message));
+      // toast.warn(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(viewProfileError(error));
+  }
+}
+
 function* logout() {
   try {
     const response = yield call(logoutURL);
@@ -414,7 +440,7 @@ function* logout() {
       //   autoClose: 3000,
       // });
       yield put (getMe())
-     // window.location.href ="/login"
+      window.location.href ="/login"
     } else {
       yield put(logoutError(response.data.Message));
       // toast.warn(`${response?.data.Message}`, {
@@ -447,6 +473,7 @@ function* authSaga() {
   yield takeEvery(UPDATE_LOGO, updateLogo);
   yield takeEvery(CHANGE_PASS, changePasswordOutsideApp);
   yield takeEvery(PASSWORD_CODE, changePasswordOutsideAppCode);
+  yield takeEvery(VIEW_PROFILE, profileView);
   
 }
 

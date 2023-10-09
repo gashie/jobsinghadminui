@@ -62,7 +62,7 @@ const Editor = ({ onPlainTextChange, content }) => {
     // const plainText = tempDiv.textContent || tempDiv.innerText || "";
     // setPlainText(plainText);
 
-   // onPlainTextChange(html);
+    onPlainTextChange(html);
   };
 
   const [Des, setDes] = useState();

@@ -57,9 +57,9 @@ const ClassroomCourseDetails = () => {
     data: state.Courses.frontCourseData,
   }));
 
-  const image = `http://108.166.181.225:5050/uploads/image/course/`;
-  const pdf = `http://108.166.181.225:5050/upload/pdf/resume/`;
-  const course = `http://108.166.181.225:5050/uploads/pdf/course/`
+  const image = `https://108.166.181.225:5050/uploads/image/course/`;
+  const pdf = `https://108.166.181.225:5050/upload/pdf/resume/`;
+  const course = `https://108.166.181.225:5050/uploads/pdf/course/`
 
   //http://108.166.181.225:5050/uploads/image/job/logo_id_225f080c-9105-4b9e-a96a-3bbaa226c1c7_md_7af4a24d6c6f526e9e8f2df3ff5e370d_.png
   

@@ -392,6 +392,8 @@ const ManageJobs = ({handleApplicant}) => {
     }
   };
 
+  
+
   return (
     <>
       <div className="p-2">
@@ -556,7 +558,7 @@ const ManageJobs = ({handleApplicant}) => {
               <div id="customerList">
                 <div
                   className="table-responsive table-card mt-3 mb-1"
-                  style={{ height: "max-content" }}
+                  style={{ height: "50vh" }}
                 >
                   <table
                     className="table align-middle table-nowrap"

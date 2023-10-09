@@ -144,7 +144,7 @@ const Sidebar = () => {
     {
       icon: "bx bx-left-arrow-circle",
       label: "Logout",
-      link: "/app/settings",
+      link: "/login",
       toggle: toggleLogout,
     },
   ];

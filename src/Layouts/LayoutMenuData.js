@@ -300,7 +300,7 @@ const Navdata = () => {
       id: "logout",
       label: "Logout",
       icon: "bx bx-table",
-      link: "/#",
+      link: "/login",
     },
  
     // {

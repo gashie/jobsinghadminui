@@ -46,7 +46,7 @@ const AddCoverLetters = ({handleCoverLetters}) => {
       // Dispatch an action or perform other operations with the data
       console.log(data);
       dispatch(createCv(data))
-      dispatch(viewCv({viewAction: ""}))
+      // dispatch(viewCv({viewAction: ""}))
       handleCoverLetters()
       validation.resetForm();
     },

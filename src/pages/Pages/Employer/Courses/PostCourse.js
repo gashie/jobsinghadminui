@@ -69,15 +69,21 @@ const PostCourse = () => {
       courseCertificationNote: "",
     },
     validateOnChange: true,
-    validationSchema: Yup.object({
-      // keyword: Yup.string().required("Please enter a keyword"),
-      // name: Yup.string().required("Please enter a name"),
-      // criteria: Yup.string().required("Please choose a search criteria"),
-      // frequency: Yup.string().required("Please select a frequency"),
-      // location: Yup.string().required("Please select a location"),
-      // category: Yup.string().required("Please select a category"),
-      // experience: Yup.string().required("Please select an experience level"),
-      // jobType: Yup.string().required("Please select a job type"),
+    validationSchema: Yup.object().shape({
+      title: Yup.string().required('Title is required'),
+      description: Yup.string().required('Description is required'),
+      organizer: Yup.string().required('Organizer is required'),
+      venue: Yup.string().required('Venue is required'),
+      cost: Yup.string().required('Cost is required'),
+      startDate: Yup.date().required('Start Date is required'),
+      endDate: Yup.date().required('End Date is required'),
+      studyMode: Yup.string().required('Study Mode is required'),
+      duration: Yup.string().required('Duration is required'),
+      category: Yup.string().required('Category is required'),
+      courseLink: Yup.string().url('Invalid URL').required('Course Link is required'),
+      courseGoals: Yup.string().required('Course Goals are required'),
+      audience: Yup.string().required('Audience is required'),
+      courseCertificationNote: Yup.string(),
     }),
     onSubmit: (values) => {
       const formData = new FormData();
@@ -102,7 +108,7 @@ const PostCourse = () => {
 
       dispatch(saveCourse(formData));
 
-      navigate("/course");
+      // navigate("/app/employer-courses");
     },
   });
 
@@ -157,6 +163,8 @@ const PostCourse = () => {
 
     return formattedDate;
   }
+
+  console.log(validation.errors)
 
   const { catLoading, catError, categoryInfo } = useSelector((state) => ({
     catLoading: state.Industry.loading,
@@ -217,11 +225,7 @@ const PostCourse = () => {
                               : false
                           }
                         />
-                        {validation.touched.title && validation.errors.title ? (
-                          <FormFeedback type="invalid">
-                            <div>{validation.errors.title}</div>
-                          </FormFeedback>
-                        ) : null}
+                        
                       </Col>
 
                       <Col className="mb-3">

@@ -152,16 +152,16 @@ const AddJob = () => {
     // Add more editors as needed
   });
 
-  const {user} = useSelector((state) => ({
-    user: state.Login.userInfo
-  }))
+  const { user } = useSelector((state) => ({
+    user: state.Login.userInfo,
+  }));
 
   const validation = useFormik({
     enableReinitialize: true,
     initialValues: {
       jobTitle: "",
       jobCategoryId: null,
-      jobLocation: "",
+      jobLocation: finalLocations,
       jobSalaryAmount: "",
       companyId: "",
       isCompanyConfidential: "",
@@ -177,12 +177,28 @@ const AddJob = () => {
       appliedEmail: "",
     },
     validateOnChange: true,
-    // validationSchema: Yup.object({
-    //   goLiveDate: Yup.date().required("Please select go live date"),
-    //   jobCategoryId: Yup.string().required("Please job category"),
-    //   companyId: Yup.string().required("Please a company"),
-    //   jobTitle: Yup.string().required("Please a job title"),
-    // }),
+    validationSchema: Yup.object({
+      jobTitle: Yup.string().required("Please enter a job title"),
+      jobCategoryId: Yup.string().required("Please select a job category"),
+     // jobLocation: Yup.string().required("Please select a job location"),
+      jobSalaryAmount: Yup.number()
+        .typeError("Salary must be a number")
+        .required("Please enter a salary amount"),
+      // companyId: Yup.string().required("Please select a company"),
+      isCompanyConfidential: Yup.boolean(),
+     // jobDescription: Yup.string().required("Please enter a job description"),
+
+      jobStatusId: Yup.string().required("Please select a job category"),
+      applyMode: Yup.string().required("Please select a job category"),
+      // applyLink: Yup.string().required("Please select a job category"),
+      education: Yup.string().required("Please select a job category"),
+      goLiveDate: Yup.string().required("Please select a job category"),
+      yearsOfExperience: Yup.number().integer(
+        "Years of experience must be a whole number"
+      ),
+      // appliedEmail: Yup.string().email("Invalid email format"),
+    }),
+    appliedEmail: Yup.string().email("Invalid email format"),
     onSubmit: (values) => {
       const finalData = {
         jobTitle: values.jobTitle,
@@ -191,7 +207,7 @@ const AddJob = () => {
         jobSalaryAmount: values.jobSalaryAmount,
         companyId: user?.userInfo?.company?.companyId,
         isCompanyConfidential: isConfidential,
-      
+
         jobSkills: [],
         jobSalaryCurrency: "Ghc",
         jobStatus: values.jobStatusId,
@@ -338,6 +354,12 @@ const AddJob = () => {
                       placeholder="Job title"
                       onChange={validation.handleChange}
                       value={validation.values.jobTitle || ""}
+                      invalid={
+                        validation.touched.jobTitle &&
+                        validation.errors.jobTitle
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -354,8 +376,15 @@ const AddJob = () => {
                       type="number"
                       className="form-control p-3"
                       id="yearsOfExperience"
+                      placeholder="Years of experience"
                       onChange={validation.handleChange}
                       value={validation.values.yearsOfExperience || ""}
+                      invalid={
+                        validation.touched.yearsOfExperience &&
+                        validation.errors.yearsOfExperience
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -371,6 +400,12 @@ const AddJob = () => {
                       placeholder=""
                       onChange={validation.handleChange}
                       value={validation.values.goLiveDate || ""}
+                      invalid={
+                        validation.touched.goLiveDate &&
+                        validation.errors.goLiveDate
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -378,12 +413,19 @@ const AddJob = () => {
                 <Row className="mb-3">
                   <label>Select Category</label>
                   <Col lg={15}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="jobCategoryId"
                       id="jobCategoryId"
+                      type="select"
                       value={validation.values.jobCategoryId}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.jobCategoryId &&
+                        validation.errors.jobCategoryId
+                          ? true
+                          : false
+                      }
                     >
                       <option>Select Category</option>
                       {catLoading === false && catError === false ? (
@@ -395,7 +437,7 @@ const AddJob = () => {
                       ) : (
                         <option>loading categories...</option>
                       )}
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
@@ -406,9 +448,15 @@ const AddJob = () => {
                       type="text"
                       className="form-control p-3"
                       id="education"
-                      placeholder=""
+                      placeholder="Education level"
                       onChange={validation.handleChange}
                       value={validation.values.education || ""}
+                      invalid={
+                        validation.touched.education &&
+                        validation.errors.education
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -419,8 +467,15 @@ const AddJob = () => {
                       type="checkbox"
                       className="form-check-input"
                       id="confidentialCheckbox"
+                      placeholder="Education level"
                       checked={isConfidential} // Use state variable for checked attribute
                       onChange={handleCheckboxChange} // Update state on change
+                      invalid={
+                        validation.touched.isCompanyConfidential &&
+                        validation.errors.isCompanyConfidential
+                          ? true
+                          : false
+                      }
                     />
                     <label
                       htmlFor="confidentialCheckbox"
@@ -437,34 +492,48 @@ const AddJob = () => {
                 <Row className="mb-3">
                   <label>Select Status</label>
                   <Col lg={12}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="jobStatusId"
                       id="jobStatusId"
+                      type="select"
                       value={validation.values.jobStatusId}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.jobStatusId &&
+                        validation.errors.jobStatusId
+                          ? true
+                          : false
+                      }
                     >
                       <option>Permanent</option>
                       <option>Contract</option>
                       <option>Part Time</option>
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
                 <Row className="mb-3">
                   <label>Select Apply Mode</label>
                   <Col lg={12}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="applyMode"
                       id="applyMode"
+                      type="select"
                       value={validation.values.applyMode}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.applyMode &&
+                        validation.errors.applyMode
+                          ? true
+                          : false
+                      }
                     >
                       <option>select apply mode</option>
                       <option>Email</option>
                       <option>Website</option>
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
@@ -479,6 +548,12 @@ const AddJob = () => {
                         type="text"
                         value={validation.values.appliedEmail}
                         onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.appliedEmail &&
+                          validation.errors.appliedEmail
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -493,6 +568,12 @@ const AddJob = () => {
                         type="text"
                         value={validation.values.applyLink}
                         onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.applyLink &&
+                          validation.errors.applyLink
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -521,11 +602,17 @@ const AddJob = () => {
                       <Input
                         type="text"
                         className="form-control p-3"
-                        id="websitetext"
+                        id="jobLocation"
                         placeholder="Job location eg. Accra, Tarkwa"
                         value={inputValue}
                         onChange={handleInputChange}
                         onKeyUp={handleKeyUp}
+                        invalid={
+                          validation.touched.jobLocation &&
+                          validation.errors.jobLocation
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -543,6 +630,12 @@ const AddJob = () => {
                       placeholder="Enter Job Salary Amount"
                       onChange={validation.handleChange}
                       value={validation.values.jobSalaryAmount || ""}
+                      invalid={
+                        validation.touched.jobSalaryAmount &&
+                        validation.errors.jobSalaryAmount
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -554,7 +647,16 @@ const AddJob = () => {
                 Description
               </h6>
               <Col lg={12}>
-                <Editor editorId="editor2" transmitHtml={updateEditorData} />
+                <Editor
+                  editorId="editor2"
+                  transmitHtml={updateEditorData}
+                  invalid={
+                    validation.touched.jobDescription &&
+                    validation.errors.jobDescription
+                      ? true
+                      : false
+                  }
+                />
               </Col>
             </Row>
 
@@ -865,9 +967,9 @@ const AddJob = () => {
         <ModalFooter>
           <Button
             className="btn btn-dark"
-            onClick={()=>{
-              toggleModal()
-              toggleSecondModal()
+            onClick={() => {
+              toggleModal();
+              toggleSecondModal();
             }}
             style={{ backgroundColor: "#244a59" }}
           >
@@ -905,7 +1007,7 @@ const AddJob = () => {
             className="btn btn-dark"
             onClick={() => {
               toggleSecondModal();
-              navigate('/employer-jobs')
+              navigate("/employer-jobs");
               // payLater()
             }}
             style={{ backgroundColor: "#244a59" }}

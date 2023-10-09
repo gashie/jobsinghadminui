@@ -129,7 +129,7 @@ const FeaturedJobs = () => {
   const endIndex = startIndex + itemsPerPage;
 
   // Get the current page of items
-  const filter = jobsInfo?.slice(startIndex, endIndex);
+  const filter = (jobsInfo)?.slice(startIndex, endIndex);
 
   // Function to handle page changes
   const handlePageChange = (page) => {
@@ -225,7 +225,7 @@ const FeaturedJobs = () => {
                         <div className="">
                           <img
                             src={
-                              "http://108.166.181.225:5050/uploads/image/logos/" +
+                              "https://108.166.181.225:5050/uploads/image/logos/" +
                               item?.companyLogo
                             } // Use the actual image URL
                             alt=""

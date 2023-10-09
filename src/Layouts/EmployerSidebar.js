@@ -145,7 +145,7 @@ const EmployerSidebar = () => {
     //   link: "/settings",
     //   toggle: toggleAccount,
     // },
-    { icon: "bx bx-left-arrow-circle", label: "Logout", link: "/settings", toggle: toggleLogout },
+    { icon: "bx bx-left-arrow-circle", label: "Logout", link: "/login", toggle: toggleLogout },
   ];
 
   return (

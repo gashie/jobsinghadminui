@@ -37,6 +37,9 @@ import {
   CHANGE_PASS,
   CHANGE_PASS_ERROR,
   CHANGE_PASS_SUCCESS,
+  VIEW_PROFILE,
+  VIEW_PROFILE_SUCCESS,
+  VIEW_PROFILE_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -73,6 +76,9 @@ const initialState = {
   changePassError: false,
   changePassInfo: null,
   inter: true, 
+  viewProfileError: false, 
+  viewProfileLoading: false, 
+  profile: null
 };
 
 const login = (state = initialState, action) => {
@@ -313,6 +319,30 @@ const login = (state = initialState, action) => {
         changePassLoading: false,
         changePassInfo: action.payload,
       };
+      break;
+
+      case VIEW_PROFILE: 
+      state = {
+        ...state, 
+        viewProfileError: false, 
+        viewProfileLoading: true
+      }
+      break;
+      case VIEW_PROFILE_SUCCESS: 
+      state = {
+        ...state, 
+        viewProfileError: false, 
+        viewProfileLoading: false, 
+        profile: action.payload
+      }
+      break;
+      case VIEW_PROFILE_ERROR: 
+      state = {
+        ...state, 
+        viewProfileError: true, 
+        viewProfileLoading: false, 
+        profile: action.payload
+      }
       break;
 
     default:

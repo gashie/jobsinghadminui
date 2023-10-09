@@ -53,16 +53,14 @@ const EditCoverLetter = ({ data, handleCoverLetters }) => {
           coverLetterDescription: text,
         },
       };
-      dispatch(viewCv({ viewAction: "" }));
-      dispatch(viewCv({ viewAction: "" }));
-      // Dispatch an action or perform other operations with the data
-      console.log(editData);
-
+   
+     
       dispatch(updateCv(editData));
+      handleCoverLetters();
 
-      if (dispatch(viewCv({ viewAction: "" }))) {
-        handleCoverLetters();
-      }
+      // if (dispatch(viewCv({ viewAction: "" }))) {
+      //   handleCoverLetters();
+      // }
 
       validation.resetForm();
     },

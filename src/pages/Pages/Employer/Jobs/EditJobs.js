@@ -12,7 +12,7 @@ import {
   ModalFooter,
   FormGroup,
   Label,
-  FormFeedback
+  FormFeedback,
 } from "reactstrap";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -144,10 +144,9 @@ const EditJobs = ({ handleCloseHandle }) => {
   //   },
   // });
 
-
-  const {data} = useSelector((state) => ({
-      data: state.Jobs.editCloneData
-  }))
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
 
   const updateEditorData = (editorId, html) => {
     setEditorData({
@@ -162,8 +161,7 @@ const EditJobs = ({ handleCloseHandle }) => {
     // Add more editors as needed
   });
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -177,7 +175,7 @@ const EditJobs = ({ handleCloseHandle }) => {
       jobDescription: data?.jobDescription || "",
       jobSkillsId: "",
       jobSalaryCurrency: "",
-      jobStatusId: null,
+      jobStatusId: "",
       applyMode: data?.applyMode || "",
       applyLink: data?.applyLink || "",
       education: data?.education || "",
@@ -187,10 +185,25 @@ const EditJobs = ({ handleCloseHandle }) => {
     },
     validateOnChange: true,
     validationSchema: Yup.object({
-      // goLiveDate: Yup.date().required("Please select go live date"),
-      // jobCategoryId: Yup.string().required("Please job category"),
-      // companyId: Yup.string().required("Please a company"),
-     
+      jobTitle: Yup.string().required("Please enter a job title"),
+      jobCategoryId: Yup.string().required("Please select a job category"),
+      // jobLocation: Yup.string().required("Please select a job location"),
+      jobSalaryAmount: Yup.number()
+        .typeError("Salary must be a number")
+        .required("Please enter a salary amount"),
+      // companyId: Yup.string().required("Please select a company"),
+      isCompanyConfidential: Yup.boolean(),
+      jobDescription: Yup.string().required("Please enter a job description"),
+
+      jobStatusId: Yup.string().required("Please select a job category"),
+      applyMode: Yup.string().required("Please select a job category"),
+      // applyLink: Yup.string().required("Please select a job category"),
+      education: Yup.string().required("Please select a job category"),
+      goLiveDate: Yup.string().required("Please select a job category"),
+      yearsOfExperience: Yup.number().integer(
+        "Years of experience must be a whole number"
+      ),
+      // appliedEmail: Yup.string().email("Invalid email format"),
     }),
     onSubmit: (values) => {
       // const finalData = {
@@ -210,7 +223,6 @@ const EditJobs = ({ handleCloseHandle }) => {
       //   appliedEmail: values.appliedEmail,
       //   education: values.education,
 
-        
       // };
 
       const finalData = {
@@ -221,7 +233,7 @@ const EditJobs = ({ handleCloseHandle }) => {
         patchData: {
           jobTitle: values?.jobTitle,
           jobCategoryId: values?.jobCategoryId,
-          jobLocation:finalLocations,
+          jobLocation: finalLocations,
           jobSalaryAmount: values?.jobSalaryAmount,
           companyId: data?.companyId,
           isCompanyConfidential: isConfidential,
@@ -233,20 +245,18 @@ const EditJobs = ({ handleCloseHandle }) => {
           applyMode: values?.applyMode,
           applyLink: values?.applyLink,
           appliedEmail: values?.appliedEmail,
-        }
+        },
       };
-      
-
-
-     
 
       dispatch(updateJob(finalData));
-       navigate('/employer-jobs');
-      handleCloseHandle()
+      navigate("/employer-jobs");
+      handleCloseHandle();
       validation.resetForm();
     },
   });
 
+
+  console.log(editorData.editor1)
 
   const { inLoading, inError, info } = useSelector((state) => ({
     catLoading: state.Industry.loading,
@@ -258,14 +268,13 @@ const EditJobs = ({ handleCloseHandle }) => {
   //    dispatch(employerCompanies({viewAction: ""}))
   // }, [dispatch])
 
-
-  const { companyLoading, companyInfo, companyError } = useSelector((state) => ({
-    companyLoading: state.Users.companiesLoading, 
-    companyError: state.Users.companiesError, 
-    companyInfo: state.Users.employerCompanies
-  }));
-
-  
+  const { companyLoading, companyInfo, companyError } = useSelector(
+    (state) => ({
+      companyLoading: state.Users.companiesLoading,
+      companyError: state.Users.companiesError,
+      companyInfo: state.Users.employerCompanies,
+    })
+  );
 
   // Define state for the checkbox
   const [isConfidential, setIsConfidential] = useState(false);
@@ -275,6 +284,9 @@ const EditJobs = ({ handleCloseHandle }) => {
     setIsConfidential(!isConfidential);
   };
 
+  console.log(validation.errors)
+
+ 
 
   return (
     <>
@@ -338,9 +350,20 @@ const EditJobs = ({ handleCloseHandle }) => {
                       placeholder="Job title"
                       onChange={validation.handleChange}
                       value={validation.values.jobTitle || ""}
+                      invalid={
+                        validation.touched.jobTitle &&
+                        validation.errors.jobTitle
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
+                {validation.touched.jobTitle && validation.errors.jobTitle ? (
+                  <FormFeedback type="invalid">
+                    <div>{validation.errors.jobTitle}</div>
+                  </FormFeedback>
+                ) : null}
 
                 <label>Years of Experience</label>
                 <Row className="mb-3">
@@ -349,9 +372,15 @@ const EditJobs = ({ handleCloseHandle }) => {
                       type="number"
                       className="form-control p-3"
                       id="yearsOfExperience"
-                      placeholder="Years of Experience"
+                      placeholder="Years of experience"
                       onChange={validation.handleChange}
                       value={validation.values.yearsOfExperience || ""}
+                      invalid={
+                        validation.touched.yearsOfExperience &&
+                        validation.errors.yearsOfExperience
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -367,24 +396,32 @@ const EditJobs = ({ handleCloseHandle }) => {
                       placeholder=""
                       onChange={validation.handleChange}
                       value={validation.values.goLiveDate || ""}
+                      invalid={
+                        validation.touched.goLiveDate &&
+                        validation.errors.goLiveDate
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
-                  {validation.touched.goLiveDate && validation.errors.goLiveDate ? (
-                  <FormFeedback type="invalid">
-                    <div>{validation.errors.goLiveDate}</div>
-                  </FormFeedback>
-                ) : null}
                 </Row>
 
                 <Row className="mb-3">
                   <label>Select Category</label>
                   <Col lg={15}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="jobCategoryId"
                       id="jobCategoryId"
+                      type="select"
                       value={validation.values.jobCategoryId}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.jobCategoryId &&
+                        validation.errors.jobCategoryId
+                          ? true
+                          : false
+                      }
                     >
                       <option>Select Category</option>
                       {catLoading === false && catError === false ? (
@@ -396,13 +433,8 @@ const EditJobs = ({ handleCloseHandle }) => {
                       ) : (
                         <option>loading categories...</option>
                       )}
-                    </select>
+                    </Input>
                   </Col>
-                  {validation.touched.jobCategoryId && validation.errors.jobCategoryId ? (
-                  <FormFeedback type="invalid">
-                    <div>{validation.errors.jobCategoryId}</div>
-                  </FormFeedback>
-                ) : null}
                 </Row>
 
                 <label>Education Level</label>
@@ -412,9 +444,15 @@ const EditJobs = ({ handleCloseHandle }) => {
                       type="text"
                       className="form-control p-3"
                       id="education"
-                      placeholder="Education Level"
+                      placeholder="Education level"
                       onChange={validation.handleChange}
                       value={validation.values.education || ""}
+                      invalid={
+                        validation.touched.education &&
+                        validation.errors.education
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -425,8 +463,15 @@ const EditJobs = ({ handleCloseHandle }) => {
                       type="checkbox"
                       className="form-check-input"
                       id="confidentialCheckbox"
+                      placeholder="Education level"
                       checked={isConfidential} // Use state variable for checked attribute
                       onChange={handleCheckboxChange} // Update state on change
+                      invalid={
+                        validation.touched.isCompanyConfidential &&
+                        validation.errors.isCompanyConfidential
+                          ? true
+                          : false
+                      }
                     />
                     <label
                       htmlFor="confidentialCheckbox"
@@ -443,34 +488,49 @@ const EditJobs = ({ handleCloseHandle }) => {
                 <Row className="mb-3">
                   <label>Select Status</label>
                   <Col lg={12}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="jobStatusId"
                       id="jobStatusId"
+                      type="select"
                       value={validation.values.jobStatusId}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.jobStatusId &&
+                        validation.errors.jobStatusId
+                          ? true
+                          : false
+                      }
                     >
+                      <option>Job status</option>
                       <option>Permanent</option>
                       <option>Contract</option>
                       <option>Part Time</option>
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
                 <Row className="mb-3">
                   <label>Select Apply Mode</label>
                   <Col lg={12}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="applyMode"
                       id="applyMode"
+                      type="select"
                       value={validation.values.applyMode}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.applyMode &&
+                        validation.errors.applyMode
+                          ? true
+                          : false
+                      }
                     >
                       <option>select apply mode</option>
                       <option>Email</option>
                       <option>Website</option>
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
@@ -485,6 +545,12 @@ const EditJobs = ({ handleCloseHandle }) => {
                         type="text"
                         value={validation.values.appliedEmail}
                         onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.appliedEmail &&
+                          validation.errors.appliedEmail
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -499,6 +565,12 @@ const EditJobs = ({ handleCloseHandle }) => {
                         type="text"
                         value={validation.values.applyLink}
                         onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.applyLink &&
+                          validation.errors.applyLink
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -527,15 +599,21 @@ const EditJobs = ({ handleCloseHandle }) => {
                       <Input
                         type="text"
                         className="form-control p-3"
-                        id="websitetext"
+                        id="jobLocation"
                         placeholder="Job location eg. Accra, Tarkwa"
                         value={inputValue}
                         onChange={handleInputChange}
                         onKeyUp={handleKeyUp}
+                        invalid={
+                          validation.touched.jobLocation &&
+                          validation.errors.jobLocation
+                            ? true
+                            : false
+                        }
                       />
                     </div>
-                    <p>Please hit the space key after entering location.</p>
                   </Col>
+                  <p>Please hit space key after entering location.</p>
                 </Row>
 
                 <Row className="mb-3">
@@ -549,18 +627,16 @@ const EditJobs = ({ handleCloseHandle }) => {
                       placeholder="Enter Job Salary Amount"
                       onChange={validation.handleChange}
                       value={validation.values.jobSalaryAmount || ""}
+                      invalid={
+                        validation.touched.jobSalaryAmount &&
+                        validation.errors.jobSalaryAmount
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
-        
-
-            
               </Col>
-               {validation.touched.companyId && validation.errors.companyId ? (
-                  <FormFeedback type="invalid">
-                    <div>{validation.errors.companyId}</div>
-                  </FormFeedback>
-                ) : null}
             </Row>
 
             <Row className="mt-3">
@@ -568,7 +644,11 @@ const EditJobs = ({ handleCloseHandle }) => {
                 Description
               </h6>
               <Col lg={12}>
-                <Editor editorId="editor2" transmitHtml={updateEditorData} />
+                <Editor
+                  editorId="editor1"
+                  transmitHtml={updateEditorData}
+                  // data={data?.jobDescription}
+                />
               </Col>
             </Row>
 
@@ -577,7 +657,11 @@ const EditJobs = ({ handleCloseHandle }) => {
                 How to apply
               </h6>
               <Col lg={12}>
-                <Editor editorId="editor2" transmitHtml={updateEditorData} />
+                <Editor
+                  editorId="editor2"
+                  transmitHtml={updateEditorData}
+                  // data={data?.howToApply}
+                />
               </Col>
             </Row>
 

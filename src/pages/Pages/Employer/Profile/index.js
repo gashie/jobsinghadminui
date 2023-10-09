@@ -149,7 +149,7 @@ const EmployerProfile = () => {
                         >
                           <p style={{ textAlign: "center" }}>
                             <img
-                              src={"http://108.166.181.225:5050/uploads/image/logos/"+ userInfo?.userInfo?.company?.companyLogo}
+                              src={"https://108.166.181.225:5050/uploads/image/logos/"+ userInfo?.userInfo?.company?.companyLogo}
                               alt="profile-img"
                               className="img-fluid avatar-xxl"
                             ></img>

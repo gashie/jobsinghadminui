@@ -11,6 +11,8 @@ import {
   Row,
   Button,
   Spinner,
+  Input,
+  Label,
 } from "reactstrap";
 import classnames from "classnames";
 import img1 from "../../../../assets/images/jobsinghana/seatec.png";
@@ -19,7 +21,8 @@ import profile from "../profile.png";
 import EditProfile from "../EditProfile";
 import ChangePassword from "../ChangePassword";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { viewProfile } from "../../../../store/actions";
 
 const Profile = () => {
   const [justifyTab, setjustifyTab] = useState("1");
@@ -28,6 +31,18 @@ const Profile = () => {
       setjustifyTab(tab);
     }
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(viewProfile({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { profileLoading, profileError, profile } = useSelector((state) => ({
+    profileLoading: state.Login.viewProfileLoading,
+    profileError: state.Login.viewProfileError,
+    profile: state.Login.profile,
+  }));
 
   const { userInfo, loading, error } = useSelector((state) => ({
     loading: state.Login.loading,
@@ -46,7 +61,16 @@ const Profile = () => {
   //   } else setjustifyTab("1");
   // });
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   const [edit, setEdit] = useState(false);
+
+  const photo = "https://108.166.181.225:5050/uploads/image/profile/";
+
   return (
     <>
       <Row>
@@ -124,17 +148,37 @@ const Profile = () => {
                           style={{
                             display: "flex",
                             justifyContent: "space-evenly",
-                           
                           }}
                         >
                           <Row className="p-5">
                             <Col>
-                              <div className="d-flex justify-content-center mx-5 px-5">
+                              <div className="profile-user position-relative d-inline-block  mb-4 px-5">
+                                {!imageLoaded && <Spinner style={{color: '#244a59'}} />}
+
+                                {/* Render the image once it's loaded */}
                                 <img
-                                  src={profile}
-                                  alt="company-logo"
-                                  className="avatar-xxl"
+                                  src={photo + profile?.profileImage}
+                                  className={`rounded-circle avatar-xl fluid-img ${
+                                    imageLoaded ? "d-block" : "d-none"
+                                  }`}
+                                  alt="user-profile"
+                                  onLoad={handleImageLoad} // Call the handleImageLoad function when the image loads
                                 />
+                                {/* <div className="avatar-xxl p-0 rounded-circle profile-photo-edit">
+                                  <Input
+                                    id="profile-img-file-input"
+                                    type="file"
+                                    className="profile-img-file-input p-3"
+                                  />
+                                  <Label
+                                    htmlFor="profile-img-file-input"
+                                    className="profile-photo-edit avatar-xs"
+                                  >
+                                    <span className="avatar-title rounded-circle bg-light text-body">
+                                      <i className="ri-camera-fill"></i>
+                                    </span>
+                                  </Label>
+                                </div> */}
                               </div>
                               <h5
                                 style={{
@@ -142,24 +186,26 @@ const Profile = () => {
                                   marginTop: "1rem",
                                 }}
                               >
-                                {userInfo?.userInfo?.fullName}
+                                {profile?.fullName}
                               </h5>
                             </Col>
 
                             <Col>
                               <div
+                                className="px-5"
                                 style={{
                                   borderLeft: "1px dashed black",
                                   height: "100%",
                                 }}
                               ></div>
                             </Col>
-                            {loading === false && error === false ? (
-                              <Col style={{ display: "grid", gap: "2rem" }}>
+                            {profileLoading === false &&
+                            profileError === false ? (
+                              <Col style={{ display: "grid", gap: "3rem" }}>
                                 <div
                                   style={{
                                     display: "flex",
-                                    gap: "0.4rem",
+                                    gap: "2rem",
                                     alignItems: "flex-start",
                                   }}
                                 >
@@ -170,13 +216,13 @@ const Profile = () => {
                                     Username:
                                   </h5>
                                   <h5 style={{ flex: "0 0 70%" }}>
-                                    {userInfo?.userInfo?.username}
+                                    {profile?.username}
                                   </h5>
                                 </div>
                                 <div
                                   style={{
                                     display: "flex",
-                                    gap: "0.4rem",
+                                    gap: "2rem",
                                     alignItems: "flex-start",
                                   }}
                                 >
@@ -187,13 +233,13 @@ const Profile = () => {
                                     Phone:
                                   </h5>
                                   <h5 style={{ flex: "0 0 70%" }}>
-                                    {userInfo?.userInfo?.phone}
+                                    {profile?.phone}
                                   </h5>
                                 </div>
                                 <div
                                   style={{
                                     display: "flex",
-                                    gap: "0.4rem",
+                                    gap: "2rem",
                                     alignItems: "flex-start",
                                   }}
                                 >
@@ -204,13 +250,13 @@ const Profile = () => {
                                     Email:
                                   </h5>
                                   <h5 style={{ flex: "0 0 70%" }}>
-                                    {userInfo?.userInfo?.email}
+                                    {profile?.email}
                                   </h5>
                                 </div>
                                 <div
                                   style={{
                                     display: "flex",
-                                    gap: "0.4rem",
+                                    gap: "2rem",
                                     alignItems: "flex-start",
                                   }}
                                 >
@@ -238,8 +284,7 @@ const Profile = () => {
                                     ) : (
                                       <>
                                         <p className="fw-light mt-5">
-                                          You don't have any Service inquiries
-                                          at the moment.
+                                          No Profile Info
                                         </p>
                                       </>
                                     )}

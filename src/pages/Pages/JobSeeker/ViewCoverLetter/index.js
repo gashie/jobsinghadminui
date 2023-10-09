@@ -23,7 +23,7 @@ const ViewCoverLetter = ({ data }) => {
 
           <div
             dangerouslySetInnerHTML={{
-              __html: decodeHTML(data?.coverLetterDescription),
+              __html: decodeHTML(data?.coverLetterDescription || "Please Select a Cover Letter to view it."),
             }}
           ></div>
         </CardBody>

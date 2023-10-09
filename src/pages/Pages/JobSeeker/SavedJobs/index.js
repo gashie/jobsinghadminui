@@ -204,7 +204,7 @@ const SavedJobs = () => {
                             updateSavedJobs({
                               deleterecord: true,
                               restore: 0,
-                              jobId: item?.jobId,
+                              savedJobsId: item?.savedJobsId,
                               patch: false,
                               patchData: {
                                 jobTitle: item?.jobTitle,

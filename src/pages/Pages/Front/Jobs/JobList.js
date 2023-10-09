@@ -169,18 +169,7 @@ const JobList = (props) => {
     dispatch(catAction({ viewAction: "" }));
   }, [dispatch]);
 
-  const filteredData = jobsInfo?.filter((job) => {
-    const isTitleMatch = job.jobTitle
-      .toLowerCase()
-      .includes(jobTitle.toLowerCase());
-    const isLocationMatch =
-      location === "Select Location" || job.jobLocation === location;
-    const isCategoryMatch =
-      category === "Select Category" || job.jobCategoryName === category;
-
-    return isTitleMatch && isLocationMatch && isCategoryMatch;
-  });
-
+  
   const [likedJobs, setLikedJobs] = useState({});
 
   // Function to toggle the liked status for a specific job
@@ -198,11 +187,11 @@ const JobList = (props) => {
         style={{ justifyContent: "center", backgroundColor: "#244a59" }}
       >
         <Row
-          style={{ backgroundColor: "#244a59", height: "20vh" }}
+          style={{ backgroundColor: "#244a59", height: "25vh" }}
           className="text-light align-items-center justify-content-center d-flex mx-5"
-          xl={7}
+          xl={6}
         >
-          <Col xs={3}>
+          <Col lg={3} className="m-1">
             <Input
               type="text"
               style={{
@@ -221,7 +210,7 @@ const JobList = (props) => {
             />
           </Col>
 
-          <Col lg={3}>
+          <Col lg={3} className="m-1">
             <select
               style={{
                 borderBottom: "2px solid white",
@@ -250,7 +239,7 @@ const JobList = (props) => {
             </select>
           </Col>
 
-          <Col lg={3}>
+          <Col lg={3} className="m-1">
             <select
               style={{
                 borderBottom: "2px solid white",
@@ -279,7 +268,7 @@ const JobList = (props) => {
             </select>
           </Col>
 
-          <Col xs={3}>
+          <Col xs={3} className="m-1">
             <Button
               style={{ backgroundColor: "#00d084", border: "none" }}
               className="btn p-3 w-100"
@@ -882,13 +871,13 @@ const JobList = (props) => {
                                 padding: "1rem",
                               }}
                             >
-                              {filteredData?.length} Results Found
+                              {jobsInfo?.length} Results Found
                             </h5>
                           </div>
                         </div>
 
                         {loading === false && error === false ? (
-                          filteredData?.map((item) => (
+                          jobsInfo?.map((item) => (
                             <>
                               <Card
                                 style={{
@@ -975,7 +964,7 @@ const JobList = (props) => {
                                         <div>
                                           <img
                                             src={
-                                              "http://108.166.181.225:5050/uploads/image/logos/" +
+                                              "https://108.166.181.225:5050/uploads/image/logos/" +
                                               item?.companyLogo
                                             }
                                             alt="logo"

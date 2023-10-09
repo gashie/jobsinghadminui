@@ -40,7 +40,7 @@ const Editor = ({ onPlainTextChange, content }) => {
             .then((result) => {
               setEditorHtml(result.value);
 
-              content(result.value);
+              // content(result.value);
             })
             .catch((error) => {
               console.error("Error converting Word to HTML:", error);
@@ -62,7 +62,7 @@ const Editor = ({ onPlainTextChange, content }) => {
     // const plainText = tempDiv.textContent || tempDiv.innerText || "";
     // setPlainText(plainText);
 
-   //onPlainTextChange(html);
+    onPlainTextChange(html);
   };
 
   const [Des, setDes] = useState();
@@ -70,6 +70,8 @@ const Editor = ({ onPlainTextChange, content }) => {
   useEffect(() => {
     setDes(content);
   }, [content, Des]);
+
+
 
   return (
     <div>
