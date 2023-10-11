@@ -1,4 +1,4 @@
-import "../Career/CareerAdvice/CareerAdvice.css";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -10,26 +10,6 @@ import {
   Input,
   Spinner,
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import bg from "../../../../assets/images/jobsinghana/bg1.png";
-import car from "../Career/CareerAdvice/CareerImages/car.png";
-import ent from "../Career/CareerAdvice/CareerImages/ent.png";
-import health from "../Career/CareerAdvice/CareerImages/heath.png";
-import jsearch from "../Career/CareerAdvice/CareerImages/jsearch.png";
-import sal from "../Career/CareerAdvice/CareerImages/salary.png";
-import workplace from "../Career/CareerAdvice/CareerImages/workplace.png";
-import img1 from "./img1.png";
-import img2 from "./img2.jpg";
-import icon1 from "./icon1.png";
-import icon2 from "./icon2.png";
-import icon3 from "./icon3.png";
-import icon4 from "./icon4.png";
-import icon5 from "./icon5.png";
-import icon6 from "./icon6.png";
-import icon7 from "./icon7.png";
-import Rating from "react-rating";
-import Flatpickr from "react-flatpickr";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendService } from "../../../../store/actions";
 
@@ -39,9 +19,21 @@ const PayrollManagement = () => {
   const [companyName, setCompanyName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [purpose, setPurpose] = useState("Payroll Management");
+  const [purpose] = useState("Payroll Management");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const dispatch = useDispatch();
+
+  // Function to update isFormValid based on form input values
+  const updateFormValidity = () => {
+    setIsFormValid(
+      firstName.trim() !== "" &&
+        lastName.trim() !== "" &&
+        companyName.trim() !== "" &&
+        phoneNumber.trim() !== "" &&
+        email.trim() !== ""
+    );
+  };
 
   const handleService = () => {
     dispatch(
@@ -55,6 +47,14 @@ const PayrollManagement = () => {
         Company: companyName,
       })
     );
+
+    // Clear the form data after submission
+    setFirstName("");
+    setLastName("");
+    setCompanyName("");
+    setPhoneNumber("");
+    setEmail("");
+    setIsFormValid(false);
   };
 
   const { loading, error } = useSelector((state) => ({
@@ -65,18 +65,12 @@ const PayrollManagement = () => {
   return (
     <>
       <div style={{ backgroundColor: "white" }}>
-      
         <Row className="mb-5 py-5 p-5">
           <Col xl={9}>
             <Container>
               <h4 style={{ fontWeight: "bolder", color: "#244a59" }}>
                 Payroll Management
               </h4>
-              {/* <p className="mt-3">
-                Use our state of the art technology to outsource the exact
-                talent for your organisation and only interact with the
-                candidates that best fit your requirements
-              </p> */}
               <p className="mt-3">
                 For more information, fill out the form below.
               </p>
@@ -97,7 +91,10 @@ const PayrollManagement = () => {
                       id="employeeName"
                       placeholder=""
                       value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                        updateFormValidity();
+                      }}
                     />
                   </div>
 
@@ -115,7 +112,10 @@ const PayrollManagement = () => {
                       id="employeeUrl"
                       placeholder=""
                       value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
+                      onChange={(e) => {
+                        setLastName(e.target.value);
+                        updateFormValidity();
+                      }}
                     />
                   </div>
                 </Row>
@@ -134,7 +134,10 @@ const PayrollManagement = () => {
                       id="employeeName"
                       placeholder=""
                       value={companyName}
-                      onChange={(e) => setCompanyName(e.target.value)}
+                      onChange={(e) => {
+                        setCompanyName(e.target.value);
+                        updateFormValidity();
+                      }}
                     />
                   </div>
 
@@ -152,7 +155,10 @@ const PayrollManagement = () => {
                       id="employeeUrl"
                       placeholder=""
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={(e) => {
+                        setPhoneNumber(e.target.value);
+                        updateFormValidity();
+                      }}
                     />
                   </div>
                 </Row>
@@ -171,7 +177,10 @@ const PayrollManagement = () => {
                       id="employeeName"
                       placeholder=""
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        updateFormValidity();
+                      }}
                     />
                   </div>
 
@@ -188,7 +197,7 @@ const PayrollManagement = () => {
                       className="form-control p-3"
                       id="employeeUrl"
                       value={purpose}
-                      readOnly // Make it read-only since you set a default value
+                      readOnly
                     />
                   </div>
                 </Row>
@@ -197,15 +206,15 @@ const PayrollManagement = () => {
               <div className="text-start">
                 <Button
                   style={{ backgroundColor: "#244a59" }}
-                  disabled={error ? null : loading}
-                  className="btn btn-dark"
+                  disabled={!isFormValid}
+                  className="btn btn-dark p-3 px-4 mt-3"
                   type="submit"
                   onClick={handleService}
                 >
+                  {isFormValid && !loading}
                   {error ? null : loading ? (
                     <Spinner size="sm" className="me-2">
-                      {" "}
-                      Loading...{" "}
+                      Loading...
                     </Spinner>
                   ) : null}
                   Talk to us

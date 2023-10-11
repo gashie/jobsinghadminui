@@ -89,14 +89,31 @@ const Services = () => {
     };
   }, []);
 
+  const [purpose, setPurpose] = useState("Recruitment / Headhunting");
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [purpose, setPurpose] = useState("Recruitment / Headhunting");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const dispatch = useDispatch();
+
+  const validateForm = () => {
+    return (
+      firstName.trim() !== "" &&
+      lastName.trim() !== "" &&
+      companyName.trim() !== "" &&
+      phoneNumber.trim() !== "" &&
+      email.trim() !== ""
+    );
+  };
+
+  useEffect(() => {
+    // Update isFormValid whenever form inputs change
+    setIsFormValid(validateForm());
+  }, [firstName, lastName, companyName, phoneNumber, email]);
 
   const handleService = () => {
     dispatch(
@@ -110,6 +127,13 @@ const Services = () => {
         Company: companyName,
       })
     );
+
+    setFirstName("");
+    setLastName("");
+    setCompanyName("");
+    setPhoneNumber("");
+    setEmail("");
+    setIsFormValid(false);
   };
 
   const { loading, error } = useSelector((state) => ({
@@ -355,7 +379,7 @@ const Services = () => {
                       Email Address:
                     </Label>
                     <Input
-                      type="text"
+                      type="email"
                       className="form-control p-3"
                       id="employeeName"
                       placeholder=""
@@ -377,7 +401,7 @@ const Services = () => {
                       className="form-control p-3"
                       id="employeeUrl"
                       value={purpose}
-                      readOnly // Make it read-only since you set a default value
+                      readOnly
                     />
                   </div>
                 </Row>
@@ -386,15 +410,14 @@ const Services = () => {
               <div className="text-start">
                 <Button
                   style={{ backgroundColor: "#244a59" }}
-                  disabled={error ? null : loading}
-                  className="btn btn-dark"
+                  disabled={!isFormValid}
+                  className="btn btn-dark px-4 p-3 mt-3"
                   type="submit"
                   onClick={handleService}
                 >
                   {error ? null : loading ? (
                     <Spinner size="sm" className="me-2">
-                      {" "}
-                      Loading...{" "}
+                      Loading...
                     </Spinner>
                   ) : null}
                   Talk to us

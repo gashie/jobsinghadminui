@@ -87,7 +87,7 @@ function* service({ payload: data }) {
       //  yield put(updateRatecardURL());
       yield put(sendServiceSuccess());
       // yield put(rateCardAction({ viewAction: "" }));
-      toast.success(`Invoice Enquiry Sent`, {
+      toast.success(`Enquiry Sent`, {
         autoClose: 6000,
       });
     } else {

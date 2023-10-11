@@ -62,14 +62,14 @@ const Services = () => {
   const updateWindowSize = () => {
     const newWindowSize = document.documentElement.clientWidth;
     if (newWindowSize <= 375) {
-      setWidth("10.45rem");
+      setWidth("100%");
       setLeft("11rem");
     } else if (newWindowSize >= 1200) {
-      setWidth("47rem");
+      setWidth("400px");
 
       setLeft("");
     } else if (newWindowSize > 375) {
-      setWidth("11rem");
+      setWidth("400px");
       setLeft("");
     }
   };
@@ -89,9 +89,16 @@ const Services = () => {
 
   console.log(window.location);
 
+  const buttonStyle = {
+    color: "white",
+    backgroundColor: "#355765B5",
+    border: "1px solid white",
+    padding: "1rem",
+    width: width, // Set a specific width for the buttons
+  };
+
   return (
     <>
-   
       <Row className="justify-content-center">
         <Col
           xl={20}
@@ -129,30 +136,19 @@ const Services = () => {
             </p>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              zIndex: "99",
-              position: "relative",
-            }}
-          >
-            <Col
-              md={20}
-              xl={15}
-              // style={{
-              //   display: "flex",
-              //   justifyContent: "center",
-              //   gap: "1rem",
-              //   border: "0px solid black",
-              //   padding: "1rem",
-              //   backgroundColor: "#355765B5",
-              //   borderRadius: "0.2rem",
-              //   width: "max-content",
-              // }}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                zIndex: "99",
+                position: "relative",
+              }}
             >
-              <div
+              <Col
+                md={20}
+                xl={15}
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -161,7 +157,7 @@ const Services = () => {
                   padding: "1rem",
                   backgroundColor: "#355765B5",
                   borderRadius: "0.2rem",
-                  width: "max-content",
+                  width: "auto",
                 }}
               >
                 <Row>
@@ -169,35 +165,24 @@ const Services = () => {
                     <Link to="/services" className="text-light">
                       <Button
                         style={{
-                          color: "white",
-                          backgroundColor: "#355765B5",
-                          border: "1px solid white",
-                          padding: "1rem",
-                          width: width,
+                          ...buttonStyle,
                           position: "relative",
-                          left: left,
+                          left: "0",
                         }}
-                        className="btn"
                       >
                         Recruitment/Headhunting
                       </Button>
                     </Link>
-
                     <Link
                       to="/services-payroll-management"
                       className="text-light"
                     >
                       <Button
                         style={{
-                          color: "white",
-                          backgroundColor: "#355765B5",
-                          border: "1px solid white",
-                          padding: "1rem",
-                          width: width,
+                          ...buttonStyle,
                           position: "relative",
-                          left: left,
+                          left: "0",
                         }}
-                        className="btn p-3"
                       >
                         Payroll Management
                       </Button>
@@ -209,15 +194,10 @@ const Services = () => {
                     <Link to="/services-outsourcing" className="text-light">
                       <Button
                         style={{
-                          color: "white",
-                          backgroundColor: "#355765B5",
-                          border: "1px solid white",
-                          padding: "1rem",
-                          width: width,
+                          ...buttonStyle,
                           position: "relative",
-                          right: left,
+                          right: "0",
                         }}
-                        className="btn p-3"
                       >
                         Outsourcing
                       </Button>
@@ -225,23 +205,18 @@ const Services = () => {
                     <Link to="/services-job-posting" className="text-light">
                       <Button
                         style={{
-                          color: "white",
-                          backgroundColor: "#355765B5",
-                          border: "1px solid white",
-                          padding: "1rem",
-                          width: width,
+                          ...buttonStyle,
                           position: "relative",
-                          right: left,
+                          right: "0",
                         }}
-                        className="btn p-3"
                       >
                         Job Posting
                       </Button>
                     </Link>
                   </Col>
                 </Row>
-              </div>
-            </Col>
+              </Col>
+            </div>
           </div>
         </Col>
       </Row>

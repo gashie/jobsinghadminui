@@ -207,12 +207,12 @@ const JobPosting = () => {
           </Col>
         </Row> */}
 
-        <Container className="pb-5">
+        <Container className="">
           <h4
             style={{ color: "#244a59", fontWeight: "bolder" }}
-            className="mt-5 p-4"
+            className="mt- p-4"
           >
-            Post a Job
+           <p className="mt-3"> Post a Job</p>
           </h4>
 
           <h4

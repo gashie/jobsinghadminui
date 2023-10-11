@@ -29,16 +29,11 @@ import icon6 from "./icon6.png";
 import icon7 from "./icon7.png";
 import Rating from "react-rating";
 import Flatpickr from "react-flatpickr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendService } from "../../../../store/actions";
 
 const Outsourcing = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
   const [purpose, setPurpose] = useState("Outsourcing");
 
   const dispatch = useDispatch();
@@ -55,12 +50,42 @@ const Outsourcing = () => {
         Company: companyName,
       })
     );
+
+    setFirstName("");
+    setLastName("");
+    setCompanyName("");
+    setPhoneNumber("");
+    setEmail("");
+    setIsFormValid(false);
   };
 
   const { loading, error } = useSelector((state) => ({
     loading: state.Users.serviceLoading,
     error: state.Users.serviceError,
   }));
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Validation function
+  const validateForm = () => {
+    return (
+      firstName.trim() !== "" &&
+      lastName.trim() !== "" &&
+      companyName.trim() !== "" &&
+      phoneNumber.trim() !== "" &&
+      email.trim() !== ""
+    );
+  };
+
+  useEffect(() => {
+    // Update isFormValid whenever form inputs change
+    setIsFormValid(validateForm());
+  }, [firstName, lastName, companyName, phoneNumber, email]);
 
   return (
     <>
@@ -319,19 +344,18 @@ const Outsourcing = () => {
                 </Row>
               </div>
 
-
               <div className="text-start">
                 <Button
                   style={{ backgroundColor: "#244a59" }}
-                  disabled={error ? null : loading}
-                  className="btn btn-dark"
+                  disabled={!isFormValid}
+                  className="btn btn-dark p-3 px-4 mt-3"
                   type="submit"
                   onClick={handleService}
                 >
+                  {isFormValid && !loading}
                   {error ? null : loading ? (
                     <Spinner size="sm" className="me-2">
-                      {" "}
-                      Loading...{" "}
+                      Loading...
                     </Spinner>
                   ) : null}
                   Talk to us

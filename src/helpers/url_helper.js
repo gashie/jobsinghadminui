@@ -291,7 +291,7 @@ export const VIEW_QUESTIONS = `${version}/viewmyquestions/`
 export const SIGN_UP = `${version}/signup/`
 
 
-export const RATE_CARD = `${version}/viewratecards/`
+export const RATE_CARD = `${version}/listratecard/`
 export const CREATE_RATE_CARD = `${version}/saveratecard/`
 export const UPDATE_RATE_CARD = `${version}/viewschedule/`
 export const APPROVE_RATE_CARD = `${version}/approveratecards/`
