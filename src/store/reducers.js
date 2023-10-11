@@ -78,6 +78,7 @@ import Industry from "./Industry/reducer";
 import Questions from "./Questions/reducer";
 import Courses from "./Courses/reducer";
 import Rates from "./Rates/reducer";
+import Feeds from "./Feeds/reducer"
 
 const rootReducer = combineReducers({
   // public
@@ -116,6 +117,7 @@ const rootReducer = combineReducers({
   Questions,
   Courses,
   Rates,
+  Feeds,
 });
 
 export default rootReducer;

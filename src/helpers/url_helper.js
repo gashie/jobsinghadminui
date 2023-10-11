@@ -296,6 +296,7 @@ export const CREATE_RATE_CARD = `${version}/saveratecard/`
 export const UPDATE_RATE_CARD = `${version}/viewschedule/`
 export const APPROVE_RATE_CARD = `${version}/approveratecards/`
 
+export const HOME_COURSE = `${version}/listcourses/`
 export const COURSE = `${version}/mysavedcourses/`
 export const SAVE_COURSE = `${version}/savecourse/`
 export const UPDATE_COURSE = `${version}/updatesavedcourse/`
@@ -323,6 +324,7 @@ export const SAVE_JOB = `${version}/savejob/`
 export const UPDATE_SAVED_JOBS = `${version}/updatesavedjob/`
 
 export const FULL_JOB_DETAILS = `${version}/jobdetails/`
+export const FIND_JOB = `${version}/findjob/`
 export const APPLY_FOR_JOB = `${version}/apply/`
 
 export const JOBSEEKER_APPLICATIONS = `${version}/jobseeker/viewmyappliedjobs/`
@@ -348,6 +350,22 @@ export const PAY_INVOICE = `${version}/payinvoice/`
 export const SERVICE = `${version}/services/`
 
 export const VIEW_PROFILE = `${version}/myprofile/`
+
+export const CONFIRM_PAY = `${version}/verifypayment/`
+
+export const FETCH_NEWS = `${version}/autofeeds/`;
+
+export const SAVE_FEEDS = `${version}/savefeed/`;
+export const UPDATE_FEEDS = `${version}/updatesavedfeed/`;
+export const FEEDS = `${version}/viewsavedfeeds/`;
+
+export const SAVE_USER_FEEDS = `${version}/saveuserfeed/`;
+export const APPROVE_FEEDS = `${version}/approveuserfeeds/`;
+export const MY_FEEDS = `${version}/viewsaveduserfeeds/`;
+export const UPDATE_USER_FEEDS = `${version}/updateusersavedfeed/`;
+
+export const GENERAL_CATEGORIES = `${version}/findcategories/`;
+export const GENERAL_INDUSTRIES = `${version}/findindustries/`;
 
 
 

@@ -20,7 +20,7 @@ import {
   APPLY_FOR_JOBS, 
   APPLY_FOR_JOBS_ERROR, 
   APPLY_FOR_JOBS_SUCCESS, 
-  FULL_JOB_DETAILS, FULL_JOB_DETAILS_ERROR, FULL_JOB_DETAILS_SUCCESS
+  FULL_JOB_DETAILS, FULL_JOB_DETAILS_ERROR, FULL_JOB_DETAILS_SUCCESS, FIND_JOB, FIND_JOB_SUCCESS, FIND_JOB_ERROR
   
 } from "./actionTypes";
 
@@ -151,6 +151,24 @@ export const fullJobDetailsError = (error) => ({
   type: FULL_JOB_DETAILS_ERROR,
   payload: error,
 });
+
+
+export const findJob = (data) => ({
+  type: FIND_JOB,
+  payload: data,
+});
+
+export const findJobSuccess = (data) => ({
+  type: FIND_JOB_SUCCESS,
+  payload: data,
+});
+
+export const findJobError = (error) => ({
+  type: FIND_JOB_ERROR,
+  payload: error,
+});
+
+
 
 // Action creators for APPLY_FOR_JOBS
 export const applyForJobs = (data) => ({

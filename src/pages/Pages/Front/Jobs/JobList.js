@@ -27,6 +27,7 @@ import {
   category as catAction,
   saveJobs,
   fullJobDetails,
+  findJob,
 } from "../../../../store/actions";
 import classnames from "classnames";
 
@@ -64,7 +65,7 @@ const JobList = (props) => {
     { name: "Learnership", count: "200" },
   ];
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const JobLevel = [
     { name: "Intermediate", count: "0" },
@@ -169,7 +170,6 @@ const JobList = (props) => {
     dispatch(catAction({ viewAction: "" }));
   }, [dispatch]);
 
-  
   const [likedJobs, setLikedJobs] = useState({});
 
   // Function to toggle the liked status for a specific job
@@ -187,7 +187,7 @@ const JobList = (props) => {
         style={{ justifyContent: "center", backgroundColor: "#244a59" }}
       >
         <Row
-          style={{ backgroundColor: "#244a59", height: "25vh" }}
+          style={{ backgroundColor: "#244a59", height: "30vh" }}
           className="text-light align-items-center justify-content-center d-flex mx-5"
           xl={6}
         >
@@ -887,52 +887,49 @@ const JobList = (props) => {
                                 className="p-2"
                               >
                                 <CardBody>
-                                  <Col>
-                                    <div
-                                      className="d-flex"
-                                      style={{
-                                        justifyContent: "space-between",
-                                        width: "93%",
-                                      }}
-                                    >
-                                      <div>
+                                  <Row className="align-items-center">
+                                    <Col md={8}>
+                                      <div className="d-flex flex-column">
                                         <h4
                                           style={{
-                                            fontWeight: "bolder",
-                                            color: "244a59",
+                                            fontWeight: "bold",
+                                            color: "#244a59",
                                             cursor: "pointer",
                                           }}
                                           onClick={() => {
-                                            // dispatch(searchJob(item?.jobTitle));
-                                            dispatch(fullJobDetails({ jobId: item?.jobId }));
-                                             navigate(`/job-details?.title=B&id=${item?.jobId}`);
+                                            dispatch(
+                                              findJob({
+                                                jobId: item?.jobId,
+                                              })
+                                            );
+                                            navigate(
+                                              `/job-details?.title=B&id=${item?.jobId}`
+                                            );
                                           }}
                                         >
                                           {item?.jobTitle}
                                         </h4>
                                         <h4
                                           style={{
-                                            fontWeight: "bolder",
-                                            color: "244a59",
+                                            fontWeight: "bold",
+                                            color: "#244a59",
                                           }}
+                                          className="fs-15"
                                         >
                                           {item?.companyName}
                                         </h4>
                                         <p>{item?.jobLocation}</p>
-                                        <div className="d-flex">
-                                          <i
-                                            className="bx bx-calendar p-1"
-                                            style={{ marginTop: "0rem" }}
-                                          >
+                                        <div className="d-flex align-items-center">
+                                          <i className="bx bx-calendar p-1">
                                             {" "}
                                           </i>{" "}
                                           Expired
-                                          <p className="mx-2">
+                                          <p className="mx-2 mt-3">
                                             {formatDate(item?.goLiveDate)}
                                           </p>
                                         </div>
                                         <p
-                                          className="mt-3 "
+                                          className="mt-3"
                                           style={{ width: "80%" }}
                                         >
                                           <div
@@ -951,54 +948,52 @@ const JobList = (props) => {
                                           ></div>
                                         </p>
                                       </div>
-                                      <div></div>
-
-                                      <div
-                                        className="d-flex"
+                                    </Col>
+                                    <Col
+                                      md={4}
+                                      className="d-flex flex-column align-items-end"
+                                    >
+                                      <div className="logo-container">
+                                        <img
+                                          src={
+                                            "https://108.166.181.225:5050/uploads/image/logos/" +
+                                            item?.companyLogo
+                                          }
+                                          alt=""
+                                          style={{
+                                            maxWidth: "80px",
+                                            maxHeight: "60px",
+                                          }}
+                                        />
+                                      </div>
+                                      <Button
+                                        type="button"
+                                        className="btn btn-dark btn-soft-primary"
                                         style={{
-                                          flexDirection: "column",
-                                          justifyContent: "space-between",
-                                          width: "5%",
+                                          backgroundColor: "white",
+                                          boxShadow: "none",
+                                          marginTop: "5rem",
+                                          position: 'relative', 
+                                          left: "-1rem"
+                                        }}
+                                        onClick={() => {
+                                          dispatch(
+                                            saveJobs({ jobId: item?.jobId })
+                                          );
+                                          toggleLike(item.jobId);
                                         }}
                                       >
-                                        <div>
-                                          <img
-                                            src={
-                                              "https://108.166.181.225:5050/uploads/image/logos/" +
-                                              item?.companyLogo
-                                            }
-                                            alt="logo"
-                                            className="img-fluid avatar-xxl"
-                                          ></img>
-                                        </div>
-                                        <div>
-                                          <Button
-                                            type="button"
-                                            className="btn btn-dark btn-soft-primary float-end"
-                                            style={{
-                                              backgroundColor: "white",
-                                              boxShadow: "none",
-                                            }}
-                                            onClick={() => {
-                                              toggleLike(item.jobId);
-                                              dispatch(
-                                                saveJobs({ jobId: item?.jobId })
-                                              );
-                                            }}
-                                          >
-                                            <i
-                                              className={`bx bx-heart fs-20 fw-bolder ${
-                                                likedJobs[item.jobId]
-                                                  ? "bx bxs-heart"
-                                                  : ""
-                                              }`}
-                                              style={{ color: "#244a59" }}
-                                            ></i>
-                                          </Button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </Col>
+                                        <i
+                                          className={`bx bx-heart fs-20 fw-bolder ${
+                                            likedJobs[item.jobId]
+                                              ? "bx bxs-heart"
+                                              : ""
+                                          }`}
+                                          style={{ color: "#244a59" }}
+                                        ></i>
+                                      </Button>
+                                    </Col>
+                                  </Row>
                                 </CardBody>
                               </Card>
                             </>

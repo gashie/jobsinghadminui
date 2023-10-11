@@ -422,77 +422,100 @@ export const getJobApplicationList = () => api.get(url.GET_APPLICATION_LIST);
 export const getAPIKey = () => api.get(url.GET_API_KEY);
 
 //test login
-export const testLoginURL = (user) => api.create(url.TEST_LOGIN, user)
+export const testLoginURL = (user) => api.create(url.TEST_LOGIN, user);
 //text verify
-export const testVerifyURL = () => api.get(url.TEST_VERIFY)
+export const testVerifyURL = () => api.get(url.TEST_VERIFY);
 
 //jobsinGhanaURLS
-export const loginURL = (data) => api.create(url.LOGIN, data)
-export const verifyTokenURL = () =>  api.create(url.VERIFYTOKEN)
+export const loginURL = (data) => api.create(url.LOGIN, data);
+export const verifyTokenURL = () => api.create(url.VERIFYTOKEN);
 
 //jobalert
 export const viewJobAlertsURL = (data) => api.create(url.VIEW_JOB_ALERTS, data);
-export const createJobAlertURL = (data) => api.create(url.CREATE_JOB_ALERT, data);
-export const updateJobAlertURL = (data) => api.create(url.UPDATE_JOB_ALERT, data);
+export const createJobAlertURL = (data) =>
+  api.create(url.CREATE_JOB_ALERT, data);
+export const updateJobAlertURL = (data) =>
+  api.create(url.UPDATE_JOB_ALERT, data);
 
 //resume and coverletters
-export const viewResumeURL = (data) => api.create(url.VIEW_RESUME, data)
-export const createResumeURL = (data) => api.create(url.CREATE_RESUME, data)
-export const updateResumeURL = (data) => api.create(url.UPDATE_RESUME, data)
-export const createCvURL = (data) => api.create(url.CREATE_CV, data)
-export const viewCvURL = (data) => api.create(url.VIEW_CV, data)
-export const updateCvURL = (data) => api.create(url.UPDATE_CV, data)
-export const viewSavedJobsURL = (data) => api.create(url.VIEW_SAVED_JOBS, data)
+export const viewResumeURL = (data) => api.create(url.VIEW_RESUME, data);
+export const createResumeURL = (data) => api.create(url.CREATE_RESUME, data);
+export const updateResumeURL = (data) => api.create(url.UPDATE_RESUME, data);
+export const createCvURL = (data) => api.create(url.CREATE_CV, data);
+export const viewCvURL = (data) => api.create(url.VIEW_CV, data);
+export const updateCvURL = (data) => api.create(url.UPDATE_CV, data);
+export const viewSavedJobsURL = (data) => api.create(url.VIEW_SAVED_JOBS, data);
 
-export const updateProfileURL = (data) => api.create(url.UPDATE_PROFILE, data)
+export const updateProfileURL = (data) => api.create(url.UPDATE_PROFILE, data);
 //export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data)
 
 export const createJobURL = (data) => api.create(url.CREATE_JOB, data);
 export const updateJobURL = (data) => api.create(url.UPDATE_JOB, data);
 export const jobsURL = (data) => api.create(url.JOBS, data);
 export const approveJobURL = (data) => api.create(url.APPROVE_JOBS, data);
-export const createjobStatusURL = (data) => api.create(url.CREATE_JOB_STATUS, data);
+export const createjobStatusURL = (data) =>
+  api.create(url.CREATE_JOB_STATUS, data);
 export const jobStatusURL = (data) => api.create(url.JOB_STATUS, data);
-export const updateJobStatusURL = (data) => api.create(url.UPDATE_JOB_STATUS, data);
+export const updateJobStatusURL = (data) =>
+  api.create(url.UPDATE_JOB_STATUS, data);
 
-export const updateUserProfileURL = (data) => api.create(url.UPDATE_USER_PROFILE, data);
+export const updateUserProfileURL = (data) =>
+  api.create(url.UPDATE_USER_PROFILE, data);
 export const jobseekersURL = (data) => api.create(url.JOBSEEKERS, data);
 export const employersURL = (data) => api.create(url.EMPLOYERS, data);
 
-
 export const industryURL = (data) => api.create(url.INDUSTRY, data);
-export const createIndustryURL = (data) =>api.create(url.CREATE_INDUSTRY, data);
-export const updateIndustryURL = (data) =>api.create(url.UPDATE_INDUSTRY, data);
+export const createIndustryURL = (data) =>
+  api.create(url.CREATE_INDUSTRY, data);
+export const updateIndustryURL = (data) =>
+  api.create(url.UPDATE_INDUSTRY, data);
 
 export const categoryURL = (data) => api.create(url.CATEGORY, data);
-export const createCategoryURL = (data) =>api.create(url.CREATE_CATEGORY, data);
-export const updateCategoryURL = (data) =>api.create(url.UPDATE_CATEGORY, data);
+export const createCategoryURL = (data) =>
+  api.create(url.CREATE_CATEGORY, data);
+export const updateCategoryURL = (data) =>
+  api.create(url.UPDATE_CATEGORY, data);
 
-export const createQuestionURL = (data) => api.create(url.CREATE_QUESTION, data);
-export const linkJobQuestionURL = (data) => api.create(url.LINK_QUESTIOSN, data);
-export const unlinkJobQuestionURL = (data) => api.create(url.UNLINK_QUESTIOSN, data);
-export const createBulkQuestionURL = (data) => api.create(url.CREATE_BULK_QUESTION, data);
+export const createQuestionURL = (data) =>
+  api.create(url.CREATE_QUESTION, data);
+export const linkJobQuestionURL = (data) =>
+  api.create(url.LINK_QUESTIOSN, data);
+export const unlinkJobQuestionURL = (data) =>
+  api.create(url.UNLINK_QUESTIOSN, data);
+export const createBulkQuestionURL = (data) =>
+  api.create(url.CREATE_BULK_QUESTION, data);
 
-export const viewMyQuestions = (data) => api.create(url.VIEW_QUESTIONS, data)
+export const viewMyQuestions = (data) => api.create(url.VIEW_QUESTIONS, data);
 
-export const SignUpURL = (data) =>api.create(url.SIGN_UP, data)
+export const SignUpURL = (data) => api.create(url.SIGN_UP, data);
 
 export const rateCardURL = (data) => api.create(url.RATE_CARD, data);
-export const updateRatecardURL = (data) => api.create(url.UPDATE_RATE_CARD, data);
-export const approveRateCardURL = (data) => api.create(url.APPROVE_RATE_CARD, data);
-export const createRateCardURL = (data) => api.create(url.CREATE_RATE_CARD, data);
+export const updateRatecardURL = (data) =>
+  api.create(url.UPDATE_RATE_CARD, data);
+export const approveRateCardURL = (data) =>
+  api.create(url.APPROVE_RATE_CARD, data);
+export const createRateCardURL = (data) =>
+  api.create(url.CREATE_RATE_CARD, data);
 
 export const courseContentURL = (data) => api.create(url.COURSE_CONTENT, data);
-export const saveCourseContetntURL = (data) => api.create(url.SAVE_COURSE_CONTENT, data);
-export const updateCourseContentURL = (data) => api.create(url.UPDATE_COURSE_CONTENT, data);
+export const saveCourseContetntURL = (data) =>
+  api.create(url.SAVE_COURSE_CONTENT, data);
+export const updateCourseContentURL = (data) =>
+  api.create(url.UPDATE_COURSE_CONTENT, data);
 
-export const coursePartnershipURL = (data) => api.create(url.COURSE_PARTNERSHIP, data);
-export const updateCoursePartnershipURL = (data) => api.create(url.UPDATE_COURSE_PARTNERSHIP, data);
-export const saveCoursePartnershipURL = (data) => api.create(url.SAVE_COURSE_PARTNERSHIP, data);
+export const coursePartnershipURL = (data) =>
+  api.create(url.COURSE_PARTNERSHIP, data);
+export const updateCoursePartnershipURL = (data) =>
+  api.create(url.UPDATE_COURSE_PARTNERSHIP, data);
+export const saveCoursePartnershipURL = (data) =>
+  api.create(url.SAVE_COURSE_PARTNERSHIP, data);
 
-export const courseScheduleURL = (data) => api.create(url.COURSE_SCHEDULE, data);
-export const saveCourseScheduleURL = (data) => api.create(url.SAVE_COURSE_SCHEDULE, data);
-export const updateCourseScheduleURL = (data) => api.create(url.UPDATE_COURSE_SCHEDULE, data);
+export const courseScheduleURL = (data) =>
+  api.create(url.COURSE_SCHEDULE, data);
+export const saveCourseScheduleURL = (data) =>
+  api.create(url.SAVE_COURSE_SCHEDULE, data);
+export const updateCourseScheduleURL = (data) =>
+  api.create(url.UPDATE_COURSE_SCHEDULE, data);
 
 export const courseURL = (data) => api.create(url.COURSE, data);
 export const updateCourseURL = (data) => api.create(url.UPDATE_COURSE, data);
@@ -502,40 +525,68 @@ export const saveCourseURL = (data) => api.create(url.SAVE_COURSE, data);
 export const paymentURL = (data) => api.create(url.PAYMENT, data);
 
 export const resetCodeURL = (data) => api.create(url.RESET_CODE, data);
-export const changePasswordURL = (data) => api.create(url.CHANGE_PASSWORD, data);
+export const changePasswordURL = (data) =>
+  api.create(url.CHANGE_PASSWORD, data);
 
-export const logoutURL = () =>api.create(url.LOGOUT)
+export const logoutURL = () => api.create(url.LOGOUT);
 
-export const activateUserURL = (data) =>api.create(url.ACTIVATE_USER, data)
+export const activateUserURL = (data) => api.create(url.ACTIVATE_USER, data);
 
-export const resendActivationCode = (data) => api.create(url.RESEND_ACTIVATION_CODE, data)
+export const resendActivationCode = (data) =>
+  api.create(url.RESEND_ACTIVATION_CODE, data);
 
+export const saveJobURL = (data) => api.create(url.SAVE_JOB, data);
+export const updateSavedJobsURL = (data) =>
+  api.create(url.UPDATE_SAVED_JOBS, data);
 
-export const saveJobURL = (data) => api.create(url.SAVE_JOB, data)
-export const updateSavedJobsURL = (data) => api.create(url.UPDATE_SAVED_JOBS, data)
+export const fullJobDetailsURL = (data) =>
+  api.create(url.FULL_JOB_DETAILS, data);
+export const applyForJobURL = (data) => api.create(url.APPLY_FOR_JOB, data);
 
-export const fullJobDetailsURL = (data) =>api.create(url.FULL_JOB_DETAILS, data)
-export const applyForJobURL = (data) =>api.create(url.APPLY_FOR_JOB, data)
+export const jobSeekerApplicationsURL = (data) =>
+  api.create(url.JOBSEEKER_APPLICATIONS, data);
+export const approveApplicationsURL = (data) =>
+  api.create(url.APPROVE_APPLICATIONS, data);
+export const employerShortlistApplicationsURL = (data) =>
+  api.create(url.EMPLOYER_SHORTLIST_APPLICATIONS, data);
+export const employerApplicationsURL = (data) =>
+  api.create(url.EMPLOYER_APPLICATIONS, data);
+export const updateLogoURL = (data) => api.create(url.UPDATE_LOGO, data);
 
-export const jobSeekerApplicationsURL = (data) => api.create(url.JOBSEEKER_APPLICATIONS, data)
-export const approveApplicationsURL = (data) => api.create(url.APPROVE_APPLICATIONS, data)
-export const employerShortlistApplicationsURL = (data) => api.create(url.EMPLOYER_SHORTLIST_APPLICATIONS, data)
-export const employerApplicationsURL = (data) => api.create(url.EMPLOYER_APPLICATIONS, data)
-export const updateLogoURL = (data) => api.create(url.UPDATE_LOGO, data)
+export const updateProfileImageURL = (data) =>
+  api.create(url.UPDATE_PROFILE_IMAGE, data);
 
+export const passwordCodeURL = (data) => api.create(url.PASSWORD_CODE, data);
+export const changePassURL = (data) => api.create(url.CHANGE_PASS, data);
 
-export const updateProfileImageURL = (data) => api.create(url.UPDATE_PROFILE_IMAGE, data)
+export const transactionsURL = (data) => api.create(url.TRANSACTIONS, data);
+export const generalJobsURL = (data) => api.create(url.GENERAL_JOBS, data);
 
-export const passwordCodeURL = (data) => api.create(url.PASSWORD_CODE, data)
-export const changePassURL = (data) => api.create(url.CHANGE_PASS, data)
+export const invoiceURL = (data) => api.create(url.INVOICES, data);
+export const payInvoiceURL = (data) => api.create(url.PAY_INVOICE, data);
 
+export const sendServiceURL = (data) => api.create(url.SERVICE, data);
 
-export const transactionsURL = (data) => api.create(url.TRANSACTIONS, data)
-export const generalJobsURL = (data) => api.create(url.GENERAL_JOBS, data)
+export const myProfileURL = (data) => api.create(url.VIEW_PROFILE, data);
 
-export const invoiceURL = (data) => api.create(url.INVOICES, data)
-export const payInvoiceURL = (data) => api.create(url.PAY_INVOICE, data)
+export const confirmPay = (data) => api.create(url.CONFIRM_PAY, data);
 
-export const sendServiceURL = (data) => api.create(url.SERVICE, data)
+export const homeCoursesURL = (data) => api.create(url.HOME_COURSE, data);
+export const fetchNewsURL = (data) => api.create(url.FETCH_NEWS, data);
 
-export const myProfileURL = (data) => api.create(url.VIEW_PROFILE, data)
+export const saveUserFeedsURL = (data) => api.create(url.SAVE_USER_FEEDS, data);
+export const saveFeedsURL = (data) => api.create(url.SAVE_FEEDS, data);
+export const updateFeedsURL = (data) => api.create(url.UPDATE_FEEDS, data);
+export const feedsURL = (data) => api.create(url.FEEDS, data);
+export const approveFeedsURL = (data) => api.create(url.APPROVE_FEEDS, data);
+export const myfeedsURL = (data) => api.create(url.MY_FEEDS, data);
+export const findJobURL = (data) => api.create(url.FIND_JOB, data);
+
+export const updateUserFeedURL = (data) =>
+  api.create(url.UPDATE_USER_FEEDS, data);
+
+export const generalIndustriesURL = (data) =>
+  api.create(url.GENERAL_INDUSTRIES, data);
+
+export const generalCategoriesURL = (data) =>
+  api.create(url.GENERAL_CATEGORIES, data);

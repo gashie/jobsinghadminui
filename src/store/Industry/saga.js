@@ -5,6 +5,8 @@ import {
   CATEGORY,
   CREATE_CATEGORY,
   CREATE_INDUSTRY,
+  GENERAL_CATEGORIES,
+  GENERAL_INDUSTRIES,
   INDUSTRY,
   UPDATE_CATEGORY,
   UPDATE_INDUSTRY,
@@ -28,12 +30,18 @@ import {
   updateCategorySuccess,
   updateIndustryError,
   updateIndustrySuccess,
-  category as categoryAction
+  category as categoryAction,
+  generalCategorySuccess,
+  generalCategoryError,
+  generalIndustrySuccess,
+  generalIndustryError
 } from "./action";
 import {
   categoryURL,
   createCategoryURL,
   createIndustryURL,
+  generalCategoriesURL,
+  generalIndustriesURL,
   industryURL,
   updateCategoryURL,
   updateIndustryURL,
@@ -120,7 +128,7 @@ function* category({ payload: data }) {
       //   autoClose: 3000,
       // });
     } else {
-      yield put(categoryError(response));
+      yield put(categoryError(response.data.message));
       // toast.success(`${response?.data?.message}`, {
       //   autoClose: 3000,
       // });
@@ -128,6 +136,47 @@ function* category({ payload: data }) {
   } catch (error) {
     console.log(error);
     yield put(categoryError(error));
+  }
+}
+function* generalCategories({ payload: data }) {
+  try {
+    const response = yield call(generalCategoriesURL, data);
+    console.log(response);
+    if (response && response?.data?.status === 1) {
+      yield put(generalCategorySuccess(response?.data?.data));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    } else {
+      yield put(generalCategoryError(response.data.message));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(generalCategoryError(error));
+  }
+}
+
+function* generalIndustries({ payload: data }) {
+  try {
+    const response = yield call(generalIndustriesURL, data);
+    console.log(response);
+    if (response && response?.data?.status === 1) {
+      yield put(generalIndustrySuccess(response?.data?.data));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    } else {
+      yield put(generalIndustryError(response.data.message));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(generalIndustryError(error));
   }
 }
 
@@ -185,6 +234,8 @@ function* IndustrySaga() {
   yield takeEvery(UPDATE_INDUSTRY, updateIndustry);
   yield takeEvery(CREATE_INDUSTRY, createIndustry);
   yield takeEvery(CATEGORY, category);
+  yield takeEvery(GENERAL_CATEGORIES, generalCategories);
+  yield takeEvery(GENERAL_INDUSTRIES, generalIndustries);
   yield takeEvery(UPDATE_CATEGORY, updateCategory);
   yield takeEvery(CREATE_CATEGORY, createCategory);
   //yield takeEvery(UPDATE_PROFILE, updateProfile);

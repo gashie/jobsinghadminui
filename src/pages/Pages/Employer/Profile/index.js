@@ -259,7 +259,7 @@ const EmployerProfile = () => {
                               Website:
                             </h6>
                             <h6 style={{ flex: "0 0 70%" }}>
-                              ghashietechnologie.net
+                            {userInfo?.userInfo?.company?.website}
                             </h6>
                           </div>
                           <div
@@ -273,7 +273,7 @@ const EmployerProfile = () => {
                               Facebook Page Url:
                             </h6>
                             <h6 style={{ flex: "0 0 70%" }}>
-                              ghashietechnologie.net
+                            {userInfo?.userInfo?.company?.facebook === null ? "-" :  userInfo?.userInfo?.company?.facebook}
                             </h6>
                           </div>
                           <div
@@ -287,7 +287,7 @@ const EmployerProfile = () => {
                               Twitter Page Url:
                             </h6>
                             <h6 style={{ flex: "0 0 70%" }}>
-                              ghashietechnologie.net
+                            {userInfo?.userInfo?.company?.twitter === null ? "-" :  userInfo?.userInfo?.company?.twitter}
                             </h6>
                           </div>
                           <div
@@ -301,7 +301,7 @@ const EmployerProfile = () => {
                               LinkedIn Page Url:
                             </h6>
                             <h6 style={{ flex: "0 0 70%" }}>
-                              ghashietechnologie.net
+                            {userInfo?.userInfo?.company?.linkedin === null ? "-" :  userInfo?.userInfo?.company?.linkedin}
                             </h6>
                           </div>
                           <div

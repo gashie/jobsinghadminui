@@ -5,6 +5,7 @@ export * from "./auth/register/actions";
 export * from "./auth/login/actions";
 export * from "./auth/forgetpwd/actions";
 export * from "./auth/profile/actions";
+
 //calendar
 // export * from "./calendar/actions";
 // //chat
@@ -60,3 +61,4 @@ export * from './Industry/action'
 export * from "./Questions/action"
 export * from "./Courses/action"
 export * from "./Rates/action"
+export * from './Feeds/action'

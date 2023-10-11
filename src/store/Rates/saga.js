@@ -21,13 +21,11 @@ import {
   rateCardSuccess,
   rateCardError,
   updateRateCardSuccess,
- 
   approveRateCardSuccess,
   approveRateCardError,
   updateRateCardError,
   createRateCardSuccess,
   createRateCardError,
- 
   makePaymentSuccess,
   makePaymentError,
   transactionsSuccess,
@@ -35,8 +33,8 @@ import {
 } from "./action";
 import {
   approveRateCardURL,
+  confirmPay,
   createRateCardURL,
-
   paymentURL,
   rateCardURL,
   transactionsURL,
@@ -65,7 +63,6 @@ function* rateCards({ payload: data }) {
       // });
     }
   } catch (error) {
-    
     yield put(rateCardError(error));
   }
 }
@@ -79,8 +76,14 @@ function* pay({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      const link = yield select((state) => state.Rates.payInfo)
-      window.open(link?.authorization_url, "_blank")
+      const link = yield select((state) => state.Rates.payInfo);
+      const reference = yield select((state) => state.Rates.payInfo);
+
+       yield call(confirmPay, {
+        reference: reference?.reference,
+      });
+     
+      window.open(link?.authorization_url, "_blank");
     } else {
       yield put(makePaymentError(response));
       toast.success(`${response.data.message}`, {

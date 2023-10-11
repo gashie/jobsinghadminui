@@ -13,6 +13,7 @@ import {
   makeInvoicePaymentSuccess
 } from "./action";
 import {
+  confirmPay,
   createIndustryURL,
   createInvoiceURL,
   industryURL,
@@ -108,7 +109,13 @@ function* pay({ payload: data }) {
         autoClose: 3000,
       });
       const link = yield select((state) => state.Invoice.payInfo)
+      const reference = yield select((state) => state.Invoice.payInfo);
+
+      yield call(confirmPay, {
+       reference: reference?.reference,
+     });
       window.open(link?.authorization_url, "_blank")
+      
     } else {
       yield put(makeInvoicePaymentError(response));
       toast.success(`${response.data.message}`, {

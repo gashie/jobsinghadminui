@@ -44,7 +44,7 @@ const EditEmployerProfile = ({ toProfile }) => {
       gender: "M",
       userType: "jobseeker",
       companyDescription: userInfo?.userInfo?.company?.companyProfile || "",
-      website: userInfo?.userInfo?.company?.wesbite || "",
+      website: userInfo?.userInfo?.company?.website || "",
     },
     validateOnChange: true,
     validationSchema: Yup.object({
@@ -74,10 +74,10 @@ const EditEmployerProfile = ({ toProfile }) => {
           roleid: "3",
           address: values.address,
           country: values.country,
-          birthDate: values.birthDate,
+          // birthDate: values.birthDate,
           maritalStatus: 1,
           gender: "M",
-          userType: "jobseeker",
+          userType: "employer",
         },
       };
 
@@ -117,6 +117,33 @@ const EditEmployerProfile = ({ toProfile }) => {
             >
               <div className="">
                 <div>
+                  <Row className="mb-3">
+                    <Col lg={3}>
+                      <p
+                        htmlFor="nameInput"
+                        className="form-right "
+                        style={{ textAlign: "left" }}
+                      >
+                        Company Name:
+                      </p>
+                    </Col>
+                    <Col lg={9}>
+                      <Input
+                        type="text"
+                        className="form-control p-3"
+                        id="companyName"
+                        placeholder=""
+                        onChange={validation.handleChange}
+                        value={validation.values.companyName}
+                        invalid={
+                          validation.touched.companyName &&
+                          validation.errors.companyName
+                            ? true
+                            : false
+                        }
+                      />
+                    </Col>
+                  </Row>
                   <Row className="mb-3">
                     <Col lg={3}>
                       <p
@@ -271,7 +298,7 @@ const EditEmployerProfile = ({ toProfile }) => {
                       />
                     </Col>
                   </Row>
-                  <Row className="mb-3">
+                  {/* <Row className="mb-3">
                     <Col lg={3}>
                       <p
                         htmlFor="nameInput"
@@ -297,7 +324,7 @@ const EditEmployerProfile = ({ toProfile }) => {
                         }
                       />
                     </Col>
-                  </Row>
+                  </Row> */}
 
                   <Row className="mb-3">
                     <Col lg={3}>
@@ -340,9 +367,9 @@ const EditEmployerProfile = ({ toProfile }) => {
 
                     <Col lg={9}>
                       <Input
-                        type="url"
+                        type="text"
                         className="form-control p-3"
-                        id="websiteUrl"
+                        id="website"
                         placeholder=""
                         onChange={validation.handleChange}
                         value={validation.values.website}
@@ -369,7 +396,7 @@ const EditEmployerProfile = ({ toProfile }) => {
 
                     <Col lg={9}>
                       <Input
-                        type="url"
+                        type="text"
                         className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
@@ -390,7 +417,7 @@ const EditEmployerProfile = ({ toProfile }) => {
 
                     <Col lg={9}>
                       <Input
-                        type="url"
+                        type="text"
                         className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""
@@ -411,7 +438,7 @@ const EditEmployerProfile = ({ toProfile }) => {
 
                     <Col lg={9}>
                       <Input
-                        type="url"
+                        type="text"
                         className="form-control p-3"
                         id="websiteUrl"
                         placeholder=""

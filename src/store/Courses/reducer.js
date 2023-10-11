@@ -41,6 +41,9 @@ import {
   FIND_COURSE,
   FIND_COURSE_SUCCESS,
   FIND_COURSE_ERROR,
+  HOME_COURSE,
+  HOME_COURSE_ERROR,
+  HOME_COURSE_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
@@ -55,12 +58,16 @@ const initialState = {
   findCourse: {},
   findCourseLoading: false,
   findCourseError: false,
+  homeCourseLoading: false,
+  homeCourseError: false,
+  homeCourses: [],
 };
 
 const Courses = (state = initialState, action) => {
   switch (action.type) {
     // Common loading and error handling for multiple actions
     case COURSE:
+    case HOME_COURSE:
     case SAVE_COURSE:
     case UPDATE_COURSE:
     case APPROVE_COURSE:
@@ -77,9 +84,12 @@ const Courses = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false,
+        homeCourseLoading: true,
+        homeCourseError: false,
       };
     // Common error handling for multiple actions
     case COURSE_ERROR:
+    case HOME_COURSE_ERROR:
     case SAVE_COURSE_ERROR:
     case UPDATE_COURSE_ERROR:
     case APPROVE_COURSE_ERROR:
@@ -96,10 +106,13 @@ const Courses = (state = initialState, action) => {
         ...state,
         loading: false,
         error: true,
+        homeCourseError: true,
+        homeCourseLoading: false,
         errMssg: action.payload,
       };
     // Specific success and data handling for each action
     case COURSE_SUCCESS:
+    case HOME_COURSE_SUCCESS:
     case SAVE_COURSE_SUCCESS:
     case UPDATE_COURSE_SUCCESS:
     case APPROVE_COURSE_SUCCESS:
@@ -107,6 +120,8 @@ const Courses = (state = initialState, action) => {
         ...state,
         loading: false,
         error: false,
+        homeCourseError: false,
+        homeCourseLoading: false,
         courseInfo: action.payload,
       };
     case COURSE_PARTNERSHIP_SUCCESS:

@@ -70,6 +70,7 @@ import IndustrySaga from "./Industry/saga";
 import QuestionsSaga from "./Questions/saga";
 import CoursesSaga from "./Courses/saga";
 import RatesSaga from "./Rates/saga";
+import FeedsSaga from './Feeds/saga';
 
 
 
@@ -111,5 +112,6 @@ export default function* rootSaga() {
     fork(QuestionsSaga),
     fork(CoursesSaga),
     fork(RatesSaga),
+    fork(FeedsSaga),
   ]);
 }

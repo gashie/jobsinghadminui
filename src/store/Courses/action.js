@@ -41,6 +41,9 @@ import {
     FIND_COURSE,
     FIND_COURSE_SUCCESS,
     FIND_COURSE_ERROR,
+    HOME_COURSE,
+    HOME_COURSE_ERROR,
+    HOME_COURSE_SUCCESS,
     } from "./actionTypes";
     
     // Action creators
@@ -62,6 +65,27 @@ import {
   export function courseSuccess(data) {
     return {
       type: COURSE_SUCCESS,
+      payload: data,
+    };
+  }
+
+  export function homeCourse(payload) {
+    return {
+      type: HOME_COURSE,
+      payload: payload,
+    };
+  }
+  
+  export function homeCourseError(error) {
+    return {
+      type: HOME_COURSE_ERROR,
+      payload: error,
+    };
+  }
+  
+  export function homeCourseSuccess(data) {
+    return {
+      type: HOME_COURSE_SUCCESS,
       payload: data,
     };
   }

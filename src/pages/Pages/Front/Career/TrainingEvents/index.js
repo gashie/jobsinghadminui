@@ -50,7 +50,7 @@ import CategoryFilter from "./CategoryFilter";
 import MonthFilter from "./MonthFilter";
 import YearFilter from "./YearFilter";
 import LocationFilter from "./LocationFilter";
-import { course, frontCourse } from "../../../../../store/actions";
+import { course, frontCourse, homeCourse } from "../../../../../store/actions";
 import { formatDate } from "../../../../../Components/Hooks/formatDate";
 
 const SingleOptions = [
@@ -75,7 +75,7 @@ const TrainingEvents = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(course({ viewAction: "" }));
+    dispatch(homeCourse({ viewAction: "" }));
   }, [dispatch]);
 
   const [productList, setProductList] = useState([]);
@@ -535,6 +535,8 @@ const TrainingEvents = (props) => {
                     <div className="card-body pt-0">
                       {eventView === "list" ? (
                         <>
+
+
                           {filteredCourses.map((data) => (
 
          
@@ -643,6 +645,8 @@ const TrainingEvents = (props) => {
 
 
                           ))}
+
+                          
                         </>
                       ) : (
                         // Grid view

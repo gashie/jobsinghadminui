@@ -11,6 +11,7 @@ import {
   TabPane,
   TabContent,
   Nav,
+  Spinner,
 } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { jobGrid } from "../../../../common/data/appsJobs";
@@ -20,7 +21,10 @@ import SimpleBar from "simplebar-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   category,
+  findJob,
   fullJobDetails,
+  generalCategory,
+  generalIndustry,
   generalJobs,
   saveJobs,
   searchJob,
@@ -129,7 +133,7 @@ const FeaturedJobs = () => {
   const endIndex = startIndex + itemsPerPage;
 
   // Get the current page of items
-  const filter = (jobsInfo)?.slice(startIndex, endIndex);
+  const filter = jobsInfo?.slice(startIndex, endIndex);
 
   // Function to handle page changes
   const handlePageChange = (page) => {
@@ -140,14 +144,19 @@ const FeaturedJobs = () => {
   const isPrevDisabled = currentPage === 1;
   const isNextDisabled = endIndex >= jobsInfo?.length;
 
-  const { catLoading, catError, categoryInfo } = useSelector((state) => ({
-    catLoading: state.Industry.loading,
-    catError: state.Industry.error,
-    categoryInfo: state.Industry.categoryInfo,
-  }));
+  const { catLoading, catError, categoryInfo, inLoading, inError, inInfo } =
+    useSelector((state) => ({
+      catLoading: state.Industry.generalCategoriesLoading,
+      inLoading: state.Industry.generalIndustriesLoading,
+      catError: state.Industry.generalCategoriesError,
+      inError: state.Industry.generalIndustriesError,
+      categoryInfo: state.Industry.generalCategoriesData,
+      inInfo: state.Industry.generalIndustriesData,
+    }));
 
   useEffect(() => {
-    dispatch(category({ viewAction: "" }));
+    dispatch(generalCategory({ viewAction: "" }));
+    dispatch(generalIndustry({ viewAction: "" }));
   }, [dispatch]);
 
   const [likedJobs, setLikedJobs] = useState({});
@@ -221,32 +230,38 @@ const FeaturedJobs = () => {
                           style={{ color: "#244a59" }}
                         ></i>
                       </Button>
-                      <div className="avatar-xxl mb-4 ">
-                        <div className="">
+                      <div className="avatar-xxl mb-4">
+                        <div
+                          className="logo-container"
+                          style={{
+                            maxWidth: "100px",
+                            maxHeight: "75px",
+                            textAlign: "center",
+                          }}
+                        >
                           <img
                             src={
                               "https://108.166.181.225:5050/uploads/image/logos/" +
                               item?.companyLogo
                             } // Use the actual image URL
                             alt=""
-                            className="avatar-md img-fluid"
+                            style={{ maxWidth: "100%", maxHeight: "100%" }}
                           />
                         </div>
                       </div>
-                     
-                        <h5
-                          className="fw-bolder"
-                          style={{ color: "#244a59" }}
-                          onClick={() => {
-                            // dispatch(searchJob(item?.jobTitle));
-                            dispatch(fullJobDetails({ jobId: item?.jobId }));
-                            navigate(`/job-details?.title=B&id=${item?.jobId}`);
-                          }}
-                        >
-                          {item.jobTitle}
-                        </h5>
-                     
-                      <p className="text-muted mt-5">
+                      <h5
+                        className="fw-bolder mx-3"
+                        style={{ color: "#244a59"}}
+                        onClick={() => {
+                          // dispatch(searchJob(item?.jobTitle));
+                          dispatch(findJob({ jobId: item?.jobId }));
+                          navigate(`/job-details?.title=B&id=${item?.jobId}`);
+                        }}
+                      >
+                        {item.jobTitle}
+                      </h5>
+
+                      <p className="text-muted mt-5  mx-3">
                         <div
                           dangerouslySetInnerHTML={{
                             __html: decodeHTML(
@@ -256,11 +271,11 @@ const FeaturedJobs = () => {
                           }}
                         ></div>
                       </p>
-                      <p className="text-muted mt-5">
+                      <p className="text-muted mt-5  mx-3">
                         <i className="ri-map-pin-2-line text-muted me-1 align-bottom fs-20"></i>{" "}
                         {item.jobLocation}
                       </p>
-                      <p className="text-muted mt-4">
+                      <p className="text-muted mt-4  mx-3">
                         <i className="bx bx-calendar text-muted me-1 align-bottom fs-20"></i>{" "}
                         Expires {formatDate(item?.goLiveDate)}
                       </p>
@@ -321,19 +336,22 @@ const FeaturedJobs = () => {
                 <TabPane tabId="1" id="home1">
                   <div className="d-flex">
                     <div
-                      className="ms-2 p-3"
+                      className="ms-2 p-2"
                       style={{
                         display: "flex",
-                        gap: "2rem",
+                        gap: "0rem",
                         flexWrap: "wrap",
                       }}
                     >
-                      {catLoading === false && catError === false ? (
+                      {catLoading === false && catError === null ? (
                         categoryInfo?.map((item) => (
                           <>
                             <Col md={2} xl={3}>
                               <p
-                                style={{ cursor: "pointer" }}
+                                style={{
+                                  cursor: "pointer",
+                                  width: "max-width",
+                                }}
                                 onClick={() => {
                                   dispatch(searchJob(item.jobCategoryName));
                                   navigate("/job-list");
@@ -345,39 +363,43 @@ const FeaturedJobs = () => {
                           </>
                         ))
                       ) : (
-                        <p>Loading</p>
+                        <div className="d-flex justify-content-center align-items-center">
+                          <Spinner />
+                        </div>
                       )}
                     </div>
                   </div>
                 </TabPane>
                 <TabPane tabId="2">
                   <div className="d-flex">
-                    <div
-                      className="ms-2 p-3"
+                  <div
+                      className="ms-2 p-2"
                       style={{
                         display: "flex",
                         gap: "2rem",
                         flexWrap: "wrap",
                       }}
                     >
-                      {catLoading === false && catError === false ? (
-                        categoryInfo?.map((item) => (
+                      {inLoading === false && inError === null ? (
+                        inInfo?.map((item) => (
                           <>
                             <Col md={2} xl={3}>
                               <p
                                 style={{ cursor: "pointer" }}
                                 onClick={() => {
-                                  dispatch(searchJob(item.jobCategoryName));
+                                  dispatch(searchJob(item.industryTitle));
                                   navigate("/job-list");
                                 }}
                               >
-                                {item.jobCategoryName}
+                                {item.industryTitle}
                               </p>
                             </Col>
                           </>
                         ))
                       ) : (
-                        <p>Loading</p>
+                        <div className="d-flex justify-content-center align-items-center">
+                          <Spinner />
+                        </div>
                       )}
                     </div>
                   </div>

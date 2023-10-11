@@ -12,9 +12,15 @@ import { Link, useNavigate } from "react-router-dom";
 import lash from "./lash.png";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fullJobDetails, saveJobs, searchJob } from "../../../../store/actions";
+import {
+  findJob,
+  fullJobDetails,
+  saveJobs,
+  searchJob,
+} from "../../../../store/actions";
 import ClipboardJS from "clipboard";
 import { Popover, PopoverHeader, PopoverBody } from "reactstrap";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
 
 const JobDetails = () => {
   var [left, setLeft] = useState("");
@@ -55,9 +61,9 @@ const JobDetails = () => {
       loading: state.JobAlerts.savedJobsLoading,
       error: state.JobAlerts.savedJobsError,
       savedJobsInfo: state.JobAlerts.savedJobs,
-      details: state.JobAlerts.fullJobDetails,
-      detailLoading: state.JobAlerts.fullJobDetailsLoading,
-      detailerror: state.JobAlerts.fullJobDetailsError,
+      details: state.JobAlerts.findJobData,
+      detailLoading: state.JobAlerts.findJobLoading,
+      detailerror: state.JobAlerts.findJobError,
     }));
 
   const decodeHTML = (html) => {
@@ -70,7 +76,7 @@ const JobDetails = () => {
   const navigate = useNavigate();
 
   const [popoverOpen, setPopoverOpen] = useState(false);
-  const [sharedUrl, setSharedUrl] = useState('');
+  const [sharedUrl, setSharedUrl] = useState("");
 
   const togglePopover = () => {
     setPopoverOpen(!popoverOpen);
@@ -100,44 +106,75 @@ const JobDetails = () => {
     togglePopover();
   };
 
-
   // Get the current URL
-const currentUrl = window.location.href;
+  const currentUrl = window.location.href;
 
-// Create a URL object
-const url = new URL(currentUrl);
+  // Create a URL object
+  const url = new URL(currentUrl);
 
-// Get the search params
-const searchParams = url.searchParams;
+  // Get the search params
+  const searchParams = url.searchParams;
 
-// Get individual parameters
-const param1 = searchParams.get('title');
-const param2 = searchParams.get('id');
+  // Get individual parameters
+  const param1 = searchParams.get("title");
+  const param2 = searchParams.get("id");
 
-
-
-
-  useEffect(()=>{
-  dispatch(fullJobDetails({jobId: param2}))
-  }, [dispatch, param2])
+  useEffect(() => {
+    dispatch(findJob({ jobId: param2 }));
+  }, [dispatch, param2]);
 
   // Function to copy the URL to clipboard
   const copyToClipboard = () => {
-    const clipboard = new ClipboardJS('.copy-button', {
+    const clipboard = new ClipboardJS(".copy-button", {
       text: function () {
         return sharedUrl;
       },
     });
 
-    clipboard.on('success', function (e) {
+    clipboard.on("success", function (e) {
       e.clearSelection();
-      alert('URL copied to clipboard');
+      alert("URL copied to clipboard");
     });
+  };
+
+  const shareOnLinkedIn = () => {
+    const url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+      currentUrl
+    )}&title=${encodeURIComponent(details?.jobTitle)}`;
+    window.open(url, "_blank");
+  };
+
+  const shareOnFacebook = () => {
+    const url = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(
+      currentUrl
+    )}`;
+    window.open(url, "_blank");
+  };
+
+  const shareOnTwitter = () => {
+    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+      currentUrl
+    )}&text=${encodeURIComponent(details?.jobTitle)}`;
+    window.open(url, "_blank");
+  };
+
+  const shareOnWhatsApp = () => {
+    const url = `whatsapp://send?text=${encodeURIComponent(
+      `${details?.jobTitle} ${currentUrl}`
+    )}`;
+    window.location.href = url;
+  };
+
+  const shareOnMessenger = () => {
+    const url = `https://www.messenger.com/share.php?u=${encodeURIComponent(
+      currentUrl
+    )}`;
+    window.open(url, "_blank");
   };
 
   return (
     <>
-      {detailLoading === false && detailerror === false ? (
+      {detailLoading === false && detailerror === null ? (
         <div style={{ backgroundColor: "white" }} className="p-5">
           <Row style={{ display: "flex", justifyContent: "center" }}>
             <h5
@@ -172,7 +209,7 @@ const param2 = searchParams.get('id');
                           <img
                             src={
                               "https://108.166.181.225:5050/uploads/image/logos/" +
-                              details?.jobInfo?.companyLogo
+                              details?.companyLogo
                             }
                             alt=""
                             className="avatar-xxl img-fluid"
@@ -181,29 +218,29 @@ const param2 = searchParams.get('id');
                       </div>
                       <Link to="#!">
                         <h5 style={{ color: "#244a59", fontWeight: "bolder" }}>
-                          {details?.jobInfo?.jobTitle}
+                          {details?.jobTitle}
                         </h5>
                       </Link>
 
                       <p className="fw-bold mt-4" style={{ color: "#244a59" }}>
                         {" "}
                         <i className="ri-building-4-line  me-1 align-bottom"></i>{" "}
-                        {details?.jobInfo?.companyName}
+                        {details?.companyName}
                       </p>
                       <p className="">
                         {" "}
                         <i className="bx bx-calendar me-1 align-bottom"></i>{" "}
-                        {/* {details?.jobInfo?.jobStatus} */}-
+                        {formatDate(details?.goLiveDate)}
                       </p>
                       <p className="">
                         {" "}
                         <i className="ri-briefcase-line  me-1 align-bottom"></i>{" "}
-                        {details?.jobInfo?.jobStatus}
+                        {details?.jobStatus}
                       </p>
                       <p className="">
                         {" "}
                         <i className="ri-map-pin-2-line me-1 align-bottom"></i>{" "}
-                        {details?.jobInfo?.jobLocation}
+                        {details?.jobLocation}
                       </p>
                       <div
                         style={{
@@ -227,9 +264,7 @@ const param2 = searchParams.get('id');
                             border: "1px solid #244a59",
                           }}
                           onClick={() => {
-                            dispatch(
-                              saveJobs({ jobId: details?.jobInfo?.jobId })
-                            );
+                            dispatch(saveJobs({ jobId: details?.jobId }));
                           }}
                         >
                           <i
@@ -275,19 +310,28 @@ const param2 = searchParams.get('id');
                             style={{ color: "#244a59" }}
                           ></i>
                           <p className="m-1">Share</p>
-                          <Popover placement="bottom" isOpen={popoverOpen} target="shareButton" toggle={togglePopover}>
-        <PopoverHeader>Share URL</PopoverHeader>
-        <PopoverBody>
-          {sharedUrl && (
-            <>
-              <div>{sharedUrl}</div>
-              <button className="copy-button" data-clipboard-text={sharedUrl} onClick={copyToClipboard}>
-                Copy URL
-              </button>
-            </>
-          )}
-        </PopoverBody>
-      </Popover>
+                          <Popover
+                            placement="bottom"
+                            isOpen={popoverOpen}
+                            target="shareButton"
+                            toggle={togglePopover}
+                          >
+                            <PopoverHeader>Share URL</PopoverHeader>
+                            <PopoverBody>
+                              {sharedUrl && (
+                                <>
+                                  <div>{sharedUrl}</div>
+                                  <button
+                                    className="copy-button"
+                                    data-clipboard-text={sharedUrl}
+                                    onClick={copyToClipboard}
+                                  >
+                                    Copy URL
+                                  </button>
+                                </>
+                              )}
+                            </PopoverBody>
+                          </Popover>
                         </Button>
                       </div>
                     </Col>
@@ -329,7 +373,7 @@ const param2 = searchParams.get('id');
 
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: decodeHTML(details?.jobInfo?.jobDescription),
+                        __html: decodeHTML(details?.jobDescription),
                       }}
                     ></div>
 
@@ -431,79 +475,79 @@ const param2 = searchParams.get('id');
 
                     <ul className="list-inline mb-0 text-center mt-2">
                       <li className="list-inline-item">
-                        <Link
-                          to="#!"
+                        <button
                           className="btn btn-icon p-4"
                           style={{
                             borderRadius: "2rem",
                             backgroundColor: "#4477BB",
                           }}
+                          onClick={shareOnLinkedIn}
                         >
                           <i
                             className="ri-linkedin-line fs-20"
                             style={{ color: "white" }}
                           ></i>
-                        </Link>
+                        </button>
                       </li>
                       <li className="list-inline-item">
-                        <Link
-                          to="#!"
+                        <button
                           className="btn btn-icon p-4"
                           style={{
                             borderRadius: "2rem",
                             backgroundColor: "#405189",
                           }}
+                          onClick={shareOnFacebook}
                         >
                           <i
                             className="ri-facebook-line fs-20"
                             style={{ color: "white" }}
                           ></i>
-                        </Link>
+                        </button>
                       </li>
                       <li className="list-inline-item">
-                        <Link
-                          to="#!"
+                        <button
                           className="btn btn-icon btn-soft-success p-4"
                           style={{
                             borderRadius: "2rem",
                             backgroundColor: "#299CDB",
                           }}
+                          onClick={shareOnTwitter}
                         >
                           <i
                             className="ri-twitter-line fs-20"
                             style={{ color: "white" }}
                           ></i>
-                        </Link>
+                        </button>
                       </li>
                       <li className="list-inline-item">
-                        <Link
-                          to="#!"
+                        <button
                           className="btn btn-icon btn-soft-secondary p-4"
                           style={{
                             borderRadius: "2rem",
                             backgroundColor: "#5CCD5A",
                           }}
+                          onClick={shareOnWhatsApp}
                         >
                           <i
                             className="ri-whatsapp-line fs-20"
                             style={{ color: "white" }}
                           ></i>
-                        </Link>
+                        </button>
                       </li>
                       <li className="list-inline-item">
-                        <Link
-                          to="#!"
+                        <button
                           className="btn btn-icon btn-soft-danger p-4"
                           style={{
                             borderRadius: "2rem",
                             backgroundColor: "#3D7DDC",
                           }}
+                          onClick={shareOnMessenger}
                         >
                           <i
                             className="ri-messenger-line fs-20"
                             style={{ color: "white" }}
                           ></i>
-                        </Link>
+                        </button>
                       </li>
                     </ul>
                   </Card>
@@ -569,43 +613,34 @@ const param2 = searchParams.get('id');
                         <h4 className="fw-bolder" style={{ color: "#244a59" }}>
                           Similar Jobs
                         </h4>
+
+                        {details?.similarjobs?.map((job) => (
+                          <div key={job?.id}>
+                            <hr />
+                            <h5
+                              className="p-2 fw-bolder"
+                              style={{ color: "#244a59", cursor: 'pointer' }}
+                              onClick={()=>{
+                                dispatch(
+                                  findJob({
+                                    jobId: job?.jobId,
+                                  })
+                                );
+                                navigate(
+                                  `/job-details?.title=B&id=${job?.jobId}`
+                                );
+                              }}
+                            >
+                              {job?.jobTitle}
+                            </h5>
+                            <p className="p-2 fw-bolder">{job?.companyName}</p>
+                            <p className="p-2 mt-3  text-muted">
+                              {job?.jobLocation}
+                            </p>
+                          </div>
+                        ))}
                         <hr />
-                        <h5
-                          className="p-2 fw-bolder"
-                          style={{ color: "#244a59" }}
-                        >
-                          GFRA Community Agent
-                        </h5>
-                        <p className="p-2 fw-bolder">Terta Tech ARD</p>
-                        <p className="p-2 mt-3  text-muted">Accra</p>
-                        <hr />
-                        <h5
-                          className="p-2 fw-bolder"
-                          style={{ color: "#244a59" }}
-                        >
-                          GFRA Community Agent
-                        </h5>
-                        <p className="p-2 fw-bolder">Terta Tech ARD</p>
-                        <p className="p-2 mt-3 text-muted">Accra</p>
-                        <hr />
-                        <h5
-                          className="p-2 fw-bolder"
-                          style={{ color: "#244a59" }}
-                        >
-                          GFRA Community Agent
-                        </h5>
-                        <p className="p-2 fw-bolder">Terta Tech ARD</p>
-                        <p className="p-2 mt-3 text-muted">Accra</p>
-                        <hr />
-                        <h5
-                          className="p-2 fw-bolder"
-                          style={{ color: "#244a59" }}
-                        >
-                          GFRA Community Agent
-                        </h5>
-                        <p className="p-2 fw-bolder">Terta Tech ARD</p>
-                        <p className="p-2 mt-3  text-muted">Accra</p>
-                        <hr />
+
                         <Button
                           style={{ width: "100%", border: "1px solid #244a59" }}
                           className="btn btn-light p-3 mt-3"
@@ -636,7 +671,7 @@ const param2 = searchParams.get('id');
             </>
           ) : (
             <>
-              <p className="fw-light mt-5">Please login to View Job Detail</p>
+              <p className="fw-light mt-5">Error Loading Job detail</p>
             </>
           )}
         </div>

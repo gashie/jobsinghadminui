@@ -20,7 +20,7 @@ import {
   APPLY_FOR_JOBS, 
   APPLY_FOR_JOBS_ERROR, 
   APPLY_FOR_JOBS_SUCCESS, 
-  FULL_JOB_DETAILS, FULL_JOB_DETAILS_ERROR, FULL_JOB_DETAILS_SUCCESS
+  FULL_JOB_DETAILS, FULL_JOB_DETAILS_ERROR, FULL_JOB_DETAILS_SUCCESS, FIND_JOB, FIND_JOB_SUCCESS, FIND_JOB_ERROR
 } from "./actionTypes";
 
 const initalState = {
@@ -38,6 +38,9 @@ const initalState = {
   fullJobDetailsError: false,
   applyForJobsLoading: false,
   applyForJobsError: false,
+  findJobData: null,
+  findJobLoading: false,
+  findJobError: null,
 };
 
 const JobAlerts = (state = initalState, action) => {
@@ -215,6 +218,26 @@ const JobAlerts = (state = initalState, action) => {
           applyForJobsError: true,
           errorMsg: action.payload,
         };
+        case FIND_JOB:
+      return {
+        ...state,
+        findJobLoading: true,
+        findJobError: null,
+      };
+    case FIND_JOB_SUCCESS:
+      return {
+        ...state,
+        findJobData: action.payload,
+        findJobLoading: false,
+        findJobError: null,
+      };
+    case FIND_JOB_ERROR:
+      return {
+        ...state,
+        findJobData: null,
+        findJobLoading: false,
+        findJobError: action.payload,
+      };
     default:
       state = { ...state };
       break;

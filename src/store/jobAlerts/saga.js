@@ -3,6 +3,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import {
   APPLY_FOR_JOBS,
   CREATE_JOB_ALERT,
+  FIND_JOB,
   FULL_JOB_DETAILS,
   SAVE_JOBS,
   UPDATE_JOB_ALERT,
@@ -32,7 +33,9 @@ import {
   fullJobDetailsSuccess,
   fullJobDetailsError,
   applyForJobsSuccess,
-  applyForJobsError
+  applyForJobsError,
+  findJobSuccess,
+  findJobError
 } from "./action";
 
 import {
@@ -44,6 +47,7 @@ import {
   saveJobURL,
   fullJobDetailsURL,
   applyForJobURL,
+  findJobURL,
 } from "../../helpers/fakebackend_helper";
 
 function* viewJobAlerts({ payload: action }) {
@@ -215,6 +219,24 @@ function* fullJobDetails({ payload: action }) {
   }
 }
 
+function* findJob({ payload: action }) {
+  try {
+    const response = yield call(findJobURL, action);
+
+    if (response && response.data.status === 1) {
+      yield put(findJobSuccess(response.data.data));
+    } else {
+      yield put(findJobError(response.data.message));
+      // toast.success(`${response?.data?.message}`, {
+      //   autoClose: 3000,
+      // });
+    }
+  } catch (error) {
+   
+    yield put(findJobError(error));
+  }
+}
+
 function* jobAlertSaga() {
   yield takeEvery(VIEW_JOB_ALERTS, viewJobAlerts);
   yield takeEvery(CREATE_JOB_ALERT, createJobAlert);
@@ -224,6 +246,7 @@ function* jobAlertSaga() {
   yield takeEvery(SAVE_JOBS, saveJob);
   yield takeEvery(APPLY_FOR_JOBS, applyForJob);
   yield takeEvery(FULL_JOB_DETAILS, fullJobDetails);
+  yield takeEvery(FIND_JOB, findJob);
 }
 
 export default jobAlertSaga;

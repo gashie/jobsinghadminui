@@ -17,6 +17,12 @@ import {
     UPDATE_CATEGORY,
     UPDATE_CATEGORY_ERROR,
     UPDATE_CATEGORY_SUCCESS,
+    GENERAL_INDUSTRIES,
+    GENERAL_INDUSTRIES_ERROR,
+    GENERAL_INDUSTRIES_SUCCESS,
+    GENERAL_CATEGORIES,
+    GENERAL_CATEGORIES_SUCCESS,
+    GENERAL_CATEGORIES_ERROR,
   } from "./actionTypes";
   
   export const industry = () => {
@@ -33,6 +39,40 @@ import {
   export const industrySuccess = (data) => {
     return {
       type: INDUSTRY_SUCCESS,
+      payload: data,
+    };
+  };
+  export const generalIndustry = () => {
+    return {
+      type: GENERAL_INDUSTRIES,
+    };
+  };
+  export const generalIndustryError = (error) => {
+    return {
+      type: GENERAL_INDUSTRIES_ERROR,
+      payload: error,
+    };
+  };
+  export const generalIndustrySuccess = (data) => {
+    return {
+      type: GENERAL_INDUSTRIES_SUCCESS,
+      payload: data,
+    };
+  };
+  export const generalCategory = () => {
+    return {
+      type: GENERAL_CATEGORIES,
+    };
+  };
+  export const generalCategoryError = (error) => {
+    return {
+      type: GENERAL_CATEGORIES_ERROR,
+      payload: error,
+    };
+  };
+  export const generalCategorySuccess = (data) => {
+    return {
+      type: GENERAL_CATEGORIES_SUCCESS,
       payload: data,
     };
   };

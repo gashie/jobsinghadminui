@@ -29,10 +29,6 @@ const PostCourse = () => {
 
   const dispatch = useDispatch();
 
-  const Nav = (location) => {
-    let navigate = useNavigate();
-    navigate(`${location}`);
-  };
 
   const updateEditorData = (editorId, html) => {
     setEditorData({
@@ -48,7 +44,7 @@ const PostCourse = () => {
     // Add more editors as needed
   });
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -70,19 +66,21 @@ const PostCourse = () => {
     },
     validateOnChange: true,
     validationSchema: Yup.object().shape({
-      title: Yup.string().required('Title is required'),
+      title: Yup.string().required("Title is required"),
       // description: Yup.string().required('Description is required'),
-      organizer: Yup.string().required('Organizer is required'),
-      venue: Yup.string().required('Venue is required'),
-      cost: Yup.string().required('Cost is required'),
-      startDate: Yup.date().required('Start Date is required'),
-      endDate: Yup.date().required('End Date is required'),
-      studyMode: Yup.string().required('Study Mode is required'),
-      duration: Yup.string().required('Duration is required'),
-      category: Yup.string().required('Category is required'),
-      courseLink: Yup.string().url('Invalid URL').required('Course Link is required'),
+      organizer: Yup.string().required("Organizer is required"),
+      venue: Yup.string().required("Venue is required"),
+      cost: Yup.string().required("Cost is required"),
+      startDate: Yup.date().required("Start Date is required"),
+      endDate: Yup.date().required("End Date is required"),
+      studyMode: Yup.string().required("Study Mode is required"),
+      duration: Yup.string().required("Duration is required"),
+      category: Yup.string().required("Category is required"),
+      courseLink: Yup.string()
+        .url("Invalid URL")
+        .required("Course Link is required"),
       // courseGoals: Yup.string().required('Course Goals are required'),
-      audience: Yup.string().required('Audience is required'),
+      audience: Yup.string().required("Audience is required"),
       // courseCertificationNote: Yup.string(),
     }),
     onSubmit: (values) => {
@@ -106,13 +104,14 @@ const PostCourse = () => {
       formData.append("courseVideoAd", Video);
       formData.append("courseBrochure", Brochure);
 
+     
       dispatch(saveCourse(formData));
 
-       navigate("/app/employer-courses");
+      navigate("/home");
     },
   });
 
-  console.log(validation.errors)
+  console.log(validation.errors);
 
   const [Brochure, setBrochure] = useState();
   const [Image, setImage] = useState();
@@ -166,7 +165,7 @@ const PostCourse = () => {
     return formattedDate;
   }
 
-  console.log(validation.errors)
+  console.log(validation.errors);
 
   const { catLoading, catError, categoryInfo } = useSelector((state) => ({
     catLoading: state.Industry.loading,
@@ -227,7 +226,6 @@ const PostCourse = () => {
                               : false
                           }
                         />
-                        
                       </Col>
 
                       <Col className="mb-3">
@@ -619,6 +617,7 @@ const PostCourse = () => {
                         type="submit"
                         className="btn btn-dark"
                         style={{ backgroundColor: "#244a59" }}
+                       
                       >
                         Submit
                       </button>

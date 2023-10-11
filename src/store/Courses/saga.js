@@ -10,6 +10,7 @@ import {
   COURSE_SCHEDULE,
   CREATE_CATEGORY,
   CREATE_INDUSTRY,
+  HOME_COURSE,
   INDUSTRY,
   SAVE_COURSE,
   SAVE_COURSE_CONTENT,
@@ -54,9 +55,11 @@ import {
   saveCoursePartnershipError,
   saveCourseScheduleSuccess,
   saveCourseScheduleError,
-  courseContent as contentAction, 
-  courseSchedule as scheduleAction, 
-  coursePartnership as partnershipAction
+  courseContent as contentAction,
+  courseSchedule as scheduleAction,
+  coursePartnership as partnershipAction,
+  homeCourseSuccess,
+  homeCourseError,
 } from "./action";
 import {
   approveCourseURL,
@@ -64,6 +67,7 @@ import {
   coursePartnershipURL,
   courseScheduleURL,
   courseURL,
+  homeCoursesURL,
   saveCourseContetntURL,
   saveCoursePartnershipURL,
   saveCourseScheduleURL,
@@ -100,6 +104,28 @@ function* course({ payload: data }) {
     yield put(courseError(error));
   }
 }
+function* hCourses({ payload: data }) {
+  try {
+    const response = yield call(homeCoursesURL, data);
+    
+    if (response && response.data.status === 1) {
+      yield put(homeCourseSuccess(response.data.data));
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
+    } else {
+      yield put(homeCourseError(response));
+      // toast.success(`${response.data.message}`, {
+      //   autoClose: 3000,
+      // });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(homeCourseError(error));
+  }
+}
+
+
 function* courseContent({ payload: data }) {
   try {
     const response = yield call(courseContentURL, data);
@@ -214,8 +240,7 @@ function* updateCourseContent({ payload: data }) {
 
     if (response && response.data.status === 1) {
       yield put(updateCourseContentSuccess());
-      yield put(contentAction({viewAction: ""}))
-  ;
+      yield put(contentAction({ viewAction: "" }));
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
@@ -224,7 +249,7 @@ function* updateCourseContent({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-      
+
       yield put(contentAction({ viewAction: "" }));
     }
   } catch (error) {
@@ -272,7 +297,7 @@ function* approveCourse({ payload: data }) {
       toast.success(`${response.data.message}`, {
         autoClose: 3000,
       });
-         yield put(courseAction({ viewAction: "" }));
+      yield put(courseAction({ viewAction: "" }));
     }
   } catch (error) {
     console.log(error);
@@ -391,6 +416,8 @@ function* CoursesSaga() {
   yield takeEvery(SAVE_COURSE_CONTENT, saveCourseContent);
   yield takeEvery(SAVE_COURSE_PARTNERSHIP, saveCoursePartnership);
   yield takeEvery(SAVE_COURSE_SCHEDULE, saveCourseSchedule);
+
+  yield takeEvery(HOME_COURSE, hCourses);
 }
 
 export default CoursesSaga;
