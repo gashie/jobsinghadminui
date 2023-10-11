@@ -14,6 +14,7 @@ import {
   Nav,
   TabContent,
   Button,
+  Spinner,
 } from "reactstrap";
 import { useEffect, useState } from "react";
 import classnames from "classnames";
@@ -29,7 +30,7 @@ import fb from "./images/fb.png";
 import verification from "./images/verification.png";
 
 import OTP from "./OTP";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser, signUp } from "../../../store/actions";
 
 const Register = () => {
@@ -96,8 +97,8 @@ const Register = () => {
       address: "",
       country: "Ghana",
       birthDate: "",
-      maritalStatus: 1,
-      gender: "M",
+      maritalStatus: null,
+      gender: "",
       userType: "jobseeker",
     },
     validationSchema: Yup.object({
@@ -122,7 +123,7 @@ const Register = () => {
         address: values.address,
         country: values.country,
         birthDate: values.birthDate,
-        maritalStatus: 1,
+        maritalStatus: values.maritalStatus === "Single" ? 0 : 1,
         gender: values.gender === "Male" ? "M" : "F",
         userType: "jobseeker",
       };
@@ -141,14 +142,59 @@ const Register = () => {
       formData.append("userType", "jobseeker");
       formData.append("myCv", selectedFilesSelfie[0]);
 
-      dispatch(signUp(formData));
+      toggleTab(activeTab + 1, 50);
+      validation.resetForm()
+      window.scrollTo(0, 0);
+       dispatch(signUp(formData));
     },
   });
 
-  console.log(validation.errors)
+  console.log(validation.errors);
 
+  const [left, setLeft] = useState("");
+  const [top, setTop] = useState("");
+  const [createLeft, setCreateLeft] = useState("");
+  const [checkTop, setCheckTop] = useState("");
+  const updateWindowSize = () => {
+    const newWindowSize = window.innerWidth;
+
+    if (newWindowSize <= 576) {
+      // for sm screens
+      setLeft("20vh");
+      setTop("10rem");
+      setCreateLeft("");
+      setCheckTop("10rem");
+    } else if (newWindowSize <= 992) {
+      // for md screens
+      setLeft("0vh");
+      setTop("10rem");
+      setCreateLeft("");
+      setCheckTop("");
+    } else {
+      // for xl screens
+      setLeft("100vh");
+      setTop("-7rem");
+      setCreateLeft("20rem");
+      setCreateLeft("20rem");
+      setCheckTop("-2rem");
+    }
+  };
+
+  useEffect(() => {
+    updateWindowSize(); // Call on initial component mount
+    window.addEventListener("resize", updateWindowSize); // Add listener for window resize
+    return () => {
+      window.removeEventListener("resize", updateWindowSize); // Clean up the listener on component unmount
+    };
+  }, []);
+
+  const { loading, error } = useSelector((state) => ({
+    loading: state.Account.loading,
+    error: state.Account.error,
+  }));
   return (
     <>
+      {/* <ScrollToTop /> */}
       <Row className="p-4" style={{ backgroundColor: "white" }}>
         <Col>
           <Link to="/login">
@@ -177,12 +223,15 @@ const Register = () => {
                     //   style={{transform: "rotate(90deg)"}}
                     xxl={3}
                     md={4}
-                    xs={8}
-                    style={{ marginRight: "8rem" }}
+                    xs={12}
+                    style={{ marginRight: left, marginTop: checkTop }}
                   >
                     <div
                       className="progress-nav mb-4"
-                      style={{ transform: "rotate(270deg)", marginTop: "6rem" }}
+                      style={{
+                        transform: "rotate(270deg)",
+                        marginTop: "-2rem",
+                      }}
                     >
                       <Progress
                         value={progressbarvalue}
@@ -360,10 +409,15 @@ const Register = () => {
                     </div>
                   </Col>
 
-                  <Col style={{ marginTop: "8rem" }} xxl={4} xs={12}>
+                  <Col
+                    style={{ marginTop: top, marginLeft: createLeft }}
+                    xl={5}
+                    md={7}
+                    xs={20}
+                  >
                     <TabContent activeTab={activeTab}>
                       <TabPane tabId={1}>
-                        <div>
+                        <div className="">
                           <div className="mb-4">
                             <div>
                               <h5 className="mb-1 text-center fw-bolder">
@@ -496,35 +550,43 @@ const Register = () => {
                                 );
                               })}
                             </div>
-
-                            <div>
-                            <Dropzone
-                onDrop={(acceptedFiles) => {
-                  handleAcceptedFiles(acceptedFiles);
-                }}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div
-                    className="dropzone dz-clickable"
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  >
-                    <div className="dz-message needsclick" {...getRootProps()}>
-                      <div className="mb-3">
-                        <i className="display-4 text-muted ri-upload-cloud-2-fill" />
-                      </div>
-                      <h5>Drag or Click to upload file</h5>
-                      <h6>(.doc, .docx, .pdf, .rtf, .txt, Max size 2 MB)</h6>
-                    </div>
-                  </div>
-                )}
-              </Dropzone>
-                            </div>
                           </div>
 
-                          <Row className="mt-3">
-                            <Col lg={6}>
+                          <div
+                            style={{
+                              height: "100px",
+                           
+                              overflow: "hidden",
+                              border: "1px dashed #e0e0e0",
+                            }}
+                          >
+                            <Dropzone
+                              onDrop={(acceptedFiles) =>
+                                handleAcceptedFiles(acceptedFiles)
+                              }
+                            >
+                              {({ getRootProps, getInputProps }) => (
+                                <div
+                                  className="dropzone dz-clickable"
+                                  style={{ cursor: "pointer", border: "none" }}
+                                >
+                                  <div
+                                    className="dz-message needsclick"
+                                    {...getRootProps()}
+                                  >
+                                    {/* <div className="mb-3">
+                                      <i className="display-4 text-muted ri-upload-cloud-2-fill" />
+                                    </div> */}
+                                    <h5>Drag or Click to upload file</h5>
+                                    <h6>( .pdf Max size 2 MB)</h6>
+                                  </div>
+                                </div>
+                              )}
+                            </Dropzone>
+                          </div>
+
+                          <Row className="mt-5">
+                            <Col lg={6} >
                               <div className="mb-3">
                                 <Label
                                   className="form-label"
@@ -534,17 +596,19 @@ const Register = () => {
                                 </Label>
                                 <Input
                                   type="text"
-                                  className="form-control"
+                                  className="form-control p-3"
                                   id="fullName"
                                   onChange={validation.handleChange}
                                   onBlur={validation.handleBlur}
                                   value={validation.values.fullName || ""}
                                   placeholder="Enter full name"
-                                  invalid={ validation.touched.fullName && validation.errors.fullName
-                                    ? true
-                                    : false}
+                                  invalid={
+                                    validation.touched.fullName &&
+                                    validation.errors.fullName
+                                      ? true
+                                      : false
+                                  }
                                 />
-                              
                               </div>
                             </Col>
                             <Col lg={6}>
@@ -557,15 +621,18 @@ const Register = () => {
                                 </Label>
                                 <Input
                                   type="text"
-                                  className="form-control"
+                                  className="form-control p-3"
                                   id="email"
                                   onChange={validation.handleChange}
                                   onBlur={validation.handleBlur}
                                   value={validation.values.email || ""}
                                   placeholder="Enter user name"
-                                  invalid={ validation.touched.email && validation.errors.email
-                                    ? true
-                                    : false}
+                                  invalid={
+                                    validation.touched.email &&
+                                    validation.errors.email
+                                      ? true
+                                      : false
+                                  }
                                 />
                               </div>
                             </Col>
@@ -579,57 +646,75 @@ const Register = () => {
                             </Label>
                             <Input
                               type="password"
-                              className="form-control"
+                              className="form-control p-3"
                               id="password"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               value={validation.values.password || ""}
                               placeholder="Minimun 6 characters"
-                              invalid={ validation.touched.password && validation.errors.password
-                                ? true
-                                : false}
+                              invalid={
+                                validation.touched.password &&
+                                validation.errors.password
+                                  ? true
+                                  : false
+                              }
                             />
                           </div>
-                          <div className="mb-3">
-                            <Label
-                              className="form-label"
-                              htmlFor="gen-info-password-input"
-                            >
-                              Username
-                            </Label>
-                            <Input
-                              type="text"
-                              className="form-control"
-                              id="username"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.username || ""}
-                              placeholder="Enter Username"
-                              invalid={ validation.touched.username && validation.errors.username
-                                ? true
-                                : false}
-                            />
-                          </div>
-                          <div className="mb-3">
-                            <Label
-                              className="form-label"
-                              htmlFor="gen-info-password-input"
-                            >
-                              Phonenumber
-                            </Label>
-                            <Input
-                              type="text"
-                              className="form-control"
-                              id="phone"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.phone || ""}
-                              placeholder="Enter Phonenumber"
-                              invalid={ validation.touched.phone && validation.errors.phone
-                                ? true
-                                : false}
-                            />
-                          </div>
+                          <Row>
+                            <Col>
+                              {" "}
+                              <div className="mb-3">
+                                <Label
+                                  className="form-label"
+                                  htmlFor="gen-info-password-input"
+                                >
+                                  Username
+                                </Label>
+                                <Input
+                                  type="text"
+                                  className="form-control p-3"
+                                  id="username"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.username || ""}
+                                  placeholder="Enter Username"
+                                  invalid={
+                                    validation.touched.username &&
+                                    validation.errors.username
+                                      ? true
+                                      : false
+                                  }
+                                />
+                              </div>
+                            </Col>
+
+                            <Col>
+                              <div className="mb-3">
+                                <Label
+                                  className="form-label"
+                                  htmlFor="gen-info-password-input"
+                                >
+                                  Phone Number
+                                </Label>
+                                <Input
+                                  type="text"
+                                  className="form-control p-3"
+                                  id="phone"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.phone || ""}
+                                  placeholder="Enter Phone Number"
+                                  invalid={
+                                    validation.touched.phone &&
+                                    validation.errors.phone
+                                      ? true
+                                      : false
+                                  }
+                                />
+                              </div>
+                            </Col>
+                          </Row>
+
                           <div className="mb-3">
                             <Label
                               className="form-label"
@@ -639,15 +724,18 @@ const Register = () => {
                             </Label>
                             <Input
                               type="text"
-                              className="form-control"
+                              className="form-control p-3"
                               id="address"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               value={validation.values.address || ""}
                               placeholder="Enter Address"
-                              invalid={ validation.touched.address && validation.errors.address
-                                ? true
-                                : false}
+                              invalid={
+                                validation.touched.address &&
+                                validation.errors.address
+                                  ? true
+                                  : false
+                              }
                             />
                           </div>
                           <div className="mb-3">
@@ -655,69 +743,89 @@ const Register = () => {
                               className="form-label"
                               htmlFor="gen-info-password-input"
                             >
-                              BirthDate
+                              Birthdate
                             </Label>
                             <Input
                               type="date"
-                              className="form-control"
+                              className="form-control p-3"
                               id="birthDate"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
                               value={validation.values.birthDate || ""}
                               placeholder="Enter Address"
-                              invalid={ validation.touched.birthDate && validation.errors.birthDate
-                                ? true
-                                : false}
+                              invalid={
+                                validation.touched.birthDate &&
+                                validation.errors.birthDate
+                                  ? true
+                                  : false
+                              }
                             />
                           </div>
-                          <div className="mb-3">
-                            <Label
-                              for="phonenumberInput"
-                              className="form-label"
-                            >
-                              Gender
-                            </Label>
-                            <Input
-                              name="gender"
-                              id="gender"
-                              type="select"
-                              className="form-select mb-3 p-3"
-                              aria-label="Default select example"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.gender}
-                              invalid={ validation.touched.address && validation.errors.fullName
-                                ? true
-                                : false}
-                            >
-                              <option>Male</option>
-                              <option>Female</option>
-                            </Input>
-                          </div>
-                          <div className="mb-3">
-                            <Label
-                              for="phonenumberInput"
-                              className="form-label"
-                            >
-                              Marital Status
-                            </Label>
-                            <Input
-                              name="maritalStatus"
-                              id="maritalStatus"
-                              type="select"
-                              className="form-select mb-3 p-3"
-                              aria-label="Default select example"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.maritalStatus}
-                              invalid={ validation.touched.maritalStatus && validation.errors.fullName
-                                ? true
-                                : false}
-                            >
-                              <option>Single</option>
-                              <option>Married</option>
-                            </Input>
-                          </div>
+
+                          <Row>
+                            <Col lg={6}>
+                              <div className="mb-3">
+                                <Label
+                                  for="phonenumberInput"
+                                  className="form-label"
+                                >
+                                  Gender
+                                </Label>
+                                <Input
+                                  name="gender"
+                                  id="gender"
+                                  type="select"
+                                  className="form-select mb-3 p-3"
+                                  aria-label="Default select example"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.gender}
+                                  invalid={
+                                    validation.touched.address &&
+                                    validation.errors.fullName
+                                      ? true
+                                      : false
+                                  }
+                                >
+                                  <option>Select Gender</option>
+                                  <option>Male</option>
+                                  <option>Female</option>
+                                </Input>
+                              </div>
+                            </Col>
+
+                            <Col lg={6}>
+                              {" "}
+                              <div className="mb-3">
+                                <Label
+                                  for="phonenumberInput"
+                                  className="form-label"
+                                >
+                                  Marital Status
+                                </Label>
+                                <Input
+                                  name="maritalStatus"
+                                  id="maritalStatus"
+                                  type="select"
+                                  className="form-select mb-3 p-3"
+                                  aria-label="Default select example"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.maritalStatus}
+                                  invalid={
+                                    validation.touched.maritalStatus &&
+                                    validation.errors.fullName
+                                      ? true
+                                      : false
+                                  }
+                                >
+                                  <option>Select Marital Status</option>
+                                  <option>Single</option>
+                                  <option>Married</option>
+                                </Input>
+                              </div>
+                            </Col>
+                          </Row>
 
                           {/* <div className="form-check form-switch form-switch-success mb-3 mt-5">
                             <Input
@@ -752,15 +860,15 @@ const Register = () => {
                           <div>
                             <Button
                               type="submit"
-                              onClick={() => {
-                                if (Object.keys(validation.errors).length > 0) {
-                                  console.log(
-                                    Object.keys(validation.errors).length
-                                  );
-                                } else {
-                                  toggleTab(activeTab + 1, 50);
-                                }
-                              }}
+                              // onClick={() => {
+                              //   if (Object.keys(validation.errors).length > 0) {
+                              //     console.log(
+                              //       Object.keys(validation.errors).length
+                              //     );
+                              //   } else {
+                              //     toggleTab(activeTab + 1, 50);
+                              //   }
+                              // }}
                               className="btn btn-dark mt-4"
                               style={{
                                 backgroundColor: "#244a59",
@@ -773,18 +881,29 @@ const Register = () => {
                         </div>
                       </TabPane>
 
-                      <TabPane tabId={2} style={{ height: "100vh" }}>
-                        {/* <ScrollToTop /> */}
+                      <TabPane tabId={2} style={{ height: "40vh" }}>
                         <div className="d-grid hstack justify-content-center">
-                          <h2
+                          {/* <h2
                             className="text-dark"
                             style={{ fontFamily: "impact", color: "#244a59" }}
                           >
                             Welcome to JobsInGhana
-                          </h2>
-                          <p className="mt-5">
-                            Please check your mail for further instructions.
-                          </p>
+                          </h2> */}
+                          {loading === true ? (
+                            <>
+                              <Spinner></Spinner>
+                              <p
+                                className="mt-5"
+                                style={{ textAlign: "center" }}
+                              >
+                                Verifying your Registration Information
+                              </p>
+                            </>
+                          ) : (
+                            <p className="mt-5" style={{ textAlign: "center" }}>
+                              Please go back and fill the form.
+                            </p>
+                          )}
                         </div>
                       </TabPane>
 

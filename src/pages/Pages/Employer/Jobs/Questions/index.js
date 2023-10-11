@@ -15,6 +15,7 @@ import {
   ModalFooter,
   Input,
   Label,
+  Spinner,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -26,9 +27,14 @@ import Single from "./Single";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createJobQuestion,
+  jobEditCloneData,
   linkJobQuestion,
   viewMyQuestions,
 } from "../../../../../store/actions";
+import LinkRange from "./LinkRange";
+import LinkMultiple from "./LinkMultiple";
+import LinkYesNo from "./LinkYesNo";
+import LinkSingle from "./LinkSingle";
 
 function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
   const dispatch = useDispatch();
@@ -59,11 +65,17 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
   const [finalQuestions, setFinalQuestions] = useState([]);
   const [sendQuestion, setSendQuestion] = useState({});
 
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
+
+  
+
   useEffect(() => {
     console.log(questionsData);
     setFinalQuestions(questionsData);
     setSendQuestion({
-      jobId: loading === false && error === false ? idInfo?.jobId : "",
+      jobId: idInfo?.jobId,
       hasQuestions: "yes",
       questions: questionsData,
     });
@@ -87,18 +99,20 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
     setLinkStatus(item.questionId);
     setLinkState(true);
 
-    console.log(idInfo?.jobId, item?.jobId);
-    if (idInfo?.jobId !== item?.questionId) {
-      dispatch(
-        linkJobQuestion({
-          questionId: item?.questionId,
-          jobId: idInfo?.jobId,
-        })
-      );
-      console.log("link will be amde");
-      console.log(idInfo?.jobId, item?.jobId);
-    }
+    // console.log(idInfo?.jobId, item?.jobId);
+    // if (idInfo?.jobId !== item?.questionId) {
+    //   dispatch(
+    //     linkJobQuestion({
+    //       questionId: item?.questionId,
+    //       jobId: idInfo?.jobId,
+    //     })
+    //   );
+    //   console.log("link will be amde");
+    //   console.log(idInfo?.jobId, item?.jobId);
+    // }
   };
+
+  const [edit, setEdit] = useState(false);
 
   return (
     <>
@@ -143,7 +157,7 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                             onClick={() => setQuestionType("Single")}
                             style={{ border: "1px solid #244a59" }}
                           >
-                           Single
+                            Single
                           </Button>
                           <Button
                             className="btn btn-light"
@@ -163,9 +177,18 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                             <Single onSubmit={handleFormSubmit} />
                           ) : questionType === "Multiple" ? (
                             <Multiple onSubmit={handleFormSubmit} />
+                          ) : //update and use question
+                          Object.keys(data)?.length !== 0 && data?.questionType === "multi" ? (
+                            <LinkMultiple onSubmit={handleFormSubmit} />
+                          ) :  Object.keys(data)?.length !== 0 && data?.questionType === "single"? (
+                            <LinkSingle onSubmit={handleFormSubmit} />
+                          ) :  Object.keys(data)?.length !== 0 && data?.questionType === "range" ? (
+                            <LinkRange onSubmit={handleFormSubmit} />
+                          ) :  Object.keys(data)?.length !== 0 && data?.questionType === "yesno"? (
+                            <LinkYesNo onSubmit={handleFormSubmit} />
                           ) : (
                             <p className="mt-4">
-                              Please Select a Type of Question to create
+                              Please Select a Type of Question to create or edit
                             </p>
                           )}
                         </div>
@@ -182,7 +205,7 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                               <div>
                                 <p
                                   style={{
-                                    border: "1px solid black",
+                                    border: "1px solid #e0e0e0",
                                     borderRadius: "10px",
                                   }}
                                   className="p-1"
@@ -216,17 +239,13 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                                 <div>
                                   <p
                                     style={{
-                                      border: `1px solid ${
-                                        idInfo?.jobId === item?.jobId
-                                          ? "#00d084"
-                                          : "black"
-                                      }`,
+                                      border: `1px solid #e0e0e0`,
                                       borderRadius: "10px",
-                                      backgroundColor: `${
-                                        idInfo?.jobId === item?.jobId
-                                          ? "#00d084"
-                                          : "white"
-                                      }`,
+                                      // backgroundColor: `${
+                                      //   idInfo?.jobId === item?.jobId
+                                      //     ? "#00d084"
+                                      //     : "white"
+                                      // }`,
                                     }}
                                     className="p-1"
                                   >
@@ -245,6 +264,8 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                                       }}
                                       onClick={() => {
                                         handleLink(item);
+                                        dispatch(jobEditCloneData(item));
+                                        setQuestionType("")
                                       }}
                                     ></i>
                                   </p>
@@ -252,12 +273,14 @@ function AddQuestion({ toggleQuestionModal, toggleSecondModal }) {
                               </Row>
                             ))
                           ) : (
-                            <p>Loading Questions</p>
+                            <div className="p-3">
+                              <Spinner />
+                            </div>
                           )}
                         </div>
 
                         <Button
-                          style={{ backgroundColor: "#00d084", border: "none" }}
+                          style={{ backgroundColor: "#244a59", border: "none" }}
                           className="btn btn-dark"
                           //   disabled={finalQuestions.length === 0}
                           onClick={handleSubmitQuestion}

@@ -628,7 +628,7 @@ const EditJobs = ({ handleCloseHandle }) => {
                   </Col>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-3 mt-4">
                   <label>Job Salary Amount</label>
                   <Col lg={15}>
                     <Input

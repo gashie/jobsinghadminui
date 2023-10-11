@@ -19,6 +19,7 @@ const AuthProtectedJobSeeker = (props) => {
   const userId = useSelector((state) => state.Login.userInfo);
   const userInfo = useSelector((state) => state.Login.userInfo);
   const loading = useSelector((state) => state.Login.loading);
+  const loadingUserinfo = useSelector((state) => state.Login.loadingUserinfo);
 
 
   const navigate = useNavigate();
@@ -46,17 +47,19 @@ const AuthProtectedJobSeeker = (props) => {
     setPath(window.location.pathname);
   }, [window.location.pathname]);
 
+  if(loadingUserinfo === true){
+    return(
+      <Loading />
+    )
+  }
+
   if (inter === true) {
     return (
       <Navigate to={{ pathname: path, state: { from: props.location } }} />
     );
   }
 
-  if(loading === true){
-    return(
-      <Loading />
-    )
-  }
+  
 
 
 

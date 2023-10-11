@@ -190,8 +190,9 @@ const AddJob = () => {
     locationName: option.label,
   }));
 
+  console.log(formattedSelectedMulti, 4);
 
-  console.log(formattedSelectedMulti,4)
+  const [finalData, setFinalData] = useState();
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -258,12 +259,11 @@ const AddJob = () => {
         goLiveDate: values.goLiveDate,
       };
 
-      console.log(finalData)
+      setFinalData(finalData);
 
       toggleModal();
-      dispatch(createJob(finalData));
 
-      // navigate("/manage-jobs");
+      // navigate("/admin/manage-jobs");
 
       validation.resetForm();
     },
@@ -318,9 +318,8 @@ const AddJob = () => {
     dispatch(rateCard({ viewAction: "" }));
   }, [dispatch]);
 
- 
   console.log(formattedSelectedMulti, 1);
-  console.log(validation.errors)
+  console.log(validation.errors);
   return (
     <>
       <div className="m-2 p-2 mb-5">
@@ -548,6 +547,7 @@ const AddJob = () => {
                           : false
                       }
                     >
+                      <option>Select Status</option>
                       <option>Permanent</option>
                       <option>Contract</option>
                       <option>Part Time</option>
@@ -640,17 +640,16 @@ const AddJob = () => {
                             ? "invalid-select"
                             : ""
                         }
-                        
                         id="jobLocation"
                         name="jobLocation"
+                        invalid={
+                          validation.touched.jobLocation &&
+                          validation.errors.jobLocation
+                            ? true
+                            : false
+                        }
                       />
-                      {validation.touched.jobLocation &&
-                      validation.errors.jobLocation ? (
-                        <div className="invalid-feedback">
-                          {validation.errors.jobLocation}
-                        </div>
-                        
-                      ) : null}
+                    
                     </div>
                   </Col>
                 </Row>
@@ -1006,6 +1005,7 @@ const AddJob = () => {
             onClick={() => {
               toggleModal();
               toggleSecondModal();
+              dispatch(createJob(finalData));
             }}
             style={{ backgroundColor: "#244a59" }}
           >
@@ -1016,6 +1016,7 @@ const AddJob = () => {
             onClick={() => {
               toggleModal();
               toggleQuestionModal();
+              dispatch(createJob(finalData));
             }}
             style={{ backgroundColor: "#244a59" }}
           >
@@ -1043,7 +1044,7 @@ const AddJob = () => {
             className="btn btn-dark"
             onClick={() => {
               toggleSecondModal();
-              navigate("/employer-jobs");
+              navigate("/app/employer-jobs");
               // payLater()
             }}
             style={{ backgroundColor: "#244a59" }}

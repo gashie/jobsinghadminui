@@ -86,14 +86,29 @@ const JobSeekerLogin = () => {
   return (
     <>
       <Card style={{ height: "100vh" }}>
-        <Link to="/register">
-          <h5 className="fw-bolder text-end m-3">
-            New to jobsinghana?{" "}
-            <span style={{ color: "#244a59", cursor: "pointer" }}>
-              Register
-            </span>{" "}
-          </h5>
-        </Link>
+        <div className="d-flex" style={{justifyContent: 'space-between'}}>
+          <div>
+            <Link to="/employer-signup">
+              <h5 className="fw-bolder text-end m-3">
+                New to jobsinghana?{" "}
+                <span style={{ color: "#244a59", cursor: "pointer" }}>
+                  Register as an Employer
+                </span>{" "}
+              </h5>
+            </Link>
+          </div>
+
+          <div>
+            <Link to="/register">
+              <h5 className="fw-bolder text-end m-3">
+                New to jobsinghana?{" "}
+                <span style={{ color: "#244a59", cursor: "pointer" }}>
+                  Register as a Jobseeker
+                </span>{" "}
+              </h5>
+            </Link>
+          </div>
+        </div>
         <CardBody>
           <Form
             onSubmit={(e) => {

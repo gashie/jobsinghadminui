@@ -1,273 +1,298 @@
 import {
-    Col,
-    Row,
-    Modal,
-    ModalBody,
-    Input,
-    Container,
-    Button,
-    Form,
-    Card,
-    ModalHeader,
-    ModalFooter,
-    FormGroup,
-    Label,
-    FormFeedback,
-  } from "reactstrap";
-  import { useState, useEffect } from "react";
-  import { useDispatch, useSelector } from "react-redux";
-  import Editor from "./Editor";
-  import {
-    category,
-    createJob,
-    employerCompanies,
-    employers,
-    industry,
-    jobStatus,
-    updateJob,
-  } from "../../../../store/actions";
-  import { useFormik } from "formik";
-  import * as Yup from "yup";
-  import { Link, useNavigate } from "react-router-dom";
-  
-  const RenewJob = ({ handleCloseRenew }) => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-      dispatch(employers({ viewAction: "notdeleted", userType: 3 }));
-      dispatch(category({ viewAction: "" }));
-      dispatch(jobStatus({ viewAction: "" }));
-    }, [dispatch]);
-  
-    const { loading, error, employerInfo, catLoading, catError, categoryInfo } =
-      useSelector((state) => ({
-        loading: state.Users.loading,
-        error: state.Users.error,
-        employerInfo: state.Users.employersInfo,
-        catLoading: state.Industry.loading,
-        catError: state.Industry.error,
-        categoryInfo: state.Industry.categoryInfo,
-      }));
-  
-    const { jobloading, joberror, jobsInfo } = useSelector((state) => ({
-      jobloading: state.Jobs.loading,
-      joberror: state.Jobs.error,
-      jobsInfo: state.Jobs.jobsInfo,
-    }));
-  
-    const [inputValue, setInputValue] = useState("");
-    const [selectedLocations, setSelectedLocations] = useState([]);
-    const [finalLocations, setFinalLocations] = useState([]);
-  
-    const handleInputChange = (e) => {
-      setInputValue(e.target.value);
-    };
-  
-    const handleKeyUp = (e) => {
-      if (e.key === " " && inputValue.trim() !== "") {
-        const newLocation = { locationName: inputValue.trim() };
-        setSelectedLocations([...selectedLocations, newLocation]);
-        setFinalLocations([...finalLocations, newLocation]);
-        setInputValue("");
-      } else if (
-        e.key === "Backspace" &&
-        inputValue === "" &&
-        selectedLocations.length > 0
-      ) {
-        const newLocations = [...selectedLocations];
-        newLocations.pop();
-        setSelectedLocations(newLocations);
-      }
-    };
-  
-    const [email, setEmail] = useState("Redirect to my website");
-    const [url, setUrl] = useState("");
-  
-    const [questionName, setQuestionName] = useState("Redirect to my website");
-    const [description, setDescription] = useState();
-  
-    const handleEditorContentChange = (content) => {
-      setDescription(content);
-    };
-  
-    // const validation = useFormik({
-    //   enableReinitialize: true,
-    //   initialValues: {
-    //     jobTitle: data.jobTitle || "",
-    //     jobCategoryId: null,
-    //     jobLocation: "",
-    //     jobSalaryAmount: data.jobSalaryAmount || "",
-    //     companyId: "",
-    //     isCompanyConfidential: "",
-    //     jobDescription: "",
-    //     jobSkillsId: "",
-    //     jobSalaryCurrency: "",
-    //     jobStatusId: null,
-    //     applyMode: "",
-    //     applyLink: "",
-    //   },
-    //   validateOnChange: true,
-    //   validationSchema: Yup.object({
-    //     jobTitle: Yup.string().required("Please enter a Job Title"),
-    //     // rateDescription: Yup.string().required("Please enter a rate description"),
-    //     // ratePrice: Yup.string().required("Please enter rate price"),
-    //     // rateLimit: Yup.string().required("Please enter rate limit"),
-    //   }),
-    //   onSubmit: (values) => {
-  
-    //     const patch ={
-    //         deleterecord: false,
-    //         restore: 0,
-    //         patch: true,
-    //         jobId: data.jobId,
-    //         jobTitle: values.jobTitle,
-    //         patchData: {
-    //             jobCategoryId: values.jobCategoryId,
-    //             jobLocation: finalLocations,
-    //             jobSalaryAmount: values.jobSalaryAmount,
-    //             companyId: "",
-    //             isCompanyConfidential: isConfidential,
-    //             jobDescription: description,
-    //             jobSkillsId: "1",
-    //             jobSalaryCurrency: "Ghc",
-    //             jobStatusId: values.jobStatusId,
-    //             applyMode: "",
-    //             applyLink: "",
-    //             jobTitle: values.jobTitle,
-    //         }
-    //     }
-  
-    //     dispatch(updateJob(patch));
-    //     handleCloseHandle()
-    //     validation.resetForm();
-  
-    //   },
-    // });
-  
-    const { data } = useSelector((state) => ({
-      data: state.Jobs.editCloneData,
-    }));
-  
-    const updateEditorData = (editorId, html) => {
-      setEditorData({
-        ...editorData,
-        [editorId]: html,
-      });
-    };
-  
-    const [editorData, setEditorData] = useState({
-      editor1: "",
-      editor2: "",
-      // Add more editors as needed
-    });
-  
-    const navigate = useNavigate();
-  
-    const validation = useFormik({
-      enableReinitialize: true,
-      initialValues: {
-        jobTitle: data?.jobTitle || "",
-        jobCategoryId: null,
-        jobLocation: data?.jobLocation || "",
-        jobSalaryAmount: data?.jobSalaryAmount || "",
-        companyId: "",
-        isCompanyConfidential: "",
-        jobDescription: data?.jobDescription || "",
-        jobSkillsId: "",
-        jobSalaryCurrency: "",
-        jobStatusId: null,
-        applyMode: data?.applyMode || "",
-        applyLink: data?.applyLink || "",
-        education: data?.education || "",
-        goLiveDate: data?.goLiveDate || "",
-        yearsOfExperience: data?.yearsOfExperience || "",
-        appliedEmail: data?.appliedEmail || "",
-      },
-      validateOnChange: true,
-      validationSchema: Yup.object({
-        goLiveDate: Yup.date().required("Please select go live date"),
-        jobCategoryId: Yup.string().required("Please job category"),
-        companyId: Yup.string().required("Please a company"),
-      }),
-      onSubmit: (values) => {
-        // const finalData = {
-        //   jobTitle: values.jobTitle,
-        //   jobCategoryId: values.jobCategoryId,
-        //   jobLocation: finalLocations,
-        //   jobSalaryAmount: values.jobSalaryAmount,
-        //   companyId: "",
-        //   isCompanyConfidential: isConfidential,
-        //   jobDescription: description,
-        //   jobSkills: [],
-        //   jobSalaryCurrency: "Ghc",
-        //   jobStatus: values.jobStatusId,
-        //   applyMode: values.applyMode,
-        //   applyLink: values.applyLink,
-        //   yearsOfExperience: values.yearsOfExperience,
-        //   appliedEmail: values.appliedEmail,
-        //   education: values.education,
-  
-        // };
-  
-        const finalData = {
-          deleterecord: false,
-          restore: 0,
-          jobId: data?.jobId,
-          patch: true,
-          patchData: {
-            jobTitle: data?.jobTitle,
-            jobCategoryId: data?.jobCategoryId,
-            jobLocation: data?.jobLocation,
-            jobSalaryAmount: data?.jobSalaryAmount,
-            companyId: data?.companyId,
-            isCompanyConfidential: isConfidential,
-            howToApply: editorData.editor2,
-            jobDescription: data?.jobDescription,
-            jobSkills: [],
-            jobSalaryCurrency: "Ghc",
-            jobStatus: data?.jobStatus,
-            applyMode: data?.applyMode,
-            applyLink: data?.applyLink,
-            appliedEmail: data?.appliedEmail,
-          },
-        };
-  
-        dispatch(updateJob(finalData));
-        navigate("/manage-jobs");
-        handleCloseRenew();
-        validation.resetForm();
-      },
-    });
-  
-    const { inLoading, inError, info } = useSelector((state) => ({
+  Col,
+  Row,
+  Modal,
+  ModalBody,
+  Input,
+  Container,
+  Button,
+  Form,
+  Card,
+  ModalHeader,
+  ModalFooter,
+  FormGroup,
+  Label,
+  FormFeedback,
+} from "reactstrap";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Editor from "./Editor";
+import {
+  category,
+  createJob,
+  employerCompanies,
+  employers,
+  industry,
+  jobStatus,
+  updateJob,
+} from "../../../../store/actions";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
+import { formatDate } from "../../../../Components/Hooks/formatDate";
+import { formatDate2 } from "../../../../Components/Hooks/formatDate2";
+
+const RenewJob = ({ handleCloseRenew }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(employers({ viewAction: "notdeleted", userType: 3 }));
+    dispatch(category({ viewAction: "" }));
+    dispatch(jobStatus({ viewAction: "" }));
+  }, [dispatch]);
+
+  const { loading, error, employerInfo, catLoading, catError, categoryInfo } =
+    useSelector((state) => ({
+      loading: state.Users.loading,
+      error: state.Users.error,
+      employerInfo: state.Users.employersInfo,
       catLoading: state.Industry.loading,
       catError: state.Industry.error,
-      categoryInfo: state.Industry.industryInfo,
+      categoryInfo: state.Industry.categoryInfo,
     }));
-  
-    // useEffect(() => {
-    //   dispatch(employerCompanies({ viewAction: "" }));
-    // }, [dispatch]);
-  
-    const { companyLoading, companyInfo, companyError } = useSelector(
-      (state) => ({
-        companyLoading: state.Users.companiesLoading,
-        companyError: state.Users.companiesError,
-        companyInfo: state.Users.employerCompanies,
-      })
-    );
-  
-    // Define state for the checkbox
-    const [isConfidential, setIsConfidential] = useState(false);
-  
-    // Function to handle checkbox change
-    const handleCheckboxChange = () => {
-      setIsConfidential(!isConfidential);
+
+  const { jobloading, joberror, jobsInfo } = useSelector((state) => ({
+    jobloading: state.Jobs.loading,
+    joberror: state.Jobs.error,
+    jobsInfo: state.Jobs.jobsInfo,
+  }));
+
+  const [inputValue, setInputValue] = useState("");
+  const [selectedLocations, setSelectedLocations] = useState([]);
+  const [finalLocations, setFinalLocations] = useState([]);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyUp = (e) => {
+    if (e.key === " " && inputValue.trim() !== "") {
+      const newLocation = { locationName: inputValue.trim() };
+      setSelectedLocations([...selectedLocations, newLocation]);
+      setFinalLocations([...finalLocations, newLocation]);
+      setInputValue("");
+    } else if (
+      e.key === "Backspace" &&
+      inputValue === "" &&
+      selectedLocations.length > 0
+    ) {
+      const newLocations = [...selectedLocations];
+      newLocations.pop();
+      setSelectedLocations(newLocations);
+    }
+  };
+
+  const [email, setEmail] = useState("Redirect to my website");
+  const [url, setUrl] = useState("");
+
+  const [questionName, setQuestionName] = useState("Redirect to my website");
+  const [description, setDescription] = useState();
+
+  const handleEditorContentChange = (content) => {
+    setDescription(content);
+  };
+
+  // const validation = useFormik({
+  //   enableReinitialize: true,
+  //   initialValues: {
+  //     jobTitle: data.jobTitle || "",
+  //     jobCategoryId: null,
+  //     jobLocation: "",
+  //     jobSalaryAmount: data.jobSalaryAmount || "",
+  //     companyId: "",
+  //     isCompanyConfidential: "",
+  //     jobDescription: "",
+  //     jobSkillsId: "",
+  //     jobSalaryCurrency: "",
+  //     jobStatusId: null,
+  //     applyMode: "",
+  //     applyLink: "",
+  //   },
+  //   validateOnChange: true,
+  //   validationSchema: Yup.object({
+  //     jobTitle: Yup.string().required("Please enter a Job Title"),
+  //     // rateDescription: Yup.string().required("Please enter a rate description"),
+  //     // ratePrice: Yup.string().required("Please enter rate price"),
+  //     // rateLimit: Yup.string().required("Please enter rate limit"),
+  //   }),
+  //   onSubmit: (values) => {
+
+  //     const patch ={
+  //         deleterecord: false,
+  //         restore: 0,
+  //         patch: true,
+  //         jobId: data.jobId,
+  //         jobTitle: values.jobTitle,
+  //         patchData: {
+  //             jobCategoryId: values.jobCategoryId,
+  //             jobLocation: finalLocations,
+  //             jobSalaryAmount: values.jobSalaryAmount,
+  //             companyId: "",
+  //             isCompanyConfidential: isConfidential,
+  //             jobDescription: description,
+  //             jobSkillsId: "1",
+  //             jobSalaryCurrency: "Ghc",
+  //             jobStatusId: values.jobStatusId,
+  //             applyMode: "",
+  //             applyLink: "",
+  //             jobTitle: values.jobTitle,
+  //         }
+  //     }
+
+  //     dispatch(updateJob(patch));
+  //     handleCloseHandle()
+  //     validation.resetForm();
+
+  //   },
+  // });
+
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
+
+  const updateEditorData = (editorId, html) => {
+    setEditorData({
+      ...editorData,
+      [editorId]: html,
+    });
+  };
+
+  const [editorData, setEditorData] = useState({
+    editor1: "",
+    editor2: "",
+    // Add more editors as needed
+  });
+
+  const navigate = useNavigate();
+
+  const inputDate = data?.goLiveDate;
+
+  // Convert the string to a Date object
+  const date = new Date(inputDate);
+
+  // Add 30 days to the date
+  date.setDate(date.getDate() + 30);
+
+  // Format the new date in the "yyyy-mm-dd" format
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1
+  const day = String(date.getDate()).padStart(2, "0");
+  const formattedDate = `${year}-${month}-${day}`;
+
+  const dataArray = data?.jobLocation.split(",").map((item) => {
+    return {
+      
+      locationName: item.trim(),
     };
-  
-    return (
-      <>
-        <div className="m-2 p-0 mb-5">
-          {/* <div className="p-0 mt-5" style={{ marginTop: "0rem" }}>
+  });
+
+  const validation = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      jobTitle: data?.jobTitle || "",
+      jobCategoryId: null,
+      jobLocation: data?.jobLocation || "",
+      jobSalaryAmount: data?.jobSalaryAmount || "",
+      companyId: "",
+      isCompanyConfidential: "",
+      jobDescription: data?.jobDescription || "",
+      jobSkillsId: "",
+      jobSalaryCurrency: "",
+      jobStatusId: null,
+      applyMode: data?.applyMode || "",
+      applyLink: data?.applyLink || "",
+      education: data?.education || "",
+      goLiveDate: formattedDate,
+      yearsOfExperience: data?.yearsOfExperience || "",
+      appliedEmail: data?.appliedEmail || "",
+    },
+    validateOnChange: true,
+    validationSchema: Yup.object({
+      goLiveDate: Yup.date().required("Please select go live date"),
+      // jobCategoryId: Yup.string().required("Please job category"),
+      // companyId: Yup.string().required("Please a company"),
+    }),
+    onSubmit: (values) => {
+      // const finalData = {
+      //   jobTitle: values.jobTitle,
+      //   jobCategoryId: values.jobCategoryId,
+      //   jobLocation: finalLocations,
+      //   jobSalaryAmount: values.jobSalaryAmount,
+      //   companyId: "",
+      //   isCompanyConfidential: isConfidential,
+      //   jobDescription: description,
+      //   jobSkills: [],
+      //   jobSalaryCurrency: "Ghc",
+      //   jobStatus: values.jobStatusId,
+      //   applyMode: values.applyMode,
+      //   applyLink: values.applyLink,
+      //   yearsOfExperience: values.yearsOfExperience,
+      //   appliedEmail: values.appliedEmail,
+      //   education: values.education,
+
+      // };
+
+      const finalData = {
+        deleterecord: false,
+        restore: 0,
+        jobId: data?.jobId,
+        patch: true,
+        patchData: {
+          jobTitle: data?.jobTitle,
+          jobCategoryId: data?.jobCategoryId,
+          jobLocation: dataArray,
+          jobSalaryAmount: data?.jobSalaryAmount,
+          companyId: data?.companyId,
+          isCompanyConfidential: isConfidential,
+          howToApply: data?.howToApply,
+          jobDescription: data?.jobDescription,
+          jobSkills: [],
+          jobSalaryCurrency: "Ghc",
+          jobStatus: data?.jobStatus,
+          applyMode: data?.applyMode,
+          applyLink: data?.applyLink,
+          appliedEmail: data?.appliedEmail,
+        },
+      };
+
+      dispatch(updateJob(finalData));
+      navigate("/manage-jobs");
+      handleCloseRenew();
+      validation.resetForm();
+    },
+  });
+
+  const { inLoading, inError, info } = useSelector((state) => ({
+    catLoading: state.Industry.loading,
+    catError: state.Industry.error,
+    categoryInfo: state.Industry.industryInfo,
+  }));
+
+  // useEffect(() => {
+  //   dispatch(employerCompanies({ viewAction: "" }));
+  // }, [dispatch]);
+
+  const { companyLoading, companyInfo, companyError } = useSelector(
+    (state) => ({
+      companyLoading: state.Users.companiesLoading,
+      companyError: state.Users.companiesError,
+      companyInfo: state.Users.employerCompanies,
+    })
+  );
+
+  console.log(data?.goLiveDate);
+
+  // Define state for the checkbox
+  const [isConfidential, setIsConfidential] = useState(false);
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = () => {
+    setIsConfidential(!isConfidential);
+  };
+
+  return (
+    <>
+      <div className="m-2 p-0 mb-5">
+        {/* <div className="p-0 mt-5" style={{ marginTop: "0rem" }}>
             <div className="d-flex" style={{ justifyContent: "space-between" }}>
               <div className="mt-">
                 <h4 className="fw-bolder mt-5">Renew Job</h4>
@@ -277,19 +302,18 @@ import {
               </div>
             </div>
           </div> */}
-  
-        
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                validation.handleSubmit();
-                return false;
-              }}
-            >
-              <Row>
-                {/* left */}
-  
-                {/* <Col md={20}>
+
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            validation.handleSubmit();
+            return false;
+          }}
+        >
+       
+            {/* left */}
+
+            {/* <Col md={20}>
                   <div className="mb-3 mt-4">
                     <Label for="emailidInput" className="form-label">
                       Employer
@@ -313,9 +337,9 @@ import {
                     </select>
                   </div>
                 </Col> */}
-  
-                <Col>
-                  {/* <label>Job Title</label>
+
+            <Col>
+              {/* <label>Job Title</label>
                   <Row className="mb-3">
                     <Col lg={15}>
                       <Input
@@ -342,29 +366,29 @@ import {
                       />
                     </Col>
                   </Row> */}
-  
-                  <label>Extend Go Live Date</label>
-                  <Row className="mb-3 mt-4">
-                    <Col lg={20}>
-                      <Input
-                        type="date"
-                        className="form-control p-3"
-                        id="goLiveDate"
-                        name="goLiveDate"
-                        placeholder=""
-                        onChange={validation.handleChange}
-                        value={validation.values.goLiveDate || ""}
-                      />
-                    </Col>
-                    {validation.touched.goLiveDate &&
-                    validation.errors.goLiveDate ? (
-                      <FormFeedback type="invalid">
-                        <div>{validation.errors.goLiveDate}</div>
-                      </FormFeedback>
-                    ) : null}
-                  </Row>
-  
-                  {/* <Row className="mb-3">
+
+              <label>Extend Go Live Date</label>
+
+              <Col lg={12} md={12}>
+                <Input
+                  type="date"
+                  className="form-control p-3"
+                  id="goLiveDate"
+                  name="goLiveDate"
+                  placeholder=""
+                  onChange={validation.handleChange}
+                  value={validation.values.goLiveDate || ""}
+                  invalid={
+                    validation.touched.goLiveDate &&
+                    validation.errors.goLiveDate
+                      ? true
+                      : false
+                  }
+                />
+              </Col>
+              <p className="mt-3">By Submitting you will be increasing the go live Date for this job from <b>{formatDate(data?.goLiveDate)}</b> to <b>{formatDate(formattedDate)} </b></p>
+
+              {/* <Row className="mb-3">
                     <label>Select Category</label>
                     <Col lg={15}>
                       <select
@@ -393,8 +417,8 @@ import {
                       </FormFeedback>
                     ) : null}
                   </Row> */}
-  
-                  {/* <label>Education Level</label>
+
+              {/* <label>Education Level</label>
                   <Row className="mb-3">
                     <Col lg={15}>
                       <Input
@@ -407,7 +431,7 @@ import {
                       />
                     </Col>
                   </Row> */}
-                  {/* 
+              {/* 
                   <Row className="mb-3">
                     <Col lg={15} className="d-flex align-items-center">
                       <Input
@@ -425,11 +449,11 @@ import {
                       </label>
                     </Col>
                   </Row> */}
-                </Col>
-  
-                {/* right */}
-                <Col>
-                  {/* <Row className="mb-3">
+            </Col>
+
+            {/* right */}
+            <Col>
+              {/* <Row className="mb-3">
                     <label>Select Status</label>
                     <Col lg={12}>
                       <select
@@ -445,8 +469,8 @@ import {
                       </select>
                     </Col>
                   </Row> */}
-  
-                  {/* <Row className="mb-3">
+
+              {/* <Row className="mb-3">
                     <label>Select Apply Mode</label>
                     <Col lg={12}>
                       <select
@@ -462,8 +486,8 @@ import {
                       </select>
                     </Col>
                   </Row> */}
-  
-                  {/* {validation.values.applyMode === "Email" ? (
+
+              {/* {validation.values.applyMode === "Email" ? (
                     <Row className="mb-3">
                       <label>Apply Email</label>
                       <Col lg={12}>
@@ -494,8 +518,8 @@ import {
                   ) : (
                     ""
                   )} */}
-  
-                  {/* <Row className="mb-3">
+
+              {/* <Row className="mb-3">
                       <Col lg={15} className="p-2">
                         <div>
                           <div className="d-flex gap-1">
@@ -526,8 +550,8 @@ import {
                         <p>Please hit the space key after entering location.</p>
                       </Col>
                     </Row> */}
-  
-                  {/* <Row className="mb-3">
+
+              {/* <Row className="mb-3">
                     <label>Job Salary Amount</label>
                     <Col lg={15}>
                       <Input
@@ -541,15 +565,15 @@ import {
                       />
                     </Col>
                   </Row> */}
-                </Col>
-                {/* {validation.touched.companyId && validation.errors.companyId ? (
+            </Col>
+            {/* {validation.touched.companyId && validation.errors.companyId ? (
                   <FormFeedback type="invalid">
                     <div>{validation.errors.companyId}</div>
                   </FormFeedback>
                 ) : null} */}
-              </Row>
-  
-              {/* <Row className="mt-3">
+        
+
+          {/* <Row className="mt-3">
                   <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
                     Description
                   </h6>
@@ -566,28 +590,26 @@ import {
                     <Editor editorId="editor2" transmitHtml={updateEditorData} />
                   </Col>
                 </Row> */}
-  
-              <div className="text-start d-flex gap-3 mt-4">
-                <button
-                  type="submit"
-                  className="btn btn-dark"
-                  style={{ backgroundColor: "#244a59" }}
-                >
-                  Submit
-                </button>
-              </div>
-            </Form>
-         
-        </div>
-  
-        {/* Modals */}
-        {/* 
+
+          <div className="text-start d-flex gap-3 mt-4">
+            <button
+              type="submit"
+              className="btn btn-dark"
+              style={{ backgroundColor: "#244a59" }}
+            >
+              Submit
+            </button>
+          </div>
+        </Form>
+      </div>
+
+      {/* Modals */}
+      {/* 
             <Button color="primary" onClick={() => tog_standard()}>
               Standard Modal
             </Button> */}
-      </>
-    );
-  };
-  
-  export default RenewJob;
-  
+    </>
+  );
+};
+
+export default RenewJob;

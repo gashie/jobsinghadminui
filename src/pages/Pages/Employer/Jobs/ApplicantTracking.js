@@ -175,6 +175,16 @@ const ApplicantTracking = () => {
     }
   };
 
+  const photo = "https://108.166.181.225:5050/uploads/image/profile/";
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Function to handle the image load event
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    // dispatch(viewProfile({ viewAction: "" }));
+  };
+
   return (
     <>
       <Row>
@@ -340,18 +350,23 @@ const ApplicantTracking = () => {
                   marginTop: "10rem",
                 }}
                 xl={3}
-                md={4}
+                md={8}
                 xs={7}
               >
                 <p style={{ textAlign: "center" }}>
-                  <img
-                    src={
-                      "https://108.166.181.225:5050/uploads/image/logos/" +
-                      profile?.userInfo?.company?.companyLogo
-                    }
-                    alt="profile-img"
-                    className="img-fluid avatar-xxl"
-                  ></img>
+                  <div className="profile-user position-relative d-inline-block mx-auto  mb-4">
+                    {!imageLoaded && <Spinner style={{ color: "#244a59" }} />}
+
+                    {/* Render the image once it's loaded */}
+                    <img
+                      src={photo + profile?.profileImage}
+                      className={`rounded-circle avatar-xl fluid-img ${
+                        imageLoaded ? "d-block" : "d-none"
+                      }`}
+                      alt="user-profile"
+                      onLoad={handleImageLoad} // Call the handleImageLoad function when the image loads
+                    />
+                  </div>
                 </p>
                 <h5 style={{ textAlign: "center", marginTop: "1rem" }}>
                   {profile?.userInfo?.company?.companyName}
@@ -384,10 +399,10 @@ const ApplicantTracking = () => {
                     alignItems: "flex-start",
                   }}
                 >
-                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>Applicant Name:</h6>
-                  <h6 style={{ flex: "0 0 70%" }}>
-                    {profile?.applicantName}
+                  <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
+                    Applicant Name:
                   </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicantName}</h6>
                 </div>
                 <div
                   style={{
@@ -397,9 +412,7 @@ const ApplicantTracking = () => {
                   }}
                 >
                   <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>Phone:</h6>
-                  <h6 style={{ flex: "0 0 70%" }}>
-                    {profile?.applicantPhone}
-                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicantPhone}</h6>
                 </div>
                 <div
                   style={{
@@ -409,9 +422,7 @@ const ApplicantTracking = () => {
                   }}
                 >
                   <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>Email:</h6>
-                  <h6 style={{ flex: "0 0 70%" }}>
-                    {profile?.applicantEmail}
-                  </h6>
+                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicantEmail}</h6>
                 </div>
                 <div
                   style={{
@@ -449,7 +460,9 @@ const ApplicantTracking = () => {
                   <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
                     Application Status:
                   </h6>
-                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicationStatus}</h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {profile?.applicationStatus}
+                  </h6>
                 </div>
                 <div
                   style={{
@@ -461,7 +474,9 @@ const ApplicantTracking = () => {
                   <h6 style={{ color: "#244a59", flex: "0 0 30%" }}>
                     Resume (Click to download resume):
                   </h6>
-                  <h6 style={{ flex: "0 0 70%" }}>{profile?.applicantResume === null ? "No Resume"  : ""}</h6>
+                  <h6 style={{ flex: "0 0 70%" }}>
+                    {profile?.applicantResume === null ? "No Resume" : ""}
+                  </h6>
                 </div>
                 {/* <div
                   style={{
@@ -529,7 +544,11 @@ const ApplicantTracking = () => {
             </Row>
           </ModalBody>
           <ModalFooter>
-            <Button style={{backgroundColor: "#244a59"}} onClick={toggleModal}>
+            <Button
+              style={{ backgroundColor: "#244a59" }}
+              onClick={toggleModal}
+              className="btn btn-dark"
+            >
               Close
             </Button>
             {/* <Button style={{backgroundColor: "#244a59"}} onClick={toggleModal}>

@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { createQuestion, createQuestionRange } from '../../../../../store/actions';
+import { createQuestion, createQuestionRange, updateQuestions } from '../../../../../store/actions';
 
-const Range = ({ onSubmit }) => {
+const LinkRange = ({ handleEditClose, onSubmit }) => {
   const [question, setQuestion] = useState('');
   const [minValue, setMinValue] = useState('');
   const [maxValue, setMaxValue] = useState('');
   const [idealValue, setIdealValue] = useState('');
+
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
 
   const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
     loading: state.Jobs.idLoading,
@@ -17,6 +21,17 @@ const Range = ({ onSubmit }) => {
     payInfo: state.Rates.payInfo,
     payError: state.Rates.payError,
   }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      setQuestion(data.questionTitle || '');
+      setMinValue(data.minimumValue || '');
+      setMaxValue(data.maximumValue || '');
+      setIdealValue(data.benchMark || '');
+    }
+  }, [data]);
 
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
@@ -34,12 +49,9 @@ const Range = ({ onSubmit }) => {
     setIdealValue(e.target.value);
   };
 
-  const dispatch = useDispatch()
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Format the data to match the desired JSON structure
     const formattedData = {
       questionTitle: question,
       questionType: 'range',
@@ -49,14 +61,10 @@ const Range = ({ onSubmit }) => {
       maximumValue: parseInt(maxValue, 10),
     };
 
-    // Pass the formatted data to the parent component
     onSubmit(formattedData);
 
-    console.log('eyy')
+   // dispatch(updateQuestions(formattedData));
 
-    dispatch(createQuestion(formattedData))
-
-    // Reset form values to default after submission
     setQuestion('');
     setMinValue('');
     setMaxValue('');
@@ -107,11 +115,11 @@ const Range = ({ onSubmit }) => {
           placeholder="Enter ideal value"
         />
       </FormGroup>
-      <Button type="submit" style={{backgroundColor: '#244a59'}} className='btn btn-dark'>
-        Add Question
+      <Button type="submit" style={{ backgroundColor: '#244a59' }} className='btn btn-dark'>
+        Update and use question
       </Button>
     </Form>
   );
 };
 
-export default Range;
+export default LinkRange;

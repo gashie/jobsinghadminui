@@ -32,10 +32,8 @@ import RepostJob from "./RepostJob";
 import RenewJob from "./RenewJob";
 import JobDetails from "./JobDetails";
 
-
-const ManageJobs = ({handleApplicant}) => {
+const ManageJobs = ({ handleApplicant }) => {
   const [isOpenAction, setIsOpenAction] = useState({});
-
 
   const [isOpenActions, setIsOpenActions] = useState({});
   const toggleAction = (feedId) => {
@@ -124,9 +122,7 @@ const ManageJobs = ({handleApplicant}) => {
       icon: "ri-file-user-line",
       check: "viewApplicants",
     },
-    
   ];
-
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -151,8 +147,6 @@ const ManageJobs = ({handleApplicant}) => {
   const toggleCustomModal = () => {
     setCustomModal(!isCustomModalOpen);
   };
-
-
 
   const options = [
     { label: "Option 1", color: "red", icon: "bx bx-radio-circle-marked" },
@@ -260,16 +254,14 @@ const ManageJobs = ({handleApplicant}) => {
       toggleModal();
     }
 
-
-    if(check === "viewApplicants"){
-      handleApplicant()
-      dispatch(employerApplications({jobId: item?.jobId}))
+    if (check === "viewApplicants") {
+      handleApplicant();
+      dispatch(employerApplications({ jobId: item?.jobId }));
     }
 
-    if(check === "viewJobDetails"){
-      dispatch(fullJobDetails({jobId: item?.jobId}))
-      toggleCustomModal()
-    
+    if (check === "viewJobDetails") {
+      dispatch(fullJobDetails({ jobId: item?.jobId }));
+      toggleCustomModal();
     }
   };
 
@@ -367,16 +359,16 @@ const ManageJobs = ({handleApplicant}) => {
       setEditData(item);
       // navigate("/renew-job");
       // toggleModal();
-       dispatch(jobEditCloneData(item));
-       toggleRepostModal()
+      dispatch(jobEditCloneData(item));
+      toggleRepostModal();
     }
 
     if (check === "renewPosting") {
       setEditData(item);
       // navigate("/renew-job");
       // toggleModal();
-       dispatch(jobEditCloneData(item));
-       toggleRenewModal()
+      dispatch(jobEditCloneData(item));
+      toggleRenewModal();
     }
 
     if (check === "clone") {
@@ -406,25 +398,20 @@ const ManageJobs = ({handleApplicant}) => {
       // dispatch(createJob(cloneData));
     }
 
- 
-
-    if(check === "viewApplicants"){
-      handleApplicant()
-      dispatch(employerApplications({jobId: item?.jobId}))
+    if (check === "viewApplicants") {
+      handleApplicant();
+      dispatch(employerApplications({ jobId: item?.jobId }));
     }
-    if(check === "viewJobDetails"){
-      toggleCustomModal()
-      dispatch(fullJobDetails({jobId: item?.jobId}))
+    if (check === "viewJobDetails") {
+      toggleCustomModal();
+      dispatch(fullJobDetails({ jobId: item?.jobId }));
       // dispatch(employerApplications({jobId: item?.jobId}))
     }
   };
 
-  
-
   return (
     <>
       <div className="p-2">
-       
         <div>
           {/* <Row>
             <Col lg={12} className="mt-2">
@@ -944,16 +931,8 @@ const ManageJobs = ({handleApplicant}) => {
             </Col>
           </Row>
         </div>
-
-        
       </div>
 
-      
-
-      
-
-
-      
       <Modal isOpen={modalIsOpen} toggle={toggleModal} size="lg">
         <ModalHeader toggle={toggleModal}>Edit Job</ModalHeader>
         <ModalBody>
@@ -976,24 +955,25 @@ const ManageJobs = ({handleApplicant}) => {
       </Modal>
 
       <div>
-    
-
-      <Modal isOpen={isCustomModalOpen} toggle={toggleCustomModal} size="lg">
-        <ModalHeader toggle={toggleCustomModal}></ModalHeader>
-        <ModalBody>
-        <JobDetails />
-        </ModalBody>
-        <ModalFooter>
-          <Button  className="btn btn-dark" style={{backgroundColor: '#244a59'}} onClick={toggleCustomModal}>
-            Close
-          </Button>
-          {/* <Button color="primary" onClick={toggleCustomModal}>
+        <Modal isOpen={isCustomModalOpen} toggle={toggleCustomModal} size="lg">
+          <ModalHeader toggle={toggleCustomModal}></ModalHeader>
+          <ModalBody>
+            <JobDetails />
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              className="btn btn-dark"
+              style={{ backgroundColor: "#244a59" }}
+              onClick={toggleCustomModal}
+            >
+              Close
+            </Button>
+            {/* <Button color="primary" onClick={toggleCustomModal}>
             Save Custom Settings
           </Button> */}
-        </ModalFooter>
-      </Modal>
-    </div>
-
+          </ModalFooter>
+        </Modal>
+      </div>
     </>
   );
 };

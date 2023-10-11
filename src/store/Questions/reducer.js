@@ -26,6 +26,9 @@ import {
     VIEW_MY_QUESTIONS,
     VIEW_MY_QUESTIONS_SUCCESS,
     VIEW_MY_QUESTIONS_ERROR,
+    UPDATE_QUESTIONS_ERROR,
+    UPDATE_QUESTIONS_SUCCESS,
+    UPDATE_QUESTIONS,
   } from "./actionTypes";
   
   const initialState = {
@@ -35,7 +38,9 @@ import {
     questions: null,
     viewQuestionsLoading: false, 
     viewQuestionsError: false,
-    errMssg: ""
+    errMssg: "",
+    updateQuestionsError: false, 
+    updateQuestionsLoading: false
 
   };
   
@@ -104,6 +109,26 @@ import {
             viewQuestionsError: false, 
             viewQuestionsLoading: false,
             errMssg: action.payload
+        }
+        case UPDATE_QUESTIONS: 
+        return {
+            ...state, 
+            updateQuestionsLoading: true, 
+            updateQuestionsError: false
+        }
+        case UPDATE_QUESTIONS_ERROR: 
+        return {
+            ...state, 
+            updateQuestionsLoading: false, 
+            updateQuestionsError: true, 
+            errMssg: action.payload
+        }
+        case UPDATE_QUESTIONS_SUCCESS: 
+        return {
+            ...state, 
+            updateQuestionsLoading: false, 
+            updateQuestionsError: false,
+            questions: action.payload
         }
       default:
         return state;

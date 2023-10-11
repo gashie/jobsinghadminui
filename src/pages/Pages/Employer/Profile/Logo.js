@@ -10,6 +10,7 @@ import {
   Input,
   Button,
   Label,
+  Spinner,
 } from "reactstrap";
 //import logo1 from "./logo1.png";
 import { useFormik } from "formik";
@@ -34,7 +35,6 @@ const ProfileLogo = () => {
     userInfo: state.Login.userInfo,
   }));
 
-  
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -58,6 +58,11 @@ const ProfileLogo = () => {
     dispatch(updateLogo(formData));
   };
 
+  const { imageLoading, imageError } = useSelector((state) => ({
+    imageLoading: state.Login.updateLogoLoading,
+    imageError: state.Login.updateLogoError,
+   
+  }));
 
   return (
     <>
@@ -84,33 +89,48 @@ const ProfileLogo = () => {
             />
           </Col>
           <Button
-          onClick={handleLogo}
-            className="btn btn-dark mt-5 p-3 w-50 my-5"
-            style={{ backgroundColor: "#244a59" }}
-          >
-            Save
-          </Button>
+        style={{ backgroundColor: "#244a59" }}
+        disabled={imageError || !selectedFile || imageLoading}
+        className="btn btn-dark px-5 mt-4 p-3"
+        onClick={() => {
+          handleLogo();
+        }}
+      >
+        { imageLoading ? (
+          <Spinner size="sm" className="me-2">
+            {" "}
+            Loading...{" "}
+          </Spinner>
+        ) : null}
+       Save
+      </Button>
 
           <div className="py-5">
-          <h4 className="py-5" >
-            Your Current logo
-          </h4>
-          {selectedImage ? (
-            <img
-              alt="Selected Logo"
-              src={selectedImage}
-              className="img-fluid avatar-xxl rounded-rectangle px-5"
-            />
-          ) : (
-            <div className="mt-5 ">
-              {" "}
-              <p >No image selected</p>
-            </div>
-          )}
-        </div>
-        </div>
+            <h4 className="">Your Current logo</h4>
 
-      
+            <Col
+              style={{
+                position: "relative",
+
+                marginTop: "4rem",
+              }}
+              xl={3}
+              md={4}
+              xs={7}
+            >
+              <p style={{ textAlign: "center" }}>
+                <img
+                  src={
+                    "https://108.166.181.225:5050/uploads/image/logos/" +
+                    userInfo?.userInfo?.company?.companyLogo
+                  }
+                  alt="profile-img"
+                  className="avatar-xxl"
+                ></img>
+              </p>
+            </Col>
+          </div>
+        </div>
       </div>
     </>
   );

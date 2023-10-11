@@ -14,10 +14,10 @@ import {
   Spinner,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-//import * as Yup from "yup";
+import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { industry, signUp } from "../../../store/actions";
+import { generalIndustry, industry, signUp } from "../../../store/actions";
 import { useEffect } from "react";
 
 const EmployerSignUp = () => {
@@ -45,15 +45,25 @@ const EmployerSignUp = () => {
       companyProfile: "",
     },
     validateOnChange: true,
-    // validationSchema: Yup.object({
-    //   rateTitle: Yup.string().required("Please enter a rate title"),
-    //   rateDescription: Yup.string().required("Please enter a rate description"),
-    //   ratePrice: Yup.string().required("Please enter rate price"),
-    //   rateLimit: Yup.string().required("Please enter rate limit"),
-    // }),
+    validationSchema: Yup.object({
+      fullName: Yup.string().required("Please Enter Your full name"),
+      username: Yup.string().required("Please Enter Your username"),
+      phone: Yup.string().required("Please Enter Your phone"),
+      email: Yup.string().required("Please Enter Your email"),
+      password: Yup.string().required("Please Enter Your password"),
+      address: Yup.string().required("Please Enter Your address"),
+      country: Yup.string().required("Please Enter Your country"),
+      birthDate: Yup.string().required("Please Enter Your birthDate"),
+      maritalStatus: Yup.string().required("Please Enter Your marital status"),
+      companyName: Yup.string().required("Please Enter Your marital status"),
+      location: Yup.string().required("Please Enter Your marital status"),
+      companyProfile: Yup.string().required("Please Enter Your marital status"),
+      website: Yup.string().required("Please Enter Your marital status"),
+      industryId: Yup.string().required("Please Enter Your marital status"),
+      companySize: Yup.string().required("Please Enter Your marital status"),
+      gender: Yup.string().required("Please Enter Your gender"),
+    }),
     onSubmit: (values) => {
-      console.log(values);
-
       const data = { values };
       dispatch(signUp(values));
       // dispatch(createRateCard(rateData));
@@ -62,20 +72,22 @@ const EmployerSignUp = () => {
     },
   });
 
+  console.log(validation.errors)
+
   const { loading, error } = useSelector((state) => ({
     loading: state.Account.loading,
     error: state.Account.error,
   }));
 
   const { catLoading, catError, categoryInfo } = useSelector((state) => ({
-    catLoading: state.Industry.loading,
-    catError: state.Industry.error,
-    categoryInfo: state.Industry.industryInfo,
+    catLoading: state.Industry.generalIndustriesLoading,
+    catError: state.Industry.generalIndustriesError,
+    categoryInfo: state.Industry.generalIndustriesData,
   }));
 
-  useEffect(()=>{
-     dispatch(industry({viewAction: ""}))
-  }, [dispatch])
+  useEffect(() => {
+    dispatch(generalIndustry({ viewAction: "" }));
+  }, [dispatch]);
 
   return (
     <>
@@ -95,14 +107,14 @@ const EmployerSignUp = () => {
                 return false;
               }}
             >
-              <div className="mt-4 p-5">
+              <div className="mt-1 p-5">
                 <h4 className="fw-bolder mt-4">Create employer profile</h4>
 
                 <Row className="p-5">
                   <Col md={6}>
                     <div className="mb-3">
                       <Label for="firstNameinput" className="form-label">
-                        FullName
+                        Full Name
                       </Label>
                       <Input
                         type="text"
@@ -112,6 +124,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.fullName || ""}
+                        invalid={
+                          validation.touched.fullName &&
+                          validation.errors.fullName
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -129,6 +147,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.username || ""}
+                        invalid={
+                          validation.touched.username &&
+                          validation.errors.username
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -136,7 +160,7 @@ const EmployerSignUp = () => {
                   <Col md={6}>
                     <div className="mb-3 mt-4">
                       <Label for="emailidInput" className="form-label">
-                        Email Address
+                        Email
                       </Label>
                       <Input
                         type="test"
@@ -146,6 +170,11 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.email || ""}
+                        invalid={
+                          validation.touched.email && validation.errors.email
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -162,6 +191,11 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.phone || ""}
+                        invalid={
+                          validation.touched.phone && validation.errors.phone
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -178,6 +212,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.address || ""}
+                        invalid={
+                          validation.touched.address &&
+                          validation.errors.address
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -194,6 +234,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.companyName || ""}
+                        invalid={
+                          validation.touched.companyName &&
+                          validation.errors.companyName
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -210,6 +256,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.location || ""}
+                        invalid={
+                          validation.touched.location &&
+                          validation.errors.location
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -226,6 +278,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.companyProfile || ""}
+                        invalid={
+                          validation.touched.companyProfile &&
+                          validation.errors.companyProfile
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -242,32 +300,44 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.companySize || ""}
+                        invalid={
+                          validation.touched.companySize &&
+                          validation.errors.companySize
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
                   <Col md={6}>
-                       <div className="mb-3 mt-4">
-                  <Label for="emailidInput" className="form-label">
+                    <div className="mb-3 mt-4">
+                      <Label for="emailidInput" className="form-label">
                         Indsutry
                       </Label>
-                    <select
-                      className="form-select p-3"
-                    
-                      id="industryId"
-                      value={validation.values.industryId}
-                      onChange={validation.handleChange}
-                    >
-                       <option>Select Industry</option>
-                      {catLoading === false && catError === false ? (
-                        categoryInfo?.map((item, key) => (
-                          <option key={key} value={item?.industryId}>
-                            {item?.industryTitle}
-                          </option>
-                        ))
-                      ) : (
-                        <option>loading industries...</option>
-                      )}
-                    </select>
+                      <Input
+                        className="form-select p-3"
+                        id="industryId"
+                        type="select"
+                        value={validation.values.industryId}
+                        onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.industryId &&
+                          validation.errors.industryId
+                            ? true
+                            : false
+                        }
+                      >
+                        <option>Select Industry</option>
+                        {catLoading === false && catError === null ? (
+                          categoryInfo?.map((item, key) => (
+                            <option key={key} value={item?.industryId}>
+                              {item?.industryTitle}
+                            </option>
+                          ))
+                        ) : (
+                          <option>loading industries...</option>
+                        )}
+                      </Input>
                     </div>
                   </Col>
                   <Col md={6}>
@@ -283,6 +353,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.website || ""}
+                        invalid={
+                          validation.touched.website &&
+                          validation.errors.website
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -299,6 +375,12 @@ const EmployerSignUp = () => {
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.password || ""}
+                        invalid={
+                          validation.touched.password &&
+                          validation.errors.password
+                            ? true
+                            : false
+                        }
                       />
                     </div>
                   </Col>
@@ -308,7 +390,6 @@ const EmployerSignUp = () => {
                       className="form-check-input"
                       type="checkbox"
                       id="formCheck6"
-                      defaultChecked
                     />
                     <Label className="form-check-label" for="formCheck6">
                       I agree to use the aforesaid details to create my

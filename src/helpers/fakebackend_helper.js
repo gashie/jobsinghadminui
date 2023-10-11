@@ -590,3 +590,6 @@ export const generalIndustriesURL = (data) =>
 
 export const generalCategoriesURL = (data) =>
   api.create(url.GENERAL_CATEGORIES, data);
+
+
+  export const updateQuestionURL = (data) => api.create(url.UPDATE_QUESTION, data);

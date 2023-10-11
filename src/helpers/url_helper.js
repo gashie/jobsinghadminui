@@ -263,7 +263,7 @@ export const JOB_STATUS = `${version}/viewjobstatus/`
 export const UPDATE_JOB_STATUS = `${version}/updatejobstatus/`
 export const CREATE_JOB = `${version}/setupjob/`
 export const UPDATE_JOB = `${version}/updatejob/`
-export const JOBS = `${version}/viewmyjobs/`
+export const JOBS = `${version}/employerlistjobs/`
 export const APPROVE_JOBS = `${version}/approvejob/`
 
 export const JOBSEEKERS = `${version}/allusers/`
@@ -311,6 +311,10 @@ export const UPDATE_COURSE_PARTNERSHIP = `${version}/updatepartnerships/`
 export const COURSE_SCHEDULE = `${version}/viewschedule/`
 export const SAVE_COURSE_SCHEDULE = `${version}/saveschedule/`
 export const UPDATE_COURSE_SCHEDULE = `${version}/updateschedule/`
+
+export const UPDATE_QUESTION = `${version}/updatequestion/`;
+
+
 
 
 export const PAYMENT = `${version}/pay/`

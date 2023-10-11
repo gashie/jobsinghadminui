@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, FormGroup, Label, Input, Button, Col } from "reactstrap";
 import { createQuestionYN } from "../../../../../store/actions";
 
-function YesNo({ onSubmit }) {
+function LinkYesNo({ onSubmit }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("Yes"); // Default answer is 'Yes'
+
+  const { data, idLoading, idError, idInfo, payloading, payError, payInfo } = useSelector(
+    (state) => ({
+      data: state.Jobs.editCloneData,
+      idLoading: state.Jobs.idLoading,
+      idError: state.Jobs.idError,
+      idInfo: state.Jobs.id,
+      payloading: state.Rates.payloading,
+      payInfo: state.Rates.payInfo,
+      payError: state.Rates.payError,
+    })
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Initialize the component with the data from the Redux store
+    if (data) {
+      setQuestion(data.questionTitle || "");
+      setAnswer(data.benchMark || "Yes");
+    }
+  }, [data]);
 
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
@@ -14,17 +36,6 @@ function YesNo({ onSubmit }) {
   const handleAnswerChange = (e) => {
     setAnswer(e.target.value);
   };
-
-  const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-    payloading: state.Rates.payloading,
-    payInfo: state.Rates.payInfo,
-    payError: state.Rates.payError,
-  }));
-
-  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +51,7 @@ function YesNo({ onSubmit }) {
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
 
-    dispatch(createQuestionYN(formattedData))
+    dispatch(createQuestionYN(formattedData));
 
     // Reset form values to default after submission
     setQuestion("");
@@ -81,7 +92,7 @@ function YesNo({ onSubmit }) {
             type="submit"
             style={{ backgroundColor: "#244a59" }}
           >
-            Add
+            Update and use question
           </Button>
         </Form>
       </Col>
@@ -89,4 +100,4 @@ function YesNo({ onSubmit }) {
   );
 }
 
-export default YesNo;
+export default LinkYesNo;

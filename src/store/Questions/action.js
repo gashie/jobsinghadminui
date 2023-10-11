@@ -26,6 +26,9 @@ import {
   VIEW_MY_QUESTIONS,
   VIEW_MY_QUESTIONS_ERROR,
   VIEW_MY_QUESTIONS_SUCCESS,
+  UPDATE_QUESTIONS_ERROR,
+  UPDATE_QUESTIONS_SUCCESS,
+  UPDATE_QUESTIONS,
 } from "./actionTypes";
 
 // CREATE_QUESTION actions
@@ -167,3 +170,18 @@ export const viewMyQuestionsError = (data) => ({
   type: VIEW_MY_QUESTIONS_ERROR,
   payload: data,
 });
+
+  //Update My QUESTIONS
+  export const updateQuestions = (data) => ({
+    type: UPDATE_QUESTIONS,
+    payload: data
+  });
+  
+  export const updateQuestionsSuccess = (data) => ({
+    type: UPDATE_QUESTIONS_SUCCESS,
+    payload: data,
+  });
+  export const updateQuestionsError = (data) => ({
+    type: UPDATE_QUESTIONS_ERROR,
+    payload: data,
+  });

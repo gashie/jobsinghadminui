@@ -98,33 +98,52 @@ const EmployerDashboard = () => {
 
   
 
-
-  const [height, setHeight] = useState("");
-  const [margin, setMargin] = useState("");
-
+  const [left, setLeft] = useState("");
+  const [display, setDisplay] = useState("")
+  const [top, setTop] = useState("");
+  const [createLeft, setCreateLeft] = useState("");
+  const [checkTop, setCheckTop] = useState("");
+  const [lineLeft, setLineLeft] = useState("")
+  const [gap, setGap] = useState("")
+  const [width, setWidth] = useState("")
   const updateWindowSize = () => {
-    const newWindowSize = document.documentElement.clientWidth;
-    if (newWindowSize <= 375) {
-      setMargin("-25rem");
-    } else if (newWindowSize <= 1200) {
-      setMargin("");
-    } else if (newWindowSize >= 1200) {
-      setMargin("");
-    } else if (newWindowSize > 375) {
-      setMargin("");
+    const newWindowSize = window.innerWidth;
+
+    if (newWindowSize <= 576) {
+      // for sm screens
+      setLeft("0.7rem");
+      setDisplay('none')
+      setGap("2rem")
+      // setTop("10rem");
+      // setCreateLeft("");
+      // setCheckTop("10rem");
+    } else if (newWindowSize <= 992) {
+      // for md screens
+      setLeft("0vh");
+      setDisplay('block')
+      setGap("2rem")
+      setWidth("100%")
+      // setTop("10rem");
+      // setCreateLeft("");
+      // setCheckTop("");
+    } else {
+      // for xl screens
+      setLeft("-4rem");
+      setDisplay('block')
+      setGap("3rem")
+      setWidth("96%")
+      // setTop("-7rem");
+      // setCreateLeft("20rem");
+      // setCreateLeft("20rem");
+      // setCheckTop("-2rem");
     }
   };
 
   useEffect(() => {
-    // Initial window size calculation
-    updateWindowSize();
-
-    // Event listener for window resize
-    window.addEventListener("resize", updateWindowSize);
-
-    // Cleanup the event listener on component unmount
+    updateWindowSize(); // Call on initial component mount
+    window.addEventListener("resize", updateWindowSize); // Add listener for window resize
     return () => {
-      window.removeEventListener("resize", updateWindowSize);
+      window.removeEventListener("resize", updateWindowSize); // Clean up the listener on component unmount
     };
   }, []);
 
@@ -136,7 +155,7 @@ const EmployerDashboard = () => {
             // className="m-0"
             md={11}
             sm={20}
-            style={{ position: "relative", top: "1rem", marginLeft: '1rem',  }}
+            style={{ position: "relative", top: "1rem", marginLeft: left, width: width }}
         >
           <Card
             style={{
@@ -163,7 +182,7 @@ const EmployerDashboard = () => {
               </Nav>
 
               <TabContent activeTab={justifyTab}
-               style={{ height: "700px", position: "relative", overflow: "scroll" }}
+               style={{ height: "690px", position: "relative", overflow: "scroll" }}
                className="scroll-change"
               >
                 <TabPane tabId="1" id="base-justified-home">

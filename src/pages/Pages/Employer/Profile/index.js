@@ -26,34 +26,9 @@ const EmployerProfile = () => {
     }
   };
 
-  const [display, setDisplay] = useState("");
+  
 
-  const updateWindowSize = () => {
-    const newWindowSize = document.documentElement.clientWidth;
-    if (newWindowSize <= 375) {
-      setDisplay("none");
-    } else if (newWindowSize <= 1200) {
-      setDisplay("none");
-    } else if (newWindowSize >= 1200) {
-      setDisplay("");
-    } else if (newWindowSize > 375) {
-      setDisplay("");
-    }
-  };
-
-  useEffect(() => {
-    // Initial window size calculation
-    updateWindowSize();
-
-    // Event listener for window resize
-    window.addEventListener("resize", updateWindowSize);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", updateWindowSize);
-    };
-  }, []);
-
+  
   const { loading, error, userInfo } = useSelector((state) => ({
     loading: state.Login.loading,
     error: state.Login.error,
@@ -64,14 +39,63 @@ const EmployerProfile = () => {
     justifyToggle("1");
   };
 
+  const [left, setLeft] = useState("");
+  const [display, setDisplay] = useState("")
+  const [top, setTop] = useState("");
+  const [createLeft, setCreateLeft] = useState("");
+  const [checkTop, setCheckTop] = useState("");
+  const [lineLeft, setLineLeft] = useState("")
+  const [gap, setGap] = useState("")
+  const [width, setWidth] = useState("")
+  const updateWindowSize = () => {
+    const newWindowSize = window.innerWidth;
+
+    if (newWindowSize <= 576) {
+      // for sm screens
+      setLeft("0.7rem");
+      setDisplay('none')
+      setGap("2rem")
+      // setTop("10rem");
+      // setCreateLeft("");
+      // setCheckTop("10rem");
+    } else if (newWindowSize <= 992) {
+      // for md screens
+      setLeft("0vh");
+      setDisplay('block')
+      setGap("2rem")
+      setWidth("100%")
+      // setTop("10rem");
+      // setCreateLeft("");
+      // setCheckTop("");
+    } else {
+      // for xl screens
+      setLeft("-4rem");
+      setDisplay('block')
+      setGap("3rem")
+      setWidth("96%")
+      // setTop("-7rem");
+      // setCreateLeft("20rem");
+      // setCreateLeft("20rem");
+      // setCheckTop("-2rem");
+    }
+  };
+
+  useEffect(() => {
+    updateWindowSize(); // Call on initial component mount
+    window.addEventListener("resize", updateWindowSize); // Add listener for window resize
+    return () => {
+      window.removeEventListener("resize", updateWindowSize); // Clean up the listener on component unmount
+    };
+  }, []);
+
   return (
     <>
       <Col
-        xxl={11}
+        xl={11}
         // className="m-0"
         md={11}
         sm={20}
-        style={{ position: "relative", top: "1rem", marginLeft: "1rem" }}
+        style={{ position: "relative", top: "1rem", marginLeft: left, width: width }}
       >
         <Card style={{ border: "none", boxShadow: "0px 0px 0px white" }}>
           <CardBody>
@@ -124,9 +148,10 @@ const EmployerProfile = () => {
 
             <TabContent activeTab={justifyTab} className="text-muted">
               <TabPane tabId="1" id="base-justified-home">
-                <Col xxl={10} xs={12} md={12}>
+                <Col xl={12} xs={12} md={12} >
                   <Card
                     style={{ border: "none", boxShadow: "0px 0px 0px white" }}
+                    className="px-3"
                   >
                     <CardBody
                       style={{
@@ -134,28 +159,32 @@ const EmployerProfile = () => {
                         justifyContent: "center",
                       
                       }}
+                    
                     >
                       <Row>
                         <h4>Company's Profile</h4>
                         <Col
                           style={{
                             position: "relative",
-                            left: "6rem",
+                            left: "1rem",
                             marginTop: "10rem",
+                           
                           }}
-                          xl={3}
-                          md={4}
-                          xs={7}
+                          xl={5}
+                          md={3}
+                          xs={6}
                         >
-                          <p style={{ textAlign: "center" }}>
+                          <p style={{ textAlign: "left" }}>
                             <img
                               src={"https://108.166.181.225:5050/uploads/image/logos/"+ userInfo?.userInfo?.company?.companyLogo}
                               alt="profile-img"
-                              className="img-fluid avatar-xxl"
+                              className="img-fluid avatar-xxl "
+                              
                             ></img>
                           </p>
                           <h5
-                            style={{ textAlign: "center", marginTop: "1rem" }}
+                            style={{ textAlign: "", marginTop: "1rem" }}
+                            className="mx-3"
                           >
                             {userInfo?.userInfo?.company?.companyName}
                           </h5>
@@ -167,8 +196,8 @@ const EmployerProfile = () => {
                               borderLeft: "1px dashed black",
                               height: "100%",
                               position: "relative",
-                              left: "12rem",
-                              display: display,
+                              left: "2rem",
+                              display: display
                             }}
                           ></div>
                         </Col>
@@ -176,14 +205,14 @@ const EmployerProfile = () => {
                         <Col
                           style={{ display: "grid", gap: "2.5rem" , marginRight: '-4rem'}}
                           xl={6}
-                          md={5}
+                          md={7}
                           xs={10}
                           className="mt-3 px-5"
                         >
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -197,7 +226,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -211,7 +240,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -225,7 +254,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -239,7 +268,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -251,7 +280,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -265,7 +294,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -279,7 +308,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -293,7 +322,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -307,7 +336,7 @@ const EmployerProfile = () => {
                           <div
                             style={{
                               display: "flex",
-                              gap: "1rem",
+                              gap: gap,
                               alignItems: "flex-start",
                             }}
                           >
@@ -342,7 +371,7 @@ const EmployerProfile = () => {
                 tabId="2"
                 id="product"
                 style={{
-                  height: "740px",
+                  height: "720px",
                   position: "relative",
                   overflow: "scroll",
                 }}
@@ -355,7 +384,7 @@ const EmployerProfile = () => {
                 tabId="3"
                 id="base-justified-messages"
                 style={{
-                  height: "800px",
+                  height: "720px",
                   position: "relative",
                   overflow: "scroll",
                 }}
@@ -368,7 +397,7 @@ const EmployerProfile = () => {
                 tabId="4"
                 id="base-justified-settings"
                 style={{
-                  height: "800px",
+                  height: "720px",
                   position: "relative",
                   overflow: "scroll",
                 }}

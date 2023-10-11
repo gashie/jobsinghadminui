@@ -107,7 +107,7 @@ const PostCourse = () => {
      
       dispatch(saveCourse(formData));
 
-      navigate("/home");
+      navigate("/app/employer-courses");
     },
   });
 

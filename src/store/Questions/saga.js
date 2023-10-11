@@ -12,6 +12,7 @@ import {
   LINK_JOB_QUESTION,
   RATE_CARD,
   UNLINK_JOB_QUESTION,
+  UPDATE_QUESTIONS,
   UPDATE_RATE_CARD,
   VIEW_MY_QUESTIONS,
 } from "./actionTypes";
@@ -40,6 +41,9 @@ import {
   createQuestionError,
   viewMyQuestionsSuccess,
   viewMyQuestionsError,
+  updateQuestionsSuccess,
+  updateQuestionsError,
+  viewMyQuestions as questionAction,
 } from "./action";
 import {
  
@@ -49,9 +53,11 @@ import {
   linkJobQuestionURL,
  
   unlinkJobQuestionURL,
+  updateQuestionURL,
   viewMyQuestions,
  
 } from "../../helpers/fakebackend_helper";
+
 
 const Nav = (location) => {
   let navigate = useNavigate();
@@ -250,6 +256,30 @@ function* viewQuestions ({ payload: data }) {
   }
 }
 
+function* updateQ ({ payload: data }) {
+  try {
+    const response = yield call(updateQuestionURL, data);
+
+    if (response && response?.data?.status === 1) {
+      yield put(updateQuestionsSuccess(response.data.data));
+      yield put(questionAction({ viewAction: "" }));
+      toast.success(`${response.data.message}`, {
+        autoClose: 3000,
+      });
+    } else {
+      yield put(updateQuestionsError(response.message));
+      toast.success(`${response.data.message}`, {
+        autoClose: 3000,
+      });
+      yield put(questionAction({ viewAction: "" }));
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(updateQuestionsError(error));
+    yield put(questionAction({ viewAction: "" }));
+  }
+}
+
 function* QuestionsSaga() {
   yield takeEvery(CREATE_QUESTION_Y_N, createQuestionY_N);
   yield takeEvery(CREATE_QUESTION_MULTIPLE, createQuestionMultiple);
@@ -259,6 +289,7 @@ function* QuestionsSaga() {
   yield takeEvery(UNLINK_JOB_QUESTION, unlinkQuestion);
   yield takeEvery(LINK_JOB_QUESTION, linkQuestion);
   yield takeEvery(VIEW_MY_QUESTIONS, viewQuestions);
+  yield takeEvery(UPDATE_QUESTIONS, updateQ);
  
 }
 

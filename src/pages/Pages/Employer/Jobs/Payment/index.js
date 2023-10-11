@@ -31,21 +31,22 @@ import {
 import { makePayment } from "../../../../../store/actions";
 import { useNavigate } from "react-router-dom";
 
-function Index({togglePaymentModal, payLater}) {
+function Index({ togglePaymentModal, handleCloseRepost }) {
   const { loading, error, rateInfo } = useSelector((state) => ({
     loading: state.Rates.loading,
     error: state.Rates.error,
     rateInfo: state.Rates.rateCardInfo,
   }));
 
-  const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-    payloading: state.Rates.payloading,
-    payInfo: state.Rates.payInfo,
-    payError: state.Rates.payError,
-  }));
+  const { idLoading, idError, idInfo, payloading, payError, payInfo } =
+    useSelector((state) => ({
+      loading: state.Jobs.idLoading,
+      error: state.Jobs.idError,
+      idInfo: state.Jobs.id,
+      payloading: state.Rates.payloading,
+      payInfo: state.Rates.payInfo,
+      payError: state.Rates.payError,
+    }));
 
   const [selectedItem, setSelectedItem] = useState(null);
   console.log(selectedItem);
@@ -54,21 +55,21 @@ function Index({togglePaymentModal, payLater}) {
 
   const [inputValue, setInputValue] = useState(""); // Initialize with an empty string or your desired initial value
 
-   const triggerLink = () =>{
-    if(payloading === false && payError === false){
-      togglePaymentModal()
-      // 
+  const triggerLink = () => {
+    if (payloading === false && payError === false) {
+      togglePaymentModal();
+      //
     }
-  }
+  };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   const handlePay = () => {
-    console.log("pay");
+   
     const payData = {
       courseId: "",
       rateId: selectedItem?.rateId || "",
@@ -78,12 +79,9 @@ function Index({togglePaymentModal, payLater}) {
     };
 
     dispatch(makePayment(payData));
-    navigate("/app/employer-jobs")
-    triggerLink()
+    handleCloseRepost()
+    navigate("/app/employer-jobs");
   };
-
-
- 
 
   return (
     <>
@@ -214,7 +212,14 @@ function Index({togglePaymentModal, payLater}) {
             />
           </>
         }
-        <Button className="btn btn-dark mt-5 p-3" onClick={handlePay} style={{backgroundColor: '#244a59'}}>
+        <Button
+          className="btn btn-dark mt-5 p-3"
+          onClick={() => {
+            togglePaymentModal();
+            handlePay();
+          }}
+          style={{ backgroundColor: "#244a59" }}
+        >
           Make Payment
         </Button>
 

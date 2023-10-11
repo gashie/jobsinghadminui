@@ -171,14 +171,19 @@ const RepostJob = ({ handleCloseRepost }) => {
     options.push(...cities);
   }
 
+  const { user } = useSelector((state) => ({
+    user: state.Login.userInfo,
+  }));
 
   const handleMulti = (selectedOptions) => {
-    setSelectedMulti( selectedOptions);
+    setSelectedMulti(selectedOptions);
   };
 
   const formattedSelectedMulti = selectedMulti.map((option) => ({
     locationName: option.label,
   }));
+
+  const [finalData, setFinalData] = useState();
 
   const validation = useFormik({
     enableReinitialize: true,
@@ -201,19 +206,34 @@ const RepostJob = ({ handleCloseRepost }) => {
       appliedEmail: data?.appliedEmail || "",
     },
     validateOnChange: true,
-    //   validationSchema: Yup.object({
-    //     goLiveDate: Yup.date().required("Please select go live date"),
-    //     jobCategoryId: Yup.string().required("Please job category"),
-    //     // companyId: Yup.string().required("Please a company"),
-    //     jobTitle: Yup.string().required("Please a job title"),
-    //   }),
+    validationSchema: Yup.object({
+      jobTitle: Yup.string().required("Please enter a job title"),
+      jobCategoryId: Yup.string().required("Please select a job category"),
+      // jobLocation: Yup.string().required("Please select a job location"),
+      jobSalaryAmount: Yup.number()
+        .typeError("Salary must be a number")
+        .required("Please enter a salary amount"),
+      // companyId: Yup.string().required("Please select a company"),
+      isCompanyConfidential: Yup.boolean(),
+      // jobDescription: Yup.string().required("Please enter a job description"),
+
+      jobStatusId: Yup.string().required("Please select a job category"),
+      applyMode: Yup.string().required("Please select a job category"),
+      // applyLink: Yup.string().required("Please select a job category"),
+      education: Yup.string().required("Please select a job category"),
+      goLiveDate: Yup.string().required("Please select a job category"),
+      yearsOfExperience: Yup.number().integer(
+        "Years of experience must be a whole number"
+      ),
+      // appliedEmail: Yup.string().email("Invalid email format"),
+    }),
     onSubmit: (values) => {
       const finalData = {
         jobTitle: values.jobTitle,
         jobCategoryId: values.jobCategoryId,
         jobLocation: formattedSelectedMulti,
         jobSalaryAmount: values.jobSalaryAmount,
-        companyId: data?.companyId,
+        companyId: user?.userInfo?.company?.companyId,
         isCompanyConfidential: isConfidential,
         jobSkills: [],
         jobSalaryCurrency: "Ghc",
@@ -228,9 +248,9 @@ const RepostJob = ({ handleCloseRepost }) => {
         goLiveDate: values.goLiveDate,
       };
 
+      console.log(finalData);
+      setFinalData(finalData);
 
-      console.log(finalData)
-      dispatch(createJob(finalData));
       toggleModal();
 
       //navigate("/employer-jobs");
@@ -240,7 +260,7 @@ const RepostJob = ({ handleCloseRepost }) => {
     },
   });
 
-console.log(validation.values.jobTitle)
+  console.log(validation.errors);
 
   // Define state for the checkbox
   const [isConfidential, setIsConfidential] = useState(false);
@@ -366,14 +386,15 @@ console.log(validation.values.jobTitle)
                       placeholder="Job title"
                       onChange={validation.handleChange}
                       value={validation.values.jobTitle || ""}
+                      invalid={
+                        validation.touched.jobTitle &&
+                        validation.errors.jobTitle
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
-                {validation.touched.jobTitle && validation.errors.jobTitle ? (
-                  <FormFeedback type="invalid">
-                    <div>{validation.errors.jobTitle}</div>
-                  </FormFeedback>
-                ) : null}
 
                 <label>Years of Experience</label>
                 <Row className="mb-3">
@@ -383,7 +404,14 @@ console.log(validation.values.jobTitle)
                       className="form-control p-3"
                       id="yearsOfExperience"
                       onChange={validation.handleChange}
+                      placeholder="Enter years of experience"
                       value={validation.values.yearsOfExperience || ""}
+                      invalid={
+                        validation.touched.yearsOfExperience &&
+                        validation.errors.yearsOfExperience
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -399,6 +427,12 @@ console.log(validation.values.jobTitle)
                       placeholder=""
                       onChange={validation.handleChange}
                       value={validation.values.goLiveDate || ""}
+                       invalid={
+                        validation.touched.goLiveDate &&
+                        validation.errors.goLiveDate
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -406,12 +440,19 @@ console.log(validation.values.jobTitle)
                 <Row className="mb-3">
                   <label>Select Category</label>
                   <Col lg={15}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="jobCategoryId"
                       id="jobCategoryId"
+                      type="select"
                       value={validation.values.jobCategoryId}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.jobCategoryId &&
+                        validation.errors.jobCategoryId
+                          ? true
+                          : false
+                      }
                     >
                       <option>Select Category</option>
                       {catLoading === false && catError === false ? (
@@ -423,7 +464,7 @@ console.log(validation.values.jobTitle)
                       ) : (
                         <option>loading categories...</option>
                       )}
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
@@ -434,9 +475,15 @@ console.log(validation.values.jobTitle)
                       type="text"
                       className="form-control p-3"
                       id="education"
-                      placeholder=""
+                      placeholder="Enter education level"
                       onChange={validation.handleChange}
                       value={validation.values.education || ""}
+                      invalid={
+                        validation.touched.education &&
+                        validation.errors.education
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -465,34 +512,50 @@ console.log(validation.values.jobTitle)
                 <Row className="mb-3">
                   <label>Select Status</label>
                   <Col lg={12}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="jobStatusId"
                       id="jobStatusId"
                       value={validation.values.jobStatusId}
                       onChange={validation.handleChange}
+                      
+                      type="select"
+                      invalid={
+                        validation.touched.jobStatusId &&
+                        validation.errors.jobStatusId
+                          ? true
+                          : false
+                      }
                     >
+                      <option>Select Status</option>
                       <option>Permanent</option>
                       <option>Contract</option>
                       <option>Part Time</option>
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
                 <Row className="mb-3">
                   <label>Select Apply Mode</label>
                   <Col lg={12}>
-                    <select
+                    <Input
                       className="form-select p-3"
                       name="applyMode"
                       id="applyMode"
+                      type="select"
                       value={validation.values.applyMode}
                       onChange={validation.handleChange}
+                      invalid={
+                        validation.touched.applyMode &&
+                        validation.errors.applyMode
+                          ? true
+                          : false
+                      }
                     >
                       <option>select apply mode</option>
                       <option>Email</option>
                       <option>Website</option>
-                    </select>
+                    </Input>
                   </Col>
                 </Row>
 
@@ -507,6 +570,12 @@ console.log(validation.values.jobTitle)
                         type="text"
                         value={validation.values.appliedEmail}
                         onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.appliedEmail &&
+                          validation.errors.appliedEmail
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -521,6 +590,12 @@ console.log(validation.values.jobTitle)
                         type="text"
                         value={validation.values.applyLink}
                         onChange={validation.handleChange}
+                        invalid={
+                          validation.touched.applyLink &&
+                          validation.errors.applyLink
+                            ? true
+                            : false
+                        }
                       />
                     </Col>
                   </Row>
@@ -548,12 +623,7 @@ console.log(validation.values.jobTitle)
                         id="jobLocation"
                         name="jobLocation"
                       />
-                      {validation.touched.jobLocation &&
-                      validation.errors.jobLocation ? (
-                        <div className="invalid-feedback">
-                          {validation.errors.jobLocation}
-                        </div>
-                      ) : null}
+                    
                     </div>
                   </Col>
                 </Row>
@@ -569,6 +639,12 @@ console.log(validation.values.jobTitle)
                       placeholder="Enter Job Salary Amount"
                       onChange={validation.handleChange}
                       value={validation.values.jobSalaryAmount || ""}
+                      invalid={
+                        validation.touched.jobSalaryAmount &&
+                        validation.errors.jobSalaryAmount
+                          ? true
+                          : false
+                      }
                     />
                   </Col>
                 </Row>
@@ -894,6 +970,7 @@ console.log(validation.values.jobTitle)
             onClick={() => {
               toggleModal();
               toggleSecondModal();
+              dispatch(createJob(finalData));
             }}
             style={{ backgroundColor: "#244a59" }}
           >
@@ -904,6 +981,7 @@ console.log(validation.values.jobTitle)
             onClick={() => {
               toggleModal();
               toggleQuestionModal();
+              dispatch(createJob(finalData));
             }}
             style={{ backgroundColor: "#244a59" }}
           >
@@ -953,6 +1031,7 @@ console.log(validation.values.jobTitle)
         <ModalBody>
           <Payment
             togglePaymentModal={togglePaymentModal}
+            handleCloseRepost={handleCloseRepost}
             //  payLater={payLater}
           />
         </ModalBody>

@@ -30,6 +30,7 @@ const AuthProtectedEmployer = (props) => {
   const isLoggedIn = useSelector((state) => state.Login.isloggedIn);
   const userId = useSelector((state) => state.Login.userInfo);
   const userInfo = useSelector((state) => state.Login.userInfo);
+  const loadingUserinfo = useSelector((state) => state.Login.loadingUserinfo);
 
 
   const navigate = useNavigate();
@@ -51,17 +52,19 @@ const AuthProtectedEmployer = (props) => {
     }
   }, [dispatch, navigate, isLoggedIn, userInfo?.userInfo?.roleid]);
 
+  if(loadingUserinfo){
+    return(
+      <Loading />
+    )
+  }
+
   if (inter === true) {
     return (
       <Navigate to={{ pathname: path, state: { from: props.location } }} />
     );
   }
 
-  if(loading){
-    return(
-      <Loading />
-    )
-  }
+
 
   if (!isLoggedIn || userId?.userInfo?.roleid === 2) {
     return (

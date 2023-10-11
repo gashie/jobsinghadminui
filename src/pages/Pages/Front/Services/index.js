@@ -87,7 +87,7 @@ const Services = () => {
     };
   }, []);
 
-  console.log(window.location);
+  
 
   const buttonStyle = {
     color: "white",

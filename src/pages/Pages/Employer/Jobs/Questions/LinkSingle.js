@@ -1,27 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { createQuestionMultiple } from '../../../../../store/actions';
+import { createQuestionSingle, updateQuestions } from '../../../../../store/actions';
 
-const Single = ({ onSubmit }) => {
+const LinkSingle = ({ handleEditClose, onSubmit }) => {
   const [question, setQuestion] = useState('');
-  const [answerOptions, setAnswerOptions] = useState(['']); // Initial answer option
-  const [idealAnswerIndex, setIdealAnswerIndex] = useState(0); // Index of the ideal answer
+  const [answerOptions, setAnswerOptions] = useState(['']);
+  const [idealAnswerIndex, setIdealAnswerIndex] = useState(0);
 
-const dispatch = useDispatch()
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      setQuestion(data.questionTitle || '');
+
+      if (data.questionOption && Array.isArray(data.questionOption)) {
+        const options = data.questionOption.map((option) => option.optionValue);
+        setAnswerOptions(options);
+
+        const idealIndex = data.questionOption.findIndex(
+          (option) => option.optionBenchMark === 1
+        );
+        setIdealAnswerIndex(idealIndex >= 0 ? idealIndex : 0);
+      }
+    }
+  }, [data]);
 
   const handleQuestionChange = (e) => {
     setQuestion(e.target.value);
   };
-
-  const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
-    loading: state.Jobs.idLoading,
-    error: state.Jobs.idError,
-    idInfo: state.Jobs.id,
-    payloading: state.Rates.payloading,
-    payInfo: state.Rates.payInfo,
-    payError: state.Rates.payError,
-  }));
 
   const handleAnswerChange = (index, value) => {
     const updatedOptions = [...answerOptions];
@@ -43,12 +54,18 @@ const dispatch = useDispatch()
     setIdealAnswerIndex(parseInt(e.target.value, 10));
   };
 
+  const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
+    loading: state.Jobs.idLoading,
+    error: state.Jobs.idError,
+    idInfo: state.Jobs.id,
+    payloading: state.Rates.payloading,
+    payInfo: state.Rates.payInfo,
+    payError: state.Rates.payError,
+  }));
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
-
-    // Format the data to match the desired JSON structure
     const formattedData = {
       questionTitle: question,
       questionType: 'single',
@@ -60,14 +77,10 @@ const dispatch = useDispatch()
       })),
     };
 
-   
-
-    // Pass the formatted data to the parent component
     onSubmit(formattedData);
 
-    dispatch(createQuestionMultiple(formattedData))
+    // dispatch(updateQuestions(formattedData));
 
-    // Reset form values to default after submission
     setQuestion('');
     setAnswerOptions(['']);
     setIdealAnswerIndex(0);
@@ -98,19 +111,20 @@ const dispatch = useDispatch()
               placeholder={`Enter answer ${index + 1}`}
             />
             <Button
-             color='light'
+              color="light"
               className="ml-4"
-              style={{ marginLeft: '3px'}}
+              style={{ marginLeft: '3px' }}
+              onClick={() => handleRemoveAnswer(index)}
             >
-              <i className='bx bx-trash bx-tada-hover fs-17' onClick={() => handleRemoveAnswer(index)}></i>
+              <i className="bx bx-trash bx-tada-hover fs-17"></i>
             </Button>
           </div>
         </FormGroup>
       ))}
-      <Button color="primary" onClick={handleAddAnswer} style={{backgroundColor: '#244a59'}}>
+      <Button color="primary" onClick={handleAddAnswer} style={{ backgroundColor: '#244a59' }}>
         Add Answer
       </Button>
-      <FormGroup className='mt-4'>
+      <FormGroup className="mt-4">
         <Label for="idealAnswer">Ideal Answer</Label>
         <Input
           type="select"
@@ -125,18 +139,11 @@ const dispatch = useDispatch()
           ))}
         </Input>
       </FormGroup>
-      <Button color="primary" type="submit" style={{backgroundColor: '#244a59'}}>
-        Add Question
+      <Button color="primary" type="submit" style={{ backgroundColor: '#244a59' }}>
+        Update and use question
       </Button>
-      {/* Display formatted data below the form */}
-      {/* {formattedData && (
-        <div className="mt-4">
-          <h2>Formatted Data</h2>
-          <pre>{JSON.stringify(formattedData, null, 2)}</pre>
-        </div>
-      )} */}
     </Form>
   );
 };
 
-export default Single;
+export default LinkSingle;

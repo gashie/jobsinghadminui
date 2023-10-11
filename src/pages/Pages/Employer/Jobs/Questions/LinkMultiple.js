@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { createQuestionMultiple } from '../../../../../store/actions';
+import { createQuestionMultiple, updateQuestions } from '../../../../../store/actions';
 
-const Multiple = ({ onSubmit }) => {
+const LinkMultiple = ({ handleEditClose, onSubmit }) => {
   const [question, setQuestion] = useState('');
-  const [answerLabels, setAnswerLabels] = useState(['']); // Initial answer labels
-  const [idealAnswerIndices, setIdealAnswerIndices] = useState([]); // Indices of the ideal answers
+  const [answerLabels, setAnswerLabels] = useState(['']);
+  const [idealAnswerIndices, setIdealAnswerIndices] = useState([]);
 
-  const dispatch = useDispatch();
-
-  const handleQuestionChange = (e) => {
-    setQuestion(e.target.value);
-  };
+  const { data } = useSelector((state) => ({
+    data: state.Jobs.editCloneData,
+  }));
 
   const { idLoading, idError, idInfo,payloading, payError, payInfo  } = useSelector((state) => ({
     loading: state.Jobs.idLoading,
@@ -22,6 +20,31 @@ const Multiple = ({ onSubmit }) => {
     payInfo: state.Rates.payInfo,
     payError: state.Rates.payError,
   }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      setQuestion(data.questionTitle || '');
+
+      if (data.optionsData && Array.isArray(data.optionsData)) {
+        const labels = data.optionsData.map((option) => option.optionLabel);
+        setAnswerLabels(labels);
+
+        const indices = data.optionsData.reduce((indices, option, index) => {
+          if (option.optionBenchMark) {
+            indices.push(index);
+          }
+          return indices;
+        }, []);
+        setIdealAnswerIndices(indices);
+      }
+    }
+  }, [data]);
+
+  const handleQuestionChange = (e) => {
+    setQuestion(e.target.value);
+  };
 
   const handleAnswerChange = (index, value) => {
     const updatedLabels = [...answerLabels];
@@ -41,11 +64,9 @@ const Multiple = ({ onSubmit }) => {
 
   const handleIdealAnswerChange = (index) => {
     if (idealAnswerIndices.includes(index)) {
-      // If the index is already in the array, remove it
       const updatedIndices = idealAnswerIndices.filter((item) => item !== index);
       setIdealAnswerIndices(updatedIndices);
     } else {
-      // If the index is not in the array, add it
       setIdealAnswerIndices([...idealAnswerIndices, index]);
     }
   };
@@ -53,7 +74,6 @@ const Multiple = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Format the data to match the desired JSON structure
     const formattedData = {
       questionTitle: question,
       questionType: 'multi',
@@ -65,10 +85,10 @@ const Multiple = ({ onSubmit }) => {
       })),
     };
 
-    // Pass the formatted data to the parent component
-    onSubmit(formattedData);
+    onSubmit(formattedData); // Call the parent's onSubmit function
 
-    dispatch(createQuestionMultiple(formattedData));
+    // Dispatch an action to update the questions
+    //dispatch(updateQuestions(formattedData));
 
     // Reset form values to default after submission
     setQuestion('');
@@ -108,25 +128,31 @@ const Multiple = ({ onSubmit }) => {
             >
               <i className="bx bx-trash bx-tada-hover fs-17"></i>
             </Button>
-            <Label check className="ml-4">
-              <Input
-                type="checkbox"
-                checked={idealAnswerIndices.includes(index)}
-                onChange={() => handleIdealAnswerChange(index)}
-              />
-              Ideal Answer
-            </Label>
+            <div className='d-flex'>
+              <Label check className="ml-4 w-100 ">
+                <Input
+                  type="checkbox"
+                  checked={idealAnswerIndices.includes(index)}
+                  onChange={() => handleIdealAnswerChange(index)}
+                />
+                <p> Ideal Answer</p> 
+              </Label>
+            </div>
           </div>
         </FormGroup>
       ))}
-      <Button color="primary" className=' btn btn-dark' onClick={handleAddAnswer} style={{ backgroundColor: '#244a59' }}>
-        Add Answer
-      </Button>
-      <Button color="primary" className='m-1 btn btn-dark' type="submit" style={{ backgroundColor: '#244a59' }}>
-        Add Question
-      </Button>
+  
+      <div className='d-flex gap-2'>
+        <Button onClick={handleAddAnswer} style={{ backgroundColor: '#244a59' }} className='btn btn-dark'>
+          Add Answer
+        </Button>
+        <Button color="primary" type="submit" style={{ backgroundColor: '#244a59', marginRight: '2rem' }} className='btn btn-dark'>
+          Add Question
+        </Button>
+      </div>
     </Form>
   );
+  
 };
 
-export default Multiple;
+export default LinkMultiple;
