@@ -212,10 +212,11 @@ const JobDetails = () => {
                               details?.companyLogo
                             }
                             alt=""
-                            className="avatar-xxl img-fluid"
+                            className="img-fluid avatar-xxl" // Added Bootstrap img-fluid class
                           />
                         </div>
                       </div>
+
                       <Link to="#!">
                         <h5 style={{ color: "#244a59", fontWeight: "bolder" }}>
                           {details?.jobTitle}
@@ -288,6 +289,9 @@ const JobDetails = () => {
                               backgroundColor: "#244a59",
                               color: "white",
                             }}
+                            onClick={() => [
+                              dispatch(fullJobDetails({ jobId: param2 })),
+                            ]}
                           >
                             Apply
                           </Button>
@@ -463,6 +467,9 @@ const JobDetails = () => {
                         <Button
                           className="btn btn-dark p-3"
                           style={{ width: "100%", backgroundColor: "#244a59" }}
+                          onClick={() => {
+                            dispatch(fullJobDetails({ jobId: param2 }));
+                          }}
                         >
                           Apply
                         </Button>
@@ -619,8 +626,8 @@ const JobDetails = () => {
                             <hr />
                             <h5
                               className="p-2 fw-bolder"
-                              style={{ color: "#244a59", cursor: 'pointer' }}
-                              onClick={()=>{
+                              style={{ color: "#244a59", cursor: "pointer" }}
+                              onClick={() => {
                                 dispatch(
                                   findJob({
                                     jobId: job?.jobId,

@@ -68,7 +68,7 @@ const Multiple = ({ onSubmit }) => {
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
 
-    dispatch(createQuestionMultiple(formattedData));
+    //dispatch(createQuestionMultiple(formattedData));
 
     // Reset form values to default after submission
     setQuestion('');

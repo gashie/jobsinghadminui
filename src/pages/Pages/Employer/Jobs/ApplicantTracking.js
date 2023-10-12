@@ -177,6 +177,8 @@ const ApplicantTracking = () => {
 
   const photo = "https://108.166.181.225:5050/uploads/image/profile/";
 
+  const pdf = "https://108.166.181.225:5050/uploads/jobseeker/resume/";
+
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // Function to handle the image load event
@@ -184,6 +186,27 @@ const ApplicantTracking = () => {
     setImageLoaded(true);
     // dispatch(viewProfile({ viewAction: "" }));
   };
+
+const [Resume, setResume] = useState()
+
+  function handleOpenInNewTab(e) {
+    // Prevent the default behavior of the link
+    e.preventDefault();
+
+    // Specify the URL of the PDF file
+    const pdfUrl = pdf + profile?.applicantResume;
+
+    // Open a new window or tab with custom styles
+    const newWindow = window.open(pdfUrl, "_blank", "width=800,height=600");
+
+    // Apply custom styles to the new window
+    if (newWindow) {
+      newWindow.document.body.style.backgroundColor = "black";
+      newWindow.document.body.style.margin = "0";
+      // You can add more custom styles as needed
+    }
+  }
+
 
   return (
     <>
@@ -242,10 +265,11 @@ const ApplicantTracking = () => {
                                         : item?.applicationStatus === "pending"
                                         ? "#c89b51"
                                         : "red",
-                                    borderRadius: "10px",
+                                    borderRadius: "7px",
+                                    marginTop: "0.6rem",
                                     width: "max-content",
                                   }}
-                                  className="p-1"
+                                  className="p-2"
                                 >
                                   {item?.applicationStatus}
                                 </p>
@@ -475,7 +499,14 @@ const ApplicantTracking = () => {
                     Resume (Click to download resume):
                   </h6>
                   <h6 style={{ flex: "0 0 70%" }}>
-                    {profile?.applicantResume === null ? "No Resume" : ""}
+                    {profile?.applicantResume === null ? "No Resume" :
+                       <Link target="_blank" onClick={handleOpenInNewTab}>
+                     <Button style={{backgroundColor: '#244a59'}} className="btn btn-dark">
+                      Download applicant Resume
+                      </Button>
+                      </Link>
+                      }
+
                   </h6>
                 </div>
                 {/* <div

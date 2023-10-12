@@ -10,6 +10,8 @@ import jsearch from "./CareerImages/jsearch.png";
 import sal from "./CareerImages/salary.png";
 import workplace from "./CareerImages/workplace.png";
 import Scrollspy from "react-scrollspy";
+import { useDispatch } from "react-redux";
+import { fetchNews } from "../../../../../store/actions";
 
 const CareerAdvice = () => {
   const [width, setWidth] = useState("");
@@ -29,6 +31,8 @@ const CareerAdvice = () => {
       setWidth("");
     }
   };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Initial window size calculation
@@ -56,7 +60,7 @@ const CareerAdvice = () => {
         >
           {/* <img src={bg} className="text-bg" alt="bg"></img> */}
           {/* <Container className=""> */}
-          <div className="green-circle" ></div>
+          <div className="green-circle"></div>
           <div className="white-circle"></div>
 
           {/* </Container> */}
@@ -101,125 +105,135 @@ const CareerAdvice = () => {
               //   width: "max-content",
               // }}
             >
-
-
-              <Scrollspy items={['section1', 'section2', 'section3', 'section 4', 'section5', 'section6']} currentClassName="active" style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "1rem",
-                border: "0px solid black",
-                padding: "1rem",
-                backgroundColor: "#355765B5",
-                borderRadius: "0.2rem",
-                width: "max-content",
-              }}>
-              <Row>
-                <Col md={20} style={{ display: "grid", gap: "2rem" }}>
-                <a href="#section1">
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#355765B5",
-                      border: "1px solid white",
-                      padding: "1rem",
-                      width: width,
-                      position: "relative",
-                      left: left,
-                    }}
-                    className="btn"
-                  >
-                   Career Development
-                  </Button>
-                  </a>
-                  <a href="#section2">
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#355765B5",
-                      border: "1px solid white",
-                      padding: "1rem",
-                      width: width,
-                      position: "relative",
-                      left: left,
-                    }}
-                    className="btn w-100"
-                  >
-                    Salary/Benefits
-                  </Button>
-                  </a>
-                  <a href="#section3">
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#355765B5",
-                      border: "1px solid white",
-                      padding: "1rem",
-                      width: width,
-                      position: "relative",
-                      left: left,
-                    }}
-                    className="btn w-100"
-                  >
-                    Job Search
-                  </Button>
-                  </a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={20} style={{ display: "grid", gap: "2rem" }}>
-                <a href="#section4">
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#355765B5",
-                      border: "1px solid white",
-                      padding: "1rem",
-                      width: width,
-                      position: "relative",
-                      right: left,
-                    }}
-                    className="btn w-100"
-                  >
-                    Health & Safety
-                  </Button>
-                  </a>
-                  <a href="#section5">
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#355765B5",
-                      border: "1px solid white",
-                      padding: "1rem",
-                      width: width,
-                      position: "relative",
-                      right: left,
-                    }}
-                    className="btn "
-                  >
-                    Entrepreneurship
-                  </Button>
-                  </a>
-                  <a href="#section6">
-                  <Button
-                    style={{
-                      color: "white",
-                      backgroundColor: "#355765B5",
-                      border: "1px solid white",
-                      padding: "1rem",
-                      width: width,
-                      position: "relative",
-                      right: left,
-                    }}
-                    className="btn w-100"
-                  >
-                    Workplace
-                  </Button>
-                  </a>
-                </Col>
-              </Row>
+              <Scrollspy
+                items={[
+                  "section1",
+                  "section2",
+                  "section3",
+                  "section 4",
+                  "section5",
+                  "section6",
+                ]}
+                currentClassName="active"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  border: "0px solid black",
+                  padding: "1rem",
+                  backgroundColor: "#355765B5",
+                  borderRadius: "0.2rem",
+                  width: "max-content",
+                }}
+              >
+                <Row>
+                  <Col md={20} style={{ display: "grid", gap: "2rem" }}>
+                    <a href="#section1">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: width,
+                          position: "relative",
+                          left: left,
+                        }}
+                        className="btn"
+                      >
+                        Career Development
+                      </Button>
+                    </a>
+                    <a href="#section2">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: width,
+                          position: "relative",
+                          left: left,
+                        }}
+                        className="btn w-100"
+                      >
+                        Salary/Benefits
+                      </Button>
+                    </a>
+                    <a href="#section3">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: width,
+                          position: "relative",
+                          left: left,
+                        }}
+                        className="btn w-100"
+                      >
+                        Job Search
+                      </Button>
+                    </a>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={20} style={{ display: "grid", gap: "2rem" }}>
+                    <a href="#section4">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: width,
+                          position: "relative",
+                          right: left,
+                        }}
+                        className="btn w-100"
+                      >
+                        Health & Safety
+                      </Button>
+                    </a>
+                    <a href="#section5">
+                     
+                        <Button
+                          style={{
+                            color: "white",
+                            backgroundColor: "#355765B5",
+                            border: "1px solid white",
+                            padding: "1rem",
+                            width: width,
+                            position: "relative",
+                            right: left,
+                          }}
+                          className="btn "
+                        >
+                          Entrepreneurship
+                        </Button>
+                    
+                    </a>
+                    <a href="#section6">
+                      <Button
+                        style={{
+                          color: "white",
+                          backgroundColor: "#355765B5",
+                          border: "1px solid white",
+                          padding: "1rem",
+                          width: width,
+                          position: "relative",
+                          right: left,
+                        }}
+                        className="btn w-100"
+                      >
+                        Workplace
+                      </Button>
+                    </a>
+                  </Col>
+                </Row>
               </Scrollspy>
             </Col>
-            
           </div>
         </Col>
       </Row>
@@ -237,171 +251,170 @@ const CareerAdvice = () => {
             className="mt-5"
           >
             <Col sm={6} xl={5}>
-            <a href="/career-advice-details">
-              <div id="section1" style={{cursor: 'pointer'}}>
-                <img
-                  className="card-img-top img-fluid"
-                  src={car}
-                  alt="Card cap"
-                />
-                <div className="p-3" >
-                  <h4
-                    style={{ color: "#244a59", fontWeight: "bolder" }}
-                    className="card-title mb-2"
-                  >
-                    Career Development
-                  </h4>
-                  <p className="card-text text-dark">
-                    Lorem ipsum dolor sit amet consectetur. Vitae dolor
-                    imperdiet tristique quam. Vitae purus diam montes convallis
-                    convallis. At feugiat nam id dictum semper. Tristique libero
-                    risus amet adipiscing aliquam turpis amet. Non arcu dui
-                    nulla bibendum vestibulum viverra in aliquam id. Viverra
-                    aliquet donec enim rutr.
-                  </p>
+              <Link to="/career-advice-details">
+                <div id="section1" style={{ cursor: "pointer" }}>
+                  <img
+                    className="card-img-top img-fluid"
+                    src={car}
+                    alt="Card cap"
+                  />
+                  <div className="p-3">
+                    <h4
+                      style={{ color: "#244a59", fontWeight: "bolder" }}
+                      className="card-title mb-2"
+                    >
+                      Career Development
+                    </h4>
+                    <p className="card-text text-dark">
+                      Lorem ipsum dolor sit amet consectetur. Vitae dolor
+                      imperdiet tristique quam. Vitae purus diam montes
+                      convallis convallis. At feugiat nam id dictum semper.
+                      Tristique libero risus amet adipiscing aliquam turpis
+                      amet. Non arcu dui nulla bibendum vestibulum viverra in
+                      aliquam id. Viverra aliquet donec enim rutr.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              </a>
+              </Link>
             </Col>
             <Col sm={6} xl={5} md={5}>
-            <a href="/career-advice-details">
-              <div id="section5">
-                <img
-                  className="card-img-top img-fluid"
-                  src={ent}
-                  alt="Card cap"
-                />
-                <div className="p-3">
-                  <h4
-                    style={{ color: "#244a59", fontWeight: "bolder" }}
-                    className="card-title mb-2"
-                  >
-                    {" "}
-                    Entrepreneurship
-                  </h4>
-                  <p className="card-text text-dark">
-                    Lorem ipsum dolor sit amet consectetur. Vitae dolor
-                    imperdiet tristique quam. Vitae purus diam montes convallis
-                    convallis. At feugiat nam id dictum semper. Tristique libero
-                    risus amet adipiscing aliquam turpis amet. Non arcu dui
-                    nulla bibendum vestibulum viverra in aliquam id. Viverra
-                    aliquet donec enim rutr.
-                  </p>
+            <Link to="/entrepreneurship">
+                <div id="section5">
+                  <img
+                    className="card-img-top img-fluid"
+                    src={ent}
+                    alt="Card cap"
+                  />
+                  <div className="p-3">
+                    <h4
+                      style={{ color: "#244a59", fontWeight: "bolder" }}
+                      className="card-title mb-2"
+                    >
+                      {" "}
+                      Entrepreneurship
+                    </h4>
+                    <p className="card-text text-dark">
+                      Lorem ipsum dolor sit amet consectetur. Vitae dolor
+                      imperdiet tristique quam. Vitae purus diam montes
+                      convallis convallis. At feugiat nam id dictum semper.
+                      Tristique libero risus amet adipiscing aliquam turpis
+                      amet. Non arcu dui nulla bibendum vestibulum viverra in
+                      aliquam id. Viverra aliquet donec enim rutr.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              </a>
+              </Link>
             </Col>
             <Col sm={6} xl={5} md={5}>
-            <a href="/career-advice-details">
-              <div id="section4"  style={{cursor: 'pointer'}}>
-                <img
-                  className="card-img-top img-fluid"
-                  src={health}
-                  alt="Card cap"
-                />
-                <div className="p-3">
-                  <h4
-                    style={{ color: "#244a59", fontWeight: "bolder" }}
-                    className="card-title mb-2"
-                  >
-                    {" "}
-                    Health & Safety
-                  </h4>
-                  <p className="card-text text-dark">
-                    Lorem ipsum dolor sit amet consectetur. Vitae dolor
-                    imperdiet tristique quam. Vitae purus diam montes convallis
-                    convallis. At feugiat nam id dictum semper. Tristique libero
-                    risus amet adipiscing aliquam turpis amet. Non arcu dui
-                    nulla bibendum vestibulum viverra in aliquam id. Viverra
-                    aliquet donec enim rutr.
-                  </p>
+              <Link to="/health">
+                <div id="section4" style={{ cursor: "pointer" }}>
+                  <img
+                    className="card-img-top img-fluid"
+                    src={health}
+                    alt="Card cap"
+                  />
+                  <div className="p-3">
+                    <h4
+                      style={{ color: "#244a59", fontWeight: "bolder" }}
+                      className="card-title mb-2"
+                    >
+                      {" "}
+                      Health & Safety
+                    </h4>
+                    <p className="card-text text-dark">
+                      Lorem ipsum dolor sit amet consectetur. Vitae dolor
+                      imperdiet tristique quam. Vitae purus diam montes
+                      convallis convallis. At feugiat nam id dictum semper.
+                      Tristique libero risus amet adipiscing aliquam turpis
+                      amet. Non arcu dui nulla bibendum vestibulum viverra in
+                      aliquam id. Viverra aliquet donec enim rutr.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              </a>
+              </Link>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <a href="/career-advice-details">
-              <div id="section3"  style={{cursor: 'pointer'}}>
-                <img
-                  className="card-img-top img-fluid"
-                  src={jsearch}
-                  alt="Card cap"
-                />
-                <div className="p-3">
-                  <h4
-                    style={{ color: "#244a59", fontWeight: "bolder" }}
-                    className="card-title mb-2"
-                  >
-                    Job Search
-                  </h4>
-                  <p className="card-text text-dark">
-                    Lorem ipsum dolor sit amet consectetur. Vitae dolor
-                    imperdiet tristique quam. Vitae purus diam montes convallis
-                    convallis. At feugiat nam id dictum semper. Tristique libero
-                    risus amet adipiscing aliquam turpis amet. Non arcu dui
-                    nulla bibendum vestibulum viverra in aliquam id. Viverra
-                    aliquet donec enim rutr.
-                  </p>
+              <Link to="/job-search">
+                <div id="section3" style={{ cursor: "pointer" }}>
+                  <img
+                    className="card-img-top img-fluid"
+                    src={jsearch}
+                    alt="Card cap"
+                  />
+                  <div className="p-3">
+                    <h4
+                      style={{ color: "#244a59", fontWeight: "bolder" }}
+                      className="card-title mb-2"
+                    >
+                      Job Search
+                    </h4>
+                    <p className="card-text text-dark">
+                      Lorem ipsum dolor sit amet consectetur. Vitae dolor
+                      imperdiet tristique quam. Vitae purus diam montes
+                      convallis convallis. At feugiat nam id dictum semper.
+                      Tristique libero risus amet adipiscing aliquam turpis
+                      amet. Non arcu dui nulla bibendum vestibulum viverra in
+                      aliquam id. Viverra aliquet donec enim rutr.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              </a>
+              </Link>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <a href='/career-advice-details'>
-              <div id="section2"  style={{cursor: 'pointer'}}>
-                <img
-                  className="card-img-top img-fluid"
-                  src={sal}
-                  alt="Card cap"
-                />
-                <div className="p-3">
-                  <h4
-                    style={{ color: "#244a59", fontWeight: "bolder" }}
-                    className="card-title mb-2"
-                  >
-                    {" "}
-                    Salary / Benefits
-                  </h4>
-                  <p className="card-text text-dark">
-                    Lorem ipsum dolor sit amet consectetur. Vitae dolor
-                    imperdiet tristique quam. Vitae purus diam montes convallis
-                    convallis. At feugiat nam id dictum semper. Tristique libero
-                    risus amet adipiscing aliquam turpis amet. Non arcu dui
-                    nulla bibendum vestibulum viverra in aliquam id. Viverra
-                    aliquet donec enim rutr.
-                  </p>
+              <Link to="/salary">
+                <div id="section2" style={{ cursor: "pointer" }}>
+                  <img
+                    className="card-img-top img-fluid"
+                    src={sal}
+                    alt="Card cap"
+                  />
+                  <div className="p-3">
+                    <h4
+                      style={{ color: "#244a59", fontWeight: "bolder" }}
+                      className="card-title mb-2"
+                    >
+                      {" "}
+                      Salary / Benefits
+                    </h4>
+                    <p className="card-text text-dark">
+                      Lorem ipsum dolor sit amet consectetur. Vitae dolor
+                      imperdiet tristique quam. Vitae purus diam montes
+                      convallis convallis. At feugiat nam id dictum semper.
+                      Tristique libero risus amet adipiscing aliquam turpis
+                      amet. Non arcu dui nulla bibendum vestibulum viverra in
+                      aliquam id. Viverra aliquet donec enim rutr.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              </a>
+              </Link>
             </Col>
             <Col sm={6} xl={5} md={5}>
-              <a href="/career-advice-details">
-              <div id="section6"  style={{cursor: 'pointer'}}>
-                <img
-                  className="card-img-top img-fluid"
-                  src={workplace}
-                  alt="Card cap"
-                />
-                <div className="p-3">
-                  <h4
-                    style={{ color: "#244a59", fontWeight: "bolder" }}
-                    className="card-title mb-2"
-                  >
-                    {" "}
-                    Workplace
-                  </h4>
-                  <p className="card-text text-dark">
-                    Lorem ipsum dolor sit amet consectetur. Vitae dolor
-                    imperdiet tristique quam. Vitae purus diam montes convallis
-                    convallis. At feugiat nam id dictum semper. Tristique libero
-                    risus amet adipiscing aliquam turpis amet. Non arcu dui
-                    nulla bibendum vestibulum viverra in aliquam id. Viverra
-                    aliquet donec enim rutr.
-                  </p>
+              <Link to="/workplace">
+                <div id="section6" style={{ cursor: "pointer" }}>
+                  <img
+                    className="card-img-top img-fluid"
+                    src={workplace}
+                    alt="Card cap"
+                  />
+                  <div className="p-3">
+                    <h4
+                      style={{ color: "#244a59", fontWeight: "bolder" }}
+                      className="card-title mb-2"
+                    >
+                      {" "}
+                      Workplace
+                    </h4>
+                    <p className="card-text text-dark">
+                      Lorem ipsum dolor sit amet consectetur. Vitae dolor
+                      imperdiet tristique quam. Vitae purus diam montes
+                      convallis convallis. At feugiat nam id dictum semper.
+                      Tristique libero risus amet adipiscing aliquam turpis
+                      amet. Non arcu dui nulla bibendum vestibulum viverra in
+                      aliquam id. Viverra aliquet donec enim rutr.
+                    </p>
+                  </div>
                 </div>
-
-              </div>
-              </a>
+              </Link>
             </Col>
           </div>
         </Col>

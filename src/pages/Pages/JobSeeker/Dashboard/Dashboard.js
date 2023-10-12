@@ -254,101 +254,109 @@ const Dashboard = () => {
                   </div>
 
                   {/* New company */}
+                  <div className="d-grid">
+                    {savedLoading === false && savedError === false ? (
+                      (filter || []).map((item, key) => (
+                        <>
+                          <Col xl={5} key={key}>
+                            <div
+                              className="d-flex mt-5 gap-2"
+                              style={{
+                                justifyContent: "space-between",
+                                border: "1px solid #dbdbdb",
+                                padding: "0.4rem",
+                                borderRadius: "0.3rem",
+                                display: "flex",
 
-                  {savedLoading === false && savedError === false ? (
-                    (filter || []).map((item, key) => (
-                      <>
-                        <Col xl={5} key={key}>
-                          <div
-                            className="d-flex mt-5 gap-2"
-                            style={{
-                              justifyContent: "space-between",
-                              border: "1px solid #dbdbdb",
-                              padding: "0.4rem",
-                              borderRadius: "0.3rem",
-                              display: "flex",
+                                flexWrap: "wrap",
+                              }}
+                            >
+                              <div className="d-flex gap-2">
+                                <div>
+                                  <img
+                                    src={
+                                      "https://108.166.181.225:5050/uploads/image/logos/" +
+                                      item?.companyLogo
+                                    }
+                                    alt="logo"
+                                    className="img-fluid avatar-xxl"
+                                    width="100"
+                                    height="100"
+                                  ></img>
+                                </div>
 
-                              flexWrap: "wrap",
-                            }}
-                          >
-                            <div className="d-flex gap-2">
+                                <div style={{ display: "grid" }}>
+                                  <h5
+                                    style={{
+                                      position: "relative",
+                                      top: "0.6rem",
+                                      color: "#244a59",
+                                      fontWeight: "bolder",
+                                    }}
+                                  >
+                                    {item.jobTitle}
+                                  </h5>
+                                  <p
+                                    style={{
+                                      color: "#244a59",
+                                      fontWeight: "lighter",
+                                    }}
+                                  >
+                                    {item.companyName}
+                                  </p>
+                                </div>
+                              </div>
+
                               <div>
-                                <img
-                                  src={ "https://108.166.181.225:5050/uploads/image/logos/" +
-                                  item?.companyLogo}
-                                  alt="logo"
-                                  className="img-fluid avatar-xxl"
-                                ></img>
+                                <Link to="/app/apply">
+                                  <Button
+                                    className="btn btn-dark"
+                                    style={{
+                                      backgroundColor: "#244a59",
+                                      position: "relative",
+                                      top: "0.7rem",
+                                    }}
+                                    onClick={() => {
+                                      justifyToggle("4");
+                                      dispatch(
+                                        fullJobDetails({ jobId: item?.jobId })
+                                      );
+                                    }}
+                                  >
+                                    Quick Apply
+                                  </Button>
+                                </Link>
                               </div>
-
-                              <div style={{ display: "grid" }}>
-                                <h5
-                                  style={{
-                                    position: "relative",
-                                    top: "0.6rem",
-                                    color: "#244a59",
-                                    fontWeight: "bolder",
-                                  }}
-                                >
-                                  {item.jobTitle}
-                                </h5>
-                                <p
-                                  style={{
-                                    color: "#244a59",
-                                    fontWeight: "lighter",
-                                  }}
-                                >
-                                  {item.companyName}
+                            </div>
+                          </Col>
+                        </>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="7" className="text-center mt-5">
+                          <div className="d-flex align-items-center justify-content-center">
+                            {savedLoading === true ? (
+                              <>
+                                <Spinner
+                                  size="lg"
+                                  className="me-2 mt-5"
+                                  style={{ color: "#244a59" }}
+                                ></Spinner>
+                              </>
+                            ) : (
+                              <>
+                                <p className="fw-light mt-5">
+                                  You don't have any Service inquiries at the
+                                  moment.
                                 </p>
-                              </div>
-                            </div>
-
-                            <div>
-                              <Link to="/app/apply">
-                                <Button
-                                  className="btn btn-dark"
-                                  style={{
-                                    backgroundColor: "#244a59",
-                                    position: "relative",
-                                    top: "0.7rem",
-                                  }}
-                                  onClick={() => {
-                                    justifyToggle("4");
-                                    dispatch(fullJobDetails({jobId: item?.jobId}))
-                                  }}
-                                >
-                                  Quick Apply
-                                </Button>
-                              </Link>
-                            </div>
+                              </>
+                            )}
                           </div>
-                        </Col>
-                      </>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="7" className="text-center mt-5">
-                        <div className="d-flex align-items-center justify-content-center">
-                          {savedLoading === true ? (
-                            <>
-                              <Spinner
-                                size="lg"
-                                className="me-2 mt-5"
-                                style={{ color: "#244a59" }}
-                              ></Spinner>
-                            </>
-                          ) : (
-                            <>
-                              <p className="fw-light mt-5">
-                                You don't have any Service inquiries at the
-                                moment.
-                              </p>
-                            </>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  )}
+                        </td>
+                      </tr>
+                    )}
+                  </div>
+
                   {/* End company */}
 
                   {/* <div>

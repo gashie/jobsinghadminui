@@ -54,7 +54,7 @@ const Range = ({ onSubmit }) => {
 
     console.log('eyy')
 
-    dispatch(createQuestion(formattedData))
+    //dispatch(createQuestion(formattedData))
 
     // Reset form values to default after submission
     setQuestion('');

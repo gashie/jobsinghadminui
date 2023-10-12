@@ -475,7 +475,7 @@ const RepostJob = ({ handleCloseRepost }) => {
                       type="text"
                       className="form-control p-3"
                       id="education"
-                      placeholder="Enter education level"
+                      placeholder="Enter education "
                       onChange={validation.handleChange}
                       value={validation.values.education || ""}
                       invalid={

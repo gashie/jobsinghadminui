@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNews } from "../../../../../store/actions";
 import { Link } from "react-router-dom";
 
-const CareerDevelopment = () => {
+const Salary = () => {
   const { loading, error, info } = useSelector((state) => ({
     loading: state.Feeds.fetchNewsLoading,
     error: state.Feeds.fetchNewsError,
@@ -49,10 +49,9 @@ const CareerDevelopment = () => {
     dispatch(
       fetchNews({
         postType: "career_advice",
-        postCategory: "career_development",
+        postCategory: "salary_benefits",
       })
     );
-
     window.scrollTo(0, 0)
   }, [dispatch]);
 
@@ -75,10 +74,10 @@ const CareerDevelopment = () => {
   const renderListItems = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    let itemsToDisplay;
+    let itemsToDisplay = [];
 
     if (info && info.length > startIndex) {
-      itemsToDisplay = info.slice(startIndex, endIndex);
+      itemsToDisplay = info?.slice(startIndex, endIndex);
     } else {
       itemsToDisplay = [];
     }
@@ -138,14 +137,14 @@ const CareerDevelopment = () => {
             className="bx bx-chevron-right"
             style={{ fontSize: "1.5rem", position: "relative", top: "0.4rem" }}
           ></i>{" "}
-          Career Development
+          Salary
         </h5>
         <hr />
 
         <h5
           style={{ fontWeight: "bolder", color: "#244a59 ", marginTop: "2rem" }}
         >
-          Articles in Career Development
+          Articles in Salary
         </h5>
 
         <Col xs={10} md={20} xl={20}>
@@ -187,4 +186,4 @@ const CareerDevelopment = () => {
   );
 };
 
-export default CareerDevelopment;
+export default Salary;

@@ -190,6 +190,7 @@ const login = (state = initialState, action) => {
         loading: false,
         error: false,
         inter: false,
+        loadingUserinfo: false,
       };
       break;
 

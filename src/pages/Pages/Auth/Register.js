@@ -143,9 +143,9 @@ const Register = () => {
       formData.append("myCv", selectedFilesSelfie[0]);
 
       toggleTab(activeTab + 1, 50);
-      validation.resetForm()
+      validation.resetForm();
       window.scrollTo(0, 0);
-       dispatch(signUp(formData));
+      dispatch(signUp(formData));
     },
   });
 
@@ -170,13 +170,19 @@ const Register = () => {
       setTop("10rem");
       setCreateLeft("");
       setCheckTop("");
-    } else {
-      // for xl screens
+    } else if (newWindowSize <= 1600) {
+      // for md screens
       setLeft("100vh");
       setTop("-7rem");
-      setCreateLeft("20rem");
-      setCreateLeft("20rem");
-      setCheckTop("-2rem");
+      setCreateLeft("");
+      setCheckTop("");
+    } else {
+      // for xl screens
+      setLeft("160vh");
+      setTop("-7rem");
+      setCreateLeft("10rem");
+
+      setCheckTop("-4rem");
     }
   };
 
@@ -555,7 +561,7 @@ const Register = () => {
                           <div
                             style={{
                               height: "100px",
-                           
+
                               overflow: "hidden",
                               border: "1px dashed #e0e0e0",
                             }}
@@ -586,7 +592,7 @@ const Register = () => {
                           </div>
 
                           <Row className="mt-5">
-                            <Col lg={6} >
+                            <Col lg={6}>
                               <div className="mb-3">
                                 <Label
                                   className="form-label"
@@ -714,53 +720,61 @@ const Register = () => {
                               </div>
                             </Col>
                           </Row>
+                          <Row>
+                            <Col>
+                              {" "}
+                              <div className="mb-3">
+                                <Label
+                                  className="form-label"
+                                  htmlFor="gen-info-password-input"
+                                >
+                                  Address
+                                </Label>
+                                <Input
+                                  type="text"
+                                  className="form-control p-3"
+                                  id="address"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.address || ""}
+                                  placeholder="Enter Address"
+                                  invalid={
+                                    validation.touched.address &&
+                                    validation.errors.address
+                                      ? true
+                                      : false
+                                  }
+                                />
+                              </div>
+                            </Col>
 
-                          <div className="mb-3">
-                            <Label
-                              className="form-label"
-                              htmlFor="gen-info-password-input"
-                            >
-                              Address
-                            </Label>
-                            <Input
-                              type="text"
-                              className="form-control p-3"
-                              id="address"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.address || ""}
-                              placeholder="Enter Address"
-                              invalid={
-                                validation.touched.address &&
-                                validation.errors.address
-                                  ? true
-                                  : false
-                              }
-                            />
-                          </div>
-                          <div className="mb-3">
-                            <Label
-                              className="form-label"
-                              htmlFor="gen-info-password-input"
-                            >
-                              Birthdate
-                            </Label>
-                            <Input
-                              type="date"
-                              className="form-control p-3"
-                              id="birthDate"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.birthDate || ""}
-                              placeholder="Enter Address"
-                              invalid={
-                                validation.touched.birthDate &&
-                                validation.errors.birthDate
-                                  ? true
-                                  : false
-                              }
-                            />
-                          </div>
+                            <Col>
+                              {" "}
+                              <div className="mb-3">
+                                <Label
+                                  className="form-label"
+                                  htmlFor="gen-info-password-input"
+                                >
+                                  Birthdate
+                                </Label>
+                                <Input
+                                  type="date"
+                                  className="form-control p-3"
+                                  id="birthDate"
+                                  onChange={validation.handleChange}
+                                  onBlur={validation.handleBlur}
+                                  value={validation.values.birthDate || ""}
+                                  placeholder="Enter Address"
+                                  invalid={
+                                    validation.touched.birthDate &&
+                                    validation.errors.birthDate
+                                      ? true
+                                      : false
+                                  }
+                                />
+                              </div>
+                            </Col>
+                          </Row>
 
                           <Row>
                             <Col lg={6}>

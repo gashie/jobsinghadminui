@@ -286,6 +286,13 @@ import EmailAction from "../pages/Pages/Auth/EmailAction";
 import PasswordAction from "../pages/Pages/Auth/PasswordAction";
 import NotFound from "../pages/Pages/Front/NotFound";
 import Loading from "../pages/Pages/Front/Loading";
+import Entrepreneurship from "../pages/Pages/Front/Career/CareerAdvice/Entrepreneurship";
+import Salary from "../pages/Pages/Front/Career/CareerAdvice/Salary";
+import JobSearch from "../pages/Pages/Front/Career/CareerAdvice/JobSearch";
+import Workplace from "../pages/Pages/Front/Career/CareerAdvice/Workplace";
+import Health from "../pages/Pages/Front/Career/CareerAdvice/Health";
+
+
 
 
 
@@ -596,6 +603,12 @@ const publicRoutes = [
 
   {path: '/emailaction', component: <EmailAction />},
   {path: '/passwordaction', component: <PasswordAction />},
+
+  {path: '/health', component: <Health />},
+  {path: '/entrepreneurship', component: <Entrepreneurship />},
+  {path: '/salary', component: <Salary />},
+  {path: '/job-search', component: <JobSearch />},
+  {path: '/workplace', component: <Workplace />},
 
 ];
 

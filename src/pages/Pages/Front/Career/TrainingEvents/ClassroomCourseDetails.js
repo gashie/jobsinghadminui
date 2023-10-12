@@ -22,7 +22,8 @@ import paper from "./paper.png";
 import down from "./down.png";
 import buss from "./buss.png";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { courseContent } from "../../../../../store/actions";
 
 const ClassroomCourseDetails = () => {
   const [top, setTop] = useState("");
@@ -59,10 +60,11 @@ const ClassroomCourseDetails = () => {
 
   const image = `https://108.166.181.225:5050/uploads/image/course/`;
   const pdf = `https://108.166.181.225:5050/upload/pdf/resume/`;
-  const course = `https://108.166.181.225:5050/uploads/pdf/course/`
+  const course = `https://108.166.181.225:5050/uploads/pdf/course/`;
+  const contentFile = `https://108.166.181.225:5050/uploads/mixed/course/content`;
+  const contentImg = `https://108.166.181.225:5050/uploads/mixed/course/partnership/`;
 
   //http://108.166.181.225:5050/uploads/image/job/logo_id_225f080c-9105-4b9e-a96a-3bbaa226c1c7_md_7af4a24d6c6f526e9e8f2df3ff5e370d_.png
-  
 
   const decodeHTML = (html) => {
     const txt = document.createElement("textarea");
@@ -71,33 +73,44 @@ const ClassroomCourseDetails = () => {
   };
 
   function handleOpenInNewTab(e) {
-  // Prevent the default behavior of the link
-  e.preventDefault();
+    // Prevent the default behavior of the link
+    e.preventDefault();
 
-  // Specify the URL of the PDF file
-  const pdfUrl = course + data?.courseBrochure;
+    // Specify the URL of the PDF file
+    const pdfUrl = course + data?.courseBrochure;
 
-  
+    // Open a new window or tab with custom styles
+    const newWindow = window.open(pdfUrl, "_blank", "width=800,height=600");
 
-
-  // Open a new window or tab with custom styles
-  const newWindow = window.open(pdfUrl, '_blank', 'width=800,height=600');
-
-  // Apply custom styles to the new window
-  if (newWindow) {
-    newWindow.document.body.style.backgroundColor = 'black';
-    newWindow.document.body.style.margin = '0';
-    // You can add more custom styles as needed
+    // Apply custom styles to the new window
+    if (newWindow) {
+      newWindow.document.body.style.backgroundColor = "black";
+      newWindow.document.body.style.margin = "0";
+      // You can add more custom styles as needed
+    }
   }
-}
 
-const {content, schedule, partnership} = useSelector((state)=>({
-  content : state.Courses.courseContent, 
-  schedule : state.Courses.courseSchedule, 
-  partnership : state.Courses.coursePartnership, 
-}))
+  const dispatch = useDispatch();
 
+  const { content, schedule, partnership } = useSelector((state) => ({
+    content: state.Courses.courseContent,
+    schedule: state.Courses.courseSchedule,
+    partnership: state.Courses.coursePartnership,
+  }));
 
+  const { contentLoading, contentError, contentInfo } = useSelector(
+    (state) => ({
+      contentInfo: state.Courses.courseContent,
+      contentError: state.Courses.error,
+      contentLoading: state.Courses.loading,
+    })
+  );
+
+  useEffect(() => {
+    dispatch(
+      courseContent({ courseId: "27aaad5e-49c8-4771-9a4a-f27ac3236ef1" })
+    );
+  }, [dispatch]);
 
   return (
     <>
@@ -138,7 +151,7 @@ const {content, schedule, partnership} = useSelector((state)=>({
                     fontWeight: "bolder",
                   }}
                 >
-                 {data?.courseTitle}
+                  {data?.courseTitle}
                 </h2>
                 <h5
                   style={{
@@ -182,128 +195,39 @@ const {content, schedule, partnership} = useSelector((state)=>({
                     </CardHeader>
 
                     <div className="p-3">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>03-07 Jul 2023</h6>
-                        <h6 style={{ fontWeight: "bolder" }}>$4,500</h6>
-                      </div>
+                      {contentInfo?.schedule?.map((item, key) => (
+                        <>
+                          <hr />
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <h6>
+                              {item?.startTime} - {item?.endTime}
+                            </h6>
+                            <h6 style={{ fontWeight: "bolder" }}>
+                              &#x20B5;{data?.courseCost}
+                            </h6>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <h6>{item?.scheduleTitle}</h6>
+                            <Button
+                              className="btn btn-dark"
+                              style={{ backgroundColor: "#244a59 " }}
+                            >
+                              Register
+                            </Button>
+                          </div>
+                        </>
+                      ))}
 
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>Accra - GH</h6>
-                        <Button
-                          className="btn btn-dark"
-                          style={{ backgroundColor: "#244a59 " }}
-                        >
-                          Register
-                        </Button>
-                      </div>
-                      <hr />
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>03-07 Jul 2023</h6>
-                        <h6 style={{ fontWeight: "bolder" }}>$4,500</h6>
-                      </div>
-
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>Accra - GH</h6>
-                        <Button
-                          className="btn btn-dark"
-                          style={{ backgroundColor: "#244a59 " }}
-                        >
-                          Register
-                        </Button>
-                      </div>
-                      <hr />
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>03-07 Jul 2023</h6>
-                        <h6 style={{ fontWeight: "bolder" }}>$4,500</h6>
-                      </div>
-
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>Accra - GH</h6>
-                        <Button
-                          className="btn btn-dark"
-                          style={{ backgroundColor: "#244a59 " }}
-                        >
-                          Register
-                        </Button>
-                      </div>
-                      <hr />
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>03-07 Jul 2023</h6>
-                        <h6 style={{ fontWeight: "bolder" }}>$4,500</h6>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>Accra - GH</h6>
-                        <Button
-                          className="btn btn-dark"
-                          style={{ backgroundColor: "#244a59 " }}
-                        >
-                          Register
-                        </Button>
-                      </div>
-                      <hr />
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>03-07 Jul 2023</h6>
-                        <h6 style={{ fontWeight: "bolder" }}>$4,500</h6>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <h6>Accra - GH</h6>
-                        <Button
-                          className="btn btn-dark"
-                          style={{ backgroundColor: "#244a59 " }}
-                        >
-                          Register
-                        </Button>
-                      </div>
                       <hr />
 
                       <h4
@@ -358,7 +282,9 @@ const {content, schedule, partnership} = useSelector((state)=>({
                         </h5>
                         <Link target="_blank" onClick={handleOpenInNewTab}>
                           {" "}
-                          <Button className="btn btn-light" target="_blank">Download</Button>
+                          <Button className="btn btn-light" target="_blank">
+                            Download
+                          </Button>
                         </Link>
                       </div>
                     </CardFooter>
@@ -461,8 +387,6 @@ const {content, schedule, partnership} = useSelector((state)=>({
                   __html: decodeHTML(data?.courseAudience),
                 }}
               ></div>
-           
-
 
               {/* <h5
                 className="mt-4"
@@ -512,11 +436,11 @@ const {content, schedule, partnership} = useSelector((state)=>({
                 >
                   How will this Training Course be Presented?
                 </h3>
-                   <div
-                dangerouslySetInnerHTML={{
-                  __html: decodeHTML(data?.courseStudyMode),
-                }}
-              ></div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: decodeHTML(data?.courseStudyMode),
+                  }}
+                ></div>
                 {/* <p className="mt-5 fs-15" style={{ lineHeight: "2rem" }}>
                   Lorem ipsum dolor sit amet consectetur. Vitae dolor imperdiet
                   tristique quam. Vitae purus diam montes convallis convallis.
@@ -541,27 +465,27 @@ const {content, schedule, partnership} = useSelector((state)=>({
                 The Course Content
               </h4>
 
-              <h5
-                className="mt-5"
-                style={{ color: "#244a59", fontWeight: "bolder" }}
-              >
-                Day One: Introduction to Contract Management
-              </h5>
-              <ul
-                style={{ color: "#244a59", lineHeight: "2rem" }}
-                className="fs-20"
-              >
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-                <li>Lorem ipsum dolor sit amet consectetur.</li>
-              </ul>
+              {contentInfo?.content?.map((item) => (
+                <>
+                  <h5
+                    className="mt-5"
+                    style={{ color: "#244a59", fontWeight: "bolder" }}
+                  >
+                    {item?.contentTitle}
+                  </h5>
+                  <p>{item?.contentDesc}</p>
+                  <Link to={contentFile + item?.contentFile} target="_blank">
+                    <Button
+                      style={{ backgroundColor: "#244a59" }}
+                      className="btn btn-dark"
+                    >
+                      Download Course Content
+                    </Button>
+                  </Link>
+                </>
+              ))}
 
-              <h5
+              {/* <h5
                 className="mt-5"
                 style={{ color: "#244a59", fontWeight: "bolder" }}
               >
@@ -579,9 +503,9 @@ const {content, schedule, partnership} = useSelector((state)=>({
                 <li>Lorem ipsum dolor sit amet consectetur.</li>
                 <li>Lorem ipsum dolor sit amet consectetur.</li>
                 <li>Lorem ipsum dolor sit amet consectetur.</li>
-              </ul>
+              </ul> */}
 
-              <h5
+              {/* <h5
                 className="mt-5"
                 style={{ color: "#244a59", fontWeight: "bolder" }}
               >
@@ -599,7 +523,7 @@ const {content, schedule, partnership} = useSelector((state)=>({
                 <li>Lorem ipsum dolor sit amet consectetur.</li>
                 <li>Lorem ipsum dolor sit amet consectetur.</li>
                 <li>Lorem ipsum dolor sit amet consectetur.</li>
-              </ul>
+              </ul> */}
             </Col>
 
             <br />
@@ -628,24 +552,35 @@ const {content, schedule, partnership} = useSelector((state)=>({
               In Partnership with
             </h4>
 
-            <div
-              style={{
-                display: "grid",
-                width: "max-content",
-                height: "10rem",
-                border: "1px solid #000000",
-                borderRadius: "0.7rem",
-                padding: "1rem",
-              }}
-            >
-              <img src={logo} alt="logo" className="rounded avatar-xmd"></img>
-              <Button
-                className="btn btn-dark"
-                style={{ backgroundColor: "#00D084" }}
-              >
-                View Results
-              </Button>
-            </div>
+            {contentInfo?.partners?.map((item) => (
+              <>
+                <div
+                  style={{
+                    display: "grid",
+                    width: "max-content",
+                    border: "1px solid #000000",
+                    borderRadius: "0.7rem",
+                    padding: "1rem",
+                  }}
+                  className="m-2"
+                >
+                  {/* <h5>{item?.institutionName}</h5> */}
+                  <img
+                    src={contentImg + item?.institutionLogo}
+                    alt="logo"
+                    className="img-fluid rounded avatar-xmd m-2"
+                    width="100"
+                    height="100"
+                  />
+                  <Button
+                    className="btn btn-dark"
+                    style={{ backgroundColor: "#00D084" }}
+                  >
+                    View Results
+                  </Button>
+                </div>
+              </>
+            ))}
           </Col>
 
           <Col>
@@ -1062,16 +997,18 @@ const {content, schedule, partnership} = useSelector((state)=>({
               </h4>
 
               <p style={{ textAlign: "center" }} className="mt-4">
-                <Button
-                  className="btn btn-dark"
-                  style={{ backgroundColor: "#244a59", width: "10rem" }}
-                >
-                  Course Finder{" "}
-                  <i
-                    className=" ri-zoom-in-line"
-                    style={{ position: "relative", top: "0.15rem" }}
-                  ></i>
-                </Button>
+                <Link to="/training-events">
+                  <Button
+                    className="btn btn-dark"
+                    style={{ backgroundColor: "#244a59", width: "10rem" }}
+                  >
+                    Course Finder{" "}
+                    <i
+                      className=" ri-zoom-in-line"
+                      style={{ position: "relative", top: "0.15rem" }}
+                    ></i>
+                  </Button>
+                </Link>
               </p>
             </Col>
           </Col>

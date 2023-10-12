@@ -124,8 +124,9 @@ const Approved = () => {
                                             "pending"
                                           ? "#c89b51"
                                           : "red",
-                                      borderRadius: "10px",
-                                      width: "max-content",
+                                          borderRadius: "7px",
+                                          marginTop: "0.6rem",
+                                          width: "max-content",
                                     }}
                                     className="p-1"
                                   >

@@ -139,11 +139,11 @@ function* approveFeed({ payload: data }) {
 function* feed({ payload: data }) {
   try {
     const response = yield call(feedsURL, data);
-    if (response.status === 1) {
-      yield put(FeedsSuccess(response?.data));
+    if (response.data.status === 1) {
+      yield put(FeedsSuccess(response?.data.data));
       
     } else {
-      yield put(FeedsError(response));
+      yield put(FeedsError(response.data.message));
     }
   } catch (error) {
     yield put(FeedsError(error));
@@ -153,11 +153,11 @@ function* feed({ payload: data }) {
 function* fetchNews({ payload: data }) {
   try {
     const response = yield call(fetchNewsURL, data);
-    if (response.status === 1) {
-      yield put(fetchNewsSuccess(response?.data));
+    if (response.data.status === 1) {
+      yield put(fetchNewsSuccess(response?.data.data));
       
     } else {
-      yield put(fetchNewsError(response));
+      yield put(fetchNewsError(response.data.message));
     }
   } catch (error) {
     yield put(fetchNewsError(error));

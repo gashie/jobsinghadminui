@@ -58,11 +58,11 @@ const JobList = (props) => {
   const [dele, setDele] = useState(0);
 
   const JobType = [
-    { name: "Permanent", count: "0" },
-    { name: "Contract", count: "2900" },
-    { name: "Internship", count: "20" },
-    { name: "Part Time", count: "200" },
-    { name: "Learnership", count: "200" },
+    { name: "Permanent" },
+    { name: "Contract" },
+    { name: "Internship" },
+    { name: "Part Time" },
+    { name: "Learnership" },
   ];
 
   const navigate = useNavigate();
@@ -180,6 +180,109 @@ const JobList = (props) => {
     }));
   };
 
+  const [jobsData, setJobsData] = useState(jobsInfo);
+  const [selectedLocation, setSelectedLocation] = useState(null); // To store the selected location
+
+  useEffect(()=>(
+   setJobsData(jobsInfo) 
+  ), [jobsInfo])
+
+  // Function to handle location button click
+  const handleLocationClick = (location) => {
+    // Set the selected location
+    setSelectedLocation(location);
+
+    // Filter jobs based on the selected location
+    const filteredJobs = jobsData?.filter(
+      (job) => job.jobLocation === location
+    );
+
+    // Update the Redux state to show only the filtered jobs
+    // dispatch(setJobsData(filteredJobs));
+    setJobsData(filteredJobs);
+  };
+
+  // Reset the location filter
+  const resetLocationFilter = () => {
+    setSelectedLocation(null);
+    setJobsData(jobsInfo);
+    // Reset the Redux state to the original job data
+    // dispatch(setJobsData([...]); // Set the original job data here
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState(categoryInfo); // Initialize with null
+
+  // Function to handle category button click
+  const handleCategoryClick = (categoryName) => {
+    // Set the selected category
+    setSelectedCategory(categoryName);
+
+    // Filter jobs based on the selected category
+    const filteredJobs = jobsData.filter(
+      (job) => job.jobCategoryName === categoryName
+    );
+
+    // Update the job data to show only the filtered jobs
+    setJobsData(filteredJobs);
+  };
+
+  // Reset the category filter
+  const resetCategoryFilter = () => {
+    setSelectedCategory(null); // Reset to null
+    // Restore the original job data
+    setJobsData(jobsInfo); // Set the original job data here
+  };
+
+  const [selectedJobType, setSelectedJobType] = useState(JobType);
+
+  // Function to handle job type filter click
+  const handleJobTypeClick = (jobType) => {
+    setSelectedJobType(jobType);
+
+    // Filter jobs based on the selected job type
+    const filteredJobs = jobsData.filter((job) => job.jobStatus === jobType);
+
+    // Update the job data to show only the filtered jobs
+    setJobsData(filteredJobs);
+  };
+
+  // Reset the job type filter
+  const resetJobTypeFilter = () => {
+    setSelectedJobType(null);
+    // Restore the original job data
+    setJobsData(jobsInfo);
+  };
+
+  const [jobTitleInput, setJobTitleInput] = useState("");
+  const [locationInput, setLocationInput] = useState("");
+  const [categoryInput, setCategoryInput] = useState("");
+  const [filteredJobData, setFilteredJobData] = useState([]);
+  //const [jobData, setJobData] = useState([]);  // This should contain your data
+
+  useEffect(() => {
+    // Load your data here. Replace this with your data loading logic.
+    // Example: fetch("your_api_endpoint").then(response => setData(response.data));
+  }, []);
+
+  const handleSearchClick = () => {
+    // Filter the data based on the selected values.
+    const filtered = jobsData.filter((item) => {
+      const titleMatch = jobTitleInput
+        ? item.jobTitle.toLowerCase().includes(jobTitleInput.toLowerCase())
+        : true;
+      const locationMatch = locationInput
+        ? item.jobLocation === locationInput
+        : true;
+      const categoryMatch = categoryInput
+        ? item.jobCategoryName === categoryInput
+        : true;
+
+      return titleMatch && locationMatch && categoryMatch;
+    });
+
+    setJobsData(filtered);
+  };
+
   return (
     <>
       <Row
@@ -205,8 +308,8 @@ const JobList = (props) => {
               }}
               placeholder="Job title, skills or company"
               className="p-3"
-              value={jobTitle}
-              onChange={(e) => setJobTitle(e.target.value)}
+              value={jobTitleInput}
+              onChange={(e) => setJobTitleInput(e.target.value)}
             />
           </Col>
 
@@ -223,10 +326,10 @@ const JobList = (props) => {
                 backgroundColor: "#244a59",
               }}
               className="p-3 w-100"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              value={locationInput}
+              onChange={(e) => setLocationInput(e.target.value)}
             >
-              <option>Select Location</option>
+              <option  value="">Select Location</option>
               {Object.entries(placesData).map(([region, cities], index) => (
                 <optgroup key={index} label={region}>
                   {cities.map((city, cityIndex) => (
@@ -252,10 +355,10 @@ const JobList = (props) => {
                 backgroundColor: "#244a59",
               }}
               className="p-3 w-100"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              value={categoryInput}
+              onChange={(e) => setCategoryInput(e.target.value)}
             >
-              <option>Select Category</option>
+              <option value="">Select Category</option>
               {catLoading === false && catError === false ? (
                 categoryInfo?.map((item, key) => (
                   <option key={key} value={item?.jobCategoryId}>
@@ -272,6 +375,7 @@ const JobList = (props) => {
             <Button
               style={{ backgroundColor: "#00d084", border: "none" }}
               className="btn p-3 w-100"
+               onClick={handleSearchClick}
             >
               Search
             </Button>
@@ -361,80 +465,86 @@ const JobList = (props) => {
                                           ? placesData[region].length
                                           : 5
                                       )
-                                      .map((location, index) => (
-                                        <div
-                                          key={index}
-                                          className="d-flex gap-1"
-                                        >
-                                          <NavItem
-                                            style={{
-                                              padding: "0.7rem",
-                                              backgroundColor: "#ebeff0",
-                                              borderRadius: "0.5rem",
-                                              width: "85%",
-                                            }}
-                                            className="mt-1"
+                                      .map((location, index) => {
+                                        // Determine if this location is currently selected
+                                        const isSelected =
+                                          selectedLocation === location;
+                                        // Calculate the job count for the current location
+                                        const jobCount = jobsInfo.filter(
+                                          (job) => job.jobLocation === location
+                                        ).length;
+                                        // Determine if this location is currently selected
+
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="d-flex gap-1"
                                           >
-                                            <div
-                                              className="d-flex"
-                                              style={{
-                                                justifyContent: "space-between",
+                                            <button
+                                              onClick={() => {
+                                                if (isSelected) {
+                                                  resetLocationFilter();
+                                                } else {
+                                                  handleLocationClick(location);
+                                                }
                                               }}
+                                              style={{
+                                                padding: "0.7rem",
+                                                backgroundColor: isSelected
+                                                  ? "#e0e0e0"
+                                                  : "#ebeff0",
+                                                color: isSelected
+                                                  ? "black"
+                                                  : "gray",
+                                                borderRadius: "0.5rem",
+                                                width: "85%",
+                                                border: 'none'
+                                              }}
+                                              className="mt-1"
                                             >
-                                              <NavLink
-                                                href="#"
+                                              <div
+                                                className="d-flex"
                                                 style={{
-                                                  color: "gray",
-                                                  fontSize: "0.8rem",
+                                                  justifyContent:
+                                                    "space-between",
                                                 }}
                                               >
-                                                {location}
-                                              </NavLink>
+                                                <span>{location}</span>
+                                                <span>({jobCount})</span>
+                                                {isSelected && (
+                                                  <i className="bx bx-check fs-16 fw-bolder"></i>
+                                                )}
+                                              </div>
+                                            </button>
+
+                                            <div
+                                              style={{
+                                                padding: "0.7rem",
+                                                backgroundColor: "#ebeff0",
+                                                borderRadius: "0.5rem",
+                                                width: "15%",
+                                                cursor: "pointer",
+                                              }}
+                                              className="mt-1"
+                                            >
+                                              <p
+                                                style={{ textAlign: "center" }}
+                                              >
+                                                <i
+                                                  className="bx bx-plus fs-16 fw-bolder"
+                                                  style={{
+                                                    color: "244a59",
+                                                    textAlign: "center",
+                                                    position: "relative",
+                                                    top: "0.7rem",
+                                                  }}
+                                                ></i>
+                                              </p>
                                             </div>
-                                          </NavItem>
-
-                                          <div
-                                            style={{
-                                              padding: "0.7rem",
-                                              backgroundColor: "#ebeff0",
-                                              borderRadius: "0.5rem",
-                                              width: "15%",
-                                              cursor: "pointer",
-                                            }}
-                                            className="mt-1"
-                                          >
-                                            <p style={{ textAlign: "center" }}>
-                                              <i
-                                                className="bx bx-plus fs-16 fw-bolder"
-                                                style={{
-                                                  color: "244a59",
-                                                  textAlign: "center",
-                                                  position: "relative",
-                                                  top: "0.7rem",
-                                                }}
-                                              ></i>
-                                            </p>
                                           </div>
-                                        </div>
-                                      ))}
-
-                                    {/* {placesData[region].length > 2 && (
-                                      <button
-                                        onClick={() =>
-                                          setShowAllPlaces(!showAllPlaces)
-                                        }
-                                        style={{
-                                          marginTop: "10px",
-                                          color: "black",
-                                        }}
-                                        className="btn btn-light"
-                                      >
-                                        {showAllPlaces
-                                          ? "Show Less"
-                                          : "Show More"}
-                                        <i className="bx bx-chevron-down"></i>
-                                      </button>
-                                    )} */}
+                                        );
+                                      })}
+                                    {/* Your "Show More" logic here */}
                                   </div>
                                 ))}
                               </Nav>
@@ -471,69 +581,89 @@ const JobList = (props) => {
                             </NavLink>
                             <Collapse isOpen={vetCategory} className="ml-4">
                               <Nav vertical>
-                                {categoryInfo?.map((category, index) => (
-                                  <div key={index} className="d-flex gap-1">
-                                    <NavItem
-                                      style={{
-                                        padding: "0.7rem",
-                                        backgroundColor: "#ebeff0",
-                                        borderRadius: "0.5rem",
-                                        width: "85%",
-                                      }}
-                                      className="mt-1"
-                                    >
-                                      <div
-                                        className="d-flex"
-                                        style={{
-                                          justifyContent: "space-between",
+                                {categoryInfo?.map((category, index) => {
+                                  // Calculate the job count for the current category
+                                  const jobCount = jobsData.filter(
+                                    (job) =>
+                                      job.jobCategoryName ===
+                                      category.jobCategoryName
+                                  ).length;
+
+                                  return (
+                                    <div key={index} className="d-flex gap-1">
+                                      <button
+                                        onClick={() => {
+                                          if (
+                                            selectedCategory ===
+                                            category.jobCategoryName
+                                          ) {
+                                            resetCategoryFilter();
+                                          } else {
+                                            handleCategoryClick(
+                                              category.jobCategoryName
+                                            );
+                                          }
                                         }}
+                                        style={{
+                                          padding: "0.7rem",
+                                          backgroundColor:
+                                            selectedCategory ===
+                                            category.jobCategoryName
+                                              ? "#e0e0e0"
+                                              : "#ebeff0",
+                                          color:
+                                            selectedCategory ===
+                                            category.jobCategoryName
+                                              ? "black"
+                                              : "gray",
+                                          borderRadius: "0.5rem",
+                                          width: "85%",
+                                          border: 'none'
+                                        }}
+                                        className="mt-1"
                                       >
-                                        <NavLink
-                                          href="#"
+                                        <div
+                                          className="d-flex"
                                           style={{
-                                            color: "gray",
-                                            fontSize: "0.8rem",
+                                            justifyContent: "space-between",
                                           }}
                                         >
-                                          {category?.jobCategoryName}
-                                        </NavLink>
+                                          <span>
+                                            {category?.jobCategoryName}
+                                          </span>
+                                         ({jobCount})
+                                          {selectedCategory ===
+                                            category.jobCategoryName && (
+                                            <i className="bx bx-check fs-16 fw-bolder"></i>
+                                          )}
+                                        </div>
+                                      </button>
+
+                                      <div
+                                        style={{
+                                          padding: "0.7rem",
+                                          backgroundColor: "#ebeff0",
+                                          borderRadius: "0.5rem",
+                                          width: "15%",
+                                          cursor: "pointer",
+                                        }}
+                                        className="mt-1"
+                                      >
+                                        <p style={{ textAlign: "center" }}>
+                                          <i
+                                            className="bx bx-plus fs-16 fw-bolder"
+                                            style={{
+                                              color: "244a59",
+                                              textAlign: "center",
+                                              position: "relative",
+                                              top: "0.7rem",
+                                            }}
+                                          ></i>
+                                        </p>
                                       </div>
-                                    </NavItem>
-
-                                    <div
-                                      style={{
-                                        padding: "0.7rem",
-                                        backgroundColor: "#ebeff0",
-                                        borderRadius: "0.5rem",
-                                        width: "15%",
-                                        cursor: "pointer",
-                                      }}
-                                      className="mt-1"
-                                    >
-                                      <p style={{ textAlign: "center" }}>
-                                        <i
-                                          className="bx bx-plus fs-16 fw-bolder"
-                                          style={{
-                                            color: "244a59",
-                                            textAlign: "center",
-                                            position: "relative",
-                                            top: "0.7rem",
-                                          }}
-                                        ></i>
-                                      </p>
                                     </div>
-                                  </div>
-                                ))}
-
-                                {/* {catData.categories.length > 5 && (
-                                  <button
-                                    onClick={() => setShowAll(!showAll)}
-                                    className="btn btn-light mt-2 w-50"
-                                  >
-                                    {showAll ? "Show Less" : "Show More"}
-                                    <i className="bx bx-chevron-down"></i>
-                                  </button>
-                                )} */}
+                                  );
+                                })}
                               </Nav>
                             </Collapse>
                           </NavItem>
@@ -571,15 +701,37 @@ const JobList = (props) => {
                             </NavLink>
                             <Collapse isOpen={type} className="ml-4">
                               <Nav vertical>
-                                {JobType.map((a, key) => {
+                                {JobType.map((jobType, index) => {
+                                  // Calculate the job count for the current job type
+                                  const jobCount = jobsData.filter(
+                                    (job) => job.jobStatus === jobType.name
+                                  ).length;
+
                                   return (
-                                    <div key={key} className=" d-flex gap-1">
-                                      <NavItem
+                                    <div key={index} className="d-flex gap-1">
+                                      <button
+                                        onClick={() => {
+                                          if (
+                                            selectedJobType === jobType.name
+                                          ) {
+                                            resetJobTypeFilter();
+                                          } else {
+                                            handleJobTypeClick(jobType.name);
+                                          }
+                                        }}
                                         style={{
                                           padding: "0.7rem",
-                                          backgroundColor: "#ebeff0",
+                                          backgroundColor:
+                                            selectedJobType === jobType.name
+                                              ? "#e0e0e0"
+                                              : "#ebeff0",
+                                          color:
+                                            selectedJobType === jobType.name
+                                              ? "black"
+                                              : "gray",
                                           borderRadius: "0.5rem",
                                           width: "85%",
+                                          border: 'none'
                                         }}
                                         className="mt-1"
                                       >
@@ -589,17 +741,13 @@ const JobList = (props) => {
                                             justifyContent: "space-between",
                                           }}
                                         >
-                                          <NavLink
-                                            href="#"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "0.8rem",
-                                            }}
-                                          >
-                                            {a.name} ({a.count})
-                                          </NavLink>
+                                          <span>{jobType.name}</span>
+                                         ({jobCount})
+                                          {selectedJobType === jobType.name && (
+                                            <i className="bx bx-check fs-16 fw-bolder"></i>
+                                          )}
                                         </div>
-                                      </NavItem>
+                                      </button>
 
                                       <div
                                         style={{
@@ -871,13 +1019,13 @@ const JobList = (props) => {
                                 padding: "1rem",
                               }}
                             >
-                              {jobsInfo?.length} Results Found
+                              {jobsData?.length} Results Found
                             </h5>
                           </div>
                         </div>
 
                         {loading === false && error === false ? (
-                          jobsInfo?.map((item) => (
+                          jobsData?.map((item) => (
                             <>
                               <Card
                                 style={{
@@ -973,8 +1121,8 @@ const JobList = (props) => {
                                           backgroundColor: "white",
                                           boxShadow: "none",
                                           marginTop: "5rem",
-                                          position: 'relative', 
-                                          left: "-1rem"
+                                          position: "relative",
+                                          left: "-1rem",
                                         }}
                                         onClick={() => {
                                           dispatch(

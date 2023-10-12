@@ -292,17 +292,7 @@ const RenewJob = ({ handleCloseRenew }) => {
   return (
     <>
       <div className="m-2 p-0 mb-5">
-        {/* <div className="p-0 mt-5" style={{ marginTop: "0rem" }}>
-            <div className="d-flex" style={{ justifyContent: "space-between" }}>
-              <div className="mt-">
-                <h4 className="fw-bolder mt-5">Renew Job</h4>
-                <p className="">
-                  <b>Dashboard</b> / Jobs
-                </p>
-              </div>
-            </div>
-          </div> */}
-
+      
         <Form
           onSubmit={(e) => {
             e.preventDefault();
@@ -311,62 +301,9 @@ const RenewJob = ({ handleCloseRenew }) => {
           }}
         >
        
-            {/* left */}
-
-            {/* <Col md={20}>
-                  <div className="mb-3 mt-4">
-                    <Label for="emailidInput" className="form-label">
-                      Employer
-                    </Label>
-                    <select
-                      className="form-select p-3"
-                      id="companyId"
-                      value={validation.values.companyId}
-                      onChange={validation.handleChange}
-                    >
-                      <option>Select Company</option>
-                      {companyLoading === false && companyError === false ? (
-                        companyInfo?.map((item, key) => (
-                          <option key={key} value={item?.companyId}>
-                            {item?.companyName}
-                          </option>
-                        ))
-                      ) : (
-                        <option>loading employers...</option>
-                      )}
-                    </select>
-                  </div>
-                </Col> */}
-
+           
             <Col>
-              {/* <label>Job Title</label>
-                  <Row className="mb-3">
-                    <Col lg={15}>
-                      <Input
-                        type="text"
-                        className="form-control p-3"
-                        id="jobTitle"
-                        placeholder="Job title"
-                        onChange={validation.handleChange}
-                        value={validation.values.jobTitle || ""}
-                      />
-                    </Col>
-                  </Row>
-  
-                  <label>Years of Experience</label>
-                  <Row className="mb-3">
-                    <Col lg={15}>
-                      <Input
-                        type="number"
-                        className="form-control p-3"
-                        id="yearsOfExperience"
-                        placeholder="Years of Experience"
-                        onChange={validation.handleChange}
-                        value={validation.values.yearsOfExperience || ""}
-                      />
-                    </Col>
-                  </Row> */}
-
+            
               <label>Extend Go Live Date</label>
 
               <Col lg={12} md={12}>
@@ -376,6 +313,7 @@ const RenewJob = ({ handleCloseRenew }) => {
                   id="goLiveDate"
                   name="goLiveDate"
                   placeholder=""
+                  disabled="true"
                   onChange={validation.handleChange}
                   value={validation.values.goLiveDate || ""}
                   invalid={
@@ -388,208 +326,14 @@ const RenewJob = ({ handleCloseRenew }) => {
               </Col>
               <p className="mt-3">By Submitting you will be increasing the go live Date for this job from <b>{formatDate(data?.goLiveDate)}</b> to <b>{formatDate(formattedDate)} </b></p>
 
-              {/* <Row className="mb-3">
-                    <label>Select Category</label>
-                    <Col lg={15}>
-                      <select
-                        className="form-select p-3"
-                        name="jobCategoryId"
-                        id="jobCategoryId"
-                        value={validation.values.jobCategoryId}
-                        onChange={validation.handleChange}
-                      >
-                        <option>Select Category</option>
-                        {catLoading === false && catError === false ? (
-                          categoryInfo?.map((item, key) => (
-                            <option key={key} value={item?.jobCategoryId}>
-                              {item?.jobCategoryName}
-                            </option>
-                          ))
-                        ) : (
-                          <option>loading categories...</option>
-                        )}
-                      </select>
-                    </Col>
-                    {validation.touched.jobCategoryId &&
-                    validation.errors.jobCategoryId ? (
-                      <FormFeedback type="invalid">
-                        <div>{validation.errors.jobCategoryId}</div>
-                      </FormFeedback>
-                    ) : null}
-                  </Row> */}
-
-              {/* <label>Education Level</label>
-                  <Row className="mb-3">
-                    <Col lg={15}>
-                      <Input
-                        type="text"
-                        className="form-control p-3"
-                        id="education"
-                        placeholder="Education Level"
-                        onChange={validation.handleChange}
-                        value={validation.values.education || ""}
-                      />
-                    </Col>
-                  </Row> */}
-              {/* 
-                  <Row className="mb-3">
-                    <Col lg={15} className="d-flex align-items-center">
-                      <Input
-                        type="checkbox"
-                        className="form-check-input"
-                        id="confidentialCheckbox"
-                        checked={isConfidential} // Use state variable for checked attribute
-                        onChange={handleCheckboxChange} // Update state on change
-                      />
-                      <label
-                        htmlFor="confidentialCheckbox"
-                        className="form-check-label"
-                      >
-                        Mark company as confidential
-                      </label>
-                    </Col>
-                  </Row> */}
+            
             </Col>
 
             {/* right */}
             <Col>
-              {/* <Row className="mb-3">
-                    <label>Select Status</label>
-                    <Col lg={12}>
-                      <select
-                        className="form-select p-3"
-                        name="jobStatusId"
-                        id="jobStatusId"
-                        value={validation.values.jobStatusId}
-                        onChange={validation.handleChange}
-                      >
-                        <option>Permanent</option>
-                        <option>Contract</option>
-                        <option>Part Time</option>
-                      </select>
-                    </Col>
-                  </Row> */}
-
-              {/* <Row className="mb-3">
-                    <label>Select Apply Mode</label>
-                    <Col lg={12}>
-                      <select
-                        className="form-select p-3"
-                        name="applyMode"
-                        id="applyMode"
-                        value={validation.values.applyMode}
-                        onChange={validation.handleChange}
-                      >
-                        <option>select apply mode</option>
-                        <option>Email</option>
-                        <option>Website</option>
-                      </select>
-                    </Col>
-                  </Row> */}
-
-              {/* {validation.values.applyMode === "Email" ? (
-                    <Row className="mb-3">
-                      <label>Apply Email</label>
-                      <Col lg={12}>
-                        <Input
-                          className="form-select p-3"
-                          name="appliedEmail"
-                          id="appliedEmail"
-                          type="text"
-                          value={validation.values.appliedEmail}
-                          onChange={validation.handleChange}
-                        />
-                      </Col>
-                    </Row>
-                  ) : validation.values.applyMode === "Website" ? (
-                    <Row className="mb-3">
-                      <label>Apply Link</label>
-                      <Col lg={12}>
-                        <Input
-                          className="form-select p-3"
-                          name="applyLink"
-                          id="applyLink"
-                          type="text"
-                          value={validation.values.applyLink}
-                          onChange={validation.handleChange}
-                        />
-                      </Col>
-                    </Row>
-                  ) : (
-                    ""
-                  )} */}
-
-              {/* <Row className="mb-3">
-                      <Col lg={15} className="p-2">
-                        <div>
-                          <div className="d-flex gap-1">
-                            {finalLocations.map((location, index) => (
-                              <div
-                                className="selected-location p-1"
-                                key={index}
-                                style={{
-                                  backgroundColor: "#e0e0e0",
-                                  borderRadius: "6px",
-                                }}
-                              >
-                                {location.locationName}
-                              </div>
-                            ))}
-                          </div>
-                          <br />
-                          <Input
-                            type="text"
-                            className="form-control p-3"
-                            id="websitetext"
-                            placeholder="Job location eg. Accra, Tarkwa"
-                            value={inputValue}
-                            onChange={handleInputChange}
-                            onKeyUp={handleKeyUp}
-                          />
-                        </div>
-                        <p>Please hit the space key after entering location.</p>
-                      </Col>
-                    </Row> */}
-
-              {/* <Row className="mb-3">
-                    <label>Job Salary Amount</label>
-                    <Col lg={15}>
-                      <Input
-                        type="number"
-                        className="form-control p-3"
-                        id="jobSalaryAmount"
-                        // name='jobSalaryAmount'
-                        placeholder="Enter Job Salary Amount"
-                        onChange={validation.handleChange}
-                        value={validation.values.jobSalaryAmount || ""}
-                      />
-                    </Col>
-                  </Row> */}
+            
             </Col>
-            {/* {validation.touched.companyId && validation.errors.companyId ? (
-                  <FormFeedback type="invalid">
-                    <div>{validation.errors.companyId}</div>
-                  </FormFeedback>
-                ) : null} */}
         
-
-          {/* <Row className="mt-3">
-                  <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
-                    Description
-                  </h6>
-                  <Col lg={12}>
-                    <Editor editorId="editor2" transmitHtml={updateEditorData} />
-                  </Col>
-                </Row>
-    
-                <Row className="mt-5">
-                  <h6 style={{ color: "#244a59", fontWeight: "bolder" }}>
-                    How to apply
-                  </h6>
-                  <Col lg={12}>
-                    <Editor editorId="editor2" transmitHtml={updateEditorData} />
-                  </Col>
-                </Row> */}
 
           <div className="text-start d-flex gap-3 mt-4">
             <button

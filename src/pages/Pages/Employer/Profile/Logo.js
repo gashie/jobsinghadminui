@@ -61,7 +61,6 @@ const ProfileLogo = () => {
   const { imageLoading, imageError } = useSelector((state) => ({
     imageLoading: state.Login.updateLogoLoading,
     imageError: state.Login.updateLogoError,
-   
   }));
 
   return (
@@ -77,7 +76,7 @@ const ProfileLogo = () => {
           <h5 className="fw-bolder">Modify Your Logo</h5>
 
           <Col lg={10} className="mt-4">
-            <label>Upload Logo</label>
+           
             <label>Upload Logo</label>
             <Input
               type="file"
@@ -89,21 +88,21 @@ const ProfileLogo = () => {
             />
           </Col>
           <Button
-        style={{ backgroundColor: "#244a59" }}
-        disabled={imageError || !selectedFile || imageLoading}
-        className="btn btn-dark px-5 mt-4 p-3"
-        onClick={() => {
-          handleLogo();
-        }}
-      >
-        { imageLoading ? (
-          <Spinner size="sm" className="me-2">
-            {" "}
-            Loading...{" "}
-          </Spinner>
-        ) : null}
-       Save
-      </Button>
+            style={{ backgroundColor: "#244a59" }}
+            disabled={imageError || !selectedFile || imageLoading}
+            className="btn btn-dark px-5 mt-4 p-3"
+            onClick={() => {
+              handleLogo();
+            }}
+          >
+            {imageLoading ? (
+              <Spinner size="sm" className="me-2">
+                {" "}
+                Loading...{" "}
+              </Spinner>
+            ) : null}
+            Save
+          </Button>
 
           <div className="py-5">
             <h4 className="">Your Current logo</h4>

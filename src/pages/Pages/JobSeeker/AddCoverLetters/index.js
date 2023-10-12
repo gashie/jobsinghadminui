@@ -122,14 +122,14 @@ const AddCoverLetters = ({handleCoverLetters}) => {
                 <div className="d-flex gap-3">
               <button
                 type="submit"
-                className="btn btn-dark"
+                className="btn btn-dark p-3 px-5"
                 style={{ backgroundColor: "#244a59" }}
               >
                 Save
               </button>
               <button
                 type="button"
-                className="btn btn-light"
+                className="btn btn-light p-3 px-5"
                 style={{ color: "#244a59", border: "1px solid #244a59" }}
               >
                 Cancel

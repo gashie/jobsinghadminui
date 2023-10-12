@@ -302,7 +302,7 @@ export const SAVE_COURSE = `${version}/savecourse/`
 export const UPDATE_COURSE = `${version}/updatesavedcourse/`
 export const APPROVE_COURSE = `${version}/approvecourses/`
 
-export const COURSE_CONTENT = `${version}/viewcontent/`
+export const COURSE_CONTENT = `${version}/findcourse/`
 export const SAVE_COURSE_CONTENT = `${version}/savecontent/`
 export const UPDATE_COURSE_CONTENT = `${version}/updatecontent/`
 export const COURSE_PARTNERSHIP = `${version}/viewpartnerships/`
@@ -357,11 +357,12 @@ export const VIEW_PROFILE = `${version}/myprofile/`
 
 export const CONFIRM_PAY = `${version}/verifypayment/`
 
-export const FETCH_NEWS = `${version}/autofeeds/`;
+export const FETCH_NEWS = `${version}/dynamiccareer/`;
+
 
 export const SAVE_FEEDS = `${version}/savefeed/`;
 export const UPDATE_FEEDS = `${version}/updatesavedfeed/`;
-export const FEEDS = `${version}/viewsavedfeeds/`;
+export const FEEDS = `${version}/autofeeds/`;
 
 export const SAVE_USER_FEEDS = `${version}/saveuserfeed/`;
 export const APPROVE_FEEDS = `${version}/approveuserfeeds/`;

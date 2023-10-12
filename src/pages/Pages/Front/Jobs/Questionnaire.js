@@ -8,7 +8,7 @@ import {
   Container,
   Card,
   CardBody,
-  Spinner
+  Spinner,
 } from "reactstrap";
 import { applyForJobs } from "../../../../store/actions";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,6 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
   const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    // Initialize the answers state with the provided JSON data
     const initialAnswers = questionInfo?.map((question) => ({
       questionId: question.questionId,
       ans: question.ans || "",
@@ -41,10 +40,7 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
     setAnswers(updatedAnswers);
   };
 
-  const [finalData, setFinalData] = useState({});
-
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleFinal = () => {
@@ -53,17 +49,22 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
     formData.append("email", data?.email);
     formData.append("phone", data?.phone);
     formData.append("resume", data?.file);
-    formData.append("answers", JSON.stringify(answers));
+    formData.append("answers", JSON.stringify(answers)); // Pass answers to the server
     formData.append("jobId", data?.jobId);
 
     dispatch(applyForJobs(formData));
-    navigate("/job-list")
+    navigate("/job-list");
   };
 
-  const {loading, error} = ((state)=>({
+  const {
+    loading,
+    error,
+  } = (state) => ({
     loading: state.JobAlerts.applyForJobsLoading,
     error: state.JobAlerts.applyForJobsError,
-  }))
+  });
+
+  const isSubmitButtonDisabled = answers.some((answer) => !answer.ans);
 
   const renderQuestion = (question) => {
     switch (question.questionType) {
@@ -148,11 +149,11 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
                   <Input
                     type="radio"
                     name={question.questionId}
-                    value="yes"
+                    value="Yes"
                     checked={
                       answers.find(
                         (answer) => answer.questionId === question.questionId
-                      )?.ans === "yes"
+                      )?.ans === "Yes"
                     }
                     onChange={(e) =>
                       handleInputChange(question.questionId, e.target.value)
@@ -165,11 +166,11 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
                   <Input
                     type="radio"
                     name={question.questionId}
-                    value="no"
+                    value="No"
                     checked={
                       answers.find(
                         (answer) => answer.questionId === question.questionId
-                      )?.ans === "no"
+                      )?.ans === "No"
                     }
                     onChange={(e) =>
                       handleInputChange(question.questionId, e.target.value)
@@ -221,12 +222,9 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
       <CardBody>
         <Container>
           <div style={{ paddingBottom: "5rem" }}>
-            {/* <h4 className="d-flex htstack justify-content-center">
-          Step 2 of 2 (Please answer all questions)
-        </h4> */}
             <p
               onClick={() => {
-                navigate("/admin/apply");
+                navigate("/job-list");
               }}
               style={{
                 cursor: "pointer",
@@ -242,12 +240,9 @@ const Questionnaire = ({ questionInfo, handleBack, data }) => {
             </div>
             <Button
               style={{ backgroundColor: "#244a59" }}
-              disabled={error ? null : loading}
+              disabled={isSubmitButtonDisabled || error ? true : loading}
               className="mt-4 btn btn-dark"
-              onClick={() => {
-               
-                handleFinal();
-              }}
+              onClick={handleFinal}
             >
               {loading ? (
                 <Spinner size="sm" className="me-2">

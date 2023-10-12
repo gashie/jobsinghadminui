@@ -271,7 +271,7 @@ const EditJobs = ({ handleCloseHandle }) => {
       };
 
       dispatch(updateJob(finalData));
-      navigate("/employer-jobs");
+      navigate("/app/employer-jobs");
       handleCloseHandle();
       validation.resetForm();
     },

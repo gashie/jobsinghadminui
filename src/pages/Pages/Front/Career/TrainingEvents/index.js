@@ -18,6 +18,7 @@ import {
   CardBody,
   CardFooter,
   Button,
+  Spinner,
 } from "reactstrap";
 import classnames from "classnames";
 import jobCategoriesData from "../../../../../common/data/categories.json";
@@ -484,6 +485,9 @@ const TrainingEvents = (props) => {
                                         border: "1px solid #e0e0e0",
                                       }}
                                       placeholder="Sort by"
+                                      onClick={()=>{
+                                        window.print()
+                                      }}
                                     >
                                       <i className="ri-download-2-line "></i>{" "}
                                       Download PDF
@@ -734,6 +738,9 @@ const TrainingEvents = (props) => {
                         <p className="hstack justify-content-center mt-5">
                           No available Courses
                         </p>
+                      )}
+                      {loading === true && (
+                         <Spinner />
                       )}
                     </div>
 

@@ -133,7 +133,7 @@ const FeaturedJobs = () => {
   const endIndex = startIndex + itemsPerPage;
 
   // Get the current page of items
-  const filter = jobsInfo?.slice(startIndex, endIndex);
+  const filter = (jobsInfo)?.slice(startIndex, endIndex);
 
   // Function to handle page changes
   const handlePageChange = (page) => {
@@ -339,7 +339,7 @@ const FeaturedJobs = () => {
                       className="ms-2 p-2"
                       style={{
                         display: "flex",
-                        gap: "0rem",
+                        gap: "1rem",
                         flexWrap: "wrap",
                       }}
                     >

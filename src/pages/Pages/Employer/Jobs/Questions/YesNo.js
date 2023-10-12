@@ -40,7 +40,7 @@ function YesNo({ onSubmit }) {
     // Pass the formatted data to the parent component
     onSubmit(formattedData);
 
-    dispatch(createQuestionYN(formattedData))
+   // dispatch(createQuestionYN(formattedData))
 
     // Reset form values to default after submission
     setQuestion("");
